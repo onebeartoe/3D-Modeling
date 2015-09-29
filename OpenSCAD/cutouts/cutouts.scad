@@ -1,3 +1,18 @@
+
+// This is a library for evenly spacted cutouts.
+
+word  = 3;
+
+w = o;
+
+wor = {}
+
+w = 9;
+
+
+
+
+
 spurStl = "../lamp-shade-scallops/spur/spurs-a.stl";
 
 littleSpurCount = 6;
