@@ -1,7 +1,7 @@
 
 vaseHeight = 140;
 
-spurStl = "../../lamp-shade-scallops/spur/spurs-a.stl";
+spurStl = "../lamp-shade-scallops/spur/spurs-a.stl";
 
 littleSpurCount = 10;
 
@@ -23,14 +23,7 @@ difference()
         cylinder (h = vaseHeight, r=50, $fn=100);
     }
     
-    // removed spurs after this
-    
-    // bottom spur
-    translate([0,0,-5])
-	scale([0.35, 0.35, 12.0])
-	import(spurStl);
-
-    // outer spurs
+    // removed outer spurs
     for ( i = [0 : littleSpurCount],
           z = [1 : 3])
     {
