@@ -1,7 +1,6 @@
 
 echo ("signal")
 
-
 // This is a library for evenly spacted cutouts.
 
 spurStl = "../lamp-shade-scallops/spur/spurs-a.stl";
