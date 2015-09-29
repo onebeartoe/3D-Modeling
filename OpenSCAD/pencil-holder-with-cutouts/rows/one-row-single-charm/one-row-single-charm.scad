@@ -1,3 +1,3 @@
 
-include <../../../cutouts/rotated-sprial-cutouts.scad>;
+include <../../../cutouts/rotated-spiral-cutouts.scad>;
 

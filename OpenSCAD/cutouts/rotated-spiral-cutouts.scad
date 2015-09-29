@@ -1,5 +1,2 @@
 
-
-
-
 echo ("signal")
