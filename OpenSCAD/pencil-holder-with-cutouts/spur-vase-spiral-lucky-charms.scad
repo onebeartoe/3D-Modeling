@@ -63,8 +63,6 @@ difference()
         charmIndex = round(single_rand);
         
 //echo(charmIndex);
-
-//charmIndex = 1;
         
         rotate([
                 90, 
@@ -81,5 +79,3 @@ difference()
         import(charmStls[charmIndex]);
     }
 }
-
-        

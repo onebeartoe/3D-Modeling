@@ -33,13 +33,10 @@ difference()
                 90, 
                 0,
                 i * 30
-//                i * 360 / 6
         ])
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, 5 * i, 30])
         scale([littleSpurScale, littleSpurScale, 20.2])
         import(spurStl);
-        
-//        y = y + 10;
     }
 }
