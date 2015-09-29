@@ -1,0 +1,35 @@
+
+spur-vase-a.scad
+
+	has the little spurs cut out but they are rotated incorrectly to the side
+
+spur-vase-b.scad
+
+	this one has the cutout correct
+
+-----------------------------------------------------------------
+	
+spur-vase-multi-level.scad
+
+	has a few rows of evenly spaced out cut outs
+
+-----------------------------------------------------------------	
+spur-vase-spiral.scad
+
+-----------------------------------------------------------------
+
+spur-vase-spiral-lucky-charms-a.stl
+
+	kinda spurs theme, but has the OSHW logo
+
+spur-vase-spiral-lucky-charms-b.stl
+	
+	scaled up the charms by 1/10
+
+	all spurs themed
+	
+	uses basketball-c
+
+spur-vase-spiral-lucky-charms-c.stl	
+
+	same as b, but uses basketball-d
