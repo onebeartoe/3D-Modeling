@@ -4,6 +4,8 @@ littleSpurCount = 6;
 
 littleSpurScale = 0.125;
 
+rowSpacing = 30;
+
 difference()
 {
     // vase
@@ -27,7 +29,7 @@ difference()
                 i * 360 / 6
         ])
         // normally x,y,z - but here y moves the little spurs up and down
-        translate([15, 0, 30])
+        translate([15, 15+(z*rowSpacing), 30])
         scale([littleSpurScale, littleSpurScale, 20.2])
         import(spurStl);
     }
