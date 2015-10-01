@@ -3,7 +3,7 @@ echo ("in rotated sprial coutes .scsd");
 
 // This is a library for evenly spacted cutouts.
 
-spurStl = "../shapes/spurs/spurs-a.stl";
+spurStl = "../../../shapes/spurs/spurs-a.stl";
 
 littleSpurCount = 6;
 

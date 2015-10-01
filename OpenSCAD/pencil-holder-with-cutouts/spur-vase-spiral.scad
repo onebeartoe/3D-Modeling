@@ -1,14 +1,14 @@
 
-spurStl = "../../lamp-shade-scallops/spur/spurs-a.stl";
-spurStl = "oshw.stl";
+spurStl = "../shapes/spurs/spurs-a.stl";
+spurStl = "../shapes/oshw/oshw.stl";
 
-littleSpurCount = 6;
+littleSpurCount = 16;
 
 littleSpurScale = 0.125;  // spur scale
 littleSpurScale = 0.4;    // oshw scale
 
 vaseHeight = 300;
-vaseHeight = 30;
+vaseHeight = 150;
 
 difference()
 {
@@ -20,7 +20,7 @@ difference()
         cylinder (h = vaseHeight, r=55, $fn=100);
         
         // remvoed inner vasecentered spur
-        translate([0,0,5])
+        translate([0,0,-5])
         cylinder (h = vaseHeight, r=50, $fn=100);
     }
     

@@ -1,5 +1,5 @@
 
-spurStl = "../../lamp-shade-scallops/spur/spurs-a.stl";
+spurStl = "../shapes/spurs/spurs-a.stl";
 
 //littleSpurCount = 6;
 

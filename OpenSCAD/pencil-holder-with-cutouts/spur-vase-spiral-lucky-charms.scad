@@ -5,15 +5,15 @@ vaseHeight = 120;
 // this sets how many cutouts are in the vase
 charmCount = 26;
 
-spursCharmStl = "../../lamp-shade-scallops/spur/spurs-a.stl";
+spursCharmStl = "../shapes/spurs/spurs-a.stl";
 spursCharmXYScale = 0.2;  // spur scale
 spursCharmDepthScale = 20.2;   // oshw depth scale
 
-oshwCharmStl = "basketball/basketball-d/basketball-d.stl";
-oshwCharmXYScale = 0.8;
+oshwCharmStl = "../shapes/oshw/oshw.stl";
+oshwCharmXYScale = 0.7;
 oshwCharmDepthScale = 40.2;
 
-starCharmStl = "star.stl";
+starCharmStl = "../shapes/star/star.stl";
 starCharmXYScale = 0.7;
 starCharmDepthScale = 40.2;
 

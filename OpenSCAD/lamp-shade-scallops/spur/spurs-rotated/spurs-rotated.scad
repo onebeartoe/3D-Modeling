@@ -1,5 +1,5 @@
 
-spurStl = "../spurs-a.stl";
+spurStl = "../../../shapes/spurs/spurs-a.stl";
 
 littleSpurCount = 10;
 
