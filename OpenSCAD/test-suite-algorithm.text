@@ -1,0 +1,8 @@
+
+for each .oscad file in the input direcotry
+
+	verify that a corresponding .png file esists
+	
+	generate a 'latest' version of the .png  from .oscad file
+	
+	compare the 'latest' version to the current version
