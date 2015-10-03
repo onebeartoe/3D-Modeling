@@ -13,7 +13,8 @@ source ./global-variables.sh
 
 echo "exit code: $?"                        
 
-
+# generate a proposed version of the .png  from .oscad file
+./find-oscad-files.sh | ./generate-proposed-pngs.sh
 
 exit
 
