@@ -10,7 +10,7 @@ do
 	baseName=${line::-5}
 	
 	# concatinate '.png' to the base name
-	targetName="$baseName.png"
+	targetName=$baseName""$baselineSuffix
 
 	if   [ ! -f $targetName ] # test to see if the base comparison file exists
 	then

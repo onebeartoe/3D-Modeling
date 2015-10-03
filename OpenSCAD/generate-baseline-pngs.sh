@@ -25,6 +25,8 @@ do
 	
 		generateBaseLineCommand=$openScad" -o "$outfileName" "$line
 		
+		`$generateBaseLineCommand`
+		
 		echo $generateBaseLineCommand
 		
 	fi
