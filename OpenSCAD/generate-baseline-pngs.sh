@@ -4,6 +4,9 @@
 # call this commnad with the following
 # ./find-oscad-files.sh | ./generate-baseline-pngs.sh
 
+# Import the global variables.
+source ./global-variables.sh
+
 # next is a path to the executable for OpenSCAD and an example call
 # openscad -o ring.png ring.scad
 openScad="/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad"
@@ -15,12 +18,14 @@ do
 	baseName=${line::-5}
 	
 	# concatinate '.png' to the base name
-	outfileName=$baseName".png"
+	outfileName=$baseName""$baselineSuffix
 
 	if   [ ! -f $outfileName ] # test to see if the base comparison file exists
 	then
 	
-		echo $openScad" -o "$outfileName" "$line
+		generateBaseLineCommand=$openScad" -o "$outfileName" "$line
+		
+		echo $generateBaseLineCommand
 		
 	fi
 
