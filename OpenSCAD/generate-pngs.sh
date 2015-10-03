@@ -24,7 +24,7 @@ do
 		echo $generateBaseLineCommand
 		
 		# run the command
-#		`$generateBaseLineCommand`
+		`$generateBaseLineCommand`
 	fi
 
 done < "${1:-/dev/stdin}"
