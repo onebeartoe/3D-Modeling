@@ -8,10 +8,12 @@
 # Import the global variables.
 source ./global-variables.sh
 
-# make sure each OpenSCAD file has a corresponding 'current' image
+# make sure each OpenSCAD file has a corresponding 'baseline' image
 ./find-oscad-files.sh | ./data-set-test.sh
 
 echo "exit code: $?"                        
+
+
 
 exit
 

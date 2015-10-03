@@ -7,4 +7,4 @@ echo 'globale variables'
 
 export baselineSuffix="-baseline.png"
 
-export proposedBaselineSuffix="-proposed"$baselineSuffix
+#export proposedBaselineSuffix="-proposed"$baselineSuffix
