@@ -11,11 +11,17 @@ source ./global-variables.sh
 # make sure each OpenSCAD file has a corresponding 'baseline' image
 ./find-oscad-files.sh | ./data-set-test.sh
 
-echo "exit code: $?"                        
+# CHECK THE ERRROR CODE TO CONTINUE!!!!!!!!!!!
+echo "(*&^%$#$%^&*())exit code: $?"                        
 
 # generate a proposed version of the .png  from .oscad file
 ./find-oscad-files.sh | ./generate-proposed-pngs.sh
+echo "The proposed baseline files are generated."
 
-exit
+# Compare the baseline PNG to the proposed PNG.
+./find-oscad-files.sh | ./compare-pngs.sh
+#!!!!!!!!!!check if the diff are good!!!  Dohast!  Nien!
 
-echo 'end of run'  # with the call to exit in place, execution does not reach here
+#
+
+echo "Thanks for using the onebeartoe test suite for OpenSCAD libraries."

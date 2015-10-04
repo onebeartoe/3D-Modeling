@@ -1,6 +1,6 @@
 
 # Import the global variables.
-source ./global-variables.sh
+#source ./global-variables.sh
 
 export baselineSuffix="-proposed"$baselineSuffix
 

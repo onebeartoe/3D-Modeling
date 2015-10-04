@@ -40,6 +40,8 @@ uniqueCharmCount = len(charmStls);
 
 charmIndex = -1;
 
+randomSeed = 2789676;
+
 difference()
 {
     // vase
@@ -60,6 +62,8 @@ difference()
     for( i = [0 : charmCount] )
     {
         single_rand = rands(0,2,1)[0];
+//		single_rand = rands(0,2,1, randomSeed)[0];
+		
         charmIndex = round(single_rand);
         
 //echo(charmIndex);
