@@ -10,17 +10,11 @@ do
 	
 	proposedBaselineInfile=$baseName""$proposedBaselineSuffix
 
-
 	
-		generateBaseLineCommand="diff "$baselineInfile" "$proposedBaselineInfile
+#	generateBaseLineCommand="diff "$baselineInfile" "$proposedBaselineInfile
 
-#		echo $generateBaseLineCommand
 		
-		# run the command
-#		`$generateBaseLineCommand`
-		
-		diff $baselineInfile  $proposedBaselineInfile
+	# compare the PNG files
+	diff $baselineInfile  $proposedBaselineInfile
 
 done < "${1:-/dev/stdin}"
-
-

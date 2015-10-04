@@ -1,0 +1,14 @@
+
+spurs-rotated-a.gcode
+
+	xy scale 0.5
+	
+	z scale 1.5
+	
+	55m x 55mm x 3mm
+	
+	printtime: 31 mins
+	
+	grams: 7
+	
+	meters: 2.44

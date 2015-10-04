@@ -41,6 +41,10 @@ uniqueCharmCount = len(charmStls);
 charmIndex = -1;
 
 randomSeed = 2789676;
+randomSeed = rands(0,987654, 1)[0];
+
+maxRandom = uniqueCharmCount - 1;
+randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);
 
 difference()
 {
@@ -61,7 +65,8 @@ difference()
     // lucky charms!
     for( i = [0 : charmCount] )
     {
-        single_rand = rands(0,2,1)[0];
+        single_rand = randomCharmIndcies[i];
+//        single_rand = rands(0,2,1)[0];
 //		single_rand = rands(0,2,1, randomSeed)[0];
 		
         charmIndex = round(single_rand);
