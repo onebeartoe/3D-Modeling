@@ -27,7 +27,7 @@ exitCode=0
 	
 if [ "$allFilesPresent" == true ]
 then
-		echo "All input files present."
+		echo "All input files are present."
 else
 		#set a exit code to indicate the data set was not complete
 		exitCode=1
