@@ -1,10 +1,10 @@
 
 // this determines how tall the pen holder is
 vaseHeight = 300;
-vaseHeight = 120;
+//vaseHeight = 120;
 
 // this sets how many cutouts are in the pen holder
-charmCount = 26;
+charmCount = 35;
 
 spursCharmStl = "../shapes/spurs/spurs-a.stl";
 spursCharmXYScale = 0.2;  // spur scale
@@ -43,7 +43,7 @@ charmIndex = -1;
 randomSeed = 2789676;
 
 // uncomment this next line to have a different pattern each time the model is rendered in OpenSCAD.	
-//randomSeed = rands(0,987654, 1)[0];
+//	randomSeed = rands(0,987654, 1)[0];
 
 maxRandom = uniqueCharmCount - 1;
 randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);

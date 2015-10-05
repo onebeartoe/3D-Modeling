@@ -12,7 +12,18 @@ source ./global-variables.sh
 ./find-oscad-files.sh | ./data-set-test.sh
 
 # CHECK THE ERRROR CODE TO CONTINUE!!!!!!!!!!!
-echo "(*&^%$#$%^&*())exit code: $?"                        
+dataSetExitCode=$?
+
+if   [ "$dataSetExitCode" -ne 0 ] # test exit code of the data set test again success code, 0
+then
+	echo "The test suite will not continue with missing baseline PNG images."
+	
+	exit
+fi
+
+# temporairloy exit
+# REMOVE ONCE DONE TESTING
+exit
 
 # generate a proposed version of the .png  from .oscad file
 ./find-oscad-files.sh | ./generate-proposed-pngs.sh
