@@ -11,7 +11,7 @@ source ./global-variables.sh
 # make sure each OpenSCAD file has a corresponding 'baseline' image
 ./find-oscad-files.sh | ./data-set-test.sh
 
-# CHECK THE ERRROR CODE TO CONTINUE!!!!!!!!!!!
+# obtain the error code
 dataSetExitCode=$?
 
 if   [ "$dataSetExitCode" -ne 0 ] # test exit code of the data set test again success code, 0
