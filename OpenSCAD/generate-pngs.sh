@@ -16,7 +16,7 @@ do
 	# concatinate '.png' to the base name
 	outfileName=$baseName""$baselineSuffix
 
-	if   [ ! -f $outfileName ] # test to see if the base comparison file exists
+	if   [ ! -f $outfileName ] || [ "$forcePngGeneration" == true ] # test to see if the proposed baseline PNG file exists OR if the PNG is to be generated regardless of the file existing or not (generate-proposed-pngs.sh )
 	then
 	
 		generateBaseLineCommand=$openScad" -o "$outfileName" "$line
