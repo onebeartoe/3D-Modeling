@@ -8,6 +8,6 @@ difference()
     {
         translate([x, y, -5])
         scale([0.1, 0.1, 13.9])
-        import("../spurs-a.stl");
+        import("../../../shapes/spurs/spurs-a.stl");
     }
 }

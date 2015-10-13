@@ -41,7 +41,6 @@ uniqueCharmCount = len(charmStls);
 charmIndex = -1;
 
 randomSeed = 2789676;
-
 // uncomment this next line to have a different pattern each time the model is rendered in OpenSCAD.	
 //	randomSeed = rands(0,987654, 1)[0];
 
@@ -65,7 +64,7 @@ difference()
     y = 30;
 
     // lucky charms!
-    for( i = [0 : charmCount] )
+    for( i = [0 : charmCount-1] )
     {
         single_rand = randomCharmIndcies[i];
 //        single_rand = rands(0,2,1)[0];

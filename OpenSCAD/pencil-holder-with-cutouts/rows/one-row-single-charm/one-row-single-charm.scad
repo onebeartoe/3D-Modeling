@@ -1,6 +1,4 @@
 
-echo ("one-row-single-charm");
-
 use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
 difference()
