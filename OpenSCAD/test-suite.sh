@@ -33,7 +33,7 @@ diffComparisonExitCode=$?
 if   [ "$diffComparisonExitCode" -ne 0 ]
 then
 	echo "The test suite detected errors with the baseline and proposed baseline PNG images."
-	echo "See the error message(s) above."
+	echo "See the 'Binary files ... differ' message(s) above."
 
 	# return a error exit code
 	exit 3
