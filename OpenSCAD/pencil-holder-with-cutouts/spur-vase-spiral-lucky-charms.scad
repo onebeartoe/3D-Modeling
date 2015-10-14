@@ -1,5 +1,5 @@
 
-use <pencil-holder.scad>;
+use <../shapes/cup/cup.scad>;
 
 // this determines how tall the pen holder is
 vaseHeight = 300;

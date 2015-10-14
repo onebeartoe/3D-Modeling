@@ -1,5 +1,5 @@
 
-use <pencil-holder.scad>;
+use <../shapes/cup/cup.scad>;
 
 spurStl = "../shapes/spurs/spurs-a.stl";
 spurStl = "../shapes/oshw/oshw.stl";

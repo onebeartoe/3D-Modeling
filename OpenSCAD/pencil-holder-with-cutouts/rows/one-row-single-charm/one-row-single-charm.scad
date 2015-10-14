@@ -1,5 +1,5 @@
 
-use <../../pencil-holder.scad>;
+use <../../../shapes/cup/cup.scad>;
 use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
 difference()
