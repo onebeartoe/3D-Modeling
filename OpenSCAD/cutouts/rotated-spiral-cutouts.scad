@@ -28,10 +28,10 @@ module originalRotatedSpiralCutout(verticalSpacingFromBottom=0,
 
 
 module propossedRotatedSpiralCutout(spurStl = "../shapes/oshw/oshw.stl",
-									littleSpurCount = 16,
-									littleSpurScale = 0.4)
+									charmCount = 16,
+									xyScale = 0.4)
 {
-    for ( i = [0 : littleSpurCount] )
+    for ( i = [0 : charmCount] )
     {	
         rotate([
                 90, 
@@ -40,7 +40,7 @@ module propossedRotatedSpiralCutout(spurStl = "../shapes/oshw/oshw.stl",
         ])
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, 5 * i, 30])
-        scale([littleSpurScale, littleSpurScale, 20.2])
+        scale([xyScale, xyScale, 20.2])
         import(spurStl);
     }
 }
