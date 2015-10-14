@@ -14,7 +14,7 @@ vaseHeight = 150;
 
 difference()
 {
-	cup(vaseHeight=vaseHeight);
+	cup(cupHeight=vaseHeight);
 
 
     for ( i = [0 : littleSpurCount] )

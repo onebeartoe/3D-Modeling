@@ -1,18 +1,19 @@
 
-// RENAME THIS FILE TO shapes/cup.scad
-
-module cup(vaseHeight=70)
+/**
+  * Create a cylindrical cup.
+  */
+module cup(cupHeight=70)
 {
 	difference()
 	{
 		centered = false;
 	
-		// outer vase
+		// outer part of the cup
 		translate([0,0,0])
-		cylinder (h = vaseHeight, r=55, center = centered, $fn=100);
+		cylinder (h = cupHeight, r=55, center = centered, $fn=100);
 		
-		// remvoed inner vasecentered spur
+		// subtracted inner cup
 		translate([0,0,5])
-		cylinder (h = vaseHeight, r=53, center = centered, $fn=100);
+		cylinder (h = cupHeight, r=53, center = centered, $fn=100);
 	}
 }
