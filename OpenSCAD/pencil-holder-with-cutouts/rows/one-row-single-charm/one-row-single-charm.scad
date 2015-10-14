@@ -6,5 +6,5 @@ difference()
 {
 	cup();
 
-	rotatedSpiralCutout();
+	originalRotatedSpiralCutout(verticalSpacingFromBottom=35);
 }

@@ -1,4 +1,6 @@
 
+use <pencil-holder.scad>;
+
 // this determines how tall the pen holder is
 vaseHeight = 300;
 //vaseHeight = 120;
@@ -49,17 +51,7 @@ randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);
 
 difference()
 {
-    // vase
-    difference()
-    {
-        // outer vase
-        translate([0,0,0])
-        cylinder (h = vaseHeight, r=55, $fn=100);
-        
-        // remvoed inner vase centered
-        translate([0,0,5])
-        cylinder (h = vaseHeight, r=54, $fn=100);
-    }
+	cup(vaseHeight);
     
     y = 30;
 
@@ -67,8 +59,6 @@ difference()
     for( i = [0 : charmCount-1] )
     {
         single_rand = randomCharmIndcies[i];
-//        single_rand = rands(0,2,1)[0];
-//		single_rand = rands(0,2,1, randomSeed)[0];
 		
         charmIndex = round(single_rand);
         

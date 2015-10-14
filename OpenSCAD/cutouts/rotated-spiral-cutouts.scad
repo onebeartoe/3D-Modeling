@@ -10,10 +10,8 @@ littleSpurScale = 0.125;
 rowSpacing = 30;
 
 //module rotatedSpiralCutout()
-module rotatedSpiralCutout(verticalSpacingFromBottom=0, z=0)
+module originalRotatedSpiralCutout(verticalSpacingFromBottom=0, z=0)
 {
-	echo("z: ", z);
-
 	// outer spurs
 	for ( i = [0 : 5] )
 	{
