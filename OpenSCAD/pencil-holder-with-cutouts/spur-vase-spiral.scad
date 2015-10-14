@@ -1,22 +1,19 @@
 
 use <../shapes/cup/cup.scad>;
 
-spurStl = "../shapes/spurs/spurs-a.stl";
-spurStl = "../shapes/oshw/oshw.stl";
-
-littleSpurCount = 16;
-
-littleSpurScale = 0.125;  // spur scale
-littleSpurScale = 0.4;    // oshw scale
-
-vaseHeight = 300;
 vaseHeight = 150;
 
 difference()
 {
 	cup(cupHeight=vaseHeight);
 
+	propossedRotatedSpiralCutout();
+}
 
+module propossedRotatedSpiralCutout(spurStl = "../shapes/oshw/oshw.stl",
+									littleSpurCount = 16,
+									littleSpurScale = 0.4)
+{
     for ( i = [0 : littleSpurCount] )
     {	
         rotate([
