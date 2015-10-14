@@ -9,7 +9,6 @@ littleSpurScale = 0.125;
 
 rowSpacing = 30;
 
-//module rotatedSpiralCutout()
 module originalRotatedSpiralCutout(verticalSpacingFromBottom=0, z=0)
 {
 	// outer spurs

@@ -1,4 +1,6 @@
 
+use <pencil-holder.scad>;
+
 spurStl = "../shapes/spurs/spurs-a.stl";
 spurStl = "../shapes/oshw/oshw.stl";
 
@@ -12,23 +14,11 @@ vaseHeight = 150;
 
 difference()
 {
-    // vase
-    difference()
-    {
-        // outer vase
-        translate([0,0,0])
-        cylinder (h = vaseHeight, r=55, $fn=100);
-        
-        // remvoed inner vasecentered spur
-        translate([0,0,-5])
-        cylinder (h = vaseHeight, r=50, $fn=100);
-    }
-    
-    y = 30;
-    
+	cup(vaseHeight=vaseHeight);
+
     // outer spurs
     for ( i = [0 : littleSpurCount] )
-    {
+    {	
         rotate([
                 90, 
                 0,

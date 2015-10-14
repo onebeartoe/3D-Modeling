@@ -53,9 +53,6 @@ difference()
 {
 	cup(vaseHeight);
 
-// TODO is this used, I think not!!!!    
-    y = 30;
-
     // the cutouts of lucky charms
     for( i = [0 : charmCount-1] )
     {
