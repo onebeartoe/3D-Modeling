@@ -14,10 +14,12 @@ module originalRotatedSpiralCutout(verticalSpacingFromBottom=0,
 	{
 		yTranslate = verticalSpacingFromBottom + (z*rowSpacing);
 		
+		zRotation = i * 360 / charmCount;
+		
 		rotate([
 				90, 
 				0,
-				i * 360 / charmCount
+				zRotation
 		])
 		// normally x,y,z - but here y moves the little spurs up and down
 		translate([15, yTranslate, 30])
@@ -27,18 +29,22 @@ module originalRotatedSpiralCutout(verticalSpacingFromBottom=0,
 }
 
 
-module propossedRotatedSpiralCutout(charmStl = "../shapes/oshw/oshw.stl",
-									charmCount = 16,
-									xyScale = 0.4)
+module propossedRotatedSpiralCutout(charmCount = 16,
+									xyScale = 0.4,
+									charmStl = "../shapes/oshw/oshw.stl",
+									yTranslateFactor = 5,
+									zRotationFactor = 30)
 {
     for ( i = [0 : charmCount] )
     {	
-		yTranslate = 5 * i;
+		yTranslate = i * yTranslateFactor;
+		
+		zRotation = i * zRotationFactor;
 		
         rotate([
                 90, 
                 0,
-                i * 30
+                zRotation
         ])
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, yTranslate, 30])
