@@ -16,7 +16,7 @@ difference()
 {
 	cup(vaseHeight=vaseHeight);
 
-    // outer spurs
+
     for ( i = [0 : littleSpurCount] )
     {	
         rotate([
