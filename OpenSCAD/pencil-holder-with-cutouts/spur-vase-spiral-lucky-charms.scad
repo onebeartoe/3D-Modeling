@@ -52,10 +52,11 @@ randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);
 difference()
 {
 	cup(vaseHeight);
-    
+
+// TODO is this used, I think not!!!!    
     y = 30;
 
-    // lucky charms!
+    // the cutouts of lucky charms
     for( i = [0 : charmCount-1] )
     {
         single_rand = randomCharmIndcies[i];
@@ -68,10 +69,8 @@ difference()
                 90, 
                 0,
                 i * 38
-        ])
-
-        // normally x,y,z - but here y moves the charms up and down
-        translate([15, 5 * i, 30])
+        ])        
+        translate([15, 5 * i, 30])            // normally x,y,z - but here y moves the charms up and down
         scale([charmXYScales[charmIndex],
                charmXYScales[charmIndex], 
                charmDepthScales[charmIndex]
