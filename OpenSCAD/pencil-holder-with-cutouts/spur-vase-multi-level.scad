@@ -1,5 +1,5 @@
 
-vaseHeight = 140;
+use <../shapes/cup/cup.scad>;
 
 spurStl = "../shapes/spurs/spurs-a.stl";
 
@@ -11,17 +11,7 @@ rowSpacing = 30;
 
 difference()
 {
-    // vase
-    difference()
-    {
-        // outer vase
-        translate([0,0,0])
-        cylinder (h = vaseHeight, r=55, $fn=100);
-        
-        // remvoed inner vase centered spur
-        translate([0,0,5])
-        cylinder (h = vaseHeight, r=50, $fn=100);
-    }
+    cup(cupHeight=140, innerRadius=50);
     
     // removed outer spurs
     for ( i = [0 : littleSpurCount],

@@ -2,7 +2,7 @@
 /**
   * Create a cylindrical cup.
   */
-module cup(cupHeight=70)
+module cup(cupHeight=70, innerRadius=53)
 {
 	difference()
 	{
@@ -14,6 +14,6 @@ module cup(cupHeight=70)
 		
 		// subtracted inner cup
 		translate([0,0,5])
-		cylinder (h = cupHeight, r=53, center = centered, $fn=100);
+		cylinder (h = cupHeight, r=innerRadius, center = centered, $fn=100);
 	}
 }

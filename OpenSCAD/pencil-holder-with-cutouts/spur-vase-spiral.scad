@@ -2,11 +2,9 @@
 use <../shapes/cup/cup.scad>;
 use <../cutouts/rotated-spiral-cutouts.scad>;
 
-cupHeight = 150;
-
 difference()
 {
-	cup(cupHeight=cupHeight);
+	cup(cupHeight=150);
 
 	propossedRotatedSpiralCutout();
 }
