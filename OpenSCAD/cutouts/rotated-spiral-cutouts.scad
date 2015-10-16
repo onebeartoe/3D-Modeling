@@ -33,11 +33,13 @@ module propossedRotatedSpiralCutout(charmCount = 16,
 									xyScale = 0.4,
 									charmStl = "../shapes/oshw/oshw.stl",
 									yTranslateFactor = 5,
-									zRotationFactor = 30)
+									yTranslateMinimum = 0,
+									zRotationFactor = 30
+									)
 {
     for ( i = [0 : charmCount] )
     {	
-		yTranslate = i * yTranslateFactor;
+		yTranslate = (i * yTranslateFactor) + yTranslateMinimum;
 		
 		zRotation = i * zRotationFactor;
 		
