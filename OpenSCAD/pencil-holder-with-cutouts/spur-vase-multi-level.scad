@@ -16,6 +16,7 @@ difference()
 	
 	for(r = [1 : 3])
 	{
+		rotate ([0, 0, r * 30])  /// this offsets the rows a little so that they are not lined up vertically
 		propossedRotatedSpiralCutout(charmCount = littleSpurCount,
 									 zRotationFactor = 360 / littleSpurCount,// + 1,
 									 yTranslateFactor = 0,//r*rowSpacing,//0,
