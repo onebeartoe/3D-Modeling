@@ -7,8 +7,6 @@ charmCount = 6;
 difference()
 {
 	cup();
-
-//	originalRotatedSpiralCutout(verticalSpacingFromBottom=35);
 	
 	propossedRotatedSpiralCutout(charmCount = 6,
 								 xyScale = 0.125,
