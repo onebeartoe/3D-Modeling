@@ -14,7 +14,7 @@ difference()
 {
     cup(cupHeight=140, innerRadius=50);
 	
-	for(r = [1 : 3])
+	for(r = [1 : 3]) // create 3 rows of charms
 	{
 		rotate ([0, 0, r * 30])  /// this offsets the rows a little so that they are not lined up vertically
 		propossedRotatedSpiralCutout(charmCount = littleSpurCount,
