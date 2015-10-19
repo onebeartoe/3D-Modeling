@@ -15,8 +15,8 @@ module rotatedCutouts(charmCount = 16,
 		echo("we hvae no charm indecies");
 	}
 
-echo("FIX THIS!  IT IS USING THE WROING CHARM COUNT.  IT SHOULD BE charmCount -1 ");	
-    for ( i = [0 : charmCount] )
+//echo("FIX THIS!  IT IS USING THE WROING CHARM COUNT.  IT SHOULD BE charmCount -1 ");	
+    for ( i = [0 : charmCount-1] )
     {
 
         single_rand = charmIndcies[i];
