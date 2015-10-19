@@ -17,11 +17,11 @@ difference()
 	cup();
 	
 	rotatedCutouts(charmCount = 6,
-								 charmXYScales = charmXYScales,
-								 charmStls = ["../../../shapes/spurs/spurs-a.stl"],
-								 charmIndcies = charmIndcies,
-								 yTranslateFactor = 0,
-								 yTranslateMinimum = 35,
-								 zRotationFactor = 360.0 / charmCount,
+				   charmXYScales = charmXYScales,
+				   charmStls = ["../../../shapes/spurs/spurs-a.stl"],
+				   charmIndcies = charmIndcies,
+				   yTranslateFactor = 0,
+				   yTranslateMinimum = 35,
+				   zRotationFactor = 360.0 / charmCount,
 				   charmDepthScales = charmDepthScales);
 }

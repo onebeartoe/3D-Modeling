@@ -1,24 +1,6 @@
 /**
   * This is a library for evenly spaced cutouts.
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module rotatedCutouts(charmCount = 16,
 					  charmXYScales,
 					  charmStls = ["../shapes/oshw/oshw.stl"],

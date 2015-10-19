@@ -3,7 +3,7 @@ use <../shapes/cup/cup.scad>;
 use <../cutouts/rotated-spiral-cutouts.scad>;
 
 // this determines how tall the pen holder is
-vaseHeight = 300;
+cupHeight = 300;
 
 // this sets how many cutouts are in the pen holder
 charmCount = 35;
@@ -38,20 +38,17 @@ charmDepthScales = [
                         starCharmDepthScale
                    ];
 
-uniqueCharmCount = len(charmStls);
-
-charmIndex = -1;
+maxRandom = len(charmStls) - 1;
 
 randomSeed = 2789676;
-// uncomment this next line to have a different pattern each time the model is rendered in OpenSCAD.	
-//	randomSeed = rands(0,987654, 1)[0];
 
-maxRandom = uniqueCharmCount - 1;
+//	randomSeed = rands(0,987654, 1)[0];         // uncomment this line to have a different pattern each time the model is rendered by OpenSCAD.	
+
 randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);
 
 difference()
 {
-	cup(vaseHeight);
+	cup(cupHeight);
 	
 	rotatedCutouts(charmCount = charmCount,
 	               charmStls = charmStls,
@@ -60,30 +57,3 @@ difference()
 				   charmDepthScales = charmDepthScales,
 				   zRotationFactor = 38);
 }
-
-
-
-/*
-    // the cutouts of lucky charms
-    for( i = [0 : charmCount-1] )
-    {
-        single_rand = randomCharmIndcies[i];
-		
-        charmIndex = round(single_rand);
-
-        rotate([
-                90, 
-                0,
-                i * 38
-        ])        
-        translate([15, 5 * i, 30])            // normally x,y,z - but here y moves the charms up and down
-        scale([
-		       charmXYScales[charmIndex],
-               charmXYScales[charmIndex], 
-               charmDepthScales[charmIndex]
-              ])
-        import(charmStls[charmIndex]);
-    }
-*/
-
-
