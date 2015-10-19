@@ -11,7 +11,7 @@ difference()
 	cup();
 	
 	rotatedCutouts(charmCount = 6,
-								 xyScale = 0.125,
+								 charmXYScale = 0.125,
 								 charmStls = ["../../../shapes/spurs/spurs-a.stl"],
 								 charmIndcies = charmIndcies,
 								 yTranslateFactor = 0,

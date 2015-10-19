@@ -25,6 +25,6 @@ difference()
 									 yTranslateMinimum = r * rowSpacing,//15,//r * 35,
  									 charmStls = [spurStl],
 									 charmIndcies = charmIndcies,
-									 xyScale = spurScale);
+									 charmXYScale = spurScale);
 	}
 }
