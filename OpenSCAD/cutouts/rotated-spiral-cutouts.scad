@@ -2,7 +2,7 @@
 /**
   * This is a library for evenly spacted cutouts.
 */
-module propossedRotatedSpiralCutout(charmCount = 16,
+module rotatedCutouts(charmCount = 16,
 									xyScale = 0.4,
 									charmStl = "../shapes/oshw/oshw.stl",
 									yTranslateFactor = 5,

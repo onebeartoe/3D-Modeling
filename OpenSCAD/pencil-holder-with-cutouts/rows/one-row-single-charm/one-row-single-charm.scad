@@ -8,7 +8,7 @@ difference()
 {
 	cup();
 	
-	propossedRotatedSpiralCutout(charmCount = 6,
+	rotatedCutouts(charmCount = 6,
 								 xyScale = 0.125,
 								 charmStl = "../../../shapes/spurs/spurs-a.stl",
 								 yTranslateFactor = 0,

@@ -6,5 +6,5 @@ difference()
 {
 	cup(cupHeight=150);
 
-	propossedRotatedSpiralCutout();
+	rotatedCutouts();
 }
