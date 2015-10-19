@@ -9,6 +9,7 @@ maxRandom = 0;
 charmIndcies = rands(0,maxRandom, littleSpurCount);
 
 spurScale = 0.125;
+spurScales = rands(spurScale, spurScale, littleSpurCount);
 
 rowSpacing = 36;
 
@@ -25,6 +26,6 @@ difference()
 									 yTranslateMinimum = r * rowSpacing,//15,//r * 35,
  									 charmStls = [spurStl],
 									 charmIndcies = charmIndcies,
-									 charmXYScale = spurScale);
+									 charmXYScales = spurScales);
 	}
 }

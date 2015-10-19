@@ -3,7 +3,7 @@
   * This is a library for evenly spacted cutouts.
 */
 module rotatedCutouts(charmCount = 16,
-									charmXYScale = 0.4,
+									charmXYScales,// = 0.4,
 									charmStls = ["../shapes/oshw/oshw.stl"],
 									charmIndcies = [],  // the vector of array index needs required
 									yTranslateFactor = 5,
@@ -15,7 +15,6 @@ module rotatedCutouts(charmCount = 16,
 		echo("we hvae no charm indecies");
 	}
 
-//echo("FIX THIS!  IT IS USING THE WROING CHARM COUNT.  IT SHOULD BE charmCount -1 ");	
     for ( i = [0 : charmCount-1] )
     {
 
@@ -36,8 +35,8 @@ module rotatedCutouts(charmCount = 16,
         ])
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, yTranslate, 30])
-        scale([charmXYScale, 
-			   charmXYScale, 
+        scale([charmXYScales[charmIndex], 
+			   charmXYScales[charmIndex], 
 			   20.2])
         import(charmStls[charmIndex]);
     }

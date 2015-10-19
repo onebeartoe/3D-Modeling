@@ -6,9 +6,12 @@ charmCount = 16;
 maxRandom = 0;
 charmIndcies = rands(0,maxRandom, charmCount);
 
+charmXYScales = rands(0.4, 0.4, charmCount);
+
 difference()
 {
 	cup(cupHeight=150);
 
-	rotatedCutouts(charmIndcies = charmIndcies);
+	rotatedCutouts(charmIndcies = charmIndcies,
+				   charmXYScales = charmXYScales);
 }

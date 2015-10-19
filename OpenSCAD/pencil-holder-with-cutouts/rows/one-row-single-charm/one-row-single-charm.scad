@@ -6,12 +6,15 @@ charmCount = 6;
 maxRandom = 0;
 charmIndcies = rands(0,maxRandom, charmCount);
 
+charmXYScale = 0.125;
+charmXYScales = rands(charmXYScale, charmXYScale, charmCount);
+
 difference()
 {
 	cup();
 	
 	rotatedCutouts(charmCount = 6,
-								 charmXYScale = 0.125,
+								 charmXYScales = charmXYScales,
 								 charmStls = ["../../../shapes/spurs/spurs-a.stl"],
 								 charmIndcies = charmIndcies,
 								 yTranslateFactor = 0,
