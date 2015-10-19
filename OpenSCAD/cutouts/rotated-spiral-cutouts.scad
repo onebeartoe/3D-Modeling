@@ -4,13 +4,27 @@
 */
 module rotatedCutouts(charmCount = 16,
 									xyScale = 0.4,
-									charmStl = "../shapes/oshw/oshw.stl",
+									charmStls = ["../shapes/oshw/oshw.stl"],
+									charmIndcies = [],  // the vector of array index needs required
 									yTranslateFactor = 5,
 									yTranslateMinimum = 0,
 									zRotationFactor = 30)
 {
+	if(len(charmIndcies) == 0)
+	{
+		echo("we hvae no charm indecies");
+	}
+
+echo("FIX THIS!  IT IS USING THE WROING CHARM COUNT.  IT SHOULD BE charmCount -1 ");	
     for ( i = [0 : charmCount] )
-    {	
+    {
+
+        single_rand = charmIndcies[i];
+
+        charmIndex = round(single_rand);
+        
+//echo(charmIndex);
+	
 		yTranslate = (i * yTranslateFactor) + yTranslateMinimum;
 		
 		zRotation = i * zRotationFactor;
@@ -23,6 +37,6 @@ module rotatedCutouts(charmCount = 16,
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, yTranslate, 30])
         scale([xyScale, xyScale, 20.2])
-        import(charmStl);
+        import(charmStls[charmIndex]);
     }
 }

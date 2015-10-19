@@ -5,6 +5,8 @@ use <../cutouts/rotated-spiral-cutouts.scad>;
 spurStl = "../shapes/spurs/spurs-a.stl";
 
 littleSpurCount = 10;
+maxRandom = 0;
+charmIndcies = rands(0,maxRandom, littleSpurCount);
 
 spurScale = 0.125;
 
@@ -21,7 +23,8 @@ difference()
 									 zRotationFactor = 360 / littleSpurCount,// + 1,
 									 yTranslateFactor = 0,//r*rowSpacing,//0,
 									 yTranslateMinimum = r * rowSpacing,//15,//r * 35,
- 									 charmStl = spurStl,
+ 									 charmStls = [spurStl],
+									 charmIndcies = charmIndcies,
 									 xyScale = spurScale);
 	}
 }

@@ -52,7 +52,7 @@ randomCharmIndcies = rands(0,maxRandom, charmCount, randomSeed);
 difference()
 {
 	cup(vaseHeight);
-
+	
     // the cutouts of lucky charms
     for( i = [0 : charmCount-1] )
     {
