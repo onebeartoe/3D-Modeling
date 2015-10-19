@@ -13,6 +13,9 @@ spurScales = rands(spurScale, spurScale, littleSpurCount);
 
 rowSpacing = 36;
 
+depthScale = 20.2;
+charmDepthScales = rands(depthScale, depthScale, littleSpurCount);
+
 difference()
 {
     cup(cupHeight=140, innerRadius=50);
@@ -21,11 +24,12 @@ difference()
 	{
 		rotate ([0, 0, r * 30])  /// this offsets the rows a little so that they are not lined up vertically
 		rotatedCutouts(charmCount = littleSpurCount,
-									 zRotationFactor = 360 / littleSpurCount,// + 1,
-									 yTranslateFactor = 0,//r*rowSpacing,//0,
-									 yTranslateMinimum = r * rowSpacing,//15,//r * 35,
+									 zRotationFactor = 360 / littleSpurCount,
+									 yTranslateFactor = 0,
+									 yTranslateMinimum = r * rowSpacing,
  									 charmStls = [spurStl],
 									 charmIndcies = charmIndcies,
-									 charmXYScales = spurScales);
+									 charmXYScales = spurScales,
+									 charmDepthScales = charmDepthScales);
 	}
 }

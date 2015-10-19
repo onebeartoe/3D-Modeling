@@ -9,6 +9,9 @@ charmIndcies = rands(0,maxRandom, charmCount);
 charmXYScale = 0.125;
 charmXYScales = rands(charmXYScale, charmXYScale, charmCount);
 
+depthScale = 20.2;
+charmDepthScales = rands(depthScale, depthScale, charmCount);
+
 difference()
 {
 	cup();
@@ -19,5 +22,6 @@ difference()
 								 charmIndcies = charmIndcies,
 								 yTranslateFactor = 0,
 								 yTranslateMinimum = 35,
-								 zRotationFactor = 360.0 / charmCount);
+								 zRotationFactor = 360.0 / charmCount,
+				   charmDepthScales = charmDepthScales);
 }

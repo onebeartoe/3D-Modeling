@@ -1,9 +1,9 @@
 
 use <../shapes/cup/cup.scad>;
+use <../cutouts/rotated-spiral-cutouts.scad>;
 
 // this determines how tall the pen holder is
 vaseHeight = 300;
-//vaseHeight = 120;
 
 // this sets how many cutouts are in the pen holder
 charmCount = 35;
@@ -53,25 +53,37 @@ difference()
 {
 	cup(vaseHeight);
 	
+	rotatedCutouts(charmCount = charmCount,
+	               charmStls = charmStls,
+	               charmIndcies = randomCharmIndcies,
+				   charmXYScales = charmXYScales,
+				   charmDepthScales = charmDepthScales,
+				   zRotationFactor = 38);
+}
+
+
+
+/*
     // the cutouts of lucky charms
     for( i = [0 : charmCount-1] )
     {
         single_rand = randomCharmIndcies[i];
 		
         charmIndex = round(single_rand);
-        
-//echo(charmIndex);
-        
+
         rotate([
                 90, 
                 0,
                 i * 38
         ])        
         translate([15, 5 * i, 30])            // normally x,y,z - but here y moves the charms up and down
-        scale([charmXYScales[charmIndex],
+        scale([
+		       charmXYScales[charmIndex],
                charmXYScales[charmIndex], 
                charmDepthScales[charmIndex]
               ])
         import(charmStls[charmIndex]);
     }
-}
+*/
+
+

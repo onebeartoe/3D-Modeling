@@ -1,20 +1,33 @@
-
 /**
-  * This is a library for evenly spacted cutouts.
+  * This is a library for evenly spaced cutouts.
 */
-module rotatedCutouts(charmCount = 16,
-									charmXYScales,// = 0.4,
-									charmStls = ["../shapes/oshw/oshw.stl"],
-									charmIndcies = [],  // the vector of array index needs required
-									yTranslateFactor = 5,
-									yTranslateMinimum = 0,
-									zRotationFactor = 30)
-{
-	if(len(charmIndcies) == 0)
-	{
-		echo("we hvae no charm indecies");
-	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module rotatedCutouts(charmCount = 16,
+					  charmXYScales,
+					  charmStls = ["../shapes/oshw/oshw.stl"],
+					  charmIndcies = [],  // the vector of array index needs required
+					  charmDepthScales,
+					  yTranslateFactor = 5,
+					  yTranslateMinimum = 0,
+					  zRotationFactor = 30)
+{
     for ( i = [0 : charmCount-1] )
     {
 
@@ -22,8 +35,6 @@ module rotatedCutouts(charmCount = 16,
 
         charmIndex = round(single_rand);
         
-//echo(charmIndex);
-	
 		yTranslate = (i * yTranslateFactor) + yTranslateMinimum;
 		
 		zRotation = i * zRotationFactor;
@@ -35,9 +46,11 @@ module rotatedCutouts(charmCount = 16,
         ])
         // normally x,y,z - but here y moves the little spurs up and down
         translate([15, yTranslate, 30])
-        scale([charmXYScales[charmIndex], 
+        scale([
+		       charmXYScales[charmIndex], 
 			   charmXYScales[charmIndex], 
-			   20.2])
+			   charmDepthScales[charmIndex] //20.2])
+			 ])
         import(charmStls[charmIndex]);
     }
 }
