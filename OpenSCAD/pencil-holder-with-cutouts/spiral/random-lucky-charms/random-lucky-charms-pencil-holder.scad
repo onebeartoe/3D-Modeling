@@ -1,6 +1,6 @@
 
-use <../shapes/cup/cup.scad>;
-use <../cutouts/rotated-spiral-cutouts.scad>;
+use <../../../shapes/cup/cup.scad>;
+use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
 // this determines how tall the pen holder is
 cupHeight = 300;

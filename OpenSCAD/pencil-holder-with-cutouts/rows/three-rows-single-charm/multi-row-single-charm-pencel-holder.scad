@@ -1,6 +1,6 @@
 
-use <../shapes/cup/cup.scad>;
-use <../cutouts/rotated-spiral-cutouts.scad>;
+use <../../../shapes/cup/cup.scad>;
+use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
 spurStl = "../shapes/spurs/spurs-a.stl";
 
