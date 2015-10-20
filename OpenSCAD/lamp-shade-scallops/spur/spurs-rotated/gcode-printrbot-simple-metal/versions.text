@@ -12,3 +12,11 @@ spurs-rotated-a.gcode
 	grams: 7
 	
 	meters: 2.44
+	
+	platform adhesion: brim
+	
+----------------------------------------------------------
+
+spurs-rotated-b.gcode
+
+	Same as spurs-rotated-a.gcode, but with no brim.
