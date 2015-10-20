@@ -1,6 +1,6 @@
 
-use <../../../shapes/cup/cup.scad>;
-use <../../../cutouts/rotated-spiral-cutouts.scad>;
+use <../../../../shapes/cup/cup.scad>;
+use <../../../../cutouts/rotated-spiral-cutouts.scad>;
 
 charmCount = 16;
 maxRandom = 0;
