@@ -5,7 +5,7 @@ spurs-rotated-a.gcode
 	
 	z scale 1.5
 	
-	55m x 55mm x 3mm
+	deminstions: 55m x 55mm x 3mm
 	
 	printtime: 31 mins
 	
