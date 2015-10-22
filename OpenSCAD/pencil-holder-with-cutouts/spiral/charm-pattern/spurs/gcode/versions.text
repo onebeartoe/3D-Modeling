@@ -1,0 +1,26 @@
+
+spurs-charm-pattern-a.gcode
+
+	filament: black
+
+	xy scale: 0.6
+	
+	z scale: 0.5
+	
+	deminstions: 66 mmm x  66 mm x 75 mm
+	
+	printtime: 2 hours 44 mins
+	
+	infill: 2%
+	
+	grams: 26
+	
+	meters: 8.76
+	
+	platform adhesion: brim
+	
+	print speed: 45 mm/s
+	
+	print temp: 210
+	
+-----------------------------------------------------------------	

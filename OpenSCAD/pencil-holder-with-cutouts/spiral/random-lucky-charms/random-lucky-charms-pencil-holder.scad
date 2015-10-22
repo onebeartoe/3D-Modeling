@@ -1,4 +1,3 @@
-
 use <../../../shapes/cup/cup.scad>;
 use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
@@ -8,9 +7,9 @@ cupHeight = 300;
 // this sets how many cutouts are in the pen holder
 charmCount = 35;
 
-spursCharmStl = "../shapes/spurs/spurs-a.stl";
-spursCharmXYScale = 0.2;  // spur scale
-spursCharmDepthScale = 20.2;   // oshw depth scale
+heartCharmStl = "../shapes/heart/heart.stl";
+heartCharmXYScale = 0.6;  // spur scale
+heartCharmDepthScale = 40.2;   // oshw depth scale
 
 oshwCharmStl = "../shapes/oshw/oshw.stl";
 oshwCharmXYScale = 0.7;
@@ -21,19 +20,19 @@ starCharmXYScale = 0.7;
 starCharmDepthScale = 40.2;
 
 charmStls = [
-                spursCharmStl,
+                heartCharmStl,
                 oshwCharmStl,
                 starCharmStl
             ];
 
 charmXYScales = [
-                    spursCharmXYScale,
+                    heartCharmXYScale,
                     oshwCharmXYScale,
                     starCharmXYScale
                 ];
                 
 charmDepthScales = [
-                        spursCharmDepthScale,
+                        heartCharmDepthScale,
                         oshwCharmDepthScale,
                         starCharmDepthScale
                    ];
