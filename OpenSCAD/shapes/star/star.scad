@@ -24,4 +24,5 @@ module star(h)
 poly_Selection(h);
 }
 
+translate ([0, 12, 0])
 star(1);
