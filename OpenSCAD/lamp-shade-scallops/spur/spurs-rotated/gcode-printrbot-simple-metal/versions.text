@@ -20,3 +20,45 @@ spurs-rotated-a.gcode
 spurs-rotated-b.gcode
 
 	Same as spurs-rotated-a.gcode, but with no brim.
+	
+------------------------------------------------------------
+
+spurs-rotated-c.gcode - mom 2015 birthday present
+
+	xy scale: 0.909
+	
+	z scale: 1.5
+	
+	deminstions: 100 mm x 100 mm x 3 mm
+	
+	printtime: 47 mins
+	
+	grams: 10
+	
+	meters: 3.47
+	
+	platform adhesion: none
+	
+	print temp: 210
+	
+	print speed mm/s: 45
+	
+	filament: black, glow in the dark
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

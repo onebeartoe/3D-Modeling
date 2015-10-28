@@ -1,0 +1,26 @@
+
+random-lucky-charms-pencil-holder-a.gcode
+
+	filament: black
+
+	xy scale: 0.545
+	
+	z scale: 0.5
+		
+	deminstions: 60 mmm x  60 mm x 75 mm
+	
+	printtime: 1 hours 31 mins
+	
+	infill: 2%
+	
+	grams: 16
+	
+	meters: 5.41
+	
+	platform adhesion: brim
+	
+	print speed: 45 mm/s
+	
+	print temp: 210
+	
+-----------------------------------------------------------------	
