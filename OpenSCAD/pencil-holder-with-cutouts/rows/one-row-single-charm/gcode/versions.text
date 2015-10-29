@@ -1,0 +1,28 @@
+
+one-row-single-charm-a.gcode
+
+	filament: blue
+
+	x scale: 0.6
+	
+	xy scale: 0.6
+	
+	z scale: 0.5
+	
+	deminstions: 66 mmm x  66 mm x 19 mm
+	
+	printtime: 0 hours 44 mins
+	
+	infill: 2%
+	
+	grams: 8
+	
+	meters: 28.1
+	
+	platform adhesion: none
+	
+	print speed: 45 mm/s
+	
+	print temp: 210
+	
+-----------------------------------------------------------------	
