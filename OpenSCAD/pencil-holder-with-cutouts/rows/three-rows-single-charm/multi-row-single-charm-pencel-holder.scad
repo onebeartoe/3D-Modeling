@@ -2,19 +2,19 @@
 use <../../../shapes/cup/cup.scad>;
 use <../../../cutouts/rotated-spiral-cutouts.scad>;
 
-spurStl = "../shapes/spurs/spurs-a.stl";
+charmStl = "../shapes/blue-moon/blue-moon.stl";
 
-littleSpurCount = 10;
+charmCount = 10;
 maxRandom = 0;
-charmIndcies = rands(0,maxRandom, littleSpurCount);
+charmIndcies = rands(0,maxRandom, charmCount);
 
-spurScale = 0.125;
-spurScales = rands(spurScale, spurScale, littleSpurCount);
+charmScale = 0.9;
+charmScales = rands(charmScale, charmScale, charmCount);
 
 rowSpacing = 36;
 
 depthScale = 20.2;
-charmDepthScales = rands(depthScale, depthScale, littleSpurCount);
+charmDepthScales = rands(depthScale, depthScale, charmCount);
 
 difference()
 {
@@ -22,14 +22,15 @@ difference()
 	
 	for(r = [1 : 3]) // create 3 rows of charms
 	{
-		rotate ([0, 0, r * 30])  /// this offsets the rows a little so that they are not lined up vertically
-		rotatedCutouts(charmCount = littleSpurCount,
-									 zRotationFactor = 360 / littleSpurCount,
+		rotate ([0, 0, r * 20])  /// this offsets the rows a little so that they are not lined up vertically
+		rotatedCutouts(charmCount = charmCount,
+									 zRotationFactor = 360 / charmCount,
 									 yTranslateFactor = 0,
 									 yTranslateMinimum = r * rowSpacing,
- 									 charmStls = [spurStl],
+ 									 charmStls = [charmStl],
 									 charmIndcies = charmIndcies,
-									 charmXYScales = spurScales,
+									 charmXYScales = charmScales,
 									 charmDepthScales = charmDepthScales);
 	}
 }
+

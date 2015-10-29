@@ -1,0 +1,28 @@
+
+multi-row-single-charm-pencel-holder-a.gcode
+
+	filament: blue
+
+	x scale: 0.4
+	
+	xy scale: 0.6
+	
+	z scale: 0.5
+	
+	deminstions: 44 mmm x  66 mm x 70 mm
+	
+	printtime: 2 hours 2 mins
+	
+	infill: 2%
+	
+	grams: 24
+	
+	meters: 8.1
+	
+	platform adhesion: brim
+	
+	print speed: 45 mm/s
+	
+	print temp: 210
+	
+-----------------------------------------------------------------	
