@@ -1,0 +1,34 @@
+
+OpenSCAD was used to model these pencil holders, with cut outs.
+
+You can customize the cutouts with other STL files.
+
+See this video for a overview of customizing the cutouts:
+
+https://www.youtube.com/watch?v=C8QypaAymFg
+
+The source code is available on Github:
+
+https://github.com/onebeartoe/3D-Modeling
+
+STL Information:
+
+random-lucky-charms-pencil-holder.stl 
+
+	multiple charms with a random pattern sprialling around the cup holder
+
+spurs-charm-pattern.stl
+
+	single charm spriraling around the cup holder
+	
+spiral-star-pencil-holder-a.stl
+
+	spiral single charm 
+
+multi-row-single-charm-pencel-holder.stl
+
+		shows how to stack rows (not sprial) on top of each other
+		
+one-row-single-charm.stl
+
+		This one is good for test printing a charm for the first time, to make sure the cutout is printable.
