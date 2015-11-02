@@ -1,11 +1,16 @@
 
 spurs-rotated-a.gcode
 
+	filament: MakerGeeks - Glow in the Dark
+	                       Dark as Night (black)
+						   
 	xy scale 0.5
 	
 	z scale 1.5
 	
 	deminstions: 55m x 55mm x 3mm
+	
+	infill %: 2
 	
 	printtime: 31 mins
 	
@@ -24,6 +29,9 @@ spurs-rotated-b.gcode
 ------------------------------------------------------------
 
 spurs-rotated-c.gcode - mom 2015 birthday present
+
+	filament: MakerGeeks - Glow in the Dark
+	                       Dark as Night (black)
 
 	xy scale: 0.909
 	
@@ -45,20 +53,64 @@ spurs-rotated-c.gcode - mom 2015 birthday present
 	
 	filament: black, glow in the dark
 	
+------------------------------------------------------------
+
+spurs-rotated-d.gcode - filled in a little thicker, for a more solid coin
+
+	slicer: Cura
+
+	
+	filament: 
+	
+		MakerGeeks - Glow in the Dark
+				     Dark as Night (black)
+
+
+
+	quality:
+
+		     layer height : 0.1984
+		  shell thickness : 0.8
+		enable retraction : yest
 	
 	
+	fill:
+		
+		bottom/top thickness : 0.6	
+		
+		fill density % : 8
+				  
 	
+	speed and temp:
 	
+		print speed mm/s : 45
+		
+			  print temp : 210
+						   
+							   
+	Support:							
 	
+			  suport type : none
+		platform adhesion : none
 	
+
+	Filament:
 	
+		diameter (mm): 1.75
+		
+			  flow % : 100
+
+
+	Print:
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		xy scale: 0.5
+		
+		z scale: 1.5
+		
+		deminstions: 55 mm x 55 mm x 3 mm
+		
+		printtime: 26 mins
+		
+		grams: 5
+		
+		meters: 1.75
