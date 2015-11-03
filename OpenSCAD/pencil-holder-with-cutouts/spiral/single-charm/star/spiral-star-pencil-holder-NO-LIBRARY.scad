@@ -1,9 +1,9 @@
 
-charmName = "blue-moon"; // [star, balloon, blue-moon, pacman, Spurs]
+charmName = "balloon"; // [star, balloon, blue-moon, pacman, Spurs]
 
 charmCount = 28; // [1:100]
 
-charmXYScale = 0.9;   // [0.1:5]
+charmXYScale = 0.9;   // [0.1:0.1:5]
 
 cupHeight = 150; // [75:300]
 
