@@ -30,7 +30,7 @@ holes=4; 			// Choose 0,2 or 4 (others=0)
 letterthickness=1;
 lettersize=12 ;
 
-font="orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
+font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
 namematrix =              
 [					 	  // Matrix with place and names - add as many rows as you like	 
@@ -39,7 +39,7 @@ namematrix =
 ];
 
 // ************* Executable part *************
-use <Write.scad>	// remember to download write.scad and fonts
+use <write/Write.scad>	// remember to download write.scad and fonts
 
 nametag_assembly();
 
