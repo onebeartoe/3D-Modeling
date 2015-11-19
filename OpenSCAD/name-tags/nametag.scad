@@ -1,11 +1,14 @@
 
-// This was origianlly uploads-b4-df-a6-25-4b-AnyNameSign.scad from 
-// http://www.thingiverse.com/thing:16193
-
 // ************* Credits part *************
 
-// Programmed by Fryns - March 2014
-// Ada  pted by Roberto Marquez - onebeartoe - 2015
+//  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
+//
+//		http://www.thingiverse.com/thing:16193
+//
+//  Programmed by Fryns - March 2014
+
+
+// Adapted by Roberto Marquez - onebeartoe - 2015
 
 // Uses Write.scad by HarlanDMii, published on Thingiverse 18-Jan-2012 (thing:16193)	 
 
