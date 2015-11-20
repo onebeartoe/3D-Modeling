@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module poly_Selection(h)
+module rebelAlliancePolySelection(h)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -18,10 +18,9 @@ module poly_Selection(h)
   }
 }
 
-module rebelalliance(h)
+module rebelAlliance(h)
 {
-
-poly_Selection(h);
+    rebelAlliancePolySelection(h);
 }
 
-rebelalliance(4);
+rebelAlliance(4);
