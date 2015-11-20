@@ -14,12 +14,22 @@
 
 // ************* Declaration part *************
 
-resolution=50; 	// Use 20 for draft 100 for nice
-basex=228;			// Width of base
-basey=54;			// Height of base
-basethickness=2;
+showBorder = "Yes"; // [Yes, No]
 
-borderwidth=2;
+// This determines how wide the name tag is.
+baseWidth=228;	// [228:600]	
+
+// This determines the hieght of the nametag.
+baseHeight=54;	// [54:150]
+
+/* [Hidden] */
+
+resolution=50; 	// Use 20 for draft 100 for nice
+
+
+baseThickness=2;
+
+borderWidth=2;
 borderradius=8;
 borderdistance=5;	// Distance from edge
 
@@ -51,9 +61,11 @@ module nametag_assembly()
 	color("black") 
 	writing();
 	
-//TODO: put an if conditional here that determins if the border is displayed or not	
-	color("black")	
-	border();
+	if(showBorder == "Yes")
+	{
+		color("black")	
+		border();	
+	}	
 	
 	if (holes==2) 
 	{
@@ -77,7 +89,7 @@ module writing()
 		}
 		else 
 		{
-			translate([0,namematrix[i][0],basethickness+letterthickness/2])
+			translate([0,namematrix[i][0],baseThickness+letterthickness/2])
 			write(namematrix[i][1],t=letterthickness,h=lettersize,center=true,font=font);
 		}
 	}
@@ -88,9 +100,9 @@ module base2holes()
 	difference()
 	{
 		base();
-		translate([-(basex/2-borderdistance*2-borderwidth-countersink-holediameter),0,0])
+		translate([-(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),0,0])
 			hole();
-		translate([(basex/2-borderdistance*2-borderwidth-countersink-holediameter),(0),0])
+		translate([(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),(0),0])
 			hole();
 	}
 }
@@ -99,46 +111,46 @@ module base4holes()
 {
 	difference(){
 		base();
-		translate([(basex/2-borderdistance),(basey/2-borderdistance),0])
+		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			hole();
-		translate([(basex/2-borderdistance),-(basey/2-borderdistance),0])
+		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			hole();
-		translate([-(basex/2-borderdistance),(basey/2-borderdistance),0])
+		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			hole();
-		translate([-(basex/2-borderdistance),-(basey/2-borderdistance),0])
+		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			hole();
 	}
 }
 
 module base()
 {
-	translate([0,0,basethickness/2])
-		cube(size = [basex,basey,basethickness], center = true);
+	translate([0,0,baseThickness/2])
+		cube(size = [baseWidth,baseHeight,baseThickness], center = true);
 }
 
 module border()
 {
-	translate([0,0,basethickness+letterthickness/2])
+	translate([0,0,baseThickness+letterthickness/2])
 	linear_extrude(height = letterthickness, center = true, convexity = 10, twist = 0){
-		translate([0,basey/2-borderdistance,0])
-			square ([basex-borderdistance*2-borderradius*2+borderwidth*2,borderwidth],center = true);
-		translate([0,-(basey/2-borderdistance),0])
-			square ([basex-borderdistance*2-borderradius*2+borderwidth*2,borderwidth],center = true);
-		translate([basex/2-borderdistance,0,0])
-			square ([borderwidth, basey-borderdistance*2-borderradius*2+borderwidth*2,],center = true);
-		translate([-(basex/2-borderdistance),0,0])
-			square ([borderwidth, basey-borderdistance*2-borderradius*2+borderwidth*2,],center = true);
+		translate([0,baseHeight/2-borderdistance,0])
+			square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
+		translate([0,-(baseHeight/2-borderdistance),0])
+			square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
+		translate([baseWidth/2-borderdistance,0,0])
+			square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
+		translate([-(baseWidth/2-borderdistance),0,0])
+			square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
 
-		translate([-(basex/2-borderdistance),-(basey/2-borderdistance),0])
+		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,0])
 				quarter();
-		translate([(basex/2-borderdistance),(basey/2-borderdistance),0])
+		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,180])
 				quarter();
-		translate([(basex/2-borderdistance),-(basey/2-borderdistance),0])
+		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,90])
 				quarter();
-		translate([-(basex/2-borderdistance),(basey/2-borderdistance),0])
+		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,270])
 				quarter();
 	}
@@ -151,7 +163,7 @@ module quarter()
 		difference()
 		{
 			circle(r = borderradius, center=true, $fn=resolution);
-			circle(r = borderradius-borderwidth, center=true, $fn=resolution);
+			circle(r = borderradius-borderWidth, center=true, $fn=resolution);
 		}
 		square ([borderradius+1, borderradius+1],center = false);
 	}
@@ -159,8 +171,8 @@ module quarter()
 
 module hole()
 {
-	translate([0,0,basethickness/2])
-		cylinder(h = basethickness+0.1, r = holediameter/2, $fn=resolution, center = true);
-	translate([0,0,basethickness-countersink])
+	translate([0,0,baseThickness/2])
+		cylinder(h = baseThickness+0.1, r = holediameter/2, $fn=resolution, center = true);
+	translate([0,0,baseThickness-countersink])
 		cylinder(h = countersink+0.1, r1 = holediameter/2, r2 = (holediameter+2*countersink)/2, $fn=resolution, center = false);
 }
