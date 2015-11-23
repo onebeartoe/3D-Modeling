@@ -1,0 +1,62 @@
+thundercats-panthro-nametag-a.gcode
+
+	slicer: Cura
+
+		plugin: 
+		
+			Pause at height: 5mm
+	
+	filament: 
+	
+		MakerGeeks - Red
+				     Dark as Night (black)
+
+
+
+	quality:
+
+		     layer height : 0.1984
+		  shell thickness : 0.8
+		enable retraction : yes
+	
+	
+	fill:
+		
+		bottom/top thickness : 0.2
+		
+		fill density % : 10
+				  
+	
+	speed and temp:
+	
+		print speed mm/s : 45
+		
+			  print temp : 210
+						   
+							   
+	Support:							
+	
+			  suport type : none
+		platform adhesion : none
+	
+
+	Filament:
+	
+		diameter (mm): 1.75
+		
+			  flow % : 100
+
+
+	Print:
+	
+		xy scale: 0.5
+		
+		z scale: 0.5
+		
+		deminstions: 114 mm x 27 mm x 3.75 mm
+		
+		printtime: 24 mins
+		
+		grams: 5
+		
+		meters: 1.66

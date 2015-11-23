@@ -71,7 +71,7 @@ spurs-rotated-d.gcode - filled in a little thicker, for a more solid coin
 
 		     layer height : 0.1984
 		  shell thickness : 0.8
-		enable retraction : yest
+		enable retraction : yes
 	
 	
 	fill:
