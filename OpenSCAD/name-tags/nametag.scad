@@ -20,15 +20,15 @@ letterThickness = 2; // [1 : 15]
 
 
 /* [Top Text] */
-topText = "Roberto";
-topTextYOffset = 5; // [0 : 30]
-topLetterSize = 14; // [2 : 25]
+topText = "Luke S.";
+topTextYOffset = 7; // [0 : 30]
+topLetterSize = 19; // [2 : 25]
 
 
 /* [Sub Text] */
 subText = "Rebel Scum";
 bottomLetterSize = 8; // [2 : 25]
-
+bottomTextYOffset = -12; // [0 : 30]
 
 /* [Border] */
 showBorder = "Yes"; // [Yes, No]
@@ -73,8 +73,8 @@ font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
 namematrix =              
 [					 	  // Matrix with place and names - add as many rows as you like	 
-	[ 5, topText,     topLetterSize],	      //[Y-placement, "Name"],      note: Y-placement of center of text
-	[-10, subText,  bottomLetterSize],	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
+	[ topTextYOffset,   topText,     topLetterSize],	      //[Y-placement, "Name"],      note: Y-placement of center of text
+	[bottomTextYOffset, subText,  bottomLetterSize],	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
 ];
 
 // ************* Executable part *************
