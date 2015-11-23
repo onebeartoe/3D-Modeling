@@ -15,34 +15,34 @@
 // ************* Declaration part *************
 
 /* [General] */
-textColor = "white"; // [pink, red, black, white, yellow, blue]
+textColor = "white"; // [pink, red, black, white, yellow, blue, green]
 letterThickness = 3;//3; // [1 : 15]
 
 
 /* [Icons] */
-iconType = "Luigi"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat]
+iconType = "Trooper"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat]
 // This is the X,Y scale of the icons.
-iconXyScale = 0.13; // [0.1 : 0.05 : 5]
-iconHeight = 1; // [0.1: 0.1 :5]
-xOffset = 80; // [10:200]
-iconColor = "white"; // [pink, red, black, white, yellow, blue]
+iconXyScale = 0.85; // [0.1 : 0.05 : 5]
+iconHeight = 1.5; // [0.1: 0.1 :5]
+xOffset = 84; // [10:200]
+iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
 /* [Top Text] */
-topText = "Luigi";
+topText = "Roberto M.";
 topTextYOffset = 7; // [0 : 30]
 topLetterSize = 19; // [2 : 25]
 topLetterSpacing = 1; // [1 : 10]
 
 /* [Bottom Text] */
-subText = "Plumber Brother";
+subText = "Storm Trooper";
 bottomLetterSize = 8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
 
 /* [Border] */
 showBorder = "Yes"; // [Yes, No]
-borderColor = "white"; // [pink, red, black, white, yellow, blue]
+borderColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
 /* [Base] */
@@ -53,7 +53,7 @@ baseWidth=228;	// [228:600]
 baseHeight=54;	// [54:150]
 
 // This parameter is all about that base color.
-baseColor = "black"; // [pink, red, black, white, yellow, blue]
+baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
 
 baseThickness=2; // [1 : 5] 
 
