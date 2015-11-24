@@ -22,9 +22,9 @@ letterThickness = 3;//3; // [1 : 15]
 /* [Icons] */
 iconType = "Trooper"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat]
 // This is the X,Y scale of the icons.
-iconXyScale = 0.85; // [0.1 : 0.05 : 5]
-iconHeight = 1.5; // [0.1: 0.1 :5]
-xOffset = 84; // [10:200]
+iconXyScale = 1.0; // [0.1 : 0.05 : 5]
+iconHeight = 3.0; // [0.1: 0.1 :5]
+xOffset = 87; // [10:200]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
@@ -35,8 +35,8 @@ topLetterSize = 19; // [2 : 25]
 topLetterSpacing = 1; // [1 : 10]
 
 /* [Bottom Text] */
-subText = "Storm Trooper";
-bottomLetterSize = 8; // [2 : 25]
+subText = "Scrum Trooper";
+bottomLetterSize = 8.8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
 
