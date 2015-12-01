@@ -1,10 +1,4 @@
 
-# might use xargs
-#find . -type f -iname "*.scad" -print0 | xargs -0 ls -la
-
-# pipe to xargs
-#./find-oscad-files.sh | xargs ls -la
-
 # Import the global variables.
 source ./global-variables.sh
 
