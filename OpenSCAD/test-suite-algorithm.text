@@ -1,8 +1,10 @@
 
-for each .oscad file in the input direcotry
+for each .oscad file in the input directory
 
-	verify that a corresponding .png file esists
+	verify that a corresponding baseline .png file esists
 	
-	generate a proposed version of the .png  from .oscad file
+	generate a proposed version of the .png from the current .oscad files
 	
 	compare the baseline version to the proposed version
+		
+		report any comparison conflicts
