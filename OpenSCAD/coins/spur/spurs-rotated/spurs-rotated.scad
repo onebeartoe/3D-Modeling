@@ -1,31 +1,53 @@
 
-spurStl = "../../../shapes/spurs/spurs-a.stl";
-
-littleSpurCount = 10;
-
-littleSpurScale = 0.125;
+use <chain-loop.scad>;
 
 coin();
 
-module coin()
+module coin(centerIcon = "../../../shapes/spurs/spurs-a.stl",
+            outerIconCount = 10,            
+            outerIconXyScale = 0.125,
+            radius = 55,
+            height = 2)
+{
+    union()
+    {
+        coinItself(centerIcon,
+               outerIconCount,            
+               outerIconXyScale,
+               radius,
+               height);
+        
+        yTranslate = radius*1.07;
+        zScale = 7;
+        zTranslate = (zScale / 2.0) - (height / 2.0);
+        translate([0, yTranslate, zTranslate])
+        chainLoop(zScale = zScale);
+    }
+}
+
+module coinItself(centerIcon,
+            outerIconCount,            
+            outerIconXyScale,
+            radius,
+            height)
 {
     difference()
     {
         // main disk
-    	cylinder (h = 2, r=55, center = true, $fn=100);
+        cylinder (h = height, r=radius, center = true, $fn=100);
         
         // centered spur
         translate([0,0,-5])
-    	scale([0.35, 0.35, 2.0])
-    	import(spurStl);
+        scale([0.35, 0.35, 2.0])
+        import(centerIcon);
         
         // outer spurs
-        for ( i = [0 : littleSpurCount] )
+        for ( i = [0 : outerIconCount] )
         {
-            rotate( i * 360 / (littleSpurCount+1), [0, 0, 1])
+            rotate( i * 360 / (outerIconCount+1), [0, 0, 1])
             translate([0, 43, -5])
-            scale([littleSpurScale, littleSpurScale, 2.0])
-            import(spurStl);
+            scale([outerIconXyScale, outerIconXyScale, 2.0])
+            import(centerIcon);
         }
-    }
-}   
+    }    
+}

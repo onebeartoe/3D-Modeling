@@ -1,0 +1,60 @@
+
+spurs-medallion-a.gcode	
+	
+	slicer: Cura
+
+	
+	filament: 
+	
+		MakerGeeks - Glow in the Dark
+				     Dark as Night (black)
+
+
+
+	quality:
+
+		     layer height : 0.1984
+		  shell thickness : 0.8
+		enable retraction : yes
+	
+	
+	fill:
+		
+		bottom/top thickness : 0.6	
+		
+		fill density % : 8
+				  
+	
+	speed and temp:
+	
+		print speed mm/s : 45
+		
+			  print temp : 210
+						   
+							   
+	Support:							
+	
+			  suport type : none
+		platform adhesion : none
+	
+
+	Filament:
+	
+		diameter (mm): 1.75
+		
+			  flow % : 100
+
+
+	Print:
+	
+		xy scale: 0.5
+		
+		z scale: 1
+		
+		deminstions:  mm x  mm x  mm
+		
+		printtime:  mins
+		
+		grams: 
+		
+		meters: 
