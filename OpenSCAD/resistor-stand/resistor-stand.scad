@@ -1,13 +1,41 @@
 
 resisitorStand();
 
-module resisitorStand(baseLengthX = 24,
+module resisitorStand()
+{
+    resistorHolder();
+}
+
+module resistorHolder(baseLengthX = 24,
                       baseLengthY = 15,
                       baseLengthZ = 5,
                       
                       towerLengthX = 6,
                       towerLengthY = 15,
-                      towerLengthZ = 25)
+                      towerLengthZ = 21)
+{
+    difference()
+    {
+        resistorHolderUnion(baseLengthX,
+                      baseLengthY ,
+                      baseLengthZ ,
+                      
+                      towerLengthX,
+                      towerLengthY,
+                      towerLengthZ);
+                      
+          shafts();
+    }
+
+}
+
+module resistorHolderUnion(baseLengthX,
+                      baseLengthY ,
+                      baseLengthZ ,
+                      
+                      towerLengthX,
+                      towerLengthY,
+                      towerLengthZ)
 {
     union()
     {
@@ -24,15 +52,20 @@ module resisitorStand(baseLengthX = 24,
                   yLength=towerLengthY,
                   zLength=towerLengthZ);            
         }
-    }
+    }    
 }
 
 module shaft(xLength, zLength)
 {
     cylinder (h = 130, 
-              r=0.8, 
+              r=1.6, 
               $fn=100
     );    
+}
+
+module shafts()
+{
+    
 }
 
 module tower(xLength, yLength, zLength)
@@ -40,15 +73,12 @@ module tower(xLength, yLength, zLength)
     difference()
     {
         cube([xLength, yLength, zLength]);
-        
+            
         color("blue")
-        
-        rotate([-25, 0, 0])
-        
-        translate([xLength/2.0,
-                   -2,
-                   0])
-        
+        rotate([-20, 0, 0])
+        translate([xLength,//xLength/2.0,
+                   -1,
+                   -10])
         shaft(xLength, zLength);
     }    
 }
