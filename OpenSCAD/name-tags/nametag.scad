@@ -71,8 +71,10 @@ holes=4; 			// Choose 0,2 or 4 (others=0)
 
 font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
+// This row in this matrix holds the Y-offset (from center), top-text, font size (I think), and space-between-letters.
+// Add as many rows as you like.
 namematrix =              
-[					 	  // Matrix with place and names - add as many rows as you like	 
+[
 	[ topTextYOffset,   topText,     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
 	[bottomTextYOffset, subText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
 ];
