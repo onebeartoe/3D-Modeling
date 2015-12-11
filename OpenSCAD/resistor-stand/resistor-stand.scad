@@ -1,4 +1,6 @@
 
+RESISTOR_LEAD_LENGTH = 30;
+
 resisitorStand();
 
 module resisitorStand()
@@ -11,8 +13,8 @@ module resistorHolder(baseLengthX = 24,
                       baseLengthZ = 5,
                       
                       towerLengthX = 6,
-                      towerLengthY = 15,
-                      towerLengthZ = 21)
+                      towerLengthY = 10,
+                      towerLengthZ = 18)
 {
     difference()
     {
@@ -23,8 +25,8 @@ module resistorHolder(baseLengthX = 24,
                       towerLengthX,
                       towerLengthY,
                       towerLengthZ);
-                      
-          shafts();
+
+        shafts(xLength = towerLengthX);
     }
 
 }
@@ -57,30 +59,41 @@ module resistorHolderUnion(baseLengthX,
 
 module shaft(xLength, zLength)
 {
-    cylinder (h = 130, 
-              r=1.6, 
-              $fn=100
-    );    
+    difference()
+    {
+        radius = 1.6;
+        
+        cylinder (h = RESISTOR_LEAD_LENGTH, 
+                  r=1.6, 
+                  $fn=100
+        );
+  
+        rotate([55, 0, 0])  
+        cube([4, 8, 1]
+            , center=true            
+        );
+    }    
 }
 
-module shafts()
+module shafts(xLength)
 {
-    
+    for ( i = [0 : 1] )
+    {
+        centerPointSpacing = (xLength/2) + 5.5;
+        xTranslate = (xLength/2.0) + i * ( xLength/2.0 + centerPointSpacing);
+               
+        color("blue")
+        rotate([-15, 0, 0])
+        translate([xTranslate,
+                   0.5,
+                   1])
+        shaft(xLength, zLength);        
+    }    
 }
 
 module tower(xLength, yLength, zLength)
 {
-    difference()
-    {
-        cube([xLength, yLength, zLength]);
-            
-        color("blue")
-        rotate([-20, 0, 0])
-        translate([xLength,//xLength/2.0,
-                   -1,
-                   -10])
-        shaft(xLength, zLength);
-    }    
+    cube([xLength, yLength, zLength]);
 }
 
 module base(xLength, yLength, zLength)
