@@ -1,0 +1,14 @@
+
+coins-pendants-ornaments-a.gcode
+
+	spurs
+	
+	defalut size
+	
+---------------------------------------
+
+coins-pendants-ornaments-b.gcode	
+
+	spurs
+	
+	xyx scale: 1.55, 1.55, 0.5

@@ -31,8 +31,11 @@ use <spur/spurs-rotated/spurs-rotated.scad>;
 
 /* [Dimensions] */
 
+height = 3;
+
 // Paste your Sencil-o-Matic code here
 input ="default_TNH";
+
 
 // Move image left/right
 Move_X = 0; // [-50:50]
@@ -42,6 +45,8 @@ Move_Y = 0; // [-50:50]
 
 // Resize your image
 image_size = 26.5; // [1:50]
+
+includeGimbal = "yes"; // [yes, no]
 
 /* [Hidden] */
 
@@ -59,7 +64,7 @@ points_array = (input=="default_TNH"? [[133,286],[[234.27,6.02],[231.55,7.45],[2
 input_width = points_array[0][0];
 input_height= points_array[0][1];
 sTrace = dispo_width/input_width;
-stencil_height = input_height*sTrace + 2*margin;
+//stencil_height = input_height*sTrace + 2*margin;
 
 $fn=100;
 // preview[view:south, tilt:top]
@@ -71,15 +76,19 @@ module ornament()
     {
         union()
         {
-            ring1();
-            ring2();
-            ring3();
+            if(includeGimbal == "yes")
+            {
+                ring1();
+                ring2();
+                ring3();                
+            }
+
             difference()
             {
                 color("blue") 
                 pattern();
                 
-                cutout(center=true);
+                clipOversizedImages(center=true);
             }
         }
     }    
@@ -93,14 +102,13 @@ module pattern()
     	{
     		union() 
     		{
-    		    coin(height=5);
+    		    coin(height=height);
 			}
 		}
 	}
 }
 
-//Clip oversized images here
-module cutout()
+module clipOversizedImages()
 { 
 	difference()
 	{
@@ -113,10 +121,13 @@ module ring1()
 {
 	difference()
 	{
-	cylinder(r=19.35, h=5, center=true);
-	cylinder(r=17.35, h=56, center=true);
-	translate([17.45,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
-	translate([-17.45,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
+//TODO: MAKE ALL THE HIGHT VALUES 5 AS A VARIABLE!!!!	    
+//    	cylinder(r=19.35, h=15, center=true);
+    	cylinder(r=19.35, h=3, center=true);
+    	
+    	cylinder(r=17.35, h=56, center=true);
+    	translate([17.45,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
+    	translate([-17.45,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	}
 }
 
@@ -126,7 +137,7 @@ module ring2()
 	translate([-16.95,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
-		cylinder(r=15.95, h=5, center=true);
+		cylinder(r=15.95, h=3, center=true);
 		cylinder(r=13.95, h=56, center=true);
 		translate([0,-14.2,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 		translate([0,14.2,0]) rotate([270,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
@@ -139,7 +150,7 @@ module ring3()
 	translate([0,-13.75,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
-		cylinder(r=12.75, h=5, center=true);
+		cylinder(r=12.75, h=3, center=true);
 		cylinder(r=10.75, h=56, center=true);
 	}
 }

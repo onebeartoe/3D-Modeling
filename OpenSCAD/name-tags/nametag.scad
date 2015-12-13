@@ -16,7 +16,7 @@
 
 /* [General] */
 textColor = "white"; // [pink, red, black, white, yellow, blue, green]
-letterThickness = 3;//3; // [1 : 15]
+letterThickness = 3; // [1 : 15]
 
 
 /* [Icons] */
