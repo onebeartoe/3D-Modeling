@@ -8,7 +8,7 @@ source ./global-variables.sh
 # obtain the error code
 dataSetExitCode=$?
 
-if   [ "$dataSetExitCode" -ne 0 ] # test exit code of the data set test again success code, 0
+if   [ "$dataSetExitCode" -ne 0 ] # test exit code of the data set test against the system success code, 0
 then
 	echo "The test suite will not continue with missing baseline PNG images."
 	

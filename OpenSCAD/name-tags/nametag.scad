@@ -79,6 +79,8 @@ namematrix =
 	[bottomTextYOffset, subText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
 ];
 
+fudge = 0.1;
+
 // ************* Executable part *************
 use <write/Write.scad>	// remember to download write.scad and fonts
 

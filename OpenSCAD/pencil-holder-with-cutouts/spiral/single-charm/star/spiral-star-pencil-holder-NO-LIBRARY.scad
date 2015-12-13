@@ -87,12 +87,9 @@ module rotatedCutouts(charmCount = 16,
 			   charmXYScales[charmIndex], 
 			   charmDepthScales[charmIndex] //20.2])
 			 ])
-//        import(charmStls[charmIndex])
-//		star(1);
 		
 		if(charmName == "balloon")
 		{
-			echo("no sucka!");
 			balloon();
 		}
 		else if(charmName == "blue-moon")

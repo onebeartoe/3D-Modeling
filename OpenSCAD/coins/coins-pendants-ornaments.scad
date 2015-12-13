@@ -45,12 +45,6 @@ image_size = 26.5; // [1:50]
 
 /* [Hidden] */
 
-  ///////////////////////////////
- // No talking in the library //
-///////////////////////////////
-
-//use <utils/build_plate.scad>
-
   ///////////////////////////
  // Stencil-o-Matic Stuff //
 ///////////////////////////
@@ -72,16 +66,8 @@ $fn=100;
 
 ornament();
 
-  ////////////////////
- // Moduletown USA //
-////////////////////
-
-  /////////////////////////
- // Put it all together //
-/////////////////////////
 module ornament()
 {
-//    translate([0,0,2.5])
     {
         union()
         {
@@ -90,8 +76,7 @@ module ornament()
             ring3();
             difference()
             {
-//                color("blue") 
-//                scale([1, 1, 0.5])
+                color("blue") 
                 pattern();
                 
                 cutout(center=true);
@@ -104,20 +89,11 @@ module pattern()
 {
     union()
     {
-//    	translate([0, 0, stencil_thickness/2])
-//    	translate([Move_X, Move_Y, -5])
-    	scale([sTrace, -sTrace, 1])
-//    	translate([-206, -150, 0]) 
+    	scale([sTrace, -sTrace, 1]) 
     	{
     		union() 
     		{
-    		    
     		    coin(height=5);
-//    		    coin(center=true);
-//    			for (i = [1:len(points_array) -1] ) 
-//    			{
-//    				linear_extrude(height=stencil_thickness) {polygon(points_array[i]);}
-//    			}
 			}
 		}
 	}
@@ -135,7 +111,8 @@ module cutout()
 
 module ring1()
 {
-	difference(){
+	difference()
+	{
 	cylinder(r=19.35, h=5, center=true);
 	cylinder(r=17.35, h=56, center=true);
 	translate([17.45,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
@@ -147,7 +124,8 @@ module ring2()
 {
 	translate([16.95,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	translate([-16.95,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
-	difference(){
+	difference()
+	{
 		cylinder(r=15.95, h=5, center=true);
 		cylinder(r=13.95, h=56, center=true);
 		translate([0,-14.2,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
@@ -159,7 +137,8 @@ module ring3()
 {
 	translate([0,13.75,0]) rotate([270,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	translate([0,-13.75,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
-	difference(){
+	difference()
+	{
 		cylinder(r=12.75, h=5, center=true);
 		cylinder(r=10.75, h=56, center=true);
 	}
