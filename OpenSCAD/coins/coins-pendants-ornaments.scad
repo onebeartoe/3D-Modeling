@@ -83,6 +83,7 @@ module ring1(height)
 {
 	difference()
 	{
+	    color("pink")
     	cylinder(r=19.35, h=height, center=true);
     	
     	cylinder(r=17.35, h=56, center=true);
@@ -97,7 +98,9 @@ module ring2(height)
 	translate([-16.95,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
+	    color("grey")
 		cylinder(r=15.95, h=height, center=true);
+		
 		cylinder(r=13.95, h=56, center=true);
 		translate([0,-14.2,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 		translate([0,14.2,0]) rotate([270,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
