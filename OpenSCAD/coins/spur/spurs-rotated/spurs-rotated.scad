@@ -16,13 +16,6 @@ module coin(centerIcon = "../../../shapes/spurs/spurs-a.stl",
                outerIconXyScale,
                radius,
                height);
-        
-//        yTranslate = radius*1.07;
-//        zScale = 7;
-//        zTranslate = (zScale / 2.0) - (height / 2.0);
-//        zTranslate = 0;
-//        translate([0, yTranslate, zTranslate])
-//        chainLoop(zScale = zScale);
     }
 }
 

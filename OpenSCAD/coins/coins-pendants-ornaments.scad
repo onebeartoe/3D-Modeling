@@ -1,5 +1,10 @@
-
-// Ths OpenSCAD script is a direvative of:
+//
+// This OpenScad script generates coins, pendants, and ornaments.
+// 
+// Author: Roberto Marquez - http://electronics.onebeartoe.org/
+//
+// This OpenSCAD script is a derivative of:
+//
 // Customizable Gimbal v1.0
 // by TheNewHobbyist 2014 (http://thenewhobbyist.com)
 // http://www.thingiverse.com/thing:340948
@@ -8,14 +13,7 @@
 // "Customizable Gimbal" as well as this script are licensed under a 
 // Creative Commons Attribution-NonCommercial 3.0 Unported License.
 //
-// "Customizable Gimbal" Description: 
-// This model was insirped by DesignMakeTeach's print in place gimbal designs 
-// on Thingiverse. Below I have linked an example. I personalized one of these
-// for myself and thought I'd make it a full on Customizer model. To do this
-// I recreated something similar to DesignMakeTeach's design in OpenSCAD and 
-// used the Stencil-o-Matic from Benjamin to add in some easy customization.
-//
-// TheNewHobbyist's Inspiration and attribution from:
+// TheNewHobbyist's Inspiration and attribution:
 //
 // Printrbot Gimbal by DesignMakeTeach 
 // http://www.thingiverse.com/thing:317778
@@ -25,17 +23,12 @@
 // http://www.thingiverse.com/thing:55821
 // Licensed under the Creative Commons - Attribution - Non-Commercial license.
 
-// Coin and pendant features were added by Roberto Marquez - http://electronics.onebeartoe.org/
-
 use <spur/spurs-rotated/spurs-rotated.scad>;
 
 /* [Dimensions] */
 
-
-
 // Paste your Sencil-o-Matic code here
 input ="default_TNH";
-
 
 // Move image left/right
 Move_X = 0; // [-50:50]
@@ -50,10 +43,6 @@ includeGimbal = "yes"; // [yes, no]
 
 /* [Hidden] */
 
-  ///////////////////////////
- // Stencil-o-Matic Stuff //
-///////////////////////////
-
 stencil_thickness = 5;
 offX = 0;
 offY = 0;
@@ -64,10 +53,8 @@ points_array = (input=="default_TNH"? [[133,286],[[234.27,6.02],[231.55,7.45],[2
 input_width = points_array[0][0];
 input_height= points_array[0][1];
 sTrace = dispo_width/input_width;
-//stencil_height = input_height*sTrace + 2*margin;
 
 $fn=100;
-// preview[view:south, tilt:top]
 
 ornament();
 
@@ -78,9 +65,9 @@ module ornament(height = 3)
         {
             if(includeGimbal == "yes")
             {
-                ring1();
-                ring2();
-                ring3();                
+                ring1(height);
+                ring2(height);
+                ring3(height);
             }
 
             difference()
@@ -117,13 +104,11 @@ module clipOversizedImages()
 	}
 }
 
-module ring1()
+module ring1(height)
 {
 	difference()
 	{
-//TODO: MAKE ALL THE HIGHT VALUES 5 AS A VARIABLE!!!!	    
-//    	cylinder(r=19.35, h=15, center=true);
-    	cylinder(r=19.35, h=3, center=true);
+    	cylinder(r=19.35, h=height, center=true);
     	
     	cylinder(r=17.35, h=56, center=true);
     	translate([17.45,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
@@ -131,26 +116,26 @@ module ring1()
 	}
 }
 
-module ring2()
+module ring2(height)
 {
 	translate([16.95,0,0]) rotate([0,90,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	translate([-16.95,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
-		cylinder(r=15.95, h=3, center=true);
+		cylinder(r=15.95, h=height, center=true);
 		cylinder(r=13.95, h=56, center=true);
 		translate([0,-14.2,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 		translate([0,14.2,0]) rotate([270,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	}
 }
 
-module ring3()
+module ring3(height)
 {
 	translate([0,13.75,0]) rotate([270,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	translate([0,-13.75,0]) rotate([90,0,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
-		cylinder(r=12.75, h=3, center=true);
+		cylinder(r=12.75, h=height, center=true);
 		cylinder(r=10.75, h=56, center=true);
 	}
 }
