@@ -1,8 +1,9 @@
 
+
 use <../../coin.scad>;
 
-coin(centerIcon = "Spurs",
+coin(centerIcon = "tree",
                      outerIconCount = 10,            
-                     outerIconXyScale = 0.125,
+                     outerIconXyScale = 0.28,
                      radius = 55,
                      height=5);

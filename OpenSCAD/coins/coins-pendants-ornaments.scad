@@ -23,7 +23,9 @@
 // http://www.thingiverse.com/thing:55821
 // Licensed under the Creative Commons - Attribution - Non-Commercial license.
 
-use <spur/spurs-rotated/spurs-rotated.scad>;
+use <coin.scad>;
+
+
 
 $fn=100;
 
@@ -34,6 +36,8 @@ module ornament(height = 3,
                 )
 {
     {
+        coinScale =  0.2;//0.199248
+        
         union()
         {
             if(includeGimbal == "yes")
@@ -45,29 +49,19 @@ module ornament(height = 3,
 
             difference()
             {
-                color("blue") 
-                pattern(height);
-                
+                color("blue")
+                scale([coinScale, -coinScale, 1]) 
+                coin(centerIcon = "../shapes/spurs/spurs-a.stl",
+                     outerIconCount = 10,            
+                     outerIconXyScale = 0.125,
+                     radius = 55,
+                     height=height
+                ); 
+
                 clipOversizedImages(center=true);
             }
         }
     }    
-}
-
-module pattern(height)
-{
-    coinScale =  0.2;//0.199248
-    
-    union()
-    {
-    	scale([coinScale, -coinScale, 1]) 
-    	{
-    		union() 
-    		{
-    		    coin(height=height);
-			}
-		}
-	}
 }
 
 module clipOversizedImages()
