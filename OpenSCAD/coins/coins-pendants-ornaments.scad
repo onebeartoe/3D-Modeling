@@ -25,35 +25,13 @@
 
 use <spur/spurs-rotated/spurs-rotated.scad>;
 
-/* [Dimensions] */
-
-// Move image left/right
-Move_X = 0; // [-50:50]
-
-// Move image up/down
-Move_Y = 0; // [-50:50]
-
-// Resize your image
-image_size = 26.5; // [1:50]
-
-includeGimbal = "yes"; // [yes, no]
-
-/* [Hidden] */
-
-stencil_thickness = 5;
-offX = 0;
-offY = 0;
-margin = 0;
-
-input_width = 133;//points_array[0][0];
-
-coinScale =  0.2;//0.199248;//image_size/input_width;
-
 $fn=100;
 
 ornament();
 
-module ornament(height = 3)
+module ornament(height = 3,
+                includeGimbal = "yes" // [yes, no]
+                )
 {
     {
         union()
@@ -78,9 +56,10 @@ module ornament(height = 3)
 
 module pattern(height)
 {
+    coinScale =  0.2;//0.199248
+    
     union()
     {
-        echo(coinScale);
     	scale([coinScale, -coinScale, 1]) 
     	{
     		union() 
