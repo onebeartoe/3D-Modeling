@@ -31,7 +31,7 @@ use <spur/spurs-rotated/spurs-rotated.scad>;
 
 /* [Dimensions] */
 
-height = 3;
+
 
 // Paste your Sencil-o-Matic code here
 input ="default_TNH";
@@ -71,7 +71,7 @@ $fn=100;
 
 ornament();
 
-module ornament()
+module ornament(height = 3)
 {
     {
         union()
@@ -86,7 +86,7 @@ module ornament()
             difference()
             {
                 color("blue") 
-                pattern();
+                pattern(height);
                 
                 clipOversizedImages(center=true);
             }
@@ -94,7 +94,7 @@ module ornament()
     }    
 }
 
-module pattern()
+module pattern(height)
 {
     union()
     {
