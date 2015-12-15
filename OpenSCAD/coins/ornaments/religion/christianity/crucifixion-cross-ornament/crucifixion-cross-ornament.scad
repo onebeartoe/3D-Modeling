@@ -1,8 +1,11 @@
 
 use <../../../../coin.scad>;
 
-coin(centerIcon = "Cross",
-                     outerIconCount = 10,            
-                     outerIconXyScale = 0.28,
-                     radius = 55,
-                     height=5);
+coin(innerIcon = "Cross",
+     innerIconXyScale = 4,
+     innerIconOffsetY = -28,
+     outterIcon = "Cross",
+     outerIconCount = 12,            
+     outerIconXyScale = 0.7,
+     radius = 55,
+     height=5);

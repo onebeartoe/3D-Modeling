@@ -32,8 +32,8 @@ $fn=100;
 ornament();
 
 module ornament(height = 3,
-                includeGimbal = "yes" // [yes, no]
-                )
+                includeGimbal = "yes", // [yes, no]
+                innerIcon = "Tree")
 {
     {
         coinScale =  0.2;//0.199248
@@ -51,7 +51,8 @@ module ornament(height = 3,
             {
                 color("blue")
                 scale([coinScale, -coinScale, 1]) 
-                coin(centerIcon = "../shapes/spurs/spurs-a.stl",
+                coin(innerIcon = "Tree",
+                     innerIconXyScale = 0.9,
                      outerIconCount = 10,            
                      outerIconXyScale = 0.125,
                      radius = 55,

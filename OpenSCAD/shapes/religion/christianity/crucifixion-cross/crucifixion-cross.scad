@@ -19,10 +19,6 @@ module crucifixionCcross(height=2)
         xLength = yLength * 0.75;
         xTranslateHBeam = -xLength / 2.0;
         
-        echo("yt: ", yTranslate);
-        echo("xl: ", xLength);
-        echo("xt", xTranslateHBeam);
-        
         color("green")
         translate([xTranslateHBeam, yTranslate, 0])
         cube([xLength, 3, height]);        

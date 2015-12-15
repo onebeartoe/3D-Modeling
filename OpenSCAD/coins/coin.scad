@@ -3,8 +3,10 @@ use <../shapes/spurs/spurs-a.scad>
 use <../shapes/trees/christmas/christmas-tree.scad>
 use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 
-module coin(outterIcon,
-//            outterIcon,
+module coin(innerIcon,
+            innerIconXyScale,
+            innerIconOffsetY,
+            outterIcon,
             outerIconCount,            
             outerIconXyScale,
             radius,
@@ -15,12 +17,14 @@ module coin(outterIcon,
         // main disk
         cylinder (h = height, r=radius, center = true, $fn=100);
         
-        // centered spur
-        translate([0,0,-5])
-        scale([0.35, 0.35, 3.0])
-        coinIcon(centerIcon, height);
+        // inner icon
+        translate([0, innerIconOffsetY, -5])
+//        translate([0,0,-5])
+        scale([innerIconXyScale, innerIconXyScale, 3.0])
+//        scale([0.35, 0.35, 3.0])
+        coinIcon(innerIcon, height);
         
-        // outer spurs
+        // outer icons
         for ( i = [0 : outerIconCount] )
         {
             rotate( i * 360 / (outerIconCount+1), [0, 0, 1])
@@ -37,6 +41,10 @@ module coinIcon(iconName, height)
     {
         crucifixionCcross(height);
     }
+//    else if(iconName == "Tree")
+//    {
+//        
+//    }
     else
     {
         // defalut
