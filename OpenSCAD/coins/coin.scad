@@ -1,6 +1,7 @@
 
 use <../shapes/spurs/spurs-a.scad>
 use <../shapes/trees/christmas/christmas-tree.scad>
+use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 
 module coin(outterIcon,
 //            outterIcon,
@@ -32,9 +33,9 @@ module coin(outterIcon,
 
 module coinIcon(iconName, height)
 {
-    if(iconName == "Spur")
+    if(iconName == "Cross")
     {
-        spurs(height);
+        crucifixionCcross(height);
     }
     else
     {
