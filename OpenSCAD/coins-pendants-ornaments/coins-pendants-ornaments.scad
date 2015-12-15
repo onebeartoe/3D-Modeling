@@ -25,8 +25,6 @@
 
 use <coin.scad>;
 
-
-
 $fn=100;
 
 ornament();
