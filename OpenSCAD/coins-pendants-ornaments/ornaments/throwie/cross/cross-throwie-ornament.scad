@@ -1,0 +1,11 @@
+
+use <../../../../coin.scad>;
+
+coin(innerIcon = "Throwie",
+     innerIconXyScale = 4,
+     innerIconOffsetY = -28,
+     outterIcon = "Cross",
+     outerIconCount = 12,            
+     outerIconXyScale = 0.7,
+     radius = 55,
+     height=5);
