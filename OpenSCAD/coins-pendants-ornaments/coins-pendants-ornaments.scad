@@ -31,7 +31,7 @@ ornament();
 
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
-                innerIcon = "Tree",
+                innerIcon = "Throwie",
                 outerIcon = "Cross")
 {
     {
@@ -50,15 +50,17 @@ module ornament(height = 3,
             {
                 color("blue")
                 scale([coinScale, -coinScale, 1]) 
-                coin(innerIcon = "Tree",
+                coin(innerIcon = innerIcon,
                      innerIconXyScale = 0.9,
+                     innerIconOffsetY = -4,
                      outerIcon = outerIcon,
                      outerIconCount = 10,            
-                     outerIconXyScale = 0.125,
+                     outerIconXyScale = 0.5,
                      radius = 55,
                      height=height
                 ); 
 
+// DO WE NEED THIS?
                 clipOversizedImages(center=true);
             }
         }

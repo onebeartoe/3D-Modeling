@@ -4,7 +4,7 @@ use <../../../coin.scad>;
 coin(innerIcon = "Throwie",
      innerIconXyScale = 2,
      innerIconOffsetY = 7,
-     outterIcon = "Cross",
+     outerIcon = "Cross",
      outerIconCount = 12,            
      outerIconXyScale = 0.7,
      radius = 55,

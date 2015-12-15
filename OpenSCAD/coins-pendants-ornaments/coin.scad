@@ -7,7 +7,7 @@ use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 module coin(innerIcon,
             innerIconXyScale,
             innerIconOffsetY,
-            outterIcon,
+            outerIcon,
             outerIconCount,            
             outerIconXyScale,
             radius,
@@ -19,8 +19,8 @@ module coin(innerIcon,
         cylinder (h = height, r=radius, center = true, $fn=100);
         
         // inner icon
-        translate([0, innerIconOffsetY, -5])
-        scale([innerIconXyScale, innerIconXyScale, 3.0])
+        translate([0, innerIconOffsetY, -1])
+        scale([innerIconXyScale, innerIconXyScale, 6.5])
         coinIcon(innerIcon, height);
         
         // outer icons
@@ -29,7 +29,7 @@ module coin(innerIcon,
             rotate( i * 360 / (outerIconCount+1), [0, 0, 1])
             translate([0, 43, -5])
             scale([outerIconXyScale, outerIconXyScale, 3.0])
-            coinIcon(outterIcon, height);
+            coinIcon(outerIcon, height);
         }
     }    
 }
