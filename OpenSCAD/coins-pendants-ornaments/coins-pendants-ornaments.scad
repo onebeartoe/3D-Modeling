@@ -32,7 +32,8 @@ ornament();
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
                 innerIcon = "Tree",
-                outerIcon = "Cross")
+                outerIconXyScale = 0.2,
+                outerIcon = "Tree")
 {
     {
         coinScale =  0.2;//0.199248
@@ -55,7 +56,7 @@ module ornament(height = 3,
                      innerIconOffsetY = -4,
                      outerIcon = outerIcon,
                      outerIconCount = 10,            
-                     outerIconXyScale = 0.5,
+                     outerIconXyScale = outerIconXyScale,
                      radius = 55,
                      height=height
                 ); 

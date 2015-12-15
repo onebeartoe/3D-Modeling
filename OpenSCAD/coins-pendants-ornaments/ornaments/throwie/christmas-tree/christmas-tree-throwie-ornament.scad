@@ -6,6 +6,6 @@ coin(innerIcon = "Throwie",
      innerIconOffsetY = 7,
      outerIcon = "Tree",
      outerIconCount = 12,            
-     outerIconXyScale = 0.5,
+     outerIconXyScale = 0.2,
      radius = 55,
      height=5);

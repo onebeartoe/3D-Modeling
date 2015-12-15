@@ -20,7 +20,7 @@ module christmasTree(height = 3)
         // trunk
         color("brown")
         translate([-2.5, -15, 0])
-        cube([5, 5, height]);
+        cube([5,6, height]);
     }
 }
 
