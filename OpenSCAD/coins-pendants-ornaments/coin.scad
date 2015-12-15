@@ -1,5 +1,6 @@
 
 use <../shapes/spurs/spurs-a.scad>
+use <../shapes/throwie-cutout/throwie-cutout.scad>
 use <../shapes/trees/christmas/christmas-tree.scad>
 use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 
@@ -19,9 +20,7 @@ module coin(innerIcon,
         
         // inner icon
         translate([0, innerIconOffsetY, -5])
-//        translate([0,0,-5])
         scale([innerIconXyScale, innerIconXyScale, 3.0])
-//        scale([0.35, 0.35, 3.0])
         coinIcon(innerIcon, height);
         
         // outer icons
@@ -41,14 +40,13 @@ module coinIcon(iconName, height)
     {
         crucifixionCcross(height);
     }
-//    else if(iconName == "Tree")
-//    {
-//        
-//    }
+    else if(iconName == "Throwie")
+    {
+        throwieCutout(height=height);
+    }
     else
     {
         // defalut
         christmasTree(height);
-    }
-//  import(centerIcon);    
+    }    
 }

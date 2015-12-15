@@ -1,9 +1,9 @@
 
-use <../../../../coin.scad>;
+use <../../../coin.scad>;
 
 coin(innerIcon = "Throwie",
-     innerIconXyScale = 4,
-     innerIconOffsetY = -28,
+     innerIconXyScale = 2,
+     innerIconOffsetY = 7,
      outterIcon = "Cross",
      outerIconCount = 12,            
      outerIconXyScale = 0.7,

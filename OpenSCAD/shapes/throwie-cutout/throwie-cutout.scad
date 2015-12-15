@@ -20,7 +20,7 @@ module throwieCutout(height=2)
         cube([ledBottomCutoutLengthX, 2, height]);
 
         // LED middle coutout        
-        yTranslate = 2;
+        yTranslate = 1.5;
         xLength = ledWidth + 1;
         xTranslateHBeam = -xLength / 2.0; 
         color("green")
@@ -36,7 +36,7 @@ module throwieCutout(height=2)
         
         // battery
         batteryRadius = 10;
-        translate([0, -15, 0])
+        translate([0, -11, 0])
         cylinder (h = height, r=batteryRadius, $fn=100);
     }        
 }
