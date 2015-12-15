@@ -24,6 +24,7 @@
 // Licensed under the Creative Commons - Attribution - Non-Commercial license.
 
 use <coin.scad>;
+use <../shapes/ornament-loop/ornament-loop.scad>
 
 $fn=100;
 
@@ -48,7 +49,14 @@ module ornament(height = 3,
                 ring1(height);
                 ring2(height);
                 ring3(height);
+                
+                xyScale = 0.5;
+                zTranslate = -height / 2.0;
+                translate([0, -22, zTranslate])
+                scale([xyScale, xyScale, 1])
+                ornamentLoop(center=true);
             }
+            
 
             difference()
             {
