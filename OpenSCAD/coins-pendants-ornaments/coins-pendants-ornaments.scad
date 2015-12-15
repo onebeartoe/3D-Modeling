@@ -31,7 +31,7 @@ ornament();
 
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
-                innerIcon = "Throwie",
+                innerIcon = "Tree",
                 outerIcon = "Cross")
 {
     {

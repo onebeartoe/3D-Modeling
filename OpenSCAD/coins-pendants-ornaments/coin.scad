@@ -19,7 +19,7 @@ module coin(innerIcon,
         cylinder (h = height, r=radius, center = true, $fn=100);
         
         // inner icon
-        translate([0, innerIconOffsetY, -1])
+        translate([0, innerIconOffsetY, -5])
         scale([innerIconXyScale, innerIconXyScale, 6.5])
         coinIcon(innerIcon, height);
         
@@ -31,7 +31,12 @@ module coin(innerIcon,
             scale([outerIconXyScale, outerIconXyScale, 3.0])
             coinIcon(outerIcon, height);
         }
-    }    
+    }
+    
+//        // inner icon
+//        translate([0, innerIconOffsetY, -15])
+//        scale([innerIconXyScale, innerIconXyScale, 6.5])
+//        coinIcon(innerIcon, height);        
 }
 
 module coinIcon(iconName, height)
