@@ -32,8 +32,11 @@ ornament();
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
                 innerIcon = "Tree",
+                innerIconXyScale = 0.9,
+                innerIconOffsetY = -4,
+                outerIcon = "Tree",
                 outerIconXyScale = 0.2,
-                outerIcon = "Tree")
+                outerIconCount = 10)
 {
     {
         coinScale =  0.2;//0.199248
@@ -52,10 +55,10 @@ module ornament(height = 3,
                 color("blue")
                 scale([coinScale, -coinScale, 1]) 
                 coin(innerIcon = innerIcon,
-                     innerIconXyScale = 0.9,
-                     innerIconOffsetY = -4,
+                     innerIconXyScale = innerIconXyScale,
+                     innerIconOffsetY = innerIconOffsetY,
                      outerIcon = outerIcon,
-                     outerIconCount = 10,            
+                     outerIconCount = outerIconCount,            
                      outerIconXyScale = outerIconXyScale,
                      radius = 55,
                      height=height

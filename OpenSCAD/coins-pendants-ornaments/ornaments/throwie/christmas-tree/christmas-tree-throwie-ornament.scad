@@ -8,4 +8,4 @@ coin(innerIcon = "Throwie",
      outerIconCount = 12,            
      outerIconXyScale = 0.2,
      radius = 55,
-     height=5);
+     height=3);

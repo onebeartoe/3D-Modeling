@@ -8,4 +8,4 @@ coin(innerIcon = "Tree",
      outerIconCount = 10,            
      outerIconXyScale = 0.28,
      radius = 55,
-     height=5);
+     height=3);
