@@ -1,11 +1,13 @@
 
-use <../../coin.scad>;
+use <../../coins-pendants-ornaments.scad>;
 
-coin(innerIcon = "Tree",
-     innerIconXyScale = 0.75,
-     innerIconOffsetY = -7,
-     outerIcon = "Tree",
-     outerIconCount = 10,            
-     outerIconXyScale = 0.28,
-     radius = 55,
-     height=3);
+ornament(
+                
+            innerIcon = "Tree",
+            innerIconXyScale = 0.75,
+            innerIconOffsetY = -7,
+            outerIcon = "Tree",
+            outerIconXyScale = 0.2,
+            outerIconCount = 10,
+            outerIconXyScale = 0.28,
+            height = 3);
