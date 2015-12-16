@@ -1,9 +1,7 @@
 
 use <../heart/heart.scad>;
 
-
-
-module flatClover(sideHeartRotation = 100)
+module clover(sideHeartRotation = 100)
 {
 	union () 
 	{ 
@@ -25,10 +23,4 @@ module flatClover(sideHeartRotation = 100)
 	}
 }
 
-module raisedClover()
-{
-//	linear_extrude (height = 10)
-	flatClover();
-}
-
-raisedClover();
+clover();

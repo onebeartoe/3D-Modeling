@@ -19,3 +19,8 @@ module raisedHeart()
 
 translate ([0, 14, 0])
 raisedHeart();
+
+module heart()
+{
+    raisedHeart();
+}

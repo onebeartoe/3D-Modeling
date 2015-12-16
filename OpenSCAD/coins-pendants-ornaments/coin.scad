@@ -5,7 +5,10 @@ use <../shapes/trees/christmas/christmas-tree.scad>
 use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 use <../shapes/religion/judaism/star-of-david/star-of-david.scad>
 use <../shapes/religion/islam/crescent-star/crescent-star.scad>
-
+use <../shapes/star/star.scad>
+use <../shapes/blue-moon/blue-moon.scad>
+use <../shapes/clover/clover.scad>
+use <../shapes/heart/heart.scad>
 
 module coin(innerIcon,
             innerIconXyScale,
@@ -54,6 +57,22 @@ module coinIcon(iconName, height)
     else if(iconName == "Crescent Star")
     {
         crescentStar();
+    }
+    else if(iconName == "Star")
+    {
+        star(height);
+    }
+    else if(iconName == "Blue Moon")
+    {
+        blueMoon();
+    }
+    else if(iconName == "Clover")
+    {
+        clover();
+    }
+    else if(iconName == "Heart")
+    {
+        heart();
     }
     else
     {
