@@ -7,5 +7,3 @@ ornament(innerIcon = "Crescent Star",
          outerIcon = "Crescent Star",
          outerIconCount = 7,
          outerIconXyScale = 0.1);
-
-         
