@@ -3,7 +3,7 @@
 */
 module rotatedCutouts(charmCount = 16,
 					  charmXYScales,
-					  charmStls = ["../shapes/oshw/oshw.stl"],
+					  charmStls = ["../external-resources/oshw/oshw.stl"],
 					  charmIndcies = [],  // the vector of array index needs required
 					  charmDepthScales,
 					  yTranslateFactor = 5,

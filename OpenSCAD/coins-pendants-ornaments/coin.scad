@@ -9,6 +9,8 @@ use <../shapes/star/star.scad>
 use <../shapes/blue-moon/blue-moon.scad>
 use <../shapes/clover/clover.scad>
 use <../shapes/heart/heart.scad>
+use <../external-resources/oshw/oshw-logo-800-px.scad>
+use <../shapes/texas/texas.scad>
 
 module coin(innerIcon,
             innerIconXyScale,
@@ -73,6 +75,14 @@ module coinIcon(iconName, height)
     else if(iconName == "Heart")
     {
         heart();
+    }
+    else if(iconName == "OSHW")
+    {
+        oshwlogo800px();
+    }
+    else if(iconName == "Texas")
+    {
+        texas();
     }
     else
     {

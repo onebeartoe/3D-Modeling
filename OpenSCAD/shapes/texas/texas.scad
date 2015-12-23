@@ -4,12 +4,7 @@
 // SVG element in the Inkscape document by looking for the XML element with
 // the attribute id="inkscape-path-id".
 
-// fudge value is used to ensure that subtracted solids are a tad taller
-// in the z dimension than the polygon being subtracted from.  This helps
-// keep the resulting .stl file manifold.
-fudge = 0.1;
-
-module poly_Selection(h)
+module texas(h = 3)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -18,10 +13,6 @@ module poly_Selection(h)
   }
 }
 
-module texas(h)
-{
 
-poly_Selection(h);
-}
 
-texas(4);
+texas();

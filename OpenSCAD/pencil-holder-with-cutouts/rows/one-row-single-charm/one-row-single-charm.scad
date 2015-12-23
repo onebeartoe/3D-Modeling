@@ -18,7 +18,7 @@ difference()
 	
 	rotatedCutouts(charmCount = 6,
 				   charmXYScales = charmXYScales,
-				   charmStls = ["../shapes/oshw/oshw.stl"],
+				   charmStls = ["../external-resources/oshw/oshw.stl"],
 				   charmIndcies = charmIndcies,
 				   yTranslateFactor = 0,
 				   yTranslateMinimum = 20,
