@@ -17,7 +17,7 @@ module horseshoeProjection()
 
 module horseshoe()
 {
-	linear_extrude(height=10)
+	linear_extrude(height=3)
 	difference() 
 	{ 
 		horseshoeProjection();

@@ -1,16 +1,23 @@
 
-use <../shapes/spurs/spurs-a.scad>
-use <../shapes/throwie-cutout/throwie-cutout.scad>
-use <../shapes/trees/christmas/christmas-tree.scad>
+use <../external-resources/africa/africa-outline-hi.scad>
+use <../external-resources/oshw/oshw-logo-800-px.scad>
+
+use <../shapes/balloon/balloon.scad>
+use <../shapes/blue-moon/blue-moon.scad>
+use <../shapes/clover/clover.scad>
+use <../shapes/disk/disk.scad>
+use <../shapes/heart/heart.scad>
+use <../shapes/hourglass/hourglass.scad>
+use <../shapes/horseshoe/horseshoe.scad>
+use <../shapes/oval/oval.scad>
 use <../shapes/religion/christianity/crucifixion-cross/crucifixion-cross.scad>
 use <../shapes/religion/judaism/star-of-david/star-of-david.scad>
 use <../shapes/religion/islam/crescent-star/crescent-star.scad>
+use <../shapes/spurs/spurs-a.scad>
 use <../shapes/star/star.scad>
-use <../shapes/blue-moon/blue-moon.scad>
-use <../shapes/clover/clover.scad>
-use <../shapes/heart/heart.scad>
-use <../external-resources/oshw/oshw-logo-800-px.scad>
 use <../shapes/texas/texas.scad>
+use <../shapes/throwie-cutout/throwie-cutout.scad>
+use <../shapes/trees/christmas/christmas-tree.scad>
 
 module coin(innerIcon,
             innerIconXyScale,
@@ -76,6 +83,14 @@ module coinIcon(iconName, height)
     {
         heart();
     }
+    else if(iconName == "Horseshoe")
+    {
+        horseshoe();
+    }
+    else if(iconName == "Hourglass")
+    {
+        hourglass();
+    }
     else if(iconName == "OSHW")
     {
         oshwlogo800px();
@@ -83,6 +98,22 @@ module coinIcon(iconName, height)
     else if(iconName == "Texas")
     {
         texas();
+    }
+    else if(iconName == "Africa")
+    {
+        africa();
+    }
+    else if(iconName == "Oval")
+    {
+        oval();
+    }
+    else if(iconName == "Balloon")
+    {
+        balloon();
+    }
+    else if(iconName == "Circle")
+    {
+        disk();
     }
     else
     {

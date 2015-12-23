@@ -4,7 +4,7 @@ module bar()
 {
 	translate ([-30, 43, 0]) 
 	color ("black")
-	linear_extrude(height=1)
+	linear_extrude(height=3)
 	square ([60 , 6]);
 }
 
@@ -19,12 +19,12 @@ module hourglass()
 		rotate ([0, 0, 180]) 
 		translate ([0, -43, 0])
 		color("teal")
-		linear_extrude(height=1)
+		linear_extrude(height=3)
 		horseshoeProjection();
 
 		// botton glass
 		translate ([0, -43, 0])
-		linear_extrude(height=1)
+		linear_extrude(height=3)
 		horseshoeProjection();
 		
 		// bottom bar
