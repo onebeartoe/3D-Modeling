@@ -1,4 +1,19 @@
 
+horseshoe();
+
+module horseshoe()
+{
+    linear_extrude(height=3)
+    difference() 
+    { 
+        horseshoeProjection();
+        
+        translate ([0, -1, 0])
+        scale ([0.85, .9, 1]) 
+        horseshoeProjection();
+    }
+}
+
 module horseshoeProjection()
 {
 	rotate ([0, 0, 90])
@@ -14,18 +29,3 @@ module horseshoeProjection()
 		}
 	}
 }
-
-module horseshoe()
-{
-	linear_extrude(height=3)
-	difference() 
-	{ 
-		horseshoeProjection();
-		
-		translate ([0, -1, 0])
-		scale ([0.85, .9, 1]) 
-		horseshoeProjection();
-	}
-}
-
-horseshoe();

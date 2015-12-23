@@ -8,4 +8,3 @@ module oval(height = 3,
     scale (v=[xScale, yScale, 1]) 
     cylinder(h = height, r=20);
 }
-

@@ -1,12 +1,8 @@
 use <../horseshoe/horseshoe.scad>;
 
-module bar()
-{
-	translate ([-30, 43, 0]) 
-	color ("black")
-	linear_extrude(height=3)
-	square ([60 , 6]);
-}
+
+translate ([0, 49, 0])
+hourglass();
 
 module hourglass()
 {
@@ -33,5 +29,10 @@ module hourglass()
 	}
 }
 
-translate ([0, 49, 0])
-hourglass();
+module bar()
+{
+    translate ([-30, 43, 0]) 
+    color ("black")
+    linear_extrude(height=3)
+    square ([60 , 6]);
+}

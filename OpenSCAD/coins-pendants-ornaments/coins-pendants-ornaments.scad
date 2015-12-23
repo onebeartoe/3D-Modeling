@@ -72,7 +72,6 @@ module ornament(height = 3,
                      height=height
                 ); 
 
-// DO WE NEED THIS?
                 clipOversizedImages(center=true);
             }
         }
@@ -126,3 +125,6 @@ module ring3(height)
 		cylinder(r=10.75, h=56, center=true);
 	}
 }
+
+// Below this comment are the modules for the various charms.
+
