@@ -7,15 +7,15 @@ module clover(sideHeartRotation = 100)
 	{ 
 		rotate ([0, 0, sideHeartRotation])
 		translate ([0,14,0])
-		raisedHeart();
+		heart();
 		
 		rotate ([0, 0, 0])
 		translate ([0,14,0])
-		raisedHeart();
+		heart();
 		
 		rotate ([0, 0, -sideHeartRotation])
 		translate ([0, 14, 0])
-		raisedHeart();
+		heart();
 		
 //		color ("red")
 		translate([-3.5,-30,0])
