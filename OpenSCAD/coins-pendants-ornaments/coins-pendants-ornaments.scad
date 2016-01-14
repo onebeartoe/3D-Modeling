@@ -24,7 +24,7 @@
 // Licensed under the Creative Commons - Attribution - Non-Commercial license.
 
 use <coin.scad>;
-use <../shapes/ornament-loop/ornament-loop.scad>
+use <../shapes/open-cylinder/open-cylinder.scad>
 
 $fn=100;
 
