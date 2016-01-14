@@ -54,7 +54,7 @@ module ornament(height = 3,
                 zTranslate = -height / 2.0;
                 translate([0, -22, zTranslate])
                 scale([xyScale, xyScale, 1])
-                ornamentLoop(center=true);
+                openCylinder(center=true);
             }
             
 

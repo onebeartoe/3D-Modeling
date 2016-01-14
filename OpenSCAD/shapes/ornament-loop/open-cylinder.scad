@@ -1,9 +1,9 @@
 
 $fn = 100;
 
-ornamentLoop();
+openCylinder();
 
-module ornamentLoop(height = 3)
+module openCylinder(height = 3)
 {    
     difference()
     {
