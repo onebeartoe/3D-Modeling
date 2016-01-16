@@ -1,16 +1,21 @@
 
-$fn = 100;
-
 openCylinder();
 
-module openCylinder(height = 3)
-{    
+module openCylinder(height = 3,
+                    outerRadius = 7,
+                    innerRadius = 4.5,
+                    fn = 100)
+{
+    $fn = fn;
+        
     difference()
     {
-        cylinder(r=7, h=height);
+        cylinder(r=outerRadius,
+                 h=height);
         
-        radius = 4.5;
+        
         translate([0, 0, -1])
-        cylinder(r=radius, h=height+2);
+        cylinder(r=innerRadius,
+                 h=height+1.01);
     }
 }
