@@ -1,5 +1,6 @@
 
 use <../external-resources/africa/africa-outline-hi.scad>
+use <../external-resources/batman/batman.scad>
 use <../external-resources/oshw/oshw-logo-800-px.scad>
 
 use <../shapes/balloon/balloon.scad>
@@ -115,9 +116,16 @@ module coinIcon(iconName, height)
     {
         disk();
     }
+    else if(iconName == "Batman")
+    {
+        batmanLogo();
+    }
+    else if(iconName == "Tree")
+    {
+        christmasTree(height);
+    }
     else
     {
-        // defalut
-        christmasTree(height);
+        // default is to do nothing        
     }    
 }

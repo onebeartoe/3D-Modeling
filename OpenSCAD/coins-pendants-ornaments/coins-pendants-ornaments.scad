@@ -32,10 +32,10 @@ ornament();
 
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
-                innerIcon = "Tree",
-                innerIconXyScale = 0.9,
+                innerIcon = "Batman",
+                innerIconXyScale = 1.10,
                 innerIconOffsetY = -4,
-                outerIcon = "Tree",
+                outerIcon = "Nothing", //"Tree",
                 outerIconXyScale = 0.2,
                 outerIconCount = 10)
 {
