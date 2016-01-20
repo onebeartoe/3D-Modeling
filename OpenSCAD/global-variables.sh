@@ -1,6 +1,6 @@
 
-# This script is for including commong global variables.
-# to use these varialbes in a scrpt call:
+# This script is for including common global variables.
+# to use these variables in a script call:
 # source global-variables.sh
 
 
