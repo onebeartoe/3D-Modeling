@@ -14,5 +14,5 @@ public class GlobalVariables
 
     public static final String proposedBaselineSuffix = "-proposed" + baselineSuffix;
 
-    public static final String OPENSCAD_FILE_SUFFIX = ".scad";
+    public static final String OPENSCAD_FILE_PATTERN = "*.scad";
 }

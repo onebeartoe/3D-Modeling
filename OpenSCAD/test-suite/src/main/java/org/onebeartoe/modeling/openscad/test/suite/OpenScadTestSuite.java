@@ -13,8 +13,20 @@ public class OpenScadTestSuite
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         String path = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD";
         Path inpath = FileSystems.getDefault().getPath(path);
-        List<Path> openscadPaths = openScadFinder.find(inpath);
-        openscadPaths.forEach((p) -> System.out.println(p));
+        List<Path> openscadPaths = openScadFinder.getFiles(inpath);
 
+//        openscadPaths.forEach((p) -> System.out.println(p));
+
+        DataSetValidator inputValidator = new DataSetValidator();
+        List<String> missingPngs = inputValidator.validate(openscadPaths);
+        
+        if( !missingPngs.isEmpty() )
+        {
+            System.err.println("The test suite will not continue with missing baseline PNG images.");
+        }
+        else
+        {
+            System.out.println("the test continues...");
+        }
     }
 }

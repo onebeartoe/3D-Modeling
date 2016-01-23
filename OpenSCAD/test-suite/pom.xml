@@ -6,15 +6,15 @@
 	
     <parent>
         <groupId>org.onebeartoe.3d.printing</groupId>	
-        <artifactId>onebeartoe-3d-printing-parent-child-configuration</artifactId>
+        <artifactId>onebeartoe-3d-modeling-openscad</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>onebeartoe-3d-building-applications-test-stuite</artifactId>
+    <artifactId>onebeartoe-3d-modeling-openscad-test-suite</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>onebeartoe-3d-modeling-parent-child-configuration-first</name>
+    <name>onebeartoe-3d-modeling-openscad-test-suite</name>
     
     <dependencies>
         <dependency>
