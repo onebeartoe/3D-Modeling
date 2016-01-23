@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileVisitResult;
-import static java.nio.file.FileVisitResult.;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
@@ -14,6 +13,13 @@ import java.util.List;
 
 public class OpenScadFileFinder
 {
+
+    //    see these links:
+
+    //        https://docs.oracle.com/javase/tutorial/essential/io/examples/Find.java
+
+    //        https://docs.oracle.com/javase/tutorial/essential/io/walk.html
+
     public List<Path> find(Path inpath) throws Throwable
     {
         System.out.println("finding files under: " + inpath);
@@ -56,7 +62,7 @@ public class OpenScadFileFinder
                 System.out.format("Other: %s ", file);
             }
             System.out.println("(" + attr.size() + "bytes)");
-            return CONTINUE;
+            return FileVisitResult.CONTINUE;
         }
     }
 }
