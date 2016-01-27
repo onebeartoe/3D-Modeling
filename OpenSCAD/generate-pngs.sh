@@ -1,6 +1,6 @@
-# This script generatges .png files from all .oscad files.
+# This script generates .png files from all .oscad files.
 # It generates proposed baseline .png files by default.
-# Set $baselineSuffix to create someting else.
+# Set $baselineSuffix to create something else.
 
 # Next is a path to the executable for OpenSCAD and an example call.
 # openscad -o ring.png ring.scad
