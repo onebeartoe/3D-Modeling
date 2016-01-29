@@ -14,6 +14,25 @@ import java.util.stream.Collectors;
  */
 public class DataSetValidator
 {
+    public static String baselineNameFor(Path scadFile, RenderViews direction)
+    {
+        // remove the '.oscad' from the file name
+        String baseName = DataSetValidator.baseNameFor(scadFile);
+
+        // concatinate '.png' to the base name
+        String outfileName = baseName + "-java-" + direction + GlobalVariables.baselineSuffix;
+
+        return outfileName;
+    }
+
+    public static String baseNameFor(Path scadFile)
+    {
+        String baseName = scadFile.toString();
+        baseName = baseName.substring(0, baseName.length() - 5);
+
+        return baseName;
+    }
+
     /**
      * The data set is valid if and only if the returned list is empty.
      * 
@@ -22,44 +41,35 @@ public class DataSetValidator
      */
     public List<String> validate(List<Path> oscadFiles)
     {
-        List<String> expectedBaselineFiles = oscadFiles.stream()
-                    .map( (p) -> 
-                    {
-                        String pngPath = p.toString();
-                        pngPath = pngPath.substring(0, pngPath.length()-5);
-                        pngPath = pngPath + GlobalVariables.baselineSuffix;
-                      
-                        return pngPath;
-                    })
-                    .collect(Collectors.toList());
-                    
-        
-        List<String> missingBaselineFiles = expectedBaselineFiles.stream()
-                                            .filter( (ebf) ->
-                                            {
-                                                File f = new File(ebf);
-                                                
-                                                boolean accepted = !f.exists();
-                                                
-                                                if(accepted)
-                                                {
-                                                    System.err.println(" missing input file: " + ebf);
-                                                }
-                                                
-                                                return accepted;
-                                            })
-                                            .collect(Collectors.toList());
-                
+        List<String> expectedBaselineFiles = oscadFiles.stream().map((p) -> {
+            String pngPath = baseNameFor(p);
+            pngPath = pngPath + GlobalVariables.baselineSuffix;
 
-        if(missingBaselineFiles.isEmpty())
+            return pngPath;
+        }).collect(Collectors.toList());
+
+        List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> {
+            File f = new File(ebf);
+
+            boolean accepted = !f.exists();
+
+            if (accepted)
+            {
+                System.err.println(" missing input file: " + ebf);
+            }
+
+            return accepted;
+        }).collect(Collectors.toList());
+
+        if (missingBaselineFiles.isEmpty())
         {
             System.out.println("All input files are present.");
         }
-	else
+        else
         {
             System.err.println("The test suite detected that some input files are not present.");
         }
-        
+
         return missingBaselineFiles;
     }
 }
