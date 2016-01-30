@@ -19,6 +19,8 @@ public class OpenScadTestSuite
 
     public void generateBaselines() throws IOException, InterruptedException
     {
+        System.out.println("test suite generating baselines, count: " + openscadPaths.size());
+
         PngGenerator pngGenerator = new PngGenerator();
         boolean forcePngGeneration = false;
         pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
@@ -100,6 +102,8 @@ public class OpenScadTestSuite
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(path);
         openscadPaths = openScadFinder.getFiles(inpath);
+
+        //        System.out.println("open SCAD paths count: " + openscadPaths.size());
 
         if (args.length > 1)
         {

@@ -42,7 +42,7 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 
     private List<Path> find(Path inpath) throws Throwable
     {
-        System.out.println("finding files under: " + inpath);
+        System.out.println("\nfinding files under: " + inpath + "\n");
 
         openscadPaths = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         }
         else if (attr.isRegularFile())
         {
-            //            System.out.format("Regular file: %s ", file);
+            //            System.out.format("Regular file: %s\n", file);
 
             Path name = file.getFileName();
             if (name != null && matcher.matches(name))
@@ -87,8 +87,7 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         {
             System.out.format("Other: %s ", file);
         }
-        //        System.out.println("(" + attr.size() + "bytes)");
+
         return FileVisitResult.CONTINUE;
     }
-
 }

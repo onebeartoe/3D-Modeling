@@ -20,12 +20,14 @@ public class PngGenerator
         logger = Logger.getLogger(className);
     }
 
-    public boolean generateOnePng(Path oscadFile, boolean forceGeneration, RenderViews direction) throws IOException,
-            InterruptedException
+    public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
+            throws IOException, InterruptedException
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
 
-        String outfileName = DataSetValidator.baselineNameFor(oscadFile, direction);
+        openscadPath = "C:/opt/OpenSCAD/openscad-2015.03-1/openscad";
+
+        String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, direction);
 
         File outfile = new File(outfileName);
 
@@ -35,10 +37,15 @@ public class PngGenerator
         // be generated regardless of the file existing or not (generate-proposed-pngs.sh )
         if (!outfile.exists() || forceGeneration)
         {
+            String infilePath = oscadInputFile.toString().replace("\\", "/");
+            if (infilePath.startsWith("./"))
+            {
+                infilePath = infilePath.substring(2);
+            }
 
             String command = openscadPath
             // bottom view
-                    + " -o " + outfileName + " " + "--camera=0,0,0,180,0,0,150" + " " + oscadFile.toString();
+                    + " -o " + outfileName + " " + "--camera=0,0,0,180,0,0,150" + " " + infilePath;
 
             System.out.println(command);
             Commander commander = new Commander(command);

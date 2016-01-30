@@ -22,6 +22,13 @@ public class DataSetValidator
         // concatinate '.png' to the base name
         String outfileName = baseName + "-java-" + direction + GlobalVariables.baselineSuffix;
 
+        outfileName = outfileName.replace("\\", "/");
+
+        if (outfileName.startsWith("./"))
+        {
+            //            outfileName = outfileName.substring(2);
+        }
+
         return outfileName;
     }
 
