@@ -1,3 +1,4 @@
+
 package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.io.IOException;
@@ -102,8 +103,6 @@ public class OpenScadTestSuite
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(path);
         openscadPaths = openScadFinder.getFiles(inpath);
-
-        //        System.out.println("open SCAD paths count: " + openscadPaths.size());
 
         if (args.length > 1)
         {

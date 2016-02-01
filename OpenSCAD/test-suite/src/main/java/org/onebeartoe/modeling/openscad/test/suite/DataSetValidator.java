@@ -39,6 +39,18 @@ public class DataSetValidator
 
         return baseName;
     }
+    
+    private void printValidationResults(List<String> missingBaselineFiles)
+    {
+        if (missingBaselineFiles.isEmpty())
+        {
+            System.out.println("All input files are present.");
+        }
+        else
+        {
+            System.err.println("The test suite detected that some input files are not present.");
+        }
+    }
 
     /**
      * The data set is valid if and only if the returned list is empty.
@@ -48,14 +60,16 @@ public class DataSetValidator
      */
     public List<String> validate(List<Path> oscadFiles)
     {
-        List<String> expectedBaselineFiles = oscadFiles.stream().map((p) -> {
-            String pngPath = baseNameFor(p);
-            pngPath = pngPath + GlobalVariables.baselineSuffix;
+	
+        List<String> expectedBaselineFiles = oscadFiles.stream().map((p) -> 
+        {
+            String pngPath = baselineNameFor(p, RenderViews.BOTTTOM);
 
             return pngPath;
         }).collect(Collectors.toList());
 
-        List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> {
+        List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> 
+        {
             File f = new File(ebf);
 
             boolean accepted = !f.exists();
@@ -68,14 +82,7 @@ public class DataSetValidator
             return accepted;
         }).collect(Collectors.toList());
 
-        if (missingBaselineFiles.isEmpty())
-        {
-            System.out.println("All input files are present.");
-        }
-        else
-        {
-            System.err.println("The test suite detected that some input files are not present.");
-        }
+        printValidationResults(missingBaselineFiles);
 
         return missingBaselineFiles;
     }
