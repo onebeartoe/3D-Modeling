@@ -7,7 +7,7 @@ package org.onebeartoe.modeling.openscad.test.suite;
  */
 public enum RenderViews
 {	
-    TOP("0,0,0"),
+    TOP("180,0,0"),
     BOTTTOM("180,0,0"),
     LEFT("0,0,0"),
     RIGHT("0,0,0");

@@ -17,16 +17,32 @@ import java.util.Map;
 public class OpenScadTestSuite
 {
     private List<Path> openscadPaths;
+    
+    private PngGenerator pngGenerator;
+    
+    public OpenScadTestSuite()
+    {
+	pngGenerator = new PngGenerator();
+    }
 
     public void generateBaselines() throws IOException, InterruptedException
     {
         System.out.println("test suite generating baselines, count: " + openscadPaths.size());
 
-        PngGenerator pngGenerator = new PngGenerator();
+        // don't overwrite any existing baseline images
         boolean forcePngGeneration = false;
+        
         pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
     }
 
+    public void generateProposedBaselines() throws IOException, InterruptedException
+    {
+        // create the proposed baseline images every time the test suite is run
+        boolean forcePngGeneration = true;
+        
+        pngGenerator.generatePngs(openscadPaths, forcePngGeneration);	
+    }
+    
     public static void main(String[] args) throws Throwable
     {
         if (args.length == 0)
@@ -78,21 +94,26 @@ public class OpenScadTestSuite
         }
         else
         {
-            System.out.println("the test continues...");
+            System.out.println("Generating a proposed version of the .png  from each .oscad file...");
+
+            generateProposedBaselines();
+            
+            System.out.println("The proposed baseline files are generated.");
+            
+            System.out.println("Comparing baseline images to the proposed baseline images...");
+            
+            
         }
     }
 
     public void serviceRequest(String[] args) throws Throwable
     {
-        boolean generateBaselines = false;
         String path;
 
         if (args.length > 1)
         {
             // a parameter besides the path was given, presumably for baseline generation
             path = args[1];
-
-            generateBaselines = true;
         }
         else
         {

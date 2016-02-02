@@ -21,9 +21,8 @@ public class PngGenerator
         logger = Logger.getLogger(className);
     }
     
-    public List<Boolean> generateDirectionalPngs(Path oscadInputFile)
+    public List<Boolean> generateDirectionalPngs(Path oscadInputFile, boolean forcePngGeneration)
     {
-        boolean forcePngGeneration = false;
 	List<Boolean> exitCodes = new ArrayList();
 
         Stream.of(RenderViews.values() )
@@ -43,6 +42,8 @@ public class PngGenerator
         
         return exitCodes;
     }
+    
+
 
     public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
             throws IOException, InterruptedException
@@ -51,7 +52,7 @@ public class PngGenerator
 
         openscadPath = "C:/opt/OpenSCAD/openscad-2015.03-1/openscad";
 
-        String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, direction);
+        String outfileName = DataSetValidator.baselineNameForReal(oscadInputFile, forceGeneration, direction);
 
         File outfile = new File(outfileName);
 
@@ -98,7 +99,7 @@ public class PngGenerator
 
         openscadPaths.forEach((p) -> 
         {
-            List<Boolean> directionalExitCodes = generateDirectionalPngs(p);
+            List<Boolean> directionalExitCodes = generateDirectionalPngs(p, forcePngGeneration);
             exitCodes.addAll(directionalExitCodes);
         });
 

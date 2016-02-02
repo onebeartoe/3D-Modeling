@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  */
 public class DataSetValidator
 {
-    public static String baselineNameFor(Path scadFile, RenderViews direction)
+    private static String baselineNameFor(Path scadFile, RenderViews direction)
     {
         // remove the '.oscad' from the file name
         String baseName = DataSetValidator.baseNameFor(scadFile);
@@ -35,8 +35,24 @@ public class DataSetValidator
 
         return outfileName;
     }
+    
+    public static String baselineNameForReal(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
+    {
+	String outfileName;
+	
+        if(forceGeneration)
+        {
+            outfileName = DataSetValidator.proposedBaselineNameFor(oscadInputFile, direction);
+        }
+        else
+        {
+            outfileName = DataSetValidator.baselineNameFor(oscadInputFile, direction);
+        }
+	
+	return outfileName;
+    }    
 
-    public static String baseNameFor(Path scadFile)
+    private static String baseNameFor(Path scadFile)
     {
         String baseName = scadFile.toString();
         baseName = baseName.substring(0, baseName.length() - 5);
@@ -54,6 +70,17 @@ public class DataSetValidator
         {
             System.err.println("The test suite detected that some input files are not present.");
         }
+    }
+    
+    private static String proposedBaselineNameFor(Path scadFile, RenderViews direction)
+    {
+	String name = baselineNameFor(scadFile, direction);
+	
+	String replace = "-proposed" + GlobalVariables.baselineSuffix;
+	
+	name = name.replace(GlobalVariables.baselineSuffix, replace);
+	
+	return name;
     }
 
     /**
