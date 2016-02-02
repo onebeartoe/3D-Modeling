@@ -2,8 +2,12 @@ package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+
 
 /**
  * This class is used to verify that a corresponding baseline .png file exists,
@@ -60,13 +64,19 @@ public class DataSetValidator
      */
     public List<String> validate(List<Path> oscadFiles)
     {
-	
-        List<String> expectedBaselineFiles = oscadFiles.stream().map((p) -> 
+        List<String> expectedBaselineFiles = new ArrayList(); 
+        	
+    	oscadFiles.forEach((p) -> 
         {
-            String pngPath = baselineNameFor(p, RenderViews.BOTTTOM);
+            Stream.of(RenderViews.values() )
+            		.forEach((v) -> 
+    	    {
+                String pngPath = baselineNameFor(p, v);
 
-            return pngPath;
-        }).collect(Collectors.toList());
+                expectedBaselineFiles.add(pngPath);
+    	    });
+
+        });
 
         List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> 
         {

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import org.onebeartoe.system.Commander;
 
@@ -18,6 +19,29 @@ public class PngGenerator
     {
         String className = getClass().getName();
         logger = Logger.getLogger(className);
+    }
+    
+    public List<Boolean> generateDirectionalPngs(Path oscadInputFile)
+    {
+        boolean forcePngGeneration = false;
+	List<Boolean> exitCodes = new ArrayList();
+
+        Stream.of(RenderViews.values() )
+		.forEach((v) -> 
+	{
+	    boolean exitCode;
+	    try 
+	    {
+		exitCode = generateOnePng(oscadInputFile, forcePngGeneration, v);
+		exitCodes.add(exitCode);
+	    } 
+	    catch (Exception e)
+	    {
+		e.printStackTrace();
+	    }		    
+	});
+        
+        return exitCodes;
     }
 
     public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
@@ -43,9 +67,10 @@ public class PngGenerator
                 infilePath = infilePath.substring(2);
             }
 
+            int distance = 150;
+            
             String command = openscadPath
-            // bottom view
-                    + " -o " + outfileName + " " + "--camera=0,0,0,180,0,0,150" + " " + infilePath;
+                    + " -o " + outfileName + " " + "--camera=0,0,0," + direction.getRotateParams() + "," + distance + " " + infilePath;
 
             System.out.println(command);
             Commander commander = new Commander(command);
@@ -71,17 +96,10 @@ public class PngGenerator
     {
         List<Boolean> exitCodes = new ArrayList();
 
-        openscadPaths.forEach((p) -> {
-            boolean exitCode;
-            try
-            {
-                exitCode = generateOnePng(p, forcePngGeneration, RenderViews.BOTTTOM);
-                exitCodes.add(exitCode);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+        openscadPaths.forEach((p) -> 
+        {
+            List<Boolean> directionalExitCodes = generateDirectionalPngs(p);
+            exitCodes.addAll(directionalExitCodes);
         });
 
         boolean masterExitCode = true;
