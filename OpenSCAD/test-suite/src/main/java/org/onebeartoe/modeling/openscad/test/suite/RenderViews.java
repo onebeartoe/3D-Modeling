@@ -7,10 +7,10 @@ package org.onebeartoe.modeling.openscad.test.suite;
  */
 public enum RenderViews
 {	
-    TOP("180,0,0"),
-    BOTTTOM("180,0,0"),
-    LEFT("0,0,0"),
-    RIGHT("0,0,0");
+        TOP("  0,   0, 180"),
+    BOTTTOM("180,   0,   0"),
+       LEFT(" 90,  90,  90"),
+      RIGHT("  0,   0,   0");
     
     private String rotateParams; 
     

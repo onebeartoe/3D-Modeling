@@ -13,6 +13,13 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
+
+import org.onebeartoe.system.Commander;
+
 
 public class OpenScadTestSuite
 {
@@ -20,12 +27,83 @@ public class OpenScadTestSuite
     
     private PngGenerator pngGenerator;
     
-    public OpenScadTestSuite()
+    private Logger logger;
+    
+    private OpenScadTestSuite()
     {
+	String name = getClass().getName(); 
+	logger = Logger.getLogger(name);
+	
 	pngGenerator = new PngGenerator();
     }
+    
+    private void compareImages()
+    {
+	Map<String, String> dataMap = new HashMap();
 
-    public void generateBaselines() throws IOException, InterruptedException
+	Stream.of(RenderViews.values() )
+	.forEach((direction) -> 
+        {
+            openscadPaths.forEach((p) -> 
+            {
+        	boolean forceGeneration = false;
+        	String baseline = DataSetValidator.baselineNameForReal(p, forceGeneration, direction);
+        	
+        	forceGeneration = true;
+        	String proposedBaseline = DataSetValidator.baselineNameForReal(p, forceGeneration, direction);
+        	
+        	String systemCommand = "diff " + baseline + " " + proposedBaseline;
+                Commander commander = new Commander(systemCommand);
+
+                try 
+                {
+		    int exitCode = commander.execute();
+
+		    // assume no problems will occur and set the exit code to 0; success		    
+		    if(exitCode != 0)
+		    {
+			Consumer printall = (line) -> {System.out.println(line);};
+			
+			commander.getStderr()
+				 .forEach(printall);
+			
+			commander.getStdout()
+				 .forEach(printall);
+		    }
+		} 
+                catch (Exception e) 
+                {
+                    String message = "An error occured while executing a diff command.";
+                    logger.log(Level.SEVERE, message, e);
+		}
+            });
+        });
+	
+
+
+		
+
+    }
+    
+    private String determinePath(String [] args)
+    {
+	String path;
+	
+        if (args.length > 1)
+        {
+            // a parameter besides the path was given, presumably for baseline generation
+            path = args[1];
+        }
+        else
+        {
+            // assume the request is to run the test suite
+            path = args[0];
+        }
+        
+        return path;
+    }
+
+    private void generateBaselines() throws IOException, InterruptedException
     {
         System.out.println("test suite generating baselines, count: " + openscadPaths.size());
 
@@ -35,7 +113,7 @@ public class OpenScadTestSuite
         pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
     }
 
-    public void generateProposedBaselines() throws IOException, InterruptedException
+    private void generateProposedBaselines() throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
@@ -47,6 +125,7 @@ public class OpenScadTestSuite
     {
         if (args.length == 0)
         {
+            // the test suite needs at least one argument, the path to test
             printHelp();
         }
         else
@@ -81,7 +160,7 @@ public class OpenScadTestSuite
         System.out.println(message);
     }
 
-    public void run(String[] args) throws Throwable
+    private void runTestSuite(String[] args) throws Throwable
     {
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite.");
 
@@ -101,25 +180,15 @@ public class OpenScadTestSuite
             System.out.println("The proposed baseline files are generated.");
             
             System.out.println("Comparing baseline images to the proposed baseline images...");
+            compareImages();
             
-            
+            System.out.println("# Check if the diff are good.");
         }
     }
 
-    public void serviceRequest(String[] args) throws Throwable
+    private void serviceRequest(String[] args) throws Throwable
     {
-        String path;
-
-        if (args.length > 1)
-        {
-            // a parameter besides the path was given, presumably for baseline generation
-            path = args[1];
-        }
-        else
-        {
-            // assume the request is to run the test suite
-            path = args[0];
-        }
+        String path = determinePath(args);
 
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(path);
@@ -139,7 +208,7 @@ public class OpenScadTestSuite
         }
         else
         {
-            run(args);
+            runTestSuite(args);
         }
     }
 }

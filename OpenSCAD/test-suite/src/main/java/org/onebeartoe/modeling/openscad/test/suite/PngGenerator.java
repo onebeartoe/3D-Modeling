@@ -69,9 +69,9 @@ public class PngGenerator
             }
 
             int distance = 150;
-            
+            String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             String command = openscadPath
-                    + " -o " + outfileName + " " + "--camera=0,0,0," + direction.getRotateParams() + "," + distance + " " + infilePath;
+                    + " -o " + outfileName + " " + "--camera=0,0,0," + rotateParams + "," + distance + " " + infilePath;
 
             System.out.println(command);
             Commander commander = new Commander(command);
