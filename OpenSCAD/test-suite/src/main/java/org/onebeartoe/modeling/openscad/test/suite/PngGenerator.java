@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
@@ -83,9 +82,8 @@ public class PngGenerator
             {
                 sb.append(line);
                 sb.append(System.lineSeparator());
-            }
-            logger.log(Level.SEVERE, sb.toString());
-
+            }            
+            System.out.println(sb.toString());
         }
 
         // an exit code of 0 is expected for successful execution of a system command 
