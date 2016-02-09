@@ -25,7 +25,7 @@ public class PngGenerator
     {
 	List<Boolean> exitCodes = new ArrayList();
 
-        Stream.of(RenderViews.values() )
+        Stream.of(OpenScadCameraDirections.values() )
 		.forEach((v) -> 
 	{
 	    boolean exitCode;
@@ -45,7 +45,7 @@ public class PngGenerator
     
 
 
-    public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
+    public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
             throws IOException, InterruptedException
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";

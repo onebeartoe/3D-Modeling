@@ -10,6 +10,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +38,15 @@ public class OpenScadTestSuite
 	pngGenerator = new PngGenerator();
     }
     
-    private void compareImages()
+    /**
+     * 
+     * @return a list of any files that did not pass the diff test
+     */
+    private List<String> compareImages()
     {
-	Map<String, String> dataMap = new HashMap();
-
-	Stream.of(RenderViews.values() )
+	List<String> errorFiles = new ArrayList();
+	
+	Stream.of(OpenScadCameraDirections.values() )
 	.forEach((direction) -> 
         {
             openscadPaths.forEach((p) -> 
@@ -62,6 +67,8 @@ public class OpenScadTestSuite
 		    // assume no problems will occur and set the exit code to 0; success		    
 		    if(exitCode != 0)
 		    {
+			errorFiles.add(baseline);
+			
 			Consumer printall = (line) -> {System.out.println(line);};
 			
 			commander.getStderr()
@@ -79,10 +86,7 @@ public class OpenScadTestSuite
             });
         });
 	
-
-
-		
-
+	return errorFiles;
     }
     
     private String determinePath(String [] args)
@@ -162,7 +166,7 @@ public class OpenScadTestSuite
 
     private void runTestSuite(String[] args) throws Throwable
     {
-        System.out.println("Welcome to the onebeartoe OpenSCAD test suite.");
+        System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(openscadPaths);
@@ -173,16 +177,35 @@ public class OpenScadTestSuite
         }
         else
         {
+            System.out.println();
             System.out.println("Generating a proposed version of the .png  from each .oscad file...");
+            System.out.println();
 
             generateProposedBaselines();
             
+            System.out.println();
             System.out.println("The proposed baseline files are generated.");
             
+            System.out.println();
             System.out.println("Comparing baseline images to the proposed baseline images...");
-            compareImages();
+            System.out.println();
             
-            System.out.println("# Check if the diff are good.");
+            List<String> errorFiles = compareImages();
+            
+            // Check if the diffs were successful
+            if(errorFiles.size() == 0)
+            {
+        	System.out.println();
+        	System.out.println("No test suite erros were detected.");
+        	System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
+            }
+            else
+            {
+        	
+        	System.out.println();
+        	System.out.println("The test suite detected errors with the baseline and proposed baseline PNG images.");
+        	System.out.println("See the 'Binary files ... differ' message(s) above.");        	
+            }
         }
     }
 

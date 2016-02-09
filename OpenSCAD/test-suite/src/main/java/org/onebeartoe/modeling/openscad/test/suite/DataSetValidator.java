@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  */
 public class DataSetValidator
 {
-    private static String baselineNameFor(Path scadFile, RenderViews direction)
+    private static String baselineNameFor(Path scadFile, OpenScadCameraDirections direction)
     {
         // remove the '.oscad' from the file name
         String baseName = DataSetValidator.baseNameFor(scadFile);
@@ -36,7 +36,7 @@ public class DataSetValidator
         return outfileName;
     }
     
-    public static String baselineNameForReal(Path oscadInputFile, boolean forceGeneration, RenderViews direction)
+    public static String baselineNameForReal(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
     {
 	String outfileName;
 	
@@ -62,6 +62,8 @@ public class DataSetValidator
     
     private void printValidationResults(List<String> missingBaselineFiles)
     {
+	System.out.println();
+	
         if (missingBaselineFiles.isEmpty())
         {
             System.out.println("All input files are present.");
@@ -72,7 +74,7 @@ public class DataSetValidator
         }
     }
     
-    private static String proposedBaselineNameFor(Path scadFile, RenderViews direction)
+    private static String proposedBaselineNameFor(Path scadFile, OpenScadCameraDirections direction)
     {
 	String name = baselineNameFor(scadFile, direction);
 	
@@ -95,7 +97,7 @@ public class DataSetValidator
         	
     	oscadFiles.forEach((p) -> 
         {
-            Stream.of(RenderViews.values() )
+            Stream.of(OpenScadCameraDirections.values() )
             		.forEach((v) -> 
     	    {
                 String pngPath = baselineNameFor(p, v);

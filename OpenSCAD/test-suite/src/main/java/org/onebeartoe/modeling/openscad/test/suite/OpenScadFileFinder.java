@@ -42,8 +42,9 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 
     private List<Path> find(Path inpath) throws Throwable
     {
-        System.out.println("\nfinding files under: " + inpath + "\n");
-
+        System.out.println("Locating files under: " + inpath);
+        System.out.println();
+	
         openscadPaths = new ArrayList<>();
 
         this.inpath = inpath;
