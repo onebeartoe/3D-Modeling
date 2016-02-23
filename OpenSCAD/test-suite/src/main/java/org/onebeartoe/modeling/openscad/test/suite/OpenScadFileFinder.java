@@ -1,3 +1,4 @@
+
 package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.nio.file.FileSystems;
@@ -64,8 +65,6 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         return openscadPaths;
     }
 
-    // Print information about
-    // each type of file.
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attr)
     {
@@ -75,8 +74,6 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         }
         else if (attr.isRegularFile())
         {
-            //            System.out.format("Regular file: %s\n", file);
-
             Path name = file.getFileName();
             if (name != null && matcher.matches(name))
             {

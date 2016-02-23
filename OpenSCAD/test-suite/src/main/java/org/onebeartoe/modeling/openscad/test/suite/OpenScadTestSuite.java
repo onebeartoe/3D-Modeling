@@ -196,7 +196,7 @@ public class OpenScadTestSuite
             if(errorFiles.size() == 0)
             {
         	System.out.println();
-        	System.out.println("No test suite erros were detected.");
+        	System.out.println("No test suite errors were detected.");
         	System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
             }
             else

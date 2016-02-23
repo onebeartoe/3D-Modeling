@@ -1,3 +1,4 @@
+
 package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.io.File;
@@ -13,11 +14,23 @@ import org.onebeartoe.system.Commander;
 public class PngGenerator
 {
     Logger logger;
-
-    public PngGenerator()
+    
+    private int generate(String command) throws IOException, InterruptedException
     {
-        String className = getClass().getName();
-        logger = Logger.getLogger(className);
+        System.out.println(command);
+        Commander commander = new Commander(command);
+
+        int exitCode = commander.execute();
+
+        StringBuilder sb = new StringBuilder();
+        for (String line : commander.getStderr())
+        {
+            sb.append(line);
+            sb.append(System.lineSeparator());
+        }            
+        System.out.println(sb.toString());
+        
+        return exitCode;
     }
     
     public List<Boolean> generateDirectionalPngs(Path oscadInputFile, boolean forcePngGeneration)
@@ -27,10 +40,9 @@ public class PngGenerator
         Stream.of(OpenScadCameraDirections.values() )
 		.forEach((v) -> 
 	{
-	    boolean exitCode;
 	    try 
 	    {
-		exitCode = generateOnePng(oscadInputFile, forcePngGeneration, v);
+		boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v);
 		exitCodes.add(exitCode);
 	    } 
 	    catch (Exception e)
@@ -41,10 +53,9 @@ public class PngGenerator
         
         return exitCodes;
     }
-    
 
-
-    public boolean generateOnePng(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
+// TODO: extract a generateOnePng from this method     
+    public boolean generateOneDirectionalPng(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
             throws IOException, InterruptedException
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
@@ -71,19 +82,8 @@ public class PngGenerator
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             String command = openscadPath
                     + " -o " + outfileName + " " + "--camera=0,0,0," + rotateParams + "," + distance + " " + infilePath;
-
-            System.out.println(command);
-            Commander commander = new Commander(command);
-
-            exitCode = commander.execute();
-
-            StringBuilder sb = new StringBuilder();
-            for (String line : commander.getStderr())
-            {
-                sb.append(line);
-                sb.append(System.lineSeparator());
-            }            
-            System.out.println(sb.toString());
+            
+            exitCode = generate(command);
         }
 
         // an exit code of 0 is expected for successful execution of a system command 
@@ -108,6 +108,8 @@ public class PngGenerator
             if (!ec)
             {
                 masterExitCode = false;
+                
+                // break out early, on the first occurrence of a failure
                 break;
             }
         }
