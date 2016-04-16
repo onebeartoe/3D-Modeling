@@ -2,3 +2,6 @@
 **/*-proposed-baseline.png
 /OpenSCAD/test-suite/target/
 /OpenSCAD/test-suite/.settings/
+**/*.project
+**/*.classpath
+**/.settings/
