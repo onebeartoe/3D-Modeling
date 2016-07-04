@@ -1,8 +1,21 @@
+This model is inpired by the eybrows of artist Frida Kahlo.
 
-This project is inpired by the eybrows of Frida Kahlo.
+The uni-brow prints with a 4mm hole that serves as the mounting point for the handle.  Attatch the handle with some E6000 or similar adhesive.  A kitchen skewer (bamboo type) works great as a eyebrow handle.
 
-	Eyebrow source
+I used the workflow seen in this video to make the 3D model: https://www.youtube.com/watch?v=iMQLZ3bVWxg
+
+This model is released is in conjunction with the first Frida Festival, in San Antonio, TX.
+
+For more information on the upcoming event see follow this link:
+
+http://safridafestival.weebly.com/
+
+Event committee member:
+Sarah Castillo
+https://ladybasegallery.com/
+
+Acknowledgements:
+
+The source image of the lovely Frida Kahlo is from this URL:
 		
-		http://pixel.nymag.com/imgs/fashion/daily/2016/03/18/18-frida-kahlo-book-lede.w1200.h630.jpg
-	
-	
+http://pixel.nymag.com/imgs/fashion/daily/2016/03/18/18-frida-kahlo-book-lede.w1200.h630.jpg
