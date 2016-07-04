@@ -12,8 +12,7 @@ module openCylinder(height = 3,
     {
         cylinder(r=outerRadius,
                  h=height);
-        
-        
+                
         translate([0, 0, -1])
         cylinder(r=innerRadius,
                  h=height+1.01);

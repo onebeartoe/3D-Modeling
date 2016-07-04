@@ -12,18 +12,11 @@ module mask()
 	{
 		fridaKalohBrow(6);
 
-		rotate([90,0,0])		
-		translate([-56,3,-9])
-		
-		
-//		$fn = 100;
+		rotate([90, 0, -11])		
+		translate([-55,3,-9])
 		
 		cylinder(r=2.1,
-                 h=24,
+                 h=44,
                  $fn = 100);
-		
-//		openCylinder(height = 24,
-//                    outerRadius = 2.5,
-//                    innerRadius = 2);
 	}
 }
