@@ -1,7 +1,7 @@
 
 disk();
 
-module disk(height = 3)
+module disk(height = 3, radius = 10.9)
 {
-    cylinder (h = height, r=10.9, center = true, $fn=100);    
+    cylinder (h = height, r=radius, center = true, $fn=100);    
 }
