@@ -44,22 +44,20 @@ module roundedRect(size, radius)
 	}
 }		
 
-
-
-
-
-module miniround(size, radius)
+/**
+ * makes a rounded cube
+ */
+module miniround(size, radius, sides=30)
 {
-$fn=50;
-x = size[0]-radius/2;
-y = size[1]-radius/2;
-
-minkowski(size, radius)
-{
-    cube(size=[x,y,size[2]]);
-//    cylinder(r=radius);
-    // Using a sphere is possible, but will kill performance
-    sphere(r=radius);
-}
-
+	$fn=sides;
+	x = size[0]-radius/2;
+	y = size[1]-radius/2;
+	
+	minkowski(size, radius)
+	{
+	    cube(size=[x,y,size[2]]);
+	//    cylinder(r=radius);
+	    // Using a sphere is possible, but will kill performance
+	    sphere(r=radius);
+	}
 }
