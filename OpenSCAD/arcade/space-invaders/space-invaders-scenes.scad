@@ -18,18 +18,15 @@ cornerRadius = 8;
 
 invaderColumns = 7;
 
-union()
+playerShotX = 62;
+
+invaderScene(playerShotX = playerShotX);
+
+/**
+ * This module loops over rows and columns for the invaders.
+ */
+module invaders()
 {
-    // background layer
-    roundedCube(boardSize, cornerRadius, sides=20, sidesOnly=true);
-
-    // mystery ship at the top of the screen
-    color("orange")
-    translate([60, boardLength -5, 0])
-    scale([0.5, 0.5, 0.5])
-    import(mysteryShipStl);
-
-    // loops for the invaders
     columnSpacing = 18;
     columnLeftOffset = 9;
     for(r = [0 : 2])
@@ -43,14 +40,94 @@ union()
             import(alienStls[r]);
         }
     }
+}
+
+/**
+ * This is the main method of the scipt.  Call this to generate a Space Invader
+ * scene.
+ */
+module invaderScene(playerShotX)
+{
+    union()
+    {
+        // background layer
+        roundedCube(boardSize, cornerRadius, sides=20, sidesOnly=true);
+
+        mysteryShip();
+
+        invaders();
+        
+        missiles(playerShotX);
+
+        shields();
+        
+        player();
+    }
+}
+
+/**
+ * These are the missile shot by the 
+ * @return 
+ */
+module missiles(playerShotX)
+{
+    invaderMissile1 = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle1.stl";
+    invaderMissile2 = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle2.stl";
     
+    playerMissile = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle3.stl";
+    
+    color("blue")
+    translate([28, 60, 0])
+    scale([0.5, 0.5, 0.5])
+    import(invaderMissile1);
+    
+    color("purple")
+    translate([100, 40, 0])
+    scale([0.5, 0.5, 0.5])
+    import(invaderMissile2);    
+    
+    color("green")
+// x was 60            
+    translate([playerShotX, 40, 0])
+    scale([0.5, 0.5, 0.5])
+    import(playerMissile);
+}
+
+/**
+ * This module adds the mystery ship at the top of the screen.
+ */
+module mysteryShip()
+{
+    x = 90;
+    y = boardLength - 5;
+    z = 0;
+    
+    color("orange")
+    translate([x, y, z])
+    scale([0.5, 0.5, 0.5])
+    import(mysteryShipStl);
+}
+
+module player()
+{
+    playerStl = "../../external-resources/arcade/invaders/sideburn/invaders_v2_canon.stl";
+    color("green")
+    translate([60, 0, 0])
+    scale([0.5, 0.5, 0.5])
+    import(playerStl);
+}
+
+module shields()
+{
     for(c = [0:3])
     {
-        columnLeftOffset = 20;
-        columnSpacing = 30;
+        columnLeftOffset = 10;
+        columnSpacing = 35;
+        
         x = c * columnSpacing + columnLeftOffset;
         y = boardLength * 0.15;
-        color("green")
+        
+        color("brown")
         translate([x, y, 0])
         scale([0.5, 0.5, 0.5])
         import( shieldStls[0] );
