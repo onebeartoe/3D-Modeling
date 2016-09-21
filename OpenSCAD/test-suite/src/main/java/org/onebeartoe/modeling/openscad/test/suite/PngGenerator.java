@@ -35,26 +35,40 @@ public class PngGenerator
     
     public List<Boolean> generateDirectionalPngs(Path oscadInputFile, boolean forcePngGeneration)
     {
-	List<Boolean> exitCodes = new ArrayList();
+    	List<Boolean> exitCodes = new ArrayList();
 
-        Stream.of(OpenScadCameraDirections.values() )
+        Stream.of( OpenScadCameraDirections.values() )
 		.forEach((v) -> 
-	{
-	    try 
-	    {
-		boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v);
-		exitCodes.add(exitCode);
-	    } 
-	    catch (Exception e)
-	    {
-		e.printStackTrace();
-	    }		    
-	});
+		{
+		    try 
+		    {
+				boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v);
+				exitCodes.add(exitCode);
+		    } 
+		    catch (Exception e)
+		    {
+		    	e.printStackTrace();
+		    }		    
+		});
         
         return exitCodes;
     }
 
-// TODO: extract a generateOnePng from this method     
+// TODO: extract a generateOnePng from this method
+    /**
+     * This method calls the OpenSCAD executable to create a snapshot of a rendered .scad file.
+     * 
+     * Here is a sample invocation:
+     * 
+ * 			$ /cygdrive/c/opt/openscad/openscad-2015.03-2/openscad -o out.png --camera=0,0,0,0,0,0,350 space-invaders-scenes-CUSTOMIZER.scad
+     * 
+     * @param oscadInputFile
+     * @param forceGeneration
+     * @param direction
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public boolean generateOneDirectionalPng(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
             throws IOException, InterruptedException
     {

@@ -17,11 +17,11 @@ public enum OpenScadCameraDirections
     
     OpenScadCameraDirections(String rotateParams)
     {
-	this.rotateParams = rotateParams;
+    	this.rotateParams = rotateParams;
     }
     
     public String getRotateParams()
     {
-	return rotateParams;
+    	return rotateParams;
     }
 }
