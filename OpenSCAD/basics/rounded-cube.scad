@@ -7,12 +7,13 @@
  * 
  */
  
-boardLength = 100;
+boardLength = 150;
+boardWidth = 100;
 
-roundedCube([boardLength, boardLength, 1], 5, sides=20);
+roundedCube([boardLength, boardWidth, 1], 5, sides=20);
 
 translate([0, 130, 0])
-roundedCube([boardLength, boardLength, 1], 5, sides=20, sidesOnly=true);
+roundedCube([boardLength, boardWidth, 1], 5, sides=20, sidesOnly=true);
 
 /**
  * makes a rounded cube
