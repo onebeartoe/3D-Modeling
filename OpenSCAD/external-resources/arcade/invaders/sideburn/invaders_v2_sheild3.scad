@@ -1,4 +1,6 @@
-module Default() {
+
+module invaders_v2_sheild3() 
+{
 	polyhedron(
 		points=[
 			[-15.23335, 15.46059, 9.683384],
@@ -1463,5 +1465,4 @@ module Default() {
 	);
 }
 
-
-Default();
+invaders_v2_sheild3();
