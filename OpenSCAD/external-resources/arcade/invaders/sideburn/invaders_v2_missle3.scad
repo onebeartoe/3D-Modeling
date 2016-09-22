@@ -1,4 +1,6 @@
-module Default() {
+
+module invaders_v2_missle3() 
+{
 	polyhedron(
 		points=[
 			[-1.735909, 10.64385, 10.04818],
@@ -55,5 +57,4 @@ module Default() {
 	);
 }
 
-
-Default();
+invaders_v2_missle3();
