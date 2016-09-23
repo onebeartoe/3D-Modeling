@@ -1,10 +1,10 @@
 
 // preview[view:south, tilt:top]
 
-/* Mystery Ship */
+/* [Mystery Ship] */
 mysteryShipX = 80; // [5:120]
 
-/* Invaders */
+/* [Invaders] */
 firstRowInvaderType = "1b"; // [1, 1b, 2, 2b, 3, 3b] 
 secondRowInvaderType = "2b"; // [1, 1b, 2, 2b, 3, 3b]
 thirdRowInvaderType = "3"; // [1, 1b, 2, 2b, 3, 3b]
@@ -12,13 +12,13 @@ thirdRowInvaderType = "3"; // [1, 1b, 2, 2b, 3, 3b]
 missle1X = 28; // [5:120]
 missle2X = 100; // [5:120]
 
-/* Shields */
+/* [Shields] */
 shieldOneType = 1; // [1, 2, 3, 4]
 shieldTwoType = 2; // [1, 2, 3, 4]
 shieldThreeType = 3; // [1, 2, 3, 4]
 shieldFourType = 4; // [1, 2, 3, 4]
 
-/* Player */
+/* [Player] */
 playerX = 60; // [5:120]
 playerShotX = 62; // [5:120]
 
