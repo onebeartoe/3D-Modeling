@@ -70,7 +70,7 @@ public class DataSetValidator
         }
         else
         {
-            System.err.println("The test suite detected that some input files are not present.");
+            System.err.println("Some test suite input files are not present.");
         }
     }
     
