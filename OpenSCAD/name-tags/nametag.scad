@@ -20,7 +20,11 @@ letterThickness = 3; // [1 : 15]
 
 
 /* [Icons] */
+//TODO: rename this to leftIconType, and make a new one that is rightIconType
+//      then pass in the iconType as part of the parameters to the oneIcon() module
 iconType = "Trooper"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat]
+
+//TODO: update the logic to look out for two a left and right icon scale
 // This is the X,Y scale of the icons.
 iconXyScale = 1.0; // [0.1 : 0.05 : 5]
 iconHeight = 3.0; // [0.1: 0.1 :5]
