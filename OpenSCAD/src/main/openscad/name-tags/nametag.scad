@@ -22,7 +22,9 @@ letterThickness = 3; // [1 : 15]
 /* [Icons] */
 //TODO: rename this to leftIconType, and make a new one that is rightIconType
 //      then pass in the iconType as part of the parameters to the oneIcon() module
-iconType = "Treble Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+leftIconType = "Bass Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+
+rightIconType = "Treble Clef";
 
 //TODO: update the logic to look out for two a left and right icon scale
 // This is the X,Y scale of the icons.
@@ -174,7 +176,7 @@ module base4holes()
 	}
 }
 
-module oneIcon(xOffset)
+module oneIcon(iconType, xOffset)
 {
     color(iconColor)
     translate([xOffset, 0, 0])
@@ -229,10 +231,10 @@ module oneIcon(xOffset)
 module icons()
 {
     // left icon
-    oneIcon(xOffset=-xOffset);
+    oneIcon(iconType=leftIconType, xOffset=-xOffset);
     
     // right icon
-    oneIcon(xOffset=xOffset);
+    oneIcon(iconType=rightIconType, xOffset=xOffset);
 }
 
 module nametagBase()
