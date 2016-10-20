@@ -20,28 +20,32 @@ letterThickness = 3; // [1 : 15]
 
 
 /* [Icons] */
-//TODO: rename this to leftIconType, and make a new one that is rightIconType
-//      then pass in the iconType as part of the parameters to the oneIcon() module
+
+// leftIconType and rightIconType are passed to the oneIcon() module
 leftIconType = "Bass Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
 rightIconType = "Treble Clef";
 
 //TODO: update the logic to look out for two a left and right icon scale
 // This is the X,Y scale of the icons.
-iconXyScale = 1.0; // [0.1 : 0.05 : 5]
-iconHeight = 3.0; // [0.1: 0.1 :5]
+leftIconXyScale = 0.60;  // [0.1 : 0.05 : 5]
+rightIconXyScale = 0.30; // [0.1 : 0.05 : 5]
+
+leftIconHeight = 1.5; // [0.1: 0.1 :5]
+rightIconHeight = 1.5; // [0.1: 0.1 :5]
+
 xOffset = 87; // [10:200]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
 /* [Top Text] */
-topText = "Roberto M.";
+topText = "Mark";
 topTextYOffset = 7; // [0 : 30]
 topLetterSize = 19; // [2 : 25]
-topLetterSpacing = 1; // [1 : 10]
+topLetterSpacing = 1.5; // [1 : 10]
 
 /* [Bottom Text] */
-subText = "Scrum Trooper";
+bottomText = "Music Instructor";
 bottomLetterSize = 8.8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
@@ -82,7 +86,7 @@ font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 namematrix =              
 [
 	[ topTextYOffset,   topText,     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
-	[bottomTextYOffset, subText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
+	[bottomTextYOffset, bottomText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
 ];
 
 fudge = 0.1;
@@ -176,7 +180,7 @@ module base4holes()
 	}
 }
 
-module oneIcon(iconType, xOffset)
+module oneIcon(iconType, iconXyScale, iconHeight, xOffset)
 {
     color(iconColor)
     translate([xOffset, 0, 0])
@@ -231,10 +235,10 @@ module oneIcon(iconType, xOffset)
 module icons()
 {
     // left icon
-    oneIcon(iconType=leftIconType, xOffset=-xOffset);
+    oneIcon(iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset);
     
     // right icon
-    oneIcon(iconType=rightIconType, xOffset=xOffset);
+    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset);
 }
 
 module nametagBase()
