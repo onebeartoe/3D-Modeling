@@ -22,14 +22,14 @@ letterThickness = 3; // [1 : 15]
 /* [Icons] */
 
 // leftIconType and rightIconType are passed to the oneIcon() module
-leftIconType = "Bass Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+leftIconType = "Bass Clef";    // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
-rightIconType = "Treble Clef";
+rightIconType = "Treble Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
-//TODO: update the logic to look out for two a left and right icon scale
 // This is the X,Y scale of the icons.
-leftIconXyScale = 0.60;  // [0.1 : 0.05 : 5]
-rightIconXyScale = 0.30; // [0.1 : 0.05 : 5]
+// For the Thingiverse Customizer, the music note XY scale is 0.6 and 0.3
+leftIconXyScale = 0.5;  // [0.1 : 0.05 : 5]
+rightIconXyScale = 0.25; // [0.1 : 0.05 : 5]
 
 leftIconHeight = 1.5; // [0.1: 0.1 :5]
 rightIconHeight = 1.5; // [0.1: 0.1 :5]
