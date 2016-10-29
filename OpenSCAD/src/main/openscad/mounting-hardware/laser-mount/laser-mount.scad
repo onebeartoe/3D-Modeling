@@ -1,6 +1,6 @@
 
-laserCylinderCutoutRadius = 3.6;
-laserTubeLength = 10;
+laserCylinderCutoutRadius = 3.5;
+laserTubeLength = 25;
 
 laserMount();
 
@@ -25,12 +25,16 @@ module laserCutout()
 		translate([0,0,-0.01])
 		cylinder(h=height, r=laserCylinderCutoutRadius, $fn=30);
 	
-		cubeHeight = height / 2.0;
+		// this is the rectangular cut out for the laser's PCB 
+		cubeHeight = height - 10.0;
 		translateZ = cubeHeight / 2.0 - 0.01;
-		cubeX = 9;
+		
+		cubeSizeX = 8.25; // this is how deep the rectangle cutout goes into the laster tube
+		cubeTranslateY = 1;
+		
 		color("green")
-		translate([0,0,translateZ])
-		cube([cubeX, 2, cubeHeight], center=true);
+		translate([0,cubeTranslateY,translateZ])
+		cube([cubeSizeX, 2, cubeHeight], center=true);
 	}
 }
 
@@ -40,6 +44,6 @@ module laserCutout()
 module laserTube()
 {
 	height = laserTubeLength;
-	radius = laserCylinderCutoutRadius + 1.5;
+	radius = laserCylinderCutoutRadius + 2.50;
 	cylinder(h=height, r=radius, $fn=30);
 }
