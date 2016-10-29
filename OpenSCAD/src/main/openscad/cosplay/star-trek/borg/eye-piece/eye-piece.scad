@@ -1,6 +1,10 @@
 
 use <../../../../shapes/open-cylinder/open-cylinder.scad>
 
+blockHeight = 12;
+blockSideX = 49.5;
+blockSideY = 43.50;
+
 cylinderHeight = 17.5;
 
 innerRingOuterRadius = 14.5;
@@ -20,28 +24,20 @@ ringThickness = 2.1;
 
 eyePiece();
 
-module basePiece()
+module attachmentSlantCutout()
 {
-	difference()
-	{
-		block();
-		
-		blockCutouts();
-	}
-}
-
-module baseAdornments()
-{
-	outerRing();
+	color("orange")
 	
-	innerRing();
-}		
+	rotate([0, -35, 0])
+	translate([-3.2, -9, -6.0])
+	cube([10,130, 20]);	
+}
 
 module block()
 {
-	x = 49.5;
-	y = 43.50;
-	z = 12;
+	x = blockSideX;
+	y = blockSideY;
+	z = blockHeight;
 	
 	cube([x, y, z]);	
 }
@@ -51,7 +47,51 @@ module blockCutouts()
 	translate([0,0,-0.01])
 	eyeCutout();
 	
+	attachmentSlantCutout();
 	
+	blockCutout1();
+	
+	blockCutout2();
+}
+
+module blockCutout1()
+{
+	trnaslateX = 40;
+	translateY = 0;
+	color("pink")
+	rotate([0,0,-20])
+	translate([trnaslateX, translateY, -0.01])
+	cube([15, blockSideY, blockHeight+1]);
+}
+
+module blockCutout2()
+{
+	trnaslateX = 28;
+	translateY = 18;
+	color("green")
+	rotate([0,0,-43])
+	translate([trnaslateX, translateY, -0.01])
+	cube([15, blockSideY, blockHeight+1]);		
+}
+
+module eyepieceBlock()
+{
+	// comment this next line to see the cutout pieces
+	difference()
+	{
+		block();
+		
+		blockCutouts();
+	}
+}
+
+module eyepieceBlockAdornments()
+{
+	outerRing();
+	
+	innerRing();
+	
+	eyeStrapLoop();
 }
 
 module eyeCutout()
@@ -65,9 +105,25 @@ module eyePiece()
 {
 	union()
 	{
-		basePiece();
+		eyepieceBlock();
 		
-		baseAdornments();
+		eyepieceBlockAdornments();
+	}
+}
+
+module eyeStrapLoop()
+{
+	height = 2;
+	side = 14;
+	
+	difference()
+	{
+		color("orange")
+		translate([49, 29.5, 0])
+		cube([side, side, height]);
+		
+		translate([51,32,-0.1])
+		cube([9, 9, height+1]);
 	}
 }
 
@@ -80,10 +136,15 @@ module innerRing()
 
 module outerRing()
 {
-	outerR = 20.0;
-	innerR = outerR - ringThickness; 
-	translate(ringTranslate)
-	openCylinder(height=cylinderHeight, outerRadius=outerR, innerRadius=innerR);
+	difference()
+	{
+		outerR = 20.0;
+		innerR = outerR - ringThickness; 
+		translate(ringTranslate)
+		openCylinder(height=cylinderHeight, outerRadius=outerR, innerRadius=innerR);
+		
+		blockCutouts();
+	}
 }
 	
 module stlVersion()
