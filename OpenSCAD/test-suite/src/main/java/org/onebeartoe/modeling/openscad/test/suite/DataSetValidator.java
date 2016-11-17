@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
-
 /**
  * This class is used to verify that a corresponding baseline .png file exists,
  * for each .scad file.
