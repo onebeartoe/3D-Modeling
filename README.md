@@ -12,3 +12,7 @@ It is written in Java and run from the command line, so it runs in headless mode
 The code for the test suite is under OpenSCAD/test-suite/
 
 If you are interested, check it out and please let me know what you think.
+
+Related Videos:
+
+[![Everything Is AWESOME](http://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
