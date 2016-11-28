@@ -15,4 +15,4 @@ If you are interested, check it out and please let me know what you think.
 
 Related Videos:
 
-[![Everything Is AWESOME](http://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
+[![Pencil Holders with Custom Cutouts ](http://img.youtube.com/vi/C8QypaAymFg/0.jpg)](https://www.youtube.com/watch?v=C8QypaAymFg "Pencil Holders with Custom Cutouts ")
