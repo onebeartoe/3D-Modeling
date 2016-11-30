@@ -12,3 +12,7 @@ It is written in Java and run from the command line, so it runs in headless mode
 The code for the test suite is under OpenSCAD/test-suite/
 
 If you are interested, check it out and please let me know what you think.
+
+Related Videos:
+
+[![Pencil Holders with Custom Cutouts ](http://img.youtube.com/vi/C8QypaAymFg/0.jpg)](https://www.youtube.com/watch?v=C8QypaAymFg "Pencil Holders with Custom Cutouts ")
