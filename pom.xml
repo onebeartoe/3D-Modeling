@@ -4,8 +4,8 @@
     
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.onebeartoe.3d.modeling</groupId>
-    <artifactId>onebeartoe-3d-modeling-parent</artifactId>
+    <groupId>org.onebeartoe.modeling</groupId>
+    <artifactId>onebeartoe-modeling-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
@@ -16,43 +16,42 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-	<name>onebeartoe-3d-modeling-parent</name>
+    <name>onebeartoe-modeling-parent</name>
 
-	<modules>
-		<module>OpenSCAD</module>
-	</modules>    
+    <modules>
+            <module>OpenSCAD</module>
+    </modules>    
 
- <build>
-    <!-- To define the plugin version in your parent POM -->
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>findbugs-maven-plugin</artifactId>
-          <version>3.0.1</version>
-        </plugin>
-        
-      </plugins>
-    </pluginManagement>
+    <build>
+        <!-- To define the plugin version in your parent POM -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>findbugs-maven-plugin</artifactId>
+                  <version>3.0.1</version>
+                </plugin>
+          </plugins>
+        </pluginManagement>
     
-    <!-- To use the plugin goals in your POM or parent POM -->
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.16</version>
-        <configuration>
-          <enableRulesSummary>false</enableRulesSummary>
-        </configuration>
-      </plugin>
-      
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.1</version>
-      </plugin>      
-    </plugins>
-  </build>
+        <!-- To use the plugin goals in your POM or parent POM -->
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.16</version>
+            <configuration>
+              <enableRulesSummary>false</enableRulesSummary>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>findbugs-maven-plugin</artifactId>
+            <version>3.0.1</version>
+          </plugin>      
+        </plugins>
+    </build>
   
   <!-- To use the report goals in your POM or parent POM -->
   <reporting>

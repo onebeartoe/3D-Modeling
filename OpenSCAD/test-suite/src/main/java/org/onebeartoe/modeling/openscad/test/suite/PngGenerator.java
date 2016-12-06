@@ -78,7 +78,7 @@ public class PngGenerator
         
         openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
 
-        String outfileName = DataSetValidator.baselineNameForReal(oscadInputFile, forceGeneration, direction);
+        String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
 
         File outfile = new File(outfileName);
 

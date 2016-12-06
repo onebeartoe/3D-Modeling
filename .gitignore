@@ -5,3 +5,4 @@
 **/*.project
 **/*.classpath
 **/.settings/
+/OpenSCAD/native-customizer/target/

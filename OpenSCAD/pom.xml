@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">    
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>org.onebeartoe.3d.modeling</groupId>
-        <artifactId>onebeartoe-3d-modeling-parent</artifactId>
+        <groupId>org.onebeartoe.modeling</groupId>
+        <artifactId>onebeartoe-modeling-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
-    <name>onebeartoe-3d-modeling-openscad</name>
-    
-    <groupId>org.onebeartoe.3d.printing</groupId>	
-    <artifactId>onebeartoe-3d-modeling-openscad</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <artifactId>openscad</artifactId>
     
     <packaging>pom</packaging>
     
@@ -26,5 +21,8 @@
     
     <modules>
         <module>test-suite</module>
+        <module>native-customizer</module>
     </modules>
+    
+    <name>onebeartoe-modeling-openscad</name>
 </project>

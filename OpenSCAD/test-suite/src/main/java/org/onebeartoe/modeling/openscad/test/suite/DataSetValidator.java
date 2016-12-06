@@ -34,17 +34,17 @@ public class DataSetValidator
         return outfileName;
     }
     
-    public static String baselineNameForReal(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
+    public static String baselineNameFor(Path oscadInputFile, boolean forceGeneration, OpenScadCameraDirections direction)
     {
 	String outfileName;
 	
         if(forceGeneration)
         {
-            outfileName = DataSetValidator.proposedBaselineNameFor(oscadInputFile, direction);
+            outfileName = proposedBaselineNameFor(oscadInputFile, direction);
         }
         else
         {
-            outfileName = DataSetValidator.baselineNameFor(oscadInputFile, direction);
+            outfileName = baselineNameFor(oscadInputFile, direction);
         }
 	
 	return outfileName;

@@ -5,16 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
 	
     <parent>
-        <groupId>org.onebeartoe.3d.printing</groupId>	
-        <artifactId>onebeartoe-3d-modeling-openscad</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>org.onebeartoe.modeling</groupId>
+        <artifactId>openscad</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>onebeartoe-3d-modeling-openscad-test-suite</artifactId>
+    <artifactId>test-suite</artifactId>
 
     <packaging>jar</packaging>
 
-    <name>onebeartoe-3d-modeling-openscad-test-suite</name>
+    <name>onebeartoe-modeling-openscad-test-suite</name>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

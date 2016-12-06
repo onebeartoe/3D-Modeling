@@ -52,10 +52,10 @@ public class OpenScadTestSuite
             openscadPaths.forEach((p) -> 
             {
         	boolean forceGeneration = false;
-        	String baseline = DataSetValidator.baselineNameForReal(p, forceGeneration, direction);
+        	String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
         	
         	forceGeneration = true;
-        	String proposedBaseline = DataSetValidator.baselineNameForReal(p, forceGeneration, direction);
+        	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
         	
         	String systemCommand = "diff " + baseline + " " + proposedBaseline;
                 Commander commander = new Commander(systemCommand);
