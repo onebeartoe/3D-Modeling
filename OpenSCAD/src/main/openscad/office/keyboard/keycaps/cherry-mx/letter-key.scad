@@ -1,6 +1,7 @@
 
 use <../../../../external-resources\music\notes\bass-clef\bass-clef.scad>
 use <../../../../external-resources\music\notes/treble-clef/treble-clef-scaled-down.scad>
+use <../../../../external-resources/thundercats/thundercats-logo.scad>
 
 module aphabetKeycaps(xOffset, font)
 {
@@ -17,27 +18,16 @@ module blankKey()
 	import(blankStl);	
 }
 
-module iconKeycap(name, xOffset, yOffset)
+module iconKeycap(name, xOffset, yOffset, xyScale)
 {
 	union()
 	{
-//		name = "Bass Clef";
-		xyScale = 0.4;
 		translate([0, 1, 9.5])
 		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=1, 
 			    xOffset=xOffset, yOffset=yOffset, iconColor="green");
 		
 		blankKey();
 	}
-}
-
-module iconKeycapDemo()
-{
-	iconKeycap("Bass Clef", xOffset=-34, yOffset=2);
-	
-	rowSpacing = 30;
-	translate([rowSpacing, 0, 0])
-	iconKeycap("Treble Clef", xOffset=-34, yOffset = 2);	
 }
 
 module keyCapString(keyString, xOffset, font)
@@ -77,7 +67,12 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
     }
 	else if(iconType== "Treble Clef")
 	{
+		
 		trebleClefScaledDownThumbnail();
+	}
+	else if(iconType == "Thundercat")
+	{
+		thundercatsLogoThumbnail();
 	}
     else
     {

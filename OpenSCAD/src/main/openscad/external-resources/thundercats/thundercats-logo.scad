@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module thundercatsLogo(h)
+module thundercatsLogo(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -24,5 +24,9 @@ module thundercatsLogo(h)
   }
 }
 
-
-thundercatsLogo(3);
+module thundercatsLogoThumbnail()
+{
+	xyScale = 0.1592;
+	scale([xyScale, xyScale, 1])
+	thundercatsLogo();
+}
