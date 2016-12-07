@@ -54,7 +54,8 @@ if(showIconKeys)
 }
 
 showBassClef = false;
-showTrebleClef = false;
+showTrebleClef = true;
+showThundercat = false;
 module iconKeycapDemo()
 {
 	if(showBassClef)
@@ -70,6 +71,9 @@ module iconKeycapDemo()
 		iconKeycap("Treble Clef", xOffset=-34, yOffset = 2, xyScale = 0.5);
 	}
 	
-	translate([rowSpacing*2, 0, 0])
-	iconKeycap("Thundercat", xOffset=-34, yOffset = 2, xyScale = 0.5);
+	if(showThundercat)
+	{
+		translate([rowSpacing*2, 0, 0])
+		iconKeycap("Thundercat", xOffset=-34, yOffset = 2, xyScale = 0.5);
+	}
 }
