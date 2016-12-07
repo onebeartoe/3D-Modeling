@@ -9,7 +9,10 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module baseclef15scale(h)
+/**
+ * this is the bass clef scalled down to 15% of the original
+ */
+module bassClef(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -22,4 +25,9 @@ module baseclef15scale(h)
   }
 }
 
-baseclef15scale(5);
+module bassClefThumbnail()
+{
+	xyScale = 0.489;
+	scale([xyScale, xyScale, 1])
+	bassClef(h=1);	
+}

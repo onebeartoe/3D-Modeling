@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module trebleClefScaledDown(h)
+module trebleClefScaledDown(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -30,4 +30,9 @@ module trebleClefScaledDown(h)
   }
 }
 
-trebleClefScaledDown(5);
+module trebleClefScaledDownThumbnail()
+{
+	xyScale = 0.18;
+	scale([xyScale, xyScale, 1])
+	trebleClefScaledDown();
+}

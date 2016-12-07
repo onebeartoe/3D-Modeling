@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module poly_Selection(h)
+module trebleClef(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -29,11 +29,3 @@ module poly_Selection(h)
     }
   }
 }
-
-module trebleclef(h)
-{
-
-poly_Selection(h);
-}
-
-trebleclef(5);

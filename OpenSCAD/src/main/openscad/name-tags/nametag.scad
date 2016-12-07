@@ -227,7 +227,6 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset)
     {
         echo("drawing no icons");
     }
-    
 }
 
 module icons()

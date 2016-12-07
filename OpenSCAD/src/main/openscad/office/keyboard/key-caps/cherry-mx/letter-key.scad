@@ -1,9 +1,43 @@
 
-module aphabetCaps(xOffset, font)
+use <../../../../external-resources\music\notes\bass-clef\bass-clef.scad>
+use <../../../../external-resources\music\notes/treble-clef/treble-clef-scaled-down.scad>
+
+module aphabetKeycaps(xOffset, font)
 {
 	alphabet = ["a", "b", "c", "d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 	
 	keyCapString(alphabet, xOffset, font);
+}
+
+module blankKey()
+{
+	blankStl = "blank-key.stl";
+	translate([0, 0, 11])
+	rotate([180,0,0])
+	import(blankStl);	
+}
+
+module iconKeycap(name, xOffset, yOffset)
+{
+	union()
+	{
+//		name = "Bass Clef";
+		xyScale = 0.4;
+		translate([0, 1, 9.5])
+		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=1, 
+			    xOffset=xOffset, yOffset=yOffset, iconColor="green");
+		
+		blankKey();
+	}
+}
+
+module iconKeycapDemo()
+{
+	iconKeycap("Bass Clef", xOffset=-34, yOffset=2);
+	
+	rowSpacing = 30;
+	translate([rowSpacing, 0, 0])
+	iconKeycap("Treble Clef", xOffset=-34, yOffset = 2);	
 }
 
 module keyCapString(keyString, xOffset, font)
@@ -28,12 +62,28 @@ module oneAlphanumericKey(letter, xOffset, font)
 		linear_extrude(height=2)
 		text(letter, font=font, size=fontSize);
 		
-		blankStl = "blank-key.stl";
-		translate([0, 0, 11])
-		rotate([180,0,0])
-		import(blankStl);
+		blankKey();
 	}	
 }
+
+module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
+{
+    color(iconColor)
+    translate([xOffset, yOffset, 0])
+    scale([iconXyScale, iconXyScale, iconHeight])
+    if(iconType == "Bass Clef")
+    {
+    	bassClefThumbnail();
+    }
+	else if(iconType== "Treble Clef")
+	{
+		trebleClefScaledDownThumbnail();
+	}
+    else
+    {
+        echo("drawing no icons");
+    }
+}	
 
 module uppercaseAphabetCaps(xOffset, font)
 {
