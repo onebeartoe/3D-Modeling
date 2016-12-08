@@ -1,6 +1,4 @@
 
-scrumtrooper(4);
-
 // Module names are of the form poly_<inkscape-path-id>().  As a result,
 // you can associate a polygon in this OpenSCAD program with the corresponding
 // SVG element in the Inkscape document by looking for the XML element with
@@ -11,7 +9,7 @@ scrumtrooper(4);
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module scrumtrooper_poly_Selection(h)
+module scrumTrooper(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -38,7 +36,9 @@ module scrumtrooper_poly_Selection(h)
   }
 }
 
-module scrumtrooper(h)
+module scrumTrooperThumbnail()
 {
-	scrumtrooper_poly_Selection(h);
+	xyScale = .74;
+	scale([xyScale, xyScale, 1])	
+	scrumTrooper();	
 }

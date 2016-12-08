@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module cat(h)
+module cat(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -18,4 +18,9 @@ module cat(h)
   }
 }
 
-cat(4);
+module catThumbnail()
+{
+	xyScale = .37;
+	scale([xyScale, xyScale, 1])	
+	cat();
+}

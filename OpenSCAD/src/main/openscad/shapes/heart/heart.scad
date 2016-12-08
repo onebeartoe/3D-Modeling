@@ -1,12 +1,17 @@
 
-translate ([0, 14, 0])
-heart();
-
-module heart()
+module heart(h=1)
 {
     rotate ([0, 0, 45])
-    linear_extrude(height=10)
+    linear_extrude(height=h)
     flatHeart();
+}
+
+module heartThumbnail()
+{	
+	xyScale = 0.725;
+	translate([0, -1.5, 0])
+	scale([xyScale, xyScale, 1])
+	heart();
 }
 
 module flatHeart()

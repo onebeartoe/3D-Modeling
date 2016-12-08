@@ -9,7 +9,7 @@
 // keep the resulting .stl file manifold.
 fudge = 0.1;
 
-module luigi(h)
+module luigi(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -108,4 +108,9 @@ module luigi(h)
   }
 }
 
-luigi(5);
+module luigiThumbnail()
+{
+	xyScale = 0.084;
+	scale([xyScale, xyScale, 1])
+	luigi();
+}

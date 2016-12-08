@@ -10,19 +10,23 @@ xLowercaseOffset = -37;
 xUppercaseOffset = xLowercaseOffset - 0.5;
 	
 showHellowWorld = false;
+showLowercase = false;
+showUppercase = false;
+showWindings = false;
+showNumbers = false;
+showIconKeys = true;
+
 if(showHellowWorld)
 {
 	keyCapString(["H", "e","l","l","o"," ", "w","o","r","l","d"], xOffset=xUppercaseOffset);
 }
 
-showLowercase = false;
 if(showLowercase)
 {
 	translate([0, rowSpacing, 0])
 	aphabetKeycaps(xLowercaseOffset);
 }
 
-showUppercase = false;
 if(showUppercase)
 {
 	
@@ -30,7 +34,6 @@ if(showUppercase)
 	uppercaseAphabetCaps(xUppercaseOffset);
 }
 
-showWindings = false;
 if(showWindings)
 {
 	font = "Wingdings";//:style=Italic";
@@ -38,14 +41,13 @@ if(showWindings)
 	uppercaseAphabetCaps(xOffset=xUppercaseOffset, font=font);		
 }
 
-showNumbers = false;
+
 if(showNumbers)
 {
 	translate([0, rowSpacing*4, 0])
 	keyCapString(["0", "1","2","3","4","5", "6","7","8","9"], xOffset=xUppercaseOffset);
 }
 
-showIconKeys = true;
 if(showIconKeys)
 {
 	// Next are the keycaps with icons as the legend (thanks Michael Hall for letting me know that the symbol on the key is referred to a as the 'legend'.
@@ -54,8 +56,15 @@ if(showIconKeys)
 }
 
 showBassClef = false;
-showTrebleClef = true;
+showCat = false;
+showHeart = false;
+showLuigi = false;
+showOshw = true;
+showRebel = false;
+showStar = false;
+showTrebleClef = false;
 showThundercat = false;
+showTrooper = false;
 module iconKeycapDemo()
 {
 	if(showBassClef)
@@ -63,17 +72,60 @@ module iconKeycapDemo()
 		iconKeycap("Bass Clef", xOffset=-34, yOffset=2, xyScale=0.4);
 	}
 	
-	rowSpacing = 30;
-	
-	if(showTrebleClef)
+	if(showCat)
 	{
 		translate([rowSpacing, 0, 0])
-		iconKeycap("Treble Clef", xOffset=-34, yOffset = 2, xyScale = 0.5);
+		iconKeycap("Cat", xOffset=-34, yOffset=2, xyScale=0.53);
+	}
+	
+	rowSpacing = 30;
+	
+	if(showLuigi)
+	{
+		translate([rowSpacing*2, 0, 0])
+		iconKeycap("Luigi", xOffset=-34, yOffset=2.5, xyScale=0.59);
 	}
 	
 	if(showThundercat)
 	{
-		translate([rowSpacing*2, 0, 0])
-		iconKeycap("Thundercat", xOffset=-34, yOffset = 2, xyScale = 0.5);
+		translate([rowSpacing*3, 0, 0])
+		iconKeycap("Thundercat", xOffset=-34, yOffset=2, xyScale=0.5);
+	}
+	
+	if(showTrebleClef)
+	{
+		translate([rowSpacing*4, 0, 0])
+		iconKeycap("Treble Clef", xOffset=-34, yOffset=2, xyScale=0.5);
+	}
+	
+	if(showTrooper)
+	{
+		translate([rowSpacing*5, 0, 0])
+		iconKeycap("Trooper", xOffset=-34, yOffset=2.4, xyScale=0.6);		
+	}
+	
+	if(showRebel)
+	{
+		translate([rowSpacing*6, 0, 0])
+		iconKeycap("Rebel", xOffset=-34, yOffset=2.4, xyScale=0.53);		
+	}
+	
+	if(showStar)
+	{
+		translate([rowSpacing*7, 0, 0])
+		iconKeycap("Star", xOffset=-34, yOffset=2.4, xyScale=0.58);
+	}
+	
+	if(showHeart)
+	{
+		translate([rowSpacing*8, 0, 0])
+		iconKeycap("Heart", xOffset=-33.7, yOffset=2.4, xyScale=0.52);		
+	}
+	
+	if(showOshw)
+	{
+		translate([rowSpacing*9, 0, 0])
+		iconKeycap("OSHW", xOffset=-33.7, yOffset=2.4, xyScale=0.52);
 	}
 }
+

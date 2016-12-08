@@ -1,7 +1,17 @@
 
-use <../../../../external-resources\music\notes\bass-clef\bass-clef.scad>
-use <../../../../external-resources\music\notes/treble-clef/treble-clef-scaled-down.scad>
+use <../../../../external-resources/cat/cat.scad>
+use <../../../../external-resources/plumber-brother/luigi-outline.scad>
+use <../../../../external-resources/music/notes/bass-clef/bass-clef.scad>
+use <../../../../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
+use <../../../../external-resources/oshw/oshw-logo-800-px.scad>
+use <../../../../external-resources/rebel-alliance/rebel-alliance.scad>
+use <../../../../shapes/heart/heart.scad>
+use <../../../../shapes/star/star.scad>
 use <../../../../external-resources/thundercats/thundercats-logo.scad>
+use <../../../../external-resources/trooper/scrum-trooper.scad>
+
+
+use <blank-keycap.scad>
 
 module aphabetKeycaps(xOffset, font)
 {
@@ -12,19 +22,17 @@ module aphabetKeycaps(xOffset, font)
 
 module blankKey()
 {
-	blankStl = "blank-key.stl";
 	translate([0, 0, 11])
 	rotate([180,0,0])
-	import(blankStl);	
+	blankKeycap();
 }
 
-module iconKeycap(name, xOffset, yOffset, xyScale)
+module iconKeycap(name, xOffset, yOffset, xyScale, iconColor)
 {
 	union()
 	{
 		translate([0, 1, 9.5])
-		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=1, 
-			    xOffset=xOffset, yOffset=yOffset, iconColor="green");
+		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=1, xOffset=xOffset, yOffset=yOffset, iconColor="green");
 		
 		blankKey();
 	}
@@ -65,10 +73,37 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
     {
     	bassClefThumbnail();
     }
+    else if(iconType == "Cat")
+    {
+    	catThumbnail();
+    }
+    else if(iconType == "Heart")
+    {
+    	heartThumbnail();
+    }
+	else if(iconType == "Luigi")
+	{
+		luigiThumbnail();
+	}
+	else if(iconType == "OSHW")
+	{
+		oshwLogoThumbnail();
+	}
+	else if(iconType == "Rebel")
+	{
+		rebelAllianceThumbnail();
+	}    
+    else if(iconType == "Star")
+    {
+    	starThumbnail();
+    }    
 	else if(iconType== "Treble Clef")
 	{
-		
 		trebleClefScaledDownThumbnail();
+	}
+	else if(iconType == "Trooper")
+	{
+		scrumTrooperThumbnail();
 	}
 	else if(iconType == "Thundercat")
 	{
@@ -76,7 +111,7 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
 	}
     else
     {
-        echo("drawing no icons");
+        echo("drawing no icons", iconType);
     }
 }	
 

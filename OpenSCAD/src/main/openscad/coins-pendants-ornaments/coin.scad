@@ -94,7 +94,7 @@ module coinIcon(iconName, height)
     }
     else if(iconName == "OSHW")
     {
-        oshwlogo800px();
+        oshwLogo();
     }
     else if(iconName == "Texas")
     {
@@ -126,6 +126,7 @@ module coinIcon(iconName, height)
     }
     else
     {
-        // default is to do nothing        
+        // default is to do nothing
+        echo("no coin used");        
     }    
 }

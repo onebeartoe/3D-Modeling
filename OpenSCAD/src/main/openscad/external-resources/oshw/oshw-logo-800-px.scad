@@ -4,7 +4,7 @@
 // SVG element in the Inkscape document by looking for the XML element with
 // the attribute id="inkscape-path-id".
 
-module oshwlogo800px(h=3)
+module oshwLogo(h=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {
@@ -13,4 +13,10 @@ module oshwlogo800px(h=3)
   }
 }
 
-oshwlogo800px(h=3);
+module oshwLogoThumbnail()
+{
+	xyScale = 0.162;
+	translate([0, -0.5, 0])
+	scale([xyScale, xyScale, 1])
+	oshwLogo();	
+}

@@ -1,36 +1,58 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.onebeartoe.system.Commander;
 
 public class PngGenerator
 {
     Logger logger;
     
-    private int generate(String command) throws IOException, InterruptedException
+    private int generate(String commandList) throws IOException, InterruptedException
     {
-        System.out.println(command);
-        Commander commander = new Commander(command);
+        System.out.println(commandList);
+        
+        String [] strs = commandList.split("\\s+");
+        
+        List <String> command = Arrays.asList(strs);
+        
+        ProcessBuilder builder = new ProcessBuilder(command);
+        Process jobProcess = builder.start();                
+        int waitValue = jobProcess.waitFor();
+        
+        InputStream is = jobProcess.getInputStream();
+        String stdout = new BufferedReader( new InputStreamReader(is))
+                              .lines()
+                              .collect(Collectors.joining("\n"));
+                
+        InputStream es = jobProcess.getErrorStream();
+        String stderr = new BufferedReader( new InputStreamReader(es))
+                              .lines()
+                              .collect(Collectors.joining("\n"));
 
-        int exitCode = commander.execute();
 
         StringBuilder sb = new StringBuilder();
-        for (String line : commander.getStderr())
-        {
-            sb.append(line);
-            sb.append(System.lineSeparator());
-        }            
+        sb.append("standard error:\n");
+        sb.append(stderr);
+        
+        sb.append("\nstandard out:\n");
+        sb.append(stdout);
+        
         System.out.println(sb.toString());
         
-        return exitCode;
+        return waitValue;
     }
     
     public List<Boolean> generateDirectionalPngs(Path oscadInputFile, boolean forcePngGeneration)
@@ -74,9 +96,10 @@ public class PngGenerator
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
 
-        openscadPath = "C:/opt/OpenSCAD/openscad-2015.03-1/openscad";
-        
-        openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
+        openscadPath = "C:/opt/openscad/openscad-2015.03-2/openscad";
+        openscadPath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
+                        
+//        openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
 
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
 

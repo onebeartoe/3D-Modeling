@@ -1,7 +1,10 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -11,15 +14,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.onebeartoe.system.Commander;
 
 
 public class OpenScadTestSuite
@@ -58,24 +62,36 @@ public class OpenScadTestSuite
         	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
         	
         	String systemCommand = "diff " + baseline + " " + proposedBaseline;
-                Commander commander = new Commander(systemCommand);
+//                Commander commander = new Commander(systemCommand);
 
                 try 
                 {
-		    int exitCode = commander.execute();
+                    String [] strs = systemCommand.split("\\s+");
+
+                    List <String> command = Arrays.asList(strs);
+
+                    ProcessBuilder builder = new ProcessBuilder(command);
+                    Process jobProcess = builder.start();                
+                    int exitCode = jobProcess.waitFor();
+
+                    InputStream is = jobProcess.getInputStream();
+                    String stdout = new BufferedReader( new InputStreamReader(is))
+                                          .lines()
+                                          .collect(Collectors.joining("\n"));
+
+                    InputStream es = jobProcess.getErrorStream();
+                    String stderr = new BufferedReader( new InputStreamReader(es))
+                                          .lines()
+                                          .collect(Collectors.joining("\n"));                    
+		    
 
 		    // assume no problems will occur and set the exit code to 0; success		    
 		    if(exitCode != 0)
 		    {
 			errorFiles.add(baseline);
 			
-			Consumer printall = (line) -> {System.out.println(line);};
-			
-			commander.getStderr()
-				 .forEach(printall);
-			
-			commander.getStdout()
-				 .forEach(printall);
+			System.out.println("Standard error: " + stderr);
+                        System.out.println("Standard out: " + stdout);
 		    }
 		} 
                 catch (Exception e) 

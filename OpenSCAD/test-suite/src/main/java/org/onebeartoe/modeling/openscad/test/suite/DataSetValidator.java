@@ -69,6 +69,7 @@ public class DataSetValidator
         else
         {
             System.err.println("Some test suite input files are not present.");
+            System.err.println("Try running '--generateBaselines' to generate the missing input files.");
         }
     }
     
