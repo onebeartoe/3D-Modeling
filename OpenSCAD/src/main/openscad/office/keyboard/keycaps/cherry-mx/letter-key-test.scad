@@ -11,13 +11,13 @@ xUppercaseOffset = xLowercaseOffset - 0.5;
 
 singleLetter = "D";
 	
-showHellowWorld = true;
-showLowercase = true;
-showUppercase = true;
-showWindings = true;
-showNumbers = true;
+//showHellowWorld = true;
+//showLowercase = true;
+//showUppercase = true;
+//showWindings = true;
+//showNumbers = true;
 showIconKeys = true;
-showSingleKeycap = true;
+//showSingleKeycap = true;
 if(showHellowWorld)
 {
 	keyCapString(["H", "e","l","l","o"," ", "w","o","r","l","d"], xOffset=xUppercaseOffset);
@@ -63,17 +63,17 @@ if(showSingleKeycap)
 	keyCapString([singleLetter], xOffset=xUppercaseOffset);
 }
 
-showBassClef = true;
+//showBassClef = true;
 showBatman = true;
-showCat = true;
-showHeart = true;
-showLuigi = true;
-showOshw = true;
-showRebel = true;
-showStar = true;
-showTrebleClef = true;
-showThundercat = true;
-showTrooper = true;
+//showCat = true;
+//showHeart = true;
+//showLuigi = true;
+//showOshw = true;
+//showRebel = true;
+//showStar = true;
+//showTrebleClef = true;
+//showThundercat = true;
+//showTrooper = true;
 module iconKeycapDemo()
 {
 	if(showBassClef)
