@@ -1,5 +1,6 @@
 
 use <../../../../external-resources/cat/cat.scad>
+use <../../../../external-resources/batman/batman.scad>
 use <../../../../external-resources/plumber-brother/luigi-outline.scad>
 use <../../../../external-resources/music/notes/bass-clef/bass-clef.scad>
 use <../../../../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
@@ -72,6 +73,10 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
     if(iconType == "Bass Clef")
     {
     	bassClefThumbnail();
+    }
+    else if(iconType == "Batman")
+    {
+    	batmanLogoThumbnail();
     }
     else if(iconType == "Cat")
     {

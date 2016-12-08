@@ -1,10 +1,8 @@
 
-batmanLogo();
-
-module batmanLogo()
+module batmanLogo(height=1)
 {
     color([0.15,0.15,0.15])
-    linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
+    linear_extrude(height = height, center = true, convexity = 10, twist = 0)
     difference()
     {
         
@@ -16,10 +14,9 @@ module batmanLogo()
     }
     
     color([0.15,0.15,0.15])
-    linear_extrude(height = 4, center = true, convexity = 10, twist = 0)
+    linear_extrude(height = height, center = true, convexity = 10, twist = 0)
     difference()
     {
-    
         projection(cut=true) 
         rotate([0,50,0])
         cylinder(r=30, h=200, center=true);
@@ -64,4 +61,12 @@ module batmanLogo()
             cylinder(r=13, h=200, center=true);
         }
     }
+}
+
+module batmanLogoThumbnail()
+{
+	xyScale = 0.27;
+	translate([0.4, -0.3, 0])
+	scale([xyScale, xyScale, 1.98])	
+	batmanLogo();
 }

@@ -8,14 +8,16 @@ font = "Arial:style=Bold"; // ["Arial:style=Bold", "ABeeZee", "Abel", "Abril Fat
 rowSpacing = -50;
 xLowercaseOffset = -37;
 xUppercaseOffset = xLowercaseOffset - 0.5;
-	
-showHellowWorld = false;
-showLowercase = false;
-showUppercase = false;
-showWindings = false;
-showNumbers = false;
-showIconKeys = true;
 
+singleLetter = "D";
+	
+showHellowWorld = true;
+showLowercase = true;
+showUppercase = true;
+showWindings = true;
+showNumbers = true;
+showIconKeys = true;
+showSingleKeycap = true;
 if(showHellowWorld)
 {
 	keyCapString(["H", "e","l","l","o"," ", "w","o","r","l","d"], xOffset=xUppercaseOffset);
@@ -55,22 +57,35 @@ if(showIconKeys)
 	iconKeycapDemo();
 }
 
-showBassClef = false;
-showCat = false;
-showHeart = false;
-showLuigi = false;
+if(showSingleKeycap)
+{
+	translate([0, rowSpacing*6, 0])
+	keyCapString([singleLetter], xOffset=xUppercaseOffset);
+}
+
+showBassClef = true;
+showBatman = true;
+showCat = true;
+showHeart = true;
+showLuigi = true;
 showOshw = true;
-showRebel = false;
-showStar = false;
-showTrebleClef = false;
-showThundercat = false;
-showTrooper = false;
+showRebel = true;
+showStar = true;
+showTrebleClef = true;
+showThundercat = true;
+showTrooper = true;
 module iconKeycapDemo()
 {
 	if(showBassClef)
 	{
 		iconKeycap("Bass Clef", xOffset=-34, yOffset=2, xyScale=0.4);
 	}
+
+	if(showBatman)
+	{
+		translate([rowSpacing*10, 0, 0])
+		iconKeycap("Batman", xOffset=-33.7, yOffset=2.4, xyScale=0.52);
+	}	
 	
 	if(showCat)
 	{
