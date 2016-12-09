@@ -64,10 +64,10 @@ if(showSingleKeycap)
 }
 
 //showBassClef = true;
-showBatman = true;
+//showBatman = true;
 //showCat = true;
 //showHeart = true;
-//showLuigi = true;
+showLuigi = true;
 //showOshw = true;
 //showRebel = true;
 //showStar = true;
@@ -98,7 +98,7 @@ module iconKeycapDemo()
 	if(showLuigi)
 	{
 		translate([rowSpacing*2, 0, 0])
-		iconKeycap("Luigi", xOffset=-34, yOffset=2.5, xyScale=0.59);
+		iconKeycap("Luigi", xOffset=-34, yOffset=2.5, xyScale=0.59, iconHeight=1.2);
 	}
 	
 	if(showThundercat)

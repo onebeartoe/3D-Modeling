@@ -11,7 +11,6 @@ use <../../../../shapes/star/star.scad>
 use <../../../../external-resources/thundercats/thundercats-logo.scad>
 use <../../../../external-resources/trooper/scrum-trooper.scad>
 
-
 use <blank-keycap.scad>
 
 module aphabetKeycaps(xOffset, font)
@@ -28,12 +27,12 @@ module blankKey()
 	blankKeycap();
 }
 
-module iconKeycap(name, xOffset, yOffset, xyScale, iconColor)
+module iconKeycap(name, xOffset, yOffset, xyScale, iconColor, iconHeight=1)
 {
 	union()
 	{
 		translate([0, 1, 9.5])
-		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=1, xOffset=xOffset, yOffset=yOffset, iconColor="green");
+		oneIcon(iconType=name, iconXyScale=xyScale, iconHeight=iconHeight, xOffset=xOffset, yOffset=yOffset, iconColor="green");
 		
 		blankKey();
 	}
