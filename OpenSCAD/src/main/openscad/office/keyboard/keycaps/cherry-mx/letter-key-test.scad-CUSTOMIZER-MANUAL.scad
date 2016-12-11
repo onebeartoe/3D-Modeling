@@ -448,6 +448,8 @@ module scrumTrooperThumbnail()
 
 module blankKeycap() 
 {
+	translate([0, 0, 11])
+	rotate([180,0,0])
 	polyhedron(
 		points=[
 			[-34.82941436767578, -3.5963494777679443, 9.25],
@@ -7508,8 +7510,8 @@ module aphabetKeycaps(xOffset, font)
 
 module blankKey()
 {
-	translate([0, 0, 11])
-	rotate([180,0,0])
+//	translate([0, 0, 11])
+//	rotate([180,0,0])
 	blankKeycap();
 }
 

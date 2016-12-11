@@ -22,8 +22,8 @@ module aphabetKeycaps(xOffset, font)
 
 module blankKey()
 {
-	translate([0, 0, 11])
-	rotate([180,0,0])
+//	translate([0, 0, 11])
+//	rotate([180,0,0])
 	blankKeycap();
 }
 
