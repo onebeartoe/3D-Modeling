@@ -63,17 +63,17 @@ if(showSingleKeycap)
 	keyCapString([singleLetter], xOffset=xUppercaseOffset);
 }
 
-//showBassClef = true;
-//showBatman = true;
-//showCat = true;
-//showHeart = true;
-showLuigi = true;
-//showOshw = true;
-//showRebel = true;
-//showStar = true;
-//showTrebleClef = true;
-//showThundercat = true;
-//showTrooper = true;
+showBassClef = 1;
+showBatman = 1;
+showCat = 1;
+showHeart = 1;
+showLuigi = 1;
+showOshw = 1;
+showRebel = 1;
+showStar = 1;
+showTrebleClef = 1;
+showThundercat = 1;
+showTrooper = 1;
 module iconKeycapDemo()
 {
 	if(showBassClef)
