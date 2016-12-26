@@ -16,3 +16,13 @@ If you are interested, check it out and please let me know what you think.
 Related Videos:
 
 [![Pencil Holders with Custom Cutouts ](http://img.youtube.com/vi/C8QypaAymFg/0.jpg)](https://www.youtube.com/watch?v=C8QypaAymFg "Pencil Holders with Custom Cutouts ")
+
+[![2D Image to 3D Printable Model or 2D Plus Height Printing](http://img.youtube.com/vi/iMQLZ3bVWxg/0.jpg)](https://www.youtube.com/watch?v=iMQLZ3bVWxg "2D Image to 3D Printable Model or 2D Plus Height Printing")
+
+More from the author:
+
+https://plus.google.com/u/0/104101484714566033177
+
+https://twitter.com/onebeartoe
+
+https://www.youtube.com/user/onebeartoe/videos
