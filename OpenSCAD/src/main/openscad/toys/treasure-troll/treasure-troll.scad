@@ -33,28 +33,41 @@ module originalTrollWithBase(stlPath)
 /**
  * unionDifference: true gets union, false gets difference 
  */
-module trollHead(stlPath, intersectionDifference)
+module trollHead(stlPath)
 {
-	intersection()
-	{
-		color("blue")
-		translate([23, 295, 130])
-		sphere(r=69);
-		
-		color("orange")
-		translate([0, 260, 0])
-		originalTroll(stlPath);
-	}	
+    difference()
+//    intersection()
+    {
+//        color("orange")
+        translate([0, 260, 0])
+        originalTroll(stlPath);
+        
+//        color("blue")
+        translate([3, 295, 0])
+//        sphere(r=69);
+        cube([40, 40,5]);
+    }	
 }
 
-module trollHeadFirst(stlPath, intersectionDifference)
+module twoHeadedTroll(stlPath)
 {
-	
-}
+    color("green")
+    union()
+    {
+        // left head
+        translate([0, 260, 0])
+        rotate([0,-10,0])
+        trollHead(stlPath);    
 
-module real(stlPath)
-{
+        // right head
+        translate([0, 210, 0])
+        rotate([0,-10,0])
+        trollHead(stlPath);    
 
-		
-		echo("bottom");
+        // body
+        // two headed troll
+        twoHeadedTranslate = [0,340,0];
+        translate(twoHeadedTranslate)
+        headlessTroll(stlPath);
+    }    
 }

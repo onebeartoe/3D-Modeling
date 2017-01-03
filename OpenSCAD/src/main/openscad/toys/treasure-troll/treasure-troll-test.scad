@@ -3,11 +3,27 @@ use <treasure-troll.scad>
 
 stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\treasure-troll\\ercin-gunduz\\troll-doll-planter-1.stl";
 
-//originalTrollWithBase(stlPath);
+showOriginal  = 0;
+showHeadless  = 0;
+showHeadOnly  = 1;
+showTwoHeaded = 0;
 
-//headlessTroll(stlPath);
+if(showOriginal == 1)
+{
+    originalTrollWithBase(stlPath);
+}
 
-intersectionDifference = true;
-//intersectionDifference = false;
+if(showHeadless == 1)
+{
+    headlessTroll(stlPath);
+}
 
-trollHead(stlPath, intersectionDifference);
+if(showHeadOnly == 1)
+{
+    trollHead(stlPath);
+}
+
+if(showTwoHeaded == 1)
+{
+    twoHeadedTroll(stlPath);
+}

@@ -8,4 +8,5 @@ infile = "profile-a.png";
 // Example 3b
 scale([1, 1, 0.1])
 surface(file = infile, 
-center = true, invert = false);
+        center = true, 
+        invert = false);
