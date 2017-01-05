@@ -5,8 +5,8 @@ stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\trea
 
 showOriginal  = 0;
 showHeadless  = 0;
-showHeadOnly  = 1;
-showTwoHeaded = 0;
+showHeadOnly  = 0;
+showTwoHeaded = 1;
 
 if(showOriginal == 1)
 {

@@ -1,23 +1,23 @@
 
 module headlessTroll(stlPath, cutHeight)
 {
-	difference()
-	{
-		translate([0, 140, 0])
-		originalTroll(stlPath);
+    difference()
+    {
+        translate([0, 140, 0])
+        originalTroll(stlPath);
 //	}		
-		color("green")
-		translate([-20, 120, 70])
-		cube([90, 110, 60]);
+        color("green")
+        translate([-20, 120, 70])
+        cube([90, 110, 60]);
 //		sphere(r=45);
-	}
+    }
 }
 
 // Jesse Troll?
 module originalTroll(stlPath)
 {
-	translate([-20,-40,0])
-	import(stlPath);
+    translate([-20,-40,0])
+    import(stlPath);
 }
 
 module originalTrollWithBase(stlPath)
@@ -35,17 +35,19 @@ module originalTrollWithBase(stlPath)
  */
 module trollHead(stlPath)
 {
-    difference()
-//    intersection()
+//    difference()
+    intersection()
     {
 //        color("orange")
         translate([0, 260, 0])
         originalTroll(stlPath);
         
 //        color("blue")
-        translate([3, 295, 0])
+        translate([21, 295, 131])
+//        translate([3, 295, 0])
+        sphere(r=69);
 //        sphere(r=69);
-        cube([40, 40,5]);
+//        cube([40, 40,5]);
     }	
 }
 
@@ -60,8 +62,8 @@ module twoHeadedTroll(stlPath)
         trollHead(stlPath);    
 
         // right head
-        translate([0, 210, 0])
-        rotate([0,-10,0])
+        rotate([3,-10,0])
+        translate([0, 195, 0])        
         trollHead(stlPath);    
 
         // body
