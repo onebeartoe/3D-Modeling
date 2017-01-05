@@ -1,11 +1,12 @@
 
 oldFont = "Liberation Sans:style=Bold Italic";
 font = "Bauhaus 93:style=Regular";
+text = "OpenSCAD Rules!";
 
-textExtrude();
+textExtrude(text);
 
-module textExtrude()  
+module textExtrude(text)  
 {
-	linear_extrude(height=4)
-   	text("OpenSCAD Rules!", font = font, size=6);
+    linear_extrude(height=4)
+    text(text, font = font, size=6);
 }
