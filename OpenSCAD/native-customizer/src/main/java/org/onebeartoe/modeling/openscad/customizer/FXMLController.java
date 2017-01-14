@@ -32,10 +32,8 @@ public class FXMLController implements Initializable
         
         String inpath = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\office\\keyboard\\keycaps\\cherry-mx\\letter-key-test.scad";
         File infile = new File(inpath);
-        Path oscadInputFile = infile.toPath();
         ThingiverseCustomizerService customizerService = new ThingiverseCustomizerService();
-        
-        
+
         try 
         {
             String interpolatedContent = customizerService.interpolateOpenscad(infile);
