@@ -3,18 +3,19 @@ package org.onebeartoe.modeling.openscad.customizer;
 
 import java.io.File;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ThingiverseCustomizerService
 {
     /**
      * This method parses an OpenSCAD 'use' line and returns the absolute path to the file
      * specified by use argument.
+     * 
      * @param useLine
      * @return 
      */
@@ -39,22 +40,18 @@ public class ThingiverseCustomizerService
         return content;
     }
     
-    private String interpolateLine(File sourceParent, String line) throws IOException
+    private boolean isUseStatement(File sourceParent, String line) throws IOException
     {
         String trimmedLine = line.trim();
         
-        String interpolatedLine;
+        boolean isUseStatement = false;
         
         if(trimmedLine.startsWith("use"))
         {
-            interpolatedLine = readUseFile(sourceParent, line);
-        }
-        else
-        {
-            interpolatedLine = trimmedLine;
+            isUseStatement = true;
         }
                 
-        return interpolatedLine;
+        return isUseStatement;
     }
     
     public String interpolateOpenscad(File openscadFile) throws IOException
@@ -67,21 +64,27 @@ public class ThingiverseCustomizerService
         
         List<String> errors = new ArrayList();
         
+        List<String> initialUseStatements = new ArrayList();
+        List<String> coreNonUseStatments = new ArrayList();
+        
         openscadLines.forEach(line -> 
         {
-            try 
+            File sourceParent = openscadFile.getParentFile();
+            
+            // separate the use statements and non-use statements
+            if( isUseStatement(sourceParent, line) )
             {
-                File sourceParent = openscadFile.getParentFile();
-                String interpolatedLine = interpolateLine(sourceParent, line);
-                sb.append(interpolatedLine);
-                sb.append( System.lineSeparator() );
-            } 
-            catch (IOException ex) 
+                initialUseStatements.add(line);
+            }
+            else
             {
-                errors.add( ex.getMessage() );
-                Logger.getLogger(ThingiverseCustomizerService.class.getName()).log(Level.SEVERE, null, ex);
+                coreNonUseStatments.add(line);
             }
         });
+        
+        
+
+        String interpolatedLine = interpolateLine(sourceParent, line);
         
         if(errors.size() > 0)
         {
@@ -91,5 +94,18 @@ public class ThingiverseCustomizerService
         }
         
         return sb.toString();
+    }
+    
+    private class UseStatementParsing
+    {
+        public List<String> useStatements;
+        
+        public List<String> nonUseStatements;
+        
+        public UseStatementParsing()
+        {
+            useStatements = new ArrayList();
+            nonUseStatements = new ArrayList();
+        }
     }
 }
