@@ -1,34 +1,37 @@
 
-initialOpenScadParse = readOpenScadFile(targetScadFile)
-	
-uniqueUseStatements.addAll( initialOpenScadParse.useStatements )
-
-unprocessedUseStatements.addAll( uniqueUseStatements )
-
-intialize useStatementsContent
-
-while unprocessedUseStatements is not empty
+String interpolateOpenScad(targetScadFile)
 {
-	useStatement = unprocessedUseStatements.remove(0)
-	
-	absolutePath = absolutePathOf(useStatement)
-	
-	if( uniqueUseStatements does not contain absolutePath )
-	{
-		uniqueUseStatements.add(absolutePath)
-	
-		currentParse = readOpenScadFile(absolutePath);
-	
-		unprocessedUseStatements.addAll(currentParse.useStatements)
+	initialOpenScadParse = readOpenScadFile(targetScadFile)
 		
-		useStatementsContent.addAll(currentParse.coreStatements)
+	uniqueUseStatements.addAll( initialOpenScadParse.useStatements )
+
+	unprocessedUseStatements.addAll( uniqueUseStatements )
+
+	intialize useStatementsContent
+
+	while unprocessedUseStatements is not empty
+	{
+		useStatement = unprocessedUseStatements.remove(0)
+		
+		absolutePath = absolutePathOf(targetScadFile, useStatement)
+		
+		if( uniqueUseStatements does not contain absolutePath )
+		{
+			uniqueUseStatements.add(absolutePath)
+		
+			currentParse = readOpenScadFile(absolutePath);
+		
+			unprocessedUseStatements.addAll(currentParse.useStatements)
+			
+			useStatementsContent.addAll(currentParse.otherStatements)
+		}
 	}
+
+	finalOutput.addAll( initialOpenScadParse.otherStatements )
+	finalOutput.addAll( useStatementsContent )
+
+	return finalOutput
 }
-
-finalOutput.addAll( initialOpenScadParse.coreStatements )
-finalOutput.addAll( useStatementsContent )
-
-writeToDisk(finalOutput)
 	
 ----------------------------------------------
 
@@ -38,7 +41,7 @@ OpenSscadParse readOpenScadFile()
 
 		useStatements
 		
-		coreStatements
+		otherStatements
 		
 	return openScadParse
 }

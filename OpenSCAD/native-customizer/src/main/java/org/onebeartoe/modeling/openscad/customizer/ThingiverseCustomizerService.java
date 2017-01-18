@@ -5,42 +5,15 @@ import java.io.File;
 import java.io.IOException;
 
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThingiverseCustomizerService
-{
-    /**
-     * This method parses an OpenSCAD 'use' line and returns the absolute path to the file
-     * specified by use argument.
-     * 
-     * @param useLine
-     * @return 
-     */
-    private String readUseFile(File sourceParent, String useLine) throws IOException
-    {
-        // take off "use <"
-        String rawSubPath = useLine.substring(5);
-        
-        // take off ">"
-        rawSubPath = rawSubPath.substring(0, rawSubPath.length()-1);
-        
-        String targetPath = sourceParent.getAbsolutePath() + File.separator + rawSubPath;
-        File targetFile = new File(targetPath);
-                
-        String absolutePath = targetFile.getAbsolutePath();
-        
-        File infile = new File(absolutePath);
-        Path inpath = infile.toPath();
-        List<String> allLines = Files.readAllLines(inpath);
-        String content = String.join(System.lineSeparator(), allLines);
-        
-        return content;
-    }
-    
-    private boolean isUseStatement(File sourceParent, String line) throws IOException
+{   
+    private boolean isUseStatement(String line)
     {
         String trimmedLine = line.trim();
         
@@ -54,58 +27,114 @@ public class ThingiverseCustomizerService
         return isUseStatement;
     }
     
-    public String interpolateOpenscad(File openscadFile) throws IOException
+    public String interpolateOpenScad(File targetScadFile) throws IOException
     {
-        StringBuilder sb = new StringBuilder();
+        OpenScadParse initialOpenScadParse = readOpenScadFile(targetScadFile);
         
-        Path inpath = openscadFile.toPath();
+        List<String> uniqueUseStatements = new ArrayList();
+        uniqueUseStatements.addAll(initialOpenScadParse.useStatements);
+        
+        List<String> unprocessedUseStatements = new ArrayList();
+        unprocessedUseStatements.addAll(uniqueUseStatements);
+        
+        List<String> useStatementsContent = new ArrayList();
+        
+        while( !unprocessedUseStatements.isEmpty() )
+        {
+            String useStatement = unprocessedUseStatements.remove(0);
+            
+            File targetParentDir = targetScadFile.getParentFile();
+            String absolutePath = absolutePathOf(targetParentDir, useStatement);
+            
+            if( !uniqueUseStatements.contains(absolutePath) )
+            {
+                uniqueUseStatements.add(absolutePath);
+                
+                File infile = new File(absolutePath);
+                OpenScadParse currentParse = readOpenScadFile(infile);
+                
+                unprocessedUseStatements.addAll(currentParse.useStatements);
+                
+                useStatementsContent.addAll(currentParse.otherStatements);
+            }
+        }
+        
+        List<String> finalOutput = new ArrayList();
+        finalOutput.addAll(initialOpenScadParse.otherStatements);
+	finalOutput.addAll(useStatementsContent);
+                
+        String content = String.join(System.lineSeparator(), finalOutput);
+        
+        return content;
+    }
+    
+    /**
+     * This method parses an OpenSCAD 'use' line and returns the absolute path to the file
+     * specified by use argument.
+     * 
+     * @param useLine
+     * @return 
+     */
+    private String absolutePathOf(File targetParentDir, String useLine) throws IOException
+    {
+        // take off "use <"
+        String rawSubPath = useLine.substring(5);
+        
+        // take off ">" or ">;"
+        int subtract = rawSubPath.endsWith(";") ? 2 : 1;
+        int endIndex = rawSubPath.length() - subtract;
+        rawSubPath = rawSubPath.substring(0, endIndex);
+        
+        String targetPath = targetParentDir.getAbsolutePath() + File.separator + rawSubPath;
+        File targetFile = new File(targetPath);
+                
+        String absolutePath = targetFile.getAbsolutePath();
+        
+        return absolutePath;
+    }
+    
+    private OpenScadParse readOpenScadFile(File infile) throws IOException
+    {
+        OpenScadParse parse = new OpenScadParse();
+        
+        Path inpath;
+        try
+        {
+            inpath = infile.toPath();
+        }
+        catch(InvalidPathException e)
+        {
+            throw new IOException("The parser currently does not support absolute paths like: " + infile.getPath(), e);
+        }
         
         List<String> openscadLines = Files.readAllLines(inpath);
-        
-        List<String> errors = new ArrayList();
-        
-        List<String> initialUseStatements = new ArrayList();
-        List<String> coreNonUseStatments = new ArrayList();
-        
+
         openscadLines.forEach(line -> 
-        {
-            File sourceParent = openscadFile.getParentFile();
-            
+        {            
             // separate the use statements and non-use statements
-            if( isUseStatement(sourceParent, line) )
+            if( isUseStatement(line) )
             {
-                initialUseStatements.add(line);
+                parse.useStatements.add(line);
             }
             else
             {
-                coreNonUseStatments.add(line);
+                parse.otherStatements.add(line);
             }
-        });
+        });        
         
-        
-
-        String interpolatedLine = interpolateLine(sourceParent, line);
-        
-        if(errors.size() > 0)
-        {
-            String message = String.join(System.lineSeparator(), errors);
-            
-            throw new IOException(message);
-        }
-        
-        return sb.toString();
+        return parse;
     }
     
-    private class UseStatementParsing
+    private class OpenScadParse
     {
         public List<String> useStatements;
         
-        public List<String> nonUseStatements;
+        public List<String> otherStatements;
         
-        public UseStatementParsing()
+        public OpenScadParse()
         {
             useStatements = new ArrayList();
-            nonUseStatements = new ArrayList();
+            otherStatements = new ArrayList();
         }
     }
 }

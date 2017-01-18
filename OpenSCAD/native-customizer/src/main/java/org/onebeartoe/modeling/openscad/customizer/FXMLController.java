@@ -31,17 +31,19 @@ public class FXMLController implements Initializable
         label.setText("Hello World!");
         
         String inpath = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\office\\keyboard\\keycaps\\cherry-mx\\letter-key-test.scad";
+        inpath = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\toys\\fidget-spinner\\fidget-spinner.scad";
+        
         File infile = new File(inpath);
         ThingiverseCustomizerService customizerService = new ThingiverseCustomizerService();
 
         try 
         {
-            String interpolatedContent = customizerService.interpolateOpenscad(infile);
+            String interpolatedContent = customizerService.interpolateOpenScad(infile);
             String path = infile.getParent() + File.separator + infile.getName() + "-CUSTOMIZER.scad";
             File outfile = new File(path);
             Path outpath = outfile.toPath();
             Files.write(outpath, interpolatedContent.getBytes() );
-            logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output.");
+            logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output to: " + outpath.toAbsolutePath() );
         } 
         catch (IOException  ex)
         {
