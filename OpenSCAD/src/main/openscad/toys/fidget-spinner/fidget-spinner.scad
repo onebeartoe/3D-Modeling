@@ -18,17 +18,20 @@
  *  Ref: http://customizer.makerbot.com/docs
  */
 
-use <../../external-resources\knurled-surface\aubenc\knurledFinishLib_v2.scad>
-
-use <../../shapes\star\star.scad>;
+use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
+use <../../external-resources/oshw/oshw-logo-800-px.scad>
+use <../../heart/heart.scad>        
+use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
 //Which coin do you want to use?
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
+cutoutName = "OSHW";    // [Aqua Dude, Heart, OSHW, Star]
+
 //How many spokes should the spinner have?
-Number_of_Spokes = 5; //[2,3,4,5,6,7]
+Number_of_Spokes = 6; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
 
 //Flush for easier printing 
@@ -107,6 +110,20 @@ hub_z = flush == 1 ? coin_z*stack : brg_z;
 
 //SpinnerModules
 
+module cutout()
+{
+    if(cutoutName == "Star")
+    {
+    	starThumbnail(height = 10);
+    }
+    else if(cutoutName == "OSHW")
+    {
+        translate(0,0,10)
+        scale([1, 1, 17])
+        oshwLogoThumbnail();
+    }
+}
+
 module dollarHolder() {
 
     translate([0, coin_d / 2 + spoke_y, 0])
@@ -117,8 +134,9 @@ module dollarHolder() {
         xyScale = 0.75;
         translate([0, 0, -5])
         scale([xyScale, xyScale, 1])
-        starThumbnail(height = 10);
-        //			cylinder(d=coin_d,h=holder_z+4,center=true);
+        cutout();
+//        starThumbnail(height = 10);
+//      cylinder(d=coin_d,h=holder_z+4,center=true);
     }
 }
 
