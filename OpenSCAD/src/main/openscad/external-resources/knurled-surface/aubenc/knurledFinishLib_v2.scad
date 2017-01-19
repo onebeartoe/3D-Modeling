@@ -63,8 +63,8 @@ module knurled_cyl(chg, cod, cwd, csh, cdp, fsh, smt)
     clf=360/cfn;
     crn=ceil(chg/csh);
 
-    echo("knurled cylinder max diameter: ", 2*cord);
-    echo("knurled cylinder min diameter: ", 2*cird);
+//    echo("knurled cylinder max diameter: ", 2*cord);
+//    echo("knurled cylinder min diameter: ", 2*cird);
 
 	 if( fsh < 0 )
     {
