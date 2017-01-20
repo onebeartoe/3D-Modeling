@@ -151,7 +151,10 @@ module cutout()
 module dollarHolder() 
 {
     translate([0, coin_d / 2 + spoke_y, 0])
-    difference() {
+    difference() 
+    {
+        // TODO: this next item looks like where the knurl can be swapped out for
+        //       a regular cylinder or rounded cylinder.
         translate([0, 0, -coin_z * stack / 2])
         knurl(k_cyl_hg = holder_z, k_cyl_od = holder_d);
 
@@ -159,8 +162,6 @@ module dollarHolder()
         translate([0, 0, -5])
         scale([xyScale, xyScale, 1])
         cutout();
-//        starThumbnail(height = 10);
-//      cylinder(d=coin_d,h=holder_z+4,center=true);
     }
 }
 
