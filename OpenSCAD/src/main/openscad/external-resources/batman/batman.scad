@@ -1,7 +1,8 @@
 
 module batmanLogo(height=1)
 {
-    color([0.15,0.15,0.15])
+//    color([0.15,0.15,0.15])
+    color("blue")
     linear_extrude(height = height, center = true, convexity = 10, twist = 0)
     difference()
     {
@@ -13,7 +14,8 @@ module batmanLogo(height=1)
         polygon(points=[[-2, -8], [2,-8],[12, 8],[-12, 8] ],paths=[[0,1,2,3]], convexity=10);
     }
     
-    color([0.15,0.15,0.15])
+//    color([0.15,0.15,0.15])
+    color("blue")
     linear_extrude(height = height, center = true, convexity = 10, twist = 0)
     difference()
     {
@@ -63,6 +65,7 @@ module batmanLogo(height=1)
     }
 }
 
+//TODO: make this a proper thumbnail using thumbnail-background.scad
 module batmanLogoThumbnail()
 {
     xyScale = 0.27;
