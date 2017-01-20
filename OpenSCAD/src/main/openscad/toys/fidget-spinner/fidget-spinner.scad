@@ -20,8 +20,9 @@
 
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
-use <../../external-resources/oshw/oshw-logo-800-px.scad>
+use <../../external-resources/oshw/oshw-logo-800-px.scad>;
 use <../../shapes/heart/heart.scad>
+use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
@@ -29,7 +30,7 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-cutoutName = "Adafruit";    // [Adafruit, Aqua Dude, Heart, OSHW, Star]
+cutoutName = "Spur";    // [Adafruit, Aqua Dude, Heart, OSHW, Spur, Star]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 3; //[2,3,4,5,6,7]
@@ -122,6 +123,11 @@ module cutout()
     else if(cutoutName == "Heart")
     {
         heartThumbnail(height=10);
+    }
+    else if(cutoutName == "Spur")
+    {
+        scale([0.17, 0.17, 1])
+        spur(height = 10);
     }
     else if(cutoutName == "Star")
     {

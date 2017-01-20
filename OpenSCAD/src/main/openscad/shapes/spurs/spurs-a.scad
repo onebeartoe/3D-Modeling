@@ -4,9 +4,9 @@
 // SVG element in the Inkscape document by looking for the XML element with
 // the attribute id="inkscape-path-id".
 
-spurs(height=5);
+spur(height=5);
 
-module spurs(height)
+module spur(height=1)
 {
   scale([25.4/90, -25.4/90, 1]) union()
   {

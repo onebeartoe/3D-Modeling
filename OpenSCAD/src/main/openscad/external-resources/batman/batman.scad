@@ -65,8 +65,8 @@ module batmanLogo(height=1)
 
 module batmanLogoThumbnail()
 {
-	xyScale = 0.27;
-	translate([0.4, -0.3, 0])
-	scale([xyScale, xyScale, 2.78])	
-	batmanLogo();
+    xyScale = 0.27;
+    translate([0.4, -0.3, 0])
+    scale([xyScale, xyScale, 2.78])	
+    batmanLogo();
 }
