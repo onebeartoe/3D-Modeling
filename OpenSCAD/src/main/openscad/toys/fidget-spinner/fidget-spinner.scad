@@ -22,6 +22,7 @@ use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/batman/batman.scad>        
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
+use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
@@ -31,10 +32,10 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-cutoutName = "Bat";    // [Adafruit, Aqua Dude, Bat, Heart, OSHW, Spur, Star]
+cutoutName = "Rebel Alliance";    // [Adafruit, Aqua Dude, Bat, Heart, OSHW, Rebel Alliance, Spur, Star]
 
 //How many spokes should the spinner have?
-Number_of_Spokes = 3; //[2,3,4,5,6,7]
+Number_of_Spokes = 2; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
 
 //Flush for easier printing 
@@ -131,6 +132,16 @@ module cutout()
     {
         heartThumbnail(height=10);
     }
+    else if(cutoutName == "Rebel Alliance")
+    {
+        rebelAllianceThumbnail(height=10);
+    }
+    else if(cutoutName == "OSHW")
+    {
+        translate(0,0,10)
+        scale([1, 1, 17])
+        oshwLogoThumbnail();
+    }
     else if(cutoutName == "Spur")
     {
         scale([0.17, 0.17, 1])
@@ -139,12 +150,6 @@ module cutout()
     else if(cutoutName == "Star")
     {
     	starThumbnail(height = 10);
-    }
-    else if(cutoutName == "OSHW")
-    {
-        translate(0,0,10)
-        scale([1, 1, 17])
-        oshwLogoThumbnail();
     }
 }
 

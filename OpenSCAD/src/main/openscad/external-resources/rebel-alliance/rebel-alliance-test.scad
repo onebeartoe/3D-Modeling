@@ -2,6 +2,6 @@
 use <rebel-alliance.scad>
 use <../thumbnail-background.scad>
 
-rebelAllianceThumbnail();
+rebelAllianceThumbnail(height=1);
 
 thumbnailBackground();
