@@ -20,11 +20,12 @@
 
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/aquaman/aquaman-logo.scad>
-use <../../external-resources/batman/batman.scad>        
+use <../../external-resources/batman/batman.scad>
+use <../../external-resources/time-bandits/fidget-outline.scad>        
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
-use <../../external-resources/time-bandits/fidget-outline.scad>
+use <../../external-resources/star-trek/logo/star-trek-logo.scad>
 use <../../shapes/clover/clover.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/pacman/pacman.scad>        
@@ -36,7 +37,7 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-cutoutName = "Fidget (Time Bandits)";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star]
+cutoutName = "Star Trek";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star, Star Trek]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 2; //[2,3,4,5,6,7]
@@ -172,6 +173,13 @@ module cutout()
     else if(cutoutName == "Star")
     {
     	starThumbnail(height = 10);
+    }
+    else if(cutoutName == "Star Trek")
+    {
+        xyScale = 0.35;
+        
+        scale([xyScale, xyScale, 1])
+        Star_Trek_Logo_Blank_fixed();
     }
 }
 
