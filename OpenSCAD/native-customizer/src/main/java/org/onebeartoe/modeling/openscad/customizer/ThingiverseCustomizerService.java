@@ -10,9 +10,18 @@ import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ThingiverseCustomizerService
 {   
+    private Logger logger;
+    
+    public ThingiverseCustomizerService()
+    {
+        logger = Logger.getLogger( getClass().getName() );
+    }
+    
     private boolean isUseStatement(String line)
     {
         String trimmedLine = line.trim();
@@ -32,25 +41,23 @@ public class ThingiverseCustomizerService
         OpenScadParse initialOpenScadParse = readOpenScadFile(targetScadFile);
         
         List<String> uniqueUseStatements = new ArrayList();
-        uniqueUseStatements.addAll(initialOpenScadParse.useStatements);
+//        uniqueUseStatements.addAll(initialOpenScadParse.useStatements);
         
         List<String> unprocessedUseStatements = new ArrayList();
-        unprocessedUseStatements.addAll(uniqueUseStatements);
+        unprocessedUseStatements.addAll(initialOpenScadParse.useStatements);
+//        unprocessedUseStatements.addAll(uniqueUseStatements);
         
         List<String> useStatementsContent = new ArrayList();
         
         while( !unprocessedUseStatements.isEmpty() )
         {
             String useStatement = unprocessedUseStatements.remove(0);
-            
-            File targetParentDir = targetScadFile.getParentFile();
-            String absolutePath = absolutePathOf(targetParentDir, useStatement);
-            
-            if( !uniqueUseStatements.contains(absolutePath) )
+                        
+            if( !uniqueUseStatements.contains(useStatement) )
             {
-                uniqueUseStatements.add(absolutePath);
+                uniqueUseStatements.add(useStatement);
                 
-                File infile = new File(absolutePath);
+                File infile = new File(useStatement);
                 OpenScadParse currentParse = readOpenScadFile(infile);
                 
                 unprocessedUseStatements.addAll(currentParse.useStatements);
@@ -78,7 +85,8 @@ public class ThingiverseCustomizerService
     private String absolutePathOf(File targetParentDir, String useLine) throws IOException
     {
         // take off "use <"
-        String rawSubPath = useLine.substring(5);
+        String rawSubPath = useLine.trim();
+        rawSubPath = rawSubPath.substring(5);
         
         // take off ">" or ">;"
         int subtract = rawSubPath.endsWith(";") ? 2 : 1;
@@ -114,7 +122,21 @@ public class ThingiverseCustomizerService
             // separate the use statements and non-use statements
             if( isUseStatement(line) )
             {
-                parse.useStatements.add(line);
+                File targetParentDir = infile.getParentFile();
+                String absolutePath;
+                try 
+                {
+                    absolutePath = absolutePathOf(targetParentDir, line);
+                } 
+                catch (IOException ex) 
+                {
+                    absolutePath = "unable to process: " + line;
+                    
+                    String message = absolutePath;
+                    logger.log(Level.SEVERE, message, ex);
+                }
+            
+                parse.useStatements.add(absolutePath);
             }
             else
             {
