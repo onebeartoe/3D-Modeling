@@ -19,6 +19,7 @@
  */
 
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
+use <../../external-resources/aquaman/aquaman-logo.scad>
 use <../../external-resources/batman/batman.scad>        
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
@@ -33,7 +34,7 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-cutoutName = "Pacman";    // [Adafruit, Aqua Dude, Bat, Heart, Pacman, OSHW, Rebel Alliance, Spur, Star]
+cutoutName = "Aqua Dude";    // [Adafruit, Aqua Dude, Bat, Heart, Pacman, OSHW, Rebel Alliance, Spur, Star]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 2; //[2,3,4,5,6,7]
@@ -122,6 +123,10 @@ module cutout()
     {
         scale([0.3, 0.3, 5])
         AdaSpinnerFlat_001();
+    }
+    if(cutoutName == "Aqua Dude")
+    {
+        aquamanThumbnail(height=10);
     }
     else if(cutoutName == "Bat")
     {
