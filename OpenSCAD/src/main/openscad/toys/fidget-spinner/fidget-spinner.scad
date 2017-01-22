@@ -24,6 +24,7 @@ use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../shapes/heart/heart.scad>
+use <../../shapes/pacman/pacman.scad>        
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
@@ -32,7 +33,7 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-cutoutName = "Rebel Alliance";    // [Adafruit, Aqua Dude, Bat, Heart, OSHW, Rebel Alliance, Spur, Star]
+cutoutName = "Pacman";    // [Adafruit, Aqua Dude, Bat, Heart, Pacman, OSHW, Rebel Alliance, Spur, Star]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 2; //[2,3,4,5,6,7]
@@ -141,6 +142,11 @@ module cutout()
         translate(0,0,10)
         scale([1, 1, 17])
         oshwLogoThumbnail();
+    }
+    else if(cutoutName == "Pacman")
+    {
+        translate([0, 0, 8])
+        pacmanThumbnail(height = 15);
     }
     else if(cutoutName == "Spur")
     {

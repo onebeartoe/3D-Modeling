@@ -8,10 +8,10 @@ module heart(height=1)
 
 module heartThumbnail(height=1)
 {	
-	xyScale = 0.725;
-	translate([0, -1.5, 0])
-	scale([xyScale, xyScale, 1])
-	heart(height);
+    xyScale = 0.725;
+    translate([0, -1.5, 0])
+    scale([xyScale, xyScale, 1])
+    heart(height);
 }
 
 module flatHeart()
