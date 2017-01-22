@@ -8,9 +8,6 @@
 // MODULE AdaSpinnerFlat_001
 /////////////////////
 
-// Examples/Tests
-AdaSpinnerFlat_001();
-
 // Functions and Utilities
 function AdaSpinnerFlat_001_dimX() = 91.16;
 function AdaSpinnerFlat_001_dimY() = 86.95;

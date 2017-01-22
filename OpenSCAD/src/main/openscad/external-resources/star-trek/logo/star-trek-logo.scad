@@ -8,9 +8,6 @@
 // MODULE Star_Trek_Logo_Blank_fixed
 /////////////////////
 
-// Examples/Tests
-Star_Trek_Logo_Blank_fixed();
-
 // Functions and Utilities
 function Star_Trek_Logo_Blank_fixed_dimX() = 49.71;
 function Star_Trek_Logo_Blank_fixed_dimY() = 79.56;
