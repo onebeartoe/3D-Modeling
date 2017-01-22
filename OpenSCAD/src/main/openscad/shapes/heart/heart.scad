@@ -16,11 +16,11 @@ module heartThumbnail(height=1)
 
 module flatHeart()
 {
-	square(20, center = true);
-	
-	translate([10,0,0])	
-	circle(10, center = true, color="red" );
-	
-	translate([0,10,0]) 
-	circle(10, center = true);
+    square(20, center = true);
+
+    translate([10,0,0])	
+    circle(10, center = true, color="red" );
+
+    translate([0,10,0]) 
+    circle(10, center = true);
 }
