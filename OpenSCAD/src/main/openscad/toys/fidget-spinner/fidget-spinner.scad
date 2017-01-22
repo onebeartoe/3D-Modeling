@@ -39,6 +39,8 @@ coin = coin_list;
 
 cutoutName = "Star Trek";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star, Star Trek]
 
+cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
+
 //How many spokes should the spinner have?
 Number_of_Spokes = 2; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
@@ -183,6 +185,22 @@ module cutout()
     }
 }
 
+module cutoutHolder()
+{
+    if(cutoutHolderType == "Cylinder")
+    {
+        cylinder(h=holder_z, d=holder_d);
+    }
+    else if( cutoutHolderType == "Knurl")
+    {
+        knurl(k_cyl_hg = holder_z, k_cyl_od = holder_d);
+    }
+    else
+    {
+        // Rounded Cylinder
+    }
+}
+
 module dollarHolder() 
 {
     translate([0, coin_d / 2 + spoke_y, 0])
@@ -191,7 +209,7 @@ module dollarHolder()
         // TODO: this next item looks like where the knurl can be swapped out for
         //       a regular cylinder or rounded cylinder.
         translate([0, 0, -coin_z * stack / 2])
-        knurl(k_cyl_hg = holder_z, k_cyl_od = holder_d);
+        cutoutHolder();
 
         xyScale = 0.75;
         translate([0, 0, -5])
