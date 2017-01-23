@@ -33,10 +33,10 @@ public class OpenScadTestSuite
     
     private OpenScadTestSuite()
     {
-		String name = getClass().getName(); 
-		logger = Logger.getLogger(name);
-		
-		pngGenerator = new PngGenerator();
+        String name = getClass().getName(); 
+        logger = Logger.getLogger(name);
+
+        pngGenerator = new PngGenerator();
     }
     
     /**
