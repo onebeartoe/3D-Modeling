@@ -10,7 +10,7 @@
  * https://twitter.com/onebeartoe
  * https://www.youtube.com/user/onebeartoe/videos
  * 
- *  Originally from: http://www.thingiverse.com/thing:1937473 
+ *  Originally from: http://www.thingiverse.com/thing:1937473
  *  Original Author: Geoff Buttsworth
  *  Original Filename: moneySpinner02
  *  Borrowed from Version: 0.5
@@ -30,7 +30,7 @@ use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/star-trek/logo/star-trek-logo.scad>
 use <../../shapes/clover/clover.scad>
 use <../../shapes/heart/heart.scad>
-use <../../shapes/pacman/pacman.scad>        
+use <../../shapes/pacman/pacman.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
@@ -54,6 +54,7 @@ coin = coin_list;
 Flush_or_Raised_Hub = 1; //[0:Hub,1:Flush]
 flush = Flush_or_Raised_Hub; //Flush is easier to print, the hub is height of bearing and may print with support
 
+// TODO: Remove unused (coin) code.
 //Allocate coin data
 
 // !!!!!to make the spoke count this is needed, so far.  or maybe not!!!!
