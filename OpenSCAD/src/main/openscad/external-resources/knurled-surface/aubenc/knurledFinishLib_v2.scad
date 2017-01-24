@@ -5,7 +5,7 @@
  *
  * This script is licensed under the Public Domain license.
  *
- * http://www.thingiverse.com/thing:31122
+ * http://www.thingiverse.com/thing:32122
  *
  * Derived from knurledFinishLib.scad (also Public Domain license) available at
  *
