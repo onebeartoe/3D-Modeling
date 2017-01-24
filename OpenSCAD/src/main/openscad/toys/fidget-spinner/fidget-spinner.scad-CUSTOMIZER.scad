@@ -1,4 +1,6 @@
 
+// preview[view:south, tilt:top]
+
 /**
  * This script renders onebeartoe Fidget Spinners!
  * 
@@ -20,17 +22,20 @@
 
 
 /* [Spinner_Parameters] */
+
+cutoutName = "Star";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star, Star Trek]
+
+cutoutHolderType = "Knurl"; // [Cylinder, Knurl]
+
+//How many spokes should the spinner have?
+Number_of_Spokes = 3; //[2,3,4,5,6,7]
+spokeNumber = Number_of_Spokes;
+
+/* [Hidden] */
+
 //Which coin do you want to use?
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
-
-cutoutName = "Fidget (Time Bandits)";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star, Star Trek]
-
-cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
-
-//How many spokes should the spinner have?
-Number_of_Spokes = 2; //[2,3,4,5,6,7]
-spokeNumber = Number_of_Spokes;
 
 //Flush for easier printing 
 Flush_or_Raised_Hub = 1; //[0:Hub,1:Flush]
