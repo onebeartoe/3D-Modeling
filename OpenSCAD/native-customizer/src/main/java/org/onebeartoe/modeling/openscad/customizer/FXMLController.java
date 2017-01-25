@@ -9,10 +9,11 @@ import java.nio.file.Path;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.onebeartoe.application.DesktopApplication;
@@ -36,8 +37,8 @@ public class FXMLController implements Initializable, DesktopApplication
     
     private String openScadFile;
     
-//    @FXML
-//    private Label label;
+    @FXML
+    private ImageView openscadPreviewImage;
     
     private void generateCutomizerFile()
     {
@@ -92,10 +93,30 @@ public class FXMLController implements Initializable, DesktopApplication
         preferencesService = new JavaPreferencesService(this);
         String defaultValue = null;
         openScadFile = preferencesService.get(NativeCustomizerPreferences.OPENSCAD_FILE, defaultValue);
+        String message = "OpenSCAD file: " + openScadFile;
+        logger.log(Level.INFO, message);
         
         uiServices = new JavaFxGuiServices();
         
         customizerService = new ThingiverseCustomizerService();
+    }
+    
+    private void savePreference(NativeCustomizerPreferences key, String value)
+    {
+        String preferenceName = key.name();
+        try 
+        {       
+            preferencesService.saveProperty(preferenceName, value);
+        } 
+        catch (BackingStoreException ex) 
+        {
+            String message = ex.getMessage();
+            
+            logger.log(Level.SEVERE, message, ex);
+            
+            String title = "Error Saving Preference";
+            uiServices.infoMessage(message, title);
+        }
     }
 
     @FXML 
@@ -108,8 +129,7 @@ public class FXMLController implements Initializable, DesktopApplication
         if (file != null)
         {
             // save the current file to preferences
-            String preferenceName = NativeCustomizerPreferences.OPENSCAD_FILE.name();
-            preferencesService.saveProperty(preferenceName, file.getAbsolutePath() );
+            savePreference(NativeCustomizerPreferences.OPENSCAD_FILE, file.getAbsolutePath() );
         }
     }
 }

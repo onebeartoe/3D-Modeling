@@ -9,12 +9,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.modeling.openscad.customizer.FXMLController">
     <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0">
          <bottom>
               <Button fx:id="button" onAction="#handleButtonAction" text="Generate Customizer Version" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="openscadPreviewImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
          <top>
             <Button mnemonicParsing="false" onAction="#selectOpenScadFile" text="Select OpenSCAD Source" BorderPane.alignment="CENTER" />
