@@ -11,7 +11,7 @@
     <children>
       <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0">
          <bottom>
-              <Button fx:id="button" onAction="#handleButtonAction" text="Generate Customizer Version" BorderPane.alignment="CENTER" />
+              <Button fx:id="button" onAction="#handleButtonAction" text="%interpolateButton.text" BorderPane.alignment="CENTER" />
          </bottom>
          <center>
             <ImageView fx:id="openscadPreviewImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />

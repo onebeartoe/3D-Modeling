@@ -51,7 +51,7 @@ public class FXMLController implements Initializable, DesktopApplication
             Path outpath = outfile.toPath();
             Files.write(outpath, interpolatedContent.getBytes() );
             logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output to: " + outpath.toAbsolutePath() );
-        } 
+        }
         catch (IOException  ex)
         {
             logger.log(Level.SEVERE, ex.getMessage(), ex);

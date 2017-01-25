@@ -1,6 +1,8 @@
 
 package org.onebeartoe.modeling.openscad.customizer;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,9 @@ public class MainApp extends Application
     @Override
     public void start(Stage stage) throws Exception 
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
+        URL sceneUrl = getClass().getResource("/fxml/Scene.fxml");
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("gui");
+        Parent root = FXMLLoader.load(sceneUrl, resourceBundle);
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
