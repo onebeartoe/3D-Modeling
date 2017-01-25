@@ -21,6 +21,8 @@ import org.onebeartoe.application.JavaPreferencesService;
 import org.onebeartoe.application.PreferencesService;
 import org.onebeartoe.application.ui.GraphicalUserInterfaceServices;
 import org.onebeartoe.application.ui.JavaFxGuiServices;
+import org.onebeartoe.modeling.openscad.customizer.NativeCustomizerPreferences;
+import org.onebeartoe.modeling.openscad.customizer.ThingiverseCustomizerService;
 import org.onebeartoe.modeling.openscad.test.suite.PngGenerator;
 
 public class FXMLController implements Initializable, DesktopApplication 

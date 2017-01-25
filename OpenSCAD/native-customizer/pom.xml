@@ -35,6 +35,12 @@
         
         <dependency>
             <groupId>org.onebeartoe.modeling</groupId>
+            <artifactId>openscad</artifactId>
+            <version>0.0.1-SNAPSHOT</version>            
+        </dependency>
+        
+        <dependency>
+            <groupId>org.onebeartoe.modeling</groupId>
             <artifactId>test-suite</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

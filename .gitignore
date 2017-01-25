@@ -6,3 +6,4 @@
 **/*.classpath
 **/.settings/
 /OpenSCAD/native-customizer/target/
+/OpenSCAD/inline-tool/target/
