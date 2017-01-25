@@ -21,7 +21,7 @@ import org.onebeartoe.application.JavaPreferencesService;
 import org.onebeartoe.application.PreferencesService;
 import org.onebeartoe.application.ui.GraphicalUserInterfaceServices;
 import org.onebeartoe.application.ui.JavaFxGuiServices;
-import org.onebeartoe.modeling.openscad.customizer.NativeCustomizerPreferences;
+import org.onebeartoe.modeling.openscad.customizer.OpenScadPreferences;
 import org.onebeartoe.modeling.openscad.customizer.ThingiverseCustomizerService;
 import org.onebeartoe.modeling.openscad.test.suite.PngGenerator;
 
@@ -94,7 +94,7 @@ public class FXMLController implements Initializable, DesktopApplication
         
         preferencesService = new JavaPreferencesService(this);
         String defaultValue = null;
-        openScadFile = preferencesService.get(NativeCustomizerPreferences.OPENSCAD_FILE, defaultValue);
+        openScadFile = preferencesService.get(OpenScadPreferences.OPENSCAD_FILE, defaultValue);
         String message = "OpenSCAD file: " + openScadFile;
         logger.log(Level.INFO, message);
         
@@ -103,7 +103,7 @@ public class FXMLController implements Initializable, DesktopApplication
         customizerService = new ThingiverseCustomizerService();
     }
     
-    private void savePreference(NativeCustomizerPreferences key, String value)
+    private void savePreference(OpenScadPreferences key, String value)
     {
         String preferenceName = key.name();
         try 
@@ -131,7 +131,7 @@ public class FXMLController implements Initializable, DesktopApplication
         if (file != null)
         {
             // save the current file to preferences
-            savePreference(NativeCustomizerPreferences.OPENSCAD_FILE, file.getAbsolutePath() );
+            savePreference(OpenScadPreferences.OPENSCAD_FILE, file.getAbsolutePath() );
         }
     }
 }
