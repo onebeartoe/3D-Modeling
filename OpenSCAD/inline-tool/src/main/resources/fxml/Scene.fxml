@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,18 +8,38 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="462.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.modeling.openscad.inliner.FXMLController">
+<AnchorPane id="AnchorPane" prefHeight="114.0" prefWidth="573.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.onebeartoe.modeling.openscad.inliner.FXMLController">
     <children>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.leftAnchor="0.0">
-         <bottom>
-              <Button fx:id="button" onAction="#handleButtonAction" text="%interpolateButton.text" BorderPane.alignment="CENTER" />
-         </bottom>
-         <center>
-            <ImageView fx:id="openscadPreviewImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-         </center>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Button mnemonicParsing="false" onAction="#selectOpenScadFile" text="Select OpenSCAD Source" BorderPane.alignment="CENTER" />
+            <BorderPane prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <VBox BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="%currentFileTextFieldLabel.text" />
+                        <BorderPane>
+                           <center>
+                              <TextField fx:id="currentFileTextField" BorderPane.alignment="CENTER" />
+                           </center>
+                           <right>
+                              <Button mnemonicParsing="false" onAction="#selectOpenScadFile" text="Select OpenSCAD Source" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="10.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </center>
+            </BorderPane>
          </top>
+         <right>
+              <Button fx:id="button" onAction="#handleButtonAction" text="%interpolateButton.text" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
       </BorderPane>
     </children>
 </AnchorPane>

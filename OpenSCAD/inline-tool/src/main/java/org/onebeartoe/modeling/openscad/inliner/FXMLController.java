@@ -10,10 +10,12 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.BackingStoreException;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.onebeartoe.application.DesktopApplication;
@@ -40,7 +42,9 @@ public class FXMLController implements Initializable, DesktopApplication
     private String openScadFile;
     
     @FXML
-    private ImageView openscadPreviewImage;
+    private TextField currentFileTextField;
+    
+    private ResourceBundle resourceBundle;
     
     private void generateCutomizerFile()
     {
@@ -68,11 +72,6 @@ public class FXMLController implements Initializable, DesktopApplication
     private void handleButtonAction(ActionEvent event)
     {
         System.out.println("You clicked me!");
-//        label.setText("Hello World!");
-        
-//        String inpath = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\office\\keyboard\\keycaps\\cherry-mx\\letter-key-test.scad";
-//        inpath = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\toys\\fidget-spinner\\fidget-spinner.scad";
-//        File infile = new File(inpath);
 
         if(openScadFile == null)
         {
@@ -87,20 +86,36 @@ public class FXMLController implements Initializable, DesktopApplication
     }
     
     @Override
-    public void initialize(URL url, ResourceBundle rb) 
+    public void initialize(URL url, ResourceBundle rb)
     {
+        this.resourceBundle = rb;
+        
         logger = Logger.getLogger(getClass().getName() );
         pg = new PngGenerator();
         
         preferencesService = new JavaPreferencesService(this);
-        String defaultValue = null;
-        openScadFile = preferencesService.get(OpenScadPreferences.OPENSCAD_FILE, defaultValue);
-        String message = "OpenSCAD file: " + openScadFile;
-        logger.log(Level.INFO, message);
+        restorePreferences();
+        
+        currentFileTextField.setText(openScadFile);
         
         uiServices = new JavaFxGuiServices();
         
         customizerService = new ThingiverseCustomizerService();
+    }
+    
+    private void restorePreferences()
+    {
+        String defaultValue = null;
+        openScadFile = preferencesService.get(OpenScadPreferences.OPENSCAD_FILE, defaultValue);
+     
+        if(openScadFile == null)
+        {
+            String noSelectionMessage = resourceBundle.getString("currentFileTextField.noFileSelected");
+            openScadFile = noSelectionMessage;
+        }
+    
+        String message = "OpenSCAD file: " + openScadFile;
+        logger.log(Level.INFO, message);
     }
     
     private void savePreference(OpenScadPreferences key, String value)
@@ -130,6 +145,8 @@ public class FXMLController implements Initializable, DesktopApplication
         File file = fc.showOpenDialog(dialog);
         if (file != null)
         {
+            currentFileTextField.setText(file.getAbsolutePath());
+            
             // save the current file to preferences
             savePreference(OpenScadPreferences.OPENSCAD_FILE, file.getAbsolutePath() );
         }
