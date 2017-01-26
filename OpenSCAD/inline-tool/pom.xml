@@ -18,7 +18,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>org.onebeartoe.modeling.openscad.customizer.MainApp</mainClass>
+        <mainClass>org.onebeartoe.modeling.openscad.inliner.MainApp</mainClass>
     </properties>
 
     <organization>
