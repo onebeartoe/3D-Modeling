@@ -7,3 +7,4 @@
 **/.settings/
 /OpenSCAD/native-customizer/target/
 /OpenSCAD/inline-tool/target/
+/OpenSCAD/opensacd-services/target/

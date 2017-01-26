@@ -35,7 +35,7 @@
         
         <dependency>
             <groupId>org.onebeartoe.modeling</groupId>
-            <artifactId>openscad</artifactId>
+            <artifactId>opensacd-services</artifactId>
             <version>0.0.1-SNAPSHOT</version>            
         </dependency>        
         
