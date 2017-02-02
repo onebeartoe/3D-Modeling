@@ -23,6 +23,7 @@
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/aquaman/aquaman-logo.scad>
 use <../../external-resources/batman/batman.scad>
+use <../../external-resources/corporate/ssi/ssi-logo/ssi-logo-from-inkscape-b.scad>
 use <../../external-resources/time-bandits/fidget-outline.scad>        
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
@@ -36,7 +37,7 @@ use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
 
-cutoutName = "Star";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, Spur, Star, Star Trek]
+cutoutName = "Star";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
 
 cutoutHolderType = "Knurl"; // [Cylinder, Knurl]
 
@@ -172,6 +173,10 @@ module cutout()
     {
         translate([0, 0, 8])
         pacmanThumbnail(height = 15);
+    }
+    else if(cutoutName == "SSI")
+    {
+        ssilogofrominkscapebThumbnail(height=10);
     }
     else if(cutoutName == "Spur")
     {
