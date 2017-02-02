@@ -41,11 +41,9 @@ public class ThingiverseCustomizerService
         OpenScadParse initialOpenScadParse = readOpenScadFile(targetScadFile);
         
         List<String> uniqueUseStatements = new ArrayList();
-//        uniqueUseStatements.addAll(initialOpenScadParse.useStatements);
         
         List<String> unprocessedUseStatements = new ArrayList();
         unprocessedUseStatements.addAll(initialOpenScadParse.useStatements);
-//        unprocessedUseStatements.addAll(uniqueUseStatements);
         
         List<String> useStatementsContent = new ArrayList();
         
