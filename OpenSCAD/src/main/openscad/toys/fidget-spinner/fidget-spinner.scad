@@ -276,7 +276,6 @@ module minus()
 }
 
 //Render
-
 difference() 
 {
     plus();
