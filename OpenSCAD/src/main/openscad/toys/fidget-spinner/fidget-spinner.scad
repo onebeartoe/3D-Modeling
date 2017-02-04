@@ -238,7 +238,13 @@ module spoke() {
     cube([spoke_x, spoke_y, spoke_z], center = true);
 }
 
-module brgVoid() {
+/**
+ * This is the cutout for the 608ZZ bearing.
+ * 
+ * This moduile was originally named brgVoid()
+ */
+module centerCutout() 
+{
     cylinder(h = brg_z + 2, d = brg_d, center = true);
 }
 
@@ -264,20 +270,19 @@ module spinner() {
 
 //Finalize
 
-module plus() 
+module fidget() 
 {
     hub();
     spinner();
 }
 
-module minus() 
+module fidgetSpinner()
 {
-    brgVoid();
-}
+    //Render
+    difference() 
+    {
+        fidget();
 
-//Render
-difference() 
-{
-    plus();
-    minus();
+        centerCutout();
+    }
 }
