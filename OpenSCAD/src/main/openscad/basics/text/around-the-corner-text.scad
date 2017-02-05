@@ -5,19 +5,22 @@
 
 use <text-extrude.scad>
 
-module textWall(text = "cash me outside", length = 20, w = 10)
+module textWall(text = "this is a text", length = 20, width = 10, leftRightMargin=2)
 {
-    difference() 
+    font = "Bauhaus 93:style=Regular";
+    
+    union() 
+//    difference() 
     {
-        textXOffset = 2;
+        textXOffset = leftRightMargin;
         cubeLength = length + (textXOffset * 2);
-        cubeWidth = w;        
+        cubeWidth = width;
         cube([cubeLength, cubeWidth, 1]);
 
         color("white")
-            translate([textXOffset, w / 2.0, 0.6])
-                linear_extrude(1, convexity = 4)
-                    resize([length, 0, 0], auto = true)
-                        text(text=text, valign = "center");
+        translate([textXOffset, width / 2.0, 0.6])
+        linear_extrude(1, convexity = 4)
+        resize([length, 0, 0], auto = true)
+        text(text=text, valign = "center", font = font, size=6);
     }
 }
