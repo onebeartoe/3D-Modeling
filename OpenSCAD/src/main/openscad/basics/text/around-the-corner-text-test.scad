@@ -19,7 +19,7 @@ textLeftRightMargin = 1; //[1,2,3,4,5,6,7]
 
 union()
 {
-    color("blue")
+//    color("blue")
     rotate([90, 0, 0])
     textWall(text=leftText,
              length = leftTextWallLength, width = textWallWidth,
