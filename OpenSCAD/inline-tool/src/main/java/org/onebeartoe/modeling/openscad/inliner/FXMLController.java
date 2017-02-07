@@ -143,6 +143,8 @@ public class FXMLController implements Initializable, DesktopApplication
         File file = fc.showOpenDialog(dialog);
         if (file != null)
         {
+            openScadFile = file.getAbsolutePath();
+            
             currentFileTextField.setText(file.getAbsolutePath());
             
             // save the current file to preferences
