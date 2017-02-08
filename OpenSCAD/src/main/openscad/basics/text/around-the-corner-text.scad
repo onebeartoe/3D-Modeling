@@ -14,6 +14,7 @@ module textWall(text = "this is a text", length = 20, width = 10, leftRightMargi
         textXOffset = leftRightMargin;
         cubeLength = length + (textXOffset * 2);
         cubeWidth = width;
+        color("blue")
         cube([cubeLength, cubeWidth, 1]);
 
         color("white")
