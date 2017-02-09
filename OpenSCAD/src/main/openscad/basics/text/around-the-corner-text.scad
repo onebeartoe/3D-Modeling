@@ -5,9 +5,13 @@
 
 use <text-extrude.scad>
 
-module textWall(text = "this is a text", length = 20, width = 10, leftRightMargin=2, fontSize = 6)
+module textWall(text = "this is a text", 
+                length = 20, width = 10, 
+                leftRightMargin=2, 
+                fontSize = 6,
+                fontName = "Bauhaus 93:style=Regular")
 {
-    font = "Bauhaus 93:style=Regular";
+    font = fontName;
     
     union()
     {
