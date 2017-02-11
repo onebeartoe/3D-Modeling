@@ -43,7 +43,7 @@ module trollHead(stlPath)
         originalTroll(stlPath);
         
 //        color("blue")
-        translate([21, 295, 131])
+        translate([21, 295, 135])
 //        translate([3, 295, 0])
         sphere(r=69);
 //        sphere(r=69);
@@ -53,18 +53,30 @@ module trollHead(stlPath)
 
 module twoHeadedTroll(stlPath)
 {
-    color("green")
+//    color("green")
     union()
     {
+        s = 0.7;
+        scale = [s, s, s];
+        
+        headX = 10;
+        rightHeadY = 285;
+        headZ = 20;
+        
         // left head
-        translate([0, 260, 0])
-        rotate([0,-10,0])
-        trollHead(stlPath);    
+        color("yellow")
+        translate([headX, rightHeadY + 45, headZ])
+        scale(scale)
+        rotate([-1,-10,0])                
+        trollHead(stlPath);
 
         // right head
-        rotate([3,-10,0])
-        translate([0, 195, 0])        
-        trollHead(stlPath);    
+        color("red")
+        translate([headX, rightHeadY, headZ])
+        scale(scale)                
+        rotate([-1,-10,0])
+//        rotate([3,-10,0])
+        trollHead(stlPath);
 
         // body
         // two headed troll
