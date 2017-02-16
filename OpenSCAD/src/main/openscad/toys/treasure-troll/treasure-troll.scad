@@ -1,20 +1,6 @@
 
 headCutoutRadius = 19;
 
-module headlessTroll(stlPath, cutHeight)
-{
-    trollY = 140;
-    difference()
-    {
-        translate([0, trollY, 0])
-        originalTroll(stlPath);
-
-        color("green")
-        translate([-17, 132, 58.5])
-        headRemover();
-    }
-}
-
 module headRemover()
 {
     difference()
@@ -28,6 +14,29 @@ module headRemover()
                  h=129,
                  $fn=60);
     }
+}
+
+module headlessTroll(stlPath, cutHeight)
+{
+    trollY = 140;
+    difference()
+    {
+        translate([0, trollY, 0])
+        originalTroll(stlPath);
+
+        color("green")
+        translate([-17, 132, 58.5])
+        headRemover();
+        
+        // remove the left overs
+        
+//    }
+    
+		color("orange")
+		translate([21, 172, 74])
+		rotate([0,20,0])
+		cube([15, 30, 5]);
+	}
 }
 
 // Jesse Troll?
