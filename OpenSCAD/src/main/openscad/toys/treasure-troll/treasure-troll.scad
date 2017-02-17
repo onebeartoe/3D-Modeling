@@ -108,17 +108,27 @@ module twoHeadedTroll(stlPath)
         
         twoHeadedTranslateY = 340;
         
-        // neck part
+        // font neck part
         neckY = twoHeadedTranslateY + 183.5;
-        neckRadius = headCutoutRadius - 9;
-        translate([22, neckY-9, 68])
-//        translate([23, neckY, 68])
+        neckRadius = headCutoutRadius - 2.3;
+        translate([23.9, neckY - 9.5, 63.7])
         rotate([90,0,0])
-//        cylinder(r=neckRadius, 
-//                 h=22,
-//                 $fn=60);
-        sphere(r=neckRadius + 7,
-               $fn=80);
+        sphere(r=neckRadius,
+               $fn=100);
+        
+        // back left neck part
+        color("blue")
+        translate([15, neckY - 5, 67.5])
+        rotate([90,0,0])
+        sphere(r=8,
+               $fn=100);
+
+        // back right neck part
+        color("green")
+        translate([16, neckY - 17, 67.5])
+        rotate([90,0,0])
+        sphere(r=9,
+               $fn=100);        
 
         // body
         // two headed troll
