@@ -1,7 +1,8 @@
 
 use <treasure-troll.scad>
 
-stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\treasure-troll\\ercin-gunduz\\troll-doll-planter-1.stl";
+// This next commented STL slowed OpenSCAD too much.  So the Blender decimate too was used to reduce the number of faces.
+//stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\treasure-troll\\ercin-gunduz\\troll-doll-planter-1.stl";
 stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\treasure-troll\\ercin-gunduz\\treasure-troll-stl-to-openscad-via-blender-and-back-to-stl-2.stl";
 
 showOriginal  = 0;
@@ -11,7 +12,7 @@ showTwoHeaded = 1;
 
 if(showOriginal == 1)
 {
-    originalTrollWithBase(stlPath);
+    originalTroll(stlPath);
 }
 
 if(showHeadless == 1)

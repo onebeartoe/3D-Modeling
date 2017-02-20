@@ -28,15 +28,12 @@ module headlessTroll(stlPath, cutHeight)
         translate([-17, 132, 58.5])
         headRemover();
         
-        // remove the left overs
-        
-//    }
-    
-		color("orange")
-		translate([21, 172, 74])
-		rotate([0,20,0])
-		cube([15, 30, 5]);
-	}
+        // remove the left overs    
+        color("orange")
+        translate([21, 172, 74])
+        rotate([0,20,0])
+        cube([15, 30, 5]);
+    }
 }
 
 // Jesse Troll?
@@ -131,7 +128,6 @@ module twoHeadedTroll(stlPath)
                $fn=100);        
 
         // body
-        // two headed troll
         twoHeadedTranslate = [0, twoHeadedTranslateY, 0];
         color("pink")
         translate(twoHeadedTranslate)
