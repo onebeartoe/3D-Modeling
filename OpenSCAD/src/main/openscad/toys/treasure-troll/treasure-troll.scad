@@ -40,7 +40,9 @@ module headlessTroll(stlPath, cutHeight)
 module originalTroll(stlPath)
 {
     translate([-20,-40,0])
-    import(stlPath);
+    import(stlPath, convexity=10);   // Convexity is used when OpenSCAD imports an
+                                     // STL file, so that no blank spots appear in the preview.
+                                     // RTFM: https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/STL_Import_and_Export
 }
 
 /**
