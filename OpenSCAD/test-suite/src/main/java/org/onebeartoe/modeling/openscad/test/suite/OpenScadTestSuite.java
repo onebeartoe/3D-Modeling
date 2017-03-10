@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -101,24 +102,6 @@ public class OpenScadTestSuite
 	
 	return errorFiles;
     }
-    
-    private String determinePath(String [] args)
-    {
-	String path;
-	
-        if (args.length > 1)
-        {
-            // a parameter besides the path was given, presumably for baseline generation
-            path = args[1];
-        }
-        else
-        {
-            // assume the request is to run the test suite
-            path = args[0];
-        }
-        
-        return path;
-    }
 
     private void generateBaselines() throws IOException, InterruptedException
     {
@@ -147,12 +130,22 @@ public class OpenScadTestSuite
         }
         else
         {
+            printCommandLineArguments(args);
+            
             OpenScadTestSuite testSuite = new OpenScadTestSuite();
             testSuite.serviceRequest(args);
         }
     }
+    
+    private static void printCommandLineArguments(String [] args)
+    {
+        System.out.println("Commandline args:");
+        Stream<String> stream = Arrays.stream(args);
+        stream.forEach( System.out::println );
+        System.out.println();
+    }
 
-    private static void printHelp() throws URISyntaxException, IOException
+    private static void printHelp() throws Exception // URISyntaxException, IOException
     {
         StringBuilder message = new StringBuilder();
 
@@ -177,7 +170,7 @@ public class OpenScadTestSuite
         System.out.println(message);
     }
 
-    private void runTestSuite(String[] args) throws Throwable
+    private void runTestSuite() throws Exception
     {
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
@@ -222,29 +215,76 @@ public class OpenScadTestSuite
         }
     }
 
-    private void serviceRequest(String[] args) throws Throwable
-    {
-        String path = determinePath(args);
-
-        OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
-        Path inpath = FileSystems.getDefault().getPath(path);
-        openscadPaths = openScadFinder.getFiles(inpath);
-
-        if (args.length > 1)
+    private void serviceRequest(String[] args) throws Exception //throws Throwable
+    {        
+        RunMode mode;
+        String path;
+        
+        if(args.length == 0)
         {
-            if (args[0].equals("--generateBaselines"))
+            printHelp();
+        }
+        else 
+        {
+            // at least one command line argument exists
+            if( args[0].equals("--generateBaselines") )
             {
-                generateBaselines();
+                mode = RunMode.GENERATE_BASELINES;
+                
+                if(args.length > 1)
+                {
+                    // at least two arguments exists, use the second as the path 
+                    
+                    path = args[1];
+                }
+                else
+                {
+                    // the 'generate baselines' option was given, use the current directory as the path
+                    
+                    path = ".";
+                }
             }
             else
             {
-                System.err.println("An unknown parameter was encountered: " + args[0]);
+                mode = RunMode.RUN_TEST_SUITE;
+                
+                // use the first argument as the path;
+                path = args[0];
+            }
+
+            OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+            Path inpath = FileSystems.getDefault().getPath(path);
+            
+            try
+            {
+                openscadPaths = openScadFinder.getFiles(inpath);
+
+                if(mode == RunMode.GENERATE_BASELINES)
+                {
+                    generateBaselines();
+                }
+                else
+                {
+                    // the mode is 'run test suite'
+                    runTestSuite();
+                }                
+            }
+            catch(NoSuchFileException nsfe)
+            {
                 printHelp();
+                
+                nsfe.printStackTrace();
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
             }
         }
-        else
-        {
-            runTestSuite(args);
-        }
+    }
+    
+    private enum RunMode
+    {
+        GENERATE_BASELINES,
+        RUN_TEST_SUITE
     }
 }
