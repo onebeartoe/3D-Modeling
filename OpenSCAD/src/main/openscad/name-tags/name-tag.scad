@@ -17,7 +17,6 @@
 textColor = "white"; // [pink, red, black, white, yellow, blue, green]
 letterThickness = 3; // [1 : 15]
 
-
 /* [Icons] */
 
 // leftIconType and rightIconType are passed to the oneIcon() module
@@ -90,17 +89,19 @@ namematrix =
 
 fudge = 0.1;
 
-// ************* Executable part *************
 use <write/Write.scad>	// remember to download write.scad and fonts
 
-union()
-{
-    nametag_assembly();
-    
-    icons();
-}
-
 // *************  Nametag Modules *************
+
+module nametag()
+{
+    union()
+    {
+        nametag_assembly();
+
+        icons();
+    }    
+}
 
 module nametag_assembly() 
 {
