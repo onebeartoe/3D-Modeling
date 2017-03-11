@@ -7,7 +7,6 @@
 //
 //  Programmed by Fryns - March 2014
 
-
 // Adapted by Roberto Marquez - onebeartoe - 2015
 
 // Uses Write.scad by HarlanDMii, published on Thingiverse 18-Jan-2012 (thing:16193)	 

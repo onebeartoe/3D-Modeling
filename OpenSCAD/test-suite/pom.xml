@@ -18,7 +18,6 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>org.onebeartoe.juke.ui.JukeMain</mainClass>
     </properties>    
     
     <dependencies>
