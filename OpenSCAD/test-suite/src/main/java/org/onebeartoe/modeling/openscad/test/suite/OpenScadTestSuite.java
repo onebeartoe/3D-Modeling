@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -60,7 +59,6 @@ public class OpenScadTestSuite
         	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
         	
         	String systemCommand = "diff " + baseline + " " + proposedBaseline;
-//                Commander commander = new Commander(systemCommand);
 
                 try 
                 {
@@ -130,6 +128,7 @@ public class OpenScadTestSuite
         }
         else
         {
+            //TODO: add a timestamps to show a total duration of the test run
             printCommandLineArguments(args);
             
             OpenScadTestSuite testSuite = new OpenScadTestSuite();
@@ -145,7 +144,7 @@ public class OpenScadTestSuite
         System.out.println();
     }
 
-    private static void printHelp() throws Exception // URISyntaxException, IOException
+    private static void printHelp() throws Exception
     {
         StringBuilder message = new StringBuilder();
 
@@ -170,7 +169,7 @@ public class OpenScadTestSuite
         System.out.println(message);
     }
 
-    private void runTestSuite() throws Exception
+    private void runTestSuite(boolean skipProposedBaselineGeneration) throws Exception
     {
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
@@ -183,11 +182,14 @@ public class OpenScadTestSuite
         }
         else
         {
-            System.out.println();
-            System.out.println("Generating a proposed version of the .png  from each .oscad file...");
-            System.out.println();
-
-            generateProposedBaselines();
+            if(skipProposedBaselineGeneration)
+            {
+                System.out.println();
+                System.out.println("Generating a proposed version of the .png  from each .oscad file...");
+                System.out.println();
+                
+                generateProposedBaselines();
+            }
             
             System.out.println();
             System.out.println("The proposed baseline files are generated.");
@@ -215,7 +217,27 @@ public class OpenScadTestSuite
         }
     }
 
-    private void serviceRequest(String[] args) throws Exception //throws Throwable
+    private String safePath(String [] args)
+    {
+        String path;
+        
+        if(args.length > 1)
+        {
+            // at least two arguments exists, use the second as the path 
+
+            path = args[1];
+        }
+        else
+        {
+            // the 'generate baselines' option was given, use the current directory as the path
+
+            path = ".";
+        }
+        
+        return path;
+    }
+    
+    private void serviceRequest(String[] args) throws Exception
     {        
         RunMode mode;
         String path;
@@ -227,22 +249,22 @@ public class OpenScadTestSuite
         else 
         {
             // at least one command line argument exists
+            
+            boolean diffOnly = false;
+            
             if( args[0].equals("--generateBaselines") )
             {
                 mode = RunMode.GENERATE_BASELINES;
                 
-                if(args.length > 1)
-                {
-                    // at least two arguments exists, use the second as the path 
-                    
-                    path = args[1];
-                }
-                else
-                {
-                    // the 'generate baselines' option was given, use the current directory as the path
-                    
-                    path = ".";
-                }
+                path = safePath(args);
+            }
+            else if( args[0].equals("--diffOnly") )
+            {
+                diffOnly = true;
+                
+                mode = RunMode.RUN_TEST_SUITE;
+                
+                path = safePath(args);
             }
             else
             {
@@ -266,7 +288,7 @@ public class OpenScadTestSuite
                 else
                 {
                     // the mode is 'run test suite'
-                    runTestSuite();
+                    runTestSuite(diffOnly);
                 }                
             }
             catch(NoSuchFileException nsfe)

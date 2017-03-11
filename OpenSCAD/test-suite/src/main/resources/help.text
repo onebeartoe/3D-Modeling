@@ -5,6 +5,10 @@ Usage specifying a path to test:
 
     java -jar test-suite.jar path/to/test/
 
+To skip the generation of the proposed baseline images and only perform the diff on existing files use:
+
+    java -jar test-suite.jar --diffOnly
+
 To create the baseline images in the first place, specify '--generateBaselines' as the first argument and then the starting path to generate baseline images.  The current directory is used if the path argument is omitted:
 
     java -jar test-suite.jar --generateBaselines path/to/test/
