@@ -1,4 +1,8 @@
-    
+
+// this is pretty much a copy of name-tag.scad
+
+use <../basics/rounded-edges/rounded-cube.scad>
+
 // ************* Credits part *************
 
 //  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
@@ -20,9 +24,9 @@ letterThickness = 3; // [1 : 15]
 /* [Icons] */
 
 // leftIconType and rightIconType are passed to the oneIcon() module
-leftIconType = "Bass Clef";    // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+leftIconType = "";//"Bass Clef";    // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
-rightIconType = "Treble Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+rightIconType = "";//"Treble Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
 // This is the X,Y scale of the icons.
 // For the Thingiverse Customizer, the music note XY scale is 0.6 and 0.3
@@ -35,30 +39,29 @@ rightIconHeight = 1.5; // [0.1: 0.1 :5]
 xOffset = 87; // [10:200]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
-
 /* [Top Text] */
-topText = "Mark";
-topTextYOffset = 7; // [0 : 30]
-topLetterSize = 19; // [2 : 25]
-topLetterSpacing = 1.5; // [1 : 10]
+topText = "tecolote";//"Mark";
+topTextYOffset = 0;//7; // [0 : 30]
+topLetterSize = 9.6;//19; // [2 : 25]
+topLetterSpacing = 1.05;//1.5; // [1 : 10]
 
 /* [Bottom Text] */
-bottomText = "Music Instructor";
+bottomText = "";//Music Instructor";
 bottomLetterSize = 8.8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
 
 /* [Border] */
-showBorder = "Yes"; // [Yes, No]
+showBorder = "No"; // [Yes, No]
 borderColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
 /* [Base] */
 // This determines how wide the name tag is.
-baseWidth=228;	// [228:600]	
+baseWidth = 46;//228;	// [228:600]	
 
 // This determines the hieght of the nametag.
-baseHeight=54;	// [54:150]
+baseHeight = 15;//54;	// [54:150]
 
 // This parameter is all about that base color.
 baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
@@ -75,7 +78,7 @@ borderdistance=5;	// Distance from edge
 
 holediameter=3;
 countersink=2;
-holes=4; 			// Choose 0,2 or 4 (others=0)
+holes = 0;//4; 			// Choose 0,2 or 4 (others=0)
 
 font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
@@ -90,6 +93,8 @@ namematrix =
 fudge = 0.1;
 
 use <write/Write.scad>	// remember to download write.scad and fonts
+
+nametag();
 
 // *************  Nametag Modules *************
 
@@ -240,9 +245,21 @@ module icons()
 
 module nametagBase()
 {
+    roundedCorners = true;
+//    roundedCorners = false/true;
+    
+    size = [baseWidth, baseHeight, baseThickness];
+    
     color(baseColor)
-	translate([0,0,baseThickness/2])
-		cube(size = [baseWidth,baseHeight,baseThickness], center = true);
+    translate([0,0,baseThickness/2])
+    if(roundedCorners)
+    {
+        roundedCube(size=size,cornerRadius=8, sides=30, sidesOnly=true, cubeCentered=true);
+    }
+    else
+    {
+        cube(size = size, center = true);
+    }
 }
 
 module nametagBorder()
