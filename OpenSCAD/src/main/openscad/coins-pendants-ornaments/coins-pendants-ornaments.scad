@@ -56,7 +56,6 @@ module ornament(height = 3,
                 scale([xyScale, xyScale, 1])
                 openCylinder(center=true);
             }
-            
 
             difference()
             {

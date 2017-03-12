@@ -2,7 +2,8 @@
 // this is pretty much a copy of name-tag.scad
 
 use <../basics/rounded-edges/rounded-cube.scad>
-
+use <../shapes/chain-loop/chain-loop.scad>
+        
 // ************* Credits part *************
 
 //  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
@@ -246,7 +247,6 @@ module icons()
 module nametagBase()
 {
     roundedCorners = true;
-//    roundedCorners = false/true;
     
     size = [baseWidth, baseHeight, baseThickness];
     
@@ -259,6 +259,20 @@ module nametagBase()
     else
     {
         cube(size = size, center = true);
+    }
+    
+    chainLoop = true;
+    if(chainLoop)
+    {
+        x = 21;
+        y = 8;
+        z = 3;
+        xTranslate = -x / 2.0;
+        yTranslate = -baseHeight - 6;
+        translate([xTranslate,yTranslate,0])
+        chainLoop(xScale = x,
+                 yScale = y,
+                 zScale = z);
     }
 }
 

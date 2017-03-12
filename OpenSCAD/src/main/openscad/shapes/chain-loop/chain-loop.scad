@@ -1,11 +1,8 @@
 
-chainLoop();
-
-module chainLoop(yScale = 12,
+module chainLoop(xScale = 19,
+                 yScale = 12,
                  zScale = 10)
 {
-    xScale = 19;
-
     difference()
     {
         color("green")
