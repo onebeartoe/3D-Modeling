@@ -12,17 +12,17 @@ nefertitiLaForge();
 
 module nefertitiLaForge()
 {
-	union()
-	{		
-		Nefertitihollow();
+    union()
+    {		
+        Nefertitihollow();
 
-		scaleFactor = 0.6;
-		translate([0, -75, 155])
-		rotate([0, 4, 90])
-		scale([scaleFactor, scaleFactor, scaleFactor])
-		geordilaForgeVisor();
-		
-		// base
-		cube([180, 180, 2], center=true);
-	}
+        scaleFactor = 0.6;
+        translate([0, -75, 155])
+        rotate([0, 4, 90])
+        scale([scaleFactor, scaleFactor, scaleFactor])
+        geordilaForgeVisor();
+
+        // base
+        cube([180, 180, 2], center=true);
+    }
 }
