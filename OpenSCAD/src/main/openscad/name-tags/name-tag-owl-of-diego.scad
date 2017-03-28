@@ -1,5 +1,5 @@
 
-// this is pretty much a copy of name-tag.scad
+// this is pretty much the working copy of name-tag.scad
 
 use <../basics/rounded-edges/rounded-cube.scad>
 use <../shapes/chain-loop/chain-loop.scad>

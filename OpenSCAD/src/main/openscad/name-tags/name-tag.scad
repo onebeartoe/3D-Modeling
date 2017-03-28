@@ -1,4 +1,8 @@
-    
+
+!!!
+See owl of Diego for the most current working copy of name-tag.scad
+!!!
+        
 // ************* Credits part *************
 
 //  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
