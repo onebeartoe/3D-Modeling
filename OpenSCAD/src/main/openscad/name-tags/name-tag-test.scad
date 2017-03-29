@@ -1,4 +1,4 @@
 
 use <name-tag.scad>
-
-nametag();
+font="write/orbitron.dxf";
+nametag(font=font);

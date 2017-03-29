@@ -95,24 +95,25 @@ fudge = 0.1;
 
 use <write/Write.scad>	// remember to download write.scad and fonts
 
-//nametag();
+nametag(font=font);
 
 // *************  Nametag Modules *************
 
-module nametag()
+module nametag(font)
 {
     union()
     {
-        nametag_assembly();
+        nametag_assembly(font);
 
         icons();
     }    
 }
 
-module nametag_assembly() 
+module nametag_assembly(font) 
 {
+    echo("font is " + font);
 	color(textColor) 
-	writing();
+	writing(font);
 	
 	if(showBorder == "Yes")
 	{
@@ -131,7 +132,7 @@ module nametag_assembly()
 	}
 }
 
-module writing()
+module writing(font)
 {
 	// max 100 names
 	for ( i = [0 : 99] )

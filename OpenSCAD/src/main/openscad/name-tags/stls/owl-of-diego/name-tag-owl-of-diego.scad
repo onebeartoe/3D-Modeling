@@ -1,5 +1,6 @@
 
-include <../../name-tag-test.scad>
-//use <../../name-tag-test.scad>
+include <../../name-tag.scad>
+        
+font="../../write/orbitron.dxf";
 
-//nametag();
+nametag(font=font);
