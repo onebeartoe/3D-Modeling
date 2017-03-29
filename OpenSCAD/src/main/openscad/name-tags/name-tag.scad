@@ -41,7 +41,7 @@ xOffset = 87; // [10:200]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
-topText = "tecolote";//"Mark";
+//topText = "tecolote";//"Mark";
 topTextYOffset = 0;//7; // [0 : 30]
 topLetterSize = 9.6;//19; // [2 : 25]
 topLetterSpacing = 1.05;//1.5; // [1 : 10]
@@ -81,7 +81,7 @@ holediameter=3;
 countersink=2;
 holes = 0;//4; 			// Choose 0,2 or 4 (others=0)
 
-font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
+//font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
 // This row in this matrix holds the Y-offset (from center), top-text, font size (I think), and space-between-letters.
 // Add as many rows as you like.
@@ -95,25 +95,25 @@ fudge = 0.1;
 
 use <write/Write.scad>	// remember to download write.scad and fonts
 
-nametag(font=font);
+//nametag(font="write/orbitron.dxf");
 
 // *************  Nametag Modules *************
 
-module nametag(font)
+module nametag(font="write/orbitron.dxf", topText="The Top Text")
 {
     union()
     {
-        nametag_assembly(font);
+        nametag_assembly(font=font, topText=topText);
 
         icons();
     }    
 }
 
-module nametag_assembly(font) 
+module nametag_assembly(font, topText) 
 {
     echo("font is " + font);
 	color(textColor) 
-	writing(font);
+	writing(font=font, topText=topText);
 	
 	if(showBorder == "Yes")
 	{
@@ -132,18 +132,27 @@ module nametag_assembly(font)
 	}
 }
 
-module writing(font)
+module writing(font, topText)
 {
-	// max 100 names
-	for ( i = [0 : 99] )
+    translate([0,namematrix[0][0],baseThickness+letterThickness/2])
+    write(topText,
+          t = letterThickness,
+          h = namematrix[0][2],
+          center = true,
+          font = font,
+          space = namematrix[0][3]
+//			      , bold=1
+          );
+            
+	// this writes the second element (sub-element 1 and on) and on, max 100 names
+	for ( i = [1 : 99] )
 	{				
 		if (namematrix[i][0]==undef)
 		{
 			;	// then do nothing
 		}
 		else 
-		{
-		    
+		{		    
 			translate([0,namematrix[i][0],baseThickness+letterThickness/2])
 			write(namematrix[i][1],
 			      t = letterThickness,
