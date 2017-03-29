@@ -1,4 +1,4 @@
 
-include <name-tag.scad>
+use <name-tag.scad>
 
 nametag();
