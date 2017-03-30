@@ -99,7 +99,8 @@ use <write/Write.scad>	// remember to download write.scad and fonts
 
 // *************  Nametag Modules *************
 
-module nametag(font="write/orbitron.dxf", topText="The Top Text")
+module nametag(font="write/orbitron.dxf", 
+               topText="The Top Text")
 {
     union()
     {
@@ -132,6 +133,7 @@ module nametag_assembly(font, topText)
 	}
 }
 
+// TODO: Migrate this to use the built-in OpenSCAD text() module.
 module writing(font, topText)
 {
     translate([0,namematrix[0][0],baseThickness+letterThickness/2])
