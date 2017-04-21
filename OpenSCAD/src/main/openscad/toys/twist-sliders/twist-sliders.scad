@@ -1,3 +1,6 @@
+
+// TODO: find the source of this code from thingiverse
+
 /* [Basic] */
 
 shape = "Square";  // [Flower, Circle, Heart]
