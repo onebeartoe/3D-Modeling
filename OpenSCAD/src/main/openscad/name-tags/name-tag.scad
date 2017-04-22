@@ -59,7 +59,7 @@ borderColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Base] */
 // This determines how wide the name tag is.
-baseWidth = 46;//228;	// [228:600]	
+//baseWidth = 46;//228;	// [228:600]	
 
 // This determines the hieght of the nametag.
 baseHeight = 15;//54;	// [54:150]
@@ -87,7 +87,7 @@ holes = 0;//4; 			// Choose 0,2 or 4 (others=0)
 // Add as many rows as you like.
 namematrix =              
 [
-	[ topTextYOffset,   topText,     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
+	[ topTextYOffset,   "this value is no longer used",     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
 	[bottomTextYOffset, bottomText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
 ];
 
@@ -100,17 +100,19 @@ use <write/Write.scad>	// remember to download write.scad and fonts
 // *************  Nametag Modules *************
 
 module nametag(font="write/orbitron.dxf", 
-               topText="The Top Text")
+               topText="Love is the Answer",
+               baseWidth = 200
+        )
 {
     union()
     {
-        nametag_assembly(font=font, topText=topText);
+        nametag_assembly(font=font, topText=topText, baseWidth = baseWidth);
 
         icons();
     }    
 }
 
-module nametag_assembly(font, topText) 
+module nametag_assembly(font, topText, baseWidth) 
 {
     echo("font is " + font);
 	color(textColor) 
@@ -129,7 +131,7 @@ module nametag_assembly(font, topText)
 	else 
 	{
 		if (holes==4) base4holes();
-		else nametagBase();
+		else nametagBase(baseWidth);
 	}
 }
 
@@ -168,7 +170,7 @@ module writing(font, topText)
 	}
 }
 
-module base2holes() 
+module base2holes(baseWidth) 
 {
 	difference()
 	{
@@ -180,7 +182,7 @@ module base2holes()
 	}
 }
 
-module base4holes() 
+module base4holes(baseWidth) 
 {
 	difference()
 	{
@@ -256,7 +258,7 @@ module icons()
     oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset);
 }
 
-module nametagBase()
+module nametagBase(baseWidth)
 {
     roundedCorners = true;
     
@@ -288,7 +290,7 @@ module nametagBase()
     }
 }
 
-module nametagBorder()
+module nametagBorder(baseWidth)
 {
 	translate([0,0,baseThickness+letterThickness/2])
 	linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0){
@@ -303,20 +305,20 @@ module nametagBorder()
 
 		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,0])
-				nametagQuarter();
+				nametagQuarter(baseWidth);
 		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,180])
-				nametagQuarter();
+				nametagQuarter(baseWidth);
 		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,90])
-				nametagQuarter();
+				nametagQuarter(baseWidth);
 		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			rotate(a=[0,0,270])
-				nametagQuarter();
+				nametagQuarter(baseWidth);
 	}
 }
 
-module nametagQuarter()
+module nametagQuarter(baseWidth)
 {
 	intersection() 
 	{
