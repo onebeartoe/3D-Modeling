@@ -1,4 +1,7 @@
 
 use <name-tag.scad>
+
 font="write/orbitron.dxf";
-nametag(font=font, baseWidth = 200);
+baseWidth = 180;
+
+nametag(font=font, baseWidth = baseWidth);

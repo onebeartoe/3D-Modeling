@@ -93,7 +93,8 @@ namematrix =
 
 fudge = 0.1;
 
-use <write/Write.scad>	// remember to download write.scad and fonts
+// remember to download write.scad and fonts
+use <write/Write.scad>	
 
 //nametag(font="write/orbitron.dxf");
 
