@@ -1,8 +1,12 @@
 
 // this is pretty much the working copy of name-tag.scad
 
+
 use <../basics/rounded-edges/rounded-cube.scad>
 use <../shapes/chain-loop/chain-loop.scad>
+
+// remember to download write.scad and fonts
+use <write/Write.scad>
         
 // ************* Credits part *************
 
@@ -93,9 +97,6 @@ namematrix =
 
 fudge = 0.1;
 
-// remember to download write.scad and fonts
-use <write/Write.scad>	
-
 //nametag(font="write/orbitron.dxf");
 
 // *************  Nametag Modules *************
@@ -169,7 +170,7 @@ module writing(font, topText)
 			      );
 		}
 	}
-}
+}   
 
 module base2holes(baseWidth) 
 {
