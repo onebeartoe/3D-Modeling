@@ -4,4 +4,5 @@ use <name-tag.scad>
 font="write/orbitron.dxf";
 baseWidth = 180;
 
-nametag(font=font, baseWidth = baseWidth);
+nametag(topText="Love is the Answer",
+        font=font, baseWidth = baseWidth);

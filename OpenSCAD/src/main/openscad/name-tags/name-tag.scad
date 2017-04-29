@@ -132,8 +132,14 @@ module nametag_assembly(font, topText, baseWidth)
 	}
 	else 
 	{
-		if (holes==4) base4holes();
-		else nametagBase(baseWidth);
+            if (holes==4) 
+            {
+                base4holes();
+            }
+            else 
+            {    
+                nametagBase(baseWidth, chainLoop);
+            }
 	}
 }
 
@@ -172,11 +178,12 @@ module writing(font, topText)
 	}
 }   
 
-module base2holes(baseWidth) 
+module base2holes(baseWidth, chainLoop) 
 {
 	difference()
 	{
-		nametagBase();
+		nametagBase(baseWidth, chainLoop);
+                
 		translate([-(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),0,0])
 			nametagHole();
 		translate([(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),(0),0])
@@ -184,11 +191,11 @@ module base2holes(baseWidth)
 	}
 }
 
-module base4holes(baseWidth) 
+module base4holes(baseWidth, chainLoop) 
 {
 	difference()
 	{
-		nametagBase();
+		nametagBase(baseWidth, chainLoop);
 		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
 			nametagHole();
 		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
@@ -260,7 +267,7 @@ module icons()
     oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset);
 }
 
-module nametagBase(baseWidth)
+module nametagBase(baseWidth, chainLoop = true)
 {
     roundedCorners = true;
     
@@ -276,8 +283,7 @@ module nametagBase(baseWidth)
     {
         cube(size = size, center = true);
     }
-    
-    chainLoop = true;
+
     if(chainLoop)
     {
         x = 21;
