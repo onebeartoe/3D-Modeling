@@ -3,7 +3,10 @@ package org.onebeartoe.modeling.openscad.test.suite;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -11,18 +14,19 @@ import java.util.stream.Stream;
  * This class is used to verify that a corresponding baseline .png file exists,
  * for each .scad file.
  * 
- * @author URHM020
- *
+ * @author Roberto Marquez
  */
 public class DataSetValidator
 {
+    private Logger logger = Logger.getLogger("DataSetValidator");
+    
     private static String baselineNameFor(Path scadFile, OpenScadCameraDirections direction)
     {
         // remove the '.oscad' from the file name
         String baseName = DataSetValidator.baseNameFor(scadFile);
 
         // concatinate '.png' to the base name
-        String outfileName = baseName + "-java-" + direction + GlobalVariables.baselineSuffix;
+        String outfileName = baseName + "-" + direction + GlobalVariables.baselineSuffix;
 
         outfileName = outfileName.replace("\\", "/");
 
@@ -83,6 +87,15 @@ public class DataSetValidator
 	
 	return name;
     }
+    
+    private List<String> validateBody(Path path, OpenScadCameraDirections direction)
+    {
+        List<String> expectedBaselineFiles = new ArrayList();
+        String pngPath = baselineNameFor(path, direction);
+        expectedBaselineFiles.add(pngPath);
+        
+        return expectedBaselineFiles;
+    }
 
     /**
      * The data set is valid if and only if the returned list is empty.
@@ -92,18 +105,31 @@ public class DataSetValidator
      */
     public List<String> validate(List<Path> oscadFiles)
     {
-        List<String> expectedBaselineFiles = new ArrayList(); 
+        final List<String> expectedBaselineFiles = new ArrayList();
         	
-    	oscadFiles.forEach((p) -> 
+    	oscadFiles.forEach((Path path) -> 
         {
-            Stream.of(OpenScadCameraDirections.values() )
-            		.forEach((v) -> 
-    	    {
-                String pngPath = baselineNameFor(p, v);
-
-                expectedBaselineFiles.add(pngPath);
-    	    });
-
+            boolean parallel = false;
+            
+            if(parallel)
+            {
+                logger.log(Level.INFO, "the OpenSCAD files are processed in parallel.");
+                List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
+                list.parallelStream()
+                    .forEach( direction ->
+                {
+                    expectedBaselineFiles.addAll( validateBody(path, direction) );                       
+                });
+            }
+            else
+            {
+                logger.log(Level.INFO, "\nThe OpenSCAD files are processed in sequentially.");
+                Stream.of(OpenScadCameraDirections.values() )
+                            .forEach((direction) -> 
+                {
+                    expectedBaselineFiles.addAll( validateBody(path, direction) );
+                });                
+            }
         });
 
         List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> 
