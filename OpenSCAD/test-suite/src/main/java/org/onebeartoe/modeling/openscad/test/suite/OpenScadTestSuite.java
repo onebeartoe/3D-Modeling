@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -81,11 +83,12 @@ public class OpenScadTestSuite
                                           .collect(Collectors.joining("\n"));                    
 		    
 
-		    // assume no problems will occur and set the exit code to 0; success		    
+		    // check if the exit code is 0 for success
 		    if(exitCode != 0)
 		    {
 			errorFiles.add(baseline);
 			
+			System.out.println("\n\n");
 			System.out.println("Standard error: " + stderr);
                         System.out.println("Standard out: " + stdout);
 		    }
@@ -128,11 +131,21 @@ public class OpenScadTestSuite
         }
         else
         {
-            //TODO: add a timestamps to show a total duration of the test run
+            // This block uses the start and end Instant to keep trak of the 
+            // total duration of the test run
             printCommandLineArguments(args);
+            
+            Instant start = Instant.now();
             
             OpenScadTestSuite testSuite = new OpenScadTestSuite();
             testSuite.serviceRequest(args);
+            
+            Instant end = Instant.now();
+            
+            ChronoUnit units = ChronoUnit.SECONDS;
+            long duration = units.between(start,end);
+            String message = "The test suite ran " + duration + " " + units.name() + ".";
+            System.out.println(message);
         }
     }
     
@@ -168,6 +181,21 @@ public class OpenScadTestSuite
 
         System.out.println(message);
     }
+    
+    private void printPngCleanupList()
+    {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append("\n" + "cleanup path:" + "\n\n");
+        openscadPaths.forEach(p -> 
+        {
+            sb.append(p + "\n");
+        });
+        
+        String message = sb.toString();
+        
+        logger.log(Level.INFO, message);
+    }
 
     private void runTestSuite(boolean skipProposedBaselineGeneration) throws Exception
     {
@@ -183,6 +211,10 @@ public class OpenScadTestSuite
         else
         {
             if(skipProposedBaselineGeneration)
+            {
+                System.out.println("Generation of the proposed baselines PNGs is being skipped.");
+            }
+            else
             {
                 System.out.println();
                 System.out.println("Generating a proposed version of the .png  from each .oscad file...");
@@ -266,6 +298,11 @@ public class OpenScadTestSuite
                 
                 path = safePath(args);
             }
+            else if( args[0].equals("--cleanupList") )
+            {
+                mode = RunMode.CLEANUP_LIST;
+                path = safePath(args);
+            }
             else
             {
                 mode = RunMode.RUN_TEST_SUITE;
@@ -284,6 +321,10 @@ public class OpenScadTestSuite
                 if(mode == RunMode.GENERATE_BASELINES)
                 {
                     generateBaselines();
+                }
+                else if(mode == RunMode.CLEANUP_LIST)
+                {
+                    printPngCleanupList();
                 }
                 else
                 {
@@ -306,6 +347,7 @@ public class OpenScadTestSuite
     
     private enum RunMode
     {
+        CLEANUP_LIST,
         GENERATE_BASELINES,
         RUN_TEST_SUITE
     }
