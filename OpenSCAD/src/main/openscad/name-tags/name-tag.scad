@@ -157,30 +157,26 @@ module writing(font, topText)
           h = namematrix[0][2],
           center = true,
           font = font,
-          space = namematrix[0][3]
-//			      , bold=1
-          );
+          space = namematrix[0][3]);
             
-	// this writes the second element (sub-element 1 and on) and on, max 100 names
-	for ( i = [1 : 99] )
-	{				
-		if (namematrix[i][0]==undef)
-		{
-			;	// then do nothing
-		}
-		else 
-		{		    
-			translate([0,namematrix[i][0],baseThickness+letterThickness/2])
-			write(namematrix[i][1],
-			      t = letterThickness,
-			      h = namematrix[i][2],
-			      center = true,
-			      font = font,
-			      space = namematrix[i][3]
-//			      , bold=1
-			      );
-		}
-	}
+    // this writes the second element (sub-element 1 and on) and on, max 100 names
+    for ( i = [1 : 99] )
+    {				
+        if (namematrix[i][0]==undef)
+        {
+            ;	// then do nothing
+        }
+        else 
+        {		    
+            translate([0,namematrix[i][0],baseThickness+letterThickness/2])
+            write(namematrix[i][1],
+                  t = letterThickness,
+                  h = namematrix[i][2],
+                  center = true,
+                  font = font,
+                  space = namematrix[i][3]);
+        }
+    }
 }   
 
 module base2holes(baseWidth, chainLoop) 
