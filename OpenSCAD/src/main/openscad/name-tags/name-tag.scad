@@ -103,44 +103,49 @@ fudge = 0.1;
 
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
-               baseWidth = 200
-        )
+               baseWidth = 200,
+               chainLoop = true,
+               chainLoopPosition = "bottom")
 {
     union()
     {
-        nametag_assembly(font=font, topText=topText, baseWidth = baseWidth);
+        nametag_assembly(font=font, 
+                topText=topText, 
+                baseWidth = baseWidth, 
+                chainLoop=chainLoop,
+                chainLoopPosition = chainLoopPosition);
 
         icons();
     }    
 }
 
-module nametag_assembly(font, topText, baseWidth) 
+module nametag_assembly(font, topText, baseWidth, chainLoop, chainLoopPosition) 
 {
     echo("font is " + font);
-	color(textColor) 
-	writing(font=font, topText=topText);
-	
-	if(showBorder == "Yes")
-	{
-		color(borderColor)	
-		nametagBorder();	
-	}	
-	
-	if (holes==2) 
-	{
-		base2holes();
-	}
-	else 
-	{
-            if (holes==4) 
-            {
-                base4holes();
-            }
-            else 
-            {    
-                nametagBase(baseWidth, chainLoop);
-            }
-	}
+    color(textColor) 
+    writing(font=font, topText=topText);
+
+    if(showBorder == "Yes")
+    {
+        color(borderColor)	
+        nametagBorder();	
+    }	
+
+    if (holes==2) 
+    {
+            base2holes();
+    }
+    else 
+    {
+        if (holes==4) 
+        {
+            base4holes();
+        }
+        else 
+        {    
+            nametagBase(baseWidth, chainLoop, chainLoopPosition);
+        }
+    }
 }
 
 // TODO: Migrate this to use the built-in OpenSCAD text() module.
@@ -267,7 +272,7 @@ module icons()
     oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset);
 }
 
-module nametagBase(baseWidth, chainLoop = true)
+module nametagBase(baseWidth, chainLoop, chainLoopPosition)
 {
     roundedCorners = true;
     
@@ -289,8 +294,13 @@ module nametagBase(baseWidth, chainLoop = true)
         x = 21;
         y = 8;
         z = 3;
+        
         xTranslate = -x / 2.0;
-        yTranslate = -baseHeight - 6;
+//      yTranslate = -baseHeight - 6;        
+        
+        yTranslate = (chainLoopPosition == "bottom") ? -baseHeight - 6 : 
+                        baseHeight - 2;        
+        
         translate([xTranslate,yTranslate,0])
         chainLoop(xScale = x,
                  yScale = y,
