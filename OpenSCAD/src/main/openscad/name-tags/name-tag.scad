@@ -1,9 +1,8 @@
 
-// this is pretty much the working copy of name-tag.scad
-
-
 use <../basics/rounded-edges/rounded-cube.scad>
+use <../basics/text/text-extrude/text-extrude.scad>
 use <../shapes/chain-loop/chain-loop.scad>
+use <../shapes/light-bulb/light-bulb.scad>
 
 // remember to download write.scad and fonts
 use <write/Write.scad>
@@ -28,20 +27,8 @@ letterThickness = 3; // [1 : 15]
 
 /* [Icons] */
 
-// leftIconType and rightIconType are passed to the oneIcon() module
-leftIconType = "";//"Bass Clef";    // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+rightIconType = "";//"Treble Clef"; // [Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
-rightIconType = "";//"Treble Clef"; // [Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
-
-// This is the X,Y scale of the icons.
-// For the Thingiverse Customizer, the music note XY scale is 0.6 and 0.3
-leftIconXyScale = 0.5;  // [0.1 : 0.05 : 5]
-rightIconXyScale = 0.25; // [0.1 : 0.05 : 5]
-
-leftIconHeight = 1.5; // [0.1: 0.1 :5]
-rightIconHeight = 1.5; // [0.1: 0.1 :5]
-
-xOffset = 87; // [10:200]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
@@ -57,7 +44,6 @@ bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
 
 /* [Border] */
-showBorder = "No"; // [Yes, No]
 borderColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 
@@ -78,8 +64,6 @@ baseThickness=2; // [1 : 5]
 resolution=50; 	// Use 20 for draft 100 for nice
 
 borderWidth=2;
-borderradius=8;
-borderdistance=5;	// Distance from edge
 
 holediameter=3;
 countersink=2;
@@ -103,48 +87,132 @@ fudge = 0.1;
 
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
+               topTextSize = 5,
+               leftIconType = "",
+               leftIconHeight = 1.5,
+               rightIconType = "Light Bulb",
+               rightIconHeight = 1.5,
+               leftIconXyScale = 1.0, 
+               rightIconXyScale = 1.7,
+               xIconOffset = 87,
+               yIconOffset = 87,
                baseWidth = 200,
                chainLoop = true,
-               chainLoopPosition = "bottom")
+               chainLoopPosition = "bottom",
+               showBorder = "No")
 {
     union()
     {
         nametag_assembly(font=font, 
-                topText=topText, 
+                topText=topText,
+                textSize = topTextSize,
                 baseWidth = baseWidth, 
                 chainLoop=chainLoop,
-                chainLoopPosition = chainLoopPosition);
+                chainLoopPosition = chainLoopPosition,
+                showBorder = showBorder,
+                borderradius = 8, 
+                borderdistance = 5);
 
-        icons();
+        icons(leftIconType = leftIconType,
+              leftIconXyScale = leftIconXyScale,
+              leftIconHeight = leftIconHeight,              
+              rightIconType = rightIconType,
+              rightIconHeight = rightIconHeight,
+              rightIconXyScale = rightIconXyScale,
+              xOffset = xIconOffset, 
+              yOffset = yIconOffset);
     }    
 }
 
-module nametag_assembly(font, topText, baseWidth, chainLoop, chainLoopPosition) 
+module nametag_assembly(font, topText, textSize,
+                        baseWidth, chainLoop, chainLoopPosition,
+                        showBorder, borderradius, borderdistance) 
 {
     echo("font is " + font);
     color(textColor) 
-    writing(font=font, topText=topText);
+//    writing(font=font, topText=topText);
+    textExtrude(text=topText, 
+                textSize = textSize, 
+                font = font, 
+                height = 5);
 
     if(showBorder == "Yes")
     {
         color(borderColor)	
-        nametagBorder();	
+        nametagBorder(baseWidth = baseWidth,
+                     borderradius = borderradius,
+                     borderdistance = borderdistance);
     }	
 
     if (holes==2) 
     {
-            base2holes();
+            base2holes(borderdistance = borderdistance);
     }
     else 
     {
         if (holes==4) 
         {
-            base4holes();
+            base4holes(baseWidth, chainLoop, borderdistance);
         }
         else 
         {    
             nametagBase(baseWidth, chainLoop, chainLoopPosition);
         }
+    }
+}
+
+module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
+{
+    color(iconColor)
+    translate([xOffset, yOffset, 0])
+    scale([iconXyScale, iconXyScale, iconHeight])
+    if(iconType == "Bass Clef")
+    {
+    	baseclef15scale(4);
+    }
+    else if(iconType == "Rebel")
+    {
+        rebelAlliance(6);
+    }
+    else if(iconType == "Trooper")
+    {
+        scrumtrooper(2);
+    }
+    else if(iconType == "Aqua Dude")
+    {
+        aquaman(4);
+    }
+    else if(iconType == "Cat")
+    {
+        cat(4);
+    }
+    else if(iconType == "Light Bulb")
+    {
+        lightBulbThumbnail();
+    }    
+    else if(iconType == "Spur")
+    {
+        spurs(5);
+    }
+    else if(iconType == "Mario")
+    {
+        mario(5);
+    }
+    else if(iconType == "Luigi")
+    {
+        luigi(5);
+    }
+    else if(iconType == "Thundercat")
+    {
+        thundercatsLogo(5);
+    }
+    else if(iconType == "Treble Clef")
+    {
+    	trebleClefScaledDown(4);
+    }
+    else
+    {
+        echo("drawing no icons");
     }
 }
 
@@ -179,7 +247,7 @@ module writing(font, topText)
     }
 }   
 
-module base2holes(baseWidth, chainLoop) 
+module base2holes(baseWidth, chainLoop, borderdistance) 
 {
 	difference()
 	{
@@ -192,7 +260,7 @@ module base2holes(baseWidth, chainLoop)
 	}
 }
 
-module base4holes(baseWidth, chainLoop) 
+module base4holes(baseWidth, chainLoop, borderdistance)
 {
 	difference()
 	{
@@ -208,64 +276,16 @@ module base4holes(baseWidth, chainLoop)
 	}
 }
 
-module oneIcon(iconType, iconXyScale, iconHeight, xOffset)
-{
-    color(iconColor)
-    translate([xOffset, 0, 0])
-    scale([iconXyScale, iconXyScale, iconHeight])
-    if(iconType == "Bass Clef")
-    {
-    	baseclef15scale(4);
-    }
-    else if(iconType == "Rebel")
-    {
-        rebelAlliance(6);
-    }
-    else if(iconType == "Trooper")
-    {
-        scrumtrooper(2);
-    }
-    else if(iconType == "Aqua Dude")
-    {
-        aquaman(4);
-    }
-    else if(iconType == "Cat")
-    {
-        cat(4);
-    }
-    else if(iconType == "Spur")
-    {
-        spurs(5);
-    }
-    else if(iconType == "Mario")
-    {
-        mario(5);
-    }
-    else if(iconType == "Luigi")
-    {
-        luigi(5);
-    }
-    else if(iconType == "Thundercat")
-    {
-        thundercatsLogo(5);
-    }
-    else if(iconType == "Treble Clef")
-    {
-    	trebleClefScaledDown(4);
-    }
-    else
-    {
-        echo("drawing no icons");
-    }
-}
-
-module icons()
+module icons(leftIconType, 
+             leftIconXyScale, rightIconXyScale,
+             leftIconHeight, rightIconHeight, 
+             xOffset, yOffset)
 {
     // left icon
-    oneIcon(iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset);
+    oneIcon(iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset, yOffset=yOffset);
     
     // right icon
-    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset);
+    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yOffset);
 }
 
 module nametagBase(baseWidth, chainLoop, chainLoopPosition)
@@ -304,7 +324,9 @@ module nametagBase(baseWidth, chainLoop, chainLoopPosition)
     }
 }
 
-module nametagBorder(baseWidth)
+module nametagBorder(baseWidth,
+                     borderradius,
+                     borderdistance)
 {
 	translate([0,0,baseThickness+letterThickness/2])
 	linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0){
@@ -332,7 +354,7 @@ module nametagBorder(baseWidth)
 	}
 }
 
-module nametagQuarter(baseWidth)
+module nametagQuarter(baseWidth, borderradius)
 {
 	intersection() 
 	{
