@@ -109,7 +109,7 @@ public class DataSetValidator
         	
     	oscadFiles.forEach((Path path) -> 
         {
-            boolean parallel = false;
+            boolean parallel = true;
             
             if(parallel)
             {
@@ -132,7 +132,8 @@ public class DataSetValidator
             }
         });
 
-        List<String> missingBaselineFiles = expectedBaselineFiles.stream().filter((ebf) -> 
+        List<String> missingBaselineFiles = expectedBaselineFiles.stream()
+                                                                 .filter((ebf) ->
         {
             File f = new File(ebf);
 

@@ -81,7 +81,6 @@ public class OpenScadTestSuite
                     String stderr = new BufferedReader( new InputStreamReader(es))
                                           .lines()
                                           .collect(Collectors.joining("\n"));                    
-		    
 
 		    // check if the exit code is 0 for success
 		    if(exitCode != 0)
@@ -131,22 +130,29 @@ public class OpenScadTestSuite
         }
         else
         {
-            // This block uses the start and end Instant to keep trak of the 
-            // total duration of the test run
-            printCommandLineArguments(args);
-            
-            Instant start = Instant.now();
-            
-            OpenScadTestSuite testSuite = new OpenScadTestSuite();
-            testSuite.serviceRequest(args);
-            
-            Instant end = Instant.now();
-            
-            ChronoUnit units = ChronoUnit.SECONDS;
-            long duration = units.between(start,end);
-            String message = "The test suite ran " + duration + " " + units.name() + ".";
-            System.out.println(message);
+            oneOrMoreArgs(args);
         }
+    }
+
+    private static void oneOrMoreArgs(String [] args) throws Exception
+    {
+        // This block uses the start and end Instant to keep track of the 
+        // total duration of the test run.
+        printCommandLineArguments(args);
+
+        Instant start = Instant.now();
+
+        OpenScadTestSuite testSuite = new OpenScadTestSuite();
+        testSuite.serviceRequest(args);
+
+        Instant end = Instant.now();
+
+        ChronoUnit units = ChronoUnit.SECONDS;
+        long duration = units.between(start,end);
+        long minutes = duration / 60;
+        long seconds = duration % 60;
+        String message = "The test suite ran " + minutes + " minutes " + seconds + " seconds.";
+        System.out.println(message);
     }
     
     private static void printCommandLineArguments(String [] args)
@@ -196,6 +202,8 @@ public class OpenScadTestSuite
         
         logger.log(Level.INFO, message);
     }
+    
+
 
     private void runTestSuite(boolean skipProposedBaselineGeneration) throws Exception
     {
