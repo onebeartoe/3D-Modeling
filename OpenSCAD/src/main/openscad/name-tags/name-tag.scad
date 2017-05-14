@@ -2,8 +2,9 @@
 use <../basics/rounded-edges/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../shapes/chain-loop/chain-loop.scad>
-use <../shapes/light-bulb/light-bulb.scad>
-
+use <../shapes/fan/iso-7000-fan.scad>
+use <../shapes/light-bulb/light-bulb.scad>       
+        
 // remember to download write.scad and fonts
 use <write/Write.scad>
         
@@ -32,13 +33,12 @@ rightIconType = "";//"Treble Clef"; // [Light Bulb, Rebel, Trooper, Aqua Dude, C
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
-//topText = "tecolote";//"Mark";
 topTextYOffset = 0;//7; // [0 : 30]
 topLetterSize = 9.6;//19; // [2 : 25]
 topLetterSpacing = 1.05;//1.5; // [1 : 10]
 
 /* [Bottom Text] */
-bottomText = "";//Music Instructor";
+bottomText = "";
 bottomLetterSize = 8.8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
@@ -88,11 +88,11 @@ fudge = 0.1;
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
                topTextSize = 5,
-               leftIconType = "",
+               leftIconType = "Light Bulb",
                leftIconHeight = 1.5,
                rightIconType = "Light Bulb",
                rightIconHeight = 1.5,
-               leftIconXyScale = 1.0, 
+               leftIconXyScale = 1.0,
                rightIconXyScale = 1.7,
                xIconOffset = 87,
                yIconOffset = 87,
@@ -185,6 +185,12 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
     else if(iconType == "Cat")
     {
         cat(4);
+    }
+    else if(iconType == "Fan")
+    {
+//        translate([0,0,0])
+        scale([1, 1, 1.6])
+        fanThumbnail();
     }
     else if(iconType == "Light Bulb")
     {
