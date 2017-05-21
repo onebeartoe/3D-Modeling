@@ -202,15 +202,29 @@ public class OpenScadTestSuite
         
         logger.log(Level.INFO, message);
     }
+
+    private void printValidationResults(List<String> missingBaselineFiles)
+    {
+	System.out.println();
+	
+        if (missingBaselineFiles.isEmpty())
+        {
+            System.out.println("All input files are present.");
+        }
+        else
+        {
+            System.err.println("Some test suite input files are not present.");
+            System.err.println("Try running '--generateBaselines' to generate the missing input files.");
+        }
+    }    
     
-
-
     private void runTestSuite(boolean skipProposedBaselineGeneration) throws Exception
     {
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(openscadPaths);
+        printValidationResults(missingPngs);
 
         if (!missingPngs.isEmpty())
         {

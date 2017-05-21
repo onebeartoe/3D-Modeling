@@ -63,20 +63,25 @@ public class DataSetValidator
         return baseName;
     }
     
-    private void printValidationResults(List<String> missingBaselineFiles)
+    private List<String> missingBaselineFiles(List<String> expectedBaselineFiles)
     {
-	System.out.println();
-	
-        if (missingBaselineFiles.isEmpty())
+        List<String> missingFiles = expectedBaselineFiles.stream()
+                                                                 .filter( ebf ->
         {
-            System.out.println("All input files are present.");
-        }
-        else
-        {
-            System.err.println("Some test suite input files are not present.");
-            System.err.println("Try running '--generateBaselines' to generate the missing input files.");
-        }
-    }
+            File f = new File(ebf);
+
+            boolean accepted = !f.exists();
+
+            if (accepted)
+            {
+                System.err.println(" missing input file: " + ebf);
+            }
+
+            return accepted;
+        }).collect(Collectors.toList());
+        
+        return missingFiles;
+    }    
     
     private static String proposedBaselineNameFor(Path scadFile, OpenScadCameraDirections direction)
     {
@@ -133,22 +138,7 @@ public class DataSetValidator
             }
         });
 
-        List<String> missingBaselineFiles = expectedBaselineFiles.stream()
-                                                                 .filter( ebf ->
-        {
-            File f = new File(ebf);
-
-            boolean accepted = !f.exists();
-
-            if (accepted)
-            {
-                System.err.println(" missing input file: " + ebf);
-            }
-
-            return accepted;
-        }).collect(Collectors.toList());
-
-        printValidationResults(missingBaselineFiles);
+        List<String> missingBaselineFiles = missingBaselineFiles(expectedBaselineFiles);       
 
         return missingBaselineFiles;
     }
