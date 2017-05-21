@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
 
 public class PngGenerator
 {
@@ -96,9 +94,8 @@ public class PngGenerator
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
 
-        openscadPath = "C:/opt/openscad/openscad-2015.03-2/openscad";
-        openscadPath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
-                        
+//        openscadPath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
+        openscadPath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
 //        openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
 
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);

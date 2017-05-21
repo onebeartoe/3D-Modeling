@@ -1,3 +1,4 @@
+
 package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.io.File;
@@ -125,7 +126,7 @@ public class DataSetValidator
             {
                 logger.log(Level.INFO, "\nThe OpenSCAD files are processed in sequentially.");
                 Stream.of(OpenScadCameraDirections.values() )
-                            .forEach((direction) -> 
+                      .forEach((direction) -> 
                 {
                     expectedBaselineFiles.addAll( validateBody(path, direction) );
                 });                
@@ -133,7 +134,7 @@ public class DataSetValidator
         });
 
         List<String> missingBaselineFiles = expectedBaselineFiles.stream()
-                                                                 .filter((ebf) ->
+                                                                 .filter( ebf ->
         {
             File f = new File(ebf);
 

@@ -251,7 +251,7 @@ public class OpenScadTestSuite
             {
         	
         	System.out.println();
-        	System.out.println("The test suite detected errors with the baseline and proposed baseline PNG images.");
+        	System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
         	System.out.println("See the 'Binary files ... differ' message(s) above.");        	
             }
         }
