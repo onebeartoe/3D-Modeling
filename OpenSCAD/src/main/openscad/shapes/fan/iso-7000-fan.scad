@@ -38,7 +38,7 @@ module fanBlades()
 {
     for(i = [0 : 3])
     {
-        echo(i);
+//        echo(i);
         
         rotate([0,0,i*90])
         translate([7,0,0])

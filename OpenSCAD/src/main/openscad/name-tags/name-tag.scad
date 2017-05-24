@@ -3,7 +3,7 @@ use <../basics/rounded-edges/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../shapes/chain-loop/chain-loop.scad>
 use <../shapes/fan/iso-7000-fan.scad>
-use <../shapes/light-bulb/light-bulb.scad>       
+use <../shapes/light-bulb/light-bulb.scad>
         
 // remember to download write.scad and fonts
 use <write/Write.scad>
@@ -67,7 +67,7 @@ borderWidth=2;
 
 holediameter=3;
 countersink=2;
-holes = 0;//4; 			// Choose 0,2 or 4 (others=0)
+holes = 0;//0;//2;//4; 			// Choose 0,2 or 4 (others=0)
 
 //font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
 
@@ -88,6 +88,9 @@ fudge = 0.1;
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
                topTextSize = 5,
+               bottomText = "Little Love",
+               bottomTextOffsetX = 0,
+               bottomTextOffsetY = 0,
                leftIconType = "Light Bulb",
                leftIconHeight = 1.5,
                rightIconType = "Light Bulb",
@@ -97,16 +100,26 @@ module nametag(font="write/orbitron.dxf",
                xIconOffset = 87,
                yIconOffset = 87,
                baseWidth = 200,
+               baseHeight = 54,
+               roundedCorners = true,
                chainLoop = true,
                chainLoopPosition = "bottom",
                showBorder = "No")
 {
     union()
     {
+//echo("rc:1 ");
+//echo(roundedCorners);
+
         nametag_assembly(font=font, 
                 topText=topText,
                 textSize = topTextSize,
-                baseWidth = baseWidth, 
+                bottomText = bottomText,
+                bottomTextOffsetX = bottomTextOffsetX,
+                bottomTextOffsetY = bottomTextOffsetY,
+                baseWidth = baseWidth,
+                baseHeight = baseHeight,
+                roundedCorners = roundedCorners,
                 chainLoop=chainLoop,
                 chainLoopPosition = chainLoopPosition,
                 showBorder = showBorder,
@@ -124,11 +137,24 @@ module nametag(font="write/orbitron.dxf",
     }    
 }
 
-module nametag_assembly(font, topText, textSize,
-                        baseWidth, chainLoop, chainLoopPosition,
-                        showBorder, borderradius, borderdistance) 
+module nametag_assembly(font, 
+                        topText, textSize,
+                        bottomText,
+                        bottomTextOffsetX,
+                        bottomTextOffsetY,
+                        baseWidth, 
+                        baseHeight,
+                        roundedCorners,
+                        chainLoop, 
+                        chainLoopPosition,
+                        showBorder, 
+                        borderradius, 
+                        borderdistance) 
 {
-    echo("font is " + font);
+//echo("rc:2 ");
+//echo(roundedCorners);
+
+    // top text
     color(textColor) 
 //    writing(font=font, topText=topText);
     textExtrude(text=topText, 
@@ -136,27 +162,48 @@ module nametag_assembly(font, topText, textSize,
                 font = font, 
                 height = 5);
 
+    // bottom text
+    translate([bottomTextOffsetX, bottomTextOffsetY,0])
+    textExtrude(text = bottomText,
+                textSize=textSize * 0.4, 
+                font = font, 
+                height = 5);
+
     if(showBorder == "Yes")
     {
         color(borderColor)	
         nametagBorder(baseWidth = baseWidth,
+                      baseHeight = baseHeight,
                      borderradius = borderradius,
-                     borderdistance = borderdistance);
+                     borderdistance = borderdistance,
+                     roundedCorners);
     }	
 
     if (holes==2) 
     {
-            base2holes(borderdistance = borderdistance);
+//echo("rc:3 ");
+//echo(roundedCorners);
+            base2holes(baseWidth, baseHeight, borderdistance, roundedCorners);
     }
     else 
     {
+//echo("rc:4 ");
+//echo(roundedCorners);
         if (holes==4) 
         {
-            base4holes(baseWidth, chainLoop, borderdistance);
+echo("rc:5 ");
+echo(roundedCorners);
+            base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
         }
         else 
-        {    
-            nametagBase(baseWidth, chainLoop, chainLoopPosition);
+        {
+echo("rc:6 ");
+echo(roundedCorners);    
+            nametagBase(baseWidth, 
+                        baseHeight,
+                        chainLoop, 
+                        chainLoopPosition, 
+                        roundedCorners);
         }
     }
 }
@@ -218,7 +265,7 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
     }
     else
     {
-        echo("drawing no icons");
+//        echo("drawing no icons");
     }
 }
 
@@ -253,11 +300,21 @@ module writing(font, topText)
     }
 }   
 
-module base2holes(baseWidth, chainLoop, borderdistance) 
+module base2holes(baseWidth, 
+                  baseHeight, 
+                  chainLoop, 
+                  chainLoopPosition,
+                  borderdistance,
+                  roundedCorners) 
 {
 	difference()
 	{
-		nametagBase(baseWidth, chainLoop);
+		nametagBase(baseWidth, 
+                            baseHeight,
+                            chainLoop, 
+                            chainLoopPosition,
+                            borderdistance,
+                            roundedCorners);
                 
 		translate([-(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),0,0])
 			nametagHole();
@@ -266,19 +323,29 @@ module base2holes(baseWidth, chainLoop, borderdistance)
 	}
 }
 
-module base4holes(baseWidth, chainLoop, borderdistance)
+//TODO: whitespace format this module
+module base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
 {
 	difference()
 	{
-		nametagBase(baseWidth, chainLoop);
+		nametagBase(baseWidth, 
+                            baseHeight,
+                            chainLoop, 
+                            chainLoopPosition,
+                            borderdistance,
+                            roundedCorners);
+
 		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-			nametagHole();
+                nametagHole();
+
 		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-			nametagHole();
+                nametagHole();
+
 		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-			nametagHole();
+                nametagHole();
+
 		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-			nametagHole();
+                nametagHole();
 	}
 }
 
@@ -294,17 +361,23 @@ module icons(leftIconType,
     oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yOffset);
 }
 
-module nametagBase(baseWidth, chainLoop, chainLoopPosition)
-{
-    roundedCorners = true;
-    
-    size = [baseWidth, baseHeight, baseThickness];
-    
+module nametagBase(baseWidth,
+                   baseHeight,
+                   chainLoop, 
+                   chainLoopPosition, 
+                   roundedCorners)
+{    
+    size = [baseWidth, baseHeight, baseThickness];    
+
     color(baseColor)
     translate([0,0,baseThickness/2])
     if(roundedCorners)
     {
-        roundedCube(size=size,cornerRadius=8, sides=30, sidesOnly=true, cubeCentered=true);
+        roundedCube(size=size,
+                    cornerRadius=8, 
+                    sides=30, 
+                    sidesOnly=true, 
+                    cubeCentered=true);
     }
     else
     {
@@ -319,14 +392,19 @@ module nametagBase(baseWidth, chainLoop, chainLoopPosition)
         
         xTranslate = -x / 2.0;
 //      yTranslate = -baseHeight - 6;        
-        
-        yTranslate = (chainLoopPosition == "bottom") ? -baseHeight - 6 : 
-                        baseHeight - 2;        
+
+        echo("clp: ");
+        echo(chainLoopPosition);
+
+        yBottomDelta = -baseHeight -6;
+        yTopDelta = baseHeight - 2;
+
+        yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
         
         translate([xTranslate,yTranslate,0])
-        chainLoop(xScale = x,
-                 yScale = y,
-                 zScale = z);
+        chainLoop(xLength = x,
+                 yLength = y,
+                 zLength = z);
     }
 }
 

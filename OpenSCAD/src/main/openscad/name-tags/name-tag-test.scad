@@ -27,7 +27,16 @@ rightIconHeight = 1.5; // [0.1: 0.1 :5]
 topText = "Love is the Answer"
         
 font="write/orbitron.dxf";
-baseWidth = 180;
+
+/* [Base] */
+// This determines how wide the name tag is.
+//baseWidth = 46;//228;	// [228:600]	
+//baseWidth = 180;
+
+// This determines the hieght of the nametag.
+baseHeight = 15;//54;	// [54:150]
+
+
 
 /* [Border] */
 showBorder = "No"; // [Yes, No]

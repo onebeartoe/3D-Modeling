@@ -7,6 +7,7 @@ iconHeight = 3;
         
 nametag(topText="Light",
         topTextSize = 12,
+        bottomText = "",
         font="../../../write/orbitron.dxf",
         
         leftIconType = iconType,
@@ -19,6 +20,7 @@ nametag(topText="Light",
         yIconOffset = 3,
         
         baseWidth = 80,
+        baseHeight = 15,
         
         chainLoop = true,
         chainLoopPosition = "top");
