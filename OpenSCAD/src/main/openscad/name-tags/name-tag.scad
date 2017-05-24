@@ -44,7 +44,7 @@ bottomLetterSpacing = 1.2; // [1 : 10]
 bottomTextYOffset = -12; // [-20 : 30]
 
 /* [Border] */
-borderColor = "white"; // [pink, red, black, white, yellow, blue, green]
+borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 
 
 /* [Base] */
@@ -63,7 +63,7 @@ baseThickness=2; // [1 : 5]
 
 resolution=50; 	// Use 20 for draft 100 for nice
 
-borderWidth=2;
+borderWidth = 2;//5;
 
 holediameter=3;
 countersink=2;
@@ -151,8 +151,8 @@ module nametag_assembly(font,
                         borderradius, 
                         borderdistance) 
 {
-//echo("rc:2 ");
-//echo(roundedCorners);
+echo("rc:2 ");
+echo(baseWidth);
 
     // top text
     color(textColor) 
@@ -172,11 +172,13 @@ module nametag_assembly(font,
     if(showBorder == "Yes")
     {
         color(borderColor)	
-        nametagBorder(baseWidth = baseWidth,
-                      baseHeight = baseHeight,
-                     borderradius = borderradius,
-                     borderdistance = borderdistance,
-                     roundedCorners);
+                                // Having the assignments in the method call caused an issue.  
+                                // So the assigments are left out.
+        nametagBorder(baseWidth,// = baseWidth,
+                      baseHeight,// = baseHeight,
+                      borderradius,// = borderradius,
+                      borderdistance,// = borderdistance,
+                      roundedCorners);
     }	
 
     if (holes==2) 
@@ -191,14 +193,14 @@ module nametag_assembly(font,
 //echo(roundedCorners);
         if (holes==4) 
         {
-echo("rc:5 ");
-echo(roundedCorners);
+//echo("rc:5 ");
+//echo(roundedCorners);
             base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
         }
         else 
         {
-echo("rc:6 ");
-echo(roundedCorners);    
+//echo("rc:6 ");
+//echo(roundedCorners);    
             nametagBase(baseWidth, 
                         baseHeight,
                         chainLoop, 
@@ -409,34 +411,50 @@ module nametagBase(baseWidth,
 }
 
 module nametagBorder(baseWidth,
+                     baseHeight,
                      borderradius,
-                     borderdistance)
+                     borderdistance,
+                     roundedCorners)
 {
-	translate([0,0,baseThickness+letterThickness/2])
-	linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0){
-		translate([0,baseHeight/2-borderdistance,0])
-			square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
-		translate([0,-(baseHeight/2-borderdistance),0])
-			square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
-		translate([baseWidth/2-borderdistance,0,0])
-			square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
-		translate([-(baseWidth/2-borderdistance),0,0])
-			square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
+//    echo("rc:7 ");
+//    echo(baseWidth);
 
-		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-			rotate(a=[0,0,0])
-				nametagQuarter(baseWidth);
-		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-			rotate(a=[0,0,180])
-				nametagQuarter(baseWidth);
-		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-			rotate(a=[0,0,90])
-				nametagQuarter(baseWidth);
-		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-			rotate(a=[0,0,270])
-				nametagQuarter(baseWidth);
-	}
+    translate([0,0,baseThickness+letterThickness/2])
+    linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0)
+    {
+//        echo("rc:8 ");
+//        echo(baseWidth);
+
+        translate([0,baseHeight/2-borderdistance,0])
+            square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
+
+        translate([0,-(baseHeight/2-borderdistance),0])
+            square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
+
+        translate([baseWidth/2-borderdistance,0,0])
+            square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
+
+        translate([-(baseWidth/2-borderdistance),0,0])
+            square ([borderWidth, baseHeight-borderdistance*2-borderradius*2+borderWidth*2,],center = true);
+
+        translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
+            rotate(a=[0,0,0])
+                nametagQuarter(baseWidth, borderradius);
+
+        translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
+            rotate(a=[0,0,180])
+                nametagQuarter(baseWidth, borderradius);
+
+        translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
+            rotate(a=[0,0,90])
+                nametagQuarter(baseWidth, borderradius);
+
+        translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
+            rotate(a=[0,0,270])
+                nametagQuarter(baseWidth, borderradius);
+    }
 }
+
 
 module nametagQuarter(baseWidth, borderradius)
 {
