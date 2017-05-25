@@ -28,6 +28,9 @@ topText = "Love is the Answer"
         
 font="write/orbitron.dxf";
 
+/* [Bottom Text] */
+bottomText = "";
+
 /* [Base] */
 // This determines how wide the name tag is.
 //baseWidth = 46;//228;	// [228:600]	
@@ -43,6 +46,7 @@ showBorder = "No"; // [Yes, No]
 
 nametag(topText = topText,
         topTextSize = 7,
+        bottomText = bottomText;
         font=font,
         leftIconType = leftIconType,
         leftIconHeight = leftIconHeight,

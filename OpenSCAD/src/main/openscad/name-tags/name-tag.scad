@@ -38,10 +38,10 @@ topLetterSize = 9.6;//19; // [2 : 25]
 topLetterSpacing = 1.05;//1.5; // [1 : 10]
 
 /* [Bottom Text] */
-bottomText = "";
+//bottomText = "";
 bottomLetterSize = 8.8; // [2 : 25]
 bottomLetterSpacing = 1.2; // [1 : 10]
-bottomTextYOffset = -12; // [-20 : 30]
+//bottomTextYOffset = -12; // [-20 : 30]
 
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
@@ -73,14 +73,14 @@ holes = 0;//0;//2;//4; 			// Choose 0,2 or 4 (others=0)
 
 // This row in this matrix holds the Y-offset (from center), top-text, font size (I think), and space-between-letters.
 // Add as many rows as you like.
-namematrix =              
-[
-	[ topTextYOffset,   "this value is no longer used",     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
-	[bottomTextYOffset, bottomText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
-];
+//namematrix =              
+//[
+//	[ topTextYOffset,   "this value is no longer used",     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
+//	[bottomTextYOffset, bottomText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
+//];
 
 fudge = 0.1;
-
+//
 //nametag(font="write/orbitron.dxf");
 
 // *************  Nametag Modules *************
@@ -88,13 +88,16 @@ fudge = 0.1;
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
                topTextSize = 5,
+               topTextOffsetY = 0,
                bottomText = "Little Love",
                bottomTextOffsetX = 0,
                bottomTextOffsetY = 0,
+               bottomTextSize = 9,
                leftIconType = "Light Bulb",
                leftIconHeight = 1.5,
                rightIconType = "Light Bulb",
                rightIconHeight = 1.5,
+               rightIconOffsetY = 0,
                leftIconXyScale = 1.0,
                rightIconXyScale = 1.7,
                xIconOffset = 87,
@@ -114,9 +117,11 @@ module nametag(font="write/orbitron.dxf",
         nametag_assembly(font=font, 
                 topText=topText,
                 textSize = topTextSize,
+                topTextOffsetY = topTextOffsetY,
                 bottomText = bottomText,
                 bottomTextOffsetX = bottomTextOffsetX,
                 bottomTextOffsetY = bottomTextOffsetY,
+                bottomTextSize = bottomTextSize,
                 baseWidth = baseWidth,
                 baseHeight = baseHeight,
                 roundedCorners = roundedCorners,
@@ -133,15 +138,19 @@ module nametag(font="write/orbitron.dxf",
               rightIconHeight = rightIconHeight,
               rightIconXyScale = rightIconXyScale,
               xOffset = xIconOffset, 
-              yOffset = yIconOffset);
+              yOffset = yIconOffset,
+              yRightOffset = rightIconOffsetY);
     }    
 }
 
 module nametag_assembly(font, 
-                        topText, textSize,
+                        topText, 
+                        textSize,
+                        topTextOffsetY,
                         bottomText,
                         bottomTextOffsetX,
                         bottomTextOffsetY,
+                        bottomTextSize,
                         baseWidth, 
                         baseHeight,
                         roundedCorners,
@@ -157,6 +166,7 @@ echo(baseWidth);
     // top text
     color(textColor) 
 //    writing(font=font, topText=topText);
+    translate([0, topTextOffsetY, 0])
     textExtrude(text=topText, 
                 textSize = textSize, 
                 font = font, 
@@ -165,7 +175,7 @@ echo(baseWidth);
     // bottom text
     translate([bottomTextOffsetX, bottomTextOffsetY,0])
     textExtrude(text = bottomText,
-                textSize=textSize * 0.4, 
+                textSize=bottomTextSize,
                 font = font, 
                 height = 5);
 
@@ -300,7 +310,7 @@ module writing(font, topText)
                   space = namematrix[i][3]);
         }
     }
-}   
+}
 
 module base2holes(baseWidth, 
                   baseHeight, 
@@ -352,15 +362,20 @@ module base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdis
 }
 
 module icons(leftIconType, 
-             leftIconXyScale, rightIconXyScale,
-             leftIconHeight, rightIconHeight, 
-             xOffset, yOffset)
+             leftIconXyScale, 
+             rightIconXyScale,
+             leftIconHeight, 
+             rightIconHeight, 
+             xOffset, 
+             yOffset,
+             xRightOffset,
+             yRightOffset)
 {
     // left icon
     oneIcon(iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset, yOffset=yOffset);
     
     // right icon
-    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yOffset);
+    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yRightOffset);
 }
 
 module nametagBase(baseWidth,
