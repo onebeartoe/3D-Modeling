@@ -17,6 +17,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,10 +50,13 @@ public class OpenScadTestSuite
     {
 	List<String> errorFiles = new ArrayList();
 	
-	Stream.of(OpenScadCameraDirections.values() )
-	.forEach((direction) -> 
+        Class c = Collection.class;
+        
+	Stream.of( OpenScadCameraDirections.values() )
+                .parallel()
+              .forEach((direction) -> 
         {
-            openscadPaths.forEach((p) -> 
+            openscadPaths.parallelStream().forEach((p) -> 
             {
         	boolean forceGeneration = false;
         	String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
@@ -87,9 +91,11 @@ public class OpenScadTestSuite
 		    {
 			errorFiles.add(baseline);
 			
-			System.out.println("\n\n");
-			System.out.println("Standard error: " + stderr);
-                        System.out.println("Standard out: " + stdout);
+			System.out.println();
+//			System.out.println("Standard error: ");
+                        System.out.println( stderr.trim() );
+//                        System.out.println("Standard out: ");
+                        System.out.print( stdout.trim() );
 		    }
 		} 
                 catch (Exception e) 
@@ -113,12 +119,34 @@ public class OpenScadTestSuite
         pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
     }
 
-    private void generateProposedBaselines() throws IOException, InterruptedException
+    /**
+     * 
+     * @return The count of proposed baseline images generated.
+     * @throws IOException
+     * @throws InterruptedException 
+     */
+    private int generateProposedBaselines() throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
         
-        pngGenerator.generatePngs(openscadPaths, forcePngGeneration);	
+        boolean success = pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
+        int count;
+        
+        if(success)
+        {
+            count = openscadPaths.size();
+        }
+        else
+        {
+//TODO: this should use a successCount returned by pngGenerator.generatePngs()
+            count = -1;
+            
+            System.err.println();
+            System.err.println("ERROR detected: Some PNGs were not generated.");
+        }
+        
+        return count;
     }
     
     public static void main(String[] args) throws Throwable
@@ -152,6 +180,7 @@ public class OpenScadTestSuite
         long minutes = duration / 60;
         long seconds = duration % 60;
         String message = "The test suite ran " + minutes + " minutes " + seconds + " seconds.";
+        System.out.println();
         System.out.println(message);
     }
     
@@ -242,15 +271,14 @@ public class OpenScadTestSuite
                 System.out.println("Generating a proposed version of the .png  from each .oscad file...");
                 System.out.println();
                 
-                generateProposedBaselines();
+                int count = generateProposedBaselines();
+                
+                System.out.println();
+                System.out.println(count + " proposed baseline files were generated.");                
             }
             
             System.out.println();
-            System.out.println("The proposed baseline files are generated.");
-            
-            System.out.println();
             System.out.println("Comparing baseline images to the proposed baseline images...");
-            System.out.println();
             
             List<String> errorFiles = compareImages();
             
@@ -259,6 +287,7 @@ public class OpenScadTestSuite
             {
         	System.out.println();
         	System.out.println("No test suite errors were detected.");
+                System.out.println();
         	System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
             }
             else

@@ -42,13 +42,14 @@ public class PngGenerator
 
 
         StringBuilder sb = new StringBuilder();
-        sb.append("standard error:\n");
-        sb.append(stderr);
-        
-        sb.append("\nstandard out:\n");
-        sb.append(stdout);
+//        sb.append("standard error:\n");
+        sb.append( stderr.trim() );
+
+//        sb.append("\nstandard out:\n");
+        sb.append( stdout.trim() );
         
         System.out.println(sb.toString());
+        System.out.println();
         
         return waitValue;
     }
@@ -58,18 +59,19 @@ public class PngGenerator
     	List<Boolean> exitCodes = new ArrayList();
 
         Stream.of( OpenScadCameraDirections.values() )
-		.forEach((v) -> 
-		{
+                .parallel()
+                .forEach((v) -> 
+                {
 		    try 
 		    {
-				boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v);
-				exitCodes.add(exitCode);
+                        boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v);
+                        exitCodes.add(exitCode);
 		    } 
 		    catch (Exception e)
 		    {
 		    	e.printStackTrace();
 		    }		    
-		});
+                });
         
         return exitCodes;
     }
@@ -133,7 +135,7 @@ public class PngGenerator
     {
         List<Boolean> exitCodes = new ArrayList();
 
-        openscadPaths.forEach((p) -> 
+        openscadPaths.stream().parallel().forEach((p) -> 
         {
             List<Boolean> directionalExitCodes = generateDirectionalPngs(p, forcePngGeneration);
             exitCodes.addAll(directionalExitCodes);
