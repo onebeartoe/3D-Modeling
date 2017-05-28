@@ -6,10 +6,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * This class is used to verify that a corresponding baseline .png file exists,
@@ -112,14 +110,14 @@ public class DataSetValidator
     public List<String> validate(List<Path> oscadFiles)
     {
         final List<String> expectedBaselineFiles = new ArrayList();
-        	
-    	oscadFiles.forEach((Path path) -> 
+
+    	oscadFiles.parallelStream().forEach((Path path) -> 
         {
-            boolean parallel = true;
+//            boolean parallel = true;
             
-            if(parallel)
+//            if(parallel)
             {
-                logger.log(Level.INFO, "the OpenSCAD files are processed in parallel.");
+//                logger.log(Level.INFO, "The OpenSCAD files are processed in parallel.");
                 List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
                 list.parallelStream()
                     .forEach( direction ->
@@ -127,15 +125,15 @@ public class DataSetValidator
                     expectedBaselineFiles.addAll( validateBody(path, direction) );                       
                 });
             }
-            else
-            {
-                logger.log(Level.INFO, "\nThe OpenSCAD files are processed in sequentially.");
-                Stream.of(OpenScadCameraDirections.values() )
-                      .forEach((direction) -> 
-                {
-                    expectedBaselineFiles.addAll( validateBody(path, direction) );
-                });                
-            }
+//            else
+//            {
+//                logger.log(Level.INFO, "\nThe OpenSCAD files are processed in sequentially.");
+//                Stream.of(OpenScadCameraDirections.values() )
+//                      .forEach((direction) -> 
+//                {
+//                    expectedBaselineFiles.addAll( validateBody(path, direction) );
+//                });                
+//            }
         });
 
         List<String> missingBaselineFiles = missingBaselineFiles(expectedBaselineFiles);       
