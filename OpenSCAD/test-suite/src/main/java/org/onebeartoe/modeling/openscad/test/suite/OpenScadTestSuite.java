@@ -34,7 +34,7 @@ public class OpenScadTestSuite
     
     private Logger logger;
     
-    private OpenScadTestSuite()
+    public OpenScadTestSuite()
     {
         String name = getClass().getName(); 
         logger = Logger.getLogger(name);
@@ -91,7 +91,7 @@ public class OpenScadTestSuite
 		    {
 			errorFiles.add(baseline);
 			
-			System.out.println();
+//			System.out.println();
 //			System.out.println("Standard error: ");
                         System.out.println( stderr.trim() );
 //                        System.out.println("Standard out: ");
@@ -243,6 +243,7 @@ public class OpenScadTestSuite
         else
         {
             System.err.println("Some test suite input files are not present.");
+            System.err.println();
             System.err.println("Try running '--generateBaselines' to generate the missing input files.");
         }
     }    
@@ -257,6 +258,7 @@ public class OpenScadTestSuite
 
         if (!missingPngs.isEmpty())
         {
+            System.err.println();
             System.err.println("The test suite will not continue with missing baseline PNG images.");
         }
         else
@@ -292,9 +294,9 @@ public class OpenScadTestSuite
             }
             else
             {
-        	
-        	System.out.println();
+        	System.out.println( System.lineSeparator() );
         	System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
+                System.out.println();
         	System.out.println("See the 'Binary files ... differ' message(s) above.");        	
             }
         }
@@ -320,7 +322,7 @@ public class OpenScadTestSuite
         return path;
     }
     
-    private void serviceRequest(String[] args) throws Exception
+    public void serviceRequest(String[] args) throws Exception
     {        
         RunMode mode;
         String path;

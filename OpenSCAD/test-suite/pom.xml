@@ -17,22 +17,29 @@
     <name>onebeartoe-modeling-openscad-test-suite</name>
     
     <properties>
+        <testng.validators>src/main/resources/testng-validators.xml</testng.validators>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>    
     
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.10</version>
             <scope>test</scope>
-        </dependency>
-        
+        </dependency>-->
+
         <dependency>
             <groupId>org.onebeartoe</groupId>
             <artifactId>onebeartoe-system</artifactId>  
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.1.1</version>
+        </dependency>        
     </dependencies>
     
     <build>
@@ -59,6 +66,30 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <properties>
+<!--
+                    <property>
+                        <name>junit</name>
+                        <value>false</value>
+                    </property>
+-->
+                    </properties>               
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${testng.validators}</suiteXmlFile>
+                        <!--
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>${internalLinksSuiteXmlFile}</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/testng-for-junit.xml</suiteXmlFile>
+                        -->
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>            
         </plugins>
     </build>
 </project>
