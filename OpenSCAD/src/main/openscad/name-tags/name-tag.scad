@@ -1,35 +1,18 @@
 
+use <attribution.text>
+
 use <../basics/rounded-edges/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../shapes/chain-loop/chain-loop.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
-        
-// remember to download write.scad and fonts
-use <write/Write.scad>
-        
-// ************* Credits part *************
-
-//  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
-//
-//		http://www.thingiverse.com/thing:16193
-//
-//  Programmed by Fryns - March 2014
-
-// Adapted by Roberto Marquez - onebeartoe - 2015
-
-// Uses Write.scad by HarlanDMii, published on Thingiverse 18-Jan-2012 (thing:16193)	 
-
-// ************* Declaration part *************
 
 /* [General] */
 textColor = "white"; // [pink, red, black, white, yellow, blue, green]
 letterThickness = 3; // [1 : 15]
 
 /* [Icons] */
-
-rightIconType = "";//"Treble Clef"; // [Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
-
+rightIconType = ""; // [Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
@@ -45,7 +28,6 @@ bottomLetterSpacing = 1.2; // [1 : 10]
 
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
-
 
 /* [Base] */
 // This determines how wide the name tag is.
