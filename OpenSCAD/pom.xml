@@ -18,6 +18,8 @@
     </properties>
     
     <modules>
+		<module>library</module>
+		
         <module>native-customizer</module>
         <module>inline-tool</module>
         
