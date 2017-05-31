@@ -31,18 +31,19 @@ use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/star-trek/logo/star-trek-logo.scad>
 use <../../shapes/clover/clover.scad>
 use <../../shapes/heart/heart.scad>
+use <../../shapes/minecraft/creeper/creeper-face.scad>
 use <../../shapes/pacman/pacman.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
 
-cutoutName = "Star";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
+cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
 
 cutoutHolderType = "Knurl"; // [Cylinder, Knurl]
 
 //How many spokes should the spinner have?
-Number_of_Spokes = 3; //[2,3,4,5,6,7]
+Number_of_Spokes = 5; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
 
 /* [Hidden] */
@@ -158,6 +159,12 @@ module cutout()
     else if(cutoutName == "Heart")
     {
         heartThumbnail(height=10);
+    }
+    else if(cutoutName == "Creeper")
+    {
+        translate(0, 0, -0.3)
+        scale([1, 1, 17])
+        creeperFaceThumbnail();
     }
     else if(cutoutName == "Rebel Alliance")
     {
