@@ -43,7 +43,7 @@ cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Ba
 cutoutHolderType = "Knurl"; // [Cylinder, Knurl]
 
 //How many spokes should the spinner have?
-Number_of_Spokes = 5; //[2,3,4,5,6,7]
+Number_of_Spokes = 3; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
 
 /* [Hidden] */

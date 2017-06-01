@@ -1,10 +1,13 @@
 **/*.gcode
 **/*-proposed-baseline.png
-/OpenSCAD/test-suite/target/
-/OpenSCAD/test-suite/.settings/
 **/*.project
 **/*.classpath
 **/.settings/
+/OpenSCAD/inline-tool/target/
+/OpenSCAD/library/target
 /OpenSCAD/native-customizer/target/
 /OpenSCAD/inline-tool/target/
 /OpenSCAD/opensacd-services/target/
+/OpenSCAD/test-suite/target/
+/OpenSCAD/test-suite/.settings/
+
