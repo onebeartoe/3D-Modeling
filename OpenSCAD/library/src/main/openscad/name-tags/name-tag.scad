@@ -8,7 +8,7 @@ use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 
 /* [General] */
-textColor = "white"; // [pink, red, black, white, yellow, blue, green]
+
 letterThickness = 3; // [1 : 15]
 
 /* [Icons] */
@@ -69,9 +69,10 @@ fudge = 0.1;
 
 module nametag(font="write/orbitron.dxf", 
                topText="Love is the Answer",
+               topTextColor = "white",
                topTextSize = 5,
                topTextOffsetY = 0,
-               bottomText = "Little Love",
+               bottomText = "Love Lots",
                bottomTextOffsetX = 0,
                bottomTextOffsetY = 0,
                bottomTextSize = 9,
@@ -98,6 +99,7 @@ module nametag(font="write/orbitron.dxf",
 
         nametag_assembly(font=font, 
                 topText=topText,
+                topTextColor = topTextColor,
                 textSize = topTextSize,
                 topTextOffsetY = topTextOffsetY,
                 bottomText = bottomText,
@@ -126,7 +128,8 @@ module nametag(font="write/orbitron.dxf",
 }
 
 module nametag_assembly(font, 
-                        topText, 
+                        topText,
+                        topTextColor,
                         textSize,
                         topTextOffsetY,
                         bottomText,
@@ -146,7 +149,7 @@ echo("rc:2 ");
 echo(baseWidth);
 
     // top text
-    color(textColor) 
+    color(topTextColor) 
 //    writing(font=font, topText=topText);
     translate([0, topTextOffsetY, 0])
     textExtrude(text=topText, 

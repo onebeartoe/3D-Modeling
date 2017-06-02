@@ -22,7 +22,8 @@ rightIconHeight = 1.5; // [0.1: 0.1 :5]
 
 /* [Top Text] */
 topText = "Love is the Answer!";
-        
+topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
+
 font="write/orbitron.dxf";
 
 /* [Bottom Text] */
@@ -43,6 +44,7 @@ showBorder = "No"; // [Yes, No]
 
 nametag(topText = topText,
         topTextSize = 7,
+        topTextColor = topTextColor,
         bottomText = bottomText,
         font=font,
         leftIconType = leftIconType,
