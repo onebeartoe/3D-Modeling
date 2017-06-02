@@ -13,25 +13,16 @@
     
     <packaging>pom</packaging>
     
+    <name>onebeartoe-modeling-openscad</name>
+    
     <properties>
 
     </properties>
     
     <modules>
-		<module>library</module>
-		
-        <module>native-customizer</module>
+        <module>library</module>
         <module>inline-tool</module>
-        
         <module>test-suite</module>
         <module>opensacd-services</module>
     </modules>
-<!--    
-    <modules>
-        <module>inline-tool</module>
-        <module>native-customizer</module>
-        <module>test-suite</module>
-    </modules>
--->    
-    <name>onebeartoe-modeling-openscad</name>
 </project>
