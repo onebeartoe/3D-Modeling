@@ -149,8 +149,7 @@ echo("rc:2 ");
 echo(baseWidth);
 
     // top text
-    color(topTextColor) 
-//    writing(font=font, topText=topText);
+    color(topTextColor)
     translate([0, topTextOffsetY, 0])
     textExtrude(text=topText, 
                 textSize = textSize, 
@@ -267,35 +266,35 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
 }
 
 // TODO: Migrate this to use the built-in OpenSCAD text() module.
-module writing(font, topText)
-{
-    translate([0,namematrix[0][0],baseThickness+letterThickness/2])
-    write(topText,
-          t = letterThickness,
-          h = namematrix[0][2],
-          center = true,
-          font = font,
-          space = namematrix[0][3]);
-            
-    // this writes the second element (sub-element 1 and on) and on, max 100 names
-    for ( i = [1 : 99] )
-    {				
-        if (namematrix[i][0]==undef)
-        {
-            ;	// then do nothing
-        }
-        else 
-        {		    
-            translate([0,namematrix[i][0],baseThickness+letterThickness/2])
-            write(namematrix[i][1],
-                  t = letterThickness,
-                  h = namematrix[i][2],
-                  center = true,
-                  font = font,
-                  space = namematrix[i][3]);
-        }
-    }
-}
+//module writing(font, topText)
+//{
+//    translate([0,namematrix[0][0],baseThickness+letterThickness/2])
+//    write(topText,
+//          t = letterThickness,
+//          h = namematrix[0][2],
+//          center = true,
+//          font = font,
+//          space = namematrix[0][3]);
+//            
+//    // this writes the second element (sub-element 1 and on) and on, max 100 names
+//    for ( i = [1 : 99] )
+//    {				
+//        if (namematrix[i][0]==undef)
+//        {
+//            ;	// then do nothing
+//        }
+//        else 
+//        {		    
+//            translate([0,namematrix[i][0],baseThickness+letterThickness/2])
+//            write(namematrix[i][1],
+//                  t = letterThickness,
+//                  h = namematrix[i][2],
+//                  center = true,
+//                  font = font,
+//                  space = namematrix[i][3]);
+//        }
+//    }
+//}
 
 module base2holes(baseWidth, 
                   baseHeight, 
