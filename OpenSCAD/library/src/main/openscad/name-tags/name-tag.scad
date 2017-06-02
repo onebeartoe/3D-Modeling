@@ -7,10 +7,6 @@ use <../shapes/chain-loop/chain-loop.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 
-/* [General] */
-
-letterThickness = 3; // [1 : 15]
-
 /* [Icons] */
 rightIconType = ""; // [Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
@@ -67,11 +63,13 @@ fudge = 0.1;
 
 // *************  Nametag Modules *************
 
-module nametag(font="write/orbitron.dxf", 
+module nametag(font="write/orbitron.dxf",
+               letterThickness = 3,
                topText="Love is the Answer",
                topTextColor = "white",
                topTextSize = 5,
                topTextOffsetY = 0,
+               borderHeight = 6, 
                bottomText = "Love Lots",
                bottomTextOffsetX = 0,
                bottomTextOffsetY = 0,
@@ -97,7 +95,9 @@ module nametag(font="write/orbitron.dxf",
 //echo("rc:1 ");
 //echo(roundedCorners);
 
-        nametag_assembly(font=font, 
+        nametag_assembly(borderHeight,
+                font=font,
+                letterThickness,
                 topText=topText,
                 topTextColor = topTextColor,
                 textSize = topTextSize,
@@ -127,7 +127,9 @@ module nametag(font="write/orbitron.dxf",
     }    
 }
 
-module nametag_assembly(font, 
+module nametag_assembly(borderHeight,
+                        font,
+                        letterThickness,
                         topText,
                         topTextColor,
                         textSize,
@@ -165,13 +167,17 @@ echo(baseWidth);
 
     if(showBorder == "Yes")
     {
+//        borderHeight = 9;
+        
         color(borderColor)	
                                 // Having the assignments in the method call caused an issue.  
                                 // So the assigments are left out.
-        nametagBorder(baseWidth,// = baseWidth,
-                      baseHeight,// = baseHeight,
-                      borderradius,// = borderradius,
-                      borderdistance,// = borderdistance,
+        nametagBorder(baseWidth,
+                      baseHeight,
+                      borderradius,
+                      borderdistance,
+                      borderHeight,
+                      letterThickness,
                       roundedCorners);
     }	
 
@@ -413,13 +419,17 @@ module nametagBorder(baseWidth,
                      baseHeight,
                      borderradius,
                      borderdistance,
+                     borderHeight,
+                     letterThickness,
                      roundedCorners)
 {
-//    echo("rc:7 ");
-//    echo(baseWidth);
+    echo("rc:7 ");
+    echo(borderHeight);
 
     translate([0,0,baseThickness+letterThickness/2])
-    linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0)
+//    linear_extrude(height = 6, center = false, convexity = 10, twist = 0)
+    linear_extrude(height = borderHeight, center = false, convexity = 10, twist = 0)
+//    linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0)
     {
 //        echo("rc:8 ");
 //        echo(baseWidth);

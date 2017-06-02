@@ -20,6 +20,9 @@ rightIconXyScale = 0.25; // [0.1 : 0.05 : 5]
 leftIconHeight = 1.5; // [0.1: 0.1 :5]
 rightIconHeight = 1.5; // [0.1: 0.1 :5]
 
+/* [General] */
+letterThickness = 3; // [1 : 15]
+
 /* [Top Text] */
 topText = "Love is the Answer!";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
@@ -42,7 +45,8 @@ baseHeight = 15;//54;	// [54:150]
 /* [Border] */
 showBorder = "No"; // [Yes, No]
 
-nametag(topText = topText,
+nametag(letterThickness = letterThickness,
+        topText = topText,
         topTextSize = 7,
         topTextColor = topTextColor,
         bottomText = bottomText,

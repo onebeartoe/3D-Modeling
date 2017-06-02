@@ -3,7 +3,8 @@ include <../../name-tag.scad>
         
 font="../../write/orbitron.dxf";
 
-nametag(font=font, 
+nametag(borderHeight = 4,
+        font=font,
         topText = "Mark",
         topTextOffsetY = 9,
         topTextSize = 18,
