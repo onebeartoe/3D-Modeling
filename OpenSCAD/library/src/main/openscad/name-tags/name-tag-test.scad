@@ -41,6 +41,7 @@ baseWidth = 46;//228;	// [228:600]
 baseHeight = 15;//54;	// [54:150]
 
 /* [Border] */
+borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 showBorder = "No"; // [Yes, No]
 
 nametag(iconColor = iconColor,

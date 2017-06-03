@@ -19,9 +19,6 @@ use <../shapes/minecraft/creeper/creeper-face.scad>
 //bottomLetterSpacing = 1.2; // [1 : 10]
 //bottomTextYOffset = -12; // [-20 : 30]
 
-/* [Border] */
-borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
-
 /* [Base] */
 // This determines how wide the name tag is.
 //baseWidth = 46;//228;	// [228:600]	
@@ -48,7 +45,8 @@ fudge = 0.1;
 
 // *************  Nametag Modules *************
 
-module nametag(font="write/orbitron.dxf",
+module nametag(borderColor = "yellow",
+               font="write/orbitron.dxf",
                iconColor = "white",
                letterThickness = 3,
                topText="Love is the Answer",
@@ -78,7 +76,8 @@ module nametag(font="write/orbitron.dxf",
 {
     union()
     {
-        nametag_assembly(borderHeight,
+        nametag_assembly(borderColor,
+                borderHeight,
                 font=font,
                 letterThickness,
                 topText=topText,
@@ -111,7 +110,8 @@ module nametag(font="write/orbitron.dxf",
     }    
 }
 
-module nametag_assembly(borderHeight,
+module nametag_assembly(borderColor,
+                        borderHeight,
                         font,
                         letterThickness,
                         topText,
@@ -131,9 +131,6 @@ module nametag_assembly(borderHeight,
                         borderradius, 
                         borderdistance) 
 {
-echo("rc:2 ");
-echo(baseWidth);
-
     // top text
     color(topTextColor)
     translate([0, topTextOffsetY, 0])
