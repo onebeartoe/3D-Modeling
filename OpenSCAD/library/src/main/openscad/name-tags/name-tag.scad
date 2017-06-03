@@ -6,9 +6,9 @@ use <../basics/text/text-extrude/text-extrude.scad>
 use <../shapes/chain-loop/chain-loop.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
-
+use <../shapes/minecraft/creeper/creeper-face.scad>
+        
 /* [Icons] */
-rightIconType = ""; // [Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
@@ -218,6 +218,10 @@ module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
     if(iconType == "Bass Clef")
     {
     	baseclef15scale(4);
+    }
+    else if(iconType == "Creeper")
+    {
+        creeperFaceThumbnail();
     }
     else if(iconType == "Rebel")
     {
