@@ -44,19 +44,7 @@ holediameter=3;
 countersink=2;
 holes = 0;//0;//2;//4; 			// Choose 0,2 or 4 (others=0)
 
-//font="write/orbitron.dxf"; 		// BlackRose.dxf, orbitron.dxf, Letters.dxf
-
-// This row in this matrix holds the Y-offset (from center), top-text, font size (I think), and space-between-letters.
-// Add as many rows as you like.
-//namematrix =              
-//[
-//	[ topTextYOffset,   "this value is no longer used",     topLetterSize,    topLetterSpacing],	      //[Y-placement, "Name"],      note: Y-placement of center of text
-//	[bottomTextYOffset, bottomText,  bottomLetterSize, bottomLetterSpacing]	  //[Y-placement, "Name"]      note: Y-placement of center of text 	
-//];
-
 fudge = 0.1;
-//
-//nametag(font="write/orbitron.dxf");
 
 // *************  Nametag Modules *************
 
@@ -90,9 +78,6 @@ module nametag(font="write/orbitron.dxf",
 {
     union()
     {
-//echo("rc:1 ");
-//echo(roundedCorners);
-
         nametag_assembly(borderHeight,
                 font=font,
                 letterThickness,
@@ -165,9 +150,7 @@ echo(baseWidth);
                 height = 5);
 
     if(showBorder == "Yes")
-    {
-//        borderHeight = 9;
-        
+    {        
         color(borderColor)	
                                 // Having the assignments in the method call caused an issue.  
                                 // So the assigments are left out.
@@ -182,24 +165,16 @@ echo(baseWidth);
 
     if (holes==2) 
     {
-//echo("rc:3 ");
-//echo(roundedCorners);
             base2holes(baseWidth, baseHeight, borderdistance, roundedCorners);
     }
     else 
     {
-//echo("rc:4 ");
-//echo(roundedCorners);
         if (holes==4) 
         {
-//echo("rc:5 ");
-//echo(roundedCorners);
             base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
         }
         else 
         {
-//echo("rc:6 ");
-//echo(roundedCorners);    
             nametagBase(baseWidth, 
                         baseHeight,
                         chainLoop, 
@@ -240,7 +215,6 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     }
     else if(iconType == "Fan")
     {
-//        translate([0,0,0])
         scale([1, 1, 1.6])
         fanThumbnail();
     }
@@ -273,37 +247,6 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
 //        echo("drawing no icons");
     }
 }
-
-// TODO: Migrate this to use the built-in OpenSCAD text() module.
-//module writing(font, topText)
-//{
-//    translate([0,namematrix[0][0],baseThickness+letterThickness/2])
-//    write(topText,
-//          t = letterThickness,
-//          h = namematrix[0][2],
-//          center = true,
-//          font = font,
-//          space = namematrix[0][3]);
-//            
-//    // this writes the second element (sub-element 1 and on) and on, max 100 names
-//    for ( i = [1 : 99] )
-//    {				
-//        if (namematrix[i][0]==undef)
-//        {
-//            ;	// then do nothing
-//        }
-//        else 
-//        {		    
-//            translate([0,namematrix[i][0],baseThickness+letterThickness/2])
-//            write(namematrix[i][1],
-//                  t = letterThickness,
-//                  h = namematrix[i][2],
-//                  center = true,
-//                  font = font,
-//                  space = namematrix[i][3]);
-//        }
-//    }
-//}
 
 module base2holes(baseWidth, 
                   baseHeight, 
@@ -402,7 +345,6 @@ module nametagBase(baseWidth,
         z = 3;
         
         xTranslate = -x / 2.0;
-//      yTranslate = -baseHeight - 6;        
 
         echo("clp: ");
         echo(chainLoopPosition);
@@ -435,9 +377,6 @@ module nametagBorder(baseWidth,
     linear_extrude(height = borderHeight, center = false, convexity = 10, twist = 0)
 //    linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0)
     {
-//        echo("rc:8 ");
-//        echo(baseWidth);
-
         translate([0,baseHeight/2-borderdistance,0])
             square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
 
@@ -467,7 +406,6 @@ module nametagBorder(baseWidth,
                 nametagQuarter(baseWidth, borderradius);
     }
 }
-
 
 module nametagQuarter(baseWidth, borderradius)
 {
