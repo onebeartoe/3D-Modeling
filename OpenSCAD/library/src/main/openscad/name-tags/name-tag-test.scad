@@ -1,7 +1,8 @@
 
 use <name-tag.scad>
 
-/* [Icons] */        
+/* [Icons] */
+iconColor = "white"; // [pink, red, black, white, yellow, blue, green]        
 leftIconType = "Bass Clef"; // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]        
 rightIconType = "Light Bulb";         // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
@@ -42,7 +43,8 @@ baseHeight = 15;//54;	// [54:150]
 /* [Border] */
 showBorder = "No"; // [Yes, No]
 
-nametag(letterThickness = letterThickness,
+nametag(iconColor = iconColor,
+        letterThickness = letterThickness,
         topText = topText,
         topTextSize = 7,
         topTextColor = topTextColor,

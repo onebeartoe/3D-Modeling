@@ -7,9 +7,6 @@ use <../shapes/chain-loop/chain-loop.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
-        
-/* [Icons] */
-iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Top Text] */
 topTextYOffset = 0;//7; // [0 : 30]
@@ -64,6 +61,7 @@ fudge = 0.1;
 // *************  Nametag Modules *************
 
 module nametag(font="write/orbitron.dxf",
+               iconColor = "white",
                letterThickness = 3,
                topText="Love is the Answer",
                topTextColor = "white",
@@ -115,7 +113,8 @@ module nametag(font="write/orbitron.dxf",
                 borderradius = 8, 
                 borderdistance = 5);
 
-        icons(leftIconType = leftIconType,
+        icons(iconColor = iconColor,
+              leftIconType = leftIconType,
               leftIconXyScale = leftIconXyScale,
               leftIconHeight = leftIconHeight,              
               rightIconType = rightIconType,
@@ -210,7 +209,7 @@ echo(baseWidth);
     }
 }
 
-module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset)
+module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
 {
     color(iconColor)
     translate([xOffset, yOffset, 0])
@@ -355,7 +354,8 @@ module base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdis
 	}
 }
 
-module icons(leftIconType, 
+module icons(iconColor,
+             leftIconType, 
              leftIconXyScale, 
              rightIconXyScale,
              leftIconHeight, 
@@ -366,10 +366,10 @@ module icons(leftIconType,
              yRightOffset)
 {
     // left icon
-    oneIcon(iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset, yOffset=yOffset);
+    oneIcon(iconColor = iconColor, iconType=leftIconType,  iconXyScale=leftIconXyScale, iconHeight=leftIconHeight, xOffset=-xOffset, yOffset=yOffset);
     
     // right icon
-    oneIcon(iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yRightOffset);
+    oneIcon(iconColor = iconColor, iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yRightOffset);
 }
 
 module nametagBase(baseWidth,
