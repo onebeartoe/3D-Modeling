@@ -8,21 +8,6 @@ use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
 
-/* [Top Text] */
-//topTextYOffset = 0;//7; // [0 : 30]
-//topLetterSize = 9.6;//19; // [2 : 25]
-//topLetterSpacing = 1.05;//1.5; // [1 : 10]
-
-/* [Bottom Text] */
-//bottomText = "";
-//bottomLetterSize = 8.8; // [2 : 25]
-//bottomLetterSpacing = 1.2; // [1 : 10]
-//bottomTextYOffset = -12; // [-20 : 30]
-
-/* [Base] */
-// This determines how wide the name tag is.
-//baseWidth = 46;//228;	// [228:600]	
-
 // This determines the hieght of the nametag.
 baseHeight = 15;//54;	// [54:150]
 
