@@ -27,7 +27,7 @@ letterThickness = 3; // [1 : 15]
 topText = "Love is the Answer!";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
-font="write/orbitron.dxf";
+//font="write/orbitron.dxf";
 
 /* [Bottom Text] */
 bottomText = "";

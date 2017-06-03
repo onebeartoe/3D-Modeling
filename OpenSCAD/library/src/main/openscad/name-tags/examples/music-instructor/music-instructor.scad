@@ -1,7 +1,7 @@
 
 include <../../name-tag.scad>
         
-font="../../write/orbitron.dxf";
+//font="../../write/orbitron.dxf";
 
 nametag(borderHeight = 4,
         font=font,
