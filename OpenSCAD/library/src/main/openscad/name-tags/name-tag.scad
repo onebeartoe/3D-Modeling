@@ -8,9 +8,6 @@ use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
 
-// This parameter is all about that base color.
-baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
-
 baseThickness=2; // [1 : 5] 
 
 /* [Hidden] */
@@ -27,7 +24,8 @@ fudge = 0.1;
 
 // *************  Nametag Modules *************
 
-module nametag(borderColor = "yellow",
+module nametag(baseColor = "black",
+               borderColor = "yellow",
                font="write/orbitron.dxf",
                iconColor = "white",
                letterThickness = 3,
@@ -58,7 +56,8 @@ module nametag(borderColor = "yellow",
 {
     union()
     {
-        nametag_assembly(borderColor,
+        nametag_assembly(baseColor,
+                borderColor,
                 borderHeight,
                 font=font,
                 letterThickness,
@@ -92,7 +91,8 @@ module nametag(borderColor = "yellow",
     }    
 }
 
-module nametag_assembly(borderColor,
+module nametag_assembly(baseColor,
+                        borderColor,
                         borderHeight,
                         font,
                         letterThickness,
@@ -144,17 +144,18 @@ module nametag_assembly(borderColor,
 
     if (holes==2) 
     {
-            base2holes(baseWidth, baseHeight, borderdistance, roundedCorners);
+            base2holes(baseColor, baseWidth, baseHeight, borderdistance, roundedCorners);
     }
     else 
     {
         if (holes==4) 
         {
-            base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
+            base4holes(baseColor, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
         }
         else 
         {
-            nametagBase(baseWidth, 
+            nametagBase(baseColor,
+                        baseWidth, 
                         baseHeight,
                         chainLoop, 
                         chainLoopPosition, 
@@ -227,7 +228,8 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     }
 }
 
-module base2holes(baseWidth, 
+module base2holes(baseColor,
+                  baseWidth, 
                   baseHeight, 
                   chainLoop, 
                   chainLoopPosition,
@@ -236,7 +238,8 @@ module base2holes(baseWidth,
 {
 	difference()
 	{
-		nametagBase(baseWidth, 
+		nametagBase(baseColor,
+                            baseWidth, 
                             baseHeight,
                             chainLoop, 
                             chainLoopPosition,
@@ -251,11 +254,12 @@ module base2holes(baseWidth,
 }
 
 //TODO: whitespace format this module
-module base4holes(baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
+module base4holes(baseColor, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
 {
 	difference()
 	{
-		nametagBase(baseWidth, 
+		nametagBase(baseColor,
+                            baseWidth, 
                             baseHeight,
                             chainLoop, 
                             chainLoopPosition,
@@ -294,7 +298,8 @@ module icons(iconColor,
     oneIcon(iconColor = iconColor, iconType=rightIconType, iconXyScale=rightIconXyScale, iconHeight=rightIconHeight, xOffset=xOffset, yOffset=yRightOffset);
 }
 
-module nametagBase(baseWidth,
+module nametagBase(baseColor,
+                   baseWidth,
                    baseHeight,
                    chainLoop, 
                    chainLoopPosition, 

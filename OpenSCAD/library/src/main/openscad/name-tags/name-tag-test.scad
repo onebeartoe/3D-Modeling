@@ -33,6 +33,10 @@ topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 bottomText = "";
 
 /* [Base] */
+
+// This parameter is all about that base color.
+baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
+
 // This determines how wide the name tag is.
 baseWidth = 46;//228;	// [228:600]	
 //baseWidth = 180;
@@ -44,7 +48,9 @@ baseHeight = 15; // [54:150]
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 showBorder = "No"; // [Yes, No]
 
-nametag(iconColor = iconColor,
+nametag(baseColor = baseColor,
+        borderColor = borderColor,
+        iconColor = iconColor,
         letterThickness = letterThickness,
         topText = topText,
         topTextSize = 7,
