@@ -38,7 +38,7 @@ baseWidth = 46;//228;	// [228:600]
 //baseWidth = 180;
 
 // This determines the hieght of the nametag.
-baseHeight = 15;//54;	// [54:150]
+baseHeight = 15; // [54:150]
 
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]

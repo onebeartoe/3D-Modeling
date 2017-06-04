@@ -8,9 +8,6 @@ use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
 
-// This determines the hieght of the nametag.
-baseHeight = 15;//54;	// [54:150]
-
 // This parameter is all about that base color.
 baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
 
