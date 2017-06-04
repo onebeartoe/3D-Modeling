@@ -1,5 +1,5 @@
 
-use <name-tag.scad>
+//use <name-tag.scad>
 
 /* [Icons] */
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]        
@@ -28,8 +28,6 @@ letterThickness = 3; // [1 : 15]
 topText = "Love is the Answer";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
-//font="write/orbitron.dxf";
-
 /* [Bottom Text] */
 bottomText = "";
 
@@ -49,6 +47,10 @@ baseHeight = 15; // [54:150]
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 showBorder = "No"; // [Yes, No]
+
+/* [Hidden] */
+
+use <name-tag.scad>
 
 nametag(baseColor = baseColor,
         baseThickness = baseThickness,
