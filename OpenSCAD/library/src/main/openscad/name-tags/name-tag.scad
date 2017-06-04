@@ -8,8 +8,6 @@ use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
 
-baseThickness=2; // [1 : 5] 
-
 /* [Hidden] */
 
 resolution=50; 	// Use 20 for draft 100 for nice
@@ -25,6 +23,7 @@ fudge = 0.1;
 // *************  Nametag Modules *************
 
 module nametag(baseColor = "black",
+               baseThickness = 2,
                borderColor = "yellow",
                font="write/orbitron.dxf",
                iconColor = "white",
@@ -57,6 +56,7 @@ module nametag(baseColor = "black",
     union()
     {
         nametag_assembly(baseColor,
+                baseThickness,
                 borderColor,
                 borderHeight,
                 font=font,
@@ -92,6 +92,7 @@ module nametag(baseColor = "black",
 }
 
 module nametag_assembly(baseColor,
+                        baseThickness,
                         borderColor,
                         borderHeight,
                         font,
@@ -133,7 +134,8 @@ module nametag_assembly(baseColor,
         color(borderColor)	
                                 // Having the assignments in the method call caused an issue.  
                                 // So the assigments are left out.
-        nametagBorder(baseWidth,
+        nametagBorder(baseThickness,
+                      baseWidth,
                       baseHeight,
                       borderradius,
                       borderdistance,
@@ -155,6 +157,7 @@ module nametag_assembly(baseColor,
         else 
         {
             nametagBase(baseColor,
+                        baseThickness,
                         baseWidth, 
                         baseHeight,
                         chainLoop, 
@@ -229,6 +232,7 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
 }
 
 module base2holes(baseColor,
+                  baseThickness,
                   baseWidth, 
                   baseHeight, 
                   chainLoop, 
@@ -239,6 +243,7 @@ module base2holes(baseColor,
 	difference()
 	{
 		nametagBase(baseColor,
+                            baseThickness,
                             baseWidth, 
                             baseHeight,
                             chainLoop, 
@@ -247,18 +252,19 @@ module base2holes(baseColor,
                             roundedCorners);
                 
 		translate([-(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),0,0])
-			nametagHole();
+			nametagHole(baseThickness);
 		translate([(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),(0),0])
-			nametagHole();
+			nametagHole(baseThickness);
 	}
 }
 
 //TODO: whitespace format this module
-module base4holes(baseColor, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
+module base4holes(baseColor, baseThickness, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
 {
 	difference()
 	{
 		nametagBase(baseColor,
+                            baseThickness,
                             baseWidth, 
                             baseHeight,
                             chainLoop, 
@@ -267,16 +273,16 @@ module base4holes(baseColor, baseWidth, baseHeight, chainLoop, chainLoopPosition
                             roundedCorners);
 
 		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-                nametagHole();
+                nametagHole(baseThickness);
 
 		translate([(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-                nametagHole();
+                nametagHole(baseThickness);
 
 		translate([-(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
-                nametagHole();
+                nametagHole(baseThickness);
 
 		translate([-(baseWidth/2-borderdistance),-(baseHeight/2-borderdistance),0])
-                nametagHole();
+                nametagHole(baseThickness);
 	}
 }
 
@@ -299,6 +305,7 @@ module icons(iconColor,
 }
 
 module nametagBase(baseColor,
+                   baseThickness,
                    baseWidth,
                    baseHeight,
                    chainLoop, 
@@ -345,7 +352,8 @@ module nametagBase(baseColor,
     }
 }
 
-module nametagBorder(baseWidth,
+module nametagBorder(baseThickness,
+                     baseWidth,
                      baseHeight,
                      borderradius,
                      borderdistance,
@@ -404,7 +412,7 @@ module nametagQuarter(baseWidth, borderradius)
 	}
 }
 
-module nametagHole()
+module nametagHole(baseThickness)
 {
 	translate([0,0,baseThickness/2])
 		cylinder(h = baseThickness+0.1, r = holediameter/2, $fn=resolution, center = true);

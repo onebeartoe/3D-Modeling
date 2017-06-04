@@ -3,8 +3,9 @@ use <name-tag.scad>
 
 /* [Icons] */
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]        
-leftIconType = "Bass Clef"; // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]        
-rightIconType = "Light Bulb";         // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
+//TODO: Where is the heart icon, man?  "Put your heart into it."
+leftIconType = "Bass Clef";   // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]        
+rightIconType = "Light Bulb"; // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
 // This is the x off set of the icons
 xIconOffset = 36; // [10:200]
@@ -37,9 +38,10 @@ bottomText = "";
 // This parameter is all about that base color.
 baseColor = "black"; // [pink, red, black, white, yellow, blue, green]
 
+baseThickness = 2; // [1 : 5]
+
 // This determines how wide the name tag is.
-baseWidth = 46;//228;	// [228:600]	
-//baseWidth = 180;
+baseWidth = 46;//228;	// [228:600]
 
 // This determines the hieght of the nametag.
 baseHeight = 15; // [54:150]
@@ -49,6 +51,7 @@ borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 showBorder = "No"; // [Yes, No]
 
 nametag(baseColor = baseColor,
+        baseThickness = baseThickness,
         borderColor = borderColor,
         iconColor = iconColor,
         letterThickness = letterThickness,
