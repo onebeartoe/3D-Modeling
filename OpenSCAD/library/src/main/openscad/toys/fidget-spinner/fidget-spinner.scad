@@ -17,12 +17,6 @@ use <../../shapes/pacman/pacman.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
-/* [Spinner_Parameters] */
-
-// this variable determines the distance from the hub to the cut out shape.
-spoke_y = 4; //[1,2,3,4,5,6,7,8]
-//spoke_y = coin_d / 3; // used to be
-
 /* [Hidden] */
 
 //Which coin do you want to use?
@@ -195,7 +189,8 @@ module cutoutHolder(cutoutHolderType)
 }
 
 module dollarHolder(cutoutHolderType,
-                    cutoutName) 
+                    cutoutName,
+                    spoke_y)
 {
     translate([0, coin_d / 2 + spoke_y, 0])
     difference() 
@@ -216,7 +211,8 @@ module hub() {
     cylinder(h = hub_z, d = brg_d + rim, center = true);
 }
 
-module spoke() {
+module spoke(spoke_y) 
+{
     translate([0, spoke_y / 2, 0])
     cube([spoke_x, spoke_y, spoke_z], center = true);
 }
@@ -231,17 +227,16 @@ module centerCutout()
     cylinder(h = brg_z + 2, d = brg_d, center = true);
 }
 
-module holderSpoke(cutoutHolderType, cutoutName)
+module holderSpoke(cutoutHolderType, cutoutName, spoke_y)
 {
-
     translate([0, brg_d / 2, 0])
             union() {
-        dollarHolder(cutoutHolderType, cutoutName);
-        spoke();
+        dollarHolder(cutoutHolderType, cutoutName, spoke_y);
+        spoke(spoke_y);
     }
 }
 
-module spinner(cutoutHolderType, cutoutName, spokeNumber)
+module spinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
 {
     //Rotate
     rA = 360 / spokeNumber; //rotational angle
@@ -250,24 +245,24 @@ module spinner(cutoutHolderType, cutoutName, spokeNumber)
     for (i = [0 : rA : fA]) 
     {
         rotate([0, 0, i])
-        holderSpoke(cutoutHolderType, cutoutName);
+        holderSpoke(cutoutHolderType, cutoutName, spoke_y);
     }
 }
 
 //Finalize
 
-module fidget(cutoutHolderType, cutoutName, spokeNumber)
+module fidget(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
 {
     hub();
-    spinner(cutoutHolderType, cutoutName, spokeNumber);
+    spinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y);
 }
 
-module fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber)
+module fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
 {
     //Render
     difference() 
     {
-        fidget(cutoutHolderType, cutoutName, spokeNumber);
+        fidget(cutoutHolderType, cutoutName, spokeNumber, spoke_y);
 
         centerCutout();
     }

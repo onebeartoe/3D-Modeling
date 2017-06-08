@@ -14,4 +14,7 @@ cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Creeper, Fidget
 //How many spokes should the spinner have?
 spokeNumber = 3; //[2,3,4,5,6,7]
 
-fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber);
+// this variable determines the distance from the hub to the cut out shape.
+spoke_y = 4; //[1,2,3,4,5,6,7,8]
+
+fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y);
