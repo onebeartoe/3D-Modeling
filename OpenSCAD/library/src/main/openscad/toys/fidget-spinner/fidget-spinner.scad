@@ -1,24 +1,7 @@
 
 // preview[view:south, tilt:top]
 
-/**
- * This script renders onebeartoe Fidget Spinners!
- * 
- * Author: Roberto Marquez
- * 
- * https://plus.google.com/u/0/104101484714566033177
- * https://twitter.com/onebeartoe
- * https://www.youtube.com/user/onebeartoe/videos
- * 
- *  Originally from: http://www.thingiverse.com/thing:1937473
- *  Original Author: Geoff Buttsworth
- *  Original Filename: moneySpinner02
- *  Borrowed from Version: 0.5
- *  Twitter: @gbutts9
- * 
- *  This version is designed to work with the Thingiverse Customizer.
- *  Ref: http://customizer.makerbot.com/docs
- */
+use <attribution.text>
 
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/aquaman/aquaman-logo.scad>
@@ -38,13 +21,17 @@ use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
 
-cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
+cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Creeper, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
 
-cutoutHolderType = "Knurl"; // [Cylinder, Knurl]
+cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 3; //[2,3,4,5,6,7]
 spokeNumber = Number_of_Spokes;
+
+// this variable determines the distance from the hub to the cut out shape.
+spoke_y = 4; //[1,2,3,4,5,6,7,8]
+//spoke_y = coin_d / 3; // used to be
 
 /* [Hidden] */
 
@@ -122,7 +109,6 @@ brg_d = 22.0;
 brg_z = 7.0;
 
 spoke_x = coin_d / 2;
-spoke_y = coin_d / 3;
 spoke_z = holder_z;
 
 //If flush: hub will be height of coin stack otherwise height of bearing
@@ -162,8 +148,8 @@ module cutout()
     }
     else if(cutoutName == "Creeper")
     {
-        translate(0, 0, -0.3)
-        scale([1, 1, 17])
+        translate(0, 0, -1)
+        scale([1, 1, 14])
         creeperFaceThumbnail();
     }
     else if(cutoutName == "Rebel Alliance")
@@ -293,3 +279,5 @@ module fidgetSpinner()
         centerCutout();
     }
 }
+
+fidgetSpinner();
