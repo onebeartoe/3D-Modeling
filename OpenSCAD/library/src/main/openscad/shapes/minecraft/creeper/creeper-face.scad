@@ -5,20 +5,34 @@ tilesWide = 8;
 
 tileSize = 5;
 
+/**
+ * This approach did not yield a solid (manifold) object in OpenSCAD.
+ * 
+ * @return 
+ */
 module creeperFace()
 {
-    for(x = [0:tilesWide-1])
+//    union()
     {
-        for(y = [0: tilesWide-1])
+        for(x = [0:tilesWide-1])
         {
-            dx = x * tileSize;
-            dy = y * tileSize;
-            
-            c = colorMatrix[y][x] == "b" ? "black" : "green";
-//            c = upsideDownColorMatrix[y][x] == "b" ? "black" : "green";
-            if(c == "black")
+//            union()
             {
-                tile(dx, dy, c);
+                for(y = [0: tilesWide-1])
+                {
+                    preX = x * tileSize;
+                    preY = y * tileSize;
+
+                    dx = x > 0 ? preX - 0.111 : preX;
+                    dy = y > 0 ? preY - 0.111 : preY;
+                    
+                    c = colorMatrix[y][x] == "b" ? "black" : "green";
+                    
+                    if(c == "black")
+                    {
+                        tile(dx, dy, c);
+                    }
+                }
             }
         }
     }
