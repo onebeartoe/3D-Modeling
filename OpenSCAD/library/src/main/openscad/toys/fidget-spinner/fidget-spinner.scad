@@ -20,9 +20,6 @@ use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
-
-cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Creeper, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
-
 cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
 
 //How many spokes should the spinner have?
@@ -116,7 +113,7 @@ hub_z = flush == 1 ? coin_z*stack : brg_z;
 
 //SpinnerModules
 
-module cutout()
+module cutout(cutoutName)
 {
     if(cutoutName == "Adafruit")
     {
@@ -205,7 +202,7 @@ module cutoutHolder()
     }
 }
 
-module dollarHolder() 
+module dollarHolder(cutoutName) 
 {
     translate([0, coin_d / 2 + spoke_y, 0])
     difference() 
@@ -218,7 +215,7 @@ module dollarHolder()
         xyScale = 0.75;
         translate([0, 0, -5])
         scale([xyScale, xyScale, 1])
-        cutout();
+        cutout(cutoutName);
     }
 }
 
@@ -241,11 +238,12 @@ module centerCutout()
     cylinder(h = brg_z + 2, d = brg_d, center = true);
 }
 
-module holderSpoke() {
+module holderSpoke(cutoutName)
+{
 
     translate([0, brg_d / 2, 0])
             union() {
-        dollarHolder();
+        dollarHolder(cutoutName);
         spoke();
     }
 }
@@ -254,30 +252,30 @@ module holderSpoke() {
 rA = 360 / spokeNumber; //rotational angle
 fA = round(360 - rA); //final angle
 
-module spinner() {
-    for (i = [0 : rA : fA]) {
+module spinner(cutoutName)
+{
+    for (i = [0 : rA : fA]) 
+    {
         rotate([0, 0, i])
-        holderSpoke();
+        holderSpoke(cutoutName);
     }
 }
 
 //Finalize
 
-module fidget() 
+module fidget(cutoutName) 
 {
     hub();
-    spinner();
+    spinner(cutoutName);
 }
 
-module fidgetSpinner()
+module fidgetSpinner(cutoutName)
 {
     //Render
     difference() 
     {
-        fidget();
+        fidget(cutoutName);
 
         centerCutout();
     }
 }
-
-fidgetSpinner();
