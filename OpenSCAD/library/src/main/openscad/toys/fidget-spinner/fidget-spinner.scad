@@ -19,10 +19,6 @@ use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
 
-//How many spokes should the spinner have?
-Number_of_Spokes = 3; //[2,3,4,5,6,7]
-spokeNumber = Number_of_Spokes;
-
 // this variable determines the distance from the hub to the cut out shape.
 spoke_y = 4; //[1,2,3,4,5,6,7,8]
 //spoke_y = coin_d / 3; // used to be
@@ -38,7 +34,6 @@ Flush_or_Raised_Hub = 1; //[0:Hub,1:Flush]
 flush = Flush_or_Raised_Hub; //Flush is easier to print, the hub is height of bearing and may print with support
 
 // TODO: Remove unused (coin) code.
-//Allocate coin data
 
 // !!!!!to make the spoke count this is needed, so far.  or maybe not!!!!
 //coinName = coin == 1 ? "AU $2" :
@@ -246,12 +241,12 @@ module holderSpoke(cutoutHolderType, cutoutName)
     }
 }
 
-//Rotate
-rA = 360 / spokeNumber; //rotational angle
-fA = round(360 - rA); //final angle
-
-module spinner(cutoutHolderType, cutoutName)
+module spinner(cutoutHolderType, cutoutName, spokeNumber)
 {
+    //Rotate
+    rA = 360 / spokeNumber; //rotational angle
+    fA = round(360 - rA); //final angle
+
     for (i = [0 : rA : fA]) 
     {
         rotate([0, 0, i])
@@ -261,18 +256,18 @@ module spinner(cutoutHolderType, cutoutName)
 
 //Finalize
 
-module fidget(cutoutHolderType, cutoutName)
+module fidget(cutoutHolderType, cutoutName, spokeNumber)
 {
     hub();
-    spinner(cutoutHolderType, cutoutName);
+    spinner(cutoutHolderType, cutoutName, spokeNumber);
 }
 
-module fidgetSpinner(cutoutHolderType, cutoutName)
+module fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber)
 {
     //Render
     difference() 
     {
-        fidget(cutoutHolderType, cutoutName);
+        fidget(cutoutHolderType, cutoutName, spokeNumber);
 
         centerCutout();
     }
