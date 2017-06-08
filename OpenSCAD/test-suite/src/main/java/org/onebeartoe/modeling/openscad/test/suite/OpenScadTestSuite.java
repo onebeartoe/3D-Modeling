@@ -242,7 +242,8 @@ public class OpenScadTestSuite
         }
         else
         {
-            System.err.println("Some test suite input files are not present.");
+            int count = missingBaselineFiles.size();
+            System.err.println("Some " + count + " test suite input files are not present.");
             System.err.println();
             System.err.println("Try running '--generateBaselines' to generate the missing input files.");
         }
@@ -276,7 +277,9 @@ public class OpenScadTestSuite
                 int count = generateProposedBaselines();
                 
                 System.out.println();
-                System.out.println(count + " proposed baseline files were generated.");                
+                System.out.println("Proposed baselines were generated for "
+                        + count
+                        + " OpenSCAD files.");
             }
             
             System.out.println();

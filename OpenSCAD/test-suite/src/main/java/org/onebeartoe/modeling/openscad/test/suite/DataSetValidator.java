@@ -70,13 +70,12 @@ public class DataSetValidator
 
             boolean accepted = !f.exists();
 
-            if (accepted)
-            {
-                System.err.println(" missing input file: " + ebf);
-            }
-
             return accepted;
         }).collect(Collectors.toList());
+        
+        System.err.println();
+        System.err.println("missing input files:");
+        missingFiles.forEach(mf -> {System.err.println(mf);});
         
         return missingFiles;
     }    

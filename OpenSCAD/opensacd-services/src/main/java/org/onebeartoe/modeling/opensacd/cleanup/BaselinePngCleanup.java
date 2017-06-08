@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
+ * The program creates a list of rm commands for '*BOTTOM-baseline.png' that are
+ * saved from the output of an 'git status' command.
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
 public class BaselinePngCleanup 
