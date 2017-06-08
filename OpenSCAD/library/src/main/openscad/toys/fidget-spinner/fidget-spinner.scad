@@ -1,6 +1,4 @@
 
-// preview[view:south, tilt:top]
-
 use <attribution.text>
 
 use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
@@ -20,7 +18,6 @@ use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
 /* [Spinner_Parameters] */
-cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
 
 //How many spokes should the spinner have?
 Number_of_Spokes = 3; //[2,3,4,5,6,7]
@@ -186,7 +183,7 @@ module cutout(cutoutName)
     }
 }
 
-module cutoutHolder()
+module cutoutHolder(cutoutHolderType)
 {
     if(cutoutHolderType == "Cylinder")
     {
@@ -202,7 +199,8 @@ module cutoutHolder()
     }
 }
 
-module dollarHolder(cutoutName) 
+module dollarHolder(cutoutHolderType,
+                    cutoutName) 
 {
     translate([0, coin_d / 2 + spoke_y, 0])
     difference() 
@@ -210,7 +208,7 @@ module dollarHolder(cutoutName)
         // TODO: this next item looks like where the knurl can be swapped out for
         //       a regular cylinder or rounded cylinder.
         translate([0, 0, -coin_z * stack / 2])
-        cutoutHolder();
+        cutoutHolder(cutoutHolderType);
 
         xyScale = 0.75;
         translate([0, 0, -5])
@@ -238,12 +236,12 @@ module centerCutout()
     cylinder(h = brg_z + 2, d = brg_d, center = true);
 }
 
-module holderSpoke(cutoutName)
+module holderSpoke(cutoutHolderType, cutoutName)
 {
 
     translate([0, brg_d / 2, 0])
             union() {
-        dollarHolder(cutoutName);
+        dollarHolder(cutoutHolderType, cutoutName);
         spoke();
     }
 }
@@ -252,29 +250,29 @@ module holderSpoke(cutoutName)
 rA = 360 / spokeNumber; //rotational angle
 fA = round(360 - rA); //final angle
 
-module spinner(cutoutName)
+module spinner(cutoutHolderType, cutoutName)
 {
     for (i = [0 : rA : fA]) 
     {
         rotate([0, 0, i])
-        holderSpoke(cutoutName);
+        holderSpoke(cutoutHolderType, cutoutName);
     }
 }
 
 //Finalize
 
-module fidget(cutoutName) 
+module fidget(cutoutHolderType, cutoutName)
 {
     hub();
-    spinner(cutoutName);
+    spinner(cutoutHolderType, cutoutName);
 }
 
-module fidgetSpinner(cutoutName)
+module fidgetSpinner(cutoutHolderType, cutoutName)
 {
     //Render
     difference() 
     {
-        fidget(cutoutName);
+        fidget(cutoutHolderType, cutoutName);
 
         centerCutout();
     }
