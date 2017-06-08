@@ -1,59 +1,25 @@
 
-include <creeper-face-matrices.scad>
+// This OpenSCAD code originally came from:
+//      https://github.com/onebeartoe/imaging/blob/master/graphics/samples/creeper-face/creeper-face.scad
 
-tilesWide = 8;
+// Module names are of the form poly_<inkscape-path-id>().  As a result,
+// you can associate a polygon in this OpenSCAD program with the corresponding
+// SVG element in the Inkscape document by looking for the XML element with
+// the attribute id="inkscape-path-id".
 
-tileSize = 5;
-
-/**
- * This approach did not yield a solid (manifold) object in OpenSCAD.
- * 
- * @return 
- */
-module creeperFace()
+module creeperface(height)
 {
-//    union()
-    {
-        for(x = [0:tilesWide-1])
-        {
-//            union()
-            {
-                for(y = [0: tilesWide-1])
-                {
-                    preX = x * tileSize;
-                    preY = y * tileSize;
-
-                    dx = x > 0 ? preX - 0.111 : preX;
-                    dy = y > 0 ? preY - 0.111 : preY;
-                    
-                    c = colorMatrix[y][x] == "b" ? "black" : "green";
-                    
-                    if(c == "black")
-                    {
-                        tile(dx, dy, c);
-                    }
-                }
-            }
-        }
-    }
+  scale([25.4/90, -25.4/90, 1]) union()
+  {
+    linear_extrude(height=height)
+      polygon([[-100.000000,-300.000000],[-100.000000,-100.000000],[100.000000,-100.000000],[100.000000,-300.000000],[300.000000,-300.000000],[300.000000,-100.000000],[100.000000,-100.000000],[100.000000,0.000000],[200.000000,0.000000],[200.000000,300.000000],[100.000000,300.000000],[100.000000,200.000000],[-100.000000,200.000000],[-100.000000,300.000000],[-200.000000,300.000000],[-200.000000,0.000000],[-100.000000,0.000000],[-100.000000,-100.000000],[-300.000000,-100.000000],[-300.000000,-300.000000],[-100.000000,-300.000000]]);
+  }
 }
 
 module creeperFaceThumbnail(height = 1)
 {
-    xyScale = 0.65;
- 
-    t = -(tilesWide * tileSize) / 2.0;
-    xTranslate = t * xyScale;
-    yTranslate = xTranslate;
+    xyScale = 0.116;
     
-    translate([xTranslate, yTranslate, 0])
     scale([xyScale, xyScale, 1])
-    creeperFace();
-}
-
-module tile(x, y, color)
-{
-    color(color)
-    translate([x, y, 0])
-    cube([tileSize, tileSize, 1]);
+    creeperface(height);
 }
