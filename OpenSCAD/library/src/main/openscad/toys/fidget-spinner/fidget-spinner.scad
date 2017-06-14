@@ -12,7 +12,12 @@ use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/star-trek/logo/star-trek-logo.scad>
 use <../../shapes/clover/clover.scad>
 use <../../shapes/heart/heart.scad>
-use <../../shapes/minecraft/creeper/creeper-face.scad>
+
+// using the next one does NOT generate a .stl file        
+//use <../../shapes/minecraft/creeper/creeper-face.scad>
+// using the next one generates a .stl file        
+use <../../shapes/minecraft/creeper/tiles-not-manifold/creeper-face-tiles-not-manifold.scad>
+        
 use <../../shapes/pacman/pacman.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
@@ -130,10 +135,10 @@ module cutout(cutoutName)
         heartThumbnail(height=10);
     }
     else if(cutoutName == "Creeper")
-    {
+    { 
         translate(0, 0, -1)
-        scale([1, 1, 14])
-        creeperFaceThumbnail();
+//        scale([1, 1, 10])
+        creeperFaceThumbnail(height=10);
     }
     else if(cutoutName == "Rebel Alliance")
     {
