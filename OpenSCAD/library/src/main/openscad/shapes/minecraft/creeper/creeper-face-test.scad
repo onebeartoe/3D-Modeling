@@ -4,4 +4,4 @@ use <../../../external-resources/thumbnail-background.scad>
 
 creeperFaceThumbnail();
 
-thumbnailBackground();
+//thumbnailBackground();

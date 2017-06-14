@@ -49,7 +49,7 @@ module creeperFaceThumbnail(height = 1)
     yTranslate = xTranslate;
     
     translate([xTranslate, yTranslate, 0])
-    scale([xyScale, xyScale, 1])
+    scale([xyScale, xyScale, height])
     creeperFace();
 }
 
