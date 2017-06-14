@@ -64,14 +64,16 @@ public class DataSetValidator
     private List<String> missingBaselineFiles(List<String> expectedBaselineFiles)
     {
         List<String> missingFiles = expectedBaselineFiles.stream()
-                                                                 .filter( ebf ->
-        {
-            File f = new File(ebf);
+            .filter( ebf ->
+            {
+                File f = new File(ebf);
 
-            boolean accepted = !f.exists();
+                boolean accepted = !f.exists();
 
-            return accepted;
-        }).collect(Collectors.toList());
+                return accepted;
+            })
+            .sorted()
+            .collect(Collectors.toList());
         
         System.err.println();
         System.err.println("missing input files:");
