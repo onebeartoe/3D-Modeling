@@ -1,8 +1,21 @@
 
 use <chain-loop.scad>
-        
-translate([0, -25, 0])
+
+color("blue")
+translate([0, -45, 0])
 chainLoop();
 
-translate([0, 15, 0])
+translate([0, -22, 0])
 chainLoop();
+
+color("orange")
+translate([0, 0, 0])
+chainLoop(yPercentage = 0.5);
+
+color("pink")
+translate([0, 25, 0])
+chainLoop(xLength = 19,
+          yLength = 17,
+          yPercentage = 0.5,
+          zLength = 15);
+
