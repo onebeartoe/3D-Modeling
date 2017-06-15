@@ -6,11 +6,14 @@ translate([0, -45, 0])
 chainLoop();
 
 translate([0, -22, 0])
-chainLoop();
+chainLoop(yLength = 17,
+          zLength = 15,
+          zPercentage=0.4319);
 
 color("orange")
 translate([0, 0, 0])
-chainLoop(yPercentage = 0.8);
+chainLoop(yPercentage = 0.368,
+          zPercentage=0.4319);
 
 color("pink")
 translate([0, 25, 0])
