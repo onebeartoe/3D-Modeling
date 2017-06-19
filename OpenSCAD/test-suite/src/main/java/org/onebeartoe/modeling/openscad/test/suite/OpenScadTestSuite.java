@@ -231,7 +231,7 @@ public class OpenScadTestSuite
             else
             {
                 System.out.println();
-                System.out.println("Generating a proposed version of the .png  from each .oscad file...");
+                System.out.println("The test suite is now generating proposed baseline images for each .oscad file.");
                 System.out.println();
                 
                 int count = generateProposedBaselines(redirectOpenscad);
