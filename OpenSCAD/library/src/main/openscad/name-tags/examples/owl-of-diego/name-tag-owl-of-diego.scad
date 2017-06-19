@@ -18,4 +18,5 @@ nametag(font=font,
         baseHeight = 15,
         roundedCorners = true,
         chainLoop = true,
+        chainLoopLengthZ = 3,
         chainLoopPosition = "bottom");

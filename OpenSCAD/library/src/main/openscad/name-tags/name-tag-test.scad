@@ -55,6 +55,7 @@ use <name-tag.scad>
 nametag(baseColor = baseColor,
         baseThickness = baseThickness,
         borderColor = borderColor,
+        chainLoopLengthZ = 6,
         iconColor = iconColor,
         letterThickness = letterThickness,
         topText = topText,

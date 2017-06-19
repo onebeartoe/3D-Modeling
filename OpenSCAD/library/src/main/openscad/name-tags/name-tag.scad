@@ -33,6 +33,7 @@ module nametag(baseColor = "black",
                bottomTextOffsetY = 0,
                bottomTextSize = 9,
                chainLoop = true,
+               chainLoopLengthZ = 10,
                chainLoopPosition = "bottom",
                font="write/orbitron.dxf",
                iconColor = "white",
@@ -73,6 +74,7 @@ module nametag(baseColor = "black",
                 baseHeight = baseHeight,
                 roundedCorners = roundedCorners,
                 chainLoop=chainLoop,
+                chainLoopLengthZ = chainLoopLengthZ,
                 chainLoopPosition = chainLoopPosition,
                 showBorder = showBorder,
                 borderradius = 8, 
@@ -108,7 +110,8 @@ module nametag_assembly(baseColor,
                         baseWidth, 
                         baseHeight,
                         roundedCorners,
-                        chainLoop, 
+                        chainLoop,
+                        chainLoopLengthZ,
                         chainLoopPosition,
                         showBorder, 
                         borderradius, 
@@ -160,7 +163,8 @@ module nametag_assembly(baseColor,
                         baseThickness,
                         baseWidth, 
                         baseHeight,
-                        chainLoop, 
+                        chainLoop,
+                        chainLoopLengthZ,
                         chainLoopPosition, 
                         roundedCorners);
         }
@@ -235,7 +239,8 @@ module base2holes(baseColor,
                   baseThickness,
                   baseWidth, 
                   baseHeight, 
-                  chainLoop, 
+                  chainLoop,
+                  chainLoopLengthZ,
                   chainLoopPosition,
                   borderdistance,
                   roundedCorners) 
@@ -246,7 +251,8 @@ module base2holes(baseColor,
                             baseThickness,
                             baseWidth, 
                             baseHeight,
-                            chainLoop, 
+                            chainLoop,
+                            chainLoopLengthZ,
                             chainLoopPosition,
                             borderdistance,
                             roundedCorners);
@@ -259,7 +265,10 @@ module base2holes(baseColor,
 }
 
 //TODO: whitespace format this module
-module base4holes(baseColor, baseThickness, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners)
+module base4holes(baseColor, baseThickness, baseWidth, baseHeight, 
+                  chainLoop, chainLoopLengthZ, chainLoopPosition, 
+                  borderdistance, 
+                  roundedCorners)
 {
 	difference()
 	{
@@ -267,7 +276,8 @@ module base4holes(baseColor, baseThickness, baseWidth, baseHeight, chainLoop, ch
                             baseThickness,
                             baseWidth, 
                             baseHeight,
-                            chainLoop, 
+                            chainLoop,
+                            chainLoopLengthZ,
                             chainLoopPosition,
                             borderdistance,
                             roundedCorners);
@@ -308,7 +318,8 @@ module nametagBase(baseColor,
                    baseThickness,
                    baseWidth,
                    baseHeight,
-                   chainLoop, 
+                   chainLoop,
+                   chainLoopLengthZ,
                    chainLoopPosition, 
                    roundedCorners)
 {    
@@ -333,7 +344,7 @@ module nametagBase(baseColor,
     {
         x = 21;
         y = 8;
-        z = 3;
+//        z = 3;
         
         xTranslate = -x / 2.0;
 
@@ -348,7 +359,7 @@ module nametagBase(baseColor,
         translate([xTranslate,yTranslate,0])
         chainLoop(xLength = x,
                  yLength = y,
-                 zLength = z);
+                 zLength = chainLoopLengthZ);
     }
 }
 

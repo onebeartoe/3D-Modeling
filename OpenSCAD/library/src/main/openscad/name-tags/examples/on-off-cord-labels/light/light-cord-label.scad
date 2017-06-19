@@ -24,4 +24,5 @@ nametag(topText="Light",
         baseHeight = 15,
         
         chainLoop = true,
+        chainLoopLengthZ = 3,
         chainLoopPosition = "top");
