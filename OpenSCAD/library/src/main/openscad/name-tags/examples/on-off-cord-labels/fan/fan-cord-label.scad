@@ -5,23 +5,19 @@ iconType = "Fan";
 iconXyScale = 0.8;
 iconHeight = 3;
         
-nametag(topText="Fan",
-        topTextSize = 12,
+nametag(baseHeight = 15,
+        baseWidth = 80,        
         bottomText = "",
-        font="../../../write/orbitron.dxf",
-        
-        leftIconType = iconType,
-        leftIconHeight = iconHeight,
-        leftIconXyScale = iconXyScale,
-        rightIconType = iconType,
-        rightIconHeight = iconHeight,
-        rightIconXyScale = iconXyScale,
-        xIconOffset = 33,
-        yIconOffset = 1,
-        
-        baseWidth = 80,
-        baseHeight = 15,
-//        showBorder = "No",
-//        showBorder = "Yes",        
         chainLoop = true,
-        chainLoopPosition = "top");
+        chainLoopPosition = "top",
+        font="../../../write/orbitron.dxf",
+        leftIconHeight = iconHeight,
+        leftIconType = iconType,
+        leftIconXyScale = iconXyScale,
+        rightIconHeight = iconHeight,
+        rightIconType = iconType,
+        rightIconXyScale = iconXyScale,        
+        topText="Fan",
+        topTextSize = 12,
+        xIconOffset = 33,
+        yIconOffset = 1);
