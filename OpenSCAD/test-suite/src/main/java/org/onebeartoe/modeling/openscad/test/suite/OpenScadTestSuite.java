@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
@@ -25,6 +24,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
 public class OpenScadTestSuite
 {
@@ -33,6 +37,8 @@ public class OpenScadTestSuite
     private PngGenerator pngGenerator;
     
     private Logger logger;
+    
+    private static String OPENSCAD_REDIRECTION = "openscadRedirection";
     
     public OpenScadTestSuite()
     {
@@ -109,14 +115,14 @@ public class OpenScadTestSuite
 	return errorFiles;
     }
 
-    private void generateBaselines() throws IOException, InterruptedException
+    private void generateBaselines(boolean redirectOpenscad) throws IOException, InterruptedException
     {
         System.out.println("test suite generating baselines, count: " + openscadPaths.size());
 
         // don't overwrite any existing baseline images
         boolean forcePngGeneration = false;
         
-        pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
+        pngGenerator.generatePngs(openscadPaths, forcePngGeneration, redirectOpenscad);
     }
 
     /**
@@ -125,12 +131,14 @@ public class OpenScadTestSuite
      * @throws IOException
      * @throws InterruptedException 
      */
-    private int generateProposedBaselines() throws IOException, InterruptedException
+    private int generateProposedBaselines(boolean redirectOpenscad) throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
         
-        boolean success = pngGenerator.generatePngs(openscadPaths, forcePngGeneration);
+        boolean success = pngGenerator.generatePngs(openscadPaths, 
+                                                    forcePngGeneration,
+                                                    redirectOpenscad);
         int count;
         
         if(success)
@@ -151,6 +159,24 @@ public class OpenScadTestSuite
     
     public static void main(String[] args) throws Throwable
     {
+        Option outfile = Option.builder()
+                        .required(false)
+                        .longOpt(OPENSCAD_REDIRECTION)
+                        .hasArg(true)
+                        .build();        
+        Options options = new Options();
+        options.addOption(outfile);
+        
+        CommandLineParser parser = new DefaultParser();
+        CommandLine cmd = parser.parse(options, args);
+        
+        List<String> remainingArgs = cmd.getArgList();
+
+        boolean redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);
+        String message = redirectOpenscad ? "" : "not ";
+        message += "gonna redirect openscad";
+        System.out.println(message);
+        
         if (args.length == 0)
         {
             // the test suite needs at least one argument, the path to test
@@ -158,11 +184,11 @@ public class OpenScadTestSuite
         }
         else
         {
-            oneOrMoreArgs(args);
+            oneOrMoreArgs(args, redirectOpenscad);
         }
     }
 
-    private static void oneOrMoreArgs(String [] args) throws Exception
+    private static void oneOrMoreArgs(String [] args, boolean redirectOpenscad) throws Exception
     {
         // This block uses the start and end Instant to keep track of the 
         // total duration of the test run.
@@ -171,7 +197,7 @@ public class OpenScadTestSuite
         Instant start = Instant.now();
 
         OpenScadTestSuite testSuite = new OpenScadTestSuite();
-        testSuite.serviceRequest(args);
+        testSuite.serviceRequest(args, redirectOpenscad);
 
         Instant end = Instant.now();
 
@@ -194,6 +220,7 @@ public class OpenScadTestSuite
 
     private static void printHelp() throws Exception
     {
+//        *
         StringBuilder message = new StringBuilder();
 
         String resourcePath = "/help.text";
@@ -203,7 +230,8 @@ public class OpenScadTestSuite
 
         Map<String, String> env = new HashMap<>();
         env.put("create", "true");
-        FileSystem zipfs = FileSystems.newFileSystem(uri, env);
+        
+//        FileSystem zipfs = FileSystems.newFileSystem(uri, env);
 
         Path inpath = Paths.get(uri);
 
@@ -216,7 +244,7 @@ public class OpenScadTestSuite
 
         System.out.println(message);
     }
-    
+
     private void printPngCleanupList()
     {
         StringBuilder sb = new StringBuilder();
@@ -249,7 +277,7 @@ public class OpenScadTestSuite
         }
     }    
     
-    private void runTestSuite(boolean skipProposedBaselineGeneration) throws Exception
+    private void runTestSuite(boolean skipProposedBaselineGeneration, boolean redirectOpenscad) throws Exception
     {
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
@@ -274,7 +302,7 @@ public class OpenScadTestSuite
                 System.out.println("Generating a proposed version of the .png  from each .oscad file...");
                 System.out.println();
                 
-                int count = generateProposedBaselines();
+                int count = generateProposedBaselines(redirectOpenscad);
                 
                 System.out.println();
                 System.out.println("Proposed baselines were generated for "
@@ -325,7 +353,7 @@ public class OpenScadTestSuite
         return path;
     }
     
-    public void serviceRequest(String[] args) throws Exception
+    public void serviceRequest(String[] args, boolean redirectOpenscad) throws Exception
     {        
         RunMode mode;
         String path;
@@ -376,7 +404,7 @@ public class OpenScadTestSuite
 
                 if(mode == RunMode.GENERATE_BASELINES)
                 {
-                    generateBaselines();
+                    generateBaselines(redirectOpenscad);
                 }
                 else if(mode == RunMode.CLEANUP_LIST)
                 {
@@ -385,7 +413,7 @@ public class OpenScadTestSuite
                 else
                 {
                     // the mode is 'run test suite'
-                    runTestSuite(diffOnly);
+                    runTestSuite(diffOnly, redirectOpenscad);
                 }                
             }
             catch(NoSuchFileException nsfe)

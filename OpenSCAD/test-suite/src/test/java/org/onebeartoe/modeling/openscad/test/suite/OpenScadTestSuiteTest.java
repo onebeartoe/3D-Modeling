@@ -29,8 +29,9 @@ public class OpenScadTestSuiteTest
         
         OpenScadTestSuite testSuite = new OpenScadTestSuite();
         try 
-        {        
-            testSuite.serviceRequest(args);
+        {
+            boolean redirectOpenscad = false;
+            testSuite.serviceRequest(args, redirectOpenscad);
         } 
         catch (Exception ex) 
         {
