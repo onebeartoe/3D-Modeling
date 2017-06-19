@@ -27,8 +27,6 @@ public class PngGenerator
      */
     private int generate(String commandList, boolean redirectOpenscad) throws IOException, InterruptedException
     {
-        System.out.println(commandList);
-        
         String [] strs = commandList.split("\\s+");
         
         List <String> command = Arrays.asList(strs);
@@ -61,6 +59,7 @@ public class PngGenerator
             // standard out
             sb.append( stdout.trim() );
 
+            System.out.println(commandList);
             System.out.println(sb.toString());
             System.out.println();
         }
@@ -160,6 +159,12 @@ public class PngGenerator
                                                                          forcePngGeneration,
                                                                          redirectOpenscad);
             exitCodes.addAll(directionalExitCodes);
+            
+            if( directionalExitCodes.contains(false) )
+            {
+                System.err.println("An error occured with proposed baseline PNG:");
+                System.err.println( p.toString() );
+            }
         });
 
         boolean masterExitCode = true;
