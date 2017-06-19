@@ -151,7 +151,6 @@ public class OpenScadTestSuite
 
     private static void printHelp() throws Exception
     {
-//        *
         StringBuilder message = new StringBuilder();
 
         String resourcePath = "/help.text";
@@ -161,8 +160,6 @@ public class OpenScadTestSuite
 
         Map<String, String> env = new HashMap<>();
         env.put("create", "true");
-        
-//        FileSystem zipfs = FileSystems.newFileSystem(uri, env);
 
         Path inpath = Paths.get(uri);
 

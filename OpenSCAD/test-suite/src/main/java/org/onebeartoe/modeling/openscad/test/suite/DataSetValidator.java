@@ -114,27 +114,12 @@ public class DataSetValidator
 
     	oscadFiles.parallelStream().forEach((Path path) -> 
         {
-//            boolean parallel = true;
-            
-//            if(parallel)
+            List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
+            list.parallelStream()
+                .forEach( direction ->
             {
-//                logger.log(Level.INFO, "The OpenSCAD files are processed in parallel.");
-                List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
-                list.parallelStream()
-                    .forEach( direction ->
-                {
-                    expectedBaselineFiles.addAll( validateBody(path, direction) );                       
-                });
-            }
-//            else
-//            {
-//                logger.log(Level.INFO, "\nThe OpenSCAD files are processed in sequentially.");
-//                Stream.of(OpenScadCameraDirections.values() )
-//                      .forEach((direction) -> 
-//                {
-//                    expectedBaselineFiles.addAll( validateBody(path, direction) );
-//                });                
-//            }
+                expectedBaselineFiles.addAll( validateBody(path, direction) );                       
+            });
         });
 
         List<String> missingBaselineFiles = missingBaselineFiles(expectedBaselineFiles);       

@@ -78,10 +78,7 @@ public class OpenScadTestSuiteService
 		    {
 			errorFiles.add(baseline);
 			
-//			System.out.println();
-//			System.out.println("Standard error: ");
                         System.out.println( stderr.trim() );
-//                        System.out.println("Standard out: ");
                         System.out.print( stdout.trim() );
 		    }
 		} 

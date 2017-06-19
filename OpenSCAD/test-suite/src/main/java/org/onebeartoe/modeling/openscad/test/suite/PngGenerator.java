@@ -19,11 +19,8 @@ public class PngGenerator
     Logger logger;
     
     /**
-     * 
      * Here is the refactor for driving whether the STD IOE of the openscad executable 
      * gets printed like regular or redirected to a file. 
-     * 
-     * 
      */
     private int generate(String commandList, boolean redirectOpenscad) throws IOException, InterruptedException
     {
