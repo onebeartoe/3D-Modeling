@@ -23,7 +23,7 @@ import org.onebeartoe.application.ui.GraphicalUserInterfaceServices;
 import org.onebeartoe.application.ui.JavaFxGuiServices;
 import org.onebeartoe.modeling.opensacd.services.OpenScadPreferences;
 import org.onebeartoe.modeling.opensacd.services.ThingiverseCustomizerService;
-import org.onebeartoe.modeling.openscad.test.suite.PngGenerator;
+import org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator;
 
 public class FXMLController implements Initializable, DesktopApplication 
 {
