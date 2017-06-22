@@ -1,6 +1,7 @@
 
-package org.onebeartoe.modeling.openscad.test.suite;
+package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
+import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
 
 public class PngGenerator
 {
@@ -22,8 +25,9 @@ public class PngGenerator
      * Here is the refactor for driving whether the STD IOE of the openscad executable 
      * gets printed like regular or redirected to a file. 
      */
-    private int generate(String commandList, boolean redirectOpenscad) throws IOException, InterruptedException
+    private int generate(String commandList, RunProfile runProfile) throws IOException, InterruptedException
     {
+//System.out.println("frt:a");        
         String [] strs = commandList.split("\\s+");
         
         List <String> command = Arrays.asList(strs);
@@ -42,12 +46,14 @@ public class PngGenerator
                               .lines()
                               .collect(Collectors.joining("\n"));
 
-        if(redirectOpenscad)
+        if(runProfile.redirectOpenscad)
         {
+//            System.out.println("redirection");
             //TODO: actually redirect the openscad output to a file
         }
         else
         {
+System.out.println("frt:o");
             StringBuilder sb = new StringBuilder();
         
             // standard error
@@ -66,7 +72,7 @@ public class PngGenerator
     
     public List<Boolean> generateDirectionalPngs(Path oscadInputFile, 
                                                  boolean forcePngGeneration,
-                                                 boolean redirectOpenscad)
+                                                 RunProfile runProfile)
     {
     	List<Boolean> exitCodes = new ArrayList();
 
@@ -76,7 +82,7 @@ public class PngGenerator
                 {
 		    try 
 		    {
-                        boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v, redirectOpenscad);
+                        boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v, runProfile);
                         exitCodes.add(exitCode);
 		    } 
 		    catch (Exception e)
@@ -105,7 +111,7 @@ public class PngGenerator
      */
     public boolean generateOneDirectionalPng(Path oscadInputFile, boolean forceGeneration, 
                                              OpenScadCameraDirections direction,
-                                             boolean redirectOpenscad)
+                                             RunProfile runProfile)
             throws IOException, InterruptedException
     {
         String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
@@ -136,7 +142,7 @@ public class PngGenerator
             String command = openscadPath
                     + " -o " + outfileName + " " + "--camera=0,0,0," + rotateParams + "," + distance + " " + infilePath;
             
-            exitCode = generate(command, redirectOpenscad);
+            exitCode = generate(command, runProfile);
         }
 
         // an exit code of 0 is expected for successful execution of a system command 
@@ -145,7 +151,7 @@ public class PngGenerator
 
     public boolean generatePngs(List<Path> openscadPaths, 
                                 boolean forcePngGeneration,
-                                boolean redirectOpenscad) throws IOException,
+                                RunProfile runProfile) throws IOException,
             InterruptedException
     {
         List<Boolean> exitCodes = new ArrayList();
@@ -154,7 +160,7 @@ public class PngGenerator
         {
             List<Boolean> directionalExitCodes = generateDirectionalPngs(p, 
                                                                          forcePngGeneration,
-                                                                         redirectOpenscad);
+                                                                         runProfile);
             exitCodes.addAll(directionalExitCodes);
             
             if( directionalExitCodes.contains(false) )

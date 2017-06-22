@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
 import org.testng.annotations.Test;
 
 /**

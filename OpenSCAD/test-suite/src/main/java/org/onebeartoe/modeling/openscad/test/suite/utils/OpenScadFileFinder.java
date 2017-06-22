@@ -1,5 +1,5 @@
 
-package org.onebeartoe.modeling.openscad.test.suite;
+package org.onebeartoe.modeling.openscad.test.suite.utils;
 
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -10,6 +10,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
 
 /**
  * This class is used to find .scad files under a given directory.

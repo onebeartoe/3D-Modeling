@@ -1,5 +1,5 @@
 
-package org.onebeartoe.modeling.openscad.test.suite;
+package org.onebeartoe.modeling.openscad.test.suite.utils;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 
 /**
  * This class is used to verify that a corresponding baseline .png file exists,

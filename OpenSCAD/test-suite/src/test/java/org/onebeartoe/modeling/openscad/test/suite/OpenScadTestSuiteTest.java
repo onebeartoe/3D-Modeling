@@ -3,6 +3,7 @@ package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.Test;
 
 /**
@@ -22,16 +23,18 @@ public class OpenScadTestSuiteTest
     public void testSuite()
     {
 //        String path = "../../../../../../../../../../src/main/openscad/name-tags";
-        String path = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\name-tags";
+//        String path = 
 //        String path = ".";
         
-        String [] args = {path};
+//        String [] args = {path};
         
-        OpenScadTestSuite testSuite = new OpenScadTestSuite();
+        OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();
         try 
         {
-            boolean redirectOpenscad = false;
-            testSuite.serviceRequest(args, redirectOpenscad);
+            RunProfile runProfile = new RunProfile();
+            runProfile.path = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\name-tags";
+            runProfile.redirectOpenscad = false;
+            testSuite.serviceRequest(runProfile);
         } 
         catch (Exception ex) 
         {
