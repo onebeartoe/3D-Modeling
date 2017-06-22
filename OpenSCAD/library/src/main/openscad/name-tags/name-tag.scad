@@ -350,7 +350,7 @@ module nametagBase(baseColor,
     if(roundedCorners)
     {
         roundedCube(size=size,
-                    cornerRadius=8, 
+                    cornerRadius=8,
                     sides=30, 
                     sidesOnly=true, 
                     cubeCentered=true);
@@ -371,12 +371,14 @@ module nametagBase(baseColor,
         echo("clp: ");
         echo(chainLoopPosition);
 
-        yBottomDelta = -baseHeight -6;
-        yTopDelta = baseHeight - 2;
+//TODO: fix the 4 to be relative to the 8 of the rounded corner radius        
+        yBottomDelta = (-baseHeight / 2.0) - (y + 4);
+        yTopDelta = (baseHeight / 2.0) + (y / 2.0);
 
+//        yTranslate = (chainLoopPosition == "top") ? yTopDelta : - yTopDelta;
         yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
         
-        translate([xTranslate,yTranslate,0])
+        translate([xTranslate, yTranslate, 0])
         chainLoop(xLength = x,
                  yLength = y,
                  yPercentage = chainLoopLengthPercentageY,
@@ -394,9 +396,6 @@ module nametagBorder(baseThickness,
                      letterThickness,
                      roundedCorners)
 {
-    echo("rc:7 ");
-    echo(borderHeight);
-
     translate([0,0,baseThickness+letterThickness/2])
 //    linear_extrude(height = 6, center = false, convexity = 10, twist = 0)
     linear_extrude(height = borderHeight, center = false, convexity = 10, twist = 0)
