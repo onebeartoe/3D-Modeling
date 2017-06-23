@@ -9,7 +9,7 @@ baseThickness = 2; // [1 : 5]
 // This determines how wide the name tag is.
 baseWidth = 228;	// [228:600]
 
-// This determines the hieght of the nametag.
+// This determines the height of the name tag.
 baseHeight = 15; // [54:150]
 
 
@@ -51,7 +51,7 @@ leftIconXyScale = 0.5;  // [0.1 : 0.05 : 5]
 rightIconXyScale = 0.25; // [0.1 : 0.05 : 5]
 
 leftIconHeight = 1.5; // [0.1: 0.1 :5]
-rightIconHeight = 1.5; // [0.1: 0.1 :5]
+rightIconHeight = 4.0; // [0.1: 0.1 :5]
 
 
 /* [Top Text] */
