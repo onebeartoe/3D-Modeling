@@ -20,6 +20,7 @@ showBorder = "No"; // [Yes, No]
 
 /* [Bottom Text] */
 bottomText = "Fun Enthusiast";
+bottomTextFont = "Wingdings";
 bottomTextOffsetX = 0; // [-315 : 315]
 bottomTextOffsetY = -20; // [-315 : 315]
 
@@ -57,6 +58,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 /* [Top Text] */
 topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
+topTextFont = "Times";
 
 /* [Hidden] */
 
@@ -74,7 +76,9 @@ nametag(baseColor = baseColor,
         topText = topText,
         topTextSize = 13,
         topTextColor = topTextColor,
+        topTextFont = topTextFont,
         bottomText = bottomText,
+        bottomTextFont = bottomTextFont,
         bottomTextOffsetX = bottomTextOffsetX,
         bottomTextOffsetY = bottomTextOffsetY,
         font=font,
