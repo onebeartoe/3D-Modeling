@@ -1,5 +1,5 @@
 
-use <../../../trees/christmas/christmas-tree.scad>
+use <../../../triangle/triangle.scad>
 
 starOfDavid();
 
