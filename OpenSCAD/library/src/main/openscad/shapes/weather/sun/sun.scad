@@ -29,7 +29,6 @@ module sunSegments()
     for(i = [1:segments])    
     {
         angle = i * arch;
-        echo(angle);
         rotate ([0, 0, angle])
         translate ([0, 5,0])
         triangle(size=2.25);

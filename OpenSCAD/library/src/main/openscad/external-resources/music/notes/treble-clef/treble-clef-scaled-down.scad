@@ -30,9 +30,9 @@ module trebleClefScaledDown(h=1)
   }
 }
 
-module trebleClefScaledDownThumbnail()
+module trebleClefScaledDownThumbnail(h)
 {
 	xyScale = 0.18;
 	scale([xyScale, xyScale, 1])
-	trebleClefScaledDown();
+	trebleClefScaledDown(h=h);
 }
