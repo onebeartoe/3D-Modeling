@@ -36,8 +36,8 @@ letterThickness = 3; // [1 : 15]
 /* [Icons] */
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]        
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-leftIconType = "Treble Clef";   // [Bass Clef, Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]        
-rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
+leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]        
+rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
 
 // This is the x off set of the icons
 xIconOffset = -100; // [10:200]

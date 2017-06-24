@@ -1,10 +1,10 @@
 
-$fn = 100;
 
-crescentMoon();
 
-module crescentMoon(height = 3)
+module crescentMoon(height = 2)
 {    
+    $fn = 100;
+    
     difference()
     {
         cylinder(r=7, h=height);
@@ -14,4 +14,12 @@ module crescentMoon(height = 3)
         translate([xyTranslate, xyTranslate, -1])
         cylinder(r=radius, h=height+2);
     }
+}
+
+module crescentMoonThumbnail()
+{
+    xyScale = 1.7;
+    
+    scale([xyScale, xyScale, 1])
+    crescentMoon();
 }

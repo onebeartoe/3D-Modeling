@@ -5,6 +5,7 @@ use <../basics/rounded-edges/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>        
 use <../shapes/chain-loop/chain-loop.scad>
+use <../shapes/crescent-moon/crescent-moon.scad>        
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
@@ -194,6 +195,10 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     {
         creeperFaceThumbnail();
     }
+    else if(iconType == "Moon")
+    {
+        crescentMoonThumbnail();
+    }
     else if(iconType == "Rebel")
     {
         rebelAlliance(6);
@@ -371,12 +376,10 @@ module nametagBase(baseColor,
     {
         x = 21;
         y = 8;
-//        z = 3;
         
         xTranslate = -x / 2.0;
 
-        echo("clp: ");
-        echo(chainLoopPosition);
+
 
 //TODO: fix the 4 to be relative to the 8 of the rounded corner radius        
         yBottomDelta = (-baseHeight / 2.0) - (y + 4);
