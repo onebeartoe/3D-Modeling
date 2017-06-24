@@ -19,7 +19,7 @@ showBorder = "No"; // [Yes, No]
 
 
 /* [Bottom Text] */
-bottomText = "fart";
+bottomText = "Fun Enthusiast";
 bottomTextOffsetX = 0; // [-315 : 315]
 bottomTextOffsetY = -20; // [-315 : 315]
 
@@ -40,7 +40,7 @@ leftIconType = "Bass Clef";   // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude
 rightIconType = "Light Bulb"; // [Creeper, Light Bulb, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Thundercat, Bass Clef, Treble Clef]
 
 // This is the x off set of the icons
-xIconOffset = -36; // [10:200]
+xIconOffset = -100; // [10:200]
 
 // This is the y off set of the icons
 yIconOffset = 3;  // [1:200]
@@ -55,7 +55,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 
 
 /* [Top Text] */
-topText = "Love is the Answer";
+topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 
 /* [Hidden] */
@@ -72,7 +72,7 @@ nametag(baseColor = baseColor,
         letterThickness = letterThickness,
         roundedCorners = true,
         topText = topText,
-        topTextSize = 7,
+        topTextSize = 13,
         topTextColor = topTextColor,
         bottomText = bottomText,
         bottomTextOffsetX = bottomTextOffsetX,
@@ -80,8 +80,9 @@ nametag(baseColor = baseColor,
         font=font,
         leftIconType = leftIconType,
         leftIconHeight = leftIconHeight,
-        rightIconType = rightIconType,
         rightIconHeight = rightIconHeight,
+//        rightIconOffsetY = 0,
+        rightIconType = rightIconType,
         xIconOffset = xIconOffset,
         yIconOffset = yIconOffset,
         baseWidth = baseWidth,
