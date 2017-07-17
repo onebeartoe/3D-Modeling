@@ -5,11 +5,15 @@ iconType = "Light Bulb";
 iconXyScale = 0.8;
 iconHeight = 3;
         
-nametag(topText="Light",
-        topTextSize = 12,
+nametag(baseWidth = 80,
+        baseHeight = 15,        
         bottomText = "",
-        font="../../../write/orbitron.dxf",
-        
+        chainLoop = true,
+        chainLoopLengthPercentageY = 0.6,
+        chainLoopLengthPercentageZ = 0.45,
+        chainLoopLengthZ = 6,
+        chainLoopPosition = "top",
+//        font="../../../write/orbitron.dxf",        
         leftIconType = iconType,
         leftIconHeight = iconHeight,
         leftIconXyScale = iconXyScale,
@@ -17,12 +21,7 @@ nametag(topText="Light",
         rightIconHeight = iconHeight,
         rightIconOffsetY = 3,
         rightIconXyScale = iconXyScale,
+        topText="Light",
+        topTextSize = 12,
         xIconOffset = 36,
-        yIconOffset = 3,
-        
-        baseWidth = 80,
-        baseHeight = 15,
-        
-        chainLoop = true,
-        chainLoopLengthZ = 3,
-        chainLoopPosition = "top");
+        yIconOffset = 3);
