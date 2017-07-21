@@ -12,40 +12,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import org.onebeartoe.application.DesktopApplication;
-import org.onebeartoe.application.ui.WindowProperties;
+import org.onebeartoe.application.ui.JavafxApplication;
 
-public class MainApp extends Application implements DesktopApplication
-{
-    private WindowProperties wp;
+public class OpenScadInLinderApp extends Application
+{    
+    private JavafxApplication guiConiguration;
+    
+    private final String applicationId;
+
+    public OpenScadInLinderApp()
+    {
+        applicationId = getClass().getName();
+    }
     
     @Override
     public void init()
     {
-        String applicationId = getClass().getName();
-        try 
-        {
-            wp = restoreWindowProperties(applicationId);
-        } 
-        catch (IOException | ClassNotFoundException ex) 
-        {
-            ex.printStackTrace();
-        }
-        
-        if(wp == null)
-        {
-            wp = new WindowProperties();
-            
-            wp.id = getClass().getName();
-            wp.applicationName = getClass().getSimpleName();
-            
-            // use the default values
-            wp.width = 573;
-            wp.height = 114;
-            
-            wp.locationX = 50;
-            wp.locationY = 100;
-        }
+        loadDefaultGuiConfig();
     }
     
     @Override
@@ -61,27 +44,21 @@ public class MainApp extends Application implements DesktopApplication
         stage.setTitle("OpenSCAD Inliner");
         stage.setScene(scene);
         
-        stage.setWidth(wp.width);
-        stage.setHeight(wp.height);
-                
-        stage.setX(wp.locationX);
-        stage.setY(wp.locationY);
+        guiConiguration.restoreWindowProperties(stage);
         
-        stage.setOnCloseRequest( new EventHandler<WindowEvent>() 
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() 
         {
             @Override
             public void handle(WindowEvent event) 
             {
                 System.out.println("bye");
-                wp.locationX = (int) stage.getX();
-                wp.locationY = (int) stage.getY();
 
-                wp.width = (int) stage.getWidth();
-                wp.height = (int) stage.getHeight();
-
+                guiConiguration.currentConfiguration(stage);
+                guiConiguration.setApplicationId(applicationId);
+                
                 try
                 {
-                    MainApp.this.persistWindowProperties(wp);
+                    guiConiguration.persistWindowProperties();
                 } 
                 catch (IOException ex) 
                 {
@@ -90,6 +67,36 @@ public class MainApp extends Application implements DesktopApplication
             }
         });
         stage.show();
+    }
+    
+    public void loadDefaultGuiConfig()
+    {
+        guiConiguration = new JavafxApplication(applicationId) 
+        {
+            @Override
+            public int defaultX() 
+            {
+                return 50;    
+            }
+            
+            @Override
+            public int defaultY() 
+            {
+                return 100;
+            }
+            
+            @Override
+            public int defaultWidth() 
+            {
+                return 573;
+            }
+            
+            @Override
+            public int defaultHeight() 
+            {
+                return 114;
+            }
+        };
     }
 
     /**

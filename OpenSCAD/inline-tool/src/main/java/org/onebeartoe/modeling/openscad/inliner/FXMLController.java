@@ -16,7 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.onebeartoe.application.DesktopApplication;
 import org.onebeartoe.application.JavaPreferencesService;
 import org.onebeartoe.application.PreferencesService;
 import org.onebeartoe.application.ui.GraphicalUserInterfaceServices;
@@ -25,7 +24,7 @@ import org.onebeartoe.modeling.opensacd.services.OpenScadPreferences;
 import org.onebeartoe.modeling.opensacd.services.ThingiverseCustomizerService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator;
 
-public class FXMLController implements Initializable, DesktopApplication 
+public class FXMLController implements Initializable//, DesktopApplication 
 {
     private Logger logger;
     
@@ -91,7 +90,7 @@ public class FXMLController implements Initializable, DesktopApplication
         logger = Logger.getLogger(getClass().getName() );
         pg = new PngGenerator();
         
-        preferencesService = new JavaPreferencesService(this);
+        preferencesService = new JavaPreferencesService( getClass() );
         restorePreferences();
         
         currentFileTextField.setText(openScadFile);
