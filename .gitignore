@@ -3,6 +3,7 @@
 **/*.project
 **/*.classpath
 **/.settings/
+**/nbactions-release-profile.xml
 /OpenSCAD/inline-tool/target/
 /OpenSCAD/library/target
 /OpenSCAD/native-customizer/target/
