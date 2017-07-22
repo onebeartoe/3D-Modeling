@@ -53,7 +53,7 @@ public class OpenScadInLinderApp extends Application
             {
                 System.out.println("bye");
 
-                guiConiguration.currentConfiguration(stage);
+                guiConiguration.setCurrentConfiguration(stage);
                 guiConiguration.setApplicationId(applicationId);
                 
                 try
