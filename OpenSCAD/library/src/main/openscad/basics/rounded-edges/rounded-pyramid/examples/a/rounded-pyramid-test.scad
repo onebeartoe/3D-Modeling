@@ -1,5 +1,5 @@
 
-use <rounded-pyramid.scad>
+use <../../rounded-pyramid.scad>
 
 // this one is shaped like a desktop keyboard keycap.
 color("grey")
