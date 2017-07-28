@@ -4,17 +4,29 @@
  * The end with the long tube attaches to the circle clasp.
  */
 
-union()
+module base()
 {
-    beadHolder();
     
-    ring();
+}
+
+module beadChainAttacher(baseOffset)
+{
+    union()
+    {
+        base()
+        
+        beadHolder();
+
+        ring();
+        
+        echo("fart)");
+    }
 }
 
 module beadHolder()
 {
-    rotate([90, 0, -29])//-29])
-//    translate([123,-119,0])
+//    rotate([90, 0, -29])//-29])
+    translate([123,-119,0])
 //    rotate([0, 0, 0])
     import("bead_chain_hanger.stl", center = true);
 }
