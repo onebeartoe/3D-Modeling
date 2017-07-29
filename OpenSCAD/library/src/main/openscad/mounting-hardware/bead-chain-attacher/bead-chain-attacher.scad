@@ -1,37 +1,31 @@
 
+use <../../basics/rounded-edges/doughnuts/doughnuts.scad>
+
 /**
  * The end with the short tube goes toward the top and connects to the bead chain.
  * The end with the long tube attaches to the circle clasp.
  */
 
-module base()
+
+
+module base(zLength)
 {
-    
+    rectangularDoughnut(zLength);
 }
 
-module beadChainAttacher(baseOffset)
+module beadChainAttacher(zLength = 35)
 {
     union()
     {
-        base()
+        base();
+//        base(zLength);
         
-        beadHolder();
-
-        ring();
-        
-        echo("fart)");
+        beadHolder(zLength);
     }
 }
 
-module beadHolder()
+module beadHolder(zLength)
 {
-//    rotate([90, 0, -29])//-29])
-    translate([123,-119,0])
-//    rotate([0, 0, 0])
+    translate([123, -100, zLength])
     import("bead_chain_hanger.stl", center = true);
-}
-
-module ring()
-{
-    
 }
