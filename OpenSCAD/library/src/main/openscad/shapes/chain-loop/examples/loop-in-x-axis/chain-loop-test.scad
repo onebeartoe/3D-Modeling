@@ -1,5 +1,5 @@
 
-use <chain-loop.scad>
+use <../../chain-loop.scad>
 
 color("blue")
 translate([0, -45, 0])
