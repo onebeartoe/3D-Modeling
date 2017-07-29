@@ -1,34 +1,26 @@
 
 use <../../../shapes/chain-loop/chain-loop.scad>
 
-module rectangularDoughnut(cornerRadius=4,
-                           cubeCentered=false,
-                           sides=30, 
-                           sidesOnly=false,
-                           size=[20,20,2],
+module rectangularDoughnut(cornerRadius = 4,
+                           sides = 31,
+                           yLength = 32,
                            zLength = 35)
 {
+    echo("cr1: ", cornerRadius);
+    echo("yLength: ", yLength);
+    echo("zLength: ", zLength);
+    
     $fn=sides;
 
-    x = size[0] - cornerRadius/2;
-    y = size[1] - cornerRadius/2;
-    z = size[2];
-
-    minkowski(size, cornerRadius)
+    minkowski()//size, cornerRadius)
     {
         chainLoop(xLength = 10,
-                  yLength = 30,
+                  yLength = yLength,
                   zLength = zLength,
-                  zPercentage=0.64319);
-//        cube(size=[x,y,z], center=cubeCentered);
+                  zPercentage=0.64);
 
-        if(sidesOnly)
-        {
-            cylinder(r=cornerRadius);
-        }
-        else
-        {
-            sphere(r=cornerRadius);	    	
-        }
+//        sphere(r=4);
+      sphere(r=cornerRadius);
+        
     };
 }

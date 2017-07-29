@@ -6,19 +6,16 @@ use <../../basics/rounded-edges/doughnuts/doughnuts.scad>
  * The end with the long tube attaches to the circle clasp.
  */
 
-
-
-module base(zLength)
+module base(cornerRadius, yLength, zLength)
 {
-    rectangularDoughnut(zLength);
+    rectangularDoughnut(cornerRadius, yLength, zLength);
 }
 
-module beadChainAttacher(zLength = 35)
+module beadChainAttacher(cornerRadius = 2, yLength = 33, zLength = 35)
 {
     union()
     {
-        base();
-//        base(zLength);
+        base(cornerRadius, yLength, zLength);
         
         beadHolder(zLength);
     }
@@ -26,6 +23,7 @@ module beadChainAttacher(zLength = 35)
 
 module beadHolder(zLength)
 {
+    rotate([0, 0, -15])
     translate([123, -100, zLength])
     import("bead_chain_hanger.stl", center = true);
 }
