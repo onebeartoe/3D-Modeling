@@ -16,14 +16,18 @@ module beadChainAttacher(cornerRadius = 2, yLength = 33, zLength = 35)
     union()
     {
         base(cornerRadius, yLength, zLength);
-        
-        beadHolder(zLength);
+
+        xTranslate = 120;
+        yTranslate = -106;
+        zTranslate = zLength + cornerRadius;
+        beadHolder(xTranslate, yTranslate, zTranslate);
     }
 }
 
-module beadHolder(zLength)
+module beadHolder(xTranslate, yTranslate, zTranslate)
 {
-    rotate([0, 0, -15])
-    translate([123, -100, zLength])
-    import("bead_chain_hanger.stl", center = true);
+//    rotate([0, 0, 45])
+    rotate([0, 0, -35])
+    translate([xTranslate, yTranslate, zTranslate])
+    import("bead_chain_hanger.stl");//, center = true);
 }

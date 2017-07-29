@@ -1,4 +1,4 @@
 
 use <../../bead-chain-attacher.scad>
 
-beadChainAttacher(cornerRadius = 2);   
+beadChainAttacher(cornerRadius = 2);
