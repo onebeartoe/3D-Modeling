@@ -14,3 +14,6 @@ cylinder(20,20,10, $fn=4);
 color("green")
 translate([110, 0, 0])
 cylinder(20,20,20, $fn=30);
+
+color("red")
+cylinder(r=20, h = 60, $fn=20);
