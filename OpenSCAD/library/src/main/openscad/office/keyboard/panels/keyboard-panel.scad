@@ -25,8 +25,6 @@ module holes(buttonCount = 4,
 	ySpacing = 3;
 	yIncrement = buttonSide + ySpacing;
 
-echo("buttonCount: ", buttonCount);
-
 	for(i = [0 : buttonCount-1])
 	{
 		y = startY + (i * yIncrement);
