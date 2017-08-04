@@ -32,7 +32,7 @@ public class OpenScadTestSuiteTest
         try 
         {
             RunProfile runProfile = new RunProfile();
-            runProfile.path = "C:\\home\\owner\\versioning\\github\\3D-Modeling\\OpenSCAD\\src\\main\\openscad\\name-tags";
+            runProfile.path = "../library//src/main/openscad/name-tags/";
             runProfile.redirectOpenscad = false;
             testSuite.serviceRequest(runProfile);
         } 
