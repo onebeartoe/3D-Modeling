@@ -103,6 +103,9 @@ public class OpenScadTestSuite
         
         RunProfile runProfile = new RunProfile();
         
+        // TODO: Do not hard code the openscad executable path
+        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
+        
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
         runProfile.redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);

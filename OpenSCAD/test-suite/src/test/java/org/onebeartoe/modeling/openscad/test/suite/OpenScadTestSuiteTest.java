@@ -18,22 +18,15 @@ public class OpenScadTestSuiteTest
     {
         logger = Logger.getLogger( getClass().getName() );
     }
-    
-    
-    
+
     @Test(groups = {"test-suite"})
     public void testSuite()
-    {
-//        String path = "../../../../../../../../../../src/main/openscad/name-tags";
-//        String path = 
-//        String path = ".";
-        
-//        String [] args = {path};
-        
+    {        
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();
         try 
         {
             RunProfile runProfile = new RunProfile();
+            runProfile.executablePath = "openscad";
             runProfile.path = "../library/src/main/openscad/name-tags/";
             runProfile.redirectOpenscad = false;
             testSuite.serviceRequest(runProfile);

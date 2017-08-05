@@ -17,6 +17,8 @@ public class RunProfile
     
     public String path;
     
+    public String executablePath;
+    
     public List<Path> openscadPaths;
     
     public OpenScadTestSuite.RunMode mode;

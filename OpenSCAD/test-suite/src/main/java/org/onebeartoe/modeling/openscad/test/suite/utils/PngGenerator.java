@@ -113,10 +113,10 @@ System.out.println("frt:o");
                                              OpenScadCameraDirections direction,
                                              RunProfile runProfile)
             throws IOException, InterruptedException
-    {
-        String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
+    {        
+//        String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
 //        openscadPath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
-        openscadPath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
+//        openscadPath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
 //        openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
 
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
@@ -139,7 +139,7 @@ System.out.println("frt:o");
             int distance = 250;
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             
-            String command = openscadPath
+            String command = runProfile.executablePath
                     + " -o " + outfileName + " " + "--camera=0,0,0," + rotateParams + "," + distance + " " + infilePath;
             
             exitCode = generate(command, runProfile);

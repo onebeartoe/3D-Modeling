@@ -47,7 +47,7 @@ public class OpenScadTestSuiteService
     {
         OpenScadTestSuite.RunMode mode;        
         {
-// the first hachifufoo
+// the ifrst hachifufoo
             if(runProfile.generateBaselines)
             {
                 mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
