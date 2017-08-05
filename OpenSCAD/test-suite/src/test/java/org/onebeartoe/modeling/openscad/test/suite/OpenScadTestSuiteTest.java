@@ -19,6 +19,8 @@ public class OpenScadTestSuiteTest
         logger = Logger.getLogger( getClass().getName() );
     }
     
+    
+    
     @Test(groups = {"test-suite"})
     public void testSuite()
     {
@@ -32,7 +34,7 @@ public class OpenScadTestSuiteTest
         try 
         {
             RunProfile runProfile = new RunProfile();
-            runProfile.path = "../library//src/main/openscad/name-tags/";
+            runProfile.path = "../library/src/main/openscad/name-tags/";
             runProfile.redirectOpenscad = false;
             testSuite.serviceRequest(runProfile);
         } 

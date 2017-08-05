@@ -39,6 +39,10 @@ public class OpenScadTestSuiteService
         pngGenerator = new PngGenerator();        
     }
     
+    /**
+     * It seems like this method should be refactored.
+     * 
+     */
     public void serviceRequest(RunProfile runProfile) throws Exception
     {
         OpenScadTestSuite.RunMode mode;        
