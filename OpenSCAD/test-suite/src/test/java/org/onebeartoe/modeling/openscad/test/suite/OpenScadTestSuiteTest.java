@@ -20,20 +20,14 @@ public class OpenScadTestSuiteTest
     }
 
     @Test(groups = {"test-suite"})
-    public void testSuite()
+    public void testSuite() throws Exception
     {        
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();
-        try 
-        {
-            RunProfile runProfile = new RunProfile();
-            runProfile.executablePath = "openscad";
-            runProfile.path = "../library/src/main/openscad/name-tags/";
-            runProfile.redirectOpenscad = false;
-            testSuite.serviceRequest(runProfile);
-        } 
-        catch (Exception ex) 
-        {
-            logger.log(Level.SEVERE, null, ex);
-        }
+
+        RunProfile runProfile = new RunProfile();
+        runProfile.executablePath = "openscad-nightly";
+        runProfile.path = "../library/src/main/openscad/name-tags/";
+        runProfile.redirectOpenscad = false;
+        testSuite.serviceRequest(runProfile);
     }
 }
