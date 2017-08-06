@@ -2,8 +2,8 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="internal link -Suite" parallel="none">
-    <test name="interal links Test">
+<suite name="onebeartoe OpenSCAD Test Suite" parallel="none">
+    <test name="openscad model verification">
         <groups>
             <run>
                 <include name="validators" />
