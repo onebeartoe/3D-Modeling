@@ -77,9 +77,12 @@ public class DataSetValidator
             .sorted()
             .collect(Collectors.toList());
         
-        System.err.println();
-        System.err.println("missing input files:");
-        missingFiles.forEach(mf -> {System.err.println(mf);});
+        if(missingFiles.size() > 0)
+        {
+            System.err.println();
+            System.err.println("missing input files:");
+            missingFiles.forEach(mf -> {System.err.println(mf);});            
+        }
         
         return missingFiles;
     }    
