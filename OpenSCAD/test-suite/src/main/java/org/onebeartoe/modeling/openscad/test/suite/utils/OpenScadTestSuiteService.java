@@ -2,6 +2,7 @@
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -82,6 +83,9 @@ public class OpenScadTestSuiteService
             {
                 Help h = new Help();
                 h.printHelp();
+                
+                File pwd = new File(".");
+                System.err.println("pwd: " + pwd.getAbsolutePath() );
                 
                 nsfe.printStackTrace();
             }
