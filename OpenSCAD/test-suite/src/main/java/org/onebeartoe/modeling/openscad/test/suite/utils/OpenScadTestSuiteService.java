@@ -209,6 +209,9 @@ public class OpenScadTestSuiteService
 	
         if (missingBaselineFiles.isEmpty())
         {
+            String pwd = (new File(".")).getAbsolutePath();
+            System.out.println("The current working directory is: " + pwd);
+            
             System.out.println("All input files are present.");
         }
         else
