@@ -26,7 +26,8 @@ public class OpenScadTestSuiteTest
 
         RunProfile runProfile = new RunProfile();
         
-        runProfile.executablePath = "openscad-nightly";
+        runProfile.executablePath = "openscad";
+//        runProfile.executablePath = "openscad-nightly";
         runProfile.path = "src/main/openscad/name-tags/examples/owl-of-diego/";
         runProfile.redirectOpenscad = false;
         
