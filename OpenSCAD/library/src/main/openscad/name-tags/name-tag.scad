@@ -1,7 +1,7 @@
 
 use <attribution.text>
 
-use <../basics/rounded-edges/rounded-cube.scad>
+use <../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>        
 use <../shapes/chain-loop/chain-loop.scad>
