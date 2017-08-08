@@ -107,7 +107,7 @@ public class OpenScadTestSuiteService
         boolean forcePngGeneration = false;
 
 //TODO: Move forcePngGeneration into the RunProfile class.
-        pngGenerator.generatePngs(runProfile.openscadPaths, forcePngGeneration, runProfile);
+        pngGenerator.generatePngs(forcePngGeneration, runProfile);
     }
 
     /**
@@ -121,8 +121,7 @@ public class OpenScadTestSuiteService
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
         
-        boolean success = pngGenerator.generatePngs(runProfile.openscadPaths, 
-                                                    forcePngGeneration,
+        boolean success = pngGenerator.generatePngs(forcePngGeneration,
                                                     runProfile);
         int count;
         
@@ -206,6 +205,12 @@ public class OpenScadTestSuiteService
 	return errorFiles;
     }    
 
+    public void printOpernScadVersion(RunProfile runProfile)
+    {
+// TODO: p        
+//       rint the version of poesn scdd
+    }
+    
     private void printValidationResults(List<String> missingBaselineFiles)
     {
 	System.out.println();
@@ -256,6 +261,9 @@ public class OpenScadTestSuiteService
                 System.out.println();
                 System.out.println("The test suite is now generating proposed baseline images for each .oscad file.");
                 System.out.println();
+                
+// TODO:                 
+//                printOpernScadVersion(RunProfile runProfile);
                 
                 int count = generateProposedBaselines(runProfile);
                 

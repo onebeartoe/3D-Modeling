@@ -149,14 +149,14 @@ System.out.println("frt:o");
         return exitCode == 0;
     }
 
-    public boolean generatePngs(List<Path> openscadPaths, 
+    public boolean generatePngs(//List<Path> openscadPaths, 
                                 boolean forcePngGeneration,
                                 RunProfile runProfile) throws IOException,
             InterruptedException
     {
         List<Boolean> exitCodes = new ArrayList();
 
-        openscadPaths.stream().parallel().forEach((p) -> 
+        runProfile.openscadPaths.stream().parallel().forEach((p) -> 
         {
             List<Boolean> directionalExitCodes = generateDirectionalPngs(p, 
                                                                          forcePngGeneration,

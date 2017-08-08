@@ -28,7 +28,10 @@ public class OpenScadTestSuiteTest
         
         runProfile.executablePath = "openscad";
 //        runProfile.executablePath = "openscad-nightly";
-        runProfile.path = "src/main/openscad/name-tags/examples/owl-of-diego/";
+
+        runProfile.path = "src/main/openscad/basics/primitives/cylinder/";
+//        runProfile.path = "src/main/openscad/name-tags/examples/owl-of-diego/";
+        
         runProfile.redirectOpenscad = false;
         
         testSuite.serviceRequest(runProfile);
