@@ -79,7 +79,7 @@ public class OpenScadTestSuiteService
                     runTestSuite(runProfile);
                 }                
             }
-            catch(NoSuchFileException nsfe)
+            catch(Exception nsfe)
             {
                 Help h = new Help();
                 h.printHelp();
@@ -88,6 +88,8 @@ public class OpenScadTestSuiteService
                 System.err.println("pwd: " + pwd.getAbsolutePath() );
                 
                 nsfe.printStackTrace();
+                
+                throw new Exception(nsfe);
             }
         }
     }    
