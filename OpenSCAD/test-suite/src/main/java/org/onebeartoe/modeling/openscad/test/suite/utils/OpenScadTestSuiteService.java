@@ -76,7 +76,12 @@ public class OpenScadTestSuiteService
                 else
                 {
                     // the mode is 'run test suite'
-                    runTestSuite(runProfile);
+                    boolean passed = runTestSuite(runProfile);
+                    
+                    if(!passed)
+                    {
+                        throw new Exception("Did not pass");
+                    }
                 }                
             }
             catch(Exception nsfe)
