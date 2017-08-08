@@ -89,10 +89,6 @@ public class OpenScadTestSuiteService
                 
                 nsfe.printStackTrace();
             }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
         }
     }    
 
@@ -223,8 +219,10 @@ public class OpenScadTestSuiteService
         }
     }
     
-    private void runTestSuite(RunProfile runProfile) throws Exception
+    private boolean runTestSuite(RunProfile runProfile) throws Exception
     {
+        boolean passed = true;
+        
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
         DataSetValidator inputValidator = new DataSetValidator();
@@ -270,6 +268,8 @@ public class OpenScadTestSuiteService
 
             if(proposedBaselineError)
             {
+                passed = false;
+                
                 // halt the test execution and let the user know about errors
                 String message = "Not all proposed baseline PNGs were generated.  ";
                 message += "Please correct the errors to allow the test suite to continue";
@@ -293,6 +293,9 @@ public class OpenScadTestSuiteService
                 }
                 else
                 {
+                    // whoa, whoa
+                    passed = false;
+                    
                     System.out.println( System.lineSeparator() );
                     System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
                     System.out.println();
@@ -300,5 +303,7 @@ public class OpenScadTestSuiteService
                 }                
             }
         }
+        
+        return passed;
     }    
 }
