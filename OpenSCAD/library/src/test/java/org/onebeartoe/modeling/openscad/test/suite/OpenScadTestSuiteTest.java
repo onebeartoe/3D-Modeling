@@ -30,6 +30,7 @@ public class OpenScadTestSuiteTest
 //        runProfile.executablePath = "openscad-nightly";
 
         runProfile.path = "src/main/openscad/basics/primitives/cylinder/";
+// wah, the owl of Dieg was failing on the betoland network build server        
 //        runProfile.path = "src/main/openscad/name-tags/examples/owl-of-diego/";
         
         runProfile.redirectOpenscad = false;
