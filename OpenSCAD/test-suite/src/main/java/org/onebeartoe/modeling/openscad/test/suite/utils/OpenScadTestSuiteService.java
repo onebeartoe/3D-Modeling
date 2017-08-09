@@ -243,6 +243,8 @@ public class OpenScadTestSuiteService
 
         if (!missingPngs.isEmpty())
         {
+            passed = false;
+            
             System.err.println();
             System.err.println("The test suite will not continue with missing baseline PNG images.");
         }
