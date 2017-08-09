@@ -27,7 +27,6 @@ public class PngGenerator
      */
     private int generate(String commandList, RunProfile runProfile) throws IOException, InterruptedException
     {
-//System.out.println("frt:a");        
         String [] strs = commandList.split("\\s+");
         
         List <String> command = Arrays.asList(strs);
@@ -53,7 +52,6 @@ public class PngGenerator
         }
         else
         {
-System.out.println("frt:o");
             StringBuilder sb = new StringBuilder();
         
             // standard error
