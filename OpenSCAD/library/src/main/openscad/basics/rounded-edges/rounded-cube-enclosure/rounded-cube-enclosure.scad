@@ -21,10 +21,10 @@ module roundedCubeEnclosure(boardLengthX,
 		            sides=20);
 
 		// x axis cutout
-		xAxisCutout_xLength = boardLengthX * 1.1;
+		xAxisCutout_xLength = boardLengthX * 1.2;
 		xAxisCutout_yLength = boardLengthY * xAxisCutout_yPercentage;
 		xAxisCutout_zLength = boardLengthZ * xAxisCutout_zPercentage;
-		xAxisCutout_xTranslate = -0.05 * boardLengthX;
+		xAxisCutout_xTranslate = -0.09 * boardLengthX;
 		xAxisCutout_yTranslate = boardLengthY / 2.0 - xAxisCutout_yLength / 2.0;
 		xAxisCutout_zTranslate = boardLengthZ / 2.0 - xAxisCutout_zLength / 2.0;
 		color("blue")
@@ -37,7 +37,7 @@ module roundedCubeEnclosure(boardLengthX,
 
 	  	// y axis cutout
 		yAxisCutout_xLength = boardLengthX * yAxisCutout_xPercentage;
-		yAxisCutout_yLength = boardLengthY * 1.1;
+		yAxisCutout_yLength = boardLengthY * 1.2;
 		yAxisCutout_zLength = boardLengthZ * yAxisCutout_zPercentage;
 		yAxisCutout_xTranslate = boardLengthX / 2.0 - yAxisCutout_xLength / 2.0;
 		yAxisCutout_yTranslate = boardLengthY / 2.0 - yAxisCutout_yLength / 2.0;
