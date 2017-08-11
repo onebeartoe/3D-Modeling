@@ -15,7 +15,7 @@ module base(boardLength,
 /**
  * buttonSide - the length of the side of the rectangular cutout for the button/key
  */
-module holes(buttonCount = 4,
+module keyboardHoles(buttonCount = 4,
 			 buttonSide = 5,
 		 	 panelHeight = 1)
 {
@@ -51,7 +51,7 @@ module keyboardPanel(boardLength,
 			 cornerRadius,
 		 	 panelHeight);
 
-		holes(buttonCount,
+		keyboardHoles(buttonCount,
 			  buttonSide,
 			  panelHeight);
 	}
