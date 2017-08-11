@@ -3,7 +3,7 @@ use <../../../../../basics/rounded-edges/rounded-cube-enclosure/rounded-cube-enc
 
 use <../../../../../microcontrollers/adafruit/trinket-mini/mounting-standoffs/trinket-mini-mounting-standoffs.scad>
 
-use <../../../../../office/keyboard/panels/keyboard-panel.scad>
+use <../../../../../electronics/keyboards/switch-mounting-holes/keyboard-switch-mounting-holes.scad>
 
 trinketMiniShortcutKeyboard();
 
@@ -47,7 +47,7 @@ module trinketMiniShortcutKeyboard()
 		yTranslate = 1;
 		zTranslate = boardLengthZ * 0.8;
 		translate([xTranslate, yTranslate, zTranslate])
-		keyboardHoles(buttonCount = 4,
+		keyboardSwitchMountingHoles(buttonCount = 4,
 					 buttonSide = buttonSide,
 				 	 panelHeight = 5);
 

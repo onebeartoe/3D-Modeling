@@ -1,7 +1,7 @@
 
 use <../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
-use <keyboard-switch-mounting-holes.scad>
+use <../../../electronics/keyboards/switch-mounting-holes/keyboard-switch-mounting-holes.scad>
 
 module base(boardLength,
 			boardWidth,
