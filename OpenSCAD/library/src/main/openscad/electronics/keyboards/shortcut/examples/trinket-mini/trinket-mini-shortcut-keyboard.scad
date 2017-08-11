@@ -3,18 +3,20 @@ use <../../../../../basics/rounded-edges/rounded-cube-enclosure/rounded-cube-enc
 
 use <../../../../../microcontrollers/adafruit/trinket-mini/mounting-standoffs/trinket-mini-mounting-standoffs.scad>
 
+use <../../../../../office/keyboard/panels/keyboard-panel.scad>
+
 trinketMiniShortcutKeyboard();
 
-module frameWithTrinketMounts()
+module frameWithTrinketMounts(boardLengthZ, cornerRadius)
 {
 	union()
 	{
 		boardLengthX = 60;
 		boardLengthY = 60;
-		cornerRadius = 3;
+
 		roundedCubeEnclosure(boardLengthX = boardLengthX,
 							boardLengthY = boardLengthY,
-							boardLengthZ = 30,
+							boardLengthZ = boardLengthZ,
 							cornerRadius = cornerRadius,
 							xAxisCutout_yPercentage = 0.8,
 							xAxisCutout_zPercentage = 0.8,
@@ -33,7 +35,30 @@ module frameWithTrinketMounts()
 
 module trinketMiniShortcutKeyboard()
 {
-	frameWithTrinketMounts();
+	boardLengthZ = 30;
+	buttonSide = 12;
+	cornerRadius = 3;
 
+	difference()
+	{
+		frameWithTrinketMounts(boardLengthZ, cornerRadius);
 
+		xTranslate = -12;
+		yTranslate = 1;
+		zTranslate = boardLengthZ * 0.8;
+		translate([xTranslate, yTranslate, zTranslate])
+		keyboardHoles(buttonCount = 4,
+					 buttonSide = buttonSide,
+				 	 panelHeight = 5);
+
+		 panelCutout_xLength = buttonSide + 4;
+		 panelCutout_yLength = (panelCutout_xLength * 4) - 5;
+		 panelCutout_zLength = 10;
+		 panelCutout_xTranslate = 2;
+		 panelCutout_yTranslate = 0;
+		 panelCutout_zTranslate = (boardLengthZ + cornerRadius) - panelCutout_zLength - 1;  // the minus 1 is for the panel mount height
+		 color("pink")
+		 translate([panelCutout_xTranslate, panelCutout_yTranslate, panelCutout_zTranslate])
+		 cube([panelCutout_xLength, panelCutout_yLength, panelCutout_zLength]);
+	}
 }
