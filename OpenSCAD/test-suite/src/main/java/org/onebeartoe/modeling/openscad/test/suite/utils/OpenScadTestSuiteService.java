@@ -20,6 +20,9 @@ import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
 import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
+import org.onebeartoe.system.CommandResults;
+import org.onebeartoe.system.command.Diff;
+import org.onebeartoe.system.command.SystemCommand;
 
 /**
  * This class provides methods used in the OpenSCAD test suite.
@@ -162,36 +165,21 @@ public class OpenScadTestSuiteService
         	
         	forceGeneration = true;
         	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
-        	
-        	String systemCommand = "diff " + baseline + " " + proposedBaseline;
 
+System.out.println("use ImageMagick! here");
+//TODO: Use ImageMagick compare        
                 try 
                 {
-                    String [] strs = systemCommand.split("\\s+");
-
-                    List <String> command = Arrays.asList(strs);
-
-                    ProcessBuilder builder = new ProcessBuilder(command);
-                    Process jobProcess = builder.start();                
-                    int exitCode = jobProcess.waitFor();
-
-                    InputStream is = jobProcess.getInputStream();
-                    String stdout = new BufferedReader( new InputStreamReader(is))
-                                          .lines()
-                                          .collect(Collectors.joining("\n"));
-
-                    InputStream es = jobProcess.getErrorStream();
-                    String stderr = new BufferedReader( new InputStreamReader(es))
-                                          .lines()
-                                          .collect(Collectors.joining("\n"));                    
+                    SystemCommand diffCommand = new Diff(baseline, proposedBaseline);
+                    CommandResults results = diffCommand.execute();
 
 		    // check if the exit code is 0 for success
-		    if(exitCode != 0)
+		    if(results.exitCode != 0)
 		    {
 			errorFiles.add(baseline);
 			
-                        System.out.println( stderr.trim() );
-                        System.out.print( stdout.trim() );
+                        System.out.println( results.processedStdErr.trim() );
+                        System.out.print( results.processedStdOut.trim() );
 		    }
 		} 
                 catch (Exception e) 
