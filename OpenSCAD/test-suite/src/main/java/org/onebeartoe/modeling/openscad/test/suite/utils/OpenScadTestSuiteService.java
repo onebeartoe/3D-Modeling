@@ -23,6 +23,7 @@ import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
 import org.onebeartoe.system.CommandResults;
 import org.onebeartoe.system.command.Diff;
 import org.onebeartoe.system.command.SystemCommand;
+import org.onebeartoe.system.command.imagemagick.Compare;
 
 /**
  * This class provides methods used in the OpenSCAD test suite.
@@ -166,11 +167,11 @@ public class OpenScadTestSuiteService
         	forceGeneration = true;
         	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
 
-System.out.println("use ImageMagick! here");
+//System.out.println("use ImageMagick! here");
 //TODO: Use ImageMagick compare        
                 try 
                 {
-                    SystemCommand diffCommand = new Diff(baseline, proposedBaseline);
+                    SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
                     CommandResults results = diffCommand.execute();
 
 		    // check if the exit code is 0 for success
