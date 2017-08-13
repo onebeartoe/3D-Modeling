@@ -90,8 +90,8 @@ public class OpenScadTestSuiteService
             }
             catch(Exception nsfe)
             {
-                Help h = new Help();
-                h.printHelp();
+//                Help h = new Help();
+//                h.printHelp();
                 
                 File pwd = new File(".");
                 System.err.println("pwd: " + pwd.getAbsolutePath() );
