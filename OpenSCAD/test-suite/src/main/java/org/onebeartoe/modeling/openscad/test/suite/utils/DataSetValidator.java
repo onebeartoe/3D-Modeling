@@ -123,7 +123,7 @@ public class DataSetValidator
             list.parallelStream()
                 .forEach( direction ->
             {
-                expectedBaselineFiles.addAll( validateBody(path, direction) );                       
+                expectedBaselineFiles.addAll( validateBody(path, direction) );
             });
         });
 
