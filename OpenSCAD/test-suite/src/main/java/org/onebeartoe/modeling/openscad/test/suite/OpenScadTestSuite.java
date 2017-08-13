@@ -106,9 +106,11 @@ public class OpenScadTestSuite
         // TODO: Do not hard code the openscad executable path
 //        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
         // TODO: okay
-//        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
+        // This version produces baseline imags that match what is on the openscad 
+        // build server, OpenSCAD version 2015.03-1
+        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
         // TODO: okay
-        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
+//        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
         
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
