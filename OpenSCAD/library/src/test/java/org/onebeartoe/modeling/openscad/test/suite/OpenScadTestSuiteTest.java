@@ -25,13 +25,12 @@ public class OpenScadTestSuiteTest
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();
 
         RunProfile runProfile = new RunProfile();
-        
+
+//TODO: use the nightly version, since it is the latest version?        
         runProfile.executablePath = "openscad";
 //        runProfile.executablePath = "openscad-nightly";
 
         runProfile.path = "src/main/openscad/basics/";
-// wah, the owl of Dieg was failing on the betoland network build server        
-//        runProfile.path = "src/main/openscad/name-tags/examples/owl-of-diego/";
         
         runProfile.redirectOpenscad = false;
         
