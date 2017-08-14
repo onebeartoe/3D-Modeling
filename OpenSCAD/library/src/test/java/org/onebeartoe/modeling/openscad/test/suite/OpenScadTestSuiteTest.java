@@ -26,8 +26,8 @@ public class OpenScadTestSuiteTest
 
         RunProfile runProfile = new RunProfile();
 
-//TODO: use the nightly version, since it is the latest version?        
         runProfile.executablePath = "openscad";
+//TODO: use the nightly version, since it is the latest version?
 //        runProfile.executablePath = "openscad-nightly";
 
         runProfile.path = "src/main/openscad/basics/";

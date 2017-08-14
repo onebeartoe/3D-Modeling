@@ -1,27 +1,20 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.nio.file.FileSystems;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
 import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
 import org.onebeartoe.system.CommandResults;
-import org.onebeartoe.system.command.Diff;
 import org.onebeartoe.system.command.SystemCommand;
 import org.onebeartoe.system.command.imagemagick.Compare;
 
@@ -52,7 +45,7 @@ public class OpenScadTestSuiteService
     {
         OpenScadTestSuite.RunMode mode;        
         {
-// the ifrst hachifufoo
+// the first hachifufoo
             if(runProfile.generateBaselines)
             {
                 mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
@@ -167,8 +160,6 @@ public class OpenScadTestSuiteService
         	forceGeneration = true;
         	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
 
-//System.out.println("use ImageMagick! here");
-//TODO: Use ImageMagick compare        
                 try 
                 {
                     SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
