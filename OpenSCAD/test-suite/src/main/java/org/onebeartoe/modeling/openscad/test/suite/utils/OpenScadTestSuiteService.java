@@ -43,57 +43,56 @@ public class OpenScadTestSuiteService
      */
     public void serviceRequest(RunProfile runProfile) throws Exception
     {
-        OpenScadTestSuite.RunMode mode;        
-        {
+        OpenScadTestSuite.RunMode mode;
+
 // the first hachifufoo
-            if(runProfile.generateBaselines)
+        if(runProfile.generateBaselines)
+        {
+            mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
+        }
+        else if(runProfile.diffOnly)
+        {                
+            mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
+        }
+        else
+        {
+            mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
+        }
+
+        OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+        Path inpath = FileSystems.getDefault().getPath(runProfile.path);
+
+        try
+        {
+            runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+
+            if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
             {
-                mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
-            }
-            else if(runProfile.diffOnly)
-            {                
-                mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
+                generateBaselines(runProfile);
             }
             else
             {
-                mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
-            }
+                // the mode is 'run test suite'
+                boolean passed = runTestSuite(runProfile);
 
-            OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
-            Path inpath = FileSystems.getDefault().getPath(runProfile.path);
-            
-            try
-            {
-                runProfile.openscadPaths = openScadFinder.getFiles(inpath);
-
-                if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
+                if(!passed)
                 {
-                    generateBaselines(runProfile);
+                    throw new Exception("Did not pass");
                 }
-                else
-                {
-                    // the mode is 'run test suite'
-                    boolean passed = runTestSuite(runProfile);
-                    
-                    if(!passed)
-                    {
-                        throw new Exception("Did not pass");
-                    }
-                }                
-            }
-            catch(Exception nsfe)
-            {
+            }                
+        }
+        catch(Exception nsfe)
+        {
 //                Help h = new Help();
 //                h.printHelp();
-                
-                File pwd = new File(".");
-                System.err.println("pwd: " + pwd.getAbsolutePath() );
-                
-                nsfe.printStackTrace();
-                
-                throw new Exception(nsfe);
-            }
-        }
+
+            File pwd = new File(".");
+            System.err.println("pwd: " + pwd.getAbsolutePath() );
+
+            nsfe.printStackTrace();
+
+            throw new Exception(nsfe);
+        }        
     }    
 
     private void generateBaselines(RunProfile runProfile) throws IOException, InterruptedException
