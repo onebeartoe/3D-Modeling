@@ -3,7 +3,7 @@
 // in this Stack Overflow question
 //          http://stackoverflow.com/questions/39564136/how-to-determine-width-of-text-in-openscad/39564288#39564288
 
-use <text-extrude.scad>
+use <../text-extrude/text-extrude.scad>
 
 module textWall(text = "this is a text", 
                 length = 20, width = 10, 

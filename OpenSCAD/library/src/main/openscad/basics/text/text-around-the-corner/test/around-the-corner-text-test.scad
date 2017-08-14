@@ -1,5 +1,5 @@
 
-use <around-the-corner-text.scad>
+use <../around-the-corner-text.scad>
 
 // TODO: whoa! the next 'use' statement misuses the onebeartoe OpenSCAD Inliner tool!
 // TODO: The tool needs updating to support the 'include' statement.
