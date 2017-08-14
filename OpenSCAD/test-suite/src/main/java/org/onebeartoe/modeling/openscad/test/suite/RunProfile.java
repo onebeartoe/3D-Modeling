@@ -9,6 +9,8 @@ import java.util.List;
  */
 public class RunProfile 
 {
+    public boolean deleteProposedBaseLines;
+    
     public boolean diffOnly;
     
     public boolean generateBaselines;

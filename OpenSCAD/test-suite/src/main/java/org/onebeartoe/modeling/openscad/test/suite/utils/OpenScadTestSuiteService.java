@@ -50,6 +50,10 @@ public class OpenScadTestSuiteService
         {
             mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
         }
+        else if(runProfile.deleteProposedBaseLines)
+        {
+            mode = OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES;
+        }
         else if(runProfile.diffOnly)
         {                
             mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
@@ -69,6 +73,10 @@ public class OpenScadTestSuiteService
             if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
             {
                 generateBaselines(runProfile);
+            }
+            else if( mode == OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
+            {
+                deleteProposedBaselines(inpath);
             }
             else
             {
@@ -182,7 +190,30 @@ public class OpenScadTestSuiteService
         });
 	
 	return errorFiles;
-    }    
+    }
+    
+    private void deleteProposedBaselines(Path inpath) throws IOException
+    {
+        // find all the proposed baseline images
+        List<File> proposedBaselines = findProposedBaselines(inpath);
+        
+        // and delete them
+        proposedBaselines.forEach( pb -> 
+        {
+            System.out.println("deleteing: " + pb.getPath() );
+            
+            pb.delete();
+        });
+    }
+    
+    private List<File> findProposedBaselines(Path inpath) throws IOException
+    {
+        ProposedBaselineFinder finder = new ProposedBaselineFinder();
+        
+        List<File> proposedBaselines = finder.find(inpath);
+        
+        return proposedBaselines;
+    }
 
     public void printOpernScadVersion(RunProfile runProfile)
     {

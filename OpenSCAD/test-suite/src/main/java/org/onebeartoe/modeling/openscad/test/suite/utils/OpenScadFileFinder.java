@@ -56,10 +56,12 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         return openscadPaths;
     }
 
+//todo: what if this method is called twice but with different paths!!!????    
     public List<Path> getFiles(Path inpath) throws Exception
     {
         if (openscadPaths == null)
         {
+//todo: what if this method is called twice but with different paths!!!????
             find(inpath);
         }
 
@@ -80,7 +82,6 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
             {
                 openscadPaths.add(file);
             }
-
         }
         else
         {

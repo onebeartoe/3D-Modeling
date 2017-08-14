@@ -22,6 +22,7 @@ public class OpenScadTestSuite
 {        
     private Logger logger;
     
+    private static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
     private static final String DIFF_ONLY = "diffOnly";
     public static final String GENERATE_BASELILNES = "generateBaselines";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
@@ -45,12 +46,19 @@ public class OpenScadTestSuite
                     .longOpt(GENERATE_BASELILNES)
                     .build();
         
+        Option deleteProposedBaselines = Option.builder()
+                    .required(false)
+                    .longOpt(DELETE_PROPOSED_BASELINES)
+                    .hasArg(false)
+                    .build();
+        
         Option diffOnly = Option.builder()
                     .required(false)
                     .longOpt(DIFF_ONLY)
                     .build();
         
         Options options = new Options();
+        options.addOption(deleteProposedBaselines);
         options.addOption(diffOnly);
         options.addOption(generateBaselines);
         options.addOption(outfile);
@@ -104,17 +112,14 @@ public class OpenScadTestSuite
         RunProfile runProfile = new RunProfile();
         
         // TODO: Do not hard code the openscad executable path
-//        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
-        // TODO: okay
-        // This version produces baseline imags that match what is on the openscad 
-        // build server, OpenSCAD version 2015.03-1
+        // This version produces baseline imags that match the ones created on the openscad 
+        // build server, which uses version 2015.03-1 of OpenSCAD.
         runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
-        // TODO: okay
-//        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
-        
+
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
         runProfile.redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);
+        runProfile.deleteProposedBaseLines = cmd.hasOption(DELETE_PROPOSED_BASELINES);
         
         List<String> remainingArgs = cmd.getArgList();
         
@@ -149,6 +154,7 @@ public class OpenScadTestSuite
     public enum RunMode
     {
         CLEANUP_LIST,
+        DELETE_PROPOSED_BASELINES,
         GENERATE_BASELINES,
         RUN_TEST_SUITE
     }
