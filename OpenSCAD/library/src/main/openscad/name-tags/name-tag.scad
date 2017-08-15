@@ -5,7 +5,7 @@ use <../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>        
 use <../shapes/chain-loop/chain-loop.scad>
-use <../shapes/crescent-moon/crescent-moon.scad>        
+use <../shapes/crescent-moon/crescent-moon.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
@@ -470,6 +470,7 @@ module nametagHole(baseThickness)
 
 // *************  External Modules *************
 
+//TODO: Replace this with: onebeartoe/github\3D-Modeling\OpenSCAD\library\src\main\openscad\external-resources\music\notes\bass-clef\bass-clef.scad
 module baseclef15scale(h)
 {
   scale([25.4/90, -25.4/90, 1]) union()
