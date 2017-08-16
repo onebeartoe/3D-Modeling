@@ -6,10 +6,13 @@
     <test name="openscad model verification">
         <groups>
             <run>
-                <include name="validators" />
-                <include name="brute-force-openscad-test-suite" />
+                <include name="validators" />                
                 <include name="openscad-test-suite" />
-                <exclude name="Regression"/>
+<!--
+                <include name="brute-force-openscad-test-suite" />
+-->
+                                
+                <exclude name="regression"/>
             </run>
         </groups>
 
