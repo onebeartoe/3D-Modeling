@@ -1,17 +1,11 @@
 
-use <../../shapes/cup/cup.scad>;
+use <../../external-resources/use-a-stl-from-this-library.scad>;
 
 difference()
 {
-	import("shark_cubical_name_plate.stl");
+	sharkNametag(2);
 
-	translate([0,0,-2.1])
-	cube (//center=true, 
-		  size = [60, 40, 15]);
+//	translate([0,0,-2.1])
+	//cube (center=true, 
+		//  size = [60, 40, 15]);
 }
-
-translate([5,5,5])
-cube (//center=true, 
-          size = [60, 40, 15]);
-          
-          
