@@ -1,11 +1,10 @@
 
-use <../../external-resources/use-a-stl-from-this-library.scad>;
-
 difference()
 {
-	sharkNametag(2);
+    cylinder(h = 3,
+             r = 20);
 
-//	translate([0,0,-2.1])
-	//cube (center=true, 
-		//  size = [60, 40, 15]);
+    translate([0,0,-0.1])
+    cube (center=true, 
+          size = [7, 7, 7]);
 }
