@@ -125,7 +125,7 @@ public class OpenScadTestSuiteTest
     {
         System.err.println("These top level directories have errors:");
         
-        failedOpenScadFiles.forEach(System.err::println);
+//        failedOpenScadFiles.forEach(System.err::println);
         
         Map<String, Integer> topLevelHits = new HashMap();
         
@@ -146,6 +146,7 @@ public class OpenScadTestSuiteTest
             topLevelHits.put(topLevelKey, count);
         });
         
+        System.out.println("top level count: " + topLevelHits.size() );
         topLevelHits.forEach( (key, value) ->
         {
             System.out.println(key + ": " + value);
