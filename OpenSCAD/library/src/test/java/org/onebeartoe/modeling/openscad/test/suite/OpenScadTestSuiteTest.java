@@ -3,7 +3,9 @@ package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -103,11 +105,51 @@ public class OpenScadTestSuiteTest
         return data;
     }
 
+    private String extractTopLevel(String fullPath)
+    {
+        // remove the project path
+        fullPath = fullPath.replace("src/main/openscad/", "");
+        
+        // account for running on MS Windows
+        fullPath = fullPath.replace("\\", "/");
+        
+        int begin = fullPath.indexOf("/") + 1;
+        int end = fullPath.indexOf("/", begin);
+        
+        String topLevel = fullPath.substring(begin, end);
+                                
+        return topLevel;
+    }
+    
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
     {
         System.err.println("These top level directories have errors:");
         
         failedOpenScadFiles.forEach(System.err::println);
+        
+        Map<String, Integer> topLevelHits = new HashMap();
+        
+        failedOpenScadFiles.forEach(f ->
+        {
+            String topLevelKey = extractTopLevel(f);
+            
+            Integer count = topLevelHits.get(topLevelKey);
+            if(count == null)
+            {
+                count = 1;
+            }
+            else
+            {
+                count += 1;                
+            }
+            
+            topLevelHits.put(topLevelKey, count);
+        });
+        
+        topLevelHits.forEach( (key, value) ->
+        {
+            System.out.println(key + ": " + value);
+        });
     }
 
     @Test(dataProvider="errorFiles", 
