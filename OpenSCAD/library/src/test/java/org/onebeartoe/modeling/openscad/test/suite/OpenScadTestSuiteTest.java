@@ -104,7 +104,7 @@ public class OpenScadTestSuiteTest
     @Test(dataProvider="errorFiles", 
           groups = {"openscad-test-suite"})
     /**
-     * Any parameter passed to this test represents a file that failed baseline 
+     * Any parameter passed to this test represents a file that failed baseline to 
      * proposed baseline comparison; i.e. all executions of this test are 
      * expected to file.
      */
