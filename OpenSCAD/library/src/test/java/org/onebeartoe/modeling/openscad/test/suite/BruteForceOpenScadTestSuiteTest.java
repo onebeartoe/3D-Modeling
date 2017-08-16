@@ -10,16 +10,16 @@ import org.testng.annotations.Test;
  *
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public class OpenScadTestSuiteTest 
+public class BruteForceOpenScadTestSuiteTest 
 {
     private Logger logger;
     
-    public OpenScadTestSuiteTest()
+    public BruteForceOpenScadTestSuiteTest()
     {
         logger = Logger.getLogger( getClass().getName() );
     }
 
-    @Test(groups = {"openscad-test-suite"})
+    @Test(groups = {"brute-force-openscad-test-suite"})
     public void testSuite() throws Exception
     {        
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();

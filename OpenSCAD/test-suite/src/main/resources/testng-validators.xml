@@ -7,13 +7,15 @@
         <groups>
             <run>
                 <include name="validators" />
-                <include name="test-suite" />
+                <include name="brute-force-openscad-test-suite" />
+                <include name="openscad-test-suite" />
                 <exclude name="Regression"/>
             </run>
         </groups>
 
         <classes>
             <class name="org.onebeartoe.modeling.openscad.test.suite.DataSetValidatorTests"/>
+            <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuiteTest"/>
         </classes>  
     </test>        
