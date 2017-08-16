@@ -74,9 +74,7 @@ public class OpenScadTestSuiteTest
     public Object[][] getErrorFiles() throws Exception
     {
         List<String> compareImages = testService.compareImages(runProfile);
-        
-        
-        
+
         int parameterCount = 1;
         
         List<Object []> rows = compareImages.stream()
