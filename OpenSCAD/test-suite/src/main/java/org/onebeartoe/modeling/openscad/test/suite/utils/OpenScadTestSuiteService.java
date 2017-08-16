@@ -120,7 +120,7 @@ public class OpenScadTestSuiteService
      * @throws IOException
      * @throws InterruptedException 
      */
-    private int generateProposedBaselines(RunProfile runProfile) throws IOException, InterruptedException
+    public int generateProposedBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
@@ -147,9 +147,47 @@ public class OpenScadTestSuiteService
     
     /**
      * 
+     * @param runProfile
+     * @return This method retuns a list of files that had an error with 
+     *         baseline and proposed baseline comparison.
+     */
+    public List<String> compareImages(RunProfile runProfile)
+    {
+        System.out.println();
+        System.out.println("Comparing baseline images to the proposed baseline images...");
+
+        boolean passed = true;
+        
+        List<String> errorFiles = compareImages(runProfile.openscadPaths);
+
+        // Check if the diffs were successful
+        if(errorFiles.size() == 0)
+        {
+            System.out.println();
+            System.out.println("No test suite errors were detected.");
+            System.out.println();
+            System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
+        }
+        else
+        {
+            // whoa, whoa
+            passed = false;
+
+            System.out.println( System.lineSeparator() );
+            System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
+            System.out.println();
+
+            System.out.println("See the compare commands above.");        	
+        }
+
+        return errorFiles;
+    }
+    
+    /**
+     * 
      * @return a list of any files that did not pass the diff test
      */
-    public List<String> compareImages(List<Path> openscadPaths)
+    private List<String> compareImages(List<Path> openscadPaths)
     {
 	List<String> errorFiles = new ArrayList();
 	
@@ -221,7 +259,7 @@ public class OpenScadTestSuiteService
 //       rint the version of poesn scdd
     }
     
-    private void printValidationResults(List<String> missingBaselineFiles)
+    public void printValidationResults(List<String> missingBaselineFiles)
     {
 	System.out.println();
 	
@@ -305,33 +343,10 @@ public class OpenScadTestSuiteService
             }
             else
             {
-                System.out.println();
-                System.out.println("Comparing baseline images to the proposed baseline images...");
-
-                List<String> errorFiles = compareImages(runProfile.openscadPaths);
-
-                // Check if the diffs were successful
-                if(errorFiles.size() == 0)
-                {
-                    System.out.println();
-                    System.out.println("No test suite errors were detected.");
-                    System.out.println();
-                    System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
-                }
-                else
-                {
-                    // whoa, whoa
-                    passed = false;
-                    
-                    System.out.println( System.lineSeparator() );
-                    System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
-                    System.out.println();
-
-                    System.out.println("See the compare commands above.");        	
-                }                
+                compareImages(runProfile);
             }
         }
         
         return passed;
-    }    
+    }
 }
