@@ -73,11 +73,13 @@ public class OpenScadTestSuiteTest
     @DataProvider(name="errorFiles")
     public Object[][] getErrorFiles() throws Exception
     {
-        List<String> compareImages = testService.compareImages(runProfile);
+        List<String> failedOpenScadFiles = testService.compareImages(runProfile);
 
+        printHighLevelErrorReport(failedOpenScadFiles);
+        
         int parameterCount = 1;
         
-        List<Object []> rows = compareImages.stream()
+        List<Object []> rows = failedOpenScadFiles.stream()
                 .sorted()
                 .map( l -> 
                 {
@@ -99,7 +101,14 @@ public class OpenScadTestSuiteTest
         }
         
         return data;
-    }    
+    }
+
+    private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
+    {
+        System.err.println("These top level directories have errors:");
+        
+        
+    }
 
     @Test(dataProvider="errorFiles", 
           groups = {"openscad-test-suite"})
@@ -108,7 +117,7 @@ public class OpenScadTestSuiteTest
      * proposed baseline comparison; i.e. all executions of this test are 
      * expected to file.
      */
-    public void reportErros(String comparisonFile) throws Exception
+    public void reportErrors(String comparisonFile) throws Exception
     {        
         String message = "The comparison failed for: " + comparisonFile;
         
