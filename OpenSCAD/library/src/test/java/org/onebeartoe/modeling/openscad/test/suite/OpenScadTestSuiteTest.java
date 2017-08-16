@@ -75,10 +75,12 @@ public class OpenScadTestSuiteTest
     {
         List<String> compareImages = testService.compareImages(runProfile);
         
+        
+        
         int parameterCount = 1;
-//        Object[][] data = new Object[compareImages.size()][parameterCount];
         
         List<Object []> rows = compareImages.stream()
+                .sorted()
                 .map( l -> 
                 {
                     Object [] array = new Object[parameterCount];
