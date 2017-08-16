@@ -107,7 +107,7 @@ public class OpenScadTestSuiteTest
     {
         System.err.println("These top level directories have errors:");
         
-        
+        failedOpenScadFiles.forEach(System.err::println);
     }
 
     @Test(dataProvider="errorFiles", 
