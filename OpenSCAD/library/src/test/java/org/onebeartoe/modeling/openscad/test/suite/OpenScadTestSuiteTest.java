@@ -108,7 +108,7 @@ public class OpenScadTestSuiteTest
     private String extractTopLevel(String fullPath)
     {
         // remove the project path
-        fullPath = fullPath.replace("src/main/openscad/", "");
+        fullPath = fullPath.replace(runProfile.path, "");
         
         // account for running on MS Windows
         fullPath = fullPath.replace("\\", "/");
