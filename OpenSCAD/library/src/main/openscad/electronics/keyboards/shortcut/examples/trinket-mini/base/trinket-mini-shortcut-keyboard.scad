@@ -15,13 +15,13 @@ module frameWithTrinketMounts(boardLengthZ, cornerRadius)
 		boardLengthY = 60;
 
 		roundedCubeEnclosure(boardLengthX = boardLengthX,
-							boardLengthY = boardLengthY,
-							boardLengthZ = boardLengthZ,
-							cornerRadius = cornerRadius,
-							xAxisCutout_yPercentage = 0.8,
-							xAxisCutout_zPercentage = 0.8,
-							yAxisCutout_xPercentage = 0.85,
-							yAxisCutout_zPercentage = 0.75);
+                                    boardLengthY = boardLengthY,
+                                    boardLengthZ = boardLengthZ,
+                                    cornerRadius = cornerRadius,
+                                    xAxisCutout_yPercentage = 0.8,
+                                    xAxisCutout_zPercentage = 0.8,
+                                    yAxisCutout_xPercentage = 0.85,
+                                    yAxisCutout_zPercentage = 0.75);
 
 		xTranslate = (boardLengthX + cornerRadius) * 0.6;
 		yTranslate = (boardLengthY + cornerRadius) * 0.3;

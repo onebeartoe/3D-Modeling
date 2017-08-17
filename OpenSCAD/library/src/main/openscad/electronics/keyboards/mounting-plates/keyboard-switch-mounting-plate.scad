@@ -15,11 +15,11 @@ module keyboardSwitchMountingPlateBase(boardLength,
 }
 
 module keyboardSwitchMountingPlate(boardLength,
-					 boardWidth,
-					 buttonCount,
- 					 buttonSide,
-					 cornerRadius,
-				 	 panelHeight)
+                                    boardWidth,
+                                    buttonCount,
+                                    buttonSide,
+                                    cornerRadius,
+                                    panelHeight)
 {
 	difference()
 	{
