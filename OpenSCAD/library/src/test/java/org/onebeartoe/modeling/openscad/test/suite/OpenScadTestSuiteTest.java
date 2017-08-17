@@ -84,8 +84,8 @@ public class OpenScadTestSuiteTest
         
         System.out.println("extract - full path before index: " + fullPath);
         
-        int begin = fullPath.indexOf("/") + 1;
-        int end = fullPath.indexOf("/", begin);
+        int begin = 0;
+        int end = fullPath.indexOf("/");
         
         System.out.println("extract - begin: " + begin + " end: " + end);
                 
