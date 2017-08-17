@@ -72,6 +72,31 @@ public class OpenScadTestSuiteTest
         }        
     }
     
+    private String extractTopLevel(String fullPath)
+    {
+        System.out.println("extract full path: " + fullPath);
+        
+        // remove the project path
+        fullPath = fullPath.replace(runProfile.path, "");
+        
+        // account for running on MS Windows
+        fullPath = fullPath.replace("\\", "/");
+        
+        int begin = fullPath.indexOf("/") + 1;
+        int end = fullPath.indexOf("/", begin);
+        
+        System.out.println("extract begin: " + begin + " end: " + end);
+        
+        
+        String topLevel = fullPath.substring(begin, end);
+
+        
+        
+        System.out.println("extract top level: " + topLevel);
+        
+        return topLevel;
+    }    
+    
     @DataProvider(name="errorFiles")
     public Object[][] getErrorFiles() throws Exception
     {
@@ -103,26 +128,6 @@ public class OpenScadTestSuiteTest
         }
         
         return data;
-    }
-
-    private String extractTopLevel(String fullPath)
-    {
-        System.out.println("extract full path: " + fullPath);
-        
-        // remove the project path
-        fullPath = fullPath.replace(runProfile.path, "");
-        
-        // account for running on MS Windows
-        fullPath = fullPath.replace("\\", "/");
-        
-        int begin = fullPath.indexOf("/") + 1;
-        int end = fullPath.indexOf("/", begin);
-        
-        String topLevel = fullPath.substring(begin, end);
-
-        System.out.println("extract top level: " + topLevel);
-        
-        return topLevel;
     }
     
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
