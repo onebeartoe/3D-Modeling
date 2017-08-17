@@ -92,7 +92,7 @@ public class OpenScadTestSuiteTest
         int begin = 0;
         int end = fullPath.indexOf("/");
 
-        System.out.println("extract - end: " + end + " - full path: " + fullPath);
+//        System.out.println("extract - end: " + end + " - full path: " + fullPath);
         String topLevel = null;
                 
         if(end < 0)
@@ -165,7 +165,14 @@ public class OpenScadTestSuiteTest
             topLevelHits.put(topLevelKey, count);
         }); 
         
-        System.out.println("top level count: " + topLevelHits.size() );
+        System.out.println();
+        int total = topLevelHits.values()
+                                .stream()
+                                .mapToInt(Integer::intValue)
+                                .sum();
+                
+        System.out.println("top level count: " + total);
+        
         topLevelHits.forEach( (key, value) ->
         {
             System.out.println(key + ": " + value);
