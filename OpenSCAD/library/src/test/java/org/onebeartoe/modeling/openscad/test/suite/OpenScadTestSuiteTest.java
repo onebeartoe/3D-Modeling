@@ -30,6 +30,10 @@ public class OpenScadTestSuiteTest
     public OpenScadTestSuiteTest() throws Exception
     {
         logger = Logger.getLogger( getClass().getName() );
+     
+        String key = "OPENSCAD_SUBPATH";
+        String openScadSubpath = System.getProperty(key, "");
+        System.out.println("the openscad sub path is: " + openScadSubpath);
         
         testService = new OpenScadTestSuiteService();
 
