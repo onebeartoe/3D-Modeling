@@ -92,8 +92,18 @@ public class OpenScadTestSuiteTest
         int end = fullPath.indexOf("/");
 
         System.out.println("extract - end: " + end + " - full path: " + fullPath);
+        String topLevel = null;
                 
-        String topLevel = fullPath.substring(begin, end);
+        if(end < 0)
+        {
+            // the file in the current directory
+            topLevel = "";
+        }
+        else
+        {
+            // the OpenSCAD file is in the current directory
+            topLevel = fullPath.substring(begin, end);
+        }
         
         return topLevel;
     }    
