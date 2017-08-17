@@ -91,6 +91,7 @@ public class OpenScadTestSuiteTest
         int begin = 0;
         int end = fullPath.indexOf("/");
 
+        System.out.println("extract - end: " + end + " - full path: " + fullPath);
                 
         String topLevel = fullPath.substring(begin, end);
         
