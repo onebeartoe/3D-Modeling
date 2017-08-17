@@ -74,7 +74,7 @@ public class OpenScadTestSuiteTest
     
     private String extractTopLevel(String fullPath)
     {
-        System.out.println("extract - full path: " + fullPath);
+//        System.out.println("extract - full path: " + fullPath);
         
         // remove the project path
         fullPath = fullPath.replace(runProfile.path, "");
@@ -82,16 +82,16 @@ public class OpenScadTestSuiteTest
         // account for running on MS Windows
         fullPath = fullPath.replace("\\", "/");
         
-        System.out.println("extract - full path before index: " + fullPath);
+//        System.out.println("extract - full path before index: " + fullPath);
         
         int begin = 0;
         int end = fullPath.indexOf("/");
         
-        System.out.println("extract - begin: " + begin + " end: " + end);
+//        System.out.println("extract - begin: " + begin + " end: " + end);
                 
         String topLevel = fullPath.substring(begin, end);
                 
-        System.out.println("extract - top level: " + topLevel);
+//        System.out.println("extract - top level: " + topLevel);
         
         return topLevel;
     }    
@@ -131,8 +131,8 @@ public class OpenScadTestSuiteTest
     
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
     {
-        System.err.println("These top level directories have errors::::");
-        
+        System.err.println("These top level directories have errors:");
+
         Map<String, Integer> topLevelHits = new HashMap();
         
         failedOpenScadFiles.forEach(f ->
