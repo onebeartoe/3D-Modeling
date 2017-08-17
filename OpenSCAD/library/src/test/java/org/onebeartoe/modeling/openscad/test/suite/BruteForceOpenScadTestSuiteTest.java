@@ -3,6 +3,7 @@ package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.Test;
 
@@ -19,7 +20,8 @@ public class BruteForceOpenScadTestSuiteTest
         logger = Logger.getLogger( getClass().getName() );
     }
 
-    @Test(groups = {"brute-force-openscad-test-suite"})
+    @Test(enabled = false,
+            groups = {"brute-force-openscad-test-suite"})
     public void testSuite() throws Exception
     {        
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();
