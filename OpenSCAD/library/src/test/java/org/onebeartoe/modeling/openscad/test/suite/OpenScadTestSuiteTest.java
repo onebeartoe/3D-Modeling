@@ -172,6 +172,7 @@ public class OpenScadTestSuiteTest
                                 .sum();
                 
         System.out.println("top level count: " + total);
+        System.out.println();
         
         topLevelHits.forEach( (key, value) ->
         {
