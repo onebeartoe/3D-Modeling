@@ -33,7 +33,10 @@ public class OpenScadTestSuiteTest
      
         String key = "OPENSCAD_SUBPATH";
         String openScadSubpath = System.getProperty(key, "");
-        System.out.println("the openscad sub path is: " + openScadSubpath);
+        System.out.println("the " + key + " is: " + openScadSubpath);
+        
+        openScadSubpath = System.getenv(key);
+        System.out.println("the env " + key + " is: " + openScadSubpath);
         
         testService = new OpenScadTestSuiteService();
 
