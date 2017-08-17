@@ -39,7 +39,7 @@ public class OpenScadTestSuiteTest
 //TODO: use the nightly version, since it is the latest version?
 //        runProfile.executablePath = "openscad-nightly";
 
-        runProfile.path = "src/main/openscad/basics/";
+        runProfile.path = "src/main/openscad/name-tags/";
         
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
