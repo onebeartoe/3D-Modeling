@@ -107,6 +107,8 @@ public class OpenScadTestSuiteTest
 
     private String extractTopLevel(String fullPath)
     {
+        System.out.println("extract full path: " + fullPath);
+        
         // remove the project path
         fullPath = fullPath.replace(runProfile.path, "");
         
@@ -118,7 +120,7 @@ public class OpenScadTestSuiteTest
         
         String topLevel = fullPath.substring(begin, end);
 
-        System.out.println("extract level: " + topLevel);
+        System.out.println("extract top level: " + topLevel);
         
         return topLevel;
     }
@@ -126,8 +128,6 @@ public class OpenScadTestSuiteTest
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
     {
         System.err.println("These top level directories have errors::::");
-        
-//        failedOpenScadFiles.forEach(System.err::println);
         
         Map<String, Integer> topLevelHits = new HashMap();
         
