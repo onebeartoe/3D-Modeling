@@ -36,6 +36,7 @@ public class OpenScadTestSuiteTest
         System.out.println("the " + key + " is: " + openScadSubpath);
         
         openScadSubpath = System.getenv(key);
+        openScadSubpath = openScadSubpath == null ? "" : openScadSubpath;
         System.out.println("the env " + key + " is: " + openScadSubpath);
         
         testService = new OpenScadTestSuiteService();
