@@ -117,7 +117,9 @@ public class OpenScadTestSuiteTest
         int end = fullPath.indexOf("/", begin);
         
         String topLevel = fullPath.substring(begin, end);
-                                
+
+        System.out.println("extract level: " + topLevel);
+        
         return topLevel;
     }
     
@@ -140,7 +142,7 @@ public class OpenScadTestSuiteTest
             }
             else
             {
-                count += 1;                
+                count += 1;
             }
             
             topLevelHits.put(topLevelKey, count);
