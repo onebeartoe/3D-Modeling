@@ -39,7 +39,7 @@ public class OpenScadTestSuiteTest
 //TODO: use the nightly version, since it is the latest version?
 //        runProfile.executablePath = "openscad-nightly";
 
-        runProfile.path = "src/main/openscad/";
+        runProfile.path = "src/main/openscad/basics/";
         
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
@@ -123,7 +123,7 @@ public class OpenScadTestSuiteTest
     
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
     {
-        System.err.println("These top level directories have errors:");
+        System.err.println("These top level directories have errors::::");
         
 //        failedOpenScadFiles.forEach(System.err::println);
         
@@ -144,7 +144,7 @@ public class OpenScadTestSuiteTest
             }
             
             topLevelHits.put(topLevelKey, count);
-        });
+        }); 
         
         System.out.println("top level count: " + topLevelHits.size() );
         topLevelHits.forEach( (key, value) ->
