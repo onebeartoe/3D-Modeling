@@ -6,7 +6,7 @@ module keyboardSwitchMountingHoles(buttonCount = 4,
 			 buttonSide = 5,
 		 	 panelHeight = 1)
 {
-	x = 16;
+	x = 0;
 	startY = 0;
 
 	ySpacing = 3;
