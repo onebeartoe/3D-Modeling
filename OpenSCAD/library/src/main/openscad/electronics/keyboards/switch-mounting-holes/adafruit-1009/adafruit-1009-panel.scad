@@ -5,11 +5,15 @@ use <../../mounting-plates/keyboard-switch-mounting-plate.scad>
 //
 //	https://www.adafruit.com/product/1009
 //	https://www.adafruit.com/product/1010
-buttonSide = 12; // 12mm based on the details from the Adafruit site
+        
+module adafruit10009SwitchPanel(boardLengthX)
+{
+    buttonSide = 12; // 12mm based on the details from the Adafruit site
 
-keyboardSwitchMountingPlate(boardLength = 30,
-              boardWidth = 60,
-              buttonCount = 4,
-              buttonSide = buttonSide,
-              cornerRadius = 3,
-              panelHeight = 1);
+    keyboardSwitchMountingPlate(boardLengthX = boardLengthX,
+                  boardLengthY = 60,
+                  buttonCount = 4,
+                  buttonSide = buttonSide,
+                  cornerRadius = 3,
+                  panelHeight = 1);    
+}

@@ -3,19 +3,19 @@ use <../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
 use <../../../electronics/keyboards/switch-mounting-holes/keyboard-switch-mounting-holes.scad>
 
-module keyboardSwitchMountingPlateBase(boardLength,
-			boardWidth,
+module keyboardSwitchMountingPlateBase(boardLengthX,
+			boardLengthY,
 			cornerRadius,
 			panelHeight)
 {
 	roundedCube(cornerRadius = cornerRadius,
 				sides = 20,
 				sidesOnly = true,
-				size = [boardLength, boardWidth, panelHeight]);
+				size = [boardLengthX, boardLengthY, panelHeight]);
 }
 
-module keyboardSwitchMountingPlate(boardLength,
-                                    boardWidth,
+module keyboardSwitchMountingPlate(boardLengthX,
+                                    boardLengthY,
                                     buttonCount,
                                     buttonSide,
                                     cornerRadius,
@@ -23,8 +23,8 @@ module keyboardSwitchMountingPlate(boardLength,
 {
 	difference()
 	{
-		keyboardSwitchMountingPlateBase(boardLength,
-			 boardWidth,
+		keyboardSwitchMountingPlateBase(boardLengthX,
+			 boardLengthY,
 			 cornerRadius,
 		 	 panelHeight);
 
