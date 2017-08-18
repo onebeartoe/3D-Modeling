@@ -2,7 +2,7 @@
 font = "Bauhaus 93:style=Regular";
 font = "Arial";
 
-strings = [["ABC", "1234", "QRS"], ["+-=", "foo", "bar"]];
+strings = [["ABC", "1234", "QRS1"], ["+-=", "foo", "bar"]];
 
 oneString = strings[0][1];
 echo(oneString);
