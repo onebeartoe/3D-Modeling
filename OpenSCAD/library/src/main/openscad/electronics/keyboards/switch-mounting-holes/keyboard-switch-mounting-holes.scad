@@ -12,14 +12,17 @@ module keyboardSwitchMountingHoles(buttonCount = 4,
 	ySpacing = 3;
 	yIncrement = buttonSide + ySpacing;
 
-	for(i = [0 : buttonCount-1])
-	{
-		y = startY + (i * yIncrement);
+        union()
+        {
+            for(i = [0 : buttonCount-1])
+            {
+                    y = startY + (i * yIncrement);
 
-		zLength = 2 * panelHeight + 0.2;
+                    zLength = 2 * panelHeight + 0.2;
 
-		color("green")
-		translate([x, y, -0.1])
-		cube([buttonSide, buttonSide, zLength]);
-	}
+                    color("green")
+                    translate([x, y, -0.1])
+                    cube([buttonSide, buttonSide, zLength]);
+            }
+        }
 }
