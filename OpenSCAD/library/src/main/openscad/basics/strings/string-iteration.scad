@@ -1,5 +1,7 @@
 
 font = "Bauhaus 93:style=Regular";
+font = "Arial";
+
 strings = [["ABC", "1234", "QRS"], ["+-=", "foo", "bar"]];
 
 oneString = strings[0][1];
