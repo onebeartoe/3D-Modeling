@@ -58,7 +58,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 /* [Top Text] */
 topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
-topTextFont = "Times";
+topTextFont = "Arial";
 
 /* [Hidden] */
 
