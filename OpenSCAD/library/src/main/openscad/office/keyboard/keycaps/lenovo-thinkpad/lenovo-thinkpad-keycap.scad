@@ -1,7 +1,7 @@
 
 use <../cherry-mx/blank-keycap.scad>
 
-use <../../../../basics/rounded-edges/rounded-pyramid.scad>
+use <../../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>
 
 showRefereceKeycap = 1;
 
