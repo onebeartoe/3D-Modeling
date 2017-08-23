@@ -1,7 +1,5 @@
 
-use <../../../../switch-mounting-holes/adafruit-1009/adafruit-1009-panel.scad>
-        
-  //      farto
-        
+use <../../../switch-mounting-holes/adafruit-1009/adafruit-1009-panel.scad>
+
 adafruit10009SwitchPanel(boardLengthX = 60,
                          panelHeight = 1);
