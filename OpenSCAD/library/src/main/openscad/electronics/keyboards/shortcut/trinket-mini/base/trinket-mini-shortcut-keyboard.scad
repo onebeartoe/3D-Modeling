@@ -1,11 +1,11 @@
 
-use <../../../../switch-mounting-holes/adafruit-1009/adafruit-1009-panel.scad>
+use <../../../switch-mounting-holes/adafruit-1009/adafruit-1009-panel.scad>
 
-use <../../../../../../basics/rounded-edges/rounded-cube-enclosure/rounded-cube-enclosure.scad>
+use <../../../../../basics/rounded-edges/rounded-cube-enclosure/rounded-cube-enclosure.scad>
 
-use <../../../../../../microcontrollers/adafruit/trinket-mini/mounting-standoffs/trinket-mini-mounting-standoffs.scad>
+use <../../../../../microcontrollers/adafruit/trinket-mini/mounting-standoffs/trinket-mini-mounting-standoffs.scad>
 
-use <../../../../../../electronics/keyboards/switch-mounting-holes/keyboard-switch-mounting-holes.scad>
+use <../../../../../electronics/keyboards/switch-mounting-holes/keyboard-switch-mounting-holes.scad>
 
 trinketMiniShortcutKeyboard();
 
