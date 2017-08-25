@@ -8,7 +8,7 @@ difference()
         rotate(a=x, v=[0,0,1])
         {
             scale([0.1, 0.1, 13.9])
-            import("../../../shapes/spurs/spurs-a.stl");
+            import("../single/spurs-a.stl");
         }
     }
 }
