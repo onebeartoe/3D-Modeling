@@ -1,5 +1,5 @@
 
-use <treasure-troll.scad>
+use <../treasure-troll.scad>
 
 // This next commented STL slowed OpenSCAD too much.  So the Blender decimate too was used to reduce the number of faces.
 //stlPath = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\toys\\treasure-troll\\ercin-gunduz\\troll-doll-planter-1.stl";
