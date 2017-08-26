@@ -56,6 +56,10 @@ module coinIcon(iconName, height)
     {
         crucifixionCcross(height);
     }
+	else if(iconName == "Spur")
+	{
+		spur();
+	}	
     else if(iconName == "Throwie")
     {
         throwieCutout(height=height);
