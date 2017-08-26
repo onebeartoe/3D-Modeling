@@ -21,6 +21,7 @@ public class PngGenerator
 {
     Logger logger;
     
+//TODO: Rename this method to generateOne()    
     /**
      * Here is the refactor for driving whether the STD IOE of the openscad executable 
      * gets printed like regular or redirected to a file. 
@@ -92,20 +93,13 @@ public class PngGenerator
         return exitCodes;
     }
 
-// TODO: extract a generateOnePng from this method
     /**
      * This method calls the OpenSCAD executable to create a snapshot of a rendered .scad file.
      * 
      * Here is a sample invocation:
      * 
- * 			$ /cygdrive/c/opt/openscad/openscad-2015.03-2/openscad -o out.png --camera=0,0,0,0,0,0,350 space-invaders-scenes-CUSTOMIZER.scad
+     *	$ /cygdrive/c/opt/openscad/openscad-2015.03-2/openscad -o out.png --camera=0,0,0,0,0,0,350 space-invaders-scenes-CUSTOMIZER.scad
      * 
-     * @param oscadInputFile
-     * @param forceGeneration
-     * @param direction
-     * @return
-     * @throws IOException
-     * @throws InterruptedException
      */
     public boolean generateOneDirectionalPng(Path oscadInputFile, boolean forceGeneration, 
                                              OpenScadCameraDirections direction,
@@ -116,7 +110,14 @@ public class PngGenerator
 
         File outfile = new File(outfileName);
 
+        // assume a failed (non-zero) value for the return status
         int exitCode = -1;
+        
+        if(forceGeneration == false)
+        {
+            // set the return code to succuss when the PNG genration is not forced (no-opp)
+            exitCode = 0;
+        }
 
         // test to see if the proposed baseline PNG file exists OR if the PNG is to 
         // be generated regardless of the file existing or not (generate-proposed-pngs.sh )
@@ -125,6 +126,7 @@ public class PngGenerator
             String infilePath = oscadInputFile.toString().replace("\\", "/");
             if (infilePath.startsWith("./"))
             {
+                // remove the 'current directory' notation from the start of the path
                 infilePath = infilePath.substring(2);
             }
 
