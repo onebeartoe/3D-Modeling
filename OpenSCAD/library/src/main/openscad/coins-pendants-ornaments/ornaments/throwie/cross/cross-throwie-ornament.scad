@@ -1,5 +1,5 @@
 
-use <../../../coin.scad>;
+use <../../../coins/coin.scad>;
 
 coin(innerIcon = "Throwie",
      innerIconXyScale = 2,
