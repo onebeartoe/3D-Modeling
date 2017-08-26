@@ -28,8 +28,6 @@ use <../shapes/open-cylinder/open-cylinder.scad>
 
 $fn=100;
 
-//ornament();
-
 module ornament(height = 3,
                 includeGimbal = "yes", // [yes, no]
                 innerIcon = "Batman",
