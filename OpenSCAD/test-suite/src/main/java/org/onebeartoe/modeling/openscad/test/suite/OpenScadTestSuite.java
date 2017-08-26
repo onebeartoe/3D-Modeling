@@ -115,7 +115,8 @@ public class OpenScadTestSuite
         // This version produces baseline imags that match the ones created on the openscad 
         // build server, which uses version 2015.03-1 of OpenSCAD.
         runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
-
+//      runProfile.executablePath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
+        
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
         runProfile.redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);

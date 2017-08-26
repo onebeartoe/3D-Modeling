@@ -111,12 +111,7 @@ public class PngGenerator
                                              OpenScadCameraDirections direction,
                                              RunProfile runProfile)
             throws IOException, InterruptedException
-    {        
-//        String openscadPath = "/cygdrive/c/opt/OpenSCAD/openscad-2015.03-1/openscad";
-//        openscadPath = "C:\\opt\\openscad\\openscad-2015.03-2\\openscad";
-//        openscadPath = "C:\\opt\\openscad\\openscad-2017.01.20\\openscad";
-//        openscadPath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
-
+    {
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
 
         File outfile = new File(outfileName);
