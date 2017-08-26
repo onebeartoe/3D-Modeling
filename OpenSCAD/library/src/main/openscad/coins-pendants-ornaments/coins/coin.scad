@@ -36,7 +36,7 @@ module coin(innerIcon,
 
         // inner icon
         translate([0, innerIconOffsetY, -5])
-        scale([innerIconXyScale, innerIconXyScale, 6.5])
+        scale([innerIconXyScale, innerIconXyScale, 16.5])
         coinIcon(innerIcon, height);
 
         // outer icons
@@ -44,7 +44,7 @@ module coin(innerIcon,
         {
             rotate( i * 360 / (outerIconCount+1), [0, 0, 1])
             translate([0, 43, -5])
-            scale([outerIconXyScale, outerIconXyScale, 3.0])
+            scale([outerIconXyScale, outerIconXyScale, 13.0])
             coinIcon(outerIcon, height);
         }
     }
@@ -59,7 +59,7 @@ module coinIcon(iconName, height)
 	else if(iconName == "Spur")
 	{
 		spur();
-	}	
+	}
     else if(iconName == "Throwie")
     {
         throwieCutout(height=height);
