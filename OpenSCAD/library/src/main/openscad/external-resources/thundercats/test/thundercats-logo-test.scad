@@ -1,6 +1,6 @@
 
-use <thundercats-logo.scad>
-use <../thumbnail-background.scad>
+use <../thundercats-logo.scad>
+use <../../thumbnail-background.scad>
 
 thundercatsLogoThumbnail();
 
