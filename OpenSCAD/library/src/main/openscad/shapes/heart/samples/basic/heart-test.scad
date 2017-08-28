@@ -1,6 +1,6 @@
 
-use <heart.scad>
-use <../../external-resources/thumbnail-background.scad>
+use <../../heart.scad>
+use <../../../../external-resources/thumbnail-background.scad>
 
 heartThumbnail();
 
