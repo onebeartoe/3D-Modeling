@@ -1,6 +1,6 @@
 
 include <../../name-tag.scad>
-        
+
 font="../../write/orbitron.dxf";
 
 nametag(font=font,
@@ -12,6 +12,7 @@ nametag(font=font,
         rightIconHeight = 4,
         rightIconXyScale = 1,
         topText = "tecolote",
+		topTextFont = "Arial",
         topTextSize = 12,
         bottomText = "",
         baseWidth = 58,
