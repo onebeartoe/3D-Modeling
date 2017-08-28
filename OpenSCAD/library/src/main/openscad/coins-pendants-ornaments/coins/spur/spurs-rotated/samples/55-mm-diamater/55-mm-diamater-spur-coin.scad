@@ -1,7 +1,7 @@
 
 use <../../../../coin.scad>;
 
-call the spur module and NOT the coin module
+//call the spur module and NOT the coin module
 
 /**
 coin(innerIcon = "Spur",
