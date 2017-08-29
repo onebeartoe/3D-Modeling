@@ -1,4 +1,4 @@
-        
+
 /* [Base] */
 
 // This parameter is all about that base color.
@@ -15,7 +15,7 @@ baseHeight = 15; // [54:150]
 
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
-showBorder = "No"; // [Yes, No]        
+showBorder = "No"; // [Yes, No]
 
 
 /* [Bottom Text] */
@@ -35,9 +35,9 @@ letterThickness = 3; // [1 : 15]
 
 
 /* [Icons] */
-iconColor = "white"; // [pink, red, black, white, yellow, blue, green]        
+iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]        
+leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
 rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
 
 // This is the x off set of the icons
@@ -45,7 +45,7 @@ xIconOffset = -100; // [10:200]
 
 // This is the y off set of the icons
 yIconOffset = 3;  // [1:200]
-        
+
 // This is the X,Y scale of the icons.
 leftIconXyScale = 0.5;  // [0.1 : 0.05 : 5]
 
@@ -58,7 +58,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 /* [Top Text] */
 topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
-topTextFont = "Arial";
+topTextFont = "Bauhaus 93";
 
 /* [Hidden] */
 
