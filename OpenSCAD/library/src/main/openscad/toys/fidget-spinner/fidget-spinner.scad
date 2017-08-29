@@ -5,20 +5,21 @@ use <../../external-resources/adafruit/fidget-spinner/ada-spinner-flat.scad>
 use <../../external-resources/aquaman/aquaman-logo.scad>
 use <../../external-resources/batman/batman.scad>
 use <../../external-resources/corporate/ssi/ssi-logo/ssi-logo-from-inkscape-b.scad>
-use <../../external-resources/time-bandits/fidget-outline.scad>        
+use <../../external-resources/pacman/pacman.scad>
 use <../../external-resources/knurled-surface/aubenc/knurledFinishLib_v2.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>;
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/star-trek/logo/star-trek-logo.scad>
+use <../../external-resources/time-bandits/fidget-outline.scad>
+
 use <../../shapes/clover/clover.scad>
 use <../../shapes/heart/heart.scad>
 
-// using the next one does NOT generate a .stl file        
+// using the next one does NOT generate a .stl file
 //use <../../shapes/minecraft/creeper/creeper-face.scad>
-// using the next one generates a .stl file        
+// using the next one generates a .stl file
 use <../../shapes/minecraft/creeper/tiles-not-manifold/creeper-face-tiles-not-manifold.scad>
-        
-use <../../shapes/pacman/pacman.scad>
+
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>;
 
@@ -28,7 +29,7 @@ use <../../shapes/star/star.scad>;
 coin_list = 8; //[1:AU $2,2:AU 5c,3:US 10c,4:UK £1,5:UK 5p,6:EU €1,7:QA 0.5QAR,8:US 5c]
 coin = coin_list;
 
-//Flush for easier printing 
+//Flush for easier printing
 Flush_or_Raised_Hub = 1; //[0:Hub,1:Flush]
 flush = Flush_or_Raised_Hub; //Flush is easier to print, the hub is height of bearing and may print with support
 
@@ -135,7 +136,7 @@ module cutout(cutoutName)
         heartThumbnail(height=10);
     }
     else if(cutoutName == "Creeper")
-    { 
+    {
         translate(0, 0, -1)
 //        scale([1, 1, 10])
         creeperFaceThumbnail(height=10);
@@ -171,7 +172,7 @@ module cutout(cutoutName)
     else if(cutoutName == "Star Trek")
     {
         xyScale = 0.35;
-        
+
         scale([xyScale, xyScale, 1])
         Star_Trek_Logo_Blank_fixed();
     }
@@ -198,7 +199,7 @@ module dollarHolder(cutoutHolderType,
                     spoke_y)
 {
     translate([0, coin_d / 2 + spoke_y, 0])
-    difference() 
+    difference()
     {
         // TODO: this next item looks like where the knurl can be swapped out for
         //       a regular cylinder or rounded cylinder.
@@ -216,7 +217,7 @@ module hub() {
     cylinder(h = hub_z, d = brg_d + rim, center = true);
 }
 
-module spoke(spoke_y) 
+module spoke(spoke_y)
 {
     translate([0, spoke_y / 2, 0])
     cube([spoke_x, spoke_y, spoke_z], center = true);
@@ -224,10 +225,10 @@ module spoke(spoke_y)
 
 /**
  * This is the cutout for the 608ZZ bearing.
- * 
+ *
  * This moduile was originally named brgVoid()
  */
-module centerCutout() 
+module centerCutout()
 {
     cylinder(h = brg_z + 2, d = brg_d, center = true);
 }
@@ -247,7 +248,7 @@ module spinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
     rA = 360 / spokeNumber; //rotational angle
     fA = round(360 - rA); //final angle
 
-    for (i = [0 : rA : fA]) 
+    for (i = [0 : rA : fA])
     {
         rotate([0, 0, i])
         holderSpoke(cutoutHolderType, cutoutName, spoke_y);
@@ -265,7 +266,7 @@ module fidget(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
 module fidgetSpinner(cutoutHolderType, cutoutName, spokeNumber, spoke_y)
 {
     //Render
-    difference() 
+    difference()
     {
         fidget(cutoutHolderType, cutoutName, spokeNumber, spoke_y);
 
