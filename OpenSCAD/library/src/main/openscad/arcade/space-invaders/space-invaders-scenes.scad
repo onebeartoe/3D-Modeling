@@ -1,8 +1,8 @@
 
-use <../../basics/rounded-edges/rounded-cube.scad>
+use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
 alienColors = ["green", "purple", "blue"];
-alienStls = ["../../external-resources/arcade/invaders/sideburn/invaders_v2_1.stl", 
+alienStls = ["../../external-resources/arcade/invaders/sideburn/invaders_v2_1.stl",
 			 "../../external-resources/arcade/invaders/sideburn/invaders_v2_2.stl",
 			 "../../external-resources/arcade/invaders/sideburn/invaders_v2_3.stl"];
 
@@ -51,43 +51,46 @@ module invaderScene(playerShotX)
     union()
     {
         // background layer
-        roundedCube(boardSize, cornerRadius, sides=20, sidesOnly=true);
+        roundedCube(size = boardSize,
+			        cornerRadius = cornerRadius,
+					sides=20,
+					sidesOnly=true);
 
         mysteryShip();
 
         invaders();
-        
+
         missiles(playerShotX);
 
         shields();
-        
+
         player();
     }
 }
 
 /**
- * These are the missile shot by the 
- * @return 
+ * These are the missile shot by the
+ * @return
  */
 module missiles(playerShotX)
 {
     invaderMissile1 = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle1.stl";
     invaderMissile2 = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle2.stl";
-    
+
     playerMissile = "../../external-resources/arcade/invaders/sideburn/invaders_v2_missle3.stl";
-    
+
     color("blue")
     translate([28, 60, 0])
     scale([0.5, 0.5, 0.5])
     import(invaderMissile1);
-    
+
     color("purple")
     translate([100, 40, 0])
     scale([0.5, 0.5, 0.5])
-    import(invaderMissile2);    
-    
+    import(invaderMissile2);
+
     color("green")
-// x was 60            
+// x was 60
     translate([playerShotX, 40, 0])
     scale([0.5, 0.5, 0.5])
     import(playerMissile);
@@ -101,7 +104,7 @@ module mysteryShip()
     x = 90;
     y = boardLength - 5;
     z = 0;
-    
+
     color("orange")
     translate([x, y, z])
     scale([0.5, 0.5, 0.5])
@@ -123,10 +126,10 @@ module shields()
     {
         columnLeftOffset = 10;
         columnSpacing = 35;
-        
+
         x = c * columnSpacing + columnLeftOffset;
         y = boardLength * 0.15;
-        
+
         color("brown")
         translate([x, y, 0])
         scale([0.5, 0.5, 0.5])
