@@ -1,11 +1,12 @@
 
 include <../../name-tag.scad>
-        
+
 //font="../../write/orbitron.dxf";
 
 nametag(borderHeight = 4,
         font=font,
         topText = "Mark",
+		topTextFont = "Bauhaus 93",
         topTextOffsetY = 9,
         topTextSize = 18,
         bottomText = "Music Instructor",
