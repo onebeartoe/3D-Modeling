@@ -7,7 +7,7 @@
 module spur(zLength)
 {
   scale([25.4/90, -25.4/90, 2])
-  translate([0, 0, -1])
+  translate([0, 0, -2])
 //  union()
   {
     linear_extrude(height = zLength)
