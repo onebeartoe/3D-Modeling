@@ -1,4 +1,4 @@
 
-use <../../spurs-rotated.scad.teporarily.banned.scad>
+use <../../rotated-spurs-coin.scad>
 
-spurCoin();
+rotatedSpurCoin();

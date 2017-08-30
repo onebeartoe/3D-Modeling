@@ -1,7 +1,7 @@
 
 use <../../coin.scad>;
 
-module spurCoin()
+module rotatedSpurCoin()
 {
 	coin(innerIcon = "Spur",
 	    innerIconXyScale = 0.4,
