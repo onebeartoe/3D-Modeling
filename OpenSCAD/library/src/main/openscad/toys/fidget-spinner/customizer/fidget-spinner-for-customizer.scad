@@ -9,7 +9,7 @@ use <../fidget-spinner.scad>
 
 cutoutHolderType = "Cylinder"; // [Cylinder, Knurl]
 
-cutoutName = "Creeper";    // [Adafruit, Aqua Dude, Bat, Clover, Creeper, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
+cutoutName = "Clover";    // [Adafruit, Aqua Dude, Bat, Clover, Fidget (Time Bandits), Heart, Pacman, OSHW, Rebel Alliance, SSI, Spur, Star, Star Trek]
 
 //How many spokes should the spinner have?
 spokeNumber = 3; //[2,3,4,5,6,7]
