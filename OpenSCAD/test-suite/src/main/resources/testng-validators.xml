@@ -20,7 +20,11 @@
             <class name="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.DataSetValidatorTests"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>
+            
+            
+<!--
             <class name="org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuiteTest"/>
+-->            
         </classes>  
     </test>        
 </suite>
