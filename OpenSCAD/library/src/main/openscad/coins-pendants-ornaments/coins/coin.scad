@@ -26,6 +26,7 @@ module coin(innerIcon,
             outerIcon,
             outerIconCount,
             outerIconXyScale,
+			outerIconTranslateY = 43,
             radius,
             height)
 {
@@ -43,7 +44,7 @@ module coin(innerIcon,
         for ( i = [0 : outerIconCount] )
         {
             rotate( i * 360 / (outerIconCount+1), [0, 0, 1])
-            translate([0, 43, -5])
+            translate([0, outerIconTranslateY, -5])
             scale([outerIconXyScale, outerIconXyScale, 13.0])
             coinIcon(outerIcon, height);
         }
