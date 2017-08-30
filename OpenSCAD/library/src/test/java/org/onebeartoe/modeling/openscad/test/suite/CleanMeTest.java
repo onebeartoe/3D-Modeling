@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
  */
 public class CleanMeTest 
 {
-    @Test
+    @Test(groups = {"openscad-test-suite"})
     public void testB()
     {
         System.out.println("hi from test b");
