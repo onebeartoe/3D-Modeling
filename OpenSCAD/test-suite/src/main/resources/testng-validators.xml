@@ -10,8 +10,7 @@
                 <include name="openscad-test-suite" />
 <!--
                 <include name="brute-force-openscad-test-suite" />
--->
-                                
+-->                                
                 <exclude name="regression"/>
             </run>
         </groups>
@@ -19,13 +18,10 @@
         <classes>
             <class name="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.DataSetValidatorTests"/>
-            <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>
-            
-            
+            <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>                        
 <!--
             <class name="org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuiteTest"/>
 -->            
         </classes>  
     </test>        
 </suite>
-
