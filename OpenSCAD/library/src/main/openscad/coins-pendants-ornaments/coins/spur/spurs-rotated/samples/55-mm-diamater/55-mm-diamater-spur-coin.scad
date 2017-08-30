@@ -1,4 +1,7 @@
 
-use <../../spurs-rotated.scad.teporarily.banned.scad>
+use <../../rotated-spurs-coin.scad>
 
-rotatedSpurCoin();
+rotatedSpurCoin(innerIconXyScale = 0.2,
+				outerIconXyScale = 0.053,
+				outerIconTranslateY = 22,
+				radius = 55/2.0);
