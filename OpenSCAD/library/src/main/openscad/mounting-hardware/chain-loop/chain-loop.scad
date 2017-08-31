@@ -1,6 +1,7 @@
 
 module chainLoop(cutoutAxis = "x",
 				 xLength = 19,
+				 xPercentage = 1.0,
                  yLength = 12,
                  yPercentage = 0.75,
                  zLength = 10,
@@ -10,40 +11,60 @@ module chainLoop(cutoutAxis = "x",
     {
         color("green")
         cube([xLength, yLength, zLength]);
-
-        cutout(cutoutAxis, xLength, yLength, yPercentage, zLength, zPercentage);
+        cutout(cutoutAxis,
+				xLength,
+				xPercentage,
+				yLength,
+				yPercentage,
+				zLength,
+				zPercentage);
     }
-}    
+}
 
 /**
  * This module takes the cubic lengths of the chain loop and calculates the
- * cutout dimensions based on the percentages given.
+ * dimensions of the cot out protion based on the percentages given.
  *
  * The percentages are expected to be of type float with 1 being 100%.
  */
 module cutout(cutoutAxis = "x",
 			  xLength,
+			  xPercentage = 1.0,
               yLength,
               yPercentage,
               zLength,
               zPercentage
         )
 {
-    zCutoutLength = zLength * zPercentage;
-    zTranslate = (zLength/2.0) - (zCutoutLength / 2.0);
 
-    yCutoutLength = yLength * yPercentage;
 
-    yTranslate = (yLength / 2.0) - (yCutoutLength / 2.0);
+	if(cutoutAxis == "x")
+	{
+		zCutoutLength = zLength * zPercentage;
+	    zTranslate = (zLength/2.0) - (zCutoutLength / 2.0);
 
-//	if(cutoutAxis == "x")
-	//{
-		// this is the cutout on the X axis
+	    yCutoutLength = yLength * yPercentage;
+
+	    yTranslate = (yLength / 2.0) - (yCutoutLength / 2.0);
+
 	    translate([-1, yTranslate, zTranslate])
 	    cube([xLength+3, yCutoutLength, zCutoutLength]);
-//	}
-	//else if(cutoutAxis == "z")
+	}
+	else if(cutoutAxis == "z")
 	{
+		zCutoutLength = zLength * zPercentage;
+	    zTranslate = (zLength/2.0) - (zCutoutLength / 2.0);
 
+	    yCutoutLength = yLength * yPercentage;
+
+	    yTranslate = (yLength / 2.0) - (yCutoutLength / 2.0);
+
+
+		xCoutoutLength = zLength * xPercentage;
+		xTranslate = 01;
+//		yTranslate = 2;
+
+		translate([xTranslate, yTranslate, -1])
+	    cube([xCoutoutLength, yCutoutLength, zLength+3]);
 	}
 }
