@@ -1,5 +1,5 @@
 
-use <../../../shapes/chain-loop/chain-loop.scad>
+use <../../../mounting-hardware/chain-loop/chain-loop.scad>
 
 module rectangularDoughnut(cornerRadius = 4,
                            sides = 31,
@@ -9,7 +9,7 @@ module rectangularDoughnut(cornerRadius = 4,
     echo("cr1: ", cornerRadius);
     echo("yLength: ", yLength);
     echo("zLength: ", zLength);
-    
+
     $fn=sides;
 
     minkowski()//size, cornerRadius)
@@ -19,8 +19,8 @@ module rectangularDoughnut(cornerRadius = 4,
                   zLength = zLength,
                   zPercentage=0.64);
 
-//        sphere(r=4);
-      sphere(r=cornerRadius);
-        
+      	sphere(r=cornerRadius);
+
     };
 }
+    
