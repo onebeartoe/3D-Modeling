@@ -21,4 +21,3 @@ chainLoop(xLength = 19,
           yLength = 17,
           yPercentage = 0.4,
           zLength = 15);
-    

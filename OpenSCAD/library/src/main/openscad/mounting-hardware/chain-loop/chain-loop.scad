@@ -1,7 +1,7 @@
 
 module chainLoop(cutoutAxis = "x",
 				 xLength = 19,
-				 xPercentage = 1.0,
+				 xPercentage = 0.70,
                  yLength = 12,
                  yPercentage = 0.75,
                  zLength = 10,
@@ -28,23 +28,19 @@ module chainLoop(cutoutAxis = "x",
  * The percentages are expected to be of type float with 1 being 100%.
  */
 module cutout(cutoutAxis = "x",
-			  xLength,
-			  xPercentage = 1.0,
+			  xLength = 5,
+			  xPercentage = 0.2,
               yLength,
               yPercentage,
               zLength,
-              zPercentage
-        )
+              zPercentage)
 {
-
-
 	if(cutoutAxis == "x")
 	{
 		zCutoutLength = zLength * zPercentage;
 	    zTranslate = (zLength/2.0) - (zCutoutLength / 2.0);
 
 	    yCutoutLength = yLength * yPercentage;
-
 	    yTranslate = (yLength / 2.0) - (yCutoutLength / 2.0);
 
 	    translate([-1, yTranslate, zTranslate])
@@ -52,17 +48,11 @@ module cutout(cutoutAxis = "x",
 	}
 	else if(cutoutAxis == "z")
 	{
-		zCutoutLength = zLength * zPercentage;
-	    zTranslate = (zLength/2.0) - (zCutoutLength / 2.0);
-
 	    yCutoutLength = yLength * yPercentage;
-
 	    yTranslate = (yLength / 2.0) - (yCutoutLength / 2.0);
 
-
-		xCoutoutLength = zLength * xPercentage;
-		xTranslate = 01;
-//		yTranslate = 2;
+		xCoutoutLength = xLength * xPercentage;
+		xTranslate = (xLength / 2.0) - (xCoutoutLength / 2.0);
 
 		translate([xTranslate, yTranslate, -1])
 	    cube([xCoutoutLength, yCutoutLength, zLength+3]);

@@ -1,8 +1,13 @@
 
 use <../../chain-loop.scad>
 
+color("blue")
+translate([-25, 0, 0])
+chainLoop(cutoutAxis = "z");
+
 color("orange")
 translate([0, 0, 0])
 chainLoop(cutoutAxis = "z",
-		  yPercentage = 0.2368,
-          zPercentage = 0.4319);
+		  xLength = 20,
+		  xPercentage = 0.2,
+		  yPercentage = 0.41);
