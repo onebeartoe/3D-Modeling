@@ -5,7 +5,7 @@ use <../../mounting-plates/keyboard-switch-mounting-plate.scad>
 //
 //	https://www.adafruit.com/product/1009
 //	https://www.adafruit.com/product/1010
-        
+
 module adafruit10009SwitchPanel(boardLengthX,
                                 panelHeight)
 {
@@ -16,5 +16,5 @@ module adafruit10009SwitchPanel(boardLengthX,
                   buttonCount = 4,
                   buttonSide = buttonSide,
                   cornerRadius = 3,
-                  panelHeight = panelHeight);    
+                  panelHeight = panelHeight);
 }
