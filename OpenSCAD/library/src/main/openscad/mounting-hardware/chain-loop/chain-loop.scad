@@ -11,6 +11,7 @@ module chainLoop(cutoutAxis = "x",
     {
         color("green")
         cube([xLength, yLength, zLength]);
+
         cutout(cutoutAxis,
 				xLength,
 				xPercentage,

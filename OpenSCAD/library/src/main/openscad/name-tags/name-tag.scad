@@ -393,8 +393,6 @@ module nametagBase(baseColor,
 
         xTranslate = -x / 2.0;
 
-
-
 //TODO: fix the 4 to be relative to the 8 of the rounded corner radius
         yBottomDelta = (-baseHeight / 2.0) - (y + 4);
         yTopDelta = (baseHeight / 2.0) + (y / 2.0);
