@@ -2,6 +2,8 @@
 /**
  * Mike Hall showed and gave me afew of one day at work.
  *
+ * The height of the board with cap touch plat is listed as 3mm.
+
  *		http://www.cnx-software.com/2017/07/27/httm-backlit-capacitive-touch-switch-button-sells-for-about-one-dollar/
  *
  *      From the link:
@@ -23,3 +25,11 @@
 			  OUT pin Output voltage: + 3.3V ± 0.1V
 			 OUTPin maximum output current:500mA
  */
+
+module httmBacklitCapacitiveTouchSwitchMountingHole(zLength = 3.0)
+{
+	xLength = 20.4;
+	yLength = 16.6
+
+	cube([xLength, yLength, zLength]);
+}
