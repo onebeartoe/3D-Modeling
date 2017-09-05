@@ -29,7 +29,7 @@
 module httmBacklitCapacitiveTouchSwitchMountingHole(zLength = 3.0)
 {
 	xLength = 20.4;
-	yLength = 16.6
+	yLength = 16.6;
 
 	cube([xLength, yLength, zLength]);
 }
