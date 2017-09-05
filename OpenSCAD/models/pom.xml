@@ -13,7 +13,7 @@
 
     <packaging>jar</packaging>
 
-    <name>onebeartoe-modeling-opensacd-library</name>
+    <name>onebeartoe-modeling-opensacd-models</name>
 
     <dependencies>
         <dependency>
