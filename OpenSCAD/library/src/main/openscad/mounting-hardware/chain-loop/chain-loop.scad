@@ -1,4 +1,7 @@
 
+/**
+ * This is the square variety of chainloop.
+ */
 module chainLoop(cutoutAxis = "x",
 				 xLength = 19,
 				 xPercentage = 0.70,
