@@ -1,5 +1,5 @@
 
-use <../../../mounting-hardware/chain-loop/chain-loop.scad>
+use <../../../mounting-hardware/chain-loop/square/chain-loop.scad>
 
 module rectangularDoughnut(cornerRadius = 4,
                            sides = 31,
@@ -23,4 +23,3 @@ module rectangularDoughnut(cornerRadius = 4,
 
     };
 }
-    
