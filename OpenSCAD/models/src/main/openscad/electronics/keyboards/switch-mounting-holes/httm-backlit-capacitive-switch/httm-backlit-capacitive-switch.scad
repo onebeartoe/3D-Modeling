@@ -26,10 +26,11 @@
 			 OUTPin maximum output current:500mA
  */
 
-module httmBacklitCapacitiveTouchSwitchMountingHole(zLength = 3.0)
+module httmBacklitCapacitiveTouchSwitchMountingHole()
 {
 	xLength = 20.4;
 	yLength = 16.6;
+	zLength = 3.0;
 
 	cube([xLength, yLength, zLength]);
 }
