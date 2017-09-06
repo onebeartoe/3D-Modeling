@@ -1,5 +1,5 @@
 
-use <../../../name-tag.scad>
+use <../../name-tag.scad>
 
 iconType = "Light Bulb";
 iconXyScale = 0.8;
@@ -11,7 +11,6 @@ nametag(baseWidth = 80,
         chainLoop = true,
 		chaneLoopCutoutAxis = "z",
         chainLoopLengthPercentageY = 0.5,
-//        chainLoopLengthPercentageX = 0.945,
         chainLoopLengthZ = 5,
         chainLoopPosition = "top",
         leftIconType = iconType,

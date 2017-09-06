@@ -1,5 +1,5 @@
 
-use <../../../name-tag.scad>
+use <../../name-tag.scad>
 
 iconType = "Fan";
 iconXyScale = 0.8;
@@ -21,6 +21,6 @@ nametag(baseHeight = 15,
         rightIconXyScale = iconXyScale,
         topText="Fan",
 		topTextFont = "Bauhaus 93",
-        topTextSize = 12,
+        topTextSize = 14,
         xIconOffset = 33,
         yIconOffset = 1);
