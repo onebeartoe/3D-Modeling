@@ -4,7 +4,7 @@ use <attribution.text>
 use <../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
-use <../mounting-hardware/chain-loop/chain-loop.scad>
+use <../mounting-hardware/chain-loop/square/chain-loop.scad>
 use <../shapes/crescent-moon/crescent-moon.scad>
 use <../shapes/fan/iso-7000-fan.scad>
 use <../shapes/light-bulb/light-bulb.scad>
