@@ -1,8 +1,8 @@
 
 use <../../../shapes/open-cylinder/open-cylinder.scad>
 
-module roundedChainLoop(height,
-	                    outerRadius)
+module roundedChainLoop(height = 1,
+	                    outerRadius = 10)
 {
 	difference()
 	{

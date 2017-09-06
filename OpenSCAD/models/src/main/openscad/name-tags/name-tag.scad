@@ -4,6 +4,7 @@ use <attribution.text>
 use <../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
+use <../mounting-hardware/chain-loop/rounded/rounded-chain-loop.scad>
 use <../mounting-hardware/chain-loop/square/chain-loop.scad>
 use <../shapes/crescent-moon/crescent-moon.scad>
 use <../shapes/fan/iso-7000-fan.scad>
@@ -13,7 +14,7 @@ use <../shapes/weather/sun/sun.scad>
 
 /* [Hidden] */
 
-resolution=50; 	// Use 20 for draft 100 for nice
+resolution=50; 	// Use 20 for draft, 100 for nice
 
 borderWidth = 2;//5;
 
@@ -181,7 +182,6 @@ module nametag_assembly(baseColor,
         }
         else
         {
-			echo("ccb");
             nametagBase(baseColor,
                         baseHeight,
 						baseThickness,
@@ -385,8 +385,6 @@ module nametagBase(baseColor,
                    roundedCorners)
 {
     size = [baseWidth, baseHeight, baseThickness];
-	echo("ntbbb:size");
-	echo(size);
 
     color(baseColor)
     translate([0,0,baseThickness/2])
@@ -405,20 +403,20 @@ module nametagBase(baseColor,
 
     if(chainLoop)
     {
-        x = 21;
-        y = 8;
-
-        xTranslate = -x / 2.0;
-
-//TODO: fix the 4 to be relative to the 8 of the rounded corner radius
-        yBottomDelta = (-baseHeight / 2.0) - (y + 4);
-        yTopDelta = (baseHeight / 2.0) + (y / 2.0);
-
-//        yTranslate = (chainLoopPosition == "top") ? yTopDelta : - yTopDelta;
-        yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
-
 		if(chainLoopType == "square")
 		{
+			x = 21;
+	        y = 8;
+
+	        xTranslate = -x / 2.0;
+
+	//TODO: fix the 4 to be relative to the 8 of the rounded corner radius
+	        yBottomDelta = (-baseHeight / 2.0) - (y + 4);
+	        yTopDelta = (baseHeight / 2.0) + (y / 2.0);
+
+	//        yTranslate = (chainLoopPosition == "top") ? yTopDelta : - yTopDelta;
+	        yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
+
 	        translate([xTranslate, yTranslate, 0])
 	        chainLoop(cutoutAxis = chaneLoopCutoutAxis,
 					  xLength = x,
@@ -427,6 +425,17 @@ module nametagBase(baseColor,
 	                  zLength = chainLoopLengthZ,
 	                  zPercentage = chainLoopLengthPercentageZ);
 	    }
+		else if(chainLoopType == "rounded")
+		{
+			outerRadius = 10;
+
+			xTranslate = 0;
+			yTranslate = outerRadius * 2;
+
+			translate([xTranslate, yTranslate, 0])
+			roundedChainLoop(height = 5,
+							 outerRadius = outerRadius);
+		}
     }
 }
 
@@ -441,6 +450,7 @@ module nametagBorder(baseHeight,
 {
 	color("pink")
     translate([0,0,baseThickness/2])
+// this next commented line was causing the 'floating' border issue
 //    translate([0,0,baseThickness+letterThickness/2])
     linear_extrude(height = borderHeight, center = false, convexity = 10, twist = 0)
     {
