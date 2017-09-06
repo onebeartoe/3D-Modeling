@@ -439,10 +439,10 @@ module nametagBorder(baseHeight,
                      letterThickness,
                      roundedCorners)
 {
-    translate([0,0,baseThickness+letterThickness/2])
-//    linear_extrude(height = 6, center = false, convexity = 10, twist = 0)
+	color("pink")
+    translate([0,0,baseThickness/2])
+//    translate([0,0,baseThickness+letterThickness/2])
     linear_extrude(height = borderHeight, center = false, convexity = 10, twist = 0)
-//    linear_extrude(height = letterThickness, center = true, convexity = 10, twist = 0)
     {
         translate([0,baseHeight/2-borderdistance,0])
             square ([baseWidth-borderdistance*2-borderradius*2+borderWidth*2,borderWidth],center = true);
