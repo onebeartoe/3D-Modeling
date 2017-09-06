@@ -9,6 +9,7 @@ roundedCube(size=[boardLength, boardWidth, 1],
             sides=5,
             sides=20);
 
+color("green")
 translate([0, 130, 0])
 roundedCube(cornerRadius = 5,
             sides=20,
