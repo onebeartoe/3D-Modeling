@@ -42,6 +42,7 @@ module nametag(baseColor = "black",
                chainLoopLengthPercentageZ = 0.65,
                chainLoopLengthZ = 10,
                chainLoopPosition = "bottom",
+			   chainLoopType = "square",
                iconColor = "white",
                leftIconHeight = 1.5,
                leftIconType = "Light Bulb",
@@ -53,7 +54,7 @@ module nametag(baseColor = "black",
                rightIconXyScale = 1.7,
                roundedCorners = true,
                showBorder = "No",
-               topText="Love is the Answer",
+               topText = "Love is the Answer",
                topTextColor = "white",
                topTextFont = "Helvetica",
                topTextSize = 5,
@@ -63,34 +64,34 @@ module nametag(baseColor = "black",
 {
     union()
     {
-        nametag_assembly(baseColor,
-                baseThickness,
-                borderColor,
-                borderHeight,
-//                font=font,
-                letterThickness,
-                topText=topText,
-                topTextColor = topTextColor,
-                topTextFont = topTextFont,
-                textSize = topTextSize,
-                topTextOffsetY = topTextOffsetY,
-                bottomText = bottomText,
+        nametag_assembly(baseColor = baseColor,
+				baseHeight = baseHeight,
+                baseThickness = baseThickness,
+				baseWidth = baseWidth,
+                borderColor = borderColor,
+                borderdistance = 5,
+                borderHeight = borderHeight,
+                borderradius = 8,
+				bottomText = bottomText,
                 bottomTextFont = bottomTextFont,
                 bottomTextOffsetX = bottomTextOffsetX,
                 bottomTextOffsetY = bottomTextOffsetY,
                 bottomTextSize = bottomTextSize,
-                baseWidth = baseWidth,
-                baseHeight = baseHeight,
-                roundedCorners = roundedCorners,
-                chainLoop=chainLoop,
+				chainLoop = chainLoop,
 				chaneLoopCutoutAxis = chaneLoopCutoutAxis,
                 chainLoopLengthPercentageY = chainLoopLengthPercentageY,
                 chainLoopLengthPercentageZ = chainLoopLengthPercentageZ,
                 chainLoopLengthZ = chainLoopLengthZ,
                 chainLoopPosition = chainLoopPosition,
-                showBorder = showBorder,
-                borderradius = 8,
-                borderdistance = 5);
+				chainLoopType = chainLoopType,
+                letterThickness = letterThickness,
+				roundedCorners = roundedCorners,
+				showBorder = showBorder,
+                topText = topText,
+                topTextColor = topTextColor,
+                topTextFont = topTextFont,
+                topTextOffsetY = topTextOffsetY,
+				textSize = topTextSize);
 
         icons(iconColor = iconColor,
               leftIconType = leftIconType,
@@ -106,33 +107,33 @@ module nametag(baseColor = "black",
 }
 
 module nametag_assembly(baseColor,
+						baseHeight,
                         baseThickness,
+						baseWidth,
                         borderColor,
+						borderdistance,
                         borderHeight,
-//                        font,
-                        letterThickness,
-                        topText,
-                        topTextColor,
-                        topTextFont,
-                        textSize,
-                        topTextOffsetY,
-                        bottomText,
+						borderradius,
+						bottomText,
                         bottomTextFont,
                         bottomTextOffsetX,
                         bottomTextOffsetY,
                         bottomTextSize,
-                        baseWidth,
-                        baseHeight,
-                        roundedCorners,
-                        chainLoop,
+						chainLoop,
 						chaneLoopCutoutAxis,
                         chainLoopLengthPercentageY,
                         chainLoopLengthPercentageZ,
                         chainLoopLengthZ,
                         chainLoopPosition,
-                        showBorder,
-                        borderradius,
-                        borderdistance)
+						chainLoopType,
+                        letterThickness,
+						roundedCorners,
+						showBorder,
+                        topText,
+                        topTextColor,
+                        topTextFont,
+                        textSize,
+                        topTextOffsetY)
 {
     // top text
     color(topTextColor)
@@ -154,12 +155,12 @@ module nametag_assembly(baseColor,
         color(borderColor)
                                 // Having the assignments in the method call caused an issue.
                                 // So the assigments are left out.
-        nametagBorder(baseThickness,
+        nametagBorder(baseHeight,
+					  baseThickness,
                       baseWidth,
-                      baseHeight,
-                      borderradius,
-                      borderdistance,
+					  borderdistance,
                       borderHeight,
+					  borderradius,
                       letterThickness,
                       roundedCorners);
     }
@@ -172,20 +173,26 @@ module nametag_assembly(baseColor,
     {
         if (holes==4)
         {
-            base4holes(baseColor, baseWidth, baseHeight, chainLoop, chainLoopPosition, borderdistance, roundedCorners);
+            base4holes(baseColor, baseWidth, baseHeight,
+					   chainLoop,
+					   chainLoopPosition,
+					   chainLoopType,
+					   borderdistance, roundedCorners);
         }
         else
         {
+			echo("ccb");
             nametagBase(baseColor,
-                        baseThickness,
-                        baseWidth,
                         baseHeight,
+						baseThickness,
+                        baseWidth,
                         chainLoop,
 						chaneLoopCutoutAxis,
                         chainLoopLengthPercentageY,
                         chainLoopLengthPercentageZ,
                         chainLoopLengthZ,
                         chainLoopPosition,
+						chainLoopType,
                         roundedCorners);
         }
     }
@@ -274,22 +281,24 @@ module base2holes(baseColor,
                   chainLoopLengthPercentageZ,
                   chainLoopLengthZ,
                   chainLoopPosition,
+				  chainLoopType,
                   borderdistance,
                   roundedCorners)
 {
 	difference()
 	{
 		nametagBase(baseColor,
-                            baseThickness,
-                            baseWidth,
-                            baseHeight,
+					baseHeight,
+                    baseThickness,
+                    baseWidth,
+					borderdistance,
                             chainLoop,
 							chaneLoopCutoutAxis,
                             chainLoopLengthPercentageY,
                             chainLoopLengthPercentageZ,
                             chainLoopLengthZ,
                             chainLoopPosition,
-                            borderdistance,
+							chainLoopType,
                             roundedCorners);
 
 		translate([-(baseWidth/2-borderdistance*2-borderWidth-countersink-holediameter),0,0])
@@ -300,29 +309,34 @@ module base2holes(baseColor,
 }
 
 //TODO: whitespace format this module
-module base4holes(baseColor, baseThickness, baseWidth, baseHeight,
+module base4holes(baseColor,
+					baseHeight,
+					baseThickness,
+					baseWidth,
+					borderdistance,
                   chainLoop,
 				  chaneLoopCutoutAxis,
                   chainLoopLengthPercentageY,
                   chainLoopLengthPercentageZ,
                   chainLoopLengthZ,
                   chainLoopPosition,
-                  borderdistance,
+				  chainLoopType,
                   roundedCorners)
 {
 	difference()
 	{
 		nametagBase(baseColor,
-                            baseThickness,
-                            baseWidth,
-                            baseHeight,
+					baseHeight,
+                    baseThickness,
+                    baseWidth,
+					borderdistance,
                             chainLoop,
 							chaneLoopCutoutAxis,
                             chainLoopLengthPercentageY,
                             chainLoopLengthPercentageZ,
                             chainLoopLengthZ,
                             chainLoopPosition,
-                            borderdistance,
+							chainLoopType,
                             roundedCorners);
 
 		translate([(baseWidth/2-borderdistance),(baseHeight/2-borderdistance),0])
@@ -358,18 +372,21 @@ module icons(iconColor,
 }
 
 module nametagBase(baseColor,
-                   baseThickness,
-                   baseWidth,
                    baseHeight,
+				   baseThickness,
+                   baseWidth,
                    chainLoop,
 				   chaneLoopCutoutAxis,
                    chainLoopLengthPercentageY,
                    chainLoopLengthPercentageZ,
                    chainLoopLengthZ,
                    chainLoopPosition,
+				   chainLoopType,
                    roundedCorners)
 {
     size = [baseWidth, baseHeight, baseThickness];
+	echo("ntbbb:size");
+	echo(size);
 
     color(baseColor)
     translate([0,0,baseThickness/2])
@@ -400,22 +417,25 @@ module nametagBase(baseColor,
 //        yTranslate = (chainLoopPosition == "top") ? yTopDelta : - yTopDelta;
         yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
 
-        translate([xTranslate, yTranslate, 0])
-        chainLoop(cutoutAxis = chaneLoopCutoutAxis,
-				  xLength = x,
-                  yLength = y,
-                  yPercentage = chainLoopLengthPercentageY,
-                  zLength = chainLoopLengthZ,
-                  zPercentage = chainLoopLengthPercentageZ);
+		if(chainLoopType == "square")
+		{
+	        translate([xTranslate, yTranslate, 0])
+	        chainLoop(cutoutAxis = chaneLoopCutoutAxis,
+					  xLength = x,
+	                  yLength = y,
+	                  yPercentage = chainLoopLengthPercentageY,
+	                  zLength = chainLoopLengthZ,
+	                  zPercentage = chainLoopLengthPercentageZ);
+	    }
     }
 }
 
-module nametagBorder(baseThickness,
+module nametagBorder(baseHeight,
+					 baseThickness,
                      baseWidth,
-                     baseHeight,
+					 borderdistance,
+					 borderHeight,
                      borderradius,
-                     borderdistance,
-                     borderHeight,
                      letterThickness,
                      roundedCorners)
 {
