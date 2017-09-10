@@ -20,10 +20,10 @@ showBorder = "No"; // [Yes, No]
 
 /* [Bottom Text] */
 bottomText = "Fun Enthusiast";
-bottomTextFont = "Wingdings";
+bottomTextFont = "Arial"; // "Wingdings";
 bottomTextOffsetX = 0; // [-315 : 315]
 bottomTextOffsetY = -15; // [-315 : 315]
-
+bottomTextSize = 12; // [0 : 40]
 
 /* [Chain Loop]*/
 chainLoop = true;
@@ -60,7 +60,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 topTextFont = "Bauhaus 93";
-topTextSize = 15;
+topTextSize = 15; // [0 : 40]
 
 /* [Hidden] */
 
@@ -85,6 +85,7 @@ nametag(baseColor = baseColor,
         bottomTextFont = bottomTextFont,
         bottomTextOffsetX = bottomTextOffsetX,
         bottomTextOffsetY = bottomTextOffsetY,
+		bottomTextSize = bottomTextSize,
 		leftIconXyScale = leftIconXyScale,
         leftIconType = leftIconType,
         leftIconHeight = leftIconHeight,
