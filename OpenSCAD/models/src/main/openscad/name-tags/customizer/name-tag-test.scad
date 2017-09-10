@@ -12,11 +12,9 @@ baseWidth = 228;	// [228:600]
 // This determines the height of the name tag.
 baseHeight = 15; // [54:150]
 
-
 /* [Border] */
 borderColor = "yellow"; // [pink, red, black, white, yellow, blue, green]
 showBorder = "No"; // [Yes, No]
-
 
 /* [Bottom Text] */
 bottomText = "Fun Enthusiast";
@@ -34,12 +32,8 @@ chainLoopPosition = "bottom"; // [bottom, top]
 /* [General] */
 letterThickness = 3; // [1 : 15]
 
-
 /* [Icons] */
 iconColor = "white"; // [pink, red, black, white, yellow, blue, green]
-//TODO: Where is the heart icon, man?  "Put your heart into it."
-leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
-rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
 
 // This is the x off set of the icons
 xIconOffset = -100; // [10:200]
@@ -47,14 +41,22 @@ xIconOffset = -100; // [10:200]
 // This is the y off set of the icons
 yIconOffset = 3;  // [1:200]
 
+/* [Left Icon] */
+//TODO: Where is the heart icon, man?  "Put your heart into it."
+leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
+
 // This is the X,Y scale of the icons.
 leftIconXyScale = 0.99;  // [0.1 : 0.05 : 5]
 
-rightIconXyScale = 1.3; // [0.1 : 0.05 : 5]
-
 leftIconHeight = 2.5; // [0.1: 0.1 :5]
+
+/* [Right Icon] */
 rightIconHeight = 4.0; // [0.1: 0.1 :5]
 
+//TODO: Where is the heart icon, man?  "Put your heart into it."
+rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
+
+rightIconXyScale = 1.3; // [0.1 : 0.05 : 5]
 
 /* [Top Text] */
 topText = "Firstnesto Lastquez";
