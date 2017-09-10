@@ -22,12 +22,13 @@ showBorder = "No"; // [Yes, No]
 bottomText = "Fun Enthusiast";
 bottomTextFont = "Wingdings";
 bottomTextOffsetX = 0; // [-315 : 315]
-bottomTextOffsetY = -20; // [-315 : 315]
+bottomTextOffsetY = -15; // [-315 : 315]
 
 
 /* [Chain Loop]*/
 chainLoop = true;
 chainLoopLengthZ = 6;
+chainLoopType = "square"; // [rounded, square]
 chainLoopPosition = "bottom"; // [bottom, top]
 
 /* [General] */
@@ -47,9 +48,9 @@ xIconOffset = -100; // [10:200]
 yIconOffset = 3;  // [1:200]
 
 // This is the X,Y scale of the icons.
-leftIconXyScale = 0.5;  // [0.1 : 0.05 : 5]
+leftIconXyScale = 0.99;  // [0.1 : 0.05 : 5]
 
-rightIconXyScale = 0.25; // [0.1 : 0.05 : 5]
+rightIconXyScale = 1.3; // [0.1 : 0.05 : 5]
 
 leftIconHeight = 2.5; // [0.1: 0.1 :5]
 rightIconHeight = 4.0; // [0.1: 0.1 :5]
@@ -59,6 +60,7 @@ rightIconHeight = 4.0; // [0.1: 0.1 :5]
 topText = "Firstnesto Lastquez";
 topTextColor = "white"; // [pink, red, black, white, yellow, blue, green]
 topTextFont = "Bauhaus 93";
+topTextSize = 15;
 
 /* [Hidden] */
 
@@ -70,22 +72,24 @@ nametag(baseColor = baseColor,
         chainLoop = chainLoop,
         chainLoopLengthZ = chainLoopLengthZ,
         chainLoopPosition = chainLoopPosition,
+		chainLoopType = chainLoopType,
         iconColor = iconColor,
         letterThickness = letterThickness,
         roundedCorners = true,
         topText = topText,
-        topTextSize = 13,
+		topTextOffsetY = 6,
+        topTextSize = topTextSize,
         topTextColor = topTextColor,
         topTextFont = topTextFont,
         bottomText = bottomText,
         bottomTextFont = bottomTextFont,
         bottomTextOffsetX = bottomTextOffsetX,
         bottomTextOffsetY = bottomTextOffsetY,
-//        font=font,
+		leftIconXyScale = leftIconXyScale,
         leftIconType = leftIconType,
         leftIconHeight = leftIconHeight,
         rightIconHeight = rightIconHeight,
-//        rightIconOffsetY = 0,
+		rightIconXyScale = rightIconXyScale,
         rightIconType = rightIconType,
         xIconOffset = xIconOffset,
         yIconOffset = yIconOffset,
