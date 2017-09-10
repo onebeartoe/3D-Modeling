@@ -386,12 +386,14 @@ module nametagBase(baseColor,
 {
     size = [baseWidth, baseHeight, baseThickness];
 
+	cornerRadius = 8;
+
     color(baseColor)
     translate([0,0,baseThickness/2])
     if(roundedCorners)
     {
         roundedCube(size=size,
-                    cornerRadius=8,
+                    cornerRadius = cornerRadius,
                     sides=30,
                     sidesOnly=true,
                     cubeCentered=true);
@@ -430,7 +432,9 @@ module nametagBase(baseColor,
 			outerRadius = 10;
 
 			xTranslate = 0;
-			yTranslate = outerRadius * 2;
+			yTranslate = //outerRadius * 2
+//			 			 baseHeight - outerRadius - cornerRadius
+ 			 			 (outerRadius) + (cornerRadius / 2.0) + (baseHeight / 2.0);
 
 			translate([xTranslate, yTranslate, 0])
 			roundedChainLoop(height = 5,
