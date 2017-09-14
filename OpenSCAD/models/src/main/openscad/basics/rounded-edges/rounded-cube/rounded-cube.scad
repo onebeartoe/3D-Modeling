@@ -22,7 +22,7 @@ module roundedCube(cornerRadius=4,
     y = size[1] - cornerRadius/2;
     z = size[2];
 
-    minkowski(size, cornerRadius)
+    minkowski()
     {
         cube(size=[x,y,z], center=cubeCentered);
 
