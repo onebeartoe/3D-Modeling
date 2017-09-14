@@ -5,7 +5,7 @@
 **/.settings/
 **/nbactions-release-profile.xml
 /OpenSCAD/inline-tool/target/
-/OpenSCAD/library/target
+/OpenSCAD/models/target
 /OpenSCAD/native-customizer/target/
 /OpenSCAD/inline-tool/target/
 /OpenSCAD/opensacd-services/target/
