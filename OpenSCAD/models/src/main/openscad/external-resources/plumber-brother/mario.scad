@@ -1,9 +1,4 @@
 
-// Module names are of the form poly_<inkscape-path-id>().  As a result,
-// you can associate a polygon in this OpenSCAD program with the corresponding
-// SVG element in the Inkscape document by looking for the XML element with
-// the attribute id="inkscape-path-id".
-
 // fudge value is used to ensure that subtracted solids are a tad taller
 // in the z dimension than the polygon being subtracted from.  This helps
 // keep the resulting .stl file manifold.
@@ -105,4 +100,9 @@ module mario(h)
   }
 }
 
-mario(3);
+module marioThumbnail(h = 2)
+{
+    xyScale = 0.164;
+    scale([xyScale, xyScale, 1])
+    mario(h = h);
+}
