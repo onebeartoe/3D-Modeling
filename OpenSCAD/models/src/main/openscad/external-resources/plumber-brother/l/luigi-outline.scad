@@ -108,9 +108,9 @@ module luigi(h=1)
   }
 }
 
-module luigiThumbnail()
+module luigiThumbnail(h=2)
 {
 	xyScale = 0.084;
 	scale([xyScale, xyScale, 1])
-	luigi();
+	luigi(h=h);
 }
