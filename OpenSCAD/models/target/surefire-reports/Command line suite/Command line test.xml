@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite hostname="L7TX8B0102409" name="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest" tests="1" failures="0" timestamp="30 Aug 2017 18:20:53 GMT" time="193.804" errors="0">
-  <testcase name="testB" time="0.014" classname="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest"/>
-</testsuite>
