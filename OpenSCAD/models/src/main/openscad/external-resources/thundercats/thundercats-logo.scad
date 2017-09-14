@@ -24,9 +24,9 @@ module thundercatsLogo(h=1)
   }
 }
 
-module thundercatsLogoThumbnail()
+module thundercatsLogoThumbnail(height = 1)
 {
 	xyScale = 0.1592;
 	scale([xyScale, xyScale, 1])
-	thundercatsLogo();
+	thundercatsLogo(h = height);
 }

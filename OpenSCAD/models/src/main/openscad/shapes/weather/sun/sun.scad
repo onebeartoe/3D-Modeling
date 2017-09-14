@@ -1,28 +1,28 @@
 
 use <../../triangle/triangle.scad>
 
-module sun()
+module sun(height = 2)
 {
     difference()
     {
-        sunSegments();
+        sunSegments(height = height);
     
         translate([0, 0, -0.01])
         cylinder($fn=30,
-                 h = 2,
+                 h = height,
                  r=4.19);
     }
 }
 
-module sunThumbnail()
+module sunThumbnail(height = 1)
 {
     xyScale = 1.63;
     
     scale([xyScale, xyScale, 1])
-    sun();
+    sun(height = height);
 }
 
-module sunSegments()
+module sunSegments(height)
 {    
     segments = 8;
     arch = 360.0 / segments;
@@ -31,6 +31,6 @@ module sunSegments()
         angle = i * arch;
         rotate ([0, 0, angle])
         translate ([0, 5,0])
-        triangle(size=2.25);
+        triangle(size=2.25, height = height);
     }
 }

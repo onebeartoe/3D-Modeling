@@ -43,7 +43,7 @@ yIconOffset = 3;  // [1:200]
 
 /* [Left Icon] */
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-leftIconType = "Moon";   // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
+leftIconType = "Moon";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 
 // This is the X,Y scale of the icons.
 leftIconXyScale = 1.0;  // [0.1 : 0.05 : 5]
@@ -54,7 +54,8 @@ leftIconHeight = 3.0; // [0.1: 0.1 :5]
 rightIconHeight = 3.0; // [0.1: 0.1 :5]
 
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-rightIconType = "Sun";          // [Bass Clef, Creeper, Light Bulb, Moon, Rebel, Trooper, Aqua Dude, Cat, Fan, Spur, Mario, Luigi, Sun, Thundercat, Treble Clef]
+                             
+rightIconType = "Sun";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 rightIconXyScale = 1.0; // [0.1 : 0.05 : 5]
 
 /* [Top Text] */
