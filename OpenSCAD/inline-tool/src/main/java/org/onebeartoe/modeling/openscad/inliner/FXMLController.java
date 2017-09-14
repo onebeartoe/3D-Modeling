@@ -97,7 +97,14 @@ public class FXMLController implements Initializable//, DesktopApplication
         
         uiServices = new JavaFxGuiServices();
         
-        customizerService = new ThingiverseCustomizerService();
+        try 
+        {
+            customizerService = new ThingiverseCustomizerService();
+        } 
+        catch (IOException ex) 
+        {
+            logger.log(Level.SEVERE, "The customizer service was not instantiated.", ex);
+        }
     }
     
     private void restorePreferences()

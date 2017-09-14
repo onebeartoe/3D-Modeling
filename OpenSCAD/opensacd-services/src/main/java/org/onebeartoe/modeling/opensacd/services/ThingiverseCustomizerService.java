@@ -3,6 +3,7 @@ package org.onebeartoe.modeling.opensacd.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -10,16 +11,27 @@ import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ThingiverseCustomizerService
 {
     private Logger logger;
+    
+    private String fontList;
+    
+    private final String fontNameKey = "@FontNamesReplacement@";
 
-    public ThingiverseCustomizerService()
+    public ThingiverseCustomizerService() throws IOException
     {
         logger = Logger.getLogger( getClass().getName() );
+        
+        InputStream is = getClass().getResourceAsStream("/font-names.properties");
+        Properties properties = new Properties();
+        properties.load(is);
+        String defalutValue = "@FontListNotAvailable@";
+        fontList = properties.getProperty("font.names", defalutValue);
     }
 
     private boolean isUseStatement(String line)
@@ -66,11 +78,39 @@ public class ThingiverseCustomizerService
 
         List<String> finalOutput = new ArrayList();
         finalOutput.addAll(initialOpenScadParse.otherStatements);
-		finalOutput.addAll(useStatementsContent);
+	finalOutput.addAll(useStatementsContent);
 
         String content = String.join(System.lineSeparator(), finalOutput);
 
         return content;
+    }
+    
+    private String interpolateOpenScadFontLine(String line)
+    {        
+        String s;
+        
+        if( line.contains(fontNameKey) )
+        {
+            s = line.replace(fontNameKey, fontList);
+        }
+        else
+        {
+            s = line;
+        }
+
+        return s;
+    }
+    
+    /**
+     * 
+     * @param line
+     * @return 
+     */
+    private String interpolateOpenScadLine(String line)
+    {        
+        String s = interpolateOpenScadFontLine(line);
+        
+        return s; 
     }
 
     /**
@@ -138,7 +178,9 @@ public class ThingiverseCustomizerService
             }
             else
             {
-                parse.otherStatements.add(line);
+                String content = interpolateOpenScadLine(line);
+                
+                parse.otherStatements.add(content);
             }
         });
 
