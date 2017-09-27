@@ -1,0 +1,4 @@
+
+use <../camera.scad>
+
+raspberryPiCamera();
