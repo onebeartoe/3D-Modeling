@@ -1,6 +1,6 @@
 use <../../../../thumbnail-background.scad>
-        
-use <../../../mario.scad>
+
+use <../../mario.scad>
 
 marioThumbnail(h = 1);
 
