@@ -1,6 +1,6 @@
 
-use <../../thumbnail-background.scad>
-use <luigi-outline.scad>
+use <../../../../thumbnail-background.scad>
+use <../../luigi-outline.scad>
 
 luigiThumbnail();
 
