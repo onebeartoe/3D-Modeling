@@ -54,7 +54,7 @@ leftIconHeight = 3.0; // [0.1: 0.1 :5]
 rightIconHeight = 3.0; // [0.1: 0.1 :5]
 
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-                             
+
 rightIconType = "Sun";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 rightIconXyScale = 1.0; // [0.1 : 0.05 : 5]
 
@@ -66,7 +66,7 @@ topTextSize = 15; // [0 : 40]
 
 /* [Hidden] */
 
-use <../name-tag.scad>
+use <../../name-tag.scad>
 
 nametag(baseColor = baseColor,
         baseThickness = baseThickness,

@@ -110,11 +110,12 @@ public class OpenScadTestSuiteTest
         return topLevel;
     }    
     
+// Todo: rename this method getTestFiles and have it return all files tested
+//       and not just the error files    
     @DataProvider(name="errorFiles")
     public Object[][] getErrorFiles() throws Exception
     {
         ImageComparisonResult compareResults = testService.compareImages(runProfile);
-//        List<String> failedOpenScadFiles = testService.compareImages(runProfile);
 
         printHighLevelErrorReport(compareResults.errorFiles);
         

@@ -6,7 +6,7 @@ use <../basics/text/text-extrude/text-extrude.scad>
 use <../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
 use <../external-resources/aquaman/aquaman-logo.scad>
 use <../external-resources/plumber-brother/l/luigi-outline.scad>
-use <../external-resources/plumber-brother/mario.scad>
+use <../external-resources/plumber-brother/m/mario.scad>
 use <../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../external-resources/thundercats/thundercats-logo.scad>
 use <../mounting-hardware/chain-loop/rounded/rounded-chain-loop.scad>
@@ -213,7 +213,7 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     {
         aquamanThumbnail(height=1.6);
 //        aquaman(4);
-    }            
+    }
     else if(iconType == "Bass Clef")
     {
     	baseclef15scale(1.8);
