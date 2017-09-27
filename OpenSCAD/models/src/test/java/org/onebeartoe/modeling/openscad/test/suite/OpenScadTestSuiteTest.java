@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
+import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.DataProvider;
@@ -112,13 +113,14 @@ public class OpenScadTestSuiteTest
     @DataProvider(name="errorFiles")
     public Object[][] getErrorFiles() throws Exception
     {
-        List<String> failedOpenScadFiles = testService.compareImages(runProfile);
+        ImageComparisonResult compareResults = testService.compareImages(runProfile);
+//        List<String> failedOpenScadFiles = testService.compareImages(runProfile);
 
-        printHighLevelErrorReport(failedOpenScadFiles);
+        printHighLevelErrorReport(compareResults.errorFiles);
         
         int parameterCount = 1;
         
-        List<Object []> rows = failedOpenScadFiles.stream()
+        List<Object []> rows = compareResults.errorFiles.stream()
                 .sorted()
                 .map( l -> 
                 {

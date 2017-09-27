@@ -13,7 +13,7 @@ public class ImageComparisonResult
 {
     public boolean exceptionThrown;
     
-    List<String> errorFiles;
+    public List<String> errorFiles;
     
     public ImageComparisonResult()
     {
