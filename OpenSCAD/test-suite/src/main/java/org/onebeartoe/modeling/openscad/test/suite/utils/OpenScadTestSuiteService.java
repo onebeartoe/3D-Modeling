@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -91,9 +92,6 @@ public class OpenScadTestSuiteService
         }
         catch(Exception nsfe)
         {
-//                Help h = new Help();
-//                h.printHelp();
-
             File pwd = new File(".");
             System.err.println("pwd: " + pwd.getAbsolutePath() );
 
@@ -151,17 +149,17 @@ public class OpenScadTestSuiteService
      * @return This method retuns a list of files that had an error with 
      *         baseline and proposed baseline comparison.
      */
-    public List<String> compareImages(RunProfile runProfile)
+    public ImageComparisonResult compareImages(RunProfile runProfile)
     {
         System.out.println();
         System.out.println("Comparing baseline images to the proposed baseline images...");
 
         boolean passed = true;
         
-        List<String> errorFiles = compareImages(runProfile.openscadPaths);
+        ImageComparisonResult results = compareImages(runProfile.openscadPaths);
 
-        // Check if the diffs were successful
-        if(errorFiles.size() == 0)
+        // verify Check if the diffs were successful
+        if(results.errorFiles.size() == 0 && !results.exceptionThrown)
         {
             System.out.println();
             System.out.println("No test suite errors were detected.");
@@ -174,60 +172,74 @@ public class OpenScadTestSuiteService
             passed = false;
 
             System.out.println( System.lineSeparator() );
-            System.out.println("The test suite detected " + errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
+            
+            if(results.exceptionThrown)
+            {
+                System.out.println("Image comparison exceptions occured.");
+            }
+            else
+            {
+                System.out.println("The test suite detected " + results.errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
+            }
+            
             System.out.println();
 
             System.out.println("See the compare commands above.");        	
         }
 
-        return errorFiles;
+        return results;
     }
     
     /**
      * 
      * @return a list of any files that did not pass the diff test
      */
-    private List<String> compareImages(List<Path> openscadPaths)
+    private ImageComparisonResult compareImages(List<Path> openscadPaths)
     {
-	List<String> errorFiles = new ArrayList();
+//	List<String> errorFiles = new ArrayList();
 	
         Class c = Collection.class;
         
+        ImageComparisonResult comparisonResults = new ImageComparisonResult();
+
+//        boolean exceptionThrown;
+        
 	Stream.of( OpenScadCameraDirections.values() )
                 .parallel()
-              .forEach((direction) -> 
+              .forEach((OpenScadCameraDirections direction) -> 
         {
-            openscadPaths.parallelStream().forEach((p) -> 
+            openscadPaths.parallelStream().forEach((Path p) ->
             {
-        	boolean forceGeneration = false;
-        	String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
-        	
-        	forceGeneration = true;
-        	String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
-
-                try 
+                boolean forceGeneration = false;
+                String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
+                
+                forceGeneration = true;
+                String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
+                
+                try
                 {
                     SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
                     CommandResults results = diffCommand.execute();
-
-		    // check if the exit code is 0 for success
-		    if(results.exitCode != 0)
-		    {
-			errorFiles.add(baseline);
-			
+                    
+                    // check if the exit code is 0 for success
+                    if(results.exitCode != 0)
+                    {
+                        comparisonResults.errorFiles.add(baseline);
+                        
                         System.out.println( results.processedStdErr.trim() );
                         System.out.print( results.processedStdOut.trim() );
-		    }
-		} 
-                catch (Exception e) 
+                    }
+                }
+                catch (Exception e)
                 {
+                    comparisonResults.exceptionThrown = true;
                     String message = "An error occured while executing a diff command.";
                     logger.log(Level.SEVERE, message, e);
-		}
+                }
             });
         });
 	
-	return errorFiles;
+	return comparisonResults;
     }
     
     private void deleteProposedBaselines(Path inpath) throws IOException
