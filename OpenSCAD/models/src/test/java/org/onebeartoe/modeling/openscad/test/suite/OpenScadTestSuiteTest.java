@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
@@ -115,27 +114,54 @@ public class OpenScadTestSuiteTest
     @DataProvider(name="errorFiles")
     public Object[][] getErrorFiles() throws Exception
     {
+//        ploop
         ImageComparisonResult compareResults = testService.compareImages(runProfile);
 
         printHighLevelErrorReport(compareResults.errorFiles);
         
-        int parameterCount = 1;
+        int parameterCount = 2;
         
-        List<Object []> rows = compareResults.errorFiles.stream()
+        List<Object []> errorRows = compareResults.errorFiles.stream()
                 .sorted()
                 .map( l -> 
                 {
                     Object [] array = new Object[parameterCount];
                     
-                    array[0] = l;
+                    boolean passed = false;
+                    
+                    array[0] = passed;
+                    array[1] = l;
                     
                     return array;
                 }).collect(Collectors.toList());
         
-        Object[][] data = new Object[rows.size()][parameterCount];        
+        List<Object []> successRows = compareResults.successFiles.stream()
+                .sorted()
+                .map( s ->
+                {
+                    boolean passed = true;
+                    
+                    Object [] array = new Object[parameterCount];
+                    
+                    array[0] = passed;
+                    array[1] = s;
+                    
+                    return array;
+                    
+                }).collect(Collectors.toList() );
+        
+        int rowCount = errorRows.size() + successRows.size();
+        Object[][] data = new Object[rowCount][parameterCount];        
         
         int r = 0;        
-        for(Object [] row : rows)
+        for(Object [] row : errorRows)
+        {
+            data[r] = row;
+            
+            r++;
+        }
+        
+        for(Object [] row : successRows)
         {
             data[r] = row;
             

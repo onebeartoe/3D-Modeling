@@ -222,7 +222,11 @@ public class OpenScadTestSuiteService
                     CommandResults results = diffCommand.execute();
                     
                     // check if the exit code is 0 for success
-                    if(results.exitCode != 0)
+                    if(results.exitCode == 0)
+                    {
+                        comparisonResults.successFiles.add(baseline);
+                    }
+                    else
                     {
                         comparisonResults.errorFiles.add(baseline);
                         

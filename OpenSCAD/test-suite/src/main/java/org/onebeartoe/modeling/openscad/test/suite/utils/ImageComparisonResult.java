@@ -15,10 +15,14 @@ public class ImageComparisonResult
     
     public List<String> errorFiles;
     
+    public List<String> successFiles;
+    
     public ImageComparisonResult()
     {
         exceptionThrown = false;
         
         errorFiles = new ArrayList();
+        
+        successFiles = new ArrayList();
     }
 }
