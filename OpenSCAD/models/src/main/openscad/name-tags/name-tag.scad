@@ -412,12 +412,12 @@ module nametagBase(baseColor,
 
     if(chainLoop)
     {
-		if(chainLoopType == "square")
-		{
-			x = 21;
-	        y = 8;
+    		if(chainLoopType == "square")
+    		{
+			       x = 21;
+	           y = 8;
 
-	        xTranslate = -x / 2.0;
+	           xTranslate = -x / 2.0;
 
 	//TODO: fix the 4 to be relative to the 8 of the rounded corner radius
 	        yBottomDelta = (-baseHeight / 2.0) - (y + 4);
@@ -428,25 +428,25 @@ module nametagBase(baseColor,
 
 	        translate([xTranslate, yTranslate, 0])
 	        chainLoop(cutoutAxis = chaneLoopCutoutAxis,
-					  xLength = x,
+					          xLength = x,
 	                  yLength = y,
 	                  yPercentage = chainLoopLengthPercentageY,
 	                  zLength = chainLoopLengthZ,
 	                  zPercentage = chainLoopLengthPercentageZ);
-	    }
-		else if(chainLoopType == "rounded")
-		{
-			outerRadius = 10;
+        }
+  		  else if(chainLoopType == "rounded")
+  		  {
+      			outerRadius = 10;
 
-			xTranslate = 0;
-			yTranslate = //outerRadius * 2
-//			 			 baseHeight - outerRadius - cornerRadius
- 			 			 (outerRadius) + (cornerRadius / 2.0) + (baseHeight / 2.0);
+      			xTranslate = 0;
+      			yTranslate = //outerRadius * 2
+                         //			 			 baseHeight - outerRadius - cornerRadius
+       			 			       (outerRadius) + (cornerRadius / 2.0) + (baseHeight / 2.0);
 
-			translate([xTranslate, yTranslate, 0])
-			roundedChainLoop(height = 5,
-							 outerRadius = outerRadius);
-		}
+      			translate([xTranslate, yTranslate, 0])
+      			roundedChainLoop(height = 5,
+      							         outerRadius = outerRadius);
+		    }
     }
 }
 

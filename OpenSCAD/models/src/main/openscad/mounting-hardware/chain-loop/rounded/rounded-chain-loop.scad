@@ -2,12 +2,12 @@
 use <../../../shapes/open-cylinder/open-cylinder.scad>
 
 module roundedChainLoop(height = 1,
-	                    outerRadius = 10)
+	                      outerRadius = 10)
 {
 	difference()
 	{
 		openCylinder(height = height,
-				 	 outerRadius = outerRadius);
+	       			 	 outerRadius = outerRadius);
 
 		// top cutout
 		radius = outerRadius * 0.95;
