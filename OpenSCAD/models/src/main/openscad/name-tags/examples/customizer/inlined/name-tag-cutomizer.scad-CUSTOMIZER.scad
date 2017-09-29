@@ -54,7 +54,7 @@ leftIconHeight = 3.0; // [0.1: 0.1 :5]
 rightIconHeight = 3.0; // [0.1: 0.1 :5]
 
 //TODO: Where is the heart icon, man?  "Put your heart into it."
-                             
+
 rightIconType = "Sun";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 rightIconXyScale = 1.0; // [0.1 : 0.05 : 5]
 
@@ -295,7 +295,7 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     {
         aquamanThumbnail(height=1.6);
 //        aquaman(4);
-    }            
+    }
     else if(iconType == "Bass Clef")
     {
     	baseclef15scale(1.8);
