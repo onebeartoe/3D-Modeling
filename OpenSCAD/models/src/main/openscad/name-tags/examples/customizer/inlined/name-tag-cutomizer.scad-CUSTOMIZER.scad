@@ -655,7 +655,7 @@ module cat(h)
   }
 }
 
-//  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from 
+//  This was origianllay named uploads-b4-df-a6-25-4b-AnyNameSign.scad and came from
 //
 //              https://www.thingiverse.com/thing:269405
 //
@@ -663,7 +663,7 @@ module cat(h)
 
 // Adapted by Roberto Marquez - onebeartoe - 2015
 
-// Uses Write.scad by HarlanDMii, published on Thingiverse 18-Jan-2012 (thing:16193)	 
+// Uses Write.scad by HarlanDMii, published on Thingiverse 18-Jan-2012 (thing:16193)
 
 /**
  *
@@ -704,17 +704,17 @@ module roundedCube(cornerRadius=4,
 }
 
 /**
- * 
- * @param 
+ *
+ * @param
  * @param valign valid values are "top", "center", "baseline" and "bottom". Default is "baseline".
- * @return 
+ * @return
  */
 module textExtrude(text, textSize=6, valign = "center", font, height=4)
 {
     linear_extrude(height=height)
-    text(text, 
-         font = font, 
-         size=textSize, 
+    text(text,
+         font = font,
+         size=textSize,
          valign = valign,
          halign = "center");
 }
@@ -764,7 +764,7 @@ module trebleClefScaledDownThumbnail(h)
 
 module aquaman(height=1)
 {
-  scale([25.4/90, -25.4/90, 1]) 
+  scale([25.4/90, -25.4/90, 1])
   union()
   {
     linear_extrude(height=height)
@@ -775,7 +775,7 @@ module aquaman(height=1)
 module aquamanThumbnail(height=1)
 {
     xyScale = 0.233;
-    
+
     scale([xyScale, xyScale, 1])
     aquaman(height=height);
 }
@@ -1191,7 +1191,7 @@ module fan2D()
     union()
     {
         fanHub();
-        
+
         fanBlades();
     }
 }
@@ -1212,27 +1212,27 @@ module fanBlades()
     for(i = [0 : 3])
     {
 //        echo(i);
-        
+
         rotate([0,0,i*90])
         translate([7,0,0])
-        
+
         fanBlade();
     }
 }
 
 /**
- * This is the first part of the fan blade.  it only has circle with the main 'u' 
+ * This is the first part of the fan blade.  it only has circle with the main 'u'
  * shape cut out.
  */
 module fanBladePartA()
 {
     difference()
-    {        
+    {
         circle(r=5, $fn=30);
-        
+
         translate([-3, -8,0])
         circle(r = 8, $fn=30);
-    }    
+    }
 }
 
 /**
@@ -1247,7 +1247,7 @@ module fanBladePartB()
 
         translate([3.2, -5, 0])
         circle(r=1.8, $fn=30);
-    }    
+    }
 }
 
 module fanHub()
@@ -1255,7 +1255,7 @@ module fanHub()
     difference()
     {
         circle(r=3, $fn=30);
-        
+
         circle(r=2, $fn=30);
     }
 }
@@ -1278,7 +1278,7 @@ module lightBulb(height=8)
 module lightBulb2D()
 {
     union()
-    {        
+    {
         lightBulbTop();
 
         lightBulbBottom();
@@ -1290,13 +1290,13 @@ module lightBulbBottom()
     width = 7;
     height = 1;
     threadSpacing = 2.5;
-    
+
     xTranslate = -width/2.0;
     yTranslate = -13;
-    
+
     translate([xTranslate, yTranslate, 0])
     square(size=[width, height]);
-        
+
     translate([xTranslate, yTranslate - (threadSpacing * 1), 0])
     square(size=[width, height]);
 
@@ -1310,7 +1310,7 @@ module lightBulbTop()
 {
     width = 10;
 
-//        linear_extrude(height=4)    
+//        linear_extrude(height=4)
         {
     rotate([0, 0, 225])
     union()
@@ -1320,27 +1320,27 @@ module lightBulbTop()
 //            cylinder(r = width);
             circle(r = width);
         }
-        
+
 //        linear_extrude(height=4)
         difference()
         {
-            
+
 //            linear_extrude(height=4)
             square(size=[width, width]);
 
 //            linear_extrude(height=4)
             translate([width, width/2, 0])
-            rotate([0, 0, 45])            
-            square(size=20);    
+            rotate([0, 0, 45])
+            square(size=20);
         }
-    }    
+    }
         }
 }
 
 module lightBulbThumbnail()
 {
     xyScale = 0.8;
-        
+
     scale([xyScale, xyScale, 0.2])
     lightBulb();
 }
@@ -1365,7 +1365,7 @@ module creeperface(height)
 module creeperFaceThumbnail(height = 1)
 {
     xyScale = 0.116;
-    
+
     scale([xyScale, xyScale, 1])
     creeperface(height);
 }
@@ -1400,7 +1400,7 @@ module sun(height = 2)
     difference()
     {
         sunSegments(height = height);
-    
+
         translate([0, 0, -0.01])
         cylinder($fn=30,
                  h = height,
@@ -1411,16 +1411,16 @@ module sun(height = 2)
 module sunThumbnail(height = 1)
 {
     xyScale = 1.63;
-    
+
     scale([xyScale, xyScale, 1])
     sun(height = height);
 }
 
 module sunSegments(height)
-{    
+{
     segments = 8;
     arch = 360.0 / segments;
-    for(i = [1:segments])    
+    for(i = [1:segments])
     {
         angle = i * arch;
         rotate ([0, 0, angle])
@@ -1429,7 +1429,7 @@ module sunSegments(height)
     }
 }
 
-openCylinder();
+//openCylinder();
 
 module openCylinder(height = 3,
                     outerRadius = 7,
@@ -1437,12 +1437,12 @@ module openCylinder(height = 3,
                     fn = 100)
 {
     $fn = fn;
-        
+
     difference()
     {
         cylinder(r=outerRadius,
                  h=height);
-                
+
         translate([0, 0, -1])
         cylinder(r=innerRadius,
                  h=height+1.01);
@@ -1452,7 +1452,7 @@ module openCylinder(height = 3,
 module triangle(size=1, height=1)
 {
     rotate([0, 0, 90])
-    cylinder(r=size, 
+    cylinder(r=size,
              $fn=3,
              h=height);
 }
