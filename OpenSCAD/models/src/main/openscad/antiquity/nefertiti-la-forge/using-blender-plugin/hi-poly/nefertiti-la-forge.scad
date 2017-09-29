@@ -1,19 +1,20 @@
 
 /**
- *  when you export in Blender, use 
- 
+ *  when you export in Blender, use
+
 		select object -> Wrench tool -> Decimate -> Planar -> Select 'All Boundaries' -> Angle Limit: 5-> Apply -> File -> Export -> .scad
 */
 
-use <C:\home\world\versioning\beto-land-world\3d-printing\antiquity\nefertiti\hi-poly\adafruit\files\Nefertiti-hallow.scad>
-use <../../../../cosplay\star-trek\geordi-la-forge-visor\geordi-la-forge-visor.scad>
+use <nefertiti-hallow/Nefertiti-hallow.scad>
+//use <C:\home\world\versioning\beto-land-world\3d-printing\antiquity\nefertiti\hi-poly\adafruit\files\Nefertiti-hallow.scad>
+use <../../../../cosplay/star-trek/geordi-la-forge-visor/geordi-la-forge-visor.scad>
 
 nefertitiLaForge();
 
 module nefertitiLaForge()
 {
     union()
-    {		
+    {
         Nefertitihollow();
 
         scaleFactor = 0.6;
