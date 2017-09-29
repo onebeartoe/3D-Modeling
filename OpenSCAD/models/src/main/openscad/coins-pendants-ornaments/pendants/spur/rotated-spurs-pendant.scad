@@ -10,10 +10,10 @@ module rotatedSpur55mmDiameterPendant()
 	{
 		rotatedSpurCoin55mmDiameter();
 
-		yTranslate = 55/2.0 + 4;
+		yTranslate = 55/2.0 + 7;
 		zTranslate = -5/2.0;
 		translate([0, yTranslate, zTranslate])
 		roundedChainLoop(height = 5,
-						 outerRadius = 5);
+						         outerRadius = 9); // 10);
 	 }
 }
