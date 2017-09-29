@@ -219,10 +219,17 @@ public class OpenScadTestSuiteTest
      * proposed baseline comparison; i.e. all executions of this test are 
      * expected to file.
      */
-    public void reportErrors(String comparisonFile) throws Exception
-    {        
-        String message = "The comparison failed for: " + comparisonFile;
-        
-        throw new Exception(message);
+    public void reportErrors(boolean passed, String comparisonFile) throws Exception
+    {
+        if(passed)
+        {
+            // do nothing
+        }
+        else
+        {
+            String message = "The comparison failed for: " + comparisonFile;
+
+            throw new Exception(message);
+        }
     }
 }
