@@ -35,27 +35,27 @@ module frameWithTrinketMounts(boardLengthZ, cornerRadius)
 
 module trinketMiniShortcutKeyboard()
 {
-	boardLengthZ = 30;
-	buttonSide = 12;
-	cornerRadius = 3;
+		boardLengthZ = 30;
+		buttonSide = 12;
+		cornerRadius = 3;
 
-	difference()
-	{
-		frameWithTrinketMounts(boardLengthZ, cornerRadius);
+		difference()
+		{
+				frameWithTrinketMounts(boardLengthZ, cornerRadius);
 
-                // the mounting panel cut out
-                panelHeight = 2;
-		xTranslate = 2;
-		yTranslate = 3;
-		zTranslate = (boardLengthZ + cornerRadius) - panelHeight + 0.01;
-                xyScale = 1.02;
-		translate([xTranslate, yTranslate, zTranslate])
-                color("orange")
-                scale([xyScale, xyScale, 1])
-                adafruit10009SwitchPanel(boardLengthX = 60,
-                                            panelHeight = panelHeight);
+        // the mounting panel cut out
+        panelHeight = 2;
+				xTranslate = 2;
+				yTranslate = 3;
+				zTranslate = (boardLengthZ + cornerRadius) - panelHeight + 0.01;
+        xyScale = 1.02;
+				translate([xTranslate, yTranslate, zTranslate])
+		    color("orange")
+		    scale([xyScale, xyScale, 1])
+		    adafruit10009SwitchPanel(boardLengthX = 60,
+                             		 panelHeight = panelHeight);
 
-                // this is the cutout to create room for the switches to be installed
+        // this is the cutout to create room for the switches to be installed
 		 panelCutout_xLength = buttonSide + 45;
 		 panelCutout_yLength = (buttonSide + 4) * 4 - 4;
 		 panelCutout_zLength = 10;
