@@ -47,14 +47,14 @@ module powerboost500ChargerEnclosure_baseWithCutouts()
         adafruitLithiumIonCylindrical();
 
         // This is the top panel cutout to expose the on/off button.
-        translate([34, 67, 20])
+        translate([44, 67, 20])
         cylinder(h=20, r=10);
     }
 }
 
 module powerboost500ChargerEnclosure_buttonMount()
 {
-    xTranslate = 28;
+    xTranslate = 38;
     yTransate = 59.4;
     zTransate = 0.2;
 
@@ -65,7 +65,7 @@ module powerboost500ChargerEnclosure_buttonMount()
 module powerboost500ChargerEnclosure_chargerStandoffs()
 {
     xTranslate = 25;
-    yTranslate = 39;
+    yTranslate = 35;
     zTranslate = 0;
 
     translate([xTranslate, yTranslate, zTranslate])

@@ -16,10 +16,10 @@ module adafruitPowerBoost500ChargerEncosureAssembly()
     rotate([0,90,0])
     adafruitLithiumIonCylindrical();
 
-    translate([28,68, 7.2])
+    translate([38, 67.3, 7.2])
     rotate([0,0,-90])
     adafruitOnOffButton1683();
 
-    translate([20,35, 4])
+    translate([22.4, 34.4, 4])
     adafruitPowerboost500Charger();
 }
