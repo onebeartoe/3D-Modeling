@@ -69,5 +69,6 @@ module powerboost500ChargerEnclosure_chargerStandoffs()
     zTranslate = 0;
 
     translate([xTranslate, yTranslate, zTranslate])
+    scale([1.05, 1.05, 1])
     adafruitPowerboost500Charger_mountingHoles();
 }
