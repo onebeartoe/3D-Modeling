@@ -56,9 +56,9 @@ module powerboost500ChargerEnclosure_buttonMount()
 {
     xTranslate = 38;
     yTransate = 59.4;
-    zTransate = 0.2;
+    zTranslate = 0.2;
 
-    translate([xTranslate, yTransate, zTransate])
+    translate([xTranslate, yTransate, zTranslate])
     cube([10, 8, 6.9]);
 }
 
