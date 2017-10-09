@@ -152,7 +152,7 @@ public class FXMLController implements Initializable//, DesktopApplication
             openScadFile = file.getAbsolutePath();
             
             currentFileTextField.setText(file.getAbsolutePath());
-            
+     
             // save the current file to preferences
             savePreference(OpenScadPreferences.OPENSCAD_FILE, file.getAbsolutePath() );
         }

@@ -2,9 +2,7 @@
 package org.onebeartoe.modeling.openscad.inliner;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
