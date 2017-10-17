@@ -1,9 +1,9 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import org.onebeartoe.application.duration.DurationService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -27,10 +27,12 @@ public class OpenScadTestSuite
     public static final String GENERATE_BASELILNES = "generateBaselines";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
     
+    
+    
     public OpenScadTestSuite()
     {
         String name = getClass().getName(); 
-        logger = Logger.getLogger(name);    
+        logger = Logger.getLogger(name);
     }
     
     private static Options buildOptions()
@@ -66,16 +68,16 @@ public class OpenScadTestSuite
         return options;
     }
     
-    private static String durationMessage(Instant start, Instant end)
-    {
-        ChronoUnit units = ChronoUnit.SECONDS;
-        long duration = units.between(start,end);
-        long minutes = duration / 60;
-        long seconds = duration % 60;
-        String message = "The test suite ran " + minutes + " minutes " + seconds + " seconds.";                
-                
-        return message;
-    }
+//    private static String durationMessage(Instant start, Instant end)
+//    {
+//        ChronoUnit units = ChronoUnit.SECONDS;
+//        long duration = units.between(start,end);
+//        long minutes = duration / 60;
+//        long seconds = duration % 60;
+//        String message = "The test suite ran " + minutes + " minutes " + seconds + " seconds.";                
+//                
+//        return message;
+//    }
     
     public static void main(String[] args) throws Throwable
     {
@@ -90,8 +92,9 @@ public class OpenScadTestSuite
             testService.serviceRequest(runProfile);
 
             Instant end = Instant.now();
-
-            String message = durationMessage(start, end);
+        
+            DurationService durationService = new DurationService();
+            String message = durationService.durationMessage(start, end);
             System.out.println();
             System.out.println(message);
         }
