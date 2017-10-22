@@ -19,7 +19,7 @@ public class ThingiverseCustomizerService
 {
     private Logger logger;
     
-    private String fontList;
+    private final String fontList;
     
     private final String fontNameKey = "@FontNamesReplacement@";
 
