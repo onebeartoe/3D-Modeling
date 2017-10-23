@@ -2,25 +2,25 @@
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
-	                 signalText = "Impalas")
+	                 signalText1 = "Impalas")
 {
 	difference()
 	{
 			signalShell(baseHeight,
 									showOriginal = false);
 
-			plaque(signalText);
+			plaque(signalText1);
 	}
 }
 
-module plaque(signalText)
+module plaque(signalText1)
 {
 	font = "Bauhaus 93:style=Regular";
 	fontSize = 7.5;
 	xTranslate = -18;
-	translate([xTranslate, -3,-3])
-	linear_extrude(height=6)
-	text(signalText, font = font, size=fontSize);
+	translate([xTranslate, -3, -3])
+	linear_extrude(height = 6)
+	text(signalText1, font = font, size = fontSize);
 }
 
 module signalShell(baseHeight,

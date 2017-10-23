@@ -1,4 +1,4 @@
 
 use <../../light-signal.scad>
 
-lightSignal();
+lightSignal(signalText1 = "Impalas");
