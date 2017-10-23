@@ -6,9 +6,10 @@ module lightSignal(baseHeight = 2,
 {
 	difference()
 	{
-		signalShell(baseHeight);
+			signalShell(baseHeight,
+									showOriginal = false);
 
-		plaque();
+			plaque(signalText);
 	}
 }
 
@@ -22,12 +23,10 @@ module plaque(signalText)
 	text(signalText, font = font, size=fontSize);
 }
 
-module signalShell(baseHeight)
+module signalShell(baseHeight,
+									 showOriginal = false)
 {
-	showOriginal = false;
-
-	signalStl = "C:\\home\\world\\versioning\\beto-land-world\\3d-printing\\super-heroes\\batman\\bat-signal\\customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
-
+	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
 	// DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
 	stlBaseInnerRadius = 18.5;
 	stlBaseOuterRadius = stlBaseInnerRadius + 2.5;
