@@ -6,14 +6,16 @@ module lightSignal(baseHeight = 2,
 {
 	difference()
 	{
-			signalShell(baseHeight,
+			lightSignal_shell(baseHeight,
 									showOriginal = false);
 
-			plaque(signalText1);
+			lightSignal_cutouts(signalText1);
 	}
 }
 
-module plaque(signalText1)
+/** Support functions and moduules follow. **/
+
+module lightSignal_cutouts(signalText1)
 {
 	font = "Bauhaus 93:style=Regular";
 	fontSize = 7.5;
@@ -23,7 +25,7 @@ module plaque(signalText1)
 	text(signalText1, font = font, size = fontSize);
 }
 
-module signalShell(baseHeight,
+module lightSignal_shell(baseHeight,
 									 showOriginal = false)
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
