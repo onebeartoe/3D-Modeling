@@ -91,12 +91,12 @@ module lightSignal_oneTextCutout(text, x, y)
 	{
 		extrudeHeight = 6;
 		zTranslate = -3;
-		font = "Bauhaus 93:style=Regular";
+		fontName = "Bauhaus 93:style=Regular";
 		fontSize = 7.5;
 
 		translate([x, y, zTranslate])
 		linear_extrude(height = extrudeHeight)
-		text(text, font = font, size = fontSize);
+		text(text = text, font = fontName, size = fontSize);
 	}
 }
 
