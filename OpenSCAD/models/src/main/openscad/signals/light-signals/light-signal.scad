@@ -9,12 +9,12 @@ module lightSignal(baseHeight = 2,
 				   icon1_scale = 1,
 				   icon1_x = 0,
 			   	   icon1_y = 0,
-                   signalText1 = "",
-				   stringText1_x,
-	   			   stringText1_y,
-			 	   signalText2 = "",
-				   stringText2_x,
-				   stringText2_y)
+                   text1 = "",
+				   text1_x,
+	   			   text1_y,
+			 	   text2 = "",
+				   text2_x,
+				   text2_y)
 {
 	difference()
 	{
@@ -24,10 +24,10 @@ module lightSignal(baseHeight = 2,
 							icon1_scale,
 							icon1_x,
 							icon1_y,
-							signalText1,
-							stringText1_x,
-							stringText1_y,
-							signalText2, stringText2_x, stringText2_y);
+							text1,
+							text1_x,
+							text1_y,
+							text2, text2_x, text2_y);
 	}
 }
 
@@ -37,19 +37,19 @@ module lightSignal_cutouts(icon1,
 							icon1_scale,
 							icon1_x,
 							icon1_y,
-						   signalText1,
-						   stringText1_x,
-						   stringText1_y,
-					 	   signalText2,
-					   	   stringText2_x,
-						   stringText2_y)
+						   text1,
+						   text1_x,
+						   text1_y,
+					 	   text2,
+					   	   text2_x,
+						   text2_y)
 {
-		lightSignal_textCutouts(signalText1,
-								stringText1_x,
-								stringText1_y,
-								signalText2,
-								stringText2_x,
-	 						   	stringText2_y);
+		lightSignal_textCutouts(text1,
+								text1_x,
+								text1_y,
+								text2,
+								text2_x,
+	 						   	text2_y);
 
 		lightSignal_iconCutouts(icon1, icon1_scale, icon1_x,
 		icon1_y);
@@ -131,10 +131,6 @@ module lightSignal_oneTextCutout(text, x, y)
 	}
 	else
 	{
-/*echo("hi incons cutous");
-echo(stringText2_x, stringText2_y);
-echo("hi incons cutous");*/
-
 		extrudeHeight = 6;
 		zTranslate = -3;
 		font = "Bauhaus 93:style=Regular";
@@ -146,15 +142,15 @@ echo("hi incons cutous");*/
 	}
 }
 
-module lightSignal_textCutouts(signalText1,
-								stringText1_x,
-								stringText1_y,
+module lightSignal_textCutouts(text1,
+								text1_x,
+								text1_y,
 //TODO: Remove this initialization.
-							    signalText2 = "",
-							    stringText2_x,
-							    stringText2_y)
+							    text2 = "",
+							    text2_x,
+							    text2_y)
 {
-	lightSignal_oneTextCutout(signalText1, stringText1_x, stringText1_y);
+	lightSignal_oneTextCutout(text1, text1_x, text1_y);
 
-	lightSignal_oneTextCutout(signalText2, stringText2_x, stringText2_y);
+	lightSignal_oneTextCutout(text2, text2_x, text2_y);
 }
