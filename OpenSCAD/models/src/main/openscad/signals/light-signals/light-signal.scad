@@ -7,6 +7,8 @@ use <../../shapes/open-cylinder/open-cylinder.scad>
 module lightSignal(baseHeight = 2,
 				   icon1 = "",
 				   icon1_scale = 1,
+				   icon1_x = 0,
+			   	   icon1_y = 0,
                    signalText1 = "",
 				   stringText1_x,
 	   			   stringText1_y,
@@ -19,7 +21,9 @@ module lightSignal(baseHeight = 2,
 		lightSignal_shell(baseHeight, showOriginal = false);
 
 		lightSignal_cutouts(icon1,
-			icon1_scale,
+							icon1_scale,
+							icon1_x,
+							icon1_y,
 							signalText1,
 							stringText1_x,
 							stringText1_y,
@@ -31,6 +35,8 @@ module lightSignal(baseHeight = 2,
 
 module lightSignal_cutouts(icon1,
 							icon1_scale,
+							icon1_x,
+							icon1_y,
 						   signalText1,
 						   stringText1_x,
 						   stringText1_y,
@@ -45,10 +51,14 @@ module lightSignal_cutouts(icon1,
 								stringText2_x,
 	 						   	stringText2_y);
 
-		lightSignal_iconCutouts(icon1, icon1_scale);
+		lightSignal_iconCutouts(icon1, icon1_scale, icon1_x,
+		icon1_y);
 }
 
-module lightSignal_iconCutouts(icon1, icon1_scale)
+module lightSignal_iconCutouts(icon1,
+							   icon1_scale,
+							   icon1_x,
+							   icon1_y)
 {
 	if(icon1 == "")
 	{
@@ -57,7 +67,7 @@ module lightSignal_iconCutouts(icon1, icon1_scale)
 	else
 	{
 		zScale = 3;
-		translate([0, 0, -1.01])
+		translate([icon1_x, icon1_y, -1.01])
 		if(icon1 == "heart")
 		{
 			scale([icon1_scale, icon1_scale, zScale])
