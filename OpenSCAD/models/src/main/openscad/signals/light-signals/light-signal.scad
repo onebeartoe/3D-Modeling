@@ -3,32 +3,34 @@ use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
-									 icon1 = "none",
-	                 signalText1 = "Impalas",
-								 	 signalText2 = "")
+				   icon1 = "none",
+                   signalText1 = "Impalas",
+			 	   signalText2 = "",
+				   stringText2_x,
+				   stringText2_y)
 {
-		difference()
-		{
-				lightSignal_shell(baseHeight, showOriginal = false);
+	difference()
+	{
+		lightSignal_shell(baseHeight, showOriginal = false);
 
-				lightSignal_cutouts(icon1,
-														signalText1,
-														signalText2);
-		}
+		lightSignal_cutouts(icon1,
+							signalText1,
+							signalText2, stringText2_x, stringText2_y);
+	}
 }
 
 /** Support functions and moduules follow. **/
 
 module lightSignal_cutouts(icon1,
-													 signalText1,
-												 	 signalText2)
+						   signalText1,
+					 	   signalText2,
+					   	   stringText2_x,
+						   stringText2_y)
 {
-		font = "Bauhaus 93:style=Regular";
-		fontSize = 7.5;
-		xTranslate = -18;
-		translate([xTranslate, -3, -3])
-		linear_extrude(height = 6)
-		text(signalText1, font = font, size = fontSize);
+		lightSignal_textCutouts(signalText1,
+								signalText2,
+								stringText2_x,
+	 						   	stringText2_y);
 
 		lightSignal_iconCutouts(icon1);
 }
@@ -40,8 +42,6 @@ module lightSignal_iconCutouts(icon1)
 				translate([0, 0, -1.01])
 				if(icon1 == "heart")
 				{
-						echo("hi incons cutous");
-
 						scale([1, 1, 3])
 						heartThumbnail();
 				}
@@ -83,8 +83,36 @@ module lightSignal_shell(baseHeight,
 			import(signalStl);
 		}
 
-		// This is the bottome disk, that holds the text/icon cutout.
+		// This is the bottom disk, that holds the text/icon cutout.
 		color("green")
 		cylinder(r=stlBaseInnerRadius+0.1, h=baseHeight, center=true);
+	}
+}
+
+module lightSignal_textCutouts(signalText1,
+							   signalText2 = "", stringText2_x, stringText2_y)
+{
+	extrudeHeight = 6;
+	zTranslate = -3;
+	font = "Bauhaus 93:style=Regular";
+	fontSize = 7.5;
+	xTranslate = -18;
+	translate([xTranslate, -3, zTranslate])
+	linear_extrude(height = extrudeHeight)
+	text(signalText1, font = font, size = fontSize);
+
+	if(signalText2 == "")
+	{
+		// do nothing
+	}
+	else
+	{
+echo("hi incons cutous");
+echo(stringText2_x, stringText2_y);
+echo("hi incons cutous");
+
+		translate([stringText2_x, stringText2_y, zTranslate])
+		linear_extrude(height = extrudeHeight)
+		text(signalText2, font = font, size = fontSize);
 	}
 }
