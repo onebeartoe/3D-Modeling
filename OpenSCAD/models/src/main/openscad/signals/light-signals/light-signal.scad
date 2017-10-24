@@ -81,6 +81,25 @@ module lightSignal_iconCutouts(icon1,
 	}
 }
 
+module lightSignal_oneTextCutout(text, x, y)
+{
+	if(text == "")
+	{
+		// do nothing
+	}
+	else
+	{
+		extrudeHeight = 6;
+		zTranslate = -3;
+		font = "Bauhaus 93:style=Regular";
+		fontSize = 7.5;
+
+		translate([x, y, zTranslate])
+		linear_extrude(height = extrudeHeight)
+		text(text, font = font, size = fontSize);
+	}
+}
+
 module lightSignal_shell(baseHeight,
 									 showOriginal = false)
 {
@@ -122,31 +141,10 @@ module lightSignal_shell(baseHeight,
 	}
 }
 
-//TODO: Move this module to the correct alphabetical location.
-module lightSignal_oneTextCutout(text, x, y)
-{
-	if(text == "")
-	{
-		// do nothing
-	}
-	else
-	{
-		extrudeHeight = 6;
-		zTranslate = -3;
-		font = "Bauhaus 93:style=Regular";
-		fontSize = 7.5;
-
-		translate([x, y, zTranslate])
-		linear_extrude(height = extrudeHeight)
-		text(text, font = font, size = fontSize);
-	}
-}
-
 module lightSignal_textCutouts(text1,
 								text1_x,
 								text1_y,
-//TODO: Remove this initialization.
-							    text2 = "",
+							    text2,
 							    text2_x,
 							    text2_y)
 {
