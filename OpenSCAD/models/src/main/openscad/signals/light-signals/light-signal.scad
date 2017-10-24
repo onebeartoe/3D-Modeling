@@ -10,11 +10,13 @@ module lightSignal(baseHeight = 2,
 				   icon1_x = 0,
 			   	   icon1_y = 0,
                    text1 = "",
-				   text1_x,
-	   			   text1_y,
+				   text1_fontSize = 7.5,
+				   text1_x = 0,
+	   			   text1_y = 0,
 			 	   text2 = "",
-				   text2_x,
-				   text2_y)
+				   text2_fontSize = 7.5,
+				   text2_x = 0,
+				   text2_y = 0)
 {
 	difference()
 	{
@@ -25,9 +27,13 @@ module lightSignal(baseHeight = 2,
 							icon1_x,
 							icon1_y,
 							text1,
+							text1_fontSize,
 							text1_x,
 							text1_y,
-							text2, text2_x, text2_y);
+							text2,
+							text2_fontSize,
+							text2_x,
+							text2_y);
 	}
 }
 
@@ -38,16 +44,20 @@ module lightSignal_cutouts(icon1,
 							icon1_x,
 							icon1_y,
 						   text1,
+						   text1_fontSize,
 						   text1_x,
 						   text1_y,
 					 	   text2,
+						   text2_fontSize,
 					   	   text2_x,
 						   text2_y)
 {
 		lightSignal_textCutouts(text1,
+								text1_fontSize,
 								text1_x,
 								text1_y,
 								text2,
+								text2_fontSize,
 								text2_x,
 	 						   	text2_y);
 
@@ -81,7 +91,7 @@ module lightSignal_iconCutouts(icon1,
 	}
 }
 
-module lightSignal_oneTextCutout(text, x, y)
+module lightSignal_oneTextCutout(text, fontSize, x, y)
 {
 	if(text == "")
 	{
@@ -92,7 +102,6 @@ module lightSignal_oneTextCutout(text, x, y)
 		extrudeHeight = 6;
 		zTranslate = -3;
 		fontName = "Bauhaus 93:style=Regular";
-		fontSize = 7.5;
 
 		translate([x, y, zTranslate])
 		linear_extrude(height = extrudeHeight)
@@ -142,13 +151,15 @@ module lightSignal_shell(baseHeight,
 }
 
 module lightSignal_textCutouts(text1,
+								text1_fontSize,
 								text1_x,
 								text1_y,
 							    text2,
+								text2_fontSize,
 							    text2_x,
 							    text2_y)
 {
-	lightSignal_oneTextCutout(text1, text1_x, text1_y);
+	lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
 
-	lightSignal_oneTextCutout(text2, text2_x, text2_y);
+	lightSignal_oneTextCutout(text2, text2_fontSize, text2_x, text2_y);
 }
