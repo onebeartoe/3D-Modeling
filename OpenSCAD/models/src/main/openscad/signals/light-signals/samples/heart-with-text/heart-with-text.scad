@@ -1,4 +1,6 @@
 
 use <../../light-signal.scad>
 
-lightSignal(signalText1 = "Love");
+lightSignal(icon1 = "heart",
+            signalText1 = "Love"
+            );

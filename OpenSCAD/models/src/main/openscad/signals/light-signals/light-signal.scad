@@ -1,28 +1,51 @@
 
+use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
-	                 signalText1 = "Impalas")
+									 icon1 = "none",
+	                 signalText1 = "Impalas",
+								 	 signalText2 = "")
 {
-	difference()
-	{
-			lightSignal_shell(baseHeight,
-									showOriginal = false);
+		difference()
+		{
+				lightSignal_shell(baseHeight, showOriginal = false);
 
-			lightSignal_cutouts(signalText1);
-	}
+				lightSignal_cutouts(icon1,
+														signalText1,
+														signalText2);
+		}
 }
 
 /** Support functions and moduules follow. **/
 
-module lightSignal_cutouts(signalText1)
+module lightSignal_cutouts(icon1,
+													 signalText1,
+												 	 signalText2)
 {
-	font = "Bauhaus 93:style=Regular";
-	fontSize = 7.5;
-	xTranslate = -18;
-	translate([xTranslate, -3, -3])
-	linear_extrude(height = 6)
-	text(signalText1, font = font, size = fontSize);
+		font = "Bauhaus 93:style=Regular";
+		fontSize = 7.5;
+		xTranslate = -18;
+		translate([xTranslate, -3, -3])
+		linear_extrude(height = 6)
+		text(signalText1, font = font, size = fontSize);
+
+		lightSignal_iconCutouts(icon1);
+}
+
+module lightSignal_iconCutouts(icon1)
+{
+		if(icon1 != "none")
+		{
+				translate([0, 0, -1.01])
+				if(icon1 == "heart")
+				{
+						echo("hi incons cutous");
+
+						scale([1, 1, 3])
+						heartThumbnail();
+				}
+		}
 }
 
 module lightSignal_shell(baseHeight,
