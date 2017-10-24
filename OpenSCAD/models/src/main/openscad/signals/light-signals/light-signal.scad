@@ -5,7 +5,8 @@ use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
-				   icon1 = "none",
+				   icon1 = "",
+				   icon1_scale = 1,
                    signalText1 = "",
 				   stringText1_x,
 	   			   stringText1_y,
@@ -18,6 +19,7 @@ module lightSignal(baseHeight = 2,
 		lightSignal_shell(baseHeight, showOriginal = false);
 
 		lightSignal_cutouts(icon1,
+			icon1_scale,
 							signalText1,
 							stringText1_x,
 							stringText1_y,
@@ -28,6 +30,7 @@ module lightSignal(baseHeight = 2,
 /** Support functions and moduules follow. **/
 
 module lightSignal_cutouts(icon1,
+							icon1_scale,
 						   signalText1,
 						   stringText1_x,
 						   stringText1_y,
@@ -42,22 +45,27 @@ module lightSignal_cutouts(icon1,
 								stringText2_x,
 	 						   	stringText2_y);
 
-		lightSignal_iconCutouts(icon1);
+		lightSignal_iconCutouts(icon1, icon1_scale);
 }
 
-module lightSignal_iconCutouts(icon1)
+module lightSignal_iconCutouts(icon1, icon1_scale)
 {
-	if(icon1 != "none")
+	if(icon1 == "")
 	{
+		// do nothing
+	}
+	else
+	{
+		zScale = 3;
 		translate([0, 0, -1.01])
 		if(icon1 == "heart")
 		{
-			scale([1, 1, 3])
+			scale([icon1_scale, icon1_scale, zScale])
 			heartThumbnail();
 		}
 		else if(icon1 == "bat")
 		{
-			scale([1, 1, 3])
+			scale([icon1_scale, icon1_scale, zScale])
 			batmanLogoThumbnail();
 		}
 	}
