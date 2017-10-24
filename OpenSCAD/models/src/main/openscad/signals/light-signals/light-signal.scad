@@ -1,10 +1,14 @@
 
+use <../../external-resources/batman/batman.scad>
+
 use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
 				   icon1 = "none",
-                   signalText1 = "Impalas",
+                   signalText1 = "",
+				   stringText1_x,
+	   			   stringText1_y,
 			 	   signalText2 = "",
 				   stringText2_x,
 				   stringText2_y)
@@ -15,6 +19,8 @@ module lightSignal(baseHeight = 2,
 
 		lightSignal_cutouts(icon1,
 							signalText1,
+							stringText1_x,
+							stringText1_y,
 							signalText2, stringText2_x, stringText2_y);
 	}
 }
@@ -23,11 +29,15 @@ module lightSignal(baseHeight = 2,
 
 module lightSignal_cutouts(icon1,
 						   signalText1,
+						   stringText1_x,
+						   stringText1_y,
 					 	   signalText2,
 					   	   stringText2_x,
 						   stringText2_y)
 {
 		lightSignal_textCutouts(signalText1,
+								stringText1_x,
+								stringText1_y,
 								signalText2,
 								stringText2_x,
 	 						   	stringText2_y);
@@ -37,15 +47,20 @@ module lightSignal_cutouts(icon1,
 
 module lightSignal_iconCutouts(icon1)
 {
-		if(icon1 != "none")
+	if(icon1 != "none")
+	{
+		translate([0, 0, -1.01])
+		if(icon1 == "heart")
 		{
-				translate([0, 0, -1.01])
-				if(icon1 == "heart")
-				{
-						scale([1, 1, 3])
-						heartThumbnail();
-				}
+			scale([1, 1, 3])
+			heartThumbnail();
 		}
+		else if(icon1 == "bat")
+		{
+			scale([1, 1, 3])
+			batmanLogoThumbnail();
+		}
+	}
 }
 
 module lightSignal_shell(baseHeight,
@@ -89,30 +104,39 @@ module lightSignal_shell(baseHeight,
 	}
 }
 
-module lightSignal_textCutouts(signalText1,
-							   signalText2 = "", stringText2_x, stringText2_y)
+//TODO: Move this module to the correct alphabetical location.
+module lightSignal_oneTextCutout(text, x, y)
 {
-	extrudeHeight = 6;
-	zTranslate = -3;
-	font = "Bauhaus 93:style=Regular";
-	fontSize = 7.5;
-	xTranslate = -18;
-	translate([xTranslate, -3, zTranslate])
-	linear_extrude(height = extrudeHeight)
-	text(signalText1, font = font, size = fontSize);
-
-	if(signalText2 == "")
+	if(text == "")
 	{
 		// do nothing
 	}
 	else
 	{
-echo("hi incons cutous");
+/*echo("hi incons cutous");
 echo(stringText2_x, stringText2_y);
-echo("hi incons cutous");
+echo("hi incons cutous");*/
 
-		translate([stringText2_x, stringText2_y, zTranslate])
+		extrudeHeight = 6;
+		zTranslate = -3;
+		font = "Bauhaus 93:style=Regular";
+		fontSize = 7.5;
+
+		translate([x, y, zTranslate])
 		linear_extrude(height = extrudeHeight)
-		text(signalText2, font = font, size = fontSize);
+		text(text, font = font, size = fontSize);
 	}
+}
+
+module lightSignal_textCutouts(signalText1,
+								stringText1_x,
+								stringText1_y,
+//TODO: Remove this initialization.
+							    signalText2 = "",
+							    stringText2_x,
+							    stringText2_y)
+{
+	lightSignal_oneTextCutout(signalText1, stringText1_x, stringText1_y);
+
+	lightSignal_oneTextCutout(signalText2, stringText2_x, stringText2_y);
 }
