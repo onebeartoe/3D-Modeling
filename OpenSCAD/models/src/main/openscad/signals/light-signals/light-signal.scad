@@ -39,6 +39,11 @@ module lightSignal(baseHeight = 2,
 
 /** Support functions and moduules follow. **/
 
+// DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
+function lightSignal_stlBaseInnerRadius() = 18.5;
+
+function lightSignal_stlBaseOuterRadius() = lightSignal_stlBaseInnerRadius() + 2.5;
+
 module lightSignal_cutouts(icon1,
 							icon1_scale,
 							icon1_x,
@@ -110,12 +115,12 @@ module lightSignal_oneTextCutout(text, fontSize, x, y)
 }
 
 module lightSignal_shell(baseHeight,
-									 showOriginal = false)
+						 showOriginal = false)
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
-	// DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
-	stlBaseInnerRadius = 18.5;
-	stlBaseOuterRadius = stlBaseInnerRadius + 2.5;
+
+	stlBaseInnerRadius = lightSignal_stlBaseInnerRadius();
+	stlBaseOuterRadius = lightSignal_stlBaseOuterRadius();
 
 	union()
 	{
