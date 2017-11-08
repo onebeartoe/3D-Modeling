@@ -1,4 +1,6 @@
 
+use <../light-signal.scad>
+
 module lightSignalStand()
 {
 	union()
@@ -11,5 +13,17 @@ module lightSignalStand()
 
 module lightSignalStand_base()
 {
-	cylinder(r=10, h=5, center=true);
+	union()
+	{
+		radius = lightSignal_stlBaseOuterRadius() + 5;
+		cylinder(r=radius, h=5, center=true);
+
+		yTranslate = radius - 5;
+		translate([0, yTranslate, 0])
+		cube([5, 5, 75]);
+
+		yTranslate2 = -yTranslate - 5;
+		translate([0, yTranslate2, 0])
+		cube([5, 5, 75]);
+	}
 }
