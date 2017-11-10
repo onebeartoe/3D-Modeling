@@ -13,7 +13,7 @@ module nejeLaserEngraverDiskJig()
 
 	xLength = nejeDk8KzBed_xLength() + xyIncrease;
 	yLength = nejeDk8KzBed_yLength() + xyIncrease;
-	zLength = nejeDk8KzBed_zLength() * 2;
+	zLength = nejeLaserEngraverDiskJig_zLength();
 
 	difference()
 	{
@@ -26,6 +26,8 @@ module nejeLaserEngraverDiskJig()
 
 /** Support functions and modules follow. **/
 
+function nejeLaserEngraverDiskJig_zLength() = nejeDk8KzBed_zLength() * 2;
+
 module nejeLaserEngraverDiskJig_block(bed_xLength, bed_yLength, bed_zLength,
 				 					  xLength, yLength, zLength)
 {
@@ -35,9 +37,9 @@ module nejeLaserEngraverDiskJig_block(bed_xLength, bed_yLength, bed_zLength,
 
 module nejeLaserEngraverDiskJig_cutout(xLength, yLength, zLength)
 {
-	radius = 38 / 2.0;
+	radius = 40 / 2.0;
 	xTranslate = xLength / 2.0;
 	yTranslate = yLength / 2.0;
 	translate([xTranslate, yTranslate, -0.01])
-	cylinder(r=radius, h=7);//, center=true);
+	cylinder(r=radius, h=10);
 }

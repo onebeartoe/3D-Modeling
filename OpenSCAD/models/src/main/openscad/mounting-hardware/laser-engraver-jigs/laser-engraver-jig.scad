@@ -18,9 +18,9 @@ module laserEngraverJig_base(bed_xLength, bed_yLength, bed_zLength,
 
 		// bed cutout
 		xTranslate = (xLength - bed_xLength) / 2.0;
-		zTranslate = (zLength - bed_zLength) / 2.0;
-		color("blue")
-		translate([xTranslate, zTranslate, 0])
-		cube([bed_xLength, bed_yLength, bed_zLength]);
+		yTranslate = (yLength - bed_yLength) / 2.0;
+		color("green")
+		translate([xTranslate, yTranslate, -0.01])
+		cube([bed_xLength, bed_yLength, bed_zLength + 0.01]);
 	}
 }
