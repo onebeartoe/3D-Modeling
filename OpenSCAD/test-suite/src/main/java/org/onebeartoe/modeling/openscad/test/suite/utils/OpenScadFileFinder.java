@@ -1,8 +1,10 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
@@ -10,6 +12,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiPredicate;
 import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
 
 /**
@@ -29,9 +32,9 @@ import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
  */
 public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 {
-    private List<Path> openscadPaths;
+//    private List<Path> openscadPaths;
 
-    private Path inpath;
+//    private Path inpath;
 
     private final PathMatcher matcher;
 
@@ -47,47 +50,60 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         System.out.println("Locating files under: " + inpath);
         System.out.println();
 	
-        openscadPaths = new ArrayList<>();
+        List<Path> openscadPaths = new ArrayList<>();
 
-        this.inpath = inpath;
+        Files.walkFileTree(inpath, new FileVisitor<Path>() 
+        {
+            @Override
+            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException 
+            {
+                return FileVisitResult.CONTINUE;
+            }
 
-        Files.walkFileTree(inpath, this);
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException 
+            {
+                if (attrs.isSymbolicLink())
+                {
+                    System.out.format("Symbolic link: %s ", file);
+                }
+                else if (attrs.isRegularFile())
+                {
+                    Path name = file.getFileName();
+                    if (name != null && matcher.matches(name))
+                    {
+                        openscadPaths.add(file);
+                    }
+                }
+                else
+                {
+                    System.out.format("Other: %s ", file);
+                }
+
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                return FileVisitResult.CONTINUE;
+            }
+
+            @Override
+            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException 
+            {
+                return FileVisitResult.CONTINUE;
+            }
+        } );
 
         return openscadPaths;
     }
 
-//todo: what if this method is called twice but with different paths!!!????    
     public List<Path> getFiles(Path inpath) throws Exception
     {
-        if (openscadPaths == null)
-        {
-//todo: what if this method is called twice but with different paths!!!????
+        List<Path> openscadPaths = 
+
             find(inpath);
-        }
 
         return openscadPaths;
-    }
-
-    @Override
-    public FileVisitResult visitFile(Path file, BasicFileAttributes attr)
-    {
-        if (attr.isSymbolicLink())
-        {
-            System.out.format("Symbolic link: %s ", file);
-        }
-        else if (attr.isRegularFile())
-        {
-            Path name = file.getFileName();
-            if (name != null && matcher.matches(name))
-            {
-                openscadPaths.add(file);
-            }
-        }
-        else
-        {
-            System.out.format("Other: %s ", file);
-        }
-
-        return FileVisitResult.CONTINUE;
     }
 }
