@@ -65,7 +65,7 @@ public class DataSetValidator
     
     private List<String> missingBaselineFiles(List<String> expectedBaselineFiles)
     {
-        List<String> missingFiles = expectedBaselineFiles.stream()
+        List<String> missingFiles = expectedBaselineFiles.parallelStream()
             .filter( ebf ->
             {
                 File f = new File(ebf);
