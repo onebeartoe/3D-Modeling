@@ -1,18 +1,15 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
-import java.io.IOException;
 import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.PathMatcher;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
 
 /**
@@ -32,11 +29,7 @@ import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
  */
 public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 {
-//    private List<Path> openscadPaths;
-
-//    private Path inpath;
-
-    private final PathMatcher matcher;
+    private PathMatcher matcher = null;
 
     public OpenScadFileFinder()
     {
@@ -50,52 +43,48 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         System.out.println("Locating files under: " + inpath);
         System.out.println();
 	
-        List<Path> openscadPaths = new ArrayList<>();
+//        List<Path> openscadPaths = new ArrayList<>();
 
-        Files.walkFileTree(inpath, new FileVisitor<Path>() 
+        int maxDepth = Integer.MAX_VALUE;
+        
+        BiPredicate<Path, BasicFileAttributes> matcherLambda = (p, bfa) ->
         {
-            @Override
-            public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException 
+            boolean matched = false;
+            
+            Path name = p.getFileName();
+
+//            System.out.println("trying to match: " + name);
+            
+            if (bfa.isSymbolicLink())
             {
-                return FileVisitResult.CONTINUE;
+                System.out.format("Symbolic link: %s ", p);
             }
-
-            @Override
-            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException 
+            else if (bfa.isRegularFile())
             {
-                if (attrs.isSymbolicLink())
+//                System.out.println("regular file: " + name);
+                
+                if( name != null && matcher.matches(name) )
                 {
-                    System.out.format("Symbolic link: %s ", file);
+                    System.out.println("match: " + name);
+                    matched = true;
                 }
-                else if (attrs.isRegularFile())
-                {
-                    Path name = file.getFileName();
-                    if (name != null && matcher.matches(name))
-                    {
-                        openscadPaths.add(file);
-                    }
-                }
-                else
-                {
-                    System.out.format("Other: %s ", file);
-                }
-
-                return FileVisitResult.CONTINUE;
             }
-
-            @Override
-            public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-                return FileVisitResult.CONTINUE;
-            }
-
-            @Override
-            public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException 
+            else if(bfa.isDirectory())
             {
-                return FileVisitResult.CONTINUE;
+                // ignore
             }
-        } );
+            else
+            {
+                System.out.format("Other: %s ", p);
+            }
 
-        return openscadPaths;
+            return matched;
+        };
+        
+        List<Path> find = Files.find(inpath, maxDepth, matcherLambda)
+                .collect(Collectors.toList());
+
+        return find;
     }
 
     public List<Path> getFiles(Path inpath) throws Exception

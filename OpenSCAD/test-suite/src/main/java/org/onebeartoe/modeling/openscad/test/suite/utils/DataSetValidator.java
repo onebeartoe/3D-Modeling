@@ -65,17 +65,18 @@ public class DataSetValidator
     
     private List<String> missingBaselineFiles(List<String> expectedBaselineFiles)
     {
-        List<String> missingFiles = expectedBaselineFiles.parallelStream()
-            .filter( ebf ->
+        List<String> missingFiles = new ArrayList();
+        
+        for(String ebf : expectedBaselineFiles)
+        
+        {
+            File f = new File(ebf);
+
+            if( !f.exists() )
             {
-                File f = new File(ebf);
-
-                boolean accepted = !f.exists();
-
-                return accepted;
-            })
-            .sorted()
-            .collect(Collectors.toList());
+                missingFiles.add(ebf);
+            }
+        }
         
         if(missingFiles.size() > 0)
         {
@@ -120,10 +121,11 @@ public class DataSetValidator
     	oscadFiles.parallelStream().forEach((Path path) -> 
         {
             List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
-            list.parallelStream()
+            list
                 .forEach( direction ->
             {
-                expectedBaselineFiles.addAll( validateBody(path, direction) );
+                List<String> validated = validateBody(path, direction);
+                expectedBaselineFiles.addAll( validated );
             });
         });
 
