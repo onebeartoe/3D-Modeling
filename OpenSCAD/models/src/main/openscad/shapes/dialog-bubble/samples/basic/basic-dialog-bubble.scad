@@ -1,4 +1,4 @@
 
 use <../../dialog-bubble.scad>
 
-dialogBubble();
+dialogBubble(yLength = 15);

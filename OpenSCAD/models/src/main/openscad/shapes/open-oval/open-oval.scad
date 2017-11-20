@@ -1,18 +1,19 @@
 
-//use <libraries/MCAD/shapes.scad>
-use </usr/share/openscad/libraries/MCAD/shapes.scad>
+use <MCAD/shapes.scad>
+//use </usr/share/openscad/libraries/MCAD/shapes.scad>
+//use </Applications/OpenSCAD.app/Contents/Resources/libraries/MCAD/shapes.scad>
 
-module openOval()
+module openOval(yLength = 10)
 {
-	openOval2d();
+	openOval2d(height = yLength);
 }
 
 /** Support functions and modules follow.  **/
 
-module openOval2d(width = 20,
-				  height = 10,
+module openOval2d(borderThickness = 3,
 				  depth = 5,
-				  borderThickness = 3)
+				  height = 10,
+				  width = 20)
 {
 	difference()
 	{
