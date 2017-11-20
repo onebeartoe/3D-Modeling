@@ -67,18 +67,7 @@ public class OpenScadTestSuite
         
         return options;
     }
-    
-//    private static String durationMessage(Instant start, Instant end)
-//    {
-//        ChronoUnit units = ChronoUnit.SECONDS;
-//        long duration = units.between(start,end);
-//        long minutes = duration / 60;
-//        long seconds = duration % 60;
-//        String message = "The test suite ran " + minutes + " minutes " + seconds + " seconds.";                
-//                
-//        return message;
-//    }
-    
+
     public static void main(String[] args) throws Throwable
     {
         Options options = buildOptions();
