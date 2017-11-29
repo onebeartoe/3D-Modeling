@@ -25,5 +25,4 @@ public class DialogBubbleTest extends JavaScadTest
     {
         return "dialog-bubble.scad";
     }
-    
 }
