@@ -1,11 +1,14 @@
 
-package org.onebeartoe.modeling.javascad.shapes.open.oval;
+package org.onebeartoe.modeling.javascad.basics;
 
 import eu.printingin3d.javascad.coords.Coords3d;
 import eu.printingin3d.javascad.coords.Dims3d;
+import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cube;
+import eu.printingin3d.javascad.models.Extendable3dModel;
 import eu.printingin3d.javascad.models.IModel;
 import eu.printingin3d.javascad.tranzitions.Difference;
+import org.onebeartoe.modeling.javascad.JavaScadTest;
 
 /**
  *
@@ -13,24 +16,23 @@ import eu.printingin3d.javascad.tranzitions.Difference;
  */
 public class DifferenceTest extends JavaScadTest
 {
-    public IModel getModel()
+    @Override
+    public 
+            Abstract3dModel
+            //Extendable3dModel 
+        getModel()
     {
         Dims3d blockDims = new Dims3d(4,4,4);
         
-        Dims3d cutoutDims = new Dims3d(5,5,5)
-            ;
+        Dims3d cutoutDims = new Dims3d(5,5,5);
+        Abstract3dModel cutoutCube = new Cube(cutoutDims)
+                                .move( Coords3d.zOnly(-1) );
+        
         
         Difference base = new Difference(
                                         new Cube(blockDims),
-                
-                                        new Cube(
-                                                cutoutDims
-                                                )
-                .move(Coords3d.zOnly(-1) )
-				);
-        
-//        base.
-        
+
+                                        cutoutCube);
         
         return base;
     }

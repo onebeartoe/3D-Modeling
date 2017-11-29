@@ -1,8 +1,9 @@
 
-package org.onebeartoe.modeling.javascad.shapes.open.oval;
+package org.onebeartoe.modeling.javascad.basics;
 
+import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cube;
-import eu.printingin3d.javascad.models.IModel;
+import org.onebeartoe.modeling.javascad.JavaScadTest;
 
 /**
  * @author Roberto Marquez - https://github.com/onebeartoe
@@ -10,9 +11,9 @@ import eu.printingin3d.javascad.models.IModel;
 public class CubeTest extends JavaScadTest
 {
     @Override
-    protected IModel getModel()
+    protected Abstract3dModel getModel()
     {
-        IModel model = new Cube(50);
+        Abstract3dModel model = new Cube(50);
         
         return model;
     }

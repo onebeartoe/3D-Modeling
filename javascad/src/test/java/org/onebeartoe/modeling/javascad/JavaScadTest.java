@@ -1,6 +1,8 @@
 
-package org.onebeartoe.modeling.javascad.shapes.open.oval;
+package org.onebeartoe.modeling.javascad;
 
+import eu.printingin3d.javascad.models.Abstract3dModel;
+import eu.printingin3d.javascad.models.Extendable3dModel;
 import eu.printingin3d.javascad.models.IModel;
 import eu.printingin3d.javascad.utils.SaveScadFiles;
 import java.io.File;
@@ -14,12 +16,17 @@ public abstract class JavaScadTest
 {
     protected String outputPath = "target/outscad/";
     
-    abstract protected IModel getModel();
+    abstract protected 
+Abstract3dModel                                                    
+//                        Extendable3dModel
+//                        IModel 
+                                            getModel();
     
     abstract protected String getOutfileName();
 
-    protected void saveScadFile(File outDir, String outfileName, IModel model) throws IOException
+    protected void saveScadFile(String outfileName, IModel model) throws IOException
     {
+        File outDir = new File(outputPath);
         SaveScadFiles ssf = new SaveScadFiles(outDir);
         ssf.addModel(outfileName, model);
         ssf.saveScadFiles();
@@ -28,12 +35,13 @@ public abstract class JavaScadTest
     @Test()
     public void test() throws IOException
     {        
-        IModel model = getModel();
-
-        File outDir = new File(outputPath);
+//        IModel 
+//        Extendable3dModel
+                Abstract3dModel
+                model = getModel();
         
         String outfileName = getOutfileName();
                 
-        saveScadFile(outDir, outfileName, model);
+        saveScadFile(outfileName, model);
     }    
 }
