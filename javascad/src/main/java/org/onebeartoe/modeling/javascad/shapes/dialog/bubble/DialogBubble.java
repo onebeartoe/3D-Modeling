@@ -1,10 +1,11 @@
 
 package org.onebeartoe.modeling.javascad.shapes.dialog.bubble;
 
-import eu.printingin3d.javascad.coords.Angles3d;
 import eu.printingin3d.javascad.coords.Coords3d;
+import eu.printingin3d.javascad.models.Complex3dModel;
 import eu.printingin3d.javascad.models.Extendable3dModel;
 import eu.printingin3d.javascad.tranzitions.Difference;
+import eu.printingin3d.javascad.tranzitions.Translate;
 import eu.printingin3d.javascad.tranzitions.Union;
 import org.onebeartoe.modeling.javascad.shapes.triangle.Triangle;
 import org.onebeartoe.modeling.javascad.shapes.open.oval.OpenOval;
@@ -16,7 +17,8 @@ public class DialogBubble extends Extendable3dModel
 {
     public DialogBubble(double zLength)
     {        
-        Union
+        Complex3dModel
+//        Union
 //        Extendable3dModel
                 block = block(zLength);
         
@@ -29,7 +31,7 @@ public class DialogBubble extends Extendable3dModel
         baseModel = difference;
     }
     
-    private Union
+    private Complex3dModel
 //                 Extendable3dModel
          block(double zLength)
     {
@@ -37,12 +39,14 @@ public class DialogBubble extends Extendable3dModel
         
         double sideLength = 3;
         Triangle pointer = new Triangle(zLength, sideLength);
-        pointer.rotate(Angles3d.zOnly(45));
-        pointer.move( new Coords3d(0, -3, 0) );
         
-        Union block = new Union(bubble, pointer);
+//        pointer.rotate(Angles3d.zOnly(45));
+        Coords3d translateCoords = new Coords3d(0, -3, 0);
+        Translate translate = new Translate(pointer, translateCoords);
         
+        Union block = new Union(bubble, translate);
         
+//        block.
         
         return block;
     }

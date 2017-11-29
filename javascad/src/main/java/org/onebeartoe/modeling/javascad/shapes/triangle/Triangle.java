@@ -9,6 +9,11 @@ import eu.printingin3d.javascad.models.Extendable3dModel;
  */
 public class Triangle extends Extendable3dModel
 {
+    public Triangle()
+    {
+        this(1,1);
+    }
+    
     /**
      * OpenSCAD equivalent:
      * 
