@@ -2,7 +2,6 @@
 package org.onebeartoe.modeling.javascad;
 
 import eu.printingin3d.javascad.models.Abstract3dModel;
-import eu.printingin3d.javascad.models.Extendable3dModel;
 import eu.printingin3d.javascad.models.IModel;
 import eu.printingin3d.javascad.utils.SaveScadFiles;
 import java.io.File;
@@ -15,7 +14,7 @@ import org.testng.annotations.Test;
 public abstract class JavaScadTest 
 {
     protected String outputPath = "target/outscad/";
-    
+
     abstract protected 
 Abstract3dModel                                                    
 //                        Extendable3dModel

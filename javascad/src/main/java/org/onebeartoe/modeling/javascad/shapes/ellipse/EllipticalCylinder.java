@@ -19,14 +19,15 @@ public class EllipticalCylinder extends Extendable3dModel
      * 
         module ellipticalCylinder(w,h, height, center = false) 
         {
-            scale([1, h/w, 1]) cylinder(h=height, r=w, center=center);
+            scale([1, h/w, 1]) 
+            cylinder(h=height, r=w, center=center);
         }
     */
-    public EllipticalCylinder(int zLength)
+    public EllipticalCylinder(int w, int h, double zLength)
     {
-        Cylinder c = new Cylinder(zLength, Radius.fromRadius(5));
+        Cylinder c = new Cylinder(zLength, Radius.fromRadius(w));
         
-        Coords3d scaleValues = new Coords3d(1, 2, 1);        
+        Coords3d scaleValues = new Coords3d(1, h/w, 1);
         Scale scale = new Scale(c, scaleValues);
         
         baseModel = scale;

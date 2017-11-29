@@ -13,7 +13,9 @@ public class EllipticalCylinderTest extends JavaScadTest
     protected Extendable3dModel getModel()
     {
         int zLength = 2;
-        EllipticalCylinder ec = new EllipticalCylinder(zLength);
+        int w = 3;
+        int h = 7;
+        EllipticalCylinder ec = new EllipticalCylinder(w,h, zLength);
         
         return ec;
     }

@@ -18,4 +18,4 @@ cylinder(h=20, r1=20, r2=20, $fn=30);
 
 color("red")
 translate([170, 0, 0])        
-cylinder(r=20, h = 60, $fn=20);
+cylinder(r=20, h = 60, $fn=3);
