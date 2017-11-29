@@ -22,4 +22,18 @@ public class OpenOvalTest extends JavaScadTest
                 
         saveScadFile(outDir, outfileName, model);
     }
+
+    @Override
+    protected IModel getModel()
+    {
+        IModel model = new Cube(50);
+        
+        return model;
+    }
+
+    @Override
+    protected String getOutfileName()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

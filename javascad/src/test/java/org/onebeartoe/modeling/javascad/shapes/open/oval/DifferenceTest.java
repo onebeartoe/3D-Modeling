@@ -6,9 +6,6 @@ import eu.printingin3d.javascad.coords.Dims3d;
 import eu.printingin3d.javascad.models.Cube;
 import eu.printingin3d.javascad.models.IModel;
 import eu.printingin3d.javascad.tranzitions.Difference;
-import java.io.File;
-import java.io.IOException;
-import org.testng.annotations.Test;
 
 /**
  *
@@ -37,15 +34,10 @@ public class DifferenceTest extends JavaScadTest
         
         return base;
     }
-    
-    @Test()
-    public void test() throws IOException
-    {        
-        IModel model = getModel();
 
-        File outDir = new File(outputPath);
-        String outfileName = "difference.scad";
-                
-        saveScadFile(outDir, outfileName, model);
-    }    
+    @Override
+    protected String getOutfileName()
+    {
+        return "difference.scad";
+    }
 }
