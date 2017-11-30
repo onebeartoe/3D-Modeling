@@ -118,8 +118,11 @@ public class DataSetValidator
     {
         final List<String> expectedBaselineFiles = new ArrayList();
 
-    	oscadFiles.parallelStream().forEach((Path path) -> 
+    	oscadFiles
+                //.parallelStream()
+                .forEach((Path path) -> 
         {
+//            System.out.println("parallel");
             List<OpenScadCameraDirections> list = Arrays.asList( OpenScadCameraDirections.values() );
             list
                 .forEach( direction ->
@@ -128,6 +131,8 @@ public class DataSetValidator
                 expectedBaselineFiles.addAll( validated );
             });
         });
+        
+        
 
         List<String> missingBaselineFiles = missingBaselineFiles(expectedBaselineFiles);       
        

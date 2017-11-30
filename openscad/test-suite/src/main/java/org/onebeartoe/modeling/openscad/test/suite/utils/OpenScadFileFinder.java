@@ -65,7 +65,7 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
                 
                 if( name != null && matcher.matches(name) )
                 {
-                    System.out.println("match: " + name);
+//                    System.out.println("match: " + name);
                     matched = true;
                 }
             }

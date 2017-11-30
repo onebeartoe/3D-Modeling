@@ -21,7 +21,6 @@ public class DialogBubbleTest extends JavaScadTest
         Colorize c = new Colorize(Color.blue, dialogBubble);
         
         return c;
-//        return dialogBubble;
     }
 
     @Override
