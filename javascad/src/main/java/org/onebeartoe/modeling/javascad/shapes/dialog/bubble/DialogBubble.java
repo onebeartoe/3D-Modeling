@@ -45,8 +45,7 @@ public class DialogBubble extends Extendable3dModel
         Coords3d translateCoords = new Coords3d(-1.8, 0.3, -0.01);
         
         Abstract3dModel pointer = pointer(height+0.03, pointerRotate)
-                                    .move(translateCoords)
-        ;
+                                    .move(translateCoords);
         
         return pointer;
     }
