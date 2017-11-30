@@ -4,13 +4,10 @@ package org.onebeartoe.modeling.javascad;
 import eu.printingin3d.javascad.context.IColorGenerationContext;
 import eu.printingin3d.javascad.models.IModel;
 import eu.printingin3d.javascad.models.SCAD;
-import eu.printingin3d.javascad.utils.IScadFile;
-import eu.printingin3d.javascad.utils.ModelToFile;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.List;
 
 /**
  * @author Roberto Marquez
@@ -38,8 +35,7 @@ public class SaveScadFileService
     
     private void saveToFile(File file, OpenScadFile scadFile) throws IOException
     {
-        Writer writer = new FileWriter(file);
-        try 
+        try (Writer writer = new FileWriter(file)) 
         {
             // write out any 'use' statements for this OpenSCAD file
             for(String u : scadFile.useStatements)
@@ -57,10 +53,6 @@ public class SaveScadFileService
                 
                 writer.append(s);
             }
-        }
-        finally 
-        {
-            writer.close();
         }        
     }
 }
