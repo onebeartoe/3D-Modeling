@@ -1,0 +1,14 @@
+
+This application is a test suite for OpenSCAD projects.  It provides a way to create baseline images of rendered .scad files.  When the test suite is run, it creates proposed baseline images of the rendered .scad files.  Then it compares the baseline images to the proposed baseline images and reports any differences.
+
+Usage specifying a path to test: 
+
+    java -jar test-suite.jar path/to/test/
+
+To skip the generation of the proposed baseline images and only perform the diff on existing files use:
+
+    java -jar test-suite.jar --diffOnly
+
+To create the baseline images in the first place, specify '--generateBaselines' as the first argument and then the starting path to generate baseline images.  The current directory is used if the path argument is omitted:
+
+    java -jar test-suite.jar --generateBaselines path/to/test/

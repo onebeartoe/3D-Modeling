@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="onebeartoe OpenSCAD Test Suite" parallel="none">
+    <test name="openscad model verification">
+        <groups>
+            <run>
+                <include name="validators" />                
+                <include name="openscad-test-suite" />
+<!--
+                <include name="brute-force-openscad-test-suite" />
+-->                                
+                <exclude name="regression"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest"/>
+            <class name="org.onebeartoe.modeling.openscad.test.suite.DataSetValidatorTests"/>
+            <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>                        
+<!--
+            <class name="org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuiteTest"/>
+-->            
+        </classes>  
+    </test>        
+</suite>
