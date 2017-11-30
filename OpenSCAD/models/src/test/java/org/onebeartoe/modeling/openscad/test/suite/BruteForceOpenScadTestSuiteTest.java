@@ -1,7 +1,6 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
