@@ -19,7 +19,7 @@
     <name>onebeartoe-modeling-parent</name>
 
     <modules>
-            <module>OpenSCAD</module>
+            <module>openscad</module>
         <module>javascad</module>
     </modules>    
 
