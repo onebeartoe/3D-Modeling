@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -29,8 +30,13 @@ public class OpenScadTestSuiteTest
     
     public OpenScadTestSuiteTest() throws Exception
     {
+        File pwd = new File(".");
+        
+        
         logger = Logger.getLogger( getClass().getName() );
      
+        System.out.println("pwd: " + pwd.getAbsolutePath() );
+        
         String key = "OPENSCAD_SUBPATH";
         String openScadSubpath = System.getProperty(key, "");
         System.out.println("the " + key + " is: " + openScadSubpath);
@@ -47,7 +53,7 @@ public class OpenScadTestSuiteTest
 //TODO: use the nightly version, since it is the latest version?
 //        runProfile.executablePath = "openscad-nightly";
 
-        runProfile.path = "src/main/openscad/" + openScadSubpath;
+        runProfile.path = getRootTargetPath() + openScadSubpath;
         
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
@@ -169,6 +175,11 @@ public class OpenScadTestSuiteTest
         }
         
         return data;
+    }
+    
+    protected String getRootTargetPath()
+    {
+        return "src/main/openscad/";
     }
     
     private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
