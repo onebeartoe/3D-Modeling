@@ -5,6 +5,7 @@
 **/*.project
 **/*.classpath
 **/.settings/
+**/nbactions.xml
 **/nbactions-release-profile.xml
 
 /openscad/inline-tool/target/
