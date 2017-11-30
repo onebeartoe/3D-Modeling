@@ -20,7 +20,9 @@ public abstract class JavaScadTest
 
     protected void saveScadFile(String outfileName, IModel model, int deleteme) throws IOException
     {
-        File outDir = new File(outputPath);
+        String packageName = getClass().getPackage().getName().replace(".", "/");
+        String path = outputPath + "/" + packageName;
+        File outDir = new File(path);
   
         File outfile = new File(outDir, outfileName);
         
