@@ -4,6 +4,7 @@ package org.onebeartoe.modeling.javascad.shapes.triangle;
 
 import eu.printingin3d.javascad.models.Abstract3dModel;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
+import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
  *
@@ -13,11 +14,14 @@ public class TriangleTest extends JavaScadTest
 {
 
     @Override
-    protected Abstract3dModel getModel()
+    protected OpenScadFile getModelFile()
     {
         Abstract3dModel triangle = new Triangle(3, 5);
         
-        return triangle;
+        OpenScadFile osf = new OpenScadFile();
+        osf.addModel(triangle);
+        
+        return osf;
     }
 
     @Override

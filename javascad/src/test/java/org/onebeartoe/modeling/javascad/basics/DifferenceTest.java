@@ -7,6 +7,7 @@ import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cube;
 import eu.printingin3d.javascad.tranzitions.Difference;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
+import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
  *
@@ -15,7 +16,7 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
 public class DifferenceTest extends JavaScadTest
 {
     @Override
-    public Abstract3dModel getModel()
+    public OpenScadFile getModelFile()
     {
         Dims3d blockDims = new Dims3d(4,4,4);
         Cube block = new Cube(blockDims);
@@ -27,7 +28,12 @@ public class DifferenceTest extends JavaScadTest
         Difference base = new Difference(block,
                                          cutoutCube);
 
-        return base;
+        
+        
+        OpenScadFile osf = new OpenScadFile();
+        osf.addModel(base);
+        
+        return osf;
     }
 
     @Override

@@ -2,9 +2,9 @@
 package org.onebeartoe.modeling.javascad.basics;
 
 import eu.printingin3d.javascad.basic.Radius;
-import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cylinder;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
+import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
  * @author Roberto Marquez
@@ -12,13 +12,14 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
 public class CylinderTest extends JavaScadTest
 {
     @Override
-    protected Abstract3dModel getModel()
+    protected OpenScadFile getModelFile()
     {
         Cylinder c = new Cylinder(2, Radius.fromRadius(5));
         
-        Abstract3dModel model = c;
+        OpenScadFile osf = new OpenScadFile();
+        osf.addModel(c);
         
-        return model;
+        return osf;
     }
 
     @Override

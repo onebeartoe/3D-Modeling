@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
  * @author Roberto Marquez
@@ -38,9 +39,10 @@ public class SaveScadFileService
         try (Writer writer = new FileWriter(file)) 
         {
             // write out any 'use' statements for this OpenSCAD file
-            for(String u : scadFile.useStatements)
+            for(Use u : scadFile.useStatements)
             {
-                String line = "use <" + u + ">" + System.lineSeparator();
+                String line = u + System.lineSeparator();                
+//                String line = "use <" + u + ">" + System.lineSeparator();
                 
                 writer.append(line);
             }

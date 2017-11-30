@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
  *
@@ -17,20 +18,31 @@ import java.util.List;
  */
 public class OpenScadFile implements IScadFile
 {
-    public List<String> useStatements;
+//    public List<String> useStatements;
     
     protected List<IModel> models;
+    
+    public List<Use> useStatements;
     
     public OpenScadFile()
     {
         useStatements = new ArrayList();
         
         models = new ArrayList();
+        
+        useStatements = new ArrayList();
     }
 
-    public void addModel(IModel model)
+    public void addModel(
+//                           OpenScadFile
+                         IModel 
+                                 model)
     {
-        models.add(model);
+        // TODO: are there even ever more than model????
+//        for(IModel m : model.models)
+        {
+            models.add(model);
+        }
     }
     
     @Override

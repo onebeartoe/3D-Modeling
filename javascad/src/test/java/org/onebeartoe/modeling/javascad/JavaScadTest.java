@@ -34,7 +34,9 @@ public abstract class JavaScadTest
         return dashName;
     }
     
-    abstract protected Abstract3dModel getModel();
+    abstract protected OpenScadFile
+//                       Abstract3dModel
+                                       getModelFile();
     
     protected String getOutfileName()
     {
@@ -45,7 +47,10 @@ public abstract class JavaScadTest
         return name;
     }
 
-    protected void saveScadFile(String outfileName, IModel model, int deleteme) throws IOException
+    protected void saveScadFile(String outfileName, 
+                                                    OpenScadFile
+//                                                    IModel 
+                                                           model, int deleteme) throws IOException
     {
         String packageName = getClass().getPackage().getName().replace(".", "/");
         String path = outputPath + "/" + packageName;
@@ -53,17 +58,19 @@ public abstract class JavaScadTest
   
         File outfile = new File(outDir, outfileName);
         
-        OpenScadFile scadFile = new OpenScadFile();
-        scadFile.addModel(model);
+//        OpenScadFile scadFile = new OpenScadFile();
+//        scadFile.addModel(model);
         
         SaveScadFileService ssfs = new SaveScadFileService();
-        ssfs.saveModelAsScad(outfile, scadFile);
+        ssfs.saveModelAsScad(outfile, model);
     }
     
     @Test()
     public void test() throws IOException
-    {        
-        Abstract3dModel model = getModel();
+    {
+        OpenScadFile
+//        Abstract3dModel 
+                model = getModelFile();
         
         String outfileName = getOutfileName();
                 

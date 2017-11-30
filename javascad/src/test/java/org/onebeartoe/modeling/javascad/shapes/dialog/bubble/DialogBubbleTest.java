@@ -5,6 +5,7 @@ import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.tranzitions.Colorize;
 import java.awt.Color;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
+import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
  * @author Roberto Marquez
@@ -12,7 +13,7 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
 public class DialogBubbleTest extends JavaScadTest
 {
     @Override
-    protected Abstract3dModel getModel()
+    protected OpenScadFile getModelFile()
     {
         double zLength = 1;
         
@@ -20,7 +21,10 @@ public class DialogBubbleTest extends JavaScadTest
         
         Colorize c = new Colorize(Color.blue, dialogBubble);
         
-        return c;
+        OpenScadFile osf = new OpenScadFile();
+        osf.addModel(c);
+        
+        return osf;
     }
 
     @Override
