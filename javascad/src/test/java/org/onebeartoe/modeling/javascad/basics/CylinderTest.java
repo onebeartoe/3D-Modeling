@@ -4,8 +4,6 @@ package org.onebeartoe.modeling.javascad.basics;
 import eu.printingin3d.javascad.basic.Radius;
 import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cylinder;
-import eu.printingin3d.javascad.models.Extendable3dModel;
-import eu.printingin3d.javascad.models.IModel;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
 
 /**

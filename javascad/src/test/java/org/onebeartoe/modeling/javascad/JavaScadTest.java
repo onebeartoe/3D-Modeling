@@ -14,9 +14,36 @@ public abstract class JavaScadTest
 {
     protected String outputPath = "src/main/generated-openscad/";
 
+    public String classNameToDashFilename(String className)
+    {
+        StringBuilder s = new StringBuilder();
+        className.chars().forEach(i -> 
+        {
+            char ch = (char) i;                                        
+
+            if( Character.isUpperCase(ch) )
+            {
+                s.append("-");
+            }
+
+            s.append( Character.toLowerCase(ch) );
+        });
+
+        String dashName = s.toString().substring(1) + ".scad";
+        
+        return dashName;
+    }
+    
     abstract protected Abstract3dModel getModel();
     
-    abstract protected String getOutfileName();
+    protected String getOutfileName()
+    {
+        String name = getClass().getSimpleName();
+        
+        name = classNameToDashFilename(name);
+        
+        return name;
+    }
 
     protected void saveScadFile(String outfileName, IModel model, int deleteme) throws IOException
     {
