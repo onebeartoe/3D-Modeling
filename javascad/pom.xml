@@ -22,7 +22,15 @@
 		<artifactId>javascad</artifactId>
 		<version>0.9.1.0</version>
 	</dependency>        
-        
+
+        <dependency>
+            <groupId>org.onebeartoe.modeling</groupId>
+            <artifactId>opensacd-library</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>test-jar</type>
+            <scope>test</scope>            
+        </dependency>
+                        
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
