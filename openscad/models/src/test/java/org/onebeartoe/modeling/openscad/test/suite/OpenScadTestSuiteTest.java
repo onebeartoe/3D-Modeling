@@ -19,8 +19,11 @@ import org.testng.annotations.Test;
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public class OpenScadTestSuiteTest 
+public abstract class OpenScadTestSuiteTest 
 {
+    // this was added to make sure the test get picked up
+    public abstract void willItWork();
+    
     private Logger logger;
     
     private RunProfile runProfile;
@@ -223,7 +226,8 @@ public class OpenScadTestSuiteTest
         System.out.println();
     }
 
-    @Test(dataProvider="errorFiles")//, groups = {"openscad-test-suite"})
+    @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
+            //, groups = {"openscad-test-suite"})
     /**
      * Any parameter passed to this test represents a file that failed baseline to 
      * proposed baseline comparison; i.e. all executions of this test are 

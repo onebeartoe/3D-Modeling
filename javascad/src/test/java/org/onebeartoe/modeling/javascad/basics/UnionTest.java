@@ -12,7 +12,7 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
  *
  * @author Roberto Marquez - https://github.com/onebeartoe
  */
-public class DifferenceTest extends JavaScadTest
+public class UnionTest extends JavaScadTest
 {
     @Override
     public Abstract3dModel getModel()
@@ -33,6 +33,6 @@ public class DifferenceTest extends JavaScadTest
     @Override
     protected String getOutfileName()
     {
-        return "difference.scad";
+        return "union.scad";
     }
 }

@@ -7,7 +7,6 @@ import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteServic
 import org.testng.annotations.Test;
 
 /**
- *
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
 public class BruteForceOpenScadTestSuiteTest 

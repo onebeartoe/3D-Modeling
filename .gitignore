@@ -6,12 +6,13 @@
 **/*.classpath
 **/.settings/
 **/nbactions-release-profile.xml
-/OpenSCAD/inline-tool/target/
-/OpenSCAD/models/target
-/OpenSCAD/native-customizer/target/
-/OpenSCAD/inline-tool/target/
-/OpenSCAD/opensacd-services/target/
-/OpenSCAD/test-suite/target/
-/OpenSCAD/test-suite/.settings/
+
+/openscad/inline-tool/target/
+/openscad/models/target
+/openscad/native-customizer/target/
+/openscad/inline-tool/target/
+/openscad/opensacd-services/target/
+/openscad/test-suite/target/
+/openscad/test-suite/.settings/
 
 /javascad/target/
