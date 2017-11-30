@@ -16,6 +16,7 @@
         </groups>
 
         <classes>
+            <class name="org.onebeartoe.modeling.javascad.JavaScadTestSuite"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.CleanMeTest"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.DataSetValidatorTests"/>
             <class name="org.onebeartoe.modeling.openscad.test.suite.BruteForceOpenScadTestSuiteTest"/>                        

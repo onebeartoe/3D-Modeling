@@ -17,7 +17,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- *
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
 public class OpenScadTestSuiteTest 
