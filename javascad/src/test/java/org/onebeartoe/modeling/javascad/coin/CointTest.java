@@ -4,8 +4,10 @@ package org.onebeartoe.modeling.javascad.coin;
 import eu.printingin3d.javascad.coords.Coords3d;
 import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cylinder;
+import eu.printingin3d.javascad.tranzitions.Colorize;
 import eu.printingin3d.javascad.tranzitions.Difference;
 import eu.printingin3d.javascad.tranzitions.Scale;
+import java.awt.Color;
 import java.io.File;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.ModuleCall;
@@ -26,22 +28,10 @@ public class CointTest extends JavaScadTest
         System.out.println(message);
         
         Use marioLibrary = new Use("../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
+          
+        Coin coin = new Coin();
         
-        ModuleCall heart = new ModuleCall("heartThumbnail");
-                        
-        Scale s = new Scale(heart.move(Coords3d.zOnly(-0.5))
-                            , new Coords3d(1, 1, 1.02) );
-        
-        
-        
-        Cylinder coin = new Cylinder(1, 20);
-        
-        Difference diff = new Difference(coin, 
-//                                            heart.move(Coords3d.zOnly(-0.5))
-                                            s
-        );
-        
-        Abstract3dModel model = diff;
+        Abstract3dModel model = new Colorize(Color.pink, coin);
   
         OpenScadFile osf = new OpenScadFile();
         osf.useStatements.add(marioLibrary);

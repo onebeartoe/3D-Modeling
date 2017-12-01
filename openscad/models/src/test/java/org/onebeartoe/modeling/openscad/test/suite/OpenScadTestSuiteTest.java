@@ -226,6 +226,8 @@ public abstract class OpenScadTestSuiteTest
         System.out.println();
     }
 
+// TODO: Remove the groups elements and make sure the continuous server still runs 
+// TODO: the tests.    
     @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
             //, groups = {"openscad-test-suite"})
     /**

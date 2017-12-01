@@ -34,6 +34,7 @@ public abstract class JavaScadTest
         return dashName;
     }
     
+    // TODO: Rename this to getOpenScadFile()
     abstract protected OpenScadFile
 //                       Abstract3dModel
                                        getModelFile();
