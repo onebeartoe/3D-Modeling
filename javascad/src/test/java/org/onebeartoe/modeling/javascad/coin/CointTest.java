@@ -22,14 +22,14 @@ public class CointTest extends JavaScadTest
         String message = "pwd: " + pwd;
         System.out.println(message);
         
-        Use marioLibrary = new Use("../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
+        Use heartLibrary = new Use("../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
           
         Coin coin = new Coin();
         
         Abstract3dModel model = new Colorize(Color.pink, coin);
   
         OpenScadFile osf = new OpenScadFile();
-        osf.useStatements.add(marioLibrary);
+        osf.useStatements.add(heartLibrary);
         osf.addModel(model);
         
         return osf;

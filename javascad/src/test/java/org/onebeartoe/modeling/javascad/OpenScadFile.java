@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.javascad;
 
 import eu.printingin3d.javascad.context.ColorHandlingContext;
@@ -13,13 +12,10 @@ import java.util.List;
 import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class OpenScadFile implements IScadFile
-{
-//    public List<String> useStatements;
-    
+{    
     protected List<IModel> models;
     
     public List<Use> useStatements;
