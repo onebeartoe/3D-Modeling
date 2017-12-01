@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Writer;
 import org.onebeartoe.modeling.javascad.statements.Use;
 
+// TODO: Rename this class to ScadFileService, or something better.
 /**
  * @author Roberto Marquez
  */
@@ -43,6 +44,13 @@ public class SaveScadFileService
             {
                 String line = u + System.lineSeparator();                
 //                String line = "use <" + u + ">" + System.lineSeparator();
+                
+                writer.append(line);
+            }
+            
+            for(ModuleDefinition md : scadFile.moduleDifinitions)
+            {
+                String line = md + System.lineSeparator();
                 
                 writer.append(line);
             }

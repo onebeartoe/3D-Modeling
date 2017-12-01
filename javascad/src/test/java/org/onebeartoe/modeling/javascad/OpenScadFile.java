@@ -23,6 +23,8 @@ public class OpenScadFile implements IScadFile
     protected List<IModel> models;
     
     public List<Use> useStatements;
+
+    public List<ModuleDefinition> moduleDifinitions;
     
     public OpenScadFile()
     {
@@ -30,7 +32,7 @@ public class OpenScadFile implements IScadFile
         
         models = new ArrayList();
         
-        useStatements = new ArrayList();
+        moduleDifinitions = new ArrayList();
     }
 
     public void addModel(

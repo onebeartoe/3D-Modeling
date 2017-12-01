@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.javascad.basics;
 
 import eu.printingin3d.javascad.models.Abstract3dModel;
@@ -15,7 +14,6 @@ import org.onebeartoe.modeling.javascad.statements.Use;
  */
 public class ModuleCallTest extends JavaScadTest
 {
-
     @Override
     protected 
               OpenScadFile

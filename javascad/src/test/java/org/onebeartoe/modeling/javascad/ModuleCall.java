@@ -39,7 +39,9 @@ public class ModuleCall extends Complex3dModel
     @Override
     protected Abstract3dModel innerCloneModel()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ModuleCall mc = new ModuleCall(moduleName);
+        
+        return mc;
     }
 
     @Override
