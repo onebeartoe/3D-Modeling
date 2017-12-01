@@ -25,4 +25,14 @@
         <module>test-suite</module>
         <module>opensacd-services</module>
     </modules>
+    
+    <profiles>
+        <profile>
+            <id>skipOpenscadTests</id>
+            
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
 </project>
