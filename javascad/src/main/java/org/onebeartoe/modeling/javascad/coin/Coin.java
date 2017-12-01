@@ -15,19 +15,14 @@ public class Coin extends Extendable3dModel
 {
     public Coin()
     {
+        ModuleCall mc = new ModuleCall("heartThumbnail");
+        Coords3d scaleFactor = new Coords3d(1, 1, 1.02);
         
-        ModuleCall heart = new ModuleCall("heartThumbnail");
-                        
-        Scale s = new Scale(heart.move(Coords3d.zOnly(-0.5))
-                            , new Coords3d(1, 1, 1.02) );
-        
-        
-        
+        Scale heart = new Scale(mc.move(Coords3d.zOnly(-0.5)), scaleFactor);
+
         Cylinder coin = new Cylinder(1, 20);
         
-        Difference diff = new Difference(coin, 
-                                            s
-        );
+        Difference diff = new Difference(coin, heart);
 
         baseModel = diff;
     }

@@ -1,8 +1,6 @@
 
 package org.onebeartoe.modeling.javascad;
 
-import eu.printingin3d.javascad.models.Abstract3dModel;
-import eu.printingin3d.javascad.models.IModel;
 import java.io.File;
 import java.io.IOException;
 import org.testng.annotations.Test;
