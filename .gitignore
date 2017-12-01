@@ -17,3 +17,5 @@
 /openscad/test-suite/.settings/
 
 /javascad/target/
+/javascad/nb-configuration.xml
+/javascad/licenseheader.txt
