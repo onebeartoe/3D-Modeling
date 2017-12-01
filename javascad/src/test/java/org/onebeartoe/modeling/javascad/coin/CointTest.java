@@ -1,16 +1,11 @@
 
 package org.onebeartoe.modeling.javascad.coin;
 
-import eu.printingin3d.javascad.coords.Coords3d;
 import eu.printingin3d.javascad.models.Abstract3dModel;
-import eu.printingin3d.javascad.models.Cylinder;
 import eu.printingin3d.javascad.tranzitions.Colorize;
-import eu.printingin3d.javascad.tranzitions.Difference;
-import eu.printingin3d.javascad.tranzitions.Scale;
 import java.awt.Color;
 import java.io.File;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
-import org.onebeartoe.modeling.javascad.ModuleCall;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.statements.Use;
 
