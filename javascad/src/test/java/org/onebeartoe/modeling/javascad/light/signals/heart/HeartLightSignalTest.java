@@ -12,11 +12,8 @@ public class HeartLightSignalTest extends JavaScadTest
     @Override
     protected OpenScadFile getModelFile() 
     {
-        HeartLightSignal model = new HeartLightSignal();
-        
-        OpenScadFile nullo = null;
-        
-// TODO: sure        
-        return nullo;
+        OpenScadFile model = new HeartLightSignal();
+                
+        return model;
     }
 }

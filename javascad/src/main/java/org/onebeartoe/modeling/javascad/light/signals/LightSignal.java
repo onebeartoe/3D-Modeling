@@ -199,11 +199,11 @@ public class LightSignal extends
 {
     public Extendable3dModel model;
     
-    public final String name = "lightSignal";
+    public static final String name = "lightSignal";
     
     public LightSignal()
     {
-        Use batmanLib = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
+        Use batmanLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
 
         ModuleDefinition lightSignalModule = moduleDefinition();
         
