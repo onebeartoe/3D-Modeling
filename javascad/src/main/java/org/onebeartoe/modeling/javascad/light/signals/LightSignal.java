@@ -176,30 +176,49 @@ module lightSignal_textCutouts(text1,
 
 package org.onebeartoe.modeling.javascad.light.signals;
 
+import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cube;
 import eu.printingin3d.javascad.models.Extendable3dModel;
+import eu.printingin3d.javascad.tranzitions.Colorize;
+import java.awt.Color;
+import org.onebeartoe.modeling.javascad.ModuleDefinition;
+import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
  * This is part of a recreation of the .scad file at
  * 
  *      3D-Modeling/openscad/models/src/main/openscad/signals/light-signals/light-signal.scad
+ * 
  * @author Roberto Marquez
  */
 public class LightSignal extends 
-// TODO: Make this extend OpenScadFile        
-                                    Extendable3dModel
+// TODO: Make this extend OpenScadFile
+                                    OpenScadFile
+//                                    Extendable3dModel
 {
     public Extendable3dModel model;
     
+    public final String name = "lightSignal";
+    
     public LightSignal()
     {
-        Cube c = new Cube(2);
-     
         Use batmanLib = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
 
+        ModuleDefinition lightSignalModule = moduleDefinition();
         
+//        OpenScadFile osf = new OpenScadFile();
+        useStatements.add(batmanLib);
+        moduleDifinitions.add(lightSignalModule);        
+    }
+    
+    private ModuleDefinition moduleDefinition()
+    {
+        Cube signal = new Cube(2);
+        Abstract3dModel model = new Colorize(Color.ORANGE, signal);
         
-        baseModel = c;
+        ModuleDefinition def = new ModuleDefinition(name, model);
+                
+        return def;
     }
 }

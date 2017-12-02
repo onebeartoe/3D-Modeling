@@ -1,9 +1,6 @@
 
 package org.onebeartoe.modeling.javascad.light.signals;
 
-import eu.printingin3d.javascad.models.Abstract3dModel;
-import eu.printingin3d.javascad.tranzitions.Colorize;
-import java.awt.Color;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.statements.Use;
@@ -20,16 +17,12 @@ public class LightSignalTest extends JavaScadTest
     @Override
     protected OpenScadFile getModelFile()
     {
+// TODO: Move this to the LightSignal class.        
         Use heartLibrary = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
           
         LightSignal signal = new LightSignal();
-        
-        Abstract3dModel model = new Colorize(Color.ORANGE, signal);
-  
-        OpenScadFile osf = new OpenScadFile();
-        osf.useStatements.add(heartLibrary);
-        osf.addModel(model);
-        
-        return osf;
+        signal.useStatements.add(heartLibrary);
+
+        return signal;
     }
 }

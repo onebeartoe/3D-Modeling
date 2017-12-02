@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.javascad;
 
+import eu.printingin3d.javascad.context.ColorHandlingContext;
 import eu.printingin3d.javascad.context.IColorGenerationContext;
 import eu.printingin3d.javascad.models.IModel;
 
@@ -13,16 +14,21 @@ public class ModuleDefinition
     
     public IModel model;
     
+    public IColorGenerationContext context;
+    
     public ModuleDefinition(String name, IModel model)
     {
         this.name = name;
         this.model = model;
+        
+        context = ColorHandlingContext.DEFAULT;
     }
     
     @Override
     public String toString()
     {
-        IColorGenerationContext context = null;
+//        IColorGenerationContext context = model.get
+//        w
         String moduleImplementation = model.toScad(context)
                                             .getScad();
         
