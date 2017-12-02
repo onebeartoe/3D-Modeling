@@ -179,13 +179,10 @@ module lightSignal(
         Abstract3dModel shell = shell(showOriginal);
         
         Difference diff = new Difference(shell, baseCutouts);
-        
-//        Abstract3dModel cutout = baseCutouts.get(0);
-        
+
         return diff;
     }
-  
-    
+      
     private Abstract3dModel shell(boolean showOriginal)
     {
         List<Abstract3dModel> shellParts = new ArrayList();
