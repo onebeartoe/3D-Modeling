@@ -102,7 +102,7 @@ import eu.printingin3d.javascad.tranzitions.Union;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import org.onebeartoe.modeling.javascad.shapes.open.oval.OpenOval;
+import org.onebeartoe.modeling.javascad.ModuleCall;
 
 /**
  * This is part of a recreation of the .scad file at
@@ -214,11 +214,11 @@ module lightSignal(
                                 outerRadius = stlBaseOuterRadius, 
                                 innerRadius = stlBaseInnerRadius);
 */
-//        ModuleCall bottomWideShaft = new ModuleCall("openCylinder");
-  //      bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
-    //    bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
-      //  bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );
-         Abstract3dModel bottomWideShaft = new OpenOval(1, zTopHoleTranslate);
+        ModuleCall bottomWideShaft = new ModuleCall("openCylinder");
+        bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
+        bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
+        bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );
+//         Abstract3dModel bottomWideShaft = new OpenOval(1, zTopHoleTranslate);
         
         Abstract3dModel bws = (Abstract3dModel) bottomWideShaft;
         bws = bws.move( new Coords3d(0, 0, zTranslate));
