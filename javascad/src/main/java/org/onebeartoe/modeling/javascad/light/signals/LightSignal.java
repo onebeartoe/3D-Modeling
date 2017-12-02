@@ -1,7 +1,7 @@
 
 /*//////////
 
-use <../../external-resources/batman/batman.scad>
+
 
 use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
@@ -191,7 +191,7 @@ public class LightSignal extends Extendable3dModel
     {
         Cube c = new Cube(2);
         
-        
+use <../../external-resources/batman/batman.scad>        
         
         baseModel = c;
     }

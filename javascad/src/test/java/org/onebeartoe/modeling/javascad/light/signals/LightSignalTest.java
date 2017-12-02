@@ -20,14 +20,14 @@ public class LightSignalTest extends JavaScadTest
     @Override
     protected OpenScadFile getModelFile()
     {
-        Use marioLibrary = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
+        Use heartLibrary = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
           
         LightSignal signal = new LightSignal();
         
-        Abstract3dModel model = new Colorize(Color.MAGENTA, signal);
+        Abstract3dModel model = new Colorize(Color.ORANGE, signal);
   
         OpenScadFile osf = new OpenScadFile();
-        osf.useStatements.add(marioLibrary);
+        osf.useStatements.add(heartLibrary);
         osf.addModel(model);
         
         return osf;
