@@ -1,50 +1,8 @@
 
+// TODO: Implement all the code below from the original OpenSCAD file.
 /*//////////
 
-
-
-use <../../shapes/heart/heart.scad>
-use <../../shapes/open-cylinder/open-cylinder.scad>
-
-module lightSignal(baseHeight = 2,
-				   icon1 = "",
-				   icon1_scale = 1,
-				   icon1_x = 0,
-			   	   icon1_y = 0,
-                   text1 = "",
-				   text1_fontSize = 7.5,
-				   text1_x = 0,
-	   			   text1_y = 0,
-			 	   text2 = "",
-				   text2_fontSize = 7.5,
-				   text2_x = 0,
-				   text2_y = 0)
-{
-	difference()
-	{
-		lightSignal_shell(baseHeight, showOriginal = false);
-
-		lightSignal_cutouts(icon1,
-							icon1_scale,
-							icon1_x,
-							icon1_y,
-							text1,
-							text1_fontSize,
-							text1_x,
-							text1_y,
-							text2,
-							text2_fontSize,
-							text2_x,
-							text2_y);
-	}
-}
-
 // Support functions and moduules follow. //
-
-// DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
-function lightSignal_stlBaseInnerRadius() = 18.5;
-
-function lightSignal_stlBaseOuterRadius() = lightSignal_stlBaseInnerRadius() + 2.5;
 
 module lightSignal_cutouts(icon1,
 							icon1_scale,
@@ -116,8 +74,125 @@ module lightSignal_oneTextCutout(text, fontSize, x, y)
 	}
 }
 
-module lightSignal_shell(baseHeight,
-						 showOriginal = false)
+module lightSignal_textCutouts(text1,
+								text1_fontSize,
+								text1_x,
+								text1_y,
+							    text2,
+								text2_fontSize,
+							    text2_x,
+							    text2_y)
+{
+	lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
+
+	lightSignal_oneTextCutout(text2, text2_fontSize, text2_x, text2_y);
+}
+
+//////////*/
+
+package org.onebeartoe.modeling.javascad.light.signals;
+
+import eu.printingin3d.javascad.models.Abstract3dModel;
+import eu.printingin3d.javascad.models.Cylinder;
+import eu.printingin3d.javascad.models.Extendable3dModel;
+import eu.printingin3d.javascad.tranzitions.Colorize;
+import eu.printingin3d.javascad.tranzitions.Difference;
+import eu.printingin3d.javascad.tranzitions.Union;
+import java.awt.Color;
+import java.util.List;
+
+/**
+ * This is part of a recreation of the .scad file at
+ * 
+ *      3D-Modeling/openscad/models/src/main/openscad/signals/light-signals/light-signal.scad
+ * 
+ * @author Roberto Marquez
+ */
+public class LightSignal extends 
+//                                 OpenScadFile
+                                 Extendable3dModel
+{
+//    public Extendable3dModel model;
+    
+    public static final String name = "lightSignal";
+    
+    public List<Abstract3dModel> baseCutouts;
+ 
+    // DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
+    final double stlBaseInnerRadius= 18.5;
+
+    final double stlBaseOuterRadius = stlBaseInnerRadius+ 2.5;
+    
+    final double baseHeight = 2;
+    
+    public LightSignal(List<Abstract3dModel> baseCutouts)
+    {   
+        this.baseCutouts = baseCutouts;
+        
+        Abstract3dModel lightSignalModule = modelDefinition(baseHeight);
+                
+        baseModel = lightSignalModule;
+    }
+
+// TODO: Implement all the code below from the original OpenSCAD file.    
+/*
+module lightSignal(
+                    icon1 = "",
+                    icon1_scale = 1,
+                    icon1_x = 0,
+                    icon1_y = 0,
+                    text1 = "",
+                    text1_fontSize = 7.5,
+                    text1_x = 0,
+                    text1_y = 0,
+                    text2 = "",
+                    text2_fontSize = 7.5,
+                    text2_x = 0,
+                    text2_y = 0)
+{
+	difference()
+	{
+		lightSignal_shell(baseHeight, showOriginal = false);
+
+		lightSignal_cutouts(icon1,
+							icon1_scale,
+							icon1_x,
+							icon1_y,
+							text1,
+							text1_fontSize,
+							text1_x,
+							text1_y,
+							text2,
+							text2_fontSize,
+							text2_x,
+							text2_y);
+	}
+}    
+*/    
+    private Abstract3dModel modelDefinition(double baseHeight)
+    {
+        boolean showOriginal = false;
+        
+        Abstract3dModel shell = shell(showOriginal);
+        
+        Difference diff = new Difference(shell, baseCutouts);
+        
+        Abstract3dModel cutout = baseCutouts.get(0);
+//        Abstract3dModel model = new Colorize(Color.ORANGE, cutout);
+        Abstract3dModel model = new Colorize(Color.ORANGE, diff);
+        
+        return model;
+    }
+  
+    
+    private Abstract3dModel shell(boolean showOriginal)
+    {
+        
+        Union union = new Union(
+        
+// TODO: Implement all the code below from the original OpenSCAD file.
+/*
+
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
 
@@ -150,75 +225,20 @@ module lightSignal_shell(baseHeight,
 			translate([0, 0, zTranslate])
 			import(signalStl);
 		}
+*/
+
+// TODO: Implement all the code below from the original OpenSCAD file.
+/*
 
 		// This is the bottom disk, that holds the text/icon cutout.
 		color("green")
 		cylinder(r=stlBaseInnerRadius+0.1, h=baseHeight, center=true);
 	}
-}
-
-module lightSignal_textCutouts(text1,
-								text1_fontSize,
-								text1_x,
-								text1_y,
-							    text2,
-								text2_fontSize,
-							    text2_x,
-							    text2_y)
-{
-	lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
-
-	lightSignal_oneTextCutout(text2, text2_fontSize, text2_x, text2_y);
-}
-
-
-//////////*/
-
-package org.onebeartoe.modeling.javascad.light.signals;
-
-import eu.printingin3d.javascad.models.Abstract3dModel;
-import eu.printingin3d.javascad.models.Cube;
-import eu.printingin3d.javascad.models.Extendable3dModel;
-import eu.printingin3d.javascad.tranzitions.Colorize;
-import java.awt.Color;
-import org.onebeartoe.modeling.javascad.ModuleDefinition;
-import org.onebeartoe.modeling.javascad.OpenScadFile;
-import org.onebeartoe.modeling.javascad.statements.Use;
-
-/**
- * This is part of a recreation of the .scad file at
- * 
- *      3D-Modeling/openscad/models/src/main/openscad/signals/light-signals/light-signal.scad
- * 
- * @author Roberto Marquez
- */
-public class LightSignal extends 
-// TODO: Make this extend OpenScadFile
-                                    OpenScadFile
-//                                    Extendable3dModel
-{
-    public Extendable3dModel model;
-    
-    public static final String name = "lightSignal";
-    
-    public LightSignal()
-    {
-        Use batmanLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
-
-        ModuleDefinition lightSignalModule = moduleDefinition();
+}    
+*/
+            new Cylinder(baseHeight, 7)
+        );
         
-//        OpenScadFile osf = new OpenScadFile();
-        useStatements.add(batmanLib);
-        moduleDifinitions.add(lightSignalModule);        
-    }
-    
-    private ModuleDefinition moduleDefinition()
-    {
-        Cube signal = new Cube(2);
-        Abstract3dModel model = new Colorize(Color.ORANGE, signal);
-        
-        ModuleDefinition def = new ModuleDefinition(name, model);
-                
-        return def;
+        return union;
     }
 }

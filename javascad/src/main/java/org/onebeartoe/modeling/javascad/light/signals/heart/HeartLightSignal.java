@@ -1,7 +1,10 @@
 
 package org.onebeartoe.modeling.javascad.light.signals.heart;
 
-import org.onebeartoe.modeling.javascad.ModuleCall;
+import eu.printingin3d.javascad.models.Abstract3dModel;
+import eu.printingin3d.javascad.models.Cube;
+import java.util.ArrayList;
+import java.util.List;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.light.signals.LightSignal;
 import org.onebeartoe.modeling.javascad.statements.Use;
@@ -16,9 +19,12 @@ public class HeartLightSignal extends OpenScadFile
         Use useLightSignal = new Use("../light-signal-test.scad");
         
         useStatements.add(useLightSignal);
+                
+        List<Abstract3dModel> baseCutouts = new ArrayList();                
+        baseCutouts.add( new Cube(5) );
         
-        ModuleCall moduleCall = new ModuleCall(LightSignal.name);
+        LightSignal signal = new LightSignal(baseCutouts);
         
-        models.add(moduleCall);
+        models.add(signal);
     }
 }
