@@ -178,6 +178,7 @@ package org.onebeartoe.modeling.javascad.light.signals;
 
 import eu.printingin3d.javascad.models.Cube;
 import eu.printingin3d.javascad.models.Extendable3dModel;
+import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
  * This is part of a recreation of the .scad file at
@@ -185,13 +186,19 @@ import eu.printingin3d.javascad.models.Extendable3dModel;
  *      3D-Modeling/openscad/models/src/main/openscad/signals/light-signals/light-signal.scad
  * @author Roberto Marquez
  */
-public class LightSignal extends Extendable3dModel
+public class LightSignal extends 
+// TODO: Make this extend OpenScadFile        
+                                    Extendable3dModel
 {
+    public Extendable3dModel model;
+    
     public LightSignal()
     {
         Cube c = new Cube(2);
+     
+        Use batmanLib = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
+
         
-use <../../external-resources/batman/batman.scad>        
         
         baseModel = c;
     }

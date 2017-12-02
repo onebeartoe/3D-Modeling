@@ -2,13 +2,12 @@
 package org.onebeartoe.modeling.javascad;
 
 import eu.printingin3d.javascad.context.IColorGenerationContext;
-import eu.printingin3d.javascad.models.Complex3dModel;
 import eu.printingin3d.javascad.models.IModel;
 
 /**
  * @author Roberto Marquez
  */
-public class ModuleDefinition //extends Complex3dModel
+public class ModuleDefinition
 {
     public String name;
     

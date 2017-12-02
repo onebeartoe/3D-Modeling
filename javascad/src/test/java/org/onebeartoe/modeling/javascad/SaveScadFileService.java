@@ -15,24 +15,14 @@ import org.onebeartoe.modeling.javascad.statements.Use;
  * @author Roberto Marquez
  */
 public class SaveScadFileService
-{
-//    private final List<IScadFile> scadFiles = new ArrayList<>();
-    
+{    
     //TODO: Rename the File root paramater.
     public void saveModelAsScad(File root, OpenScadFile scadFile) throws IOException
     {
-//        for (OpenScadFile scadFile : scadFiles) 
-        {
-            File file = root;
-            file.getParentFile().mkdirs();
+        File file = root;
+        file.getParentFile().mkdirs();
 
-//            ModelToFile modelToFile = new ModelToFile(file);
-//            
-//            modelToFile.addModels(scadFile.getModels())
-//                       .saveToFile(scadFile.getContext());
-            
-            saveToFile(file, scadFile);
-        }        
+        saveToFile(file, scadFile);
     }
     
     private void saveToFile(File file, OpenScadFile scadFile) throws IOException
@@ -43,7 +33,6 @@ public class SaveScadFileService
             for(Use u : scadFile.useStatements)
             {
                 String line = u + System.lineSeparator();                
-//                String line = "use <" + u + ">" + System.lineSeparator();
                 
                 writer.append(line);
             }

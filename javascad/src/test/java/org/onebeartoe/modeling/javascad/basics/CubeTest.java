@@ -12,9 +12,7 @@ import org.onebeartoe.modeling.javascad.OpenScadFile;
 public class CubeTest extends JavaScadTest
 {
     @Override
-    protected OpenScadFile
-            //Abstract3dModel
-         getModelFile()
+    protected OpenScadFile getModelFile()
     {
         Abstract3dModel model = new Cube(50);
         

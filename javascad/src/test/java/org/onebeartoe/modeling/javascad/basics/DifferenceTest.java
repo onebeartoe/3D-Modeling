@@ -10,7 +10,6 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
- *
  * @author Roberto Marquez - https://github.com/onebeartoe
  */
 public class DifferenceTest extends JavaScadTest
@@ -28,8 +27,6 @@ public class DifferenceTest extends JavaScadTest
         Difference base = new Difference(block,
                                          cutoutCube);
 
-        
-        
         OpenScadFile osf = new OpenScadFile();
         osf.addModel(base);
         

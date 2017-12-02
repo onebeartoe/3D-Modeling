@@ -1,7 +1,6 @@
 
 package org.onebeartoe.modeling.javascad.shapes.ellipse;
 
-import eu.printingin3d.javascad.models.Extendable3dModel;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 

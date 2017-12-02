@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.javascad.shapes.triangle;
 
 import eu.printingin3d.javascad.models.Abstract3dModel;
@@ -7,12 +6,10 @@ import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class TriangleTest extends JavaScadTest
 {
-
     @Override
     protected OpenScadFile getModelFile()
     {
@@ -28,6 +25,5 @@ public class TriangleTest extends JavaScadTest
     protected String getOutfileName()
     {
         return "triangle.scad";
-    }
-    
+    } 
 }

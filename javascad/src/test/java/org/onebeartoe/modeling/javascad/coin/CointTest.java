@@ -22,6 +22,7 @@ public class CointTest extends JavaScadTest
         String message = "pwd: " + pwd;
         System.out.println(message);
         
+// TODO: Fix this to use a HeartCoin object, instead of making it here.        
         Use heartLibrary = new Use("../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
           
         Coin coin = new Coin();

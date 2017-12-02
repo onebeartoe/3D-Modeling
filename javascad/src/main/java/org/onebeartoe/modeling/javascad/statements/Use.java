@@ -8,7 +8,6 @@ import eu.printingin3d.javascad.models.SCAD;
  * @author Roberto Marquez
  */
 public class Use 
-        //extends Complex3dModel
 {
     public String openScadPath;
     
@@ -22,7 +21,7 @@ public class Use
         return innerToScad(null).getScad();
     }
     
-//    @Override
+// TODO: Rename this method.
     protected SCAD innerToScad(IColorGenerationContext context) 
     {
         SCAD result = new SCAD("use <");
@@ -30,7 +29,5 @@ public class Use
         result = result.append(openScadPath).append(">");
         
         return result.append("\n");
-    }    
-
-    
+    }
 }

@@ -8,12 +8,9 @@ import eu.printingin3d.javascad.models.Extendable3dModel;
 import eu.printingin3d.javascad.tranzitions.Scale;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class EllipticalCylinder extends Extendable3dModel
-                                     // Complex3dModel
-                                     // Extendable3dModel
 {
     /** from shapes.scad
      * 

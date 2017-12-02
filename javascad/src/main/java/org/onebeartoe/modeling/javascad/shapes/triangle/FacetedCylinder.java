@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.javascad.shapes.triangle;
 
 import eu.printingin3d.javascad.context.IColorGenerationContext;
@@ -9,7 +8,6 @@ import eu.printingin3d.javascad.models.SCAD;
 import eu.printingin3d.javascad.utils.DoubleUtils;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class FacetedCylinder extends Cylinder

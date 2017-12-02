@@ -25,13 +25,8 @@ public class UnanimousTest extends OpenScadTestSuiteTest
         return "src/main/generated-openscad/";
     }
     
-    
     protected String outputPath = "src/main/generated-openscad/";
-
-//    abstract protected Abstract3dModel getModel();
     
-   // abstract protected String getOutfileName();
-
     public UnanimousTest() throws Exception
     {
         
@@ -62,7 +57,6 @@ public class UnanimousTest extends OpenScadTestSuiteTest
         saveScadFile(outfileName, model, 9);
     }    
     
-//    @Override
     public Abstract3dModel getModel()
     {
         Dims3d blockDims = new Dims3d(4,4,4);
@@ -78,7 +72,6 @@ public class UnanimousTest extends OpenScadTestSuiteTest
         return base;
     }
 
-  //  @Override
     protected String getOutfileName()
     {
         return "unanimous.scad";

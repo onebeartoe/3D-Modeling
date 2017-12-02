@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.javascad;
 
 import eu.printingin3d.javascad.context.IColorGenerationContext;
@@ -12,12 +11,9 @@ import eu.printingin3d.javascad.vrl.CSG;
 import eu.printingin3d.javascad.vrl.FacetGenerationContext;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class ModuleCall extends Complex3dModel
-                                // Complex3dModel
-                                // Abstract3dModel
 {
     private final String moduleName;
     

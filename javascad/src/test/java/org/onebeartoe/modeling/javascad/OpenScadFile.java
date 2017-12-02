@@ -31,24 +31,15 @@ public class OpenScadFile implements IScadFile
         moduleDifinitions = new ArrayList();
     }
 
-    public void addModel(
-//                           OpenScadFile
-                         IModel 
-                                 model)
-    {
-        // TODO: are there even ever more than model????
-//        for(IModel m : model.models)
-        {
-            models.add(model);
-        }
+    public void addModel(IModel model)
+    {        
+        models.add(model);   
     }
     
     @Override
     public File getFile(File root)
     {
-//        throw new OperationNotSupportedException();
-        
-//        return root; //?????????
+        // TODO: Is this the right class to extend?
         return null; //????????
     }
 

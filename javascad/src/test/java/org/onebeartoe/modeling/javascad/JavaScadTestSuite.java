@@ -8,15 +8,12 @@ import org.testng.annotations.Test;
  * @author Roberto Marquez
  */
 public class JavaScadTestSuite extends OpenScadTestSuiteTest
-{
-    String w = "w";
-    
+{    
     public JavaScadTestSuite() throws Exception
     {
         super();
         
         System.out.println();
-        
     }
     
     protected String getRootTargetPath()
@@ -34,9 +31,10 @@ public class JavaScadTestSuite extends OpenScadTestSuiteTest
     @Test(groups = {"openscad-test-suite"})
     public void testW()
     {
-        System.out.println("hi from test b");
+        System.out.println("hi from test W, w.");
     }    
 
+    
     @Override
     public void willItWork()
     {

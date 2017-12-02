@@ -9,16 +9,12 @@ import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.statements.Use;
 
 /**
- *
  * @author Roberto Marquez
  */
 public class ModuleCallTest extends JavaScadTest
 {
     @Override
-    protected 
-              OpenScadFile
-//              Abstract3dModel 
-                              getModelFile()
+    protected OpenScadFile getModelFile()
     {
         File d = new File(".");
         String pwd  = d.getAbsolutePath();
