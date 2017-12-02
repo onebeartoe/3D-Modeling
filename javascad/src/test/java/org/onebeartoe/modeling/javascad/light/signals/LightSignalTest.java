@@ -1,9 +1,6 @@
 
 package org.onebeartoe.modeling.javascad.light.signals;
 
-import eu.printingin3d.javascad.models.Abstract3dModel;
-import java.util.ArrayList;
-import java.util.List;
 import org.onebeartoe.modeling.javascad.JavaScadTest;
 import org.onebeartoe.modeling.javascad.OpenScadFile;
 import org.onebeartoe.modeling.javascad.statements.Use;
@@ -23,9 +20,7 @@ public class LightSignalTest extends JavaScadTest
 // TODO: Move this to the LightSignal class.        
         Use batmanLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
         Use heartLib =  new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
-        Use openCylinderLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/open-cylinder/open-cylinder.scad");        
-
-//        List<Abstract3dModel> baseCutouts = new ArrayList();
+        Use openCylinderLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/open-cylinder/open-cylinder.scad");
  
         OpenScadFile osf = new OpenScadFile();
 

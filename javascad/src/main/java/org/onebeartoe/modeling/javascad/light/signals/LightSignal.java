@@ -75,13 +75,13 @@ module lightSignal_oneTextCutout(text, fontSize, x, y)
 }
 
 module lightSignal_textCutouts(text1,
-								text1_fontSize,
-								text1_x,
-								text1_y,
-							    text2,
-								text2_fontSize,
-							    text2_x,
-							    text2_y)
+                                text1_fontSize,
+                                text1_x,
+                                text1_y,
+                                text2,
+                                text2_fontSize,
+                                text2_x,
+                                text2_y)
 {
 	lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
 
@@ -92,6 +92,7 @@ module lightSignal_textCutouts(text1,
 
 package org.onebeartoe.modeling.javascad.light.signals;
 
+import eu.printingin3d.javascad.coords.Coords3d;
 import eu.printingin3d.javascad.models.Abstract3dModel;
 import eu.printingin3d.javascad.models.Cylinder;
 import eu.printingin3d.javascad.models.Extendable3dModel;
@@ -99,7 +100,9 @@ import eu.printingin3d.javascad.tranzitions.Colorize;
 import eu.printingin3d.javascad.tranzitions.Difference;
 import eu.printingin3d.javascad.tranzitions.Union;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
+import org.onebeartoe.modeling.javascad.shapes.open.oval.OpenOval;
 
 /**
  * This is part of a recreation of the .scad file at
@@ -121,7 +124,7 @@ public class LightSignal extends
     // DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
     final double stlBaseInnerRadius= 18.5;
 
-    final double stlBaseOuterRadius = stlBaseInnerRadius+ 2.5;
+    final double stlBaseOuterRadius = stlBaseInnerRadius + 2.5;
     
     final double baseHeight = 2;
     
@@ -129,9 +132,9 @@ public class LightSignal extends
     {   
         this.baseCutouts = baseCutouts;
         
-        Abstract3dModel lightSignalModule = modelDefinition(baseHeight);
+        Abstract3dModel lightSignalModel = modelDefinition(baseHeight);
                 
-        baseModel = lightSignalModule;
+        baseModel = lightSignalModel;
     }
 
 // TODO: Implement all the code below from the original OpenSCAD file.    
@@ -177,32 +180,23 @@ module lightSignal(
         
         Difference diff = new Difference(shell, baseCutouts);
         
-        Abstract3dModel cutout = baseCutouts.get(0);
-//        Abstract3dModel model = new Colorize(Color.ORANGE, cutout);
-        Abstract3dModel model = new Colorize(Color.ORANGE, diff);
+//        Abstract3dModel cutout = baseCutouts.get(0);
         
-        return model;
+        return diff;
     }
   
     
     private Abstract3dModel shell(boolean showOriginal)
     {
+        List<Abstract3dModel> shellParts = new ArrayList();
         
-        Union union = new Union(
-        
+        int zTopHoleTranslate = 35;
+                                        
 // TODO: Implement all the code below from the original OpenSCAD file.
 /*
-
-{
-	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
-
-	stlBaseInnerRadius = lightSignal_stlBaseInnerRadius();
-	stlBaseOuterRadius = lightSignal_stlBaseOuterRadius();
-
 	union()
 	{
-		// this is the top hole/cutout
-		zTopHoleTranslate = 35;
+		// this is the top hole/cutout		
 		color("blue")
 		translate([0, 0, zTopHoleTranslate])
 		openCylinder(height=1, outerRadius = 12, innerRadius=6);
@@ -210,34 +204,51 @@ module lightSignal(
 		// connector for the shaft and top hole
 		color("pink")
 		translate([0, 0, zTopHoleTranslate-3])
-		openCylinder(height=3.1, outerRadius = 19, innerRadius=8);
-
-		// this is the bottom wide shaft
-		zTranslate = -baseHeight / 2.0;
-		color("orange")
-		translate([0, 0, zTranslate])
-		openCylinder(height=zTopHoleTranslate, outerRadius = stlBaseOuterRadius, innerRadius = stlBaseInnerRadius);
-
-		// this thing was modeld after this original
-		if(showOriginal)
-		{
-			color("yellow")
-			translate([0, 0, zTranslate])
-			import(signalStl);
-		}
+		openCylinder(height=3.1, outerRadius = 19, innerRadius=8);		
 */
 
+        // this is the bottom wide shaft
+        double zTranslate = -baseHeight / 2.0;
 // TODO: Implement all the code below from the original OpenSCAD file.
 /*
-
-		// This is the bottom disk, that holds the text/icon cutout.
-		color("green")
-		cylinder(r=stlBaseInnerRadius+0.1, h=baseHeight, center=true);
-	}
-}    
+		color("orange")
+		translate([0, 0, zTranslate])
+		openCylinder(height=zTopHoleTranslate, 
+                                outerRadius = stlBaseOuterRadius, 
+                                innerRadius = stlBaseInnerRadius);
 */
-            new Cylinder(baseHeight, 7)
-        );
+//        ModuleCall bottomWideShaft = new ModuleCall("openCylinder");
+  //      bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
+    //    bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
+      //  bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );
+         Abstract3dModel bottomWideShaft = new OpenOval(1, zTopHoleTranslate);
+        
+        Abstract3dModel bws = (Abstract3dModel) bottomWideShaft;
+        bws = bws.move( new Coords3d(0, 0, zTranslate));
+                
+        shellParts.add(bws);
+
+
+        // this thing was modeld after this original
+        if(showOriginal)
+        {
+// TODO: Implement all the code below from the original OpenSCAD file.
+/*
+                signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
+                color("yellow")
+                translate([0, 0, zTranslate])
+                import(signalStl);
+*/
+//            shellParts.add(original);
+        }
+
+        // This is the bottom disk, that holds the text/icon cutout.
+        double r = stlBaseInnerRadius + 0.1;        
+        Cylinder bottomDiskCylinder = new Cylinder(baseHeight, r);
+        Colorize bottomDisk = new Colorize(Color.green, bottomDiskCylinder);                
+        shellParts.add(bottomDisk);
+        
+        Union union = new Union(shellParts);
         
         return union;
     }

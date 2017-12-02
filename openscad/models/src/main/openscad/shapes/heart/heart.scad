@@ -1,6 +1,7 @@
 
 module heart(height=1)
 {
+echo("hearto");
     rotate ([0, 0, 45])
     linear_extrude(height=height)
     flatHeart();

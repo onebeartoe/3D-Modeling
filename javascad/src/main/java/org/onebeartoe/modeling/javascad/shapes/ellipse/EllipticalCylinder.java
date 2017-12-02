@@ -12,7 +12,12 @@ import eu.printingin3d.javascad.tranzitions.Scale;
  */
 public class EllipticalCylinder extends Extendable3dModel
 {
-    /** from shapes.scad
+    public EllipticalCylinder()
+    {
+        this(5,10, 1);
+    }
+    
+    /** This is from OpenSCD's MCAD/shapes.scad
      * 
         module ellipticalCylinder(w,h, height, center = false) 
         {

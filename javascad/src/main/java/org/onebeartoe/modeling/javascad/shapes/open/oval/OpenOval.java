@@ -10,6 +10,10 @@ import org.onebeartoe.modeling.javascad.shapes.ellipse.EllipticalCylinder;
  */
 public class OpenOval extends Extendable3dModel
 {
+    public OpenOval()
+    {
+        this(1,1);
+    }
 
 /**
     module openOval(borderThickness = 3,

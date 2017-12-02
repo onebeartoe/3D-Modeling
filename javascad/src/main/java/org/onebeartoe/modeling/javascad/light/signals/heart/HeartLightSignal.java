@@ -21,7 +21,7 @@ public class HeartLightSignal extends OpenScadFile
         useStatements.add(useLightSignal);
                 
         List<Abstract3dModel> baseCutouts = new ArrayList();                
-        baseCutouts.add( new Cube(5) );
+//        baseCutouts.add( new Cube(5) );
         
         LightSignal signal = new LightSignal(baseCutouts);
         
