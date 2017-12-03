@@ -164,7 +164,19 @@ public class LightSignal extends
         domeCutout.addParameter("outerRadius", String.valueOf(cylinderRadius+domeRadius));
         domeCutout.addParameter("height", String.valueOf(zTopHoleTranslate));
 
-        Difference domeDiff = new Difference(dome, domeCutout);
+                // this is the top hole/cutout
+// TODO: Implement all the code below from the original OpenSCAD file.
+/*	
+		color("blue")
+		translate([0, 0, zTopHoleTranslate])
+		openCylinder(height=1, outerRadius = 12, innerRadius=6);
+*/
+        double topHoleRadius = 6;
+//        double topHoleRadius = 6;
+        Abstract3dModel topHole = new Cylinder(9, topHoleRadius)
+                                    .move( new Coords3d(0, 0, 31) );
+        
+        Difference domeDiff = new Difference(dome, domeCutout, topHole);
         
         double zTranslate = zTopHoleTranslate - 21.5;
         Abstract3dModel domeMove = domeDiff.move( new Coords3d(0, 0, zTranslate) );
@@ -225,19 +237,17 @@ module lightSignal(
         
         int zTopHoleTranslate = 35;
         
-        // this is the top hole/cutout
-// TODO: Implement all the code below from the original OpenSCAD file.
-/*	
-		color("blue")
-		translate([0, 0, zTopHoleTranslate])
-		openCylinder(height=1, outerRadius = 12, innerRadius=6);
-*/
-        Abstract3dModel
+//        Abstract3dModel topHole = topHole();
+//        shellParts.add(topHole)
 
         // connector for the shaft and top hole
         Abstract3dModel dome = dome(stlBaseOuterRadius, zTopHoleTranslate);
         shellParts.add(dome);
 
+        
+
+//        shellParts.add(topHole);
+        
         // this is the bottom wide shaft
         Abstract3dModel bws = bottomWideShaft(zTopHoleTranslate);
         shellParts.add(bws);
