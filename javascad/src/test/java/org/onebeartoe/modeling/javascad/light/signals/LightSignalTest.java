@@ -19,14 +19,10 @@ public class LightSignalTest extends JavaScadTest
     {
 // TODO: Move this to the LightSignal class.        
         Use batmanLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/external-resources/batman/batman.scad");
-        Use heartLib =  new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
-        Use openCylinderLib = new Use("../../../../../../../../../../openscad/models/src/main/openscad/shapes/open-cylinder/open-cylinder.scad");
- 
+         
         OpenScadFile osf = new OpenScadFile();
 
         osf.useStatements.add(batmanLib);
-        osf.useStatements.add(heartLib);
-        osf.useStatements.add(openCylinderLib);
 
         return osf;
     }

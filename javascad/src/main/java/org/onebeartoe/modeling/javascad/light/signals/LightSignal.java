@@ -214,7 +214,9 @@ module lightSignal(
                                 outerRadius = stlBaseOuterRadius, 
                                 innerRadius = stlBaseInnerRadius);
 */
-        ModuleCall bottomWideShaft = new ModuleCall("openCylinder");
+//        String moduleName = "heart";
+        String moduleName = "openCylinder";
+        ModuleCall bottomWideShaft = new ModuleCall(moduleName);
         bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
         bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
         bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );
