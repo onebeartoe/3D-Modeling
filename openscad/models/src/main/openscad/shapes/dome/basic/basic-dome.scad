@@ -1,0 +1,4 @@
+
+use <../dome.scad>
+
+dome();

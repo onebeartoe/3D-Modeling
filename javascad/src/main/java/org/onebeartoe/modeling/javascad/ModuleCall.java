@@ -19,7 +19,6 @@ import java.util.Set;
  * @author Roberto Marquez
  */
 public class ModuleCall extends Abstract3dModel
-//                                Complex3dModel
 {
     private final String moduleName;
     

@@ -132,9 +132,45 @@ public class LightSignal extends
     {   
         this.baseCutouts = baseCutouts;
         
-        Abstract3dModel lightSignalModel = modelDefinition(baseHeight);
+        Abstract3dModel lightSignalModel = modelDefinition();
                 
         baseModel = lightSignalModel;
+    }
+    
+    private Abstract3dModel bottomWideShaft(int zTopHoleTranslate)
+    {
+        double zTranslate = -baseHeight / 2.0;
+        String moduleName = "openCylinder";
+        ModuleCall bottomWideShaft = new ModuleCall(moduleName);
+        bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
+        bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
+        bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );        
+        Abstract3dModel bws = (Abstract3dModel) bottomWideShaft;
+        bws = bws.move( new Coords3d(0, 0, zTranslate));
+        
+        return bws;
+    }
+    
+    private Abstract3dModel dome(double cylinderRadius, int zTopHoleTranslate)
+    {
+        double domeRadius = 30;
+        
+        ModuleCall dome = new ModuleCall("dome");                                        
+        dome.addParameter("radius", String.valueOf(domeRadius) );        
+        dome.addParameter("domePercentage", "50");
+        
+        ModuleCall domeCutout = new ModuleCall("openCylinder");
+        domeCutout.addParameter("innerRadius", String.valueOf(cylinderRadius));
+        domeCutout.addParameter("outerRadius", String.valueOf(cylinderRadius+domeRadius));
+        domeCutout.addParameter("height", String.valueOf(zTopHoleTranslate));
+
+        Difference domeDiff = new Difference(dome, domeCutout);
+        
+        double zTranslate = zTopHoleTranslate - 21.5;
+        Abstract3dModel domeMove = domeDiff.move( new Coords3d(0, 0, zTranslate) );
+        Colorize pinkDome = new Colorize(Color.pink, domeMove);
+
+        return pinkDome;
     }
 
 // TODO: Implement all the code below from the original OpenSCAD file.    
@@ -172,7 +208,7 @@ module lightSignal(
 	}
 }    
 */    
-    private Abstract3dModel modelDefinition(double baseHeight)
+    private Abstract3dModel modelDefinition()//double baseHeight)
     {
         boolean showOriginal = false;
         
@@ -188,47 +224,25 @@ module lightSignal(
         List<Abstract3dModel> shellParts = new ArrayList();
         
         int zTopHoleTranslate = 35;
-                                        
+        
+        // this is the top hole/cutout
 // TODO: Implement all the code below from the original OpenSCAD file.
-/*
-	union()
-	{
-		// this is the top hole/cutout		
+/*	
 		color("blue")
 		translate([0, 0, zTopHoleTranslate])
 		openCylinder(height=1, outerRadius = 12, innerRadius=6);
-
-		// connector for the shaft and top hole
-		color("pink")
-		translate([0, 0, zTopHoleTranslate-3])
-		openCylinder(height=3.1, outerRadius = 19, innerRadius=8);		
 */
+        Abstract3dModel
+
+        // connector for the shaft and top hole
+        Abstract3dModel dome = dome(stlBaseOuterRadius, zTopHoleTranslate);
+        shellParts.add(dome);
 
         // this is the bottom wide shaft
-        double zTranslate = -baseHeight / 2.0;
-// TODO: Implement all the code below from the original OpenSCAD file.
-/*
-		color("orange")
-		translate([0, 0, zTranslate])
-		openCylinder(height=zTopHoleTranslate, 
-                                outerRadius = stlBaseOuterRadius, 
-                                innerRadius = stlBaseInnerRadius);
-*/
-//        String moduleName = "heart";
-        String moduleName = "openCylinder";
-        ModuleCall bottomWideShaft = new ModuleCall(moduleName);
-        bottomWideShaft.addParameter("height", String.valueOf(zTopHoleTranslate) );
-        bottomWideShaft.addParameter("outerRadius", String.valueOf(stlBaseOuterRadius) );
-        bottomWideShaft.addParameter("innerRadius", String.valueOf(stlBaseInnerRadius) );
-//         Abstract3dModel bottomWideShaft = new OpenOval(1, zTopHoleTranslate);
-        
-        Abstract3dModel bws = (Abstract3dModel) bottomWideShaft;
-        bws = bws.move( new Coords3d(0, 0, zTranslate));
-                
+        Abstract3dModel bws = bottomWideShaft(zTopHoleTranslate);
         shellParts.add(bws);
 
-
-        // this thing was modeld after this original
+        // this thing was modeled after this original
         if(showOriginal)
         {
 // TODO: Implement all the code below from the original OpenSCAD file.

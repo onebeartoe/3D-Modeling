@@ -14,9 +14,11 @@ public class HeartLightSignalTest extends JavaScadTest
     protected OpenScadFile getModelFile() 
     {
         OpenScadFile model = new HeartLightSignal();
+        Use domeLib         = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/shapes/dome/dome.scad");
         Use heartLib        = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/shapes/heart/heart.scad");
         Use openCylinderLib = new Use("../../../../../../../../../../../openscad/models/src/main/openscad/shapes/open-cylinder/open-cylinder.scad");        
         
+        model.useStatements.add(domeLib);
         model.useStatements.add(heartLib);
         model.useStatements.add(openCylinderLib);
         
