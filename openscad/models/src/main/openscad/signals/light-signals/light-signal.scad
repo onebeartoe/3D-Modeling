@@ -1,6 +1,7 @@
 
 use <../../external-resources/batman/batman.scad>
 
+use <../../shapes/dome/dome.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
@@ -14,6 +15,7 @@ module lightSignal(baseHeight = 2,
                     icon2_x = 0,
                     icon2_y = 0,
 					mountingPosts = "No",
+					mountingPostsTranslatePercentageZ = 0.6,
                     text1 = "",
 					text1_fontName = "Bauhaus 93:style=Regular",
                     text1_fontSize = 7.5,
@@ -28,8 +30,7 @@ module lightSignal(baseHeight = 2,
 	difference()
 	{
 		showOriginal = "No";
-		lightSignal_shell(baseHeight, mountingPosts, showOriginal);
-//		lightSignal_shell(baseHeight, showOriginal = false);
+		lightSignal_shell(baseHeight, mountingPosts, mountingPostsTranslatePercentageZ, showOriginal);
 
 		lightSignal_cutouts(icon1,
                                     icon1_scale,
@@ -168,6 +169,7 @@ module lightSignal_oneTextCutout(text, fontName, fontSize, x, y)
 
 module lightSignal_shell(baseHeight,
 							mountingPosts,
+							mountingPostsTranslatePercentageZ,
 	                    	showOriginal)
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
@@ -179,6 +181,7 @@ module lightSignal_shell(baseHeight,
 	{
 		// this is the top hole/cutout
 		zTopHoleTranslate = 35;
+/*
 		color("blue")
 		translate([0, 0, zTopHoleTranslate])
 		openCylinder(height=1, outerRadius = 12, innerRadius=6);
@@ -187,10 +190,25 @@ module lightSignal_shell(baseHeight,
 		color("pink")
 		translate([0, 0, zTopHoleTranslate-3])
 		openCylinder(height=3.1, outerRadius = 19, innerRadius=8);
+*/
+//------------
+		color([1,0.6863,0.6863])
+		translate([0,0,13.5])
+		difference()
+		{
+			dome(domePercentage=50, radius=30.0);
+
+			openCylinder(height=35, innerRadius=21.0, outerRadius=51.0);
+
+			translate([0,0,31])
+			cylinder(h=9, r=6, center=true);
+
+		}
+//------------
 
 		if(mountingPosts == "Yes")
 		{
-			lightSignal_shellMountingPosts(zTopHoleTranslate);
+			lightSignal_shellMountingPosts(zTopHoleTranslate, mountingPostsTranslatePercentageZ);
 		}
 
 		// this is the bottom wide shaft
@@ -222,14 +240,14 @@ module lightSignal_oneShellMountingPost()
 	cylinder(r=3, h=height, center=true, $fn=20);
 }
 
-module lightSignal_shellMountingPosts(zTopHoleTranslate)
+module lightSignal_shellMountingPosts(zTopHoleTranslate, zTranslatePercentage)
 {
 	xTranslate = lightSignal_stlBaseOuterRadius() + 2.5;
-	zTranslate = zTopHoleTranslate * 0.75;
+	zTranslate = zTopHoleTranslate * zTranslatePercentage;
 	translate([xTranslate, 0, zTranslate])
 	lightSignal_oneShellMountingPost();
 
-	zTranslate = zTopHoleTranslate * 0.75;
+//	zTranslate = zTopHoleTranslate * 0.75;
 	translate([-xTranslate, 0, zTranslate])
 	lightSignal_oneShellMountingPost();
 }
