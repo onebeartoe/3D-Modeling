@@ -55,6 +55,8 @@ module lightSignal(baseHeight = 2,
 
 /** Support functions and moduules follow. **/
 
+function lightSignal_mountingPostRadius() = 3;
+
 // DO NOT CHANGE THE RADIUS; IT MACHES THE ORIGINAL MODEL
 function lightSignal_stlBaseInnerRadius() = 18.5;
 
@@ -234,10 +236,11 @@ module lightSignal_shell(baseHeight,
 // TODo: Move this module to the correct ABC location
 module lightSignal_oneShellMountingPost()
 {
+	radius = lightSignal_mountingPostRadius();
 	height = 10;
 //	translate([height, 0, 0])
 	rotate([0, 90, 0])
-	cylinder(r=3, h=height, center=true, $fn=20);
+	cylinder(r=radius, h=height, center=true, $fn=20);
 }
 
 module lightSignal_shellMountingPosts(zTopHoleTranslate, zTranslatePercentage)
