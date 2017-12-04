@@ -5,35 +5,35 @@ use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module lightSignal(baseHeight = 2,
-				   icon1 = "",
-				   icon1_scale = 1,
-				   icon1_x = 0,
-			   	   icon1_y = 0,
-                   text1 = "",
-				   text1_fontSize = 7.5,
-				   text1_x = 0,
-	   			   text1_y = 0,
-			 	   text2 = "",
-				   text2_fontSize = 7.5,
-				   text2_x = 0,
-				   text2_y = 0)
+                    icon1 = "",
+                    icon1_scale = 1,
+                    icon1_x = 0,
+                    icon1_y = 0,
+                    text1 = "",
+                    text1_fontSize = 7.5,
+                    text1_x = 0,
+                    text1_y = 0,
+                    text2 = "",
+                    text2_fontSize = 7.5,
+                    text2_x = 0,
+                    text2_y = 0)
 {
 	difference()
 	{
 		lightSignal_shell(baseHeight, showOriginal = false);
 
 		lightSignal_cutouts(icon1,
-							icon1_scale,
-							icon1_x,
-							icon1_y,
-							text1,
-							text1_fontSize,
-							text1_x,
-							text1_y,
-							text2,
-							text2_fontSize,
-							text2_x,
-							text2_y);
+                                    icon1_scale,
+                                    icon1_x,
+                                    icon1_y,
+                                    text1,
+                                    text1_fontSize,
+                                    text1_x,
+                                    text1_y,
+                                    text2,
+                                    text2_fontSize,
+                                    text2_x,
+                                    text2_y);
 	}
 }
 
@@ -45,35 +45,35 @@ function lightSignal_stlBaseInnerRadius() = 18.5;
 function lightSignal_stlBaseOuterRadius() = lightSignal_stlBaseInnerRadius() + 2.5;
 
 module lightSignal_cutouts(icon1,
-							icon1_scale,
-							icon1_x,
-							icon1_y,
-						   text1,
-						   text1_fontSize,
-						   text1_x,
-						   text1_y,
-					 	   text2,
-						   text2_fontSize,
-					   	   text2_x,
-						   text2_y)
+                            icon1_scale,
+                            icon1_x,
+                            icon1_y,
+                            text1,
+                            text1_fontSize,
+                            text1_x,
+                            text1_y,
+                            text2,
+                            text2_fontSize,
+                            text2_x,
+                            text2_y)
 {
 		lightSignal_textCutouts(text1,
-								text1_fontSize,
-								text1_x,
-								text1_y,
-								text2,
-								text2_fontSize,
-								text2_x,
-	 						   	text2_y);
+                                        text1_fontSize,
+                                        text1_x,
+                                        text1_y,
+                                        text2,
+                                        text2_fontSize,
+                                        text2_x,
+                                        text2_y);
 
 		lightSignal_iconCutouts(icon1, icon1_scale, icon1_x,
 		icon1_y);
 }
 
 module lightSignal_iconCutouts(icon1,
-							   icon1_scale,
-							   icon1_x,
-							   icon1_y)
+                                icon1_scale,
+                                icon1_x,
+                                icon1_y)
 {
 	if(icon1 == "")
 	{
@@ -115,7 +115,7 @@ module lightSignal_oneTextCutout(text, fontSize, x, y)
 }
 
 module lightSignal_shell(baseHeight,
-						 showOriginal = false)
+                        showOriginal = false)
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
 
