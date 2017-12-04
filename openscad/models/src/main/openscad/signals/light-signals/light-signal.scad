@@ -9,6 +9,10 @@ module lightSignal(baseHeight = 2,
                     icon1_scale = 1,
                     icon1_x = 0,
                     icon1_y = 0,
+                    icon2 = "",
+                    icon2_scale = 1.0,
+                    icon2_x = 0,
+                    icon2_y = 0,
                     text1 = "",
                     text1_fontSize = 7.5,
                     text1_x = 0,
@@ -26,6 +30,10 @@ module lightSignal(baseHeight = 2,
                                     icon1_scale,
                                     icon1_x,
                                     icon1_y,
+                                    icon2,
+                                    icon2_scale,
+                                    icon2_x,
+                                    icon2_y,
                                     text1,
                                     text1_fontSize,
                                     text1_x,
@@ -48,6 +56,10 @@ module lightSignal_cutouts(icon1,
                             icon1_scale,
                             icon1_x,
                             icon1_y,
+                            icon2,
+                            icon2_scale,
+                            icon2_x,
+                            icon2_y,
                             text1,
                             text1_fontSize,
                             text1_x,
@@ -66,52 +78,79 @@ module lightSignal_cutouts(icon1,
                                         text2_x,
                                         text2_y);
 
-		lightSignal_iconCutouts(icon1, icon1_scale, icon1_x,
-		icon1_y);
+		lightSignal_iconCutouts(icon1,
+                                        icon1_scale,
+                                        icon1_x,
+                                        icon1_y,
+                                        icon2,
+                                        icon2_scale,
+                                        icon2_x,
+                                        icon2_y);
 }
 
 module lightSignal_iconCutouts(icon1,
                                 icon1_scale,
                                 icon1_x,
-                                icon1_y)
+                                icon1_y,
+                                icon2,
+                                icon2_scale,
+                                icon2_x,
+                                icon2_y)
 {
-	if(icon1 == "")
-	{
-		// do nothing
-	}
-	else
-	{
-		zScale = 3;
-		translate([icon1_x, icon1_y, -1.01])
-		if(icon1 == "heart")
-		{
-			scale([icon1_scale, icon1_scale, zScale])
-			heartThumbnail();
-		}
-		else if(icon1 == "bat")
-		{
-			scale([icon1_scale, icon1_scale, zScale])
-			batmanLogoThumbnail();
-		}
-	}
+    lightSignal_oneIconCutout(icon1,
+                                icon1_scale,
+                                icon1_x,
+                                icon1_y);
+
+    lightSignal_oneIconCutout(icon2,
+                                icon2_scale,
+                                icon2_x,
+                                icon2_y);
+}
+
+module lightSignal_oneIconCutout(
+                    icon1,
+                    icon1_scale,
+                    icon1_x,
+                    icon1_y)
+{
+    if(icon1 == "")
+    {
+        // do nothing
+    }
+    else
+    {
+        zScale = 3;
+        translate([icon1_x, icon1_y, -1.01])
+        if(icon1 == "heart")
+        {
+                scale([icon1_scale, icon1_scale, zScale])
+                heartThumbnail();
+        }
+        else if(icon1 == "bat")
+        {
+                scale([icon1_scale, icon1_scale, zScale])
+                batmanLogoThumbnail();
+        }
+    }
 }
 
 module lightSignal_oneTextCutout(text, fontSize, x, y)
 {
-	if(text == "")
-	{
-		// do nothing
-	}
-	else
-	{
-		extrudeHeight = 6;
-		zTranslate = -3;
-		fontName = "Bauhaus 93:style=Regular";
+    if(text == "")
+    {
+        // do nothing
+    }
+    else
+    {
+        extrudeHeight = 6;
+        zTranslate = -3;
+        fontName = "Bauhaus 93:style=Regular";
 
-		translate([x, y, zTranslate])
-		linear_extrude(height = extrudeHeight)
-		text(text = text, font = fontName, size = fontSize);
-	}
+        translate([x, y, zTranslate])
+        linear_extrude(height = extrudeHeight)
+        text(text = text, font = fontName, size = fontSize);
+    }
 }
 
 module lightSignal_shell(baseHeight,
@@ -156,15 +195,15 @@ module lightSignal_shell(baseHeight,
 }
 
 module lightSignal_textCutouts(text1,
-								text1_fontSize,
-								text1_x,
-								text1_y,
-							    text2,
-								text2_fontSize,
-							    text2_x,
-							    text2_y)
+                                text1_fontSize,
+                                text1_x,
+                                text1_y,
+                                text2,
+                                text2_fontSize,
+                                text2_x,
+                                text2_y)
 {
-	lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
+    lightSignal_oneTextCutout(text1, text1_fontSize, text1_x, text1_y);
 
-	lightSignal_oneTextCutout(text2, text2_fontSize, text2_x, text2_y);
+    lightSignal_oneTextCutout(text2, text2_fontSize, text2_x, text2_y);
 }
