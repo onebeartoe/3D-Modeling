@@ -1,4 +1,5 @@
 
 use <../../light-signal.scad>
 
-lightSignal(icon1 = "bat");
+lightSignal(icon1 = "bat",
+			mountingPosts = "Yes");
