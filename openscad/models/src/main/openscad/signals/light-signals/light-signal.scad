@@ -1,9 +1,8 @@
 
-use <../../external-resources/batman/batman.scad>
-
 use <../../shapes/dome/dome.scad>
-use <../../shapes/heart/heart.scad>
 use <../../shapes/open-cylinder/open-cylinder.scad>
+
+use <../../thumbnails/thumbnails-by-name.scad>
 
 module lightSignal(baseHeight = 2,
                     icon1 = "",
@@ -136,16 +135,8 @@ module lightSignal_oneIconCutout(
     {
         zScale = 3;
         translate([icon1_x, icon1_y, -1.01])
-        if(icon1 == "heart")
-        {
-                scale([icon1_scale, icon1_scale, zScale])
-                heartThumbnail();
-        }
-        else if(icon1 == "bat")
-        {
-                scale([icon1_scale, icon1_scale, zScale])
-                batmanLogoThumbnail();
-        }
+		scale([icon1_scale, icon1_scale, zScale])
+        thumbnailByName(icon1);
     }
 }
 
