@@ -13,6 +13,7 @@ module lightSignal(baseHeight = 2,
                     icon2_scale = 1.0,
                     icon2_x = 0,
                     icon2_y = 0,
+					mountingPosts = "No",
                     text1 = "",
 					text1_fontName = "Bauhaus 93:style=Regular",
                     text1_fontSize = 7.5,
@@ -26,7 +27,9 @@ module lightSignal(baseHeight = 2,
 {
 	difference()
 	{
-		lightSignal_shell(baseHeight, showOriginal = false);
+		showOriginal = "No";
+		lightSignal_shell(baseHeight, mountingPosts, showOriginal);
+//		lightSignal_shell(baseHeight, showOriginal = false);
 
 		lightSignal_cutouts(icon1,
                                     icon1_scale,
@@ -143,6 +146,9 @@ module lightSignal_oneIconCutout(
     }
 }
 
+// TODO: Move this model back here!
+//module lightSignal_oneShellMountingPost()
+
 module lightSignal_oneTextCutout(text, fontName, fontSize, x, y)
 {
     if(text == "")
@@ -161,7 +167,8 @@ module lightSignal_oneTextCutout(text, fontName, fontSize, x, y)
 }
 
 module lightSignal_shell(baseHeight,
-                        showOriginal = false)
+							mountingPosts,
+	                    	showOriginal)
 {
 	signalStl = "../../../../../../../../../../../../Versioning/world/beto-land-world/3d-printing/super-heroes/batman/bat-signal/customizable_phone_bat_signal_20150130-9347-hv0ikc-0.stl";
 
@@ -181,14 +188,19 @@ module lightSignal_shell(baseHeight,
 		translate([0, 0, zTopHoleTranslate-3])
 		openCylinder(height=3.1, outerRadius = 19, innerRadius=8);
 
+		if(mountingPosts == "Yes")
+		{
+			lightSignal_shellMountingPosts(zTopHoleTranslate);
+		}
+
 		// this is the bottom wide shaft
 		zTranslate = -baseHeight / 2.0;
-		color("orange")
+		color("yellow")
 		translate([0, 0, zTranslate])
 		openCylinder(height=zTopHoleTranslate, outerRadius = stlBaseOuterRadius, innerRadius = stlBaseInnerRadius);
 
 		// this thing was modeld after this original
-		if(showOriginal)
+		if(showOriginal == "Yes")
 		{
 			color("yellow")
 			translate([0, 0, zTranslate])
@@ -199,6 +211,27 @@ module lightSignal_shell(baseHeight,
 		color("green")
 		cylinder(r=stlBaseInnerRadius+0.1, h=baseHeight, center=true);
 	}
+}
+
+// TODo: Move this module to the correct ABC location
+module lightSignal_oneShellMountingPost()
+{
+	height = 10;
+//	translate([height, 0, 0])
+	rotate([0, 90, 0])
+	cylinder(r=3, h=height, center=true, $fn=20);
+}
+
+module lightSignal_shellMountingPosts(zTopHoleTranslate)
+{
+	xTranslate = lightSignal_stlBaseOuterRadius() + 2.5;
+	zTranslate = zTopHoleTranslate * 0.75;
+	translate([xTranslate, 0, zTranslate])
+	lightSignal_oneShellMountingPost();
+
+	zTranslate = zTopHoleTranslate * 0.75;
+	translate([-xTranslate, 0, zTranslate])
+	lightSignal_oneShellMountingPost();
 }
 
 module lightSignal_textCutouts(text1,
