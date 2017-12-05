@@ -49,7 +49,7 @@ public class FXMLController implements Initializable//, DesktopApplication
         {
             File infile = new File(openScadFile);
             String interpolatedContent = customizerService.interpolateOpenScad(infile);
-            String path = infile.getParent() + File.separator + infile.getName() + "-CUSTOMIZER.scad";
+            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-CUSTOMIZER.scad";
             File outfile = new File(path);
             Path outpath = outfile.toPath();
             Files.write(outpath, interpolatedContent.getBytes() );
