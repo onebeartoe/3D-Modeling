@@ -3,9 +3,10 @@ use <MCAD/shapes.scad>
 //use </usr/share/openscad/libraries/MCAD/shapes.scad>
 //use </Applications/OpenSCAD.app/Contents/Resources/libraries/MCAD/shapes.scad>
 
-module openOval(borderThickness = 3, yLength = 10)
+module openOval(borderThickness = 3, yLength = 10, zLength = 1)
 {
 	openOval2d(borderThickness = borderThickness,
+			   depth = zLength,
 			   height = yLength);
 }
 

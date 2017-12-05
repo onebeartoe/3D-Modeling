@@ -34,8 +34,8 @@ module dialogBubble_block(pointerRotateZ, yLength)
 module dialogBubble_cutouts(pointerRotateZ, yLength)
 {
 
-	translate([-3.1, 3.5, -0.02])
-	scale([1,1,1.02])
+	translate([-3.1, 3.5, -0.1])
+	scale([1, 1, 1.4])
 	dialogBubble_pointer(pointerRotateZ, yLength);
 }
 
@@ -46,5 +46,5 @@ module dialogBubble_pointer(pointerRotateZ, yLength)
 	rotateZ = pointerRotateZ;
 	translate([15, yTranslate, 0])
 	rotate([0, 0, rotateZ])
-	triangle(o_len = -8, a_len = -5, depth=5);
+	triangle(o_len = -8, a_len = -5, depth=1);
 }
