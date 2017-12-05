@@ -1,5 +1,5 @@
 
-use <../../dialog-bubble.scad>
+use <../dialog-bubble.scad>
 
 module stencilDialogBubble()
 {
@@ -13,5 +13,5 @@ module stencilDialogBubble()
 
 module stencilDialogBubble_lines()
 {
-	
+
 }
