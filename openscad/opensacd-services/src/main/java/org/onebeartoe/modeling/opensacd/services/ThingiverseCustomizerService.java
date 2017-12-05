@@ -22,6 +22,10 @@ public class ThingiverseCustomizerService
     private final String fontList;
     
     private final String fontNameKey = "@FontNamesReplacement@";
+    
+    private final String stencilFontNameKey = "@StencilFontNamesReplacement@";
+    
+    private final String stencilFontList;
 
     public ThingiverseCustomizerService() throws IOException
     {
@@ -32,6 +36,8 @@ public class ThingiverseCustomizerService
         properties.load(is);
         String defalutValue = "@FontListNotAvailable@";
         fontList = properties.getProperty("font.names", defalutValue);
+        
+        stencilFontList = properties.getProperty("font.stencilNames", defalutValue);
     }
 
     private boolean isUseStatement(String line)
@@ -88,7 +94,7 @@ public class ThingiverseCustomizerService
     private String interpolateOpenScadFontLine(String line)
     {        
         String s;
-        
+
         if( line.contains(fontNameKey) )
         {
             s = line.replace(fontNameKey, fontList);
@@ -97,6 +103,8 @@ public class ThingiverseCustomizerService
         {
             s = line;
         }
+        
+        s = s.replace(stencilFontNameKey, stencilFontList);
 
         return s;
     }
