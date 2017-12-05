@@ -153,7 +153,7 @@ module lightSignal_oneTextCutout(text, fontName, fontSize, x, y)
     {
         extrudeHeight = 6;
         zTranslate = -3;
-
+echo("fontName", fontName);
         translate([x, y, zTranslate])
         linear_extrude(height = extrudeHeight)
         text(text = text, font = fontName, size = fontSize);
