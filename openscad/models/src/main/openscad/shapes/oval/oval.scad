@@ -1,10 +1,12 @@
 
-oval();
-
 module oval(height = 3,
+			radius = 20,
             xScale = 1.2,
-            yScale = 1.4)
+            yScale = 1.4,
+			fn = 30)
 {
-    scale (v=[xScale, yScale, 1]) 
-    cylinder(h = height, r=20);
+	$fn = fn;
+	
+    scale (v=[xScale, yScale, 1])
+    cylinder(h = height, r=radius);
 }

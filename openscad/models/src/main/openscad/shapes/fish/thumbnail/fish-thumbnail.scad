@@ -1,0 +1,4 @@
+
+use <../fish.scad>
+
+fishThumbnail();
