@@ -2,6 +2,13 @@
 use <../oval/oval.scad>
 use <../triangle/triangle.scad>
 
+/**
+ *  This a fish.  I used the following thing as an example of how to do the main fish
+ *  body: 
+ *
+ *          https://www.thingiverse.com/thing:844015
+ *
+ */
 module fish(bodyRadius = 7, height = 1)
 {
 	rotate([0, 0, 135])
