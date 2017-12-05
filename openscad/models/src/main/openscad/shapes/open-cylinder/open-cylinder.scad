@@ -5,7 +5,6 @@ module openCylinder(height = 3,
                     innerRadius = 4.5,
                     fn = 100)
 {
-echo("hi oc");    
     $fn = fn;
 
     difference()

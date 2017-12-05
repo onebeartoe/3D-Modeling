@@ -1,5 +1,6 @@
 
 use <../../shapes/heart/heart.scad>
+use <../../shapes/spurs/spurs-a.scad>
 
 module shapes_thumbnailByName(iconName)
 {
@@ -8,9 +9,12 @@ module shapes_thumbnailByName(iconName)
 	//                scale([icon1_scale, icon1_scale, zScale])
 			heartThumbnail();
 	}
-	else if(iconName == "jflkdfjaldsjfdsfjasbat")
+	else if(iconName == "spur")
 	{
-	//                scale([icon1_scale, icon1_scale, zScale])
-			fjlkajfkjfldsThumbnail();
+			spurThumbnail();
+	}
+	else
+	{
+		echo("No shape thumbnail was found");
 	}
 }
