@@ -1,4 +1,17 @@
 
 use <../../dialog-bubble.scad>
 
-dialogBubble(yLength = 15);
+module stencilDialogBubble()
+{
+	difference()
+	{
+		dialogBubble(yLength = 15);
+
+		stencilDialogBubble_lines();
+	}
+}
+
+module stencilDialogBubble_lines()
+{
+	
+}
