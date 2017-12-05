@@ -13,6 +13,15 @@ module stencilDialogBubble()
 	}
 }
 
+module stenciledDialogBubbleThumbnail()
+{
+	xyScale = 0.62134;
+	scale([xyScale, xyScale, 1])
+	stencilDialogBubble();
+}
+
+/** Support functions and modules follow. **/
+
 module stencilDialogBubble_lines(yLength)
 {
 	xLength = 100;

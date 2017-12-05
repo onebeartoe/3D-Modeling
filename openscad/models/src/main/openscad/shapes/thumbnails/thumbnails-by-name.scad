@@ -1,10 +1,15 @@
 
+use <../../shapes/dialog-bubble/stencil/stencil-dialog-bubble.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/spurs/spurs-a.scad>
 
 module shapes_thumbnailByName(iconName)
 {
-	if(iconName == "heart")
+	if(iconName == "dialog-bubble")
+	{
+		stenciledDialogBubbleThumbnail();
+	}
+	else if(iconName == "heart")
 	{
 	//                scale([icon1_scale, icon1_scale, zScale])
 			heartThumbnail();

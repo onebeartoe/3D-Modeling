@@ -4,7 +4,11 @@ use <../shapes/thumbnails/thumbnails-by-name.scad>
 
 module thumbnailByName(iconName)
 {
-	if(iconName == "heart")
+	if(iconName == "dialog-bubble")
+	{
+		shapes_thumbnailByName(iconName);
+	}
+	else if(iconName == "heart")
 	{
 		shapes_thumbnailByName(iconName);
 	}
