@@ -22,7 +22,7 @@ module lightSignalStand_base(postHeight)
 		radius = lightSignal_stlBaseOuterRadius() + 5;
 		cylinder(r=radius, h=5, center=true);
 
-		xLength = 10;
+		xLength = 12;
 		xTranslate = -xLength / 2.0;
 		yTranslate = radius - 5;
 		translate([xTranslate, yTranslate, 0])
