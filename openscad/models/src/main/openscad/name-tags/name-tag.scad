@@ -13,6 +13,7 @@ use <../mounting-hardware/chain-loop/rounded/rounded-chain-loop.scad>
 use <../mounting-hardware/chain-loop/square/chain-loop.scad>
 use <../shapes/crescent-moon/crescent-moon.scad>
 use <../shapes/fan/iso-7000-fan.scad>
+use <../shapes/fish/fish.scad>
 use <../shapes/light-bulb/light-bulb.scad>
 use <../shapes/minecraft/creeper/creeper-face.scad>
 use <../shapes/spurs/spurs-a.scad>
@@ -44,12 +45,12 @@ module nametag(baseColor = "black",
                bottomTextOffsetY = 0,
                bottomTextSize = 9,
                chainLoop = true,
-			   chaneLoopCutoutAxis = "x",
+		           chaneLoopCutoutAxis = "x",
                chainLoopLengthPercentageY = 0.75,
                chainLoopLengthPercentageZ = 0.65,
                chainLoopLengthZ = 10,
                chainLoopPosition = "bottom",
-			   chainLoopType = "square",
+			         chainLoopType = "square",
                iconColor = "white",
                leftIconHeight = 1.5,
                leftIconType = "Light Bulb",
@@ -231,6 +232,11 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     {
         scale([1, 1, 1.6])
         fanThumbnail();
+    }
+    else if(iconType == "Fish")
+    {
+        scale([1, 1, 1.6])
+        fishThumbnail();
     }
     else if(iconType == "Light Bulb")
     {

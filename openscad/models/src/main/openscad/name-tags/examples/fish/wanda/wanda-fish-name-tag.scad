@@ -1,0 +1,26 @@
+
+use <../../../name-tag.scad>
+
+nametag(baseColor = "Blue",
+		    baseHeight = 27,
+        baseThickness = 2,
+        baseWidth = 195,
+	      bottomText = "A Fish",
+        bottomTextColor = "white",
+        bottomTextFont = "Wingdings", // "Arial", "Wingdings",
+        bottomTextOffsetX = 0,
+        bottomTextOffsetY = -10,
+	      bottomTextSize = 11,
+        chainLoop = false,
+	      leftIconType = "Fish",
+//        leftIconHeight = 2.1,
+        letterThickness = 3,
+	      rightIconType = "Fish",
+        rightIconHeight = 3,
+        roundedCorners = true,
+        showBorder = "No",
+        topText = "Wanda",
+	      topTextOffsetY = 5,
+        topTextSize = 17, // 18,
+        topTextColor = "white",
+        topTextFont = "Bauhaus 93"); // "Bauhaus 93" "Helvetica");
