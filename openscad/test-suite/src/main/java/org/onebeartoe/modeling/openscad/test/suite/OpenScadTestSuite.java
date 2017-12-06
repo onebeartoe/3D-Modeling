@@ -25,10 +25,9 @@ public class OpenScadTestSuite
     private static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
     private static final String DIFF_ONLY = "diffOnly";
     public static final String GENERATE_BASELILNES = "generateBaselines";
+    private static final String OPENSCAD_PATH = "openscadPath";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
-    
-    
-    
+
     public OpenScadTestSuite()
     {
         String name = getClass().getName(); 
@@ -59,10 +58,17 @@ public class OpenScadTestSuite
                     .longOpt(DIFF_ONLY)
                     .build();
         
+        Option openscadPath = Option.builder()
+                                .hasArg()
+                                .longOpt(OPENSCAD_PATH)
+                                .desc("This is the path to the openscad execuable.")
+                                .build();
+        
         Options options = new Options();
         options.addOption(deleteProposedBaselines);
         options.addOption(diffOnly);
         options.addOption(generateBaselines);
+        options.addOption(openscadPath);
         options.addOption(outfile);
         
         return options;
@@ -103,13 +109,18 @@ public class OpenScadTestSuite
         
         RunProfile runProfile = new RunProfile();
         
-        // TODO: Do not hard code the openscad executable path
-        // This version produces baseline imags that match the ones created on the openscad 
-        // build server, which uses version 2015.03-1 of OpenSCAD.
-        runProfile.executablePath = "openscad";
-//        runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
-//      runProfile.executablePath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
-        
+        if(cmd.hasOption(OPENSCAD_PATH))
+        {
+            runProfile.executablePath = cmd.getOptionValue(OPENSCAD_PATH);
+        }
+        else
+        {
+            // This version produces baseline imags that match the ones created on the openscad 
+            // build server, which uses version 2015.03-1 of OpenSCAD.
+            runProfile.executablePath = "openscad";
+//          runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
+//          runProfile.executablePath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
+        }
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
         runProfile.redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);
