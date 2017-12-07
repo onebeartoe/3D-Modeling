@@ -8,7 +8,7 @@
 **/
 
 text1 = "Impalas";
-text1_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One Regular, Kenia Regular, Plaster Regular, SirinStencil Regular, Stardos Stencil Regular, Trocchi Bold-Stencil, Wallpoet Regular]
+text1_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One, Kenia, Plaster, SirinStencil, Stardos Stencil, Trocchi Bold-Stencil, Wallpoet]
 text1_x = -18;
 text1_y = -3;
 
@@ -171,7 +171,7 @@ module lightSignal_oneTextCutout(text, fontName, fontSize, x, y)
     {
         extrudeHeight = 6;
         zTranslate = -3;
-echo("fontName", fontName);
+//echo("fontName", fontName);
         translate([x, y, zTranslate])
         linear_extrude(height = extrudeHeight)
         text(text = text, font = fontName, size = fontSize);
@@ -301,7 +301,6 @@ module openCylinder(height = 3,
                     innerRadius = 4.5,
                     fn = 100)
 {
-echo("hi oc");    
     $fn = fn;
 
     difference()
@@ -318,13 +317,29 @@ echo("hi oc");
 
 module thumbnailByName(iconName)
 {
-	if(iconName == "heart")
+	if(iconName == "arrow")
+	{
+		shapes_thumbnailByName(iconName);
+	}
+	else if(iconName == "dialog-bubble")
+	{
+		shapes_thumbnailByName(iconName);
+	}
+	else if(iconName == "heart")
 	{
 		shapes_thumbnailByName(iconName);
 	}
 	else if(iconName == "bat")
 	{
 		externalResources_thumbnailByName(iconName);
+	}
+	else if(iconName == "spur")
+	{
+		shapes_thumbnailByName(iconName);
+	}
+	else
+	{
+		echo("No thumbnail was found.");
 	}
 }
 
@@ -346,15 +361,26 @@ module externalResources_thumbnailByName(iconName)
 
 module shapes_thumbnailByName(iconName)
 {
-	if(iconName == "heart")
+	if(iconName == "arrow")
+	{
+		rightArrowThumbnail();
+	}
+	else if(iconName == "dialog-bubble")
+	{
+		stenciledDialogBubbleThumbnail();
+	}
+	else if(iconName == "heart")
 	{
 	//                scale([icon1_scale, icon1_scale, zScale])
 			heartThumbnail();
 	}
-	else if(iconName == "jflkdfjaldsjfdsfjasbat")
+	else if(iconName == "spur")
 	{
-	//                scale([icon1_scale, icon1_scale, zScale])
-			fjlkajfkjfldsThumbnail();
+			spurThumbnail();
+	}
+	else
+	{
+		echo("No shape thumbnail was found");
 	}
 }
 
@@ -433,6 +459,80 @@ module batmanLogoThumbnail()
     batmanLogo();
 }
 
+
+module arrow()
+{
+    union()
+    {
+        triangle(size = 5);
+
+        xLength = 2;
+        yLength = 10;
+        xTranslate = -xLength / 2.0;
+        yTranslate = -yLength;
+        translate([xTranslate, yTranslate, 0])
+        cube([xLength, yLength, 1]);
+    }
+}
+
+module arrowThumbnail()
+{
+    xyScale = 1.62;
+    yTranslate = 4.05;
+    translate([0, yTranslate, 0])
+    scale([xyScale, xyScale, 1])
+    arrow();
+}
+
+module rightArrowThumbnail()
+{
+    rotate([0, 0, -90])
+    arrowThumbnail();
+}
+
+
+module stencilDialogBubble()
+{
+	difference()
+	{
+		yLength = 15;
+
+		dialogBubble(yLength = yLength);
+
+		stencilDialogBubble_lines(yLength);
+	}
+}
+
+module stenciledDialogBubbleThumbnail()
+{
+	xyScale = 0.62134;
+	scale([xyScale, xyScale, 1])
+	stencilDialogBubble();
+}
+
+/** Support functions and modules follow. **/
+
+module stencilDialogBubble_lines(yLength)
+{
+	xLength = 100;
+	xTranslate = -yLength - 15;
+	translate([xTranslate, 0, -0.2])
+	scale([1,1,2])
+	union()
+	{
+		// horizontal 0
+		translate([0,10,0])
+		cube([xLength, 1, 1]);
+
+		// horizontal 1
+		cube([xLength, 1, 1]);
+
+		// horizontal 2
+		translate([0,-10,0])
+		cube([xLength, 1, 1]);
+	}
+}
+
 module heart(height=1)
 {
 echo("hearto");
@@ -458,4 +558,114 @@ module flatHeart()
 
     translate([0,10,0]) 
     circle(10, center = true);
+}
+
+// Module names are of the form poly_<inkscape-path-id>().  As a result,
+// you can associate a polygon in this OpenSCAD program with the corresponding
+// SVG element in the Inkscape document by looking for the XML element with
+// the attribute id="inkscape-path-id".
+
+module spur(zLength)
+{
+  scale([25.4/90, -25.4/90, 2])
+  translate([0, 0, -2])
+//  union()
+  {
+    linear_extrude(height = zLength)
+    polygon([[13.500000,-56.000000],[29.500000,-55.000000],[54.500000,-55.000000],[58.503750,-55.048750],[60.522969,-55.341719],[62.290000,-56.020000],[64.325156,-57.853594],[66.241250,-60.541250],[69.240000,-66.000000],[80.500000,-87.000000],[106.280000,-135.000000],[118.870000,-159.000000],[122.780000,-198.000000],[124.023594,-204.882813],[125.843750,-209.652500],[128.457031,-214.095937],[132.080000,-220.000000],[148.490000,-248.000000],[153.376719,-256.487656],[155.041895,-259.143652],[156.518750,-260.956250],[158.055137,-262.086816],[159.898906,-262.696719],[165.500000,-263.000000],[214.500000,-263.000000],[214.500000,-213.000000],[213.360000,-196.000000],[213.360000,-154.000000],[213.495000,-150.462500],[213.360000,-147.000000],[196.920000,-117.000000],[156.350000,-45.000000],[125.920000,9.000000],[120.671250,18.592500],[117.385469,23.577187],[115.794199,25.366055],[114.320000,26.400000],[112.797344,26.797500],[110.981250,26.970000],[107.500000,27.000000],[79.500000,27.000000],[65.500000,28.000000],[31.500000,28.000000],[27.943750,28.030000],[24.500000,28.600000],[22.684180,29.597539],[20.548438,31.277812],[15.792500,35.922500],[7.670000,45.000000],[-36.500000,94.040000],[-25.500000,94.040000],[-15.500000,95.000000],[1.500000,95.000000],[22.500000,96.000000],[2.500000,114.080000],[-38.500000,149.000000],[-23.230000,165.000000],[-3.230000,188.000000],[14.500000,210.000000],[-66.500000,189.000000],[-91.500000,263.000000],[-92.970664,261.624141],[-94.426562,259.592500],[-97.197500,254.302500],[-101.500000,244.000000],[-121.500000,198.000000],[-200.500000,222.000000],[-174.840000,182.000000],[-154.500000,151.000000],[-187.500000,128.020000],[-214.500000,108.000000],[-166.500000,103.830000],[-135.500000,101.000000],[-137.410000,77.000000],[-139.590000,41.000000],[-140.500000,31.000000],[-138.108496,32.343340],[-135.722969,34.055469],[-131.038750,38.223750],[-122.500000,47.000000],[-111.500000,57.040000],[-94.500000,74.000000],[-77.500000,27.000000],[-107.500000,26.000000],[-117.196250,25.451250],[-122.812656,24.814531],[-126.090000,23.980000],[-127.513906,22.488438],[-128.773750,20.335000],[-130.730000,16.000000],[-138.200000,-1.000000],[-140.195000,-5.868750],[-140.649688,-8.406719],[-140.330000,-11.000000],[-134.780000,-21.000000],[-120.780000,-45.000000],[-74.650000,-124.000000],[-55.110000,-158.000000],[-46.570000,-206.000000],[-30.280000,-238.000000],[-21.920000,-254.000000],[-19.818750,-257.793750],[-18.535156,-259.646094],[-17.110000,-260.980000],[-15.251406,-261.684844],[-12.943750,-261.983750],[-8.500000,-261.990000],[5.500000,-261.000000],[19.500000,-261.000000],[31.500000,-260.040000],[43.500000,-260.040000],[43.500000,-217.000000],[44.500000,-200.000000],[44.500000,-162.000000],[43.800000,-154.000000],[28.100000,-127.000000],[-14.500000,-56.000000],[13.500000,-56.000000]]);
+  }
+}
+
+module spurThumbnail(height = 1)
+{
+    xyScale = 0.164;
+    translate([0,0,4])
+    scale([xyScale, xyScale, 1])
+    spur(zLength = height);
+}
+
+module triangle(size=1, height=1)
+{
+    rotate([0, 0, 90])
+    cylinder(r=size, 
+             $fn=3,
+             h=height);
+}
+
+use <MCAD/triangles.scad>
+//use <MCAD/shapes.scad>
+
+
+module dialogBubble(pointerRotateZ = 25,
+					yLength = 10)
+{
+	difference()
+	{
+		dialogBubble_block(pointerRotateZ, yLength);
+
+		dialogBubble_cutouts(pointerRotateZ, yLength);
+	}
+
+//	dialogBubble_cutouts(pointerRotateZ, yLength);
+}
+
+/** Support functions and modules follow.  **/
+
+module dialogBubble_block(pointerRotateZ, yLength)
+{
+	union()
+	{
+//		% // transparent
+		openOval(borderThickness = 1.5,
+				 yLength = yLength);
+
+		dialogBubble_pointer(pointerRotateZ, yLength);
+	}
+}
+
+module dialogBubble_cutouts(pointerRotateZ, yLength)
+{
+
+	translate([-3.1, 3.5, -0.1])
+	scale([1, 1, 1.4])
+	dialogBubble_pointer(pointerRotateZ, yLength);
+}
+
+module dialogBubble_pointer(pointerRotateZ, yLength)
+{
+	yTranslate = -5;
+	yTranslate = -yLength + 5;
+	rotateZ = pointerRotateZ;
+	translate([15, yTranslate, 0])
+	rotate([0, 0, rotateZ])
+	triangle(o_len = -8, a_len = -5, depth=1);
+}
+
+use <MCAD/shapes.scad>
+//use </usr/share/openscad/libraries/MCAD/shapes.scad>
+//use </Applications/OpenSCAD.app/Contents/Resources/libraries/MCAD/shapes.scad>
+
+module openOval(borderThickness = 3, yLength = 10, zLength = 1)
+{
+	openOval2d(borderThickness = borderThickness,
+			   depth = zLength,
+			   height = yLength);
+}
+
+/** Support functions and modules follow.  **/
+
+module openOval2d(borderThickness = 3,
+				  depth = 5,
+				  height = 10,
+				  width = 20)
+{
+	difference()
+	{
+		ellipticalCylinder(w = width, h = height, height = depth);
+
+		w = width - borderThickness;
+		h = height - borderThickness;
+		translate([0, 0, -0.02])
+		ellipticalCylinder(w = w, h = h, height = depth + 0.1);
+	}
 }

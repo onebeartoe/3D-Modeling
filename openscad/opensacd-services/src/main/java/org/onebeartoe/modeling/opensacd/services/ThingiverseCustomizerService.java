@@ -39,6 +39,14 @@ public class ThingiverseCustomizerService
         
         stencilFontList = properties.getProperty("font.stencilNames", defalutValue);
     }
+    
+    private boolean isBuiltInLibrary(String line)
+    {
+        boolean contains = line.contains("MCAD/shapes.scad>")
+                            || line.contains("MCAD/triangles.scad");
+        
+        return contains;
+    }
 
     private boolean isUseStatement(String line)
     {
@@ -168,21 +176,29 @@ public class ThingiverseCustomizerService
             // separate the use statements and non-use statements
             if( isUseStatement(line) )
             {
-                File targetParentDir = infile.getParentFile();
-                String absolutePath;
-                try
+                if( isBuiltInLibrary(line) )
                 {
-                    absolutePath = absolutePathOf(targetParentDir, line);
+                    // just add the build in library as is
+                    parse.otherStatements.add(line);
                 }
-                catch (IOException ex)
+                else
                 {
-                    absolutePath = "unable to process: " + line;
+                    File targetParentDir = infile.getParentFile();
+                    String absolutePath;
+                    try
+                    {
+                        absolutePath = absolutePathOf(targetParentDir, line);
+                    }
+                    catch (IOException ex)
+                    {
+                        absolutePath = "unable to process: " + line;
 
-                    String message = absolutePath;
-                    logger.log(Level.SEVERE, message, ex);
+                        String message = absolutePath;
+                        logger.log(Level.SEVERE, message, ex);
+                    }
+
+                    parse.useStatements.add(absolutePath);                    
                 }
-
-                parse.useStatements.add(absolutePath);
             }
             else
             {
