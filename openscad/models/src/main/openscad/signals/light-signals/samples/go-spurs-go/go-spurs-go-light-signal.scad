@@ -1,8 +1,6 @@
 
 use <../../light-signal.scad>
 
-//use <../../../../thumbnails/thumbnails-by-name.scad>
-
 fontSize = 7;
 
 lightSignal(icon1 = "spur",
