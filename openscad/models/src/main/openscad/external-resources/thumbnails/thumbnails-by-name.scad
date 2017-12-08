@@ -4,7 +4,7 @@ use <../../external-resources/cat/cat.scad>
 use <../../external-resources/pacman/pacman.scad>
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/thundercats/thundercats-logo.scad>
-
+use <../../external-resources/trooper/scrum-trooper.scad>
 
 module externalResources_thumbnailByName(iconName)
 {
@@ -27,6 +27,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "thundercat")
 	{
 		thundercatsLogoThumbnail();
+	}
+	else if(iconName == "trooper")
+	{
+		scrumTrooperThumbnail();
 	}
 	else
 	{

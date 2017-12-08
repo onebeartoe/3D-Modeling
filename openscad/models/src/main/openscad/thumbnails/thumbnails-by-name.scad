@@ -48,6 +48,10 @@ module thumbnailByName(iconName)
 	{
 		externalResources_thumbnailByName(iconName);
 	}
+	else if(iconName == "trooper")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else
 	{
 		echo("No thumbnail was found.");
