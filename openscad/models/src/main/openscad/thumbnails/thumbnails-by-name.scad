@@ -36,6 +36,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "star")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else
 	{
 		echo("No thumbnail was found.");

@@ -17,5 +17,5 @@ module starThumbnail(height = 1)
 {
 	xyScale = 0.9544;
 	scale([xyScale, xyScale, height])
-	star();	
+	star(h=2);
 }

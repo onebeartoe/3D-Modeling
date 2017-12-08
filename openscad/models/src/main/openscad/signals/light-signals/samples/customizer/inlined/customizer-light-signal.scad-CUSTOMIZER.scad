@@ -7,7 +7,7 @@
 	preview[view:south east, tilt:bottom diagonal] - nope
 **/
 
-icon1 = ""; // [arrow, bat, cat, clover, dialog-bubble, heart, rebel, spur]
+icon1 = ""; // [arrow, bat, cat, clover, dialog-bubble, heart, rebel, spur, star]
 
 text1 = "";
 text1_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One, Kenia, Plaster, SirinStencil, Stardos Stencil, Trocchi Bold-Stencil, Wallpoet]
@@ -16,7 +16,7 @@ text1_y = -3;
 
 mountingPosts = "Yes"; // [Yes, No]
 
-lightSignal(icon1 = "cat",
+lightSignal(icon1 = "star",
 			mountingPosts = mountingPosts,
             text1 = text1,
 			text1_fontName = text1_fontName,
@@ -352,6 +352,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "star")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else
 	{
 		echo("No thumbnail was found.");
@@ -373,6 +377,10 @@ module externalResources_thumbnailByName(iconName)
 	{
 		rebelAllianceThumbnail();
 	}
+	else
+	{
+		echo("No external resource thumbnail was found");
+	}
 }
 
 
@@ -382,22 +390,25 @@ module shapes_thumbnailByName(iconName)
 	{
 		rightArrowThumbnail();
 	}
-	else if(iconName == "dialog-bubble")
-	{
-		stenciledDialogBubbleThumbnail();
-	}
 	else if(iconName == "clover")
 	{
 		cloverThumbnail();
 	}
+	else if(iconName == "dialog-bubble")
+	{
+		stenciledDialogBubbleThumbnail();
+	}
 	else if(iconName == "heart")
 	{
-	//                scale([icon1_scale, icon1_scale, zScale])
-			heartThumbnail();
+		heartThumbnail();
 	}
 	else if(iconName == "spur")
 	{
-			spurThumbnail();
+		spurThumbnail();
+	}
+	else if(iconName == "star")
+	{
+		starThumbnail();
 	}
 	else
 	{
@@ -685,6 +696,28 @@ module spurThumbnail(height = 1)
     translate([0,0,4])
     scale([xyScale, xyScale, 1])
     spur(zLength = height);
+}
+
+// Module names are of the form poly_<inkscape-path-id>().  As a result,
+// you can associate a polygon in this OpenSCAD program with the corresponding
+// SVG element in the Inkscape document by looking for the XML element with
+// the attribute id="inkscape-path-id".
+
+module star(h=1)
+{
+  scale([25.4/90, -25.4/90, 1]) union()
+  {
+    linear_extrude(height=h)
+      polygon([[9.080000,-22.000000],[10.922500,-17.093750],[12.213125,-14.728281],[13.890000,-13.020000],[15.773906,-12.298125],[18.041250,-12.022500],[22.500000,-11.910000],[34.390000,-10.968750],[40.862812,-10.133906],[45.500000,-9.000000],[28.500000,4.610000],[21.270000,12.170000],[22.870000,22.000000],[27.500000,43.000000],[8.500000,31.580000],[-0.500000,27.200000],[-10.500000,32.320000],[-28.500000,43.000000],[-22.870000,21.000000],[-21.690000,11.090000],[-28.500000,4.130000],[-45.500000,-11.000000],[-11.500000,-13.000000],[-0.500000,-43.000000],[2.289219,-38.828594],[4.908750,-33.096250],[9.080000,-22.000000]]);
+  }
+}
+
+module starThumbnail(height = 1)
+{
+	echo("star star ");
+	xyScale = 0.9544;
+	scale([xyScale, xyScale, height])
+	star(h=2);
 }
 
 module triangle(size=1, height=1)

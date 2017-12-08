@@ -17,4 +17,8 @@ module externalResources_thumbnailByName(iconName)
 	{
 		rebelAllianceThumbnail();
 	}
+	else
+	{
+		echo("No external resource thumbnail was found");
+	}
 }
