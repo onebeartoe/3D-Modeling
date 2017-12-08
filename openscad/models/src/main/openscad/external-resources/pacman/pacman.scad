@@ -1,4 +1,4 @@
-        
+
 module pacman(height=5)
 {
     difference()
@@ -12,9 +12,9 @@ module pacman(height=5)
     }
 }
 
-module pacmanThumbnail(height = 1)
+module pacmanThumbnail(height = 1.4)
 {
     xyScale = 0.6;
     scale([xyScale,xyScale, 1])
-    pacman(height);
+    pacman(height = height);
 }

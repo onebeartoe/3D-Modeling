@@ -16,7 +16,7 @@ text1_y = -3;
 
 mountingPosts = "Yes"; // [Yes, No]
 
-lightSignal(icon1 = "thundercat",
+lightSignal(icon1 = "pacman",
 			mountingPosts = mountingPosts,
             text1 = text1,
 			text1_fontName = text1_fontName,
@@ -344,6 +344,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "pacman")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else if(iconName == "rebel")
 	{
 		externalResources_thumbnailByName(iconName);
@@ -367,6 +371,7 @@ module thumbnailByName(iconName)
 }
 
 
+
 module externalResources_thumbnailByName(iconName)
 {
 	if(iconName == "bat")
@@ -376,6 +381,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "cat")
 	{
 		catThumbnail();
+	}
+	else if(iconName == "pacman")
+	{
+		pacmanThumbnail();
 	}
 	else if(iconName == "rebel")
 	{
@@ -523,6 +532,26 @@ module catThumbnail()
 	xyScale = .37;
 	scale([xyScale, xyScale, 1])	
 	cat();
+}
+
+module pacman(height=5)
+{
+    difference()
+    {
+        cylinder(r=20, center=true, h=height);
+
+        linear_extrude(height=50, center=true, convexity = 10, twist = 0)
+        {
+            polygon(points=[[0,0],[100,60],[100,-60]], paths=[[0,1,2]]);
+        }
+    }
+}
+
+module pacmanThumbnail(height = 1.4)
+{
+    xyScale = 0.6;
+    scale([xyScale,xyScale, 1])
+    pacman(height = height);
 }
 
 // Module names are of the form poly_<inkscape-path-id>().  As a result,

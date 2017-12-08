@@ -17,7 +17,7 @@ text1_y = -3;
 
 mountingPosts = "Yes"; // [Yes, No]
 
-lightSignal(icon1 = "thundercat",
+lightSignal(icon1 = "pacman",
 			mountingPosts = mountingPosts,
             text1 = text1,
 			text1_fontName = text1_fontName,

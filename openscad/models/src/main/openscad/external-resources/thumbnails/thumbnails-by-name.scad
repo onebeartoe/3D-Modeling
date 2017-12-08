@@ -1,8 +1,10 @@
 
 use <../../external-resources/batman/batman.scad>
 use <../../external-resources/cat/cat.scad>
+use <../../external-resources/pacman/pacman.scad>
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/thundercats/thundercats-logo.scad>
+
 
 module externalResources_thumbnailByName(iconName)
 {
@@ -13,6 +15,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "cat")
 	{
 		catThumbnail();
+	}
+	else if(iconName == "pacman")
+	{
+		pacmanThumbnail();
 	}
 	else if(iconName == "rebel")
 	{

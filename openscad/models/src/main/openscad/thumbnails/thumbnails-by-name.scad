@@ -28,6 +28,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "pacman")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else if(iconName == "rebel")
 	{
 		externalResources_thumbnailByName(iconName);
