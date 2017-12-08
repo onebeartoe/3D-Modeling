@@ -12,6 +12,10 @@ module thumbnailByName(iconName)
 	{
 		externalResources_thumbnailByName(iconName);
 	}
+	else if(iconName == "clover")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else if(iconName == "dialog-bubble")
 	{
 		shapes_thumbnailByName(iconName);

@@ -1,5 +1,6 @@
 
 use <../../shapes/arrow/arrow.scad>
+use <../../shapes/clover/clover.scad>
 use <../../shapes/dialog-bubble/stencil/stencil-dialog-bubble.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/spurs/spurs-a.scad>
@@ -13,6 +14,10 @@ module shapes_thumbnailByName(iconName)
 	else if(iconName == "dialog-bubble")
 	{
 		stenciledDialogBubbleThumbnail();
+	}
+	else if(iconName == "clover")
+	{
+		cloverThumbnail();
 	}
 	else if(iconName == "heart")
 	{

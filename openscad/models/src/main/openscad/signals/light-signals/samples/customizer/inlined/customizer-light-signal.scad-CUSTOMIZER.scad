@@ -7,6 +7,8 @@
 	preview[view:south east, tilt:bottom diagonal] - nope
 **/
 
+icon1 = ""; // [arrow, bat, clover, dialog-bubble, heart, rebel, spur]
+
 text1 = "";
 text1_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One, Kenia, Plaster, SirinStencil, Stardos Stencil, Trocchi Bold-Stencil, Wallpoet]
 text1_x = -18;
@@ -14,7 +16,7 @@ text1_y = -3;
 
 mountingPosts = "Yes"; // [Yes, No]
 
-lightSignal(icon1 = "rebel",
+lightSignal(icon1 = "clover",
 			mountingPosts = mountingPosts,
             text1 = text1,
 			text1_fontName = text1_fontName,
@@ -322,6 +324,14 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "bat")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
+	else if(iconName == "clover")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else if(iconName == "dialog-bubble")
 	{
 		shapes_thumbnailByName(iconName);
@@ -329,10 +339,6 @@ module thumbnailByName(iconName)
 	else if(iconName == "heart")
 	{
 		shapes_thumbnailByName(iconName);
-	}
-	else if(iconName == "bat")
-	{
-		externalResources_thumbnailByName(iconName);
 	}
 	else if(iconName == "rebel")
 	{
@@ -372,6 +378,10 @@ module shapes_thumbnailByName(iconName)
 	else if(iconName == "dialog-bubble")
 	{
 		stenciledDialogBubbleThumbnail();
+	}
+	else if(iconName == "clover")
+	{
+		cloverThumbnail();
 	}
 	else if(iconName == "heart")
 	{
@@ -521,6 +531,36 @@ module rightArrowThumbnail()
 }
 
 
+module clover(sideHeartRotation = 100, height = 1)
+{
+    union () 
+    { 
+        rotate ([0, 0, sideHeartRotation])
+        translate ([0,14,0])
+        heart(height=height);
+
+        rotate ([0, 0, 0])
+        translate ([0,14,0])
+        heart(height=height);
+
+        rotate ([0, 0, -sideHeartRotation])
+        translate ([0, 14, 0])
+        heart(height=height);
+
+        translate([-3.5,-30,0])
+        cube (size = [7, 40, height]);
+    }
+}
+
+module cloverThumbnail(height=1)
+{
+    xyScale = 0.38;
+    
+    scale([xyScale, xyScale, height])
+    clover(height = 1);
+}
+
+
 module stencilDialogBubble()
 {
 	difference()
@@ -620,6 +660,33 @@ module triangle(size=1, height=1)
     cylinder(r=size, 
              $fn=3,
              h=height);
+}
+
+module heart(height=1)
+{
+echo("hearto");
+    rotate ([0, 0, 45])
+    linear_extrude(height=height)
+    flatHeart();
+}
+
+module heartThumbnail(height=1)
+{	
+    xyScale = 0.725;
+    translate([0, -1.5, 0])
+    scale([xyScale, xyScale, 1])
+    heart(height);
+}
+
+module flatHeart()
+{
+    square(20, center = true);
+
+    translate([10,0,0])	
+    circle(10, center = true, color="red" );
+
+    translate([0,10,0]) 
+    circle(10, center = true);
 }
 
 use <MCAD/triangles.scad>
