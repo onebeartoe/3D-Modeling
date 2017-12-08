@@ -44,6 +44,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "star-trek")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else if(iconName == "thundercat")
 	{
 		externalResources_thumbnailByName(iconName);

@@ -5,6 +5,7 @@ use <../../external-resources/pacman/pacman.scad>
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/thundercats/thundercats-logo.scad>
 use <../../external-resources/trooper/scrum-trooper.scad>
+use <../../external-resources/star-trek/logo/star-trek-logo.scad>
 
 module externalResources_thumbnailByName(iconName)
 {
@@ -23,6 +24,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "rebel")
 	{
 		rebelAllianceThumbnail();
+	}
+	else if(iconName == "star-trek")
+	{
+		starTrekLogoThumbnail();
 	}
 	else if(iconName == "thundercat")
 	{

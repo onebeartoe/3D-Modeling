@@ -1,4 +1,4 @@
 
-use <star-trek-logo.scad>
+use <../star-trek-logo.scad>
 
-Star_Trek_Logo_Blank_fixed();
+starTrekLogo();

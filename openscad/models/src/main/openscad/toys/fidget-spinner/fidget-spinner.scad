@@ -174,7 +174,7 @@ module cutout(cutoutName)
         xyScale = 0.35;
 
         scale([xyScale, xyScale, 1])
-        Star_Trek_Logo_Blank_fixed();
+        starTrekLogo();
     }
 }
 
