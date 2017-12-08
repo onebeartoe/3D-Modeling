@@ -1,5 +1,6 @@
 
 use <../../external-resources/batman/batman.scad>
+use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 
 module externalResources_thumbnailByName(iconName)
 {
@@ -8,9 +9,8 @@ module externalResources_thumbnailByName(iconName)
 	//                scale([icon1_scale, icon1_scale, zScale])
 			batmanLogoThumbnail();
 	}
-	else if(iconName == "jflkdfjaldsjfdsfjasbat")
+	else if(iconName == "rebel")
 	{
-	//                scale([icon1_scale, icon1_scale, zScale])
-			fjlkajfkjfldsThumbnail();
+		rebelAllianceThumbnail();
 	}
 }

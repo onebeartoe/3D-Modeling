@@ -18,7 +18,7 @@ module rebelAlliance(h=1)
   }
 }
 
-module rebelAllianceThumbnail(height)
+module rebelAllianceThumbnail(height = 1)
 {
     xyScale = .044;
     scale([xyScale, xyScale, 1])

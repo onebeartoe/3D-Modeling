@@ -8,14 +8,17 @@
 **/
 use <../../light-signal.scad>
 
-text1 = "Impalas";
+icon1 = ""; // [arrow, bat, dialog-bubble, heart, rebel, spur]
+
+text1 = "";
 text1_fontName = "Bauhaus 93"; // @StencilFontNamesReplacement@
 text1_x = -18;
 text1_y = -3;
 
 mountingPosts = "Yes"; // [Yes, No]
 
-lightSignal(mountingPosts = mountingPosts,
+lightSignal(icon1 = "rebel",
+			mountingPosts = mountingPosts,
             text1 = text1,
 			text1_fontName = text1_fontName,
             text1_x = text1_x,

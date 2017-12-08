@@ -8,6 +8,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "bat")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else if(iconName == "dialog-bubble")
 	{
 		shapes_thumbnailByName(iconName);
@@ -16,7 +20,7 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
-	else if(iconName == "bat")
+	else if(iconName == "rebel")
 	{
 		externalResources_thumbnailByName(iconName);
 	}
