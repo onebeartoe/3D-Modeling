@@ -40,6 +40,10 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "thundercat")
+	{
+		externalResources_thumbnailByName(iconName);
+	}
 	else
 	{
 		echo("No thumbnail was found.");
