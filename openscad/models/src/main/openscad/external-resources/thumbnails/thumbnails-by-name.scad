@@ -2,6 +2,7 @@
 use <../../external-resources/batman/batman.scad>
 use <../../external-resources/cat/cat.scad>
 use <../../external-resources/pacman/pacman.scad>
+use <../../external-resources/oshw/oshw-logo-800-px.scad>
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../external-resources/thundercats/thundercats-logo.scad>
 use <../../external-resources/trooper/scrum-trooper.scad>
@@ -20,6 +21,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "pacman")
 	{
 		pacmanThumbnail();
+	}
+	else if(iconName == "oshw")
+	{
+		oshwLogoThumbnail();
 	}
 	else if(iconName == "rebel")
 	{
