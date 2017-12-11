@@ -1,0 +1,4 @@
+
+use <../texas.scad>
+
+texas();

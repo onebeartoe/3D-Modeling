@@ -5,6 +5,7 @@ use <../../shapes/dialog-bubble/stencil/stencil-dialog-bubble.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/spurs/spurs-a.scad>
 use <../../shapes/star/star.scad>
+use <../../shapes/texas/texas.scad>
 
 module shapes_thumbnailByName(iconName)
 {
@@ -31,6 +32,10 @@ module shapes_thumbnailByName(iconName)
 	else if(iconName == "star")
 	{
 		starThumbnail();
+	}
+	else if(iconName == "texas")
+	{
+		texasThumbnail();
 	}
 	else
 	{

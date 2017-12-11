@@ -52,6 +52,10 @@ module thumbnailByName(iconName)
 	{
 		externalResources_thumbnailByName(iconName);
 	}
+	else if(iconName == "texas")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else if(iconName == "thundercat")
 	{
 		externalResources_thumbnailByName(iconName);
