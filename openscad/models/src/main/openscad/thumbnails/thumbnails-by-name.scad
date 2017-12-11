@@ -20,9 +20,17 @@ module thumbnailByName(iconName)
 	{
 		shapes_thumbnailByName(iconName);
 	}
+	else if(iconName == "creeper")
+	{
+		shapes_thumbnailByName(iconName);
+	}
 	else if(iconName == "dialog-bubble")
 	{
 		shapes_thumbnailByName(iconName);
+	}
+	else if(iconName == "doge")
+	{
+		externalResources_thumbnailByName(iconName);
 	}
 	else if(iconName == "heart")
 	{

@@ -1,6 +1,7 @@
 
 use <../../shapes/arrow/arrow.scad>
 use <../../shapes/clover/clover.scad>
+use <../../shapes/minecraft/creeper/creeper-face.scad>
 use <../../shapes/dialog-bubble/stencil/stencil-dialog-bubble.scad>
 use <../../shapes/heart/heart.scad>
 use <../../shapes/spurs/spurs-a.scad>
@@ -16,6 +17,10 @@ module shapes_thumbnailByName(iconName)
 	else if(iconName == "clover")
 	{
 		cloverThumbnail();
+	}
+	else if(iconName == "creeper")
+	{
+		creeperFaceThumbnail();
 	}
 	else if(iconName == "dialog-bubble")
 	{

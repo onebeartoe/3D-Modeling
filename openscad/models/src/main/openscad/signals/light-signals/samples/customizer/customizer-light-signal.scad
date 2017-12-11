@@ -8,7 +8,7 @@
 **/
 use <../../light-signal.scad>
 
-icon1 = "texas"; // [arrow, bat, cat, clover, dialog-bubble, heart, pacman, oshw, rebel, spur, star, star-trek, texas, thundercat, trooper]
+icon1 = "doge"; // [arrow, bat, cat, clover, dialog-bubble, doge, heart, pacman, oshw, rebel, spur, star, star-trek, texas, thundercat, trooper]
 icon1_scale = 1;
 icon1_x = 0;
 icon1_y = 0;

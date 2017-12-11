@@ -1,6 +1,7 @@
 
 use <../../external-resources/batman/batman.scad>
 use <../../external-resources/cat/cat.scad>
+use <../../external-resources/dogs/doge/doge.scad>
 use <../../external-resources/pacman/pacman.scad>
 use <../../external-resources/oshw/oshw-logo-800-px.scad>
 use <../../external-resources/rebel-alliance/rebel-alliance.scad>
@@ -17,6 +18,10 @@ module externalResources_thumbnailByName(iconName)
 	else if(iconName == "cat")
 	{
 		catThumbnail();
+	}
+	else if(iconName == "doge")
+	{
+		dogeThumbnail();
 	}
 	else if(iconName == "pacman")
 	{

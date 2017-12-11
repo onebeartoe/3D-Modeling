@@ -1,0 +1,4 @@
+
+use <../doge.scad>
+
+doge();
