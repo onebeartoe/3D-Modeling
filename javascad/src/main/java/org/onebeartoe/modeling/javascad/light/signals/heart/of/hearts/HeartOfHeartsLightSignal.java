@@ -58,10 +58,36 @@ public class HeartOfHeartsLightSignal extends OpenScadFile
         littleProfile.xTranslate *= -1;        
         Abstract3dModel rightHeart4 = littleHeart(littleProfile);
         
+        littleProfile.xTranslate -= 3;
+        littleProfile.yTranslate += 3.5;
+        Abstract3dModel leftHeart5 = littleHeart(littleProfile);
+        littleProfile.xTranslate *= -1;
+        Abstract3dModel rightHeart5 = littleHeart(littleProfile);
+        
+        littleProfile.xTranslate +=4.5;
+        littleProfile.yTranslate += 1;
+        Abstract3dModel leftHeart6 = littleHeart(littleProfile);
+        littleProfile.xTranslate *= -1;
+        Abstract3dModel rightHeart6 = littleHeart(littleProfile);
+        
+        littleProfile.xTranslate = 0;
+        littleProfile.yTranslate -= 2;
+        Abstract3dModel littleHeart7 = littleHeart(littleProfile);
+        
         List<Abstract3dModel> baseCutouts = new ArrayList();
 
-        baseCutouts.add(bigHeartScale);
+        boolean showBigHeart = false; 
         
+        if(showBigHeart)
+        {                    
+            baseCutouts.add(bigHeartScale);
+        }
+        
+        baseCutouts.add(littleHeart7);
+        baseCutouts.add(leftHeart6);
+        baseCutouts.add(rightHeart6);
+        baseCutouts.add(leftHeart5);
+        baseCutouts.add(rightHeart5);
         baseCutouts.add(leftHeart4);
         baseCutouts.add(rightHeart4);
         baseCutouts.add(leftHeart3);
