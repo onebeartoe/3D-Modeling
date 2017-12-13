@@ -7,29 +7,36 @@
 	preview[view:south east, tilt:bottom diagonal] - nope
 **/
 
-icon1 = ""; // [arrow, bat, cat, clover, dialog-bubble, doge, heart, pacman, oshw, rebel, spur, star, star-trek, texas, thundercat, trooper]
-icon1_scale = 1;
-icon1_x = 0;
-icon1_y = 0;
+/* [Icon 1] */
+icon1 = ""; // [none, arrow, bat, cat, clover, dialog-bubble, doge, heart, pacman, oshw, rebel, spur, star, star-trek, texas, thundercat, trooper]
+icon1_scale = 1; // [0.1: 0.1 :3]
+icon1_x = 0; // [-20:20]
+icon1_y = 0; // [-20:20]
 
-icon2 = "";
-icon2_scale = 1;
-icon2_x = 0;
-icon2_y = 0;
+/* [Icon 2] */
+icon2 = ""; // [none, arrow, bat, cat, clover, dialog-bubble, doge, heart, pacman, oshw, rebel, spur, star, star-trek, texas, thundercat, trooper]
+icon2_scale = 1; // [0.1: 0.1 :3]
+icon2_x = 0; // [-20:20]
+icon2_y = 0; // [-20:20]
 
+/* [Text 1] */
 text1 = "Surprise!";
 text1_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One, Kenia, Plaster, SirinStencil, Stardos Stencil, Trocchi Bold-Stencil, Wallpoet]
-text1_fontSize = 6.5;
-text1_x = -17;
-text1_y = -3;
+text1_fontSize = 6.5; // [1.1: 0.1 :24]
+text1_x = -17; // [-20:20]
+text1_y = -3; // [-20:20]
 
+/* [Text 2] */
 text2 = "";
 text2_fontName = "Bauhaus 93"; // [Allerta Stencil, Bauhaus 93, Black Ops One, Emblema One, Kenia, Plaster, SirinStencil, Stardos Stencil, Trocchi Bold-Stencil, Wallpoet]
-text2_fontSize = 7.5;
-text2_x = -18;
-text2_y = -3;
+text2_fontSize = 7.5; // [1.1: 0.1 :24]
+text2_x = -18; // [-20:20]
+text2_y = -3; // [-20:20]
 
+/* [Mounting Posts] */
 mountingPosts = "Yes"; // [Yes, No]
+
+/* [Hidden] */
 
 lightSignal(icon1 = icon1,
 			icon1_scale = icon1_scale,
@@ -1016,7 +1023,6 @@ module stencilDialogBubble_lines(yLength)
 
 module heart(height=1)
 {
-echo("hearto");
     rotate ([0, 0, 45])
     linear_extrude(height=height)
     flatHeart();
@@ -1118,7 +1124,6 @@ module triangle(size=1, height=1)
 
 module heart(height=1)
 {
-echo("hearto");
     rotate ([0, 0, 45])
     linear_extrude(height=height)
     flatHeart();
