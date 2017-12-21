@@ -4,7 +4,7 @@ use <../triangle/triangle.scad>
 
 /**
  *  This a fish.  I used the following thing as an example of how to do the main fish
- *  body: 
+ *  body:
  *
  *          https://www.thingiverse.com/thing:844015
  *
@@ -31,12 +31,13 @@ module fish(bodyRadius = 7, height = 1)
 		xTranslate = bodyRadius + 3;
 		yTranslate = bodyRadius + 2;//radius * 2 + 1;
 		translate([xTranslate, yTranslate, 0])
-		triangle(size= size, height=2);
+		triangle(size= size, height = height);
 	}
 }
 
 module fishThumbnail()
 {
+	translate([5, 0, 0])
 	fish();
 }
 

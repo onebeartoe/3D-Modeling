@@ -45,12 +45,12 @@ module nametag(baseColor = "black",
                bottomTextOffsetY = 0,
                bottomTextSize = 9,
                chainLoop = true,
-		           chaneLoopCutoutAxis = "x",
+	           chaneLoopCutoutAxis = "x",
                chainLoopLengthPercentageY = 0.75,
                chainLoopLengthPercentageZ = 0.65,
                chainLoopLengthZ = 10,
                chainLoopPosition = "bottom",
-			         chainLoopType = "square",
+			   chainLoopType = "square",
                iconColor = "white",
                leftIconHeight = 1.5,
                leftIconType = "Light Bulb",
@@ -280,7 +280,7 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     }
     else
     {
-//        echo("drawing no icons");
+        echo("drawing no icon");
     }
 }
 
