@@ -9,4 +9,4 @@ install:
 script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
-- echo "in presteps DISPLAY is: "$DISPLAY
+- echo "in presteps DISPLAY is: $DISPLAY"
