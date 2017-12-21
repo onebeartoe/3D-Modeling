@@ -11,3 +11,10 @@ script:
 - export DISPLAY=:5
 - mvn clean verify
 #- echo "in presteps DISPLAY is: $DISPLAY"
+
+addons:
+  artifacts:
+    s3_region: "us-east-1"
+    paths:
+    - src/main/openscad/name-tags/examples/light/light-cord-label-TOP-proposed-baseline.png
+    
