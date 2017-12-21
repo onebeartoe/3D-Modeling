@@ -33,8 +33,7 @@ public abstract class OpenScadTestSuiteTest
     public OpenScadTestSuiteTest() throws Exception
     {
         File pwd = new File(".");
-        
-        
+      
         logger = Logger.getLogger( getClass().getName() );
      
         System.out.println("pwd: " + pwd.getAbsolutePath() );
@@ -120,7 +119,7 @@ public abstract class OpenScadTestSuiteTest
 // Todo: rename this method getTestFiles and have it return all files tested
 //       and not just the error files    
     @DataProvider(name="errorFiles")
-    public Object[][] getErrorFiles() throws Exception
+    public Object[][] getOpenScadFiles() throws Exception
     {
 //        ploop
         ImageComparisonResult compareResults = testService.compareImages(runProfile);
@@ -231,9 +230,7 @@ public abstract class OpenScadTestSuiteTest
     @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
             //, groups = {"openscad-test-suite"})
     /**
-     * Any parameter passed to this test represents a file that failed baseline to 
-     * proposed baseline comparison; i.e. all executions of this test are 
-     * expected to file.
+     * 
      */
     public void reportErrors(boolean passed, String comparisonFile) throws Exception
     {
