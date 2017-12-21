@@ -16,5 +16,5 @@ addons:
   artifacts:
     s3_region: "us-east-1"
     paths:
-    - openscad/src/main/openscad/name-tags/examples/light/light-cord-label-TOP-baseline.png
+    - openscad/models/src/main/openscad/name-tags/examples/light/light-cord-label-TOP-baseline.png
     
