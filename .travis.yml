@@ -2,3 +2,6 @@
 sudo: true
 
 language: java
+
+install:
+- ./dependencies.sh
