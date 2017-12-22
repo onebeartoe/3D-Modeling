@@ -22,6 +22,7 @@ addons:
     bucket: openscad-2
 
 #    acl: public_read
-    permissions: public_read
+#    permissions: public_read
+    permissions: public-read
     
 # yay yay yay this configuration works to upload to AWS S3 buckets!
