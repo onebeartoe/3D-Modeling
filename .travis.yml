@@ -13,16 +13,13 @@ script:
 #- echo "in presteps DISPLAY is: $DISPLAY"
 
 addons:
+  # This configuration works to upload to AWS S3 buckets!    
   artifacts:
     s3_region: us-west-1
     paths:
     - openscad/models/src/main/openscad/name-tags/examples/light/light-cord-label-TOP-baseline.png
+    - target/errorred-pngs.text    
     target_paths: $TRAVIS_BUILD_NUMBER
 #    working_dir: $WORKING_DIR
     bucket: openscad-2
-
-#    acl: public_read
-#    permissions: public_read
     permissions: public-read
-    
-# yay yay yay this configuration works to upload to AWS S3 buckets!

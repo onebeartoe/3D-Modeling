@@ -4,7 +4,10 @@ package org.onebeartoe.modeling.openscad.test.suite.utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -443,19 +446,24 @@ public class OpenScadTestSuiteService
         return compareResults;
     }
     
-    public void saveErrorPngFilenames(List<String> errorFiles)
+    public void saveErrorPngFilenames(List<String> errorFiles) throws IOException
     {
         File pwd = new File(".");
         System.out.println("sepf -> pwd: " + pwd.getAbsolutePath() );
         
         System.out.println("Here are the errored PNG filenames:");
         
+        List<String> lines = new ArrayList();
+        
         errorFiles.forEach(ef ->
         {
-            System.out.println(ef);
+            lines.add(ef);
             
             String proposed = ef.replace("-baseline.", "-proposed-baseline.");
-            System.out.println(proposed);
+            lines.add(proposed);
         });
+
+        Path outpath = Paths.get("target/errorred-pngs.text");
+        Files.write(outpath, lines);
     }    
 }
