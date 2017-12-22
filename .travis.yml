@@ -21,5 +21,6 @@ addons:
 #    working_dir: $WORKING_DIR
     bucket: openscad-2
 
-
+    acl: public_read
+    
 # yay yay yay this configuration works to upload to AWS S3 buckets!
