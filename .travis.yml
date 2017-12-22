@@ -14,7 +14,7 @@ script:
 
 addons:
   artifacts:
-    s3_region: us-east-2
+    s3_region: us-east-1
     paths:
     - openscad/models/src/main/openscad/name-tags/examples/light/light-cord-label-TOP-baseline.png
     target_paths: $TRAVIS_BUILD_NUMBER
