@@ -19,4 +19,4 @@ addons:
     target_paths: $TRAVIS_BUILD_NUMBER
 #    working_dir: $WORKING_DIR
     bucket: openscad-test-suite
-    s3_region: us-east-2
+#    s3_region: us-east-2
