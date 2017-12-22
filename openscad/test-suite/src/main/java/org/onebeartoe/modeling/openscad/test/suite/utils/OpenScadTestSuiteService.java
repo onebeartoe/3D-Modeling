@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
@@ -453,15 +454,21 @@ public class OpenScadTestSuiteService
         
         System.out.println("Here are the errored PNG filenames:");
         
-        List<String> lines = new ArrayList();
+        final List<String> filepaths = new ArrayList();
         
         errorFiles.forEach(ef ->
-        {
-            lines.add(ef);
+        {            
+            filepaths.add(ef);
             
             String proposed = ef.replace("-baseline.", "-proposed-baseline.");
-            lines.add(proposed);
+            filepaths.add(proposed);
         });
+        
+        // correct the paths for the pwd on the build server (Travis-CI)
+        String pathPrefix = "openscad/models/";
+        List<String> lines = filepaths.stream()
+                     .map(l -> pathPrefix + l)
+                     .collect( Collectors.toList() );
 
         Path outpath = Paths.get("target/errorred-pngs.text");
         Files.write(outpath, lines);
