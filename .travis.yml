@@ -20,3 +20,6 @@ addons:
     target_paths: $TRAVIS_BUILD_NUMBER
 #    working_dir: $WORKING_DIR
     bucket: openscad-2
+
+
+# yay yay yay this configuration works to upload to AWS S3 buckets!
