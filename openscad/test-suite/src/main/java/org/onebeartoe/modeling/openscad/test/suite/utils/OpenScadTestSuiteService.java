@@ -452,7 +452,7 @@ public class OpenScadTestSuiteService
         File pwd = new File(".");
         System.out.println("sepf -> pwd: " + pwd.getAbsolutePath() );
         
-        System.out.println("Here are the errored PNG filenames:");
+        System.out.println("Save the the errored PNG filenames!");
         
         final List<String> filepaths = new ArrayList();
         
