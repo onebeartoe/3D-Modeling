@@ -7,7 +7,8 @@ install:
 - ./dependencies.sh
 - ls -ltrh /usr/share/fonts/    
 - export path1=some-value
-- wget https://github.com/bloomberg/scatteract/raw/master/fonts/BAUHS93.TTF
+- wget https://github.com/standup75/standupweb-cms/raw/master/css/BAUHS93.TTF
+#- wget https://github.com/bloomberg/scatteract/raw/master/fonts/BAUHS93.TTF
 - ls -ltrh 
 - sudo cp BAUHS93.TTF /usr/share/fonts/
 - wget https://github.com/caarlos0-graveyard/msfonts/raw/master/fonts/wingding.ttf
