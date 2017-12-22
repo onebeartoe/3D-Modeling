@@ -101,10 +101,10 @@ public class PngGenerator
      *	$ /cygdrive/c/opt/openscad/openscad-2015.03-2/openscad -o out.png --camera=0,0,0,0,0,0,350 space-invaders-scenes-CUSTOMIZER.scad
      * 
      */
-    public boolean generateOneDirectionalPng(Path oscadInputFile, boolean forceGeneration, 
+    public boolean generateOneDirectionalPng(Path oscadInputFile, 
+                                             boolean forceGeneration, 
                                              OpenScadCameraDirections direction,
-                                             RunProfile runProfile)
-            throws IOException, InterruptedException
+                                             RunProfile runProfile) throws IOException, InterruptedException
     {
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
 

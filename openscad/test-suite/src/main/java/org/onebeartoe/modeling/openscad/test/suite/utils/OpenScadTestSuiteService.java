@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -40,8 +42,10 @@ public class OpenScadTestSuiteService
      * It seems like this method should be refactored.
      * 
      */
-    public void serviceRequest(RunProfile runProfile) throws Exception
+    public ImageComparisonResult serviceRequest(RunProfile runProfile) throws Exception
     {
+        ImageComparisonResult results = null;
+        
         OpenScadTestSuite.RunMode mode;
 
 // the first hachifufoo
@@ -80,9 +84,9 @@ public class OpenScadTestSuiteService
             else
             {
                 // the mode is 'run test suite'
-                boolean passed = runTestSuite(runProfile);
+                results = runTestSuite(runProfile);
 
-                if(!passed)
+                if(results.exceptionThrown)
                 {
                     throw new Exception("Did not pass");
                 }
@@ -96,7 +100,9 @@ public class OpenScadTestSuiteService
             nsfe.printStackTrace();
 
             throw new Exception(nsfe);
-        }        
+        }
+
+        return results;
     }    
 
     private void generateBaselines(RunProfile runProfile) throws IOException, InterruptedException
@@ -258,6 +264,33 @@ public class OpenScadTestSuiteService
         });
     }
     
+    private String extractTopLevel(RunProfile runProfile, String fullPath)
+    {   
+        // remove the project path
+        fullPath = fullPath.replace(runProfile.path, "");
+        
+        // account for running on MS Windows
+        fullPath = fullPath.replace("\\", "/");
+        
+        int begin = 0;
+        int end = fullPath.indexOf("/");
+
+        String topLevel = null;
+                
+        if(end < 0)
+        {
+            // the file in the current directory
+            topLevel = "";
+        }
+        else
+        {
+            // the OpenSCAD file is in the current directory
+            topLevel = fullPath.substring(begin, end);
+        }
+        
+        return topLevel;
+    }
+    
     private List<File> findProposedBaselines(Path inpath) throws IOException
     {
         ProposedBaselineFinder finder = new ProposedBaselineFinder();
@@ -267,6 +300,51 @@ public class OpenScadTestSuiteService
         return proposedBaselines;
     }
 
+    public void printHighLevelErrorReport(RunProfile runProfile, List<String> failedOpenScadFiles)
+    {
+        if(failedOpenScadFiles.size() > 0)
+        {
+            System.err.println("These top level directories have errors:");
+        }
+        
+        Map<String, Integer> topLevelHits = new HashMap();
+        
+        failedOpenScadFiles.forEach(f ->
+        {
+            String topLevelKey = extractTopLevel(runProfile, f);
+            
+            Integer count = topLevelHits.get(topLevelKey);
+            if(count == null)
+            {
+                count = 1;
+            }
+            else
+            {
+                count += 1;
+            }
+            
+            topLevelHits.put(topLevelKey, count);
+        }); 
+        
+        System.out.println();
+        int total = topLevelHits.values()
+                                .stream()
+                                .mapToInt(Integer::intValue)
+                                .sum();
+                
+        System.out.println("top level count: " + total);
+        System.out.println();
+        
+        topLevelHits.keySet()
+                    .stream()
+                    .sorted()
+                    .forEach(key -> 
+                    {
+                        System.out.println(key + ": " + topLevelHits.get(key) );
+                    });
+        System.out.println();
+    }    
+    
     public void printOpernScadVersion(RunProfile runProfile)
     {
 // TODO: p        
@@ -293,9 +371,10 @@ public class OpenScadTestSuiteService
         }
     }
     
-    private boolean runTestSuite(RunProfile runProfile) throws Exception
+    private ImageComparisonResult runTestSuite(RunProfile runProfile) throws Exception
     {
-        boolean passed = true;
+//        boolean passed = true;
+        ImageComparisonResult compareResults = new ImageComparisonResult();
         
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
@@ -305,7 +384,7 @@ public class OpenScadTestSuiteService
 
         if (!missingPngs.isEmpty())
         {
-            passed = false;
+            compareResults.exceptionThrown = true;
             
             System.err.println();
             System.err.println("The test suite will not continue with missing baseline PNG images.");
@@ -347,7 +426,7 @@ public class OpenScadTestSuiteService
 
             if(proposedBaselineError)
             {
-                passed = false;
+                compareResults.exceptionThrown = true;
                 
                 // halt the test execution and let the user know about errors
                 String message = "Not all proposed baseline PNGs were generated.  ";
@@ -357,10 +436,26 @@ public class OpenScadTestSuiteService
             }
             else
             {
-                compareImages(runProfile);
+                compareResults = compareImages(runProfile);
             }
         }
         
-        return passed;
+        return compareResults;
     }
+    
+    public void saveErrorPngFilenames(List<String> errorFiles)
+    {
+        File pwd = new File(".");
+        System.out.println("sepf -> pwd: " + pwd.getAbsolutePath() );
+        
+        System.out.println("Here are the errored PNG filenames:");
+        
+        errorFiles.forEach(ef ->
+        {
+            System.out.println(ef);
+            
+            String proposed = ef.replace("-baseline.", "-proposed-baseline.");
+            System.out.println(proposed);
+        });
+    }    
 }

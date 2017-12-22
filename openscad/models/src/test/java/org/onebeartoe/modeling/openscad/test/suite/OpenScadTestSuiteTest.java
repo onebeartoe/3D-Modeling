@@ -4,9 +4,7 @@ package org.onebeartoe.modeling.openscad.test.suite;
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
@@ -87,44 +85,19 @@ public abstract class OpenScadTestSuiteTest
         }        
     }
     
-    private String extractTopLevel(String fullPath)
-    {   
-        // remove the project path
-        fullPath = fullPath.replace(runProfile.path, "");
-        
-        // account for running on MS Windows
-        fullPath = fullPath.replace("\\", "/");
-
-        
-        int begin = 0;
-        int end = fullPath.indexOf("/");
-
-//        System.out.println("extract - end: " + end + " - full path: " + fullPath);
-        String topLevel = null;
-                
-        if(end < 0)
-        {
-            // the file in the current directory
-            topLevel = "";
-        }
-        else
-        {
-            // the OpenSCAD file is in the current directory
-            topLevel = fullPath.substring(begin, end);
-        }
-        
-        return topLevel;
-    }    
-    
-// Todo: rename this method getTestFiles and have it return all files tested
-//       and not just the error files    
+    /**
+     * This dataset provider returns all files tested
+     * 
+     * @return
+     * @throws Exception 
+     */
     @DataProvider(name="errorFiles")
     public Object[][] getOpenScadFiles() throws Exception
     {
-//        ploop
         ImageComparisonResult compareResults = testService.compareImages(runProfile);
 
-        printHighLevelErrorReport(compareResults.errorFiles);
+        testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+        testService.saveErrorPngFilenames(compareResults.errorFiles);
         
         int parameterCount = 2;
         
@@ -181,48 +154,6 @@ public abstract class OpenScadTestSuiteTest
     protected String getRootTargetPath()
     {
         return "src/main/openscad/";
-    }
-    
-    private void printHighLevelErrorReport(List<String> failedOpenScadFiles)
-    {
-        System.err.println("These top level directories have errors:");
-
-        Map<String, Integer> topLevelHits = new HashMap();
-        
-        failedOpenScadFiles.forEach(f ->
-        {
-            String topLevelKey = extractTopLevel(f);
-            
-            Integer count = topLevelHits.get(topLevelKey);
-            if(count == null)
-            {
-                count = 1;
-            }
-            else
-            {
-                count += 1;
-            }
-            
-            topLevelHits.put(topLevelKey, count);
-        }); 
-        
-        System.out.println();
-        int total = topLevelHits.values()
-                                .stream()
-                                .mapToInt(Integer::intValue)
-                                .sum();
-                
-        System.out.println("top level count: " + total);
-        System.out.println();
-        
-        topLevelHits.keySet()
-                    .stream()
-                    .sorted()
-                    .forEach(key -> 
-                    {
-                        System.out.println(key + ": " + topLevelHits.get(key) );
-                    });
-        System.out.println();
     }
 
 // TODO: Remove the groups elements and make sure the continuous server still runs 

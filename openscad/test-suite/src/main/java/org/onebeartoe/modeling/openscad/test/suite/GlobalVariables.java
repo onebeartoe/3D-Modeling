@@ -12,7 +12,7 @@ public class GlobalVariables
 
     public static final String baselineSuffix = "-baseline.png";
 
-    public static final String proposedBaselineSuffix = "-proposed" + baselineSuffix;
+//    public static final String proposedBaselineSuffix = "-proposed" + baselineSuffix;
 
     public static final String OPENSCAD_FILE_PATTERN = "*.scad";
 }

@@ -17,6 +17,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
+import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonResult;
 
 public class OpenScadTestSuite
 {        
@@ -84,7 +85,10 @@ public class OpenScadTestSuite
             Instant start = Instant.now();
 
             OpenScadTestSuiteService testService = new OpenScadTestSuiteService();
-            testService.serviceRequest(runProfile);
+            ImageComparisonResult compareResults = testService.serviceRequest(runProfile);
+            
+            testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+            testService.saveErrorPngFilenames(compareResults.errorFiles);
 
             Instant end = Instant.now();
         
