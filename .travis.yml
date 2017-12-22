@@ -5,6 +5,15 @@ language: java
 
 install:
 - ./dependencies.sh
+- ls -ltrh /usr/share/fonts/    
+- export path1=some-value
+- wget https://github.com/bloomberg/scatteract/raw/master/fonts/BAUHS93.TTF
+- ls -ltrh 
+- sudo cp BAUHS93.TTF /usr/share/fonts/
+- ls -ltrh /usr/local/share/fonts/
+- ls -ltrh /usr/share/fonts/
+- echo $path1
+- fc-list | grep -i auhaus
 
 script:
 - Xvfb :5 -screen 0 800x600x24 &
