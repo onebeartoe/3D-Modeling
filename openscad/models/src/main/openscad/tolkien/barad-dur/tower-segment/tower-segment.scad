@@ -1,7 +1,7 @@
 
 module baradDur_towerSegment(bottomRadius, topRadius, zLength)
 {
-//	color("gray")
+	color("gray")
 	difference()
 	{
     	cylinder(h=zLength, r1=bottomRadius, r2=topRadius, $fn=40);
