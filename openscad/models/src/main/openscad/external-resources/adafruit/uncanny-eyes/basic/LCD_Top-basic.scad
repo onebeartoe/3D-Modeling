@@ -4,7 +4,7 @@ use <../LCD_Top.scad>
 uncannyEyes_lcdTop();
 
 xLength = 46.589;
-yLength = 48.01;
+yLength = 48.0;
 cubeZ = 6;
 cubeTranslateY = cubeZ / 2.0;
 color("pink")
