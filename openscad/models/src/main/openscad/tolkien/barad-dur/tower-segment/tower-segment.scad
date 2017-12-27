@@ -1,6 +1,7 @@
 
 module baradDur_towerSegment(bottomRadius, topRadius, zLength)
 {
+//	color("gray")
 	difference()
 	{
     	cylinder(h=zLength, r1=bottomRadius, r2=topRadius, $fn=40);
@@ -11,3 +12,5 @@ module baradDur_towerSegment(bottomRadius, topRadius, zLength)
 }
 
 function towerSegment_girthIncrement() = 2.5;
+
+function towerSegment_zLength() = 50;

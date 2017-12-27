@@ -4,5 +4,7 @@
  */
 module baradDur_towerSegment_0()
 {
-	
+
 }
+
+/** Support functions and modules follow. **/
