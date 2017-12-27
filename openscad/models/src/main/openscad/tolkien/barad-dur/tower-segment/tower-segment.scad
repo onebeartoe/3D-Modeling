@@ -1,6 +1,6 @@
 
-module baradDur_towerSegment(zLength)
+module baradDur_towerSegment(topRadius, zLength)
 {
-    topRadius = 16;
-    cylinder(h=zLength, r1=20, r2=topRadius, $fn=40);
+	bottomRadius = topRadius + 3;
+    cylinder(h=zLength, r1=bottomRadius, r2=topRadius, $fn=40);
 }
