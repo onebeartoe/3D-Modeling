@@ -13,4 +13,4 @@ module baradDur_towerSegment(bottomRadius, topRadius, zLength)
 
 function towerSegment_girthIncrement() = 2.5;
 
-function towerSegment_zLength() = 50;
+function baradDur_towerSegment_zLength() = 50;
