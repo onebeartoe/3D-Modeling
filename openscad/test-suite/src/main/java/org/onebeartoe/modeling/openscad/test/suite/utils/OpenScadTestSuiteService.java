@@ -330,23 +330,27 @@ public class OpenScadTestSuiteService
             topLevelHits.put(topLevelKey, count);
         }); 
         
-        System.out.println();
         int total = topLevelHits.values()
                                 .stream()
                                 .mapToInt(Integer::intValue)
                                 .sum();
-                
-        System.out.println("top level count: " + total);
-        System.out.println();
         
-        topLevelHits.keySet()
-                    .stream()
-                    .sorted()
-                    .forEach(key -> 
-                    {
-                        System.out.println(key + ": " + topLevelHits.get(key) );
-                    });
-        System.out.println();
+        if(total > 0)
+        {
+            System.out.println();        
+            System.out.println("top level count: " + total);
+            System.out.println();
+
+            topLevelHits.keySet()
+                        .stream()
+                        .sorted()
+                        .forEach(key -> 
+                        {
+                            System.out.println(key + ": " + topLevelHits.get(key) );
+                        });
+
+            System.out.println();            
+        }
     }    
     
     public void printOpernScadVersion(RunProfile runProfile)
@@ -450,10 +454,7 @@ public class OpenScadTestSuiteService
     public void saveErrorPngFilenames(List<String> errorFiles) throws IOException
     {
         File pwd = new File(".");
-        System.out.println("sepf -> pwd: " + pwd.getAbsolutePath() );
-        
-        System.out.println("Save the the errored PNG filenames!");
-        
+
         final List<String> filepaths = new ArrayList();
         
         errorFiles.forEach(ef ->
@@ -471,6 +472,18 @@ public class OpenScadTestSuiteService
                      .collect( Collectors.toList() );
 
         Path outpath = Paths.get("target/errorred-pngs.text");
-        Files.write(outpath, lines);
+        File parent = outpath.getParent().toFile();
+        if( parent.exists() )
+        {
+            Files.write(outpath, lines);
+        }
+        else
+        {
+            System.out.println();
+            System.out.print("The target file does not exist: " + parent.getAbsolutePath() );
+            System.out.println(", so the errorred file names are not being written.");
+            System.out.println("The pwd is: " + pwd.getAbsolutePath() );
+        }
+        
     }    
 }
