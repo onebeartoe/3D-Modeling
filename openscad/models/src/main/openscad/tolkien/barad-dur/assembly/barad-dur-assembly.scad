@@ -12,7 +12,8 @@ module baradDurAssembly()
 	segment0_topRadius = baradDur_towerSegment_0_topRadius();
 	segment0_bottomRadius = baradDur_towerSegment_0_bottomRadius();
 	translate([0, 0, baradDur_towerSegment_zLength() * 2])
-	baradDur_towerSegment_0();
+	rotate([0,0,-90])
+	baradDur_towerSegment_0(brackets=true);
 
 	// tower segment 1
 	segment1_topRadius = segment0_bottomRadius + towerSegment_girthIncrement();
@@ -31,8 +32,8 @@ module baradDurAssembly()
 module baradDurAssembly_top(towerSegments_zLength)
 {
 	xTranslate = 0;
-	yTranslate = -0;
-	zTranslate = (towerSegments_zLength * 3) + 33;
+	yTranslate = 7;
+	zTranslate = (towerSegments_zLength * 3) + 27.5;
 
 	color("red")
 	translate([xTranslate, yTranslate, zTranslate])

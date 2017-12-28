@@ -24,7 +24,7 @@ module baradDur_towerSegment_0(brackets = false)
 
 function baradDur_towerSegment_0_bottomRadius() = baradDur_towerSegment_0_topRadius() + towerSegment_girthIncrement();
 
-function baradDur_towerSegment_0_topRadius() = 30;
+function baradDur_towerSegment_0_topRadius() = 32;
 
 module baradDur_towerSegment_0_bracket(yLength)
 {
@@ -41,7 +41,7 @@ module baradDur_towerSegment_0_bracket(yLength)
 		translate([-0.01,
 					cutoutXY - 3,
 					0])
-		cube([7,
+		cube([cube_yLength + 1,
 			  cutoutXY,
 			  cutoutXY]);
 	}
@@ -49,10 +49,14 @@ module baradDur_towerSegment_0_bracket(yLength)
 
 module baradDur_towerSegment_0_brackets()
 {
-
 	yLength = windowOfTheEye_attachmentNub_xLength();
 	translate([0,
-			   baradDur_towerSegment_0_topRadius() - yLength * 2,
+			   baradDur_towerSegment_0_topRadius() - (yLength * 2) - 1.0,
+			   baradDur_towerSegment_zLength()])
+	baradDur_towerSegment_0_bracket(yLength = yLength);
+
+	translate([0,
+			   -baradDur_towerSegment_0_topRadius() + yLength - 0.9,
 			   baradDur_towerSegment_zLength()])
 	baradDur_towerSegment_0_bracket(yLength = yLength);
 }

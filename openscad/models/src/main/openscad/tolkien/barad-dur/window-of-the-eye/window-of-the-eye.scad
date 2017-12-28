@@ -32,10 +32,18 @@ module windowOfTheEye_attachmentNubs()
 	// the attachment nub
 	xLength = windowOfTheEye_attachmentNub_xLength();
 	yLength = windowOfTheEye_attachmentNub_yLength();
-	yTranslate = 0;
+	zLength = 5;
+	xTranslate = -27.5;
+	yTranslate = windowOfTheEye_spires_yLength() / 2 - yLength;
+	zTranslate = 6;
 	color("green")
-	translate([-27.5, 0, 6])
-	cube([xLength, yLength, 5]);
+	translate([xTranslate, yTranslate, zTranslate])
+	cube([xLength, yLength, zLength]);
+
+	nub2_yTranslate = -yTranslate - yLength;
+	color("green")
+	translate([xTranslate, nub2_yTranslate, zTranslate])
+	cube([xLength, yLength, zLength]);
 }
 
 function windowOfTheEye_spires_xLength() = 69;
