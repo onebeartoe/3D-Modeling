@@ -31,15 +31,16 @@ module baradDur_towerSegment_0_bracket(yLength)
     difference()
 	{
 		cube_xLength = 6;
-		cube_yLength = yLength + 2;
+		cube_yLength = yLength + 4;
+		translate([0,-1,0])
 		cube([cube_xLength,
 			  cube_yLength,
 			  5]);
 
-		cutoutXY = yLength + 0.3;
+		cutoutXY = yLength + 0.8;
 		color("green")
 		translate([-0.01,
-					cutoutXY - 3,
+					cutoutXY - 4,
 					0])
 		cube([cube_yLength + 1,
 			  cutoutXY,
@@ -50,13 +51,14 @@ module baradDur_towerSegment_0_bracket(yLength)
 module baradDur_towerSegment_0_brackets()
 {
 	yLength = windowOfTheEye_attachmentNub_xLength();
+	color("orange")
 	translate([0,
-			   baradDur_towerSegment_0_topRadius() - (yLength * 2) - 1.0,
+			   baradDur_towerSegment_0_topRadius() - (yLength * 2) - 0.8,
 			   baradDur_towerSegment_zLength()])
 	baradDur_towerSegment_0_bracket(yLength = yLength);
 
 	translate([0,
-			   -baradDur_towerSegment_0_topRadius() + yLength - 0.9,
+			   -baradDur_towerSegment_0_topRadius() + yLength - 0.75,
 			   baradDur_towerSegment_zLength()])
 	baradDur_towerSegment_0_bracket(yLength = yLength);
 }
