@@ -79,6 +79,8 @@ public class OpenScadTestSuiteService
 
             if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
             {
+                results = new ImageComparisonResult();
+                
                 generateBaselines(runProfile);
             }
             else if( mode == OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
@@ -381,7 +383,6 @@ public class OpenScadTestSuiteService
     
     private ImageComparisonResult runTestSuite(RunProfile runProfile) throws Exception
     {
-//        boolean passed = true;
         ImageComparisonResult compareResults = new ImageComparisonResult();
         
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
