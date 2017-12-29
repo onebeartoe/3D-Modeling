@@ -2,10 +2,12 @@
 use <../../../external-resources/adafruit/uncanny-eyes/LCD_Top.scad>
 use <../../../shapes/oval/oval.scad>
 
+use <spire-tips/spire-tips.scad>
+
 module windowOfTheEye()
 {
-//	union()
-	difference()
+	union()
+//	difference()
 	{
 		union()
 		{
@@ -15,7 +17,7 @@ module windowOfTheEye()
 			windowOfTheEye_attachmentNubs();
 		}
 
-		translate([0, 0, -0.01])
+		translate([-01.01, 0, -0.01])
 		scale([1,1,1.01])
 		uncannyEyes_lcdTop();
 	}
@@ -50,15 +52,23 @@ function windowOfTheEye_spires_xLength() = 69;
 
 function windowOfTheEye_spires_yLength() = 57;
 
+function windowOfTheEye_spires_zLength() = 6;
+
 module windowOfTheEye_spires()
 {
 	difference()
 	{
 		xLength = windowOfTheEye_spires_xLength();
 		yLength = 57;
+		zLength = windowOfTheEye_spires_zLength();
 		xTranslate = 7;
-		translate([xTranslate, 0, 3])
-		cube([xLength, yLength, 6], center=true);
+		union()
+		{
+			translate([xTranslate, 0, 3])
+			cube([xLength, yLength, zLength], center=true);
+
+			windowOfTheEye_spiresOutline();
+		}
 
 		windowOfTheEye_spiresOvalCutout(cubeXLength = xLength);
 
@@ -66,6 +76,25 @@ module windowOfTheEye_spires()
 											yLength = yLength,
 											xTranslate = xTranslate);
 	}
+}
+
+module windowOfTheEye_spiresOutline()
+{
+	zLength = windowOfTheEye_spires_zLength();
+	xyScale = 0.13;
+	xTranslate = 49;
+	yTranslate = -28;
+//	color("blue")
+	translate([xTranslate, yTranslate, 0])
+	scale([xyScale, xyScale, 1])
+	rotate([0,0,-92])
+	spireTip(zLength = zLength);
+
+	zTranslate = windowOfTheEye_spires_zLength();
+	translate([xTranslate, -yTranslate, zTranslate])
+	scale([xyScale, xyScale, 1])
+	rotate([ 0,180, -92])
+	spireTip(zLength = zLength);
 }
 
 module windowOfTheEye_spiresOvalCutout(cubeXLength)

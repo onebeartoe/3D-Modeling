@@ -10,7 +10,7 @@ module baradDurAssembly()
 {
 	baradDurAssembly_top(towerSegments_zLength = baradDur_towerSegment_zLength());
 
-	// tower segment 0
+	// tower segment 0 - this is the bottom most tower segment.
 	translate([0, 0, baradDur_towerSegment_zLength() * 2])
 	rotate([0,0,-90])
 	baradDur_towerSegment_0(brackets=true);
@@ -19,7 +19,7 @@ module baradDurAssembly()
 	translate([0, 0, baradDur_towerSegment_zLength()])
 	baradDur_towerSegment_1();
 
-	// tower segment 2 - bottom most tower segment
+	// tower segment 2 - this is the bottom most tower segment.
 	baradDur_towerSegment_2();
 }
 
