@@ -9,5 +9,8 @@ module baradDur_towerSegment_2()
 {
 	segment2_topRadius = baradDur_towerSegment_1_bottomRadius() + towerSegment_girthIncrement();
 	segment2_bottomRadius = segment2_topRadius + towerSegment_girthIncrement();
-	baradDur_towerSegment(bottomRadius = segment2_bottomRadius, topRadius = segment2_topRadius, zLength = baradDur_towerSegment_zLength());
+
+	baradDur_towerSegment(bottomRadius = segment2_bottomRadius,
+						  topRadius = segment2_topRadius,
+						  zLength = baradDur_towerSegment_zLength());
 }
