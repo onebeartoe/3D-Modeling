@@ -205,14 +205,10 @@ public class OpenScadTestSuiteService
      * @return a list of any files that did not pass the diff test
      */
     private ImageComparisonResult compareImages(List<Path> openscadPaths)
-    {
-//	List<String> errorFiles = new ArrayList();
-	
+    {	
         Class c = Collection.class;
         
         ImageComparisonResult comparisonResults = new ImageComparisonResult();
-
-//        boolean exceptionThrown;
         
 	Stream.of( OpenScadCameraDirections.values() )
                 .parallel()
