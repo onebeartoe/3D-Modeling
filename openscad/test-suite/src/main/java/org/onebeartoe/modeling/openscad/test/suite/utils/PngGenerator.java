@@ -135,7 +135,10 @@ public class PngGenerator
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             
             String command = runProfile.executablePath
-                    + " -o " + outfileName + " " + "--camera=0,0,0," + rotateParams + "," + distance + " " + infilePath;
+                    + " -o " + outfileName + " " 
+                    + "--camera=0,0,0," + rotateParams + "," + distance 
+//TODO: what about using the --viewall parameter?                                
+                    + " " + infilePath;
             
             exitCode = generate(command, runProfile);
         }

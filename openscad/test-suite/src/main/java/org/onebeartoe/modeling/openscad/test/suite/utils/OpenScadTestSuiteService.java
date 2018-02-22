@@ -353,8 +353,7 @@ public class OpenScadTestSuiteService
     
     public void printOpernScadVersion(RunProfile runProfile)
     {
-// TODO: p        
-//       rint the version of poesn scdd
+// TODO: print the version of OpenSCAD
     }
     
     public void printValidationResults(List<String> missingBaselineFiles)
