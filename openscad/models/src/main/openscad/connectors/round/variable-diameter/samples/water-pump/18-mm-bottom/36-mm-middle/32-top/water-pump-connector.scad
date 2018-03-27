@@ -6,4 +6,4 @@ roundConnector(bottomOuterRadius = 11,
 			   middleInnerRadius = 9,
 			   middleOuterRadius = 17,
 			   topInnerRadius = 13,
-		   	   topOuterRadius = 14);
+		   	   topOuterRadius = 15);
