@@ -35,8 +35,10 @@ module waterPumpFilter_base(height, innerRadius, xyLength)
 		translate([0,0,10])
 		cylinder(r=innerRadius, h=30, center=true);
 
+		innerCubeDifference = 4;
 		color("green")
-		waterPumpFilter_base_innerCube(xyLength-2, xyLength-2, height-2);
+		waterPumpFilter_base_innerCube(xyLength - innerCubeDifference, height - innerCubeDifference);
+//		waterPumpFilter_base_innerCube(xyLength-2, height-2);
 
 		cutoutHeight = height - 4;
 
@@ -46,7 +48,8 @@ module waterPumpFilter_base(height, innerRadius, xyLength)
 	}
 }
 
-module waterPumpFilter_base_innerCube(xyLength, xyLength, height)
+module waterPumpFilter_base_innerCube(xyLength, height)
+//module waterPumpFilter_base_innerCube(xyLength, height)
 {
 	cube([xyLength, xyLength, height], center = true);
 }
