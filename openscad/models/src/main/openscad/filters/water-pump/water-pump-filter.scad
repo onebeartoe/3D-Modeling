@@ -28,9 +28,9 @@ module waterPumpFilter_connector(innerRadius)
 }
 
 module waterPumpFilter_base(height,
-														innerRadius,
-														xLength,
-														yLength)
+							innerRadius,
+							xLength,
+							yLength)
 {
 	difference()
 	{
@@ -49,7 +49,8 @@ module waterPumpFilter_base(height,
 
 		cutoutHeight = height - 4;
 
-		waterPumpFilter_xCutouts(height = cutoutHeight);
+		waterPumpFilter_xCutouts(height = cutoutHeight,
+								 length = xLength - 8);
 
 		waterPumpFilter_yCutouts(height = cutoutHeight);
 	}
@@ -60,11 +61,11 @@ module waterPumpFilter_base_innerCube(xyLength, yLength, height)
 	cube([xyLength, yLength, height], center = true);
 }
 
-module waterPumpFilter_xCutouts(height)
+module waterPumpFilter_xCutouts(height, length)
 {
 	step = 5;
 
-	for(x = [-20 : step : 20])
+	for(x = [-length : step : length])
 	{
 		translate([x, 0, 0])
 		cube([2, 100, height], center = true);
