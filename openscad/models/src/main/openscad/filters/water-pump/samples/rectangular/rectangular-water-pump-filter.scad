@@ -1,4 +1,4 @@
 
 use <../../water-pump-filter.scad>
 
-waterPumpFilter();
+waterPumpFilter(xLength = 100);

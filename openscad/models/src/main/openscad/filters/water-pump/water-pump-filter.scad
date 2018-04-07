@@ -2,7 +2,8 @@
 use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module waterPumpFilter(baseHeight = 30,
-					   innerRadius = 25)
+					   innerRadius = 25,
+					   xLength = 54)
 {
 	union()
 	{
@@ -10,10 +11,11 @@ module waterPumpFilter(baseHeight = 30,
 		translate([0,0, zTranslate-0.1])
 		waterPumpFilter_connector(innerRadius = innerRadius);
 
+
 		xyLength = (innerRadius * 2) + 4;
 		waterPumpFilter_base(height = baseHeight,
 							 innerRadius = innerRadius,
-							 xLength = xyLength,
+							 xLength = xLength,
 							 yLength = xyLength);
 	}
 }
@@ -41,7 +43,9 @@ module waterPumpFilter_base(height,
 
 		innerCubeDifference = 4;
 		color("green")
-		waterPumpFilter_base_innerCube(xLength - innerCubeDifference, height - innerCubeDifference);
+		waterPumpFilter_base_innerCube(xLength - innerCubeDifference,
+									   yLength - innerCubeDifference,
+									   height - innerCubeDifference);
 
 		cutoutHeight = height - 4;
 
@@ -51,9 +55,9 @@ module waterPumpFilter_base(height,
 	}
 }
 
-module waterPumpFilter_base_innerCube(xyLength, height)
+module waterPumpFilter_base_innerCube(xyLength, yLength, height)
 {
-	cube([xyLength, xyLength, height], center = true);
+	cube([xyLength, yLength, height], center = true);
 }
 
 module waterPumpFilter_xCutouts(height)
