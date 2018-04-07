@@ -13,7 +13,8 @@ module waterPumpFilter(baseHeight = 30,
 		xyLength = (innerRadius * 2) + 4;
 		waterPumpFilter_base(height = baseHeight,
 							 innerRadius = innerRadius,
-							 xyLength = xyLength);
+							 xLength = xyLength,
+							 yLength = xyLength);
 	}
 }
 
@@ -24,12 +25,15 @@ module waterPumpFilter_connector(innerRadius)
 				 outerRadius = innerRadius + 2);
 }
 
-module waterPumpFilter_base(height, innerRadius, xyLength)
+module waterPumpFilter_base(height,
+														innerRadius,
+														xLength,
+														yLength)
 {
 	difference()
 	{
 		// this is the outer cube
-		cube([xyLength, xyLength, height], center = true);
+		cube([xLength, yLength, height], center = true);
 
 		color("pink")
 		translate([0,0,10])
@@ -37,8 +41,7 @@ module waterPumpFilter_base(height, innerRadius, xyLength)
 
 		innerCubeDifference = 4;
 		color("green")
-		waterPumpFilter_base_innerCube(xyLength - innerCubeDifference, height - innerCubeDifference);
-//		waterPumpFilter_base_innerCube(xyLength-2, height-2);
+		waterPumpFilter_base_innerCube(xLength - innerCubeDifference, height - innerCubeDifference);
 
 		cutoutHeight = height - 4;
 
@@ -49,7 +52,6 @@ module waterPumpFilter_base(height, innerRadius, xyLength)
 }
 
 module waterPumpFilter_base_innerCube(xyLength, height)
-//module waterPumpFilter_base_innerCube(xyLength, height)
 {
 	cube([xyLength, xyLength, height], center = true);
 }
