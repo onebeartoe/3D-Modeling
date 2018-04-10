@@ -1,5 +1,13 @@
 
 
+function main()
+{
+	return openOval(innerRadius = 5);
+
+//  	return openOvalReal(innerRadius = 5);
+}
+
+
 openOval = function(innerRadius)
 {
 	return difference(

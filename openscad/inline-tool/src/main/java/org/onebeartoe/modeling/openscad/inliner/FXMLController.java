@@ -49,10 +49,16 @@ public class FXMLController implements Initializable//, DesktopApplication
         {
             File infile = new File(openScadFile);
             String interpolatedContent = customizerService.interpolateOpenScad(infile);
-            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-CUSTOMIZER.scad";
+            
+            int start = openScadFile.lastIndexOf(".");
+            int end = openScadFile.length();
+            String extension = openScadFile.substring(start, end);
+            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-" + extension;
             File outfile = new File(path);
             Path outpath = outfile.toPath();
+            
             Files.write(outpath, interpolatedContent.getBytes() );
+            
             logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output to: " + outpath.toAbsolutePath() );
         }
         catch (IOException  ex)
