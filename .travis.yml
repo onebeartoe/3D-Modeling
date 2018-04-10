@@ -21,10 +21,14 @@ install:
 script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
-- mvn clean verify
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
 #- echo "in presteps DISPLAY is: $DISPLAY"
 
 addons:
+  sonarcloud:
+    organization: $SONAR_ORGNIZATION
+    token: $SONAR_TOKEN    
+    
   # This configuration works to upload to AWS S3 buckets!    
   artifacts:
     s3_region: us-west-1
@@ -36,3 +40,8 @@ addons:
 #    working_dir: $WORKING_DIR
     bucket: openscad-2
     permissions: public-read
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
