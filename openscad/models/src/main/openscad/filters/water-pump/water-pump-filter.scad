@@ -3,20 +3,34 @@ use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module waterPumpFilter(baseHeight = 30,
 					   innerRadius = 25,
+					   snorkel = false,
+					   snorkelHeight = 40,
+					   snorkelOuterRadius = 7,
 					   xLength = 54)
 {
 	union()
 	{
+//		if(snorkel == true)
+	//	{
+		//	waterPump_snorkel(filter_baseHeight = baseHeight,
+			//	 			  filter_xLength = xLength,
+				//			  filter_yLength = yLength,
+					//		  height = snorkelHeight,
+						//	  snorkelOuterRadius = snorkelOuterRadius);
+//		}
+
 		zTranslate = baseHeight / 2.0;
 		translate([0,0, zTranslate-0.1])
 		waterPumpFilter_connector(innerRadius = innerRadius);
 
 
-		xyLength = (innerRadius * 2) + 4;
+		yLength = (innerRadius * 2) + 4;
 		waterPumpFilter_base(height = baseHeight,
 							 innerRadius = innerRadius,
+							 snorkel = snorkel,
+							 snorkelOuterRadius = snorkelOuterRadius,
 							 xLength = xLength,
-							 yLength = xyLength);
+							 yLength = yLength);
 	}
 }
 
@@ -29,6 +43,8 @@ module waterPumpFilter_connector(innerRadius)
 
 module waterPumpFilter_base(height,
 							innerRadius,
+							snorkel,
+							snorkelOuterRadius,
 							xLength,
 							yLength)
 {
@@ -53,12 +69,46 @@ module waterPumpFilter_base(height,
 								 length = xLength - 8);
 
 		waterPumpFilter_yCutouts(height = cutoutHeight);
+
+		if(snorkel == true)
+		{
+			waterPump_snorkel(filter_baseHeight = height,
+							  filter_xLength = xLength,
+							  filter_yLength = yLength,
+							  height = 20,
+							  snorkelOuterRadius = snorkelOuterRadius);
+		}
 	}
 }
 
 module waterPumpFilter_base_innerCube(xyLength, yLength, height)
 {
 	cube([xyLength, yLength, height], center = true);
+}
+
+module waterPump_snorkel(filter_baseHeight,
+						 filter_xLength,
+						 filter_yLength,
+						 height,
+						 snorkelOuterRadius)
+{
+	xTranslate = (filter_xLength / 2.0) - snorkelOuterRadius - 2;
+	yTranslate = (filter_yLength / 2.0) - snorkelOuterRadius -2;
+	zTranslate = (filter_baseHeight / 2.0) - 4;
+
+
+	color("green")
+	translate([xTranslate, yTranslate, zTranslate])
+	cylinder(h = height, r = snorkelOuterRadius, fn = 50);
+//	openCylinder(height = height,
+	//			 innerRadius = snorkelOuterRadius - 2,
+		//		 outerRadius = snorkelOuterRadius);
+
+	translate([-xTranslate, -yTranslate, zTranslate])
+// 	openCylinder(height = height,
+ 	//			 innerRadius = snorkelOuterRadius - 2,
+ 		//		 outerRadius = snorkelOuterRadius);
+			 cylinder(h = height, r = snorkelOuterRadius, $fn = 100);
 }
 
 module waterPumpFilter_xCutouts(height, length)
