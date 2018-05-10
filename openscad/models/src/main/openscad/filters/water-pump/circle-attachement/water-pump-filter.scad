@@ -1,5 +1,5 @@
 
-use <../../shapes/open-cylinder/open-cylinder.scad>
+use <../../../shapes/open-cylinder/open-cylinder.scad>
 
 module waterPumpFilter(baseHeight = 30,
 					   innerRadius = 25,
