@@ -2,7 +2,7 @@
 module usb210_filter_attachementOutline(h = 1)
 {
 	rotate([0, 0, -3.5])
-	usb210_filter_rawAttachementOutline();
+	usb210_filter_rawAttachementOutline(h = h);
 }
 
 module usb210_filter_rawAttachementOutline(h = 1)
