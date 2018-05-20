@@ -33,8 +33,8 @@ module usb210Filter_shell()
 	cube([xLength, yLength, zLength], center=true);
 }
 
-function usb210Filter_shell_xLength() = 150;
+function usb210Filter_shell_xLength() = 32;
 
-function usb210Filter_shell_yLength() = 170;
+function usb210Filter_shell_yLength() = 38;
 
-function usb210Filter_shell_zLength() = 170;
+function usb210Filter_shell_zLength() = 45;

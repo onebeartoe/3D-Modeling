@@ -1,7 +1,10 @@
 
 module usb210_filter_attachementOutline(h = 1)
 {
+	xyScale = 0.21;
+
 	rotate([0, 0, -3.5])
+	scale([xyScale, xyScale, 1])
 	usb210_filter_rawAttachementOutline(h = h);
 }
 
