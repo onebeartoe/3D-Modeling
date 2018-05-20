@@ -122,11 +122,11 @@ module waterPumpFilter_xCutouts(height, length)
 	}
 }
 
-module waterPumpFilter_yCutouts(height)
+module waterPumpFilter_yCutouts(height = 10, length = 20)
 {
 	step = 5;
 
-	for(y = [-20 : step : 20])
+	for(y = [-length : step : length])
 	{
 		translate([0, y, 0])
 		cube([100, 2, height], center = true);

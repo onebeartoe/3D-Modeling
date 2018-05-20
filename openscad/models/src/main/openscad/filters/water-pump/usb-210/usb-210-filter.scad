@@ -1,11 +1,19 @@
 
+use <../circle-attachement/water-pump-filter.scad>
+
 use <filter-outline/usb-210-filter-outline.scad>
+
 
 module usb210Filter()
 {
-	usb210Filter_shell();
+	difference()
+	{
+		usb210Filter_shell();
 
-	usb210Filter_filterOutlineCutout();
+		usb210Filter_filterOutlineCutout();
+
+		waterPumpFilter_yCutouts();
+	}
 }
 
 module usb210Filter_filterOutlineCutout()
