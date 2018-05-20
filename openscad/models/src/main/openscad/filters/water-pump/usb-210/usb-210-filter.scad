@@ -12,12 +12,13 @@ module usb210Filter()
 
 		usb210Filter_filterOutlineCutout();
 
-		waterPumpFilter_yCutouts();
+		usb210Filter_shell_cutouts();
 	}
 }
 
 module usb210Filter_filterOutlineCutout()
 {
+	translate([0, 0, 5])
 	usb210_filter_attachementOutline(h = 200);
 }
 
@@ -27,10 +28,21 @@ module usb210Filter_shell()
 	yLength = usb210Filter_shell_yLength();
 	zLength = usb210Filter_shell_zLength();
 
-	zTranslate = zLength / 2.0;
+	zTranslate = (zLength / 2.0) ;
 
 	translate([0, 0, zTranslate])
 	cube([xLength, yLength, zLength], center=true);
+}
+
+module usb210Filter_shell_cutouts()
+{
+	zTranslate = 20;
+
+	translate([0, 0, zTranslate])
+	waterPumpFilter_yCutouts(height = 25);
+
+	translate([0, 0, zTranslate])
+	waterPumpFilter_xCutouts(height = 25, length = 10);
 }
 
 function usb210Filter_shell_xLength() = 32;
