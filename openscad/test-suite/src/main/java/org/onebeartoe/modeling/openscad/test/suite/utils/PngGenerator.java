@@ -134,11 +134,12 @@ public class PngGenerator
             int distance = 250;
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             
+            // The --viewall parameter is used to make sure the entire model is in view.
             String command = runProfile.executablePath
                     + " -o " + outfileName + " " 
-                    + "--camera=0,0,0," + rotateParams + "," + distance 
-//TODO: what about using the --viewall parameter?                                
-                    + " " + infilePath;
+                    + "--camera=0,0,0," + rotateParams + "," + distance + " "
+//                    + "--viewall" + " " 
+                    + infilePath;
             
             exitCode = generate(command, runProfile);
         }
