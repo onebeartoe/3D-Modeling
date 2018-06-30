@@ -5,64 +5,59 @@
  * 		 from row 1 at the top to row 7 at the bottom."
  */
 
-tile_yRotate = 11.9; // [0.1: 0.1 :30]
-tile_xTranslate = -58.8; // [-120: 0.1 :130]
-tile_zTranslate = -120; // [-120: 0.1 :130]
+ yRotate = 4.5; // [0.1: 0.1 :30]
+ xTranslate = -11.6; // [-120: 0.1 :130]
+ zTranslate = -132.2; // [-220: 0.1 :130]
 
 lampShade(latice_zTranslate = -140);
 
 module lampShade(latice_zTranslate)
 {
-
 	color("black")
     translate([0, 0, latice_zTranslate])
     import("196-Lampshade_Lattice.stl");
 
-    tile_rotate = [0, 11.9, 0];
-	tile_translate = [-58.8, 0, -120];
-
     tileRow(color1 = "orange",
 			color2 = "green",
 			name = "196-Tile_1.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 11.9, 0],
+			translate = [-58.8, 0, -120]);
 
 	tileRow(color1 = "red",
 			color2 = "blue",
 			name = "196-Tile_2.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 6.4, 0],
+			translate = [-30.1, 0, -129.5]);
 
-	tileRow(color1 = "grey",
-			color2 = "pink",
+	tileRow(color1 = "black",
+			color2 = "black",
 			name = "196-Tile_3.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
-
+			rotation = [0, 6.4, 0],
+			translate = [-27.8, 0, -129.5]);
 
 	tileRow(color1 = "yellow",
 			color2 = "magenta",
 			name = "196-Tile_4.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 5.9, 0],
+			translate = [-23.0, 0, -129.5]);
 
 	tileRow(color1 = "orange",
 			color2 = "green",
 			name = "196-Tile_5.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 5.8, 0],
+			translate = [-20.2, 0, -129.5]);
 
 	tileRow(color1 = "red",
 			color2 = "blue",
 			name = "196-Tile_6.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 4.6, 0],
+			translate = [-13.6, 0, -131.3]);
 
-	tileRow(color1 = "grey",
-			color2 = "pink",
+	tileRow(color1 = "orange",
+			color2 = "green",
 			name = "196-Tile_7.stl",
-			rotation = tile_rotate,
-			translate = tile_translate);
+			rotation = [0, 4.5, 0],
+			translate = [-11.6, 0, -132.2]);
 }
 
 module tileRow(color1, color2, name, rotation, translate)
