@@ -29,14 +29,14 @@ module lampShade(latice_zTranslate)
 			rotation = [0, 6.4, 0],
 			translate = [-30.1, 0, -129.5]);
 
-	tileRow(color1 = "black",
-			color2 = "black",
+	tileRow(color1 = "white",
+			color2 = "white",
 			name = "196-Tile_3.stl",
 			rotation = [0, 6.4, 0],
 			translate = [-27.8, 0, -129.5]);
 
 	tileRow(color1 = "yellow",
-			color2 = "magenta",
+			color2 = "yellow",
 			name = "196-Tile_4.stl",
 			rotation = [0, 5.9, 0],
 			translate = [-23.0, 0, -129.5]);
