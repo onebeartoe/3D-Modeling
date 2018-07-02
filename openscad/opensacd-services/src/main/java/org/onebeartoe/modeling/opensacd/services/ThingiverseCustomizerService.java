@@ -18,33 +18,33 @@ import java.util.logging.Logger;
 public class ThingiverseCustomizerService
 {
     private Logger logger;
-    
+
     private final String fontList;
-    
+
     private final String fontNameKey = "@FontNamesReplacement@";
-    
+
     private final String stencilFontNameKey = "@StencilFontNamesReplacement@";
-    
+
     private final String stencilFontList;
 
     public ThingiverseCustomizerService() throws IOException
     {
         logger = Logger.getLogger( getClass().getName() );
-        
+
         InputStream is = getClass().getResourceAsStream("/font-names.properties");
         Properties properties = new Properties();
         properties.load(is);
         String defalutValue = "@FontListNotAvailable@";
         fontList = properties.getProperty("font.names", defalutValue);
-        
+
         stencilFontList = properties.getProperty("font.stencilNames", defalutValue);
     }
-    
+
     private boolean isBuiltInLibrary(String line)
     {
         boolean contains = line.contains("MCAD/shapes.scad>")
                             || line.contains("MCAD/triangles.scad");
-        
+
         return contains;
     }
 
@@ -98,9 +98,9 @@ public class ThingiverseCustomizerService
 
         return content;
     }
-    
+
     private String interpolateOpenScadFontLine(String line)
-    {        
+    {
         String s;
 
         if( line.contains(fontNameKey) )
@@ -111,22 +111,24 @@ public class ThingiverseCustomizerService
         {
             s = line;
         }
-        
+
         s = s.replace(stencilFontNameKey, stencilFontList);
 
         return s;
     }
-    
+
     /**
-     * 
+     *
      * @param line
-     * @return 
+     * @return
      */
     private String interpolateOpenScadLine(String line)
-    {        
+    {
         String s = interpolateOpenScadFontLine(line);
         
-        return s; 
+// TODO: interpolate any color annotations
+
+        return s;
     }
 
     /**
@@ -197,13 +199,13 @@ public class ThingiverseCustomizerService
                         logger.log(Level.SEVERE, message, ex);
                     }
 
-                    parse.useStatements.add(absolutePath);                    
+                    parse.useStatements.add(absolutePath);
                 }
             }
             else
             {
                 String content = interpolateOpenScadLine(line);
-                
+
                 parse.otherStatements.add(content);
             }
         });
