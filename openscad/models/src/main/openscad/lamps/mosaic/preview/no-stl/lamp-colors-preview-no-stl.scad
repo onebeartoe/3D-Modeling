@@ -7,6 +7,7 @@ use <196-Tile_4.scad>
 use <196-Tile_5.scad>
 use <196-Tile_6.scad>
 use <196-Tile_7.scad>
+use <Lamp_Body_2.scad>
 
 tile1Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
 tile1Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
@@ -62,6 +63,8 @@ module lampPreview()
 	tileRow(color1 = tile7Color1,
 			color2 = tile7Color2,
 			tileNumber=7);
+
+	lampBody2();
 }
 
 module oneTile(color, tileNumber)
