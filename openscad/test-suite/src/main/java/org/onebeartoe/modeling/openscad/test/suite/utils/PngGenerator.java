@@ -134,11 +134,13 @@ public class PngGenerator
             int distance = 250;
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             
+            boolean viewall = runProfile.viewall;
+            
             // The --viewall parameter is used to make sure the entire model is in view.
             String command = runProfile.executablePath
                     + " -o " + outfileName + " " 
                     + "--camera=0,0,0," + rotateParams + "," + distance + " "
-//                    + "--viewall" + " " 
+                    + (viewall ? "--viewall" + " " : "")
                     + infilePath;
             
             exitCode = generate(command, runProfile);
@@ -153,6 +155,8 @@ public class PngGenerator
                                 RunProfile runProfile) throws IOException,
             InterruptedException
     {
+// TODO: add the properties file lookup here.
+        
         List<Boolean> exitCodes = new ArrayList();
 
         runProfile.openscadPaths.stream().parallel().forEach((p) -> 

@@ -409,8 +409,7 @@ public class OpenScadTestSuiteService
                 System.out.println("The test suite is now generating proposed baseline images for each .oscad file.");
                 System.out.println();
                 
-// TODO:                 
-//                printOpernScadVersion(RunProfile runProfile);
+                printOpernScadVersion(runProfile);
                 
                 int count = generateProposedBaselines(runProfile);
                 
