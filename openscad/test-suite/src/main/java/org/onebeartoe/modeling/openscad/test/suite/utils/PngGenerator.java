@@ -1,9 +1,10 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
-import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -11,6 +12,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,7 +22,13 @@ import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
 
 public class PngGenerator
 {
-    Logger logger;
+    private Logger logger;
+    
+    public PngGenerator()
+    {
+        String name = getClass().getName();
+        logger = Logger.getLogger(name);
+    }
     
 //TODO: Rename this method to generateOne()    
     /**
@@ -71,7 +80,8 @@ public class PngGenerator
     
     public List<Boolean> generateDirectionalPngs(Path oscadInputFile, 
                                                  boolean forcePngGeneration,
-                                                 RunProfile runProfile)
+                                                 RunProfile runProfile,
+                                                 DirectoryProfile directoryProfile)
     {
     	List<Boolean> exitCodes = new ArrayList();
 
@@ -81,7 +91,13 @@ public class PngGenerator
                 {
 		    try 
 		    {
-                        boolean exitCode = generateOneDirectionalPng(oscadInputFile, forcePngGeneration, v, runProfile);
+                        boolean exitCode = generateOneDirectionalPng(oscadInputFile, 
+                                                                     forcePngGeneration, 
+                                                                     v, 
+                                                                     runProfile,
+                                                                     directoryProfile);
+                        
+                        
                         exitCodes.add(exitCode);
 		    } 
 		    catch (Exception e)
@@ -104,7 +120,8 @@ public class PngGenerator
     public boolean generateOneDirectionalPng(Path oscadInputFile, 
                                              boolean forceGeneration, 
                                              OpenScadCameraDirections direction,
-                                             RunProfile runProfile) throws IOException, InterruptedException
+                                             RunProfile runProfile,
+                                             DirectoryProfile directoryProfile) throws IOException, InterruptedException
     {
         String outfileName = DataSetValidator.baselineNameFor(oscadInputFile, forceGeneration, direction);
 
@@ -134,7 +151,7 @@ public class PngGenerator
             int distance = 250;
             String rotateParams = direction.getRotateParams().replaceAll(" ", "");
             
-            boolean viewall = runProfile.viewall;
+            boolean viewall = directoryProfile.viewall();
             
             // The --viewall parameter is used to make sure the entire model is in view.
             String command = runProfile.executablePath
@@ -150,26 +167,40 @@ public class PngGenerator
         return exitCode == 0;
     }
 
-    public boolean generatePngs(//List<Path> openscadPaths, 
-                                boolean forcePngGeneration,
+    public boolean generatePngs(boolean forcePngGeneration,
                                 RunProfile runProfile) throws IOException,
-            InterruptedException
+                                                              InterruptedException
     {
-// TODO: add the properties file lookup here.
-        
         List<Boolean> exitCodes = new ArrayList();
 
-        runProfile.openscadPaths.stream().parallel().forEach((p) -> 
+        runProfile.openscadPaths.stream().parallel().forEach((path) -> 
         {
-            List<Boolean> directionalExitCodes = generateDirectionalPngs(p, 
+            DirectoryProfile directoryProfile = new DirectoryProfile();
+            Path parent = path.getParent();
+            directoryProfile.setPath(parent);
+            try
+            {
+                loadDirectoryProperties(directoryProfile);
+            } 
+            catch (IOException ex)
+            {   
+                logger.severe("could not load directory properties for " + parent);
+
+                ex.printStackTrace();
+                             
+            }
+            
+            List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
                                                                          forcePngGeneration,
-                                                                         runProfile);
+                                                                         runProfile,
+                                                                         directoryProfile);
+            
             exitCodes.addAll(directionalExitCodes);
             
             if( directionalExitCodes.contains(false) )
             {
                 System.err.println("An error occured with proposed baseline PNG:");
-                System.err.println( p.toString() );
+                System.err.println(path.toString() );
             }
         });
 
@@ -187,5 +218,31 @@ public class PngGenerator
         }
 
         return masterExitCode;
+    }
+
+    /**
+     * The directory properties are loaded from a file in the same directory as 
+     * the .scad file.
+     * 
+     * It contains any custom camera options.
+     * 
+     * @param runProfile 
+     */
+    private void loadDirectoryProperties(DirectoryProfile directoryProfile) throws FileNotFoundException, IOException
+    {
+        Path path = directoryProfile.getPath();
+        
+        File parent = path.toFile();
+        String propertiesFileName = "openscad.properties";
+        File infile = new File(parent, propertiesFileName);
+        Properties properties = new Properties();
+        InputStream inStream = new FileInputStream(infile);
+        properties.load(inStream);
+        
+        String viewallValue = properties.getProperty("viewall");
+        
+        boolean parseBoolean = Boolean.parseBoolean(viewallValue);
+        
+        directoryProfile.setViewall(parseBoolean);
     }
 }

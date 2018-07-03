@@ -24,6 +24,4 @@ public class RunProfile
     public List<Path> openscadPaths;
     
     public OpenScadTestSuite.RunMode mode;
-    
-    public boolean viewall;
 }
