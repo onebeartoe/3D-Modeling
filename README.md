@@ -26,3 +26,8 @@ https://plus.google.com/u/0/104101484714566033177
 https://twitter.com/onebeartoe
 
 https://www.youtube.com/user/onebeartoe/videos
+
+
+Unit Test Errors (if any)
+
+        https://s3.console.aws.amazon.com/s3/buckets/openscad-2/?region=us-east-1&tab=overview
