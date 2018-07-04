@@ -1,13 +1,13 @@
 
-use <196-Lampshade_Lattice.scad>
-use <196-Tile_1.scad>
-use <196-Tile_2.scad>
-use <196-Tile_3.scad>
-use <196-Tile_4.scad>
-use <196-Tile_5.scad>
-use <196-Tile_6.scad>
-use <196-Tile_7.scad>
-use <Lamp_Body_2.scad>
+use <resources/196-Lampshade_Lattice.scad>
+use <resources/196-Tile_1.scad>
+use <resources/196-Tile_2.scad>
+use <resources/196-Tile_3.scad>
+use <resources/196-Tile_4.scad>
+use <resources/196-Tile_5.scad>
+use <resources/196-Tile_6.scad>
+use <resources/196-Tile_7.scad>
+use <resources/Lamp_Body_2.scad>
 
 tile1Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
 tile1Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
