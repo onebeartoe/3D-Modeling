@@ -9,31 +9,35 @@ use <resources/196-Tile_6.scad>
 use <resources/196-Tile_7.scad>
 use <resources/Lamp_Body_2.scad>
 
-tile1Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile1Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+laticeColor = "black";  // [pink, orange, red, black, white, yellow, blue, green]
+baseColor = "black"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile2Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile2Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile1Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
+tile1Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile3Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile3Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile2Color1 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile2Color2 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile4Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile4Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile3Color1 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
+tile3Color2 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile5Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile5Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile4Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
+tile4Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile6Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile6Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile5Color1 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile5Color2 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile7Color1 = "red"; // [pink, red, black, white, yellow, blue, green]
-tile7Color2 = "red"; // [pink, red, black, white, yellow, blue, green]
+tile6Color1 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
+tile6Color2 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
+
+tile7Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
+tile7Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
 
 lampPreview(tile1Color1=tile1Color1);
 
 module lampPreview()
 {
+    color(laticeColor)
     latice();
 
     tileRow(color1 = tile1Color1,
@@ -64,7 +68,8 @@ module lampPreview()
 			color2 = tile7Color2,
 			tileNumber=7);
 
-	lampBody2();
+    color(baseColor)
+    lampBody2();
 }
 
 module oneTile(color, tileNumber)
