@@ -184,7 +184,7 @@ public class PngGenerator
             } 
             catch (IOException ex)
             {   
-                logger.severe("could not load directory properties for " + parent);
+                logger.severe("could not load directory properties for " + parent.toFile().getAbsolutePath() );
 
                 ex.printStackTrace();
                              
