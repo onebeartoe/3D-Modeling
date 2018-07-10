@@ -13,25 +13,25 @@ laticeColor = "black";  // [pink, orange, red, black, white, yellow, blue, green
 baseColor = "black"; // [pink, orange, red, black, white, yellow, blue, green]
 
 tile1Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
-tile1Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile1Color2 = "green"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile2Color1 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile2Color1 = "green"; // [pink, orange, red, black, white, yellow, blue, green]
 tile2Color2 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 
 tile3Color1 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 tile3Color2 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
 
 tile4Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
-tile4Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile4Color2 = "green"; // [pink, orange, red, black, white, yellow, blue, green]
 
-tile5Color1 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile5Color1 = "green"; // [pink, orange, red, black, white, yellow, blue, green]
 tile5Color2 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 
 tile6Color1 = "white"; // [pink, orange, red, black, white, yellow, blue, green]
 tile6Color2 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
 
 tile7Color1 = "orange"; // [pink, orange, red, black, white, yellow, blue, green]
-tile7Color2 = "blue"; // [pink, orange, red, black, white, yellow, blue, green]
+tile7Color2 = "green"; // [pink, orange, red, black, white, yellow, blue, green]
 
 lampPreview(tile1Color1=tile1Color1);
 
