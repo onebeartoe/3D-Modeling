@@ -3,11 +3,14 @@ use <MCAD/shapes.scad>
 
 use <../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
-module wallMountedStand(mount_cube_yLength,
+module wallMountedStand(mount_cube_xLength,
+						mount_cube_yLength,
+						mount_cube_zLength,
 						platform_height,
 						platform_segmentCount,
 						platform_topRadius,
-						support_height)
+						support_xLength,
+						support_zLength)
 {
 	union()
 	{
@@ -16,9 +19,12 @@ module wallMountedStand(mount_cube_yLength,
 							  	  topRadius = platform_topRadius);
 
 		wallMountedStand_support(platform_topRadius = platform_topRadius,
-								 support_height = support_height);
+								 support_xLength = support_xLength,
+								 support_zLength = support_zLength);
 
-		wallMountedStand_mount(cube_yLength = mount_cube_yLength,
+		wallMountedStand_mount(cube_xLength = mount_cube_xLength,
+							   cube_yLength = mount_cube_yLength,
+							   cube_zLength = mount_cube_zLength,
 							   platform_topRadius = platform_topRadius);
    }
 }
@@ -32,12 +38,13 @@ module wallMountedStand_platform(height,
 }
 
 module wallMountedStand_support(platform_topRadius,
-								support_height)
+								support_xLength,
+								support_zLength)
 {
 	echo("slooop");
-	adjacent = support_height - 25;
-	opposite = platform_topRadius - 4;
-	depth = 40;
+	adjacent = support_zLength - 15;
+	opposite = support_xLength; //platform_topRadius + 5;
+	depth = 10;
 
 	zTranslate = -platform_topRadius;
 
@@ -49,20 +56,46 @@ module wallMountedStand_support(platform_topRadius,
 	echo("slooop 2");
 }
 
-module wallMountedStand_mount(cube_yLength,
+module wallMountedStand_mount(cube_xLength,
+							  cube_yLength,
+							  cube_zLength,
 							  platform_topRadius)
 {
-	boardLength = 10;
-	boardHeight = 19;
+	size = [cube_xLength, cube_yLength, cube_zLength];
 
-	size = [boardLength, cube_yLength, boardHeight];
+	cornerRadius = 2;
 
-	xTranslate = -platform_topRadius;
+	xTranslate = -platform_topRadius + cornerRadius;
+	yTranslate = -cube_yLength / 2.0;
 
-	color("orange")
-	translate([xTranslate, 0, 0])
-	roundedCube(cornerRadius = 5,
-	            sides=20,
-	            sidesOnly=true,
-	            size=size);
+	difference()
+	{
+		color("orange")
+		translate([xTranslate, yTranslate, 0])
+		roundedCube(cornerRadius = cornerRadius,
+		            sides=20,
+		            sidesOnly=true,
+		            size=size);
+
+		wallMountedStand_mountCutouts();
+	}
+}
+
+module wallMountedStand_mountCutouts()
+{
+	xTranslate = -70;
+	yTranslate = -15;
+	zTranslate = 15;
+
+	rotation = [0, 90, 0];
+
+	color("purple")
+	translate([xTranslate, yTranslate, zTranslate])
+	rotate(rotation)
+	cylinder(r=1, h = 80, $fn = 30);
+
+	color("purple")
+	translate([xTranslate, -yTranslate, zTranslate])
+	rotate(rotation)
+	cylinder(r=1, h = 80, $fn = 30);
 }
