@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -184,10 +183,7 @@ public class PngGenerator
             } 
             catch (IOException ex)
             {   
-                logger.severe("could not load directory properties for " + parent.toFile().getAbsolutePath() );
-
-                ex.printStackTrace();
-                             
+                logger.warning("could not load directory properties for " + parent.toFile().getAbsolutePath() );                             
             }
             
             List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
