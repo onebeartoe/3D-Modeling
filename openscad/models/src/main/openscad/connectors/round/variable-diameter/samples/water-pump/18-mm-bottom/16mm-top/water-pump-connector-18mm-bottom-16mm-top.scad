@@ -1,10 +1,10 @@
 
 use <../../../../variable-diameter-round-connector.scad>
 
-roundConnector(bottomHeight = 15,
-			  bottomInnerRadius = 9.1,
-			  bottomOuterRadius = 10,
+roundConnector(bottomHeight = 25,
+			  bottomInnerRadius = 9,
+			  bottomOuterRadius = 12,
 			  middleHeight = 0,
-			  topHeight = 15,
+			  topHeight = 25,
 			  topInnerRadius = 8,
-		  	  topOuterRadius = 10);
+		  	  topOuterRadius = 12);
