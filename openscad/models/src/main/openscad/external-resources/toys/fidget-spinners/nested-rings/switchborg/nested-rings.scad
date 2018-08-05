@@ -10,13 +10,8 @@ preview_cut = false;
 // Style of rings. Biconical rings can slide axially as well as tumbling; spherical rings are close-fitting and more likely to jam.
 type = "biconical";  // [biconical:Biconical, spherical:Spherical, spherical_one_hole:Spherical (closed on top)]
 
-// Width of the rings (z axis height as printed), in millimeters.
-ring_width = 20;
-
 // For biconical rings, the faces of the rings will have a radius this many millimeters smaller than the center. Ignored for spherical rings.
 bicone_opening_reduction = 3.1;
-
-
 
 // For spherical rings, the width of a centered thinner band of each ring, in millimeters. This is intended for rings printed with transparent material in that band. Set to zero to disable.
 spherical_thin_band_width = 0;
@@ -39,13 +34,11 @@ SMOOTH_FACETS = 240;
 facets = spherical ? SMOOTH_FACETS / 2 : SMOOTH_FACETS;  // make spheres somewhat less super-expensive
 
 // Derived values / aliases
-zradius = ring_width / 2;
+zradius = stockNestedRings_ringWidth() / 2;
 
 
 module nestedRings(outer_radius, ring_count)
 {
-	echo("hello nr");
-
     difference()
 	{
         main(outer_radius = outer_radius,
@@ -60,11 +53,11 @@ module nestedRings(outer_radius, ring_count)
 module main(outer_radius,
 		    ring_count)
 {
-	echo("hello m");
-
 	step = stockNestedRings_step();
 
 	ring_thickness = stockNestedRings_ringThickness();
+
+//	ring_count = 1;
 
     for (i = [0:ring_count - 1])
 	{
@@ -130,6 +123,9 @@ function stockNestedRings_outerRadius() = 33;
 
 // Number of rings to generate. The size is determined starting from the center, so more rings is larger.
 function stockNestedRings_ringCount() = 6;
+
+// Width of the rings (z axis height as printed), in millimeters.
+function stockNestedRings_ringWidth() = 20;
 
 // For biconical rings, the amount of space between adjacent rings (when they are concentric), in millimeters. Must be smaller than Bicone Opening Reduction to prevent the rings from just falling apart.
 function stockNestedRings_biconeGap() = 2;
