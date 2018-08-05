@@ -10,26 +10,45 @@ module chameleonGlasses(noseBridge_xLength = 25)
 	{
 	    stockNestedRings();
 
-		outer_radius = stockNestedRings_outerRadius();
+		outerRadius = stockNestedRings_outerRadius();
 
 		step = stockNestedRings_step();
 
 		ring_count = stockNestedRings_ringCount();
 
-		xTranslate = outer_radius
+		xTranslate = outerRadius
 					 + (stockNestedRings_biconeGap() + step) * ring_count
 					 + noseBridge_xLength;
 
 	    translate([xTranslate,0,0])
 	    stockNestedRings();
 
-		chameleonGlasses_noseBridge(noseBridge_xLength, outer_radius);
+		chameleonGlasses_noseBridge(noseBridge_xLength, outerRadius);
+
+		tab1_translateX = - outerRadius
+						  - chameleonGlasses_sewTab1_sideLength()
+						  + step
+						  + 0.32;
+		tab1_translateY = - chameleonGlasses_sewTab1_sideLength() / 2.0;
+		tab1_translateZ = - stockNestedRings_ringWidth() / 2.0;
+		translate([tab1_translateX, tab1_translateY, tab1_translateZ])
+		chameleonGlasses_sewTab1();
+
+		tab2_translateX = -tab1_translateX * 2
+						  - tab1_translateX
+						  + chameleonGlasses_sewTab1_sideLength()
+						  + 1.89;
+		tab2_translateY = chameleonGlasses_sewTab1_sideLength() / 2.0;
+		translate([tab2_translateX, tab2_translateY, tab1_translateZ])
+		rotate([0,0,180])
+		chameleonGlasses_sewTab1();
 	}
 }
 
 module chameleonGlasses_noseBridge(noseBridge_xLength, lenseOuterRadius)
 {
 	height = 10;
+
 	outerRadius = noseBridge_xLength / 2.0
 				  + 4;
 
@@ -68,3 +87,28 @@ module chameleonGlasses_noseBridgeCutout(cutout, translation)
 	translate(translation)
 	cube(cutout);
 }
+
+module chameleonGlasses_sewTab1()
+{
+	difference()
+	{
+		zLength = 2.6;
+		sideLength = chameleonGlasses_sewTab1_sideLength();
+		cube([sideLength, sideLength, zLength]);
+
+		offsetX = sideLength - 8;
+		offsetY = sideLength - 8;
+
+		holeRadius = 1;
+
+		translate([offsetX, offsetY, -0.1])
+		cylinder(h = 10, r = holeRadius);
+
+		xOffset2 = 3;
+		yOffset2 = 8;
+		translate([xOffset2, yOffset2, -0.1])
+		cylinder(h = 10, r = holeRadius);
+	}
+}
+
+function chameleonGlasses_sewTab1_sideLength() = 10;
