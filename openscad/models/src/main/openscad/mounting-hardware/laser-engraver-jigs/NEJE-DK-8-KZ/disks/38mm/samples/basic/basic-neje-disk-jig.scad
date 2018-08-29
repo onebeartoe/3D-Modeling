@@ -1,7 +1,7 @@
 
 use <../../neje-laser-engraver-disk-jig.scad>
 
-cutoutDiameter = 40;
+cutoutDiameter = 40; // [5:100]
 
 zTranslate = nejeLaserEngraverDiskJig_zLength();
 
