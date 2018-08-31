@@ -53,8 +53,14 @@ public class FXMLController implements Initializable//, DesktopApplication
             int start = openScadFile.lastIndexOf(".");
             int end = openScadFile.length();
             String extension = openScadFile.substring(start, end);
-            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-" + extension;
+            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-" +"inlined" + extension;
             File outfile = new File(path);
+
+            if( !outfile.getParentFile().exists() )
+            {
+                outfile.getParentFile().mkdirs();
+            }
+
             Path outpath = outfile.toPath();
             
             Files.write(outpath, interpolatedContent.getBytes() );
