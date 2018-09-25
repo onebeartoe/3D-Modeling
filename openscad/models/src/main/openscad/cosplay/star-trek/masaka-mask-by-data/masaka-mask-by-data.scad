@@ -127,7 +127,7 @@ module masakasMask_solid(topRadius, rightEdge_x)
 
 module masakasMask_sunEmblem()
 {
-	
+
 }
 
 module masakasMask_top(radius, rightEdge_x)
