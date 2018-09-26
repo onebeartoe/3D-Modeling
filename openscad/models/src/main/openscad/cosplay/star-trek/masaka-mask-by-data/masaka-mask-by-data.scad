@@ -66,6 +66,10 @@ module masakasMask_cheekFlap()
 module masakasMask_cutouts(topRadius, rightEdge_x)
 {
 	masakasMask_EyeCutouts(rightEdge_x);
+
+	// bottom flattener
+	translate([0,0, -1.7])
+	cube([400, 400, 2], center= true);
 }
 
 module masakasMask_EyeCutouts(rightEdge_x)
@@ -141,7 +145,7 @@ module masakasMask_top(radius, rightEdge_x)
 
 	xTranslate = rightEdge_x;
 	yTranslate = 29;
-	zTranslate = -radius + cube_zLength - 0.5;
+	zTranslate = -radius + cube_zLength - 0.450;
 
 	translate([xTranslate, yTranslate, zTranslate])
 
