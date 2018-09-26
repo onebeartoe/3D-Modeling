@@ -29,6 +29,6 @@ module roundDoughnut()
 						innerRadius = 4.5,
 						fn = 20);
 
-		sphere(r=2, $fn = 10);
+		sphere(r=2);//, $fn = 10);
 	}
 }

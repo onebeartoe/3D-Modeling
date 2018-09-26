@@ -1,4 +1,7 @@
 
+
+use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>
+
 masakasMask();
 
 module masakasMask()
@@ -114,9 +117,9 @@ module masakasMask_LeftEyeCoutout(rightEdge_x)
 
 module masakasMask_solid(topRadius, rightEdge_x)
 {
-//	unuion()
+	union()
 	{
-		masakasMask_sunEmblem();
+//		masakasMask_sunEmblem();
 
 		masakasMask_top(radius = topRadius,
 						rightEdge_x = rightEdge_x);
@@ -127,6 +130,8 @@ module masakasMask_solid(topRadius, rightEdge_x)
 
 module masakasMask_sunEmblem()
 {
+
+	roundDoughnut();
 
 }
 
