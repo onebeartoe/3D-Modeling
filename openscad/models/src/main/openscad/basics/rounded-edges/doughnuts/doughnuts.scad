@@ -20,15 +20,19 @@ module rectangularDoughnut(cornerRadius = 4,
     };
 }
 
-module roundDoughnut()
+module roundDoughnut(fn = 20,
+					 height = 3,
+					 outerRadius = 7,
+					 innerRadius = 4.5,
+					 minkowskiSphereRadius = 2)
 {
 	minkowski()
 	{
-		openCylinder(height = 3,
-						outerRadius = 7,
-						innerRadius = 4.5,
-						fn = 20);
+		openCylinder(height = height,
+						outerRadius = outerRadius,
+						innerRadius = innerRadius,
+						fn = fn);
 
-		sphere(r=2);//, $fn = 10);
+		sphere(r = minkowskiSphereRadius);//, $fn = 10);
 	}
 }

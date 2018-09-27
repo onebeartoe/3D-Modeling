@@ -123,7 +123,9 @@ module masakasMask_solid(topRadius, rightEdge_x)
 {
 	union()
 	{
-//		masakasMask_sunEmblem();
+		translate([rightEdge_x, 51, 8])
+		rotate([-10, 0, 0])
+		masakasMask_sunEmblem();
 
 		masakasMask_top(radius = topRadius,
 						rightEdge_x = rightEdge_x);
@@ -134,8 +136,76 @@ module masakasMask_solid(topRadius, rightEdge_x)
 
 module masakasMask_sunEmblem()
 {
+	innerRadius = 6;
+	minkowskiSphereRadius = 2;
+	outerRadius = 7;
 
-	roundDoughnut();
+	roundDoughnut(height = 1,
+				  innerRadius = innerRadius,
+		  		  minkowskiSphereRadius = minkowskiSphereRadius,
+			      outerRadius = outerRadius);
+
+    ringRadius = outerRadius + minkowskiSphereRadius;
+
+	difference()
+	{
+		masakasMask_sunEmblemLines(ringRadius = ringRadius);
+
+		cylinder(r = innerRadius,
+				 h = 10,
+				 center = true);
+	}
+}
+
+module masakasMask_sunEmblemLine(height, radius)
+{
+	color("green")
+	rotate([0,90,0])
+	cylinder(h = height,
+			 r = radius);
+}
+
+module masakasMask_sunEmblemLines()
+{
+	masakasMask_sunEmblemCrossLines();
+
+	masakasMask_sunEmblemDiagnalLines();
+}
+
+module masakasMask_sunEmblemCrossLines()
+{
+ringRadius = 7;
+
+	height = 35;
+	radius = 1;
+
+	xTranslate = -(height / 2.0 ) ;
+	yTranslate = 3;
+
+	translate([xTranslate, yTranslate, 0])
+	masakasMask_sunEmblemLine(height = height,
+							  radius = radius);
+
+    translate([xTranslate, -yTranslate, 0])
+    masakasMask_sunEmblemLine(height = height,
+	  						  radius = radius);
+
+    vertical_xTranslate = -yTranslate;
+	vertical_yTranslate = xTranslate;
+
+	translate([vertical_xTranslate, vertical_yTranslate, 0])
+    rotate([0, 0, 90])
+    masakasMask_sunEmblemLine(height = height,
+  						  	  radius = radius);
+
+    translate([-vertical_xTranslate, vertical_yTranslate, 0])
+    rotate([0, 0, 90])
+    masakasMask_sunEmblemLine(height = height,
+						  	  radius = radius);
+}
+
+module masakasMask_sunEmblemDiagnalLines()
+{
 
 }
 
