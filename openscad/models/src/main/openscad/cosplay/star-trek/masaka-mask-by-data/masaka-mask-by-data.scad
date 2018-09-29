@@ -123,8 +123,8 @@ module masakasMask_solid(topRadius, rightEdge_x)
 {
 	union()
 	{
-		translate([rightEdge_x, 51, 8])
-		rotate([-10, 0, 0])
+		translate([rightEdge_x, 51, 6])
+		rotate([-14, 0, 0])
 		masakasMask_sunEmblem();
 
 		masakasMask_top(radius = topRadius,
@@ -149,6 +149,7 @@ module masakasMask_sunEmblem()
 
 	difference()
 	{
+		translate([0, 0, 1])
 		masakasMask_sunEmblemLines(ringRadius = ringRadius);
 
 		cylinder(r = innerRadius,
@@ -157,7 +158,7 @@ module masakasMask_sunEmblem()
 	}
 }
 
-module masakasMask_sunEmblemLine(height, radius)
+module masakasMask_sunEmblemSingleLine(height, radius)
 {
 	color("green")
 	rotate([0,90,0])
@@ -167,27 +168,28 @@ module masakasMask_sunEmblemLine(height, radius)
 
 module masakasMask_sunEmblemLines()
 {
-	masakasMask_sunEmblemCrossLines();
+	masakasMask_sunEmblemCrossLines(radius = 0.5,
+									yTranslate = 1.5);
 
 	masakasMask_sunEmblemDiagnalLines();
 }
 
-module masakasMask_sunEmblemCrossLines()
+module masakasMask_sunEmblemCrossLines(radius,
+									   yTranslate)
 {
-ringRadius = 7;
+//TODO where is this used?
+	ringRadius = 7;
 
 	height = 35;
-	radius = 1;
 
 	xTranslate = -(height / 2.0 ) ;
-	yTranslate = 3;
 
 	translate([xTranslate, yTranslate, 0])
-	masakasMask_sunEmblemLine(height = height,
+	masakasMask_sunEmblemSingleLine(height = height,
 							  radius = radius);
 
     translate([xTranslate, -yTranslate, 0])
-    masakasMask_sunEmblemLine(height = height,
+    masakasMask_sunEmblemSingleLine(height = height,
 	  						  radius = radius);
 
     vertical_xTranslate = -yTranslate;
@@ -195,18 +197,20 @@ ringRadius = 7;
 
 	translate([vertical_xTranslate, vertical_yTranslate, 0])
     rotate([0, 0, 90])
-    masakasMask_sunEmblemLine(height = height,
+    masakasMask_sunEmblemSingleLine(height = height,
   						  	  radius = radius);
 
     translate([-vertical_xTranslate, vertical_yTranslate, 0])
     rotate([0, 0, 90])
-    masakasMask_sunEmblemLine(height = height,
+    masakasMask_sunEmblemSingleLine(height = height,
 						  	  radius = radius);
 }
 
 module masakasMask_sunEmblemDiagnalLines()
 {
-
+	rotate([0, 0, 45])
+	masakasMask_sunEmblemCrossLines(radius = 1.5,
+									yTranslate = 3);
 }
 
 module masakasMask_top(radius, rightEdge_x)
