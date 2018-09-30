@@ -33,6 +33,7 @@ module roundDoughnut(fn = 20,
 						innerRadius = innerRadius,
 						fn = fn);
 
-		sphere(r = minkowskiSphereRadius);//, $fn = 10);
+		sphere(r = minkowskiSphereRadius, $fn = 10);
+//        sphere(r = minkowskiSphereRadius);//, $fn = 10);
 	}
 }

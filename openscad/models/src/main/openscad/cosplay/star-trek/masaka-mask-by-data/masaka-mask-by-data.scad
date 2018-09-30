@@ -41,7 +41,11 @@ module masakasMask_cheekFlap()
 		linear_extrude(height=1, scale=[1,1], slices=20, twist=0)
 		polygon(points=
 		[
-			[0,0],[15,-15],[30,-5],
+			[5,0],
+
+			[15,-15],
+
+			[30,-5],
 
 			[35, 20],
 
@@ -111,7 +115,7 @@ module masakasMask_LeftEyeCoutout(rightEdge_x)
 			[14, -4],
 
 			// right top
-			[15, 1]
+			[12, 0.5]
 
 		]);
 
@@ -123,8 +127,8 @@ module masakasMask_solid(topRadius, rightEdge_x)
 {
 	union()
 	{
-		translate([rightEdge_x, 51, 6])
-		rotate([-14, 0, 0])
+		translate([rightEdge_x, 51, 4])
+		rotate([-18, 0, 0])
 		masakasMask_sunEmblem();
 
 		masakasMask_top(radius = topRadius,
@@ -136,9 +140,9 @@ module masakasMask_solid(topRadius, rightEdge_x)
 
 module masakasMask_sunEmblem()
 {
-	innerRadius = 6;
+	innerRadius = 5;
 	minkowskiSphereRadius = 2;
-	outerRadius = 7;
+	outerRadius = 6;
 
 	roundDoughnut(height = 1,
 				  innerRadius = innerRadius,
@@ -149,7 +153,6 @@ module masakasMask_sunEmblem()
 
 	difference()
 	{
-		translate([0, 0, 1])
 		masakasMask_sunEmblemLines(ringRadius = ringRadius);
 
 		cylinder(r = innerRadius,
@@ -160,27 +163,46 @@ module masakasMask_sunEmblem()
 
 module masakasMask_sunEmblemSingleLine(height, radius)
 {
+color("green")
+translate([height, 0 , 0])
+sphere(r = radius,
+	   $fn = fn);
+
+	fn = 15;
 	color("green")
 	rotate([0,90,0])
 	cylinder(h = height,
-			 r = radius);
+			 r = radius,
+			 $fn = fn);
+
+	 // other end cap
+	 color("green")
+	 translate([0, 0 , 0])
+	 sphere(r = radius,
+	 		$fn = fn);
 }
 
 module masakasMask_sunEmblemLines()
 {
-	masakasMask_sunEmblemCrossLines(radius = 0.5,
-									yTranslate = 1.5);
+	translate([0, 0, 1.2])
+	masakasMask_sunEmblemCrossLines(height = 28,
+									radius = 0.5,
+									yTranslate = 1.2);
 
-	masakasMask_sunEmblemDiagnalLines();
+    // diagnalLines
+	translate([0, 0, 1])
+	rotate([0, 0, 45])
+	masakasMask_sunEmblemCrossLines(height = 24,
+									radius = 1.2,
+									yTranslate = 2);
 }
 
-module masakasMask_sunEmblemCrossLines(radius,
+module masakasMask_sunEmblemCrossLines(height,
+									   radius,
 									   yTranslate)
 {
 //TODO where is this used?
 	ringRadius = 7;
-
-	height = 35;
 
 	xTranslate = -(height / 2.0 ) ;
 
@@ -208,9 +230,7 @@ module masakasMask_sunEmblemCrossLines(radius,
 
 module masakasMask_sunEmblemDiagnalLines()
 {
-	rotate([0, 0, 45])
-	masakasMask_sunEmblemCrossLines(radius = 1.5,
-									yTranslate = 3);
+
 }
 
 module masakasMask_top(radius, rightEdge_x)
