@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +11,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
 
 /**
@@ -38,13 +40,11 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
     }
 
-    private List<Path> find(Path inpath) throws Exception
+    private List<Path> find(Path inpath) throws IOException //throws Exception
     {
         System.out.println("Locating files under: " + inpath);
         System.out.println();
 	
-//        List<Path> openscadPaths = new ArrayList<>();
-
         int maxDepth = Integer.MAX_VALUE;
         
         BiPredicate<Path, BasicFileAttributes> matcherLambda = (p, bfa) ->
@@ -52,20 +52,15 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
             boolean matched = false;
             
             Path name = p.getFileName();
-
-//            System.out.println("trying to match: " + name);
             
             if (bfa.isSymbolicLink())
             {
                 System.out.format("Symbolic link: %s ", p);
             }
             else if (bfa.isRegularFile())
-            {
-//                System.out.println("regular file: " + name);
-                
+            {                
                 if( name != null && matcher.matches(name) )
                 {
-//                    System.out.println("match: " + name);
                     matched = true;
                 }
             }
@@ -80,10 +75,13 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 
             return matched;
         };
-        
-        List<Path> find = Files.find(inpath, maxDepth, matcherLambda)
-                .collect(Collectors.toList());
 
+        List<Path> find = null;
+        
+        try( Stream<Path> stream = Files.find(inpath, maxDepth, matcherLambda); )
+        {
+            find = stream.collect(Collectors.toList());
+        }
         return find;
     }
 
