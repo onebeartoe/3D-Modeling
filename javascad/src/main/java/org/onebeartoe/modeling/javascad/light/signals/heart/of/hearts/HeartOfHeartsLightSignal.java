@@ -18,6 +18,11 @@ public class HeartOfHeartsLightSignal extends OpenScadFile
 {
     public HeartOfHeartsLightSignal()
     {
+        this(false);
+    }
+    
+    public HeartOfHeartsLightSignal(boolean showBigHeart)
+    {
         double zTranslate = -0.51;
         double zScale = 2.5;
         Abstract3dModel heartCall = new ModuleCall("heartThumbnail");
@@ -75,9 +80,7 @@ public class HeartOfHeartsLightSignal extends OpenScadFile
         Abstract3dModel littleHeart7 = littleHeart(littleProfile);
         
         List<Abstract3dModel> baseCutouts = new ArrayList();
-
-        boolean showBigHeart = false; 
-        
+    
         if(showBigHeart)
         {                    
             baseCutouts.add(bigHeartScale);
