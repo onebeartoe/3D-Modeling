@@ -32,15 +32,15 @@ import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
 public class OpenScadFileFinder extends SimpleFileVisitor<Path>
 {
     private PathMatcher matcher = null;
-
+    
     public OpenScadFileFinder()
     {
         final String pattern = GlobalVariables.OPENSCAD_FILE_PATTERN;
 
-        matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);
+        matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);                
     }
 
-    private List<Path> find(Path inpath) throws IOException //throws Exception
+    private List<Path> find(Path inpath) throws Exception
     {
         System.out.println("Locating files under: " + inpath);
         System.out.println();
