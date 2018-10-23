@@ -228,11 +228,6 @@ module masakasMask_sunEmblemCrossLines(height,
 						  	  radius = radius);
 }
 
-module masakasMask_sunEmblemDiagnalLines()
-{
-
-}
-
 module masakasMask_top(radius, rightEdge_x)
 {
 	cube_zLength = 10;
