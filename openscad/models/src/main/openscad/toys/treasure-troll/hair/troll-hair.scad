@@ -19,7 +19,7 @@ union()
             cylinder(r=hairRadius, h=hairLength);
         }
     }
-    
+
     translate([hairLength-0.1, 0, 0])
     wall();
 }
