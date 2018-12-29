@@ -106,6 +106,26 @@ public class OpenScadTestSuite
         }
     }
     
+    /**
+     * This method parses the command line arguments agains the Options object 
+     * parameter.
+     * 
+     * This version produces baseline imags that match the ones created on the openscad 
+     * build server, which uses version 2015.03-1 of OpenSCAD.
+     * 
+     * @param args
+     * 
+     * The openscad executable path is configurable on the command line.  Here 
+     * are some sample '--openscadPath' values:
+     * 
+     *       "openscad"
+     *       "C:\\opt\\openscad\\openscad-2017.04.05\\openscad"
+     *       "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
+     * 
+     * @param options
+     * @return
+     * @throws ParseException 
+     */
     private static RunProfile parseRunProfile(final String[] args, Options options) throws ParseException
     {
         CommandLineParser parser = new DefaultParser();
@@ -119,11 +139,7 @@ public class OpenScadTestSuite
         }
         else
         {
-            // This version produces baseline imags that match the ones created on the openscad 
-            // build server, which uses version 2015.03-1 of OpenSCAD.
             runProfile.executablePath = "openscad";
-//          runProfile.executablePath = "C:\\opt\\openscad\\openscad-2017.04.05\\openscad";
-//          runProfile.executablePath = "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD";
         }
         runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
         runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
