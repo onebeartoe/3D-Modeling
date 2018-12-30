@@ -8,7 +8,7 @@ module rainmaker(height = 140,
     union()
     {
         // the main shell
-    	%
+//    	%
         openCylinder(height = height,
                      innerRadius = innerRadius,
                      outerRadius = outerRadius);
@@ -17,8 +17,9 @@ module rainmaker(height = 140,
 
         // the steps
         zStart = bottomZ;
-        step_xLength = innerRadius * 2;
-        rainmaker_steps(step_xLength = step_xLength,
+        step_xLength = (innerRadius * 2) + 1;
+        rainmaker_steps(height = height,
+						step_xLength = step_xLength,
                         zStart = zStart);
 
         // the bottom
@@ -26,18 +27,27 @@ module rainmaker(height = 140,
     }
 }
 
-module rainmaker_steps(step_xLength, zStart)
+module rainmaker_steps(height,
+						step_xLength,
+						zStart)
 {
     step = 5;
 
-    for(z = [zStart : step : 30])
+	stepRadius = 2;
+
+	zEnd = height - step - stepRadius;
+
+    for(z = [zStart : step : zEnd])
     {
-        xTranslate = -step_xLength / 2.0;
-        zTranslate = zStart * z;
+		xTranslate = 0;
+        zTranslate = zStart + z;
+
+		zRotate = z * 25;
 
         translate([xTranslate, 0, zTranslate])
-        rotate([0, 90, 0])
-        cylinder(r = 2, h = step_xLength);
+		rotate([0, 90, zRotate])
+        cylinder(r = stepRadius,
+					h = step_xLength,
+					center = true);
     }
-
 }
