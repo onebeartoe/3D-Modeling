@@ -3,7 +3,7 @@ use <../rainmaker.scad>
 
 /* [Shell] */
 
-height = 200; // [140 : 380]
+height = 380; // [140 : 380]
 
 innerRadius = 20; // [30 : 40]
 
