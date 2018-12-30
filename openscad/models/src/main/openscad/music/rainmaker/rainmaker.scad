@@ -8,7 +8,7 @@ module rainmaker(height = 140,
     union()
     {
         // the main shell
-//    	%
+    	%
         openCylinder(height = height,
                      innerRadius = innerRadius,
                      outerRadius = outerRadius);
