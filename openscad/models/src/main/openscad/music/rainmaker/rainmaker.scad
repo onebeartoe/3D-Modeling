@@ -3,7 +3,8 @@ use <../../shapes/open-cylinder/open-cylinder.scad>
 
 module rainmaker(height = 140,
                  innerRadius = 30,
-                 outerRadius = 34)
+                 outerRadius = 34,
+			 	 stepRadius = 2)
 {
     union()
     {
@@ -19,6 +20,7 @@ module rainmaker(height = 140,
         zStart = bottomZ;
         step_xLength = (innerRadius * 2) + 1;
         rainmaker_steps(height = height,
+						stepRadius = stepRadius,
 						step_xLength = step_xLength,
                         zStart = zStart);
 
@@ -28,12 +30,13 @@ module rainmaker(height = 140,
 }
 
 module rainmaker_steps(height,
+						stepRadius,
 						step_xLength,
 						zStart)
 {
     step = 5;
 
-	stepRadius = 2;
+//	stepRadius = 2;
 
 	zEnd = height - step - stepRadius;
 

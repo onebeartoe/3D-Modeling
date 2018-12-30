@@ -5,9 +5,9 @@ use <../rainmaker.scad>
 
 height = 200; // [140 : 380]
 
-innerRadius = 30; // [30 : 40]
+innerRadius = 20; // [30 : 40]
 
-outerRadius = 34; // [34 : 46]
+outerRadius = 24; // [34 : 46]
 
 /* [Hidden] */
 
