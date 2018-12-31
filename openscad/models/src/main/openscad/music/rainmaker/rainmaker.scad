@@ -4,6 +4,7 @@ use <../../shapes/open-cylinder/open-cylinder.scad>
 module rainmaker(height = 140,
                  innerRadius = 30,
                  outerRadius = 34,
+				 rungsPerLevel = 1,
 			 	 stepRadius = 2,
 			 	 zRotateAngle = 25)
 {
@@ -21,6 +22,7 @@ module rainmaker(height = 140,
         zStart = bottomZ;
         step_xLength = (innerRadius * 2) + 1;
         rainmaker_steps(height = height,
+						rungsPerLevel = rungsPerLevel,
 						stepRadius = stepRadius,
 						step_xLength = step_xLength,
 						zRotateAngle = zRotateAngle,
@@ -32,6 +34,7 @@ module rainmaker(height = 140,
 }
 
 module rainmaker_steps(height,
+						rungsPerLevel,
 						stepRadius,
 						step_xLength,
 						zRotateAngle,
@@ -48,7 +51,7 @@ module rainmaker_steps(height,
 
 		zRotate = z * zRotateAngle;
 
-		for(s = [1 : 1 : 2])
+		for(s = [1 : 1 : rungsPerLevel])
 		{
 			if(s == 1)
 			{
