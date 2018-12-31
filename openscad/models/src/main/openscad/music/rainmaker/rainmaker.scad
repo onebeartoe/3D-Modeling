@@ -36,8 +36,6 @@ module rainmaker_steps(height,
 {
     step = 5;
 
-//	stepRadius = 2;
-
 	zEnd = height - step - stepRadius;
 
     for(z = [zStart : step : zEnd])
@@ -45,12 +43,20 @@ module rainmaker_steps(height,
 		xTranslate = 0;
         zTranslate = zStart + z;
 
+//		zRotate = z * 5;
 		zRotate = z * 25;
 
-        translate([xTranslate, 0, zTranslate])
-		rotate([0, 90, zRotate])
-        cylinder(r = stepRadius,
-					h = step_xLength,
-					center = true);
+		for(s = [1 : 1 : 2])
+		{
+			if(s == 1)
+			{
+//				color("green")
+		        translate([xTranslate, 0, zTranslate])
+				rotate([0, 90, zRotate])
+		        cylinder(r = stepRadius,
+							h = step_xLength,
+							center = true);
+			}
+		}
     }
 }
