@@ -15,4 +15,5 @@ i = 3; // [1:100]
 
 rainmaker(height = height,
           outerRadius = outerRadius,
-          innerRadius = innerRadius);
+          innerRadius = innerRadius,
+	  	  stepRadius = 1);
