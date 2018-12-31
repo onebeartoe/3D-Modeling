@@ -9,6 +9,8 @@ innerRadius = 20; // [30 : 40]
 
 outerRadius = 24; // [34 : 46]
 
+rungsPerLevel = 2; // [1 : 4]
+
 /* [Hidden] */
 
 i = 3; // [1:100]
@@ -16,4 +18,5 @@ i = 3; // [1:100]
 rainmaker(height = height,
           outerRadius = outerRadius,
           innerRadius = innerRadius,
+		  rungsPerLevel = rungsPerLevel,
 	  	  stepRadius = 1);

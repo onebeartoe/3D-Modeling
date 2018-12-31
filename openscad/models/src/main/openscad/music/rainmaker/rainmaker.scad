@@ -49,12 +49,22 @@ module rainmaker_steps(height,
 		xTranslate = 0;
         zTranslate = zStart + z;
 
-		zRotate = z * zRotateAngle;
-
-		for(s = [1 : 1 : rungsPerLevel])
+		rotate([0, 0, zRotateAngle * z])
+		union()
 		{
-			if(s == 1)
+			for(s = [1 : 1 : rungsPerLevel])
 			{
+				stepColor  = s == 1 ? "yellow" :
+							 s == 2 ? "green" :
+							 s == 3 ? "orange" :
+							 s == 4 ? "blue" :
+							          "pink";
+
+			    zRotate = (180.0 / s);
+//				zRotate = (360.0 / s) + z;
+//				zRotate = (360.0 / s) + z  * zRotateAngle;
+
+				color(stepColor)
 		        translate([xTranslate, 0, zTranslate])
 				rotate([0, 90, zRotate])
 		        cylinder(r = stepRadius,
