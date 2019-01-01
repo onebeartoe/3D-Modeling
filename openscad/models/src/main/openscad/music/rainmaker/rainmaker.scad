@@ -62,7 +62,6 @@ module rainmaker_steps(height,
 
 			    zRotate = (180.0 / s);
 //				zRotate = (360.0 / s) + z;
-//				zRotate = (360.0 / s) + z  * zRotateAngle;
 
 				color(stepColor)
 		        translate([xTranslate, 0, zTranslate])
