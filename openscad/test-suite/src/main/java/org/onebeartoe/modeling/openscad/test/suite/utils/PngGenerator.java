@@ -230,15 +230,20 @@ public class PngGenerator
         
         File parent = path.toFile();
         String propertiesFileName = "openscad.properties";
+        
         File infile = new File(parent, propertiesFileName);
-        Properties properties = new Properties();
-        InputStream inStream = new FileInputStream(infile);
-        properties.load(inStream);
         
-        String viewallValue = properties.getProperty("viewall");
-        
-        boolean parseBoolean = Boolean.parseBoolean(viewallValue);
-        
-        directoryProfile.setViewall(parseBoolean);
+        if( infile.exists() )
+        {
+            Properties properties = new Properties();
+            InputStream inStream = new FileInputStream(infile);
+            properties.load(inStream);
+
+            String viewallValue = properties.getProperty("viewall");
+
+            boolean viewAll = Boolean.parseBoolean(viewallValue);
+
+            directoryProfile.setViewall(viewAll);
+        }
     }
 }
