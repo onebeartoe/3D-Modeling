@@ -6,6 +6,7 @@ module rainmaker(height = 140,
                  outerRadius = 34,
 				 rungsPerLevel = 1,
 			 	 stepRadius = 2,
+				 zDistanceBetweenRungs = 5,
 			 	 zRotateAngle = 25)
 {
     union()
@@ -25,6 +26,7 @@ module rainmaker(height = 140,
 						rungsPerLevel = rungsPerLevel,
 						stepRadius = stepRadius,
 						step_xLength = step_xLength,
+						zDistanceBetweenRungs = zDistanceBetweenRungs,
 						zRotateAngle = zRotateAngle,
                         zStart = zStart);
 
@@ -37,14 +39,13 @@ module rainmaker_steps(height,
 						rungsPerLevel,
 						stepRadius,
 						step_xLength,
+						zDistanceBetweenRungs,
 						zRotateAngle,
 						zStart)
 {
-    step = 5;
+	zEnd = height - zDistanceBetweenRungs - stepRadius;
 
-	zEnd = height - step - stepRadius;
-
-    for(z = [zStart : step : zEnd])
+    for(z = [zStart : zDistanceBetweenRungs : zEnd])
     {
 		xTranslate = 0;
         zTranslate = zStart + z;

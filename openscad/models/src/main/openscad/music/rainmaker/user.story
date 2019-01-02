@@ -16,5 +16,6 @@ The following rainmaker properties are parameterized
 	rotate angle and
 	rungs per layer and
 	step radius and
+	Z distance between steps and
 rungs on the same layer have different colors and
 a Thingiverse Customizer script exists and
