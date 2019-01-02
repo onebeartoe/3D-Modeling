@@ -4,9 +4,6 @@ use <../rainmaker.scad>
 rainmaker(height = 300,
 			innerRadius = 25,
 			outerRadius = 29,
-		  	rungsPerLevel = 2
-
-// remove these
-//			,
-//zDistanceBetweenRungs = 100
-		);
+		  	rungsPerLevel = 3,
+			zDistanceBetweenRungs = 8,
+			zRotateAngle = 5);
