@@ -19,3 +19,8 @@ The following rainmaker properties are parameterized
 	Z distance between steps and
 rungs on the same layer have different colors and
 a Thingiverse Customizer script exists and
+the Customizer script has an option to generate an end cap and 
+the following end cap properties are parameterized
+	inner radius and
+	outer radius and
+	end thickness.
