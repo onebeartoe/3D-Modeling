@@ -1,0 +1,37 @@
+
+Greeting
+
+	Hi, I am Roberto Marquez.   In this video I demonstrate the user story for
+	creating this rainmaker with a 3D printer.
+
+	Tools used in this project include:
+
+		Source Control - github.com
+		https://github.com/onebeartoe/3D-Modeling/tree/master/openscad/models/src/main/openscad/music/rainmaker
+
+		OpenSCAD modeling language
+		http://www.openscad.org/
+
+		text editor (I used Atom)
+
+		OpenSCAD nightly release for the navtive Customizer
+		http://www.openscad.org/downloads.html
+
+		slicer to create GCode for 3D printing (I used Cura)
+
+		3D printer - (I used Creality CR-10S)
+
+		Thingiverse website
+		https://www.thingiverse.com/thing:3331144
+
+User Story Review
+file:///home/roberto/Versioning/owner/github/onebeartoe/3D-Modeling/openscad/models/src/main/openscad/music/rainmaker/user.story
+
+Demonstrate Acceptance Criteria
+
+Outro
+
+	I hope you enjoyed the demonstration of this user story and encourage you
+	to customize your own rainmaker.
+
+	Thanks for watching like and subscribe for more OpenSCAD content.

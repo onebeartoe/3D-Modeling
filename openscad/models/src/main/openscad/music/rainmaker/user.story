@@ -18,9 +18,7 @@ The following rainmaker properties are parameterized
 	step radius and
 	Z distance between steps and
 rungs on the same layer have different colors and
-a Thingiverse Customizer script exists and
-the Customizer script has an option to generate an end cap and 
-the following end cap properties are parameterized
-	inner radius and
-	outer radius and
-	end thickness.
+the Customizer script has an option to generate an end cap and
+the end cap inner radius property is derived from values of the rainmaker and
+the model is manifold and the OpenSCAD application generates a .stl file from it and
+the Customizer script also exists on Thingiverse.
