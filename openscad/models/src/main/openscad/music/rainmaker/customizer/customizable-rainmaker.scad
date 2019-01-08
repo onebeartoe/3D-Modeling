@@ -17,7 +17,7 @@ rungsPerLevel = 2; // [1 : 4]
 
 stepRadius = 1; // [1 : 5]
 
-zDistanceBetweenRungs = 5; // [1:15]
+zDistanceBetweenRungs = 5; // [1:150]
 
 /* [Endcap] */
 
