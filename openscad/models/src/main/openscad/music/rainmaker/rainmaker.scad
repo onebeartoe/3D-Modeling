@@ -86,16 +86,17 @@ module rainmaker_steps(height,
 
 					if(shellDecoration == "bumps")
 					{
+// The commented code below is to help debug why rotaion is not working for the bump.
+// And it will be removed hopefully soon.						
 //						bumpsRotate = (angleDivision * s) / s;
 //						bumpsRotate = zRotate / s;
 						bumpsRotate = zRotate;
 //						bumpsRotate = s + 30;
 //						bumpsRotate = 0;
 
-						echo("bumps", s, bumpsRotate);
+//						echo("bumps", s, bumpsRotate);
 
 						color(stepColor)
-
 						translate([outerRadius, 0, zTranslate])
 //rotate([bumpsRotate, 0, 0])
 //rotate([0, 90, bumpsRotate])
