@@ -5,6 +5,7 @@ module rainmaker(height = 140,
                  innerRadius = 30,
                  outerRadius = 34,
 				 rungsPerLevel = 1,
+				 shellDecoration = "none",
 			 	 stepRadius = 2,
 				 zDistanceBetweenRungs = 5,
 			 	 zRotateAngle = 25)
@@ -23,7 +24,9 @@ module rainmaker(height = 140,
         zStart = bottomZ;
         step_xLength = (innerRadius * 2) + 1;
         rainmaker_steps(height = height,
+						outerRadius = outerRadius,
 						rungsPerLevel = rungsPerLevel,
+						shellDecoration = shellDecoration,
 						stepRadius = stepRadius,
 						step_xLength = step_xLength,
 						zDistanceBetweenRungs = zDistanceBetweenRungs,
@@ -35,8 +38,12 @@ module rainmaker(height = 140,
     }
 }
 
+// suport modules follow
+
 module rainmaker_steps(height,
+						outerRadius,
 						rungsPerLevel,
+						shellDecoration,
 						stepRadius,
 						step_xLength,
 						zDistanceBetweenRungs,
@@ -70,6 +77,19 @@ module rainmaker_steps(height,
 		        cylinder(r = stepRadius,
 							h = step_xLength,
 							center = true);
+
+				if(shellDecoration == "bumps")
+				{
+					color(stepColor)
+					translate([outerRadius, 0, zTranslate])
+					rotate([0, 90, zRotate])
+					sphere(r=3);
+
+					color(stepColor)
+					translate([-outerRadius, 0, zTranslate])
+					rotate([0, 90, zRotate])
+					sphere(r=3);
+				}
 			}
 		}
     }
