@@ -6,6 +6,7 @@ module rainmaker(height = 140,
                  outerRadius = 34,
 				 rungsPerLevel = 1,
 				 shellDecoration = "none",
+				 showShell = "yes",
 			 	 stepRadius = 2,
 				 zDistanceBetweenRungs = 5,
 			 	 zRotateAngle = 25)
@@ -13,10 +14,13 @@ module rainmaker(height = 140,
     union()
     {
         // the main shell
-    	%
-        openCylinder(height = height,
-                     innerRadius = innerRadius,
-                     outerRadius = outerRadius);
+		if(showShell == "yes")
+		{
+    		#
+	        openCylinder(height = height,
+	                     innerRadius = innerRadius,
+	                     outerRadius = outerRadius);
+		}
 
         bottomZ = 5;
 
@@ -62,33 +66,47 @@ module rainmaker_steps(height,
 		{
 			for(s = [1 : 1 : rungsPerLevel])
 			{
-				stepColor  = s == 1 ? "yellow" :
-							 s == 2 ? "green" :
-							 s == 3 ? "orange" :
-							 s == 4 ? "blue" :
-							          "pink";
-
-				angleDivision = 360.0 / rungsPerLevel;
-			    zRotate = (angleDivision * (s-1) ) / 2;
-
-				color(stepColor)
-		        translate([xTranslate, 0, zTranslate])
-				rotate([0, 90, zRotate])
-		        cylinder(r = stepRadius,
-							h = step_xLength,
-							center = true);
-
-				if(shellDecoration == "bumps")
+				union()
 				{
-					color(stepColor)
-					translate([outerRadius, 0, zTranslate])
-					rotate([0, 90, zRotate])
-					sphere(r=3);
+					stepColor  = s == 1 ? "yellow" :
+								 s == 2 ? "green" :
+								 s == 3 ? "orange" :
+								 s == 4 ? "blue" :
+								          "pink";
+
+					angleDivision = 360.0 / rungsPerLevel;
+				    zRotate = (angleDivision * (s-1) ) / 2;
 
 					color(stepColor)
-					translate([-outerRadius, 0, zTranslate])
+			        translate([xTranslate, 0, zTranslate])
 					rotate([0, 90, zRotate])
-					sphere(r=3);
+			        cylinder(r = stepRadius,
+								h = step_xLength,
+								center = true);
+
+					if(shellDecoration == "bumps")
+					{
+//						bumpsRotate = (angleDivision * s) / s;
+//						bumpsRotate = zRotate / s;
+						bumpsRotate = zRotate;
+//						bumpsRotate = s + 30;
+//						bumpsRotate = 0;
+
+						echo("bumps", s, bumpsRotate);
+
+						color(stepColor)
+
+						translate([outerRadius, 0, zTranslate])
+//rotate([bumpsRotate, 0, 0])
+//rotate([0, 90, bumpsRotate])
+						sphere(r=3);
+
+// this is the bump on the 'other' end
+						color(stepColor)
+						translate([-outerRadius, 0, zTranslate])
+//						rotate([0, 90, bumpsRotate * s])
+						sphere(r=3);
+					}
 				}
 			}
 		}
