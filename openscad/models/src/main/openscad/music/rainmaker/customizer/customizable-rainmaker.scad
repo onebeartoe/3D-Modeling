@@ -11,6 +11,8 @@ innerRadius = 20; // [30 : 40]
 
 outerRadius = 24; // [34 : 46]
 
+shellDecoration = "none"; // [none, bumps]
+
 /* [Rungs] */
 
 rungsPerLevel = 2; // [1 : 4]
@@ -31,6 +33,7 @@ rainmaker(height = height,
           outerRadius = outerRadius,
           innerRadius = innerRadius,
 		  rungsPerLevel = rungsPerLevel,
+		  shellDecoration = shellDecoration,
 	  	  stepRadius = stepRadius,
 	  	  zDistanceBetweenRungs = zDistanceBetweenRungs);
 
