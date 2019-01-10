@@ -21,6 +21,8 @@ stepRadius = 1; // [1 : 5]
 
 zDistanceBetweenRungs = 5; // [1:150]
 
+zRotateAngle = 25; // [5 : 180]
+
 /* [Endcap] */
 
 generateEndcap = true; // [false:true]
@@ -35,7 +37,8 @@ rainmaker(height = height,
 		  rungsPerLevel = rungsPerLevel,
 		  shellDecoration = shellDecoration,
 	  	  stepRadius = stepRadius,
-	  	  zDistanceBetweenRungs = zDistanceBetweenRungs);
+	  	  zDistanceBetweenRungs = zDistanceBetweenRungs,
+	  	  zRotateAngle = zRotateAngle);
 
 if(generateEndcap)
 {
