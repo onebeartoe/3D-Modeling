@@ -2,11 +2,11 @@
 ------------------------------------------------------------------------------------------------------------
 -   Defined                 -               In Progress                        -    completed              -
 ------------------------------------------------------------------------------------------------------------
--
-- oneweb.net
--    content
--    Embed video
--    Intra-oneweb links
+-                           -                                                  -                           -
+-							-												   - oneweb.net                -
+-							-												   -    content                -
+-							-												   -    Embed video            -
+-							-												   -    Intra-oneweb links     -
 -                           -                                                  -                           -
 -                           -                                                  -                           -
 -                           -                                                  -                           -
@@ -27,7 +27,7 @@
 -                           -                                                  -                           -
 ------------------------------------------------------------------------------------------------------------
 -                           -                                                  -                           -
-- adafruit                          -                                                  -                           -
+- adafruit                  -                                                  -                           -
 -    email and mention
 -       show & tell
 -                           -                                                  -                           -
@@ -57,15 +57,13 @@
 -                           -                                                  -                           -
 ------------------------------------------------------------------------------------------------------------
 -                           -                                                  -                           -
-- Thingiverse
-    Sources section
-    Final Inlined Customizer
-    Description
-    STL files
-    print photos
-    Oneweb link
-    Video link
-    “More from the Author” section
+- Thingiverse               -                                                  - Thingiverse               -
+    Final Inlined Customizer-                                                  -    Video link             -
+    Description             -                                                  -    print photos           -
+-                           -                                                  -    “More from the Author” -
+		    			                                                       -        section            -
+-                           -                                                  -    Oneweb link            -
+-                           -                                                  -    STL files              -
     publish
                           -                                                  -                           -
 -
