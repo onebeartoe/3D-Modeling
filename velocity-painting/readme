@@ -1,0 +1,41 @@
+
+Tom Sanladeer's documentation on velocity painting
+
+	https://www.youtube.com/watch?v=HdKaKKeyz7g
+
+	https://toms3d.org/2018/07/28/velocity-painting-3d-prints/
+
+	
+
+----------------------------------------------------------------------------------
+
+This is roughly how I installed the velPaint program by Mark Wheadon on Github:
+
+ 	https://github.com/MarkWheadon/velocity-painting
+
+the project page is here:
+
+	https://toms3d.org/2018/07/28/velocity-painting-3d-prints/
+
+19958  git clone https://github.com/MarkWheadon/velocity-painting.git
+...
+19961  make
+19962  perl Makefile.PL
+19963  make
+19964  make manifest
+19965  make dist
+19966  ll
+19967  ./velPaint
+19968  ./velPaint
+19969  clear
+19970  history
+19971  make install
+19972  sudo make install
+19973  ll
+19974  velPaint
+19975  cd ..
+19976  velPaint
+19977  sudo apt install libimager-perl
+19978  velPaint
+
+-----------------------------------------------------------------------------------
