@@ -3,11 +3,13 @@ use <../../../external-resources/archimedean-spiral/archimedean-spiral.scad>
 
 module breakFreeEarring(claspType = "pinch",
 						height = 3,
-						radius = 30)
+						radius = 30,
+						spirals = 7,
+						thickness = 3.5)
 {
 	union()
 	{
-		breakFreeEarring_spiral(height, radius);
+		breakFreeEarring_spiral(height, radius, spirals, thickness);
 
 		breakFreeEarring_center(height);
 
@@ -94,14 +96,13 @@ module breakFreeEarring_clasp_pinch_bottomEnd(height, radius, xyLength)
 	cylinder(r=height/2.0, h=xyLength, center=true, $fn=30);
 }
 
-
-module breakFreeEarring_spiral(height, radius)
+module breakFreeEarring_spiral(height, radius, spirals, thickness)
 {
 	zScale = height;
 
 	linear_extrude(height=height, center=true, convexity=10, twist=0)
 	scale([1, 1, zScale])
 	archimedean_spiral(rmax = radius,
-						spirals=7,
-						thickness=3.5);
+						spirals = spirals,
+						thickness = thickness);
 }
