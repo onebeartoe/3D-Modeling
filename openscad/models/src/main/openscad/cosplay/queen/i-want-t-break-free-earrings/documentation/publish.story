@@ -1,4 +1,7 @@
 
+As a content producer,
+I need to publish the earring model,
+so that interested folks can download and 3D print it.
 
 -------------------------------------------------------------------------------------------------------------
 -   Defined                 -               In Progress                        	-    completed              -
