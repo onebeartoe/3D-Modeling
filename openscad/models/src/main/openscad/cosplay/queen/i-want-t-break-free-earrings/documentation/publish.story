@@ -8,17 +8,13 @@ so that interested folks can download and 3D print it.
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
 -							-													-							-
-- oneweb.org				-													-							-
+- 							-													- oneweb.org				-
 -                           -                                                  	-                           -
--	documentation/content	-                                                  	-                           -
--	Thingiverse link		-                                                  	-                           -
--	Source code link		-                                                  	-                           -
--	Embed video				-                                                  	-                           -
+-							-                                                  	-	documentation/content	-
+-							-                                                  	-   Thingiverse link        -
+-							-                                                  	-   Source code link        -
+-							-                                                  	-	Embed video             -
 -                           -                                                  	-                           -
--------------------------------------------------------------------------------------------------------------
--                           -                                                  	-                           -
-- github.com                -                                                  	-                           -
--	readme video link/embed -                                                  	-                           -
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
@@ -32,15 +28,15 @@ so that interested folks can download and 3D print it.
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
-- Thingiverse				-
--	Sources section			-                                                  	-                           -
--	Final Inlined Customizer
--	Description				-                                                  	-                           -
--	STL files				-                                                  	-                           -
--	print photos			-                                                  	-                           -
--	Oneweb link				-                                                  	-                           -
--	Video link				-                                                  	-                           -
--	"More from the Author" section
+- Thingiverse				-													- Thingiverse				-
+-							-                                                  	-	Remix Sources section   -
+-							-													-	Final Inlined Customizer -
+-							-                                                  	-   Description             -
+-							-                                                  	-	STL files               -
+-							-                                                  	-	print photos            -
+-							-                                                  	-	Oneweb link             -
+-							-                                                  	-	Video link (Chuck's)    -
+-							-													-	"More from the Author" section -
 -	publish					-                                                  	-                           -
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
