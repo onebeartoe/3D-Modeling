@@ -18,17 +18,17 @@ so that interested folks can download and 3D print it.
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
-- Google+
--	Public
--	Openscad
+- 							-													- Google+					-
+-							-													-	Public					-
+-							-													-	Openscad				-
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
-- Twitter                   -                                                  	-                           -
+- 		                    -                                                  	- Twitter                   -
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                  	-                           -
-- Thingiverse				-													- Thingiverse				-
+- 							-													- Thingiverse				-
 -							-                                                  	-	Remix Sources section   -
 -							-													-	Final Inlined Customizer -
 -							-                                                  	-   Description             -
@@ -37,7 +37,7 @@ so that interested folks can download and 3D print it.
 -							-                                                  	-	Oneweb link             -
 -							-                                                  	-	Video link (Chuck's)    -
 -							-													-	"More from the Author" section -
--	publish					-                                                  	-                           -
+-							-                                                  	-	publish                 -
 -                           -                                                  	-                           -
 -------------------------------------------------------------------------------------------------------------
 
