@@ -57,9 +57,9 @@ module breakFreeEarring_clasp_pinch(height, radius)
 	xyLength = 10;
 
 	// this is the slanted pincher part
-	zTranslate = 8.5;
+	zTranslate = 10.5;
 	translate([0.5, 0, zTranslate])
-	rotate([0, 7.5, 0])
+	rotate([0, 9, 0])
 	breakFreeEarring_clasp_pinch_bottom(height = height,
 										radius = radius,
 										thick = "no",
@@ -67,7 +67,11 @@ module breakFreeEarring_clasp_pinch(height, radius)
 
 	// ths is the connector for the pincher parts
 	translate([radius, -(xyLength / 2.0), 0])
-	cube([4, xyLength, zTranslate / 2.0]);
+	cube([4, xyLength, zTranslate / 1.5]);
+
+	// support for the clasp
+	translate([radius + xyLength -0.5, -(xyLength / 2.0), 0])
+	cube([1,xyLength,3.5]);
 
 	breakFreeEarring_clasp_pinch_bottom(height = height,
 										radius = radius,
