@@ -5,13 +5,14 @@ language: java
 
 install:
 - ./dependencies.sh
-- ls -ltrh /usr/share/fonts/    
+- ls -ltrh /usr/share/fonts/
 - export path1=some-value
 - wget https://github.com/standup75/standupweb-cms/raw/master/css/BAUHS93.TTF
 #- wget https://github.com/bloomberg/scatteract/raw/master/fonts/BAUHS93.TTF
-- ls -ltrh 
+- ls -ltrh
 - sudo cp BAUHS93.TTF /usr/share/fonts/
-- wget https://github.com/caarlos0-graveyard/msfonts/raw/master/fonts/wingding.ttf
+- wget https://github.com/wine-mirror/wine/raw/master/fonts/wingding.ttf
+#- wget https://github.com/caarlos0-graveyard/msfonts/raw/master/fonts/wingding.ttf
 - sudo cp wingding.ttf /usr/share/fonts/
 - ls -ltrh /usr/local/share/fonts/
 - ls -ltrh /usr/share/fonts/
@@ -27,9 +28,9 @@ script:
 addons:
   sonarcloud:
     organization: $SONAR_ORGNIZATION
-    token: $SONAR_TOKEN    
-    
-  # This configuration works to upload to AWS S3 buckets!    
+    token: $SONAR_TOKEN
+
+  # This configuration works to upload to AWS S3 buckets!
   artifacts:
     s3_region: us-west-1
     paths:
