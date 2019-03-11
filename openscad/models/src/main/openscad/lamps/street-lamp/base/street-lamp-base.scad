@@ -10,30 +10,45 @@ module streetLampBase(switchHole = "no")
 
 	difference()
 	{
-		color("grey")
-		roundedPyramid(h = height,
-			 			r1 = radius1,
-						r2 = radius2,
-						sides = sides,
-						sidesOnly=false);
+		streetLampBase_outerShell(height = height,
+		radius1 = radius1,
+		radius2 = radius2,
+		sides = sides);
 
-		streetLampBase_cutouts(height = height, radius2 = radius2, switchHole = switchHole);
+		streetLampBase_cutouts(height = height, radius1 = radius1, radius2 = radius2, sides = sides, switchHole = switchHole);
 	}
 }
 
-module streetLampBase_cutouts(height, radius2, switchHole)
+module streetLampBase_outerShell(height,
+radius1,
+radius2,
+sides)
+{
+	color("grey")
+	roundedPyramid(h = height,
+					r1 = radius1,
+					r2 = radius2,
+					sides = sides,
+					sidesOnly=false);
+}
+
+module streetLampBase_cutouts(height, radius1, radius2, sides, switchHole)
 {
 	// main chamber
 	xy = radius2 + 13;
-	z = height - 1;
 	xyTranslate = -xy / 4.0;
-	translate([0, 0, z/2.0])
-	rotate([0, 0, 45])
-	cube([xy, xy, z], center = true);
+	zTranslate = 2.0;
+	xyzScale = 0.9;
+	outerShellHeight = height - 2;
+	translate([0, 0, zTranslate])
+	rotate([0, 0, 0])
+	scale([xyzScale, xyzScale, xyzScale])
+	streetLampBase_outerShell(height = outerShellHeight, radius1 = radius1, radius2 = radius2, sides = sides);
 
 	// top hole
 	cutoutRadius = radius2 - 14;
 	cutoutHeight = height + 4;
+	translate([0, 0, zTranslate])
 	cylinder(r = cutoutRadius, h = cutoutHeight);
 
 	if(switchHole == "yes")
