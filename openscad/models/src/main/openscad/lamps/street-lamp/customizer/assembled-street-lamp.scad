@@ -1,5 +1,6 @@
 
 use <../base/street-lamp-base.scad>
+
 showPole = "no"; // [yes, no]
 
 if(showPole == "yes")
