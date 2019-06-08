@@ -17,6 +17,9 @@ Related Videos:
 
 TODO: Put all Youtube videos here!!!!!!!!!!!!!!!!!
 
+[![Mask of Masaka on Show & Tell
+](http://img.youtube.com/vi/3rS-Oh5HsTA/0.jpg)](https://www.youtube.com/watch?v=3rS-Oh5HsTA?t=918 "Mask of Masaka on Show & Tell")
+
 [![Rainmaker Modeled with OpenSCAD for 3D Printing
 ](http://img.youtube.com/vi/7ZyBxSCw1Ac/0.jpg)](https://www.youtube.com/watch?v=7ZyBxSCw1Ac "Rainmaker Modeled with OpenSCAD for 3D Printing
 ")
