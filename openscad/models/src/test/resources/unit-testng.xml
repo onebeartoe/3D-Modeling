@@ -4,13 +4,13 @@
 
 <suite name="onebeartoe OpenSCAD Test Suite" parallel="none">
     <test name="openscad model verification">
-            <groups>
+        <groups>
             <run>
                 <include name="unit-tests" />
 
-                            <exclude name="regression"/>
+                <exclude name="regression"/>
             </run>
-                </groups>
+        </groups>
 
         <packages>
             <package name="org.onebeartoe.modeling.opensacd.services"/>

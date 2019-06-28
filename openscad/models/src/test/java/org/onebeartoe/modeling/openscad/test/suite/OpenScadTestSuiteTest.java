@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public abstract class OpenScadTestSuiteTest 
+public abstract class OpenScadTestSuiteTest
 {
     // this was added to make sure the test get picked up
     public abstract void willItWork();
@@ -156,7 +156,8 @@ public abstract class OpenScadTestSuiteTest
         return "src/main/openscad/";
     }
 
-    @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
+    @Test(dataProvider="errorFiles")
+//    @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
     /**
      * 
      */
