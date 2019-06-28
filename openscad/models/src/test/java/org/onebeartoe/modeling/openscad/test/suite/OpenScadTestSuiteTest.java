@@ -156,11 +156,12 @@ public abstract class OpenScadTestSuiteTest
         return "src/main/openscad/";
     }
 
-    @Test(dataProvider="errorFiles")
+    
 //    @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
     /**
      * 
      */
+    @Test(dataProvider="errorFiles")
     public void reportErrors(boolean passed, String comparisonFile) throws Exception
     {
         if(passed)
