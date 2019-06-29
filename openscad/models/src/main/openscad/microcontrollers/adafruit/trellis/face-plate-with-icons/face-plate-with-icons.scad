@@ -1,18 +1,36 @@
 
 use <../../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
-module facePlateWithIcons(boardWidth = 77)
+module facePlateWithIcons(boardWidth = 77,
+                          leftTileOn = "No",
+                          plateHeight = 1)
 {
-    difference()
+//    difference()
     {
 //        import ("/home/roberto/Versioning/world/betoland/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 //        import("/Users/lando/Versioning/world/betoland-world/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 
-        facePlateWithIcons_centerTile(boardWidth = boardWidth);
+        union()
+        {
+            if(leftTileOn == "Yes")
+            {
+                smidgend = 1;
+
+                xTranslate = -boardWidth * 1.5 - 1;
+                yTranslate = -boardWidth / 2.0 + smidgend;
+                translate([xTranslate, yTranslate, 0])
+                facePlateWithIcons_leftTile(boardWidth = boardWidth,
+                                            plateHeight = plateHeight);
+            }
+
+            facePlateWithIcons_centerTile(boardWidth = boardWidth, plateHeight = plateHeight);
+
+
+        }
     }
 }
 
-module facePlateWithIcons_centerTile(boardWidth)
+module facePlateWithIcons_centerTile(boardWidth, plateHeight)
 {
     difference()
     {
@@ -20,7 +38,7 @@ module facePlateWithIcons_centerTile(boardWidth)
 
         translate([0, 0, 0.5])
         roundedCube(cubeCentered = true,
-                    size = [boardWidth, boardWidth, 1],
+                    size = [boardWidth, boardWidth, plateHeight],
                     sidesOnly = true);
 
         spacing = 31.1;
@@ -79,4 +97,11 @@ module facePlateWithIcons_centerTile_cutouts_screws()
 
     translate([-translateXY, -translateXY, 0])
     cylinder(r=radius, h=30, center=true, $fn = 20);
+}
+
+module facePlateWithIcons_leftTile(boardWidth, plateHeight)
+{
+    translate([0, 0, 0])
+    roundedCube(size = [boardWidth, boardWidth, plateHeight],
+                sidesOnly = true);
 }
