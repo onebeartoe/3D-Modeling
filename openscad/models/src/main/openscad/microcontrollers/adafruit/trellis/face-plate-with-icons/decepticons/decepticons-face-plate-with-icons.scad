@@ -1,4 +1,5 @@
 
 use <../face-plate-with-icons.scad>
 
-facePlateWithIcons(leftTileOn = "Yes");
+facePlateWithIcons(leftTileOn = "Yes",
+                   rightTileOn = "Yes");

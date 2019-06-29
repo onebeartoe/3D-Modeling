@@ -1,31 +1,38 @@
 
 use <../../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
+use <../../../../external-resources/the-transformers/emblems/decepticons/plbogen/decepticon_stamp.scad>
 
 module facePlateWithIcons(boardWidth = 77,
+                          leftTileIcon = "None",
                           leftTileOn = "No",
-                          plateHeight = 1)
+                          plateHeight = 1,
+                          rightTileOn = "No")
 {
 //    difference()
     {
 //        import ("/home/roberto/Versioning/world/betoland/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 //        import("/Users/lando/Versioning/world/betoland-world/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 
-        union()
+        difference()
         {
-            if(leftTileOn == "Yes")
+            union()
             {
-                smidgend = 1;
+                if(leftTileOn == "Yes")
+                {
+                    smidgend = 1;
 
-                xTranslate = -boardWidth * 1.5 - 1;
-                yTranslate = -boardWidth / 2.0 + smidgend;
-                translate([xTranslate, yTranslate, 0])
-                facePlateWithIcons_leftTile(boardWidth = boardWidth,
-                                            plateHeight = plateHeight);
+                    xTranslate = -boardWidth * 1.5 +2;
+                    yTranslate = -boardWidth / 2.0 + smidgend;
+                    translate([xTranslate, yTranslate, 0])
+                    facePlateWithIcons_leftTile(boardWidth = boardWidth,
+                                                leftTileIcon = leftTileIcon,
+                                                plateHeight = plateHeight);
+                }
+
+                facePlateWithIcons_centerTile(boardWidth = boardWidth, plateHeight = plateHeight);
             }
 
-            facePlateWithIcons_centerTile(boardWidth = boardWidth, plateHeight = plateHeight);
-
-
+            facePlateWithIcons_centerTile_cutouts_screws();
         }
     }
 }
@@ -46,7 +53,7 @@ module facePlateWithIcons_centerTile(boardWidth, plateHeight)
         translate([spacing, spacing, 0])
         facePlateWithIcons_centerTile_cutouts_buttons();
 
-        facePlateWithIcons_centerTile_cutouts_screws();
+
     }
 }
 
@@ -99,8 +106,18 @@ module facePlateWithIcons_centerTile_cutouts_screws()
     cylinder(r=radius, h=30, center=true, $fn = 20);
 }
 
-module facePlateWithIcons_leftTile(boardWidth, plateHeight)
+module facePlateWithIcons_leftTile(boardWidth, leftTileIcon, plateHeight)
 {
+
+
+    xyScale = 0.3;
+    xTranslate = 35;
+    zTranslate = plateHeight * 2;
+    color("purple")
+    translate([xTranslate, xTranslate,zTranslate])
+    scale([xyScale, xyScale, 2])
+    plbogen_deceopticonStamp();
+
     translate([0, 0, 0])
     roundedCube(size = [boardWidth, boardWidth, plateHeight],
                 sidesOnly = true);
