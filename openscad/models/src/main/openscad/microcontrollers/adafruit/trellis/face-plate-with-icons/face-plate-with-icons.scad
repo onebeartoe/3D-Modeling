@@ -4,7 +4,7 @@ use <../../../../external-resources/plumber-brother/l/luigi-outline.scad>
 use <../../../../external-resources/plumber-brother/m/mario.scad>
 use <../../../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../../../external-resources/the-transformers/emblems/decepticons/plbogen/decepticon_stamp.scad>
-use <../../../../name-tags/nametags.scad>
+use <../../../../name-tags/name-tag.scad>
 
 module facePlateWithIcons(boardWidth = 77,
                           leftTileIcon = "None",
@@ -120,6 +120,7 @@ module facePlateWithIcons_sideTile(boardWidth, tileIcon, plateHeight)
     xTranslate = 35;
     zTranslate = plateHeight * 2;
 
+    color("green")
     translate([0, 0, 1])
     if(tileIcon == "Decepticon")
     {
@@ -141,8 +142,16 @@ module facePlateWithIcons_sideTile(boardWidth, tileIcon, plateHeight)
         scale([xyScale, xyScale, 1])
         marioThumbnail();
     }
+    else if(tileIcon == "Rebel")
+    {
+        xyScale = 2.1;
+        scale([xyScale, xyScale, 1])
+        rebelAllianceThumbnail(height = 1.7);
+    }
     else if(tileIcon == "Trooper")
     {
+        xyScale = 1.7;
+        scale([xyScale, xyScale, 1])
         scrumtrooper(2);
     }
     else
