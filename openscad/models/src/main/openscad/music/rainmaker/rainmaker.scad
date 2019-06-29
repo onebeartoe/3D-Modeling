@@ -16,7 +16,7 @@ module rainmaker(height = 140,
         // the main shell
 		if(showShell == "yes")
 		{
-    		#
+//    		#
 	        openCylinder(height = height,
 	                     innerRadius = innerRadius,
 	                     outerRadius = outerRadius);
@@ -87,7 +87,7 @@ module rainmaker_steps(height,
 					if(shellDecoration == "bumps")
 					{
 // The commented code below is to help debug why rotaion is not working for the bump.
-// And it will be removed hopefully soon.						
+// And it will be removed hopefully soon.
 //						bumpsRotate = (angleDivision * s) / s;
 //						bumpsRotate = zRotate / s;
 						bumpsRotate = zRotate;
