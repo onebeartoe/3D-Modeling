@@ -12,10 +12,6 @@ public class OpenScadModelsTestSuite extends OpenScadTestSuiteTest
 {
     public OpenScadModelsTestSuite() throws Exception
     {
-//        try
-//        {
-//            super();
-//        }
         
     }
 
