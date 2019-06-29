@@ -3,8 +3,9 @@ use <../../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
 module facePlateWithIcons(boardWidth = 77)
 {
-//    difference()
+    difference()
     {
+//        import ("/home/roberto/Versioning/world/betoland/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 //        import("/Users/lando/Versioning/world/betoland-world/electronics/adafruit/trellis/Trellis_Soundboard/sfxb-top.stl");
 
         facePlateWithIcons_centerTile(boardWidth = boardWidth);
@@ -23,13 +24,15 @@ module facePlateWithIcons_centerTile(boardWidth)
                     sidesOnly = true);
 
         spacing = 31.1;
-//        color("green")
+
         translate([spacing, spacing, 0])
-        facePlateWithIcons_centerTile_cutouts();
+        facePlateWithIcons_centerTile_cutouts_buttons();
+
+        facePlateWithIcons_centerTile_cutouts_screws();
     }
 }
 
-module facePlateWithIcons_centerTile_cutouts()
+module facePlateWithIcons_centerTile_cutouts_buttons()
 {
     boardWidth = 6.3;
 
@@ -44,20 +47,36 @@ module facePlateWithIcons_centerTile_cutouts()
     for(x = [yStart : step : yEnd],
     	y = [zStart : step : zEnd])
     {
-    	separateor = " - ";
-
         spacing = 15;
 
         xTranslate = boardWidth + (-x * spacing);
 
         yTranslate = boardWidth + (-y * spacing);
 
-        echo(xTranslate, separateor, yTranslate);
+//        separateor = " - ";
+//        echo(xTranslate, separateor, yTranslate);
 
         translate([xTranslate, yTranslate, 0.5])
-//        translate([xTranslate, yTranslate, 1 * x])
         roundedCube(cubeCentered = true,
                     size = [boardWidth, boardWidth, 5],
                     sidesOnly = true);
     }
+}
+
+module facePlateWithIcons_centerTile_cutouts_screws()
+{
+    radius = 2;
+    translateXY = 35;
+
+    translate([translateXY, translateXY, 0])
+    cylinder(r=radius, h=30, center=true, $fn = 20);
+
+    translate([translateXY, -translateXY, 0])
+    cylinder(r=radius, h=30, center=true, $fn = 20);
+
+    translate([-translateXY, translateXY, 0])
+    cylinder(r=radius, h=30, center=true, $fn = 20);
+
+    translate([-translateXY, -translateXY, 0])
+    cylinder(r=radius, h=30, center=true, $fn = 20);
 }
