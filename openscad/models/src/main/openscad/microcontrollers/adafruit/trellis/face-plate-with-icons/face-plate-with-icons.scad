@@ -6,7 +6,8 @@ module facePlateWithIcons(boardWidth = 77,
                           leftTileIcon = "None",
                           leftTileOn = "No",
                           plateHeight = 1,
-                          rightTileOn = "No")
+                          rightTileOn = "No",
+                          rightTitleIcon = "None")
 {
 //    difference()
     {
@@ -19,17 +20,21 @@ module facePlateWithIcons(boardWidth = 77,
             {
                 if(leftTileOn == "Yes")
                 {
-                    smidgend = 1;
-
-                    xTranslate = -boardWidth * 1.5 +2;
-                    yTranslate = -boardWidth / 2.0 + smidgend;
-                    translate([xTranslate, yTranslate, 0])
+                    xTranslate = -boardWidth;
+                    yTranslate = 0;
+                    zTranslate = 0.5;
+                    translate([xTranslate, yTranslate, zTranslate])
                     facePlateWithIcons_leftTile(boardWidth = boardWidth,
                                                 leftTileIcon = leftTileIcon,
                                                 plateHeight = plateHeight);
                 }
 
                 facePlateWithIcons_centerTile(boardWidth = boardWidth, plateHeight = plateHeight);
+
+                if(rightTileOn == "Yes")
+                {
+
+                }
             }
 
             facePlateWithIcons_centerTile_cutouts_screws();
@@ -114,11 +119,12 @@ module facePlateWithIcons_leftTile(boardWidth, leftTileIcon, plateHeight)
     xTranslate = 35;
     zTranslate = plateHeight * 2;
     color("purple")
-    translate([xTranslate, xTranslate,zTranslate])
+    translate([0, 0, 1])
     scale([xyScale, xyScale, 2])
     plbogen_deceopticonStamp();
 
-    translate([0, 0, 0])
-    roundedCube(size = [boardWidth, boardWidth, plateHeight],
+
+    roundedCube(cubeCentered = true,
+                size = [boardWidth, boardWidth, plateHeight],
                 sidesOnly = true);
 }
