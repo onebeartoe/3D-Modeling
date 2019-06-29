@@ -18,13 +18,13 @@ module facePlateWithIcons(boardWidth = 77,
         {
             union()
             {
+                xTranslate = -boardWidth;
+                zTranslate = 0.5;
+
                 if(leftTileOn == "Yes")
                 {
-                    xTranslate = -boardWidth;
-                    yTranslate = 0;
-                    zTranslate = 0.5;
-                    translate([xTranslate, yTranslate, zTranslate])
-                    facePlateWithIcons_leftTile(boardWidth = boardWidth,
+                    translate([xTranslate, 0, zTranslate])
+                    facePlateWithIcons_sideTile(boardWidth = boardWidth,
                                                 leftTileIcon = leftTileIcon,
                                                 plateHeight = plateHeight);
                 }
@@ -33,7 +33,10 @@ module facePlateWithIcons(boardWidth = 77,
 
                 if(rightTileOn == "Yes")
                 {
-
+                    translate([-xTranslate, 0, zTranslate])
+                    facePlateWithIcons_sideTile(boardWidth = boardWidth,
+                                                leftTileIcon = leftTileIcon,
+                                                plateHeight = plateHeight);
                 }
             }
 
@@ -80,11 +83,7 @@ module facePlateWithIcons_centerTile_cutouts_buttons()
         spacing = 15;
 
         xTranslate = boardWidth + (-x * spacing);
-
         yTranslate = boardWidth + (-y * spacing);
-
-//        separateor = " - ";
-//        echo(xTranslate, separateor, yTranslate);
 
         translate([xTranslate, yTranslate, 0.5])
         roundedCube(cubeCentered = true,
@@ -111,10 +110,9 @@ module facePlateWithIcons_centerTile_cutouts_screws()
     cylinder(r=radius, h=30, center=true, $fn = 20);
 }
 
-module facePlateWithIcons_leftTile(boardWidth, leftTileIcon, plateHeight)
+module facePlateWithIcons_sideTile(boardWidth, leftTileIcon, plateHeight)
 {
-
-
+    // icon
     xyScale = 0.3;
     xTranslate = 35;
     zTranslate = plateHeight * 2;
@@ -123,7 +121,7 @@ module facePlateWithIcons_leftTile(boardWidth, leftTileIcon, plateHeight)
     scale([xyScale, xyScale, 2])
     plbogen_deceopticonStamp();
 
-
+    // tile
     roundedCube(cubeCentered = true,
                 size = [boardWidth, boardWidth, plateHeight],
                 sidesOnly = true);
