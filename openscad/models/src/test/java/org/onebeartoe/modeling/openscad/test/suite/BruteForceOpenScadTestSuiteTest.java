@@ -18,8 +18,10 @@ public class BruteForceOpenScadTestSuiteTest
         logger = Logger.getLogger( getClass().getName() );
     }
 
-    @Test(enabled = false,
-            groups = {"brute-force-openscad-test-suite"})
+    @Test(enabled = false
+            ,
+            groups = {"brute-force-openscad-test-suite"}
+    )
     public void testSuite() throws Exception
     {        
         OpenScadTestSuiteService testSuite = new OpenScadTestSuiteService();

@@ -1,0 +1,8 @@
+name: "onebeartoe OpenSCAD Test Suite" 
+
+tests:
+  - name: "openscad model verification"
+    excludedGroups: [regression]
+    includedGroups: [unit-tests]
+    packages:
+      - org.onebeartoe.modeling.opensacd.services
