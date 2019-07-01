@@ -7,6 +7,7 @@ use <../../../../external-resources/the-transformers/emblems/decepticons/plbogen
 use <../../../../name-tags/name-tag.scad>
 
 module facePlateWithIcons(boardWidth = 77,
+                          iconColor = "green",
                           leftTileIcon = "None",
                           leftTileOn = "No",
                           plateHeight = 1,
@@ -29,6 +30,7 @@ module facePlateWithIcons(boardWidth = 77,
                 {
                     translate([xTranslate, 0, zTranslate])
                     facePlateWithIcons_sideTile(boardWidth = boardWidth,
+                                                iconColor = iconColor,
                                                 tileIcon = leftTileIcon,
                                                 plateHeight = plateHeight);
                 }
@@ -39,6 +41,7 @@ module facePlateWithIcons(boardWidth = 77,
                 {
                     translate([-xTranslate, 0, zTranslate])
                     facePlateWithIcons_sideTile(boardWidth = boardWidth,
+                                                iconColor = iconColor,
                                                 tileIcon = rightTileIcon,
                                                 plateHeight = plateHeight);
                 }
@@ -114,13 +117,13 @@ module facePlateWithIcons_centerTile_cutouts_screws()
     cylinder(r=radius, h=30, center=true, $fn = 20);
 }
 
-module facePlateWithIcons_sideTile(boardWidth, tileIcon, plateHeight)
+module facePlateWithIcons_sideTile(boardWidth, iconColor, tileIcon, plateHeight)
 {
     // icon
     xTranslate = 35;
     zTranslate = plateHeight * 2;
 
-    color("green")
+    color(iconColor)
     translate([0, 0, 1])
     if(tileIcon == "Decepticon")
     {
