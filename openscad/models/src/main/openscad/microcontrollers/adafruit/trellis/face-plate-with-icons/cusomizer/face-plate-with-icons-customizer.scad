@@ -9,8 +9,6 @@ rightTileOn = "Yes"; // [Yes, No]
 
 rightTileIcon = "Luigi";   // [Autobot, Decepticon, Luigi, Mario, Rebel, Trooper]
 
-
-
 /* [Hidden] */
 
 use <../face-plate-with-icons.scad>
