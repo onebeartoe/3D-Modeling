@@ -1,13 +1,13 @@
 
 // originally from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids#cylinder
 
-color("yellow")
+color("purple")
 translate([-50, 0, 0])
 cylinder(20,20,20, $fn=3);
 
 color("pink")
 translate([0, 0, 0])
-cylinder(20,20,00, $fn=40);
+cylinder(20, 20, 0, $fn=40);
 
 color("orange")
 translate([50, 0, 0])

@@ -20,8 +20,24 @@ module pegboardAccessories_blank()
 
 module pegboardAccessories_cordedToolHolder()
 {
-    yTranslate = -12;
     height = 28;
+
+    union()
+    {
+        pegboardAccessories_cordedToolHolder_mount(height = height);
+
+        pegboardAccessories_cordedToolHolder_holder(height = height);
+    }
+}
+
+module pegboardAccessories_cordedToolHolder_holder(height)
+{
+
+}
+
+module pegboardAccessories_cordedToolHolder_mount(height)
+{
+    yTranslate = -12;
     radius = 13;
 
     difference()
