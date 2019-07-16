@@ -1,4 +1,5 @@
 
+use <../../basics/primitives/cone/cone.scad>
 use <../../external-resources/mounting-hardware/peg-board/blank-panel-mount/pegboard_2_position_blank.scad>
 
 module pegboardAccessories()
@@ -21,23 +22,38 @@ module pegboardAccessories_blank()
 module pegboardAccessories_cordedToolHolder()
 {
     height = 28;
+    yTranslate = -12;
 
-    union()
+
+    difference()
     {
-        pegboardAccessories_cordedToolHolder_mount(height = height);
+        union()
+        {
+            pegboardAccessories_cordedToolHolder_mount(height = height, yTranslate = yTranslate);
 
-        pegboardAccessories_cordedToolHolder_holder(height = height);
+            pegboardAccessories_cordedToolHolder_holder(height = height, yTranslate = yTranslate);
+        }
+
+        pegboardAccessories_cordedToolHolder_holder_cutout(height, yTranslate);
     }
 }
 
-module pegboardAccessories_cordedToolHolder_holder(height)
+module pegboardAccessories_cordedToolHolder_holder(height, yTranslate)
 {
-
+    xTranslate = yTranslate + (yTranslate * 0.10);
+    translate([xTranslate, yTranslate, 0])
+    cone(height = height, bottomRadius = 9, topRadius = 13);
 }
 
-module pegboardAccessories_cordedToolHolder_mount(height)
+module pegboardAccessories_cordedToolHolder_holder_cutout(height, yTranslate)
 {
-    yTranslate = -12;
+    xTranslate = yTranslate + (yTranslate * 0.10);
+    translate([xTranslate, yTranslate, -0.01])
+    cone(height = height+0.02, bottomRadius = 7, topRadius = 11);
+}
+
+module pegboardAccessories_cordedToolHolder_mount(height, yTranslate)
+{
     radius = 13;
 
     difference()
