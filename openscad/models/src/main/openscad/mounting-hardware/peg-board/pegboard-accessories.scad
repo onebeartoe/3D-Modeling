@@ -2,13 +2,13 @@
 use <../../basics/primitives/cone/cone.scad>
 use <../../external-resources/mounting-hardware/peg-board/blank-panel-mount/pegboard_2_position_blank.scad>
 
-module pegboardAccessories()
+module pegboardAccessories(cordCutout = "No")
 {
     union()
     {
         pegboardAccessories_blank();
 
-        pegboardAccessories_cordedToolHolder();
+        pegboardAccessories_cordedToolHolder(cordCutout = cordCutout);
     }
 }
 
@@ -19,11 +19,10 @@ module pegboardAccessories_blank()
     pegboardBlankPanel();
 }
 
-module pegboardAccessories_cordedToolHolder()
+module pegboardAccessories_cordedToolHolder(cordCutout)
 {
     height = 28;
     yTranslate = -12;
-
 
     difference()
     {
@@ -34,7 +33,7 @@ module pegboardAccessories_cordedToolHolder()
             pegboardAccessories_cordedToolHolder_holder(height = height, yTranslate = yTranslate);
         }
 
-        pegboardAccessories_cordedToolHolder_holder_cutout(height, yTranslate);
+        pegboardAccessories_cordedToolHolder_holder_cutouts(height = height, yTranslate = yTranslate, cordCutout = cordCutout);
     }
 }
 
@@ -45,11 +44,30 @@ module pegboardAccessories_cordedToolHolder_holder(height, yTranslate)
     cone(height = height, bottomRadius = 9, topRadius = 13);
 }
 
-module pegboardAccessories_cordedToolHolder_holder_cutout(height, yTranslate)
+module pegboardAccessories_cordedToolHolder_holder_cutouts(height, yTranslate, cordCutout)
 {
     xTranslate = yTranslate + (yTranslate * 0.10);
+    topRadius = 11;
+
     translate([xTranslate, yTranslate, -0.01])
-    cone(height = height+0.02, bottomRadius = 7, topRadius = 11);
+    cone(height = height+0.02, bottomRadius = 7, topRadius = topRadius);
+
+    if(cordCutout == "Yes")
+    {
+        pegboardAccessories_cordedToolHolder_holder_cutouts_cordGap(initialTranslate_x = xTranslate,
+                                                                    initialTranslate_y = yTranslate,
+                                                                    topRadius = topRadius,
+                                                                    yLength = 7);
+    }
+}
+
+module pegboardAccessories_cordedToolHolder_holder_cutouts_cordGap(initialTranslate_x, initialTranslate_y, topRadius, yLength)
+{
+    xTranslate = initialTranslate_x - topRadius - 5;
+    yTranslate = initialTranslate_y - (yLength / 2.0);
+
+    translate([xTranslate, yTranslate, -0.01])
+    cube([10, yLength, 100]);
 }
 
 module pegboardAccessories_cordedToolHolder_mount(height, yTranslate)

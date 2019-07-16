@@ -1,4 +1,4 @@
 
 use <../pegboard-accessories.scad>
 
-pegboardAccessories();
+pegboardAccessories(cordCutout = "No");
