@@ -1,6 +1,14 @@
 
 module dotstarMatrixTixClockPlate()
 {
+/*
+    svgScale = 0.0927;
+    color("blue")
+    translate([-0.029, -6.6, -11])
+    scale([svgScale, svgScale, svgScale])
+    surface("adafruit-dotstar-wing.png");
+*/
+
     difference()
     {
         xLength = dotstarMatrixTixClockPlate_xLength();
@@ -37,8 +45,7 @@ module dotstarMatrixTixClockPlate_cutouts(plateLength_x, plateLength_y)
 
 module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 {
-    xTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate()
-                 + dotstarMatrixTixClockPlate_cutouts_xLength() * 2;
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate();
 
     yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
 
@@ -51,8 +58,15 @@ module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 
 module dotstarMatrixTixClockPlate_cutouts_minuteTens()
 {
-
+    
 }
+
+function dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate() = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate()
+                                                           + dotstarMatrixTixClockPlate_cutouts_xLength() * 2;
+
+
+function dotstarMatrixTixClockPlate_cutouts_hourOnes_xTranslate() = 0;
+
 
 function dotstarMatrixTixClockPlate_xLength() = 50;
 
