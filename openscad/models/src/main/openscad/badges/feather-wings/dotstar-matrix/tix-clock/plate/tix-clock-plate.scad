@@ -30,7 +30,9 @@ module dotstarMatrixTixClockPlate_cutouts(plateLength_x, plateLength_y)
     cube([cutoutLengthX, cutoutLengthY, 1.02]);
 
     // hour ones cutout
-//    dotstarMatrixTixClockPlate_cutouts_hourOnes();
+    dotstarMatrixTixClockPlate_cutouts_hourOnes();
+
+    dotstarMatrixTixClockPlate_cutouts_minuteTens();
 }
 
 module dotstarMatrixTixClockPlate_cutouts_hourOnes()
@@ -40,11 +42,15 @@ module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 
     yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
 
-    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength();
+    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength() * 3;
     cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
 
     translate([xTranslate, yTranslate, -0.01])
     cube([cutoutLengthX, cutoutLengthY, 1.02]);
+}
+
+module dotstarMatrixTixClockPlate_cutouts_minuteTens()
+{
 
 }
 
@@ -58,4 +64,6 @@ function dotstarMatrixTixClockPlate_cutouts_yLength() = 18;
 
 function dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate() = 7;
 
-function dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate() = (dotstarMatrixTixClockPlate_yLength() - dotstarMatrixTixClockPlate_cutouts_yLength()) / 2.0;
+function dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate() = (dotstarMatrixTixClockPlate_yLength()
+                                                                        - dotstarMatrixTixClockPlate_cutouts_yLength())
+                                                                        / 2.0;
