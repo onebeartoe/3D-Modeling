@@ -20,18 +20,13 @@ module dotstarMatrixTixClockPlate()
     }
 }
 
-module dotstarMatrixTixClockPlate_cutouts(plateLength_x, plateLength_y)
+module dotstarMatrixTixClockPlate_cutouts()
 {
-    plateLength_x = dotstarMatrixTixClockPlate_xLength();
-    plateLength_y = dotstarMatrixTixClockPlate_yLength();
-
     cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength();
     cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
 
     xTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate();
     yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
-
-    echo("yt:", yTranslate);
 
     // hour tens cutout
     translate([xTranslate, yTranslate, -0.01])
@@ -41,11 +36,14 @@ module dotstarMatrixTixClockPlate_cutouts(plateLength_x, plateLength_y)
     dotstarMatrixTixClockPlate_cutouts_hourOnes();
 
     dotstarMatrixTixClockPlate_cutouts_minuteTens();
+
+    dotstarMatrixTixClockPlate_cutouts_minuteOnes();
 }
 
 module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 {
-    xTranslate = dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate();
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate()
+                 ;
 
     yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
 
@@ -58,7 +56,30 @@ module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 
 module dotstarMatrixTixClockPlate_cutouts_minuteTens()
 {
-    
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate()
+                 + dotstarMatrixTixClockPlate_cutouts_xLength() * 4;
+
+    yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
+
+    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength() * 2;
+    cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
+
+    translate([xTranslate, yTranslate, -0.01])
+    cube([cutoutLengthX, cutoutLengthY, 1.02]);
+}
+
+module dotstarMatrixTixClockPlate_cutouts_minuteOnes()
+{
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate()
+                 + dotstarMatrixTixClockPlate_cutouts_xLength() * 7;
+
+    yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
+
+    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength() * 3;
+    cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
+
+    translate([xTranslate, yTranslate, -0.01])
+    cube([cutoutLengthX, cutoutLengthY, 1.02]);
 }
 
 function dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate() = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate()
