@@ -17,27 +17,45 @@ module dotstarMatrixTixClockPlate_cutouts(plateLength_x, plateLength_y)
     plateLength_x = dotstarMatrixTixClockPlate_xLength();
     plateLength_y = dotstarMatrixTixClockPlate_yLength();
 
-    cutoutLengthX = 2.6;
-    cutoutLengthY = 18;
+    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength();
+    cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
 
-    xTranslate = 7;
-    yTranslate = (plateLength_y - cutoutLengthY) / 2.0;
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate();
+    yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
 
     echo("yt:", yTranslate);
 
     // hour tens cutout
     translate([xTranslate, yTranslate, -0.01])
-    cube([cutoutLengthX, cutoutLengthY, 10.02]);
+    cube([cutoutLengthX, cutoutLengthY, 1.02]);
 
     // hour ones cutout
-    dotstarMatrixTixClockPlate_cutouts_hourOnes(cutoutLengthX = cutoutLengthX, cutoutLengthY = cutoutLengthY);
+//    dotstarMatrixTixClockPlate_cutouts_hourOnes();
 }
 
-module dotstarMatrixTixClockPlate_cutouts_hourOnes(cutoutLengthX, cutoutLengthY)
+module dotstarMatrixTixClockPlate_cutouts_hourOnes()
 {
+    xTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate()
+                 + dotstarMatrixTixClockPlate_cutouts_xLength() * 2;
+
+    yTranslate = dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate();
+
+    cutoutLengthX = dotstarMatrixTixClockPlate_cutouts_xLength();
+    cutoutLengthY = dotstarMatrixTixClockPlate_cutouts_yLength();
+
+    translate([xTranslate, yTranslate, -0.01])
+    cube([cutoutLengthX, cutoutLengthY, 1.02]);
 
 }
 
 function dotstarMatrixTixClockPlate_xLength() = 50;
 
 function dotstarMatrixTixClockPlate_yLength() = 23;
+
+function dotstarMatrixTixClockPlate_cutouts_xLength() = 2.6;
+
+function dotstarMatrixTixClockPlate_cutouts_yLength() = 18;
+
+function dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate() = 7;
+
+function dotstarMatrixTixClockPlate_cutouts_hourTens_yTranslate() = (dotstarMatrixTixClockPlate_yLength() - dotstarMatrixTixClockPlate_cutouts_yLength()) / 2.0;
