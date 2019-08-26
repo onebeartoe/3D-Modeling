@@ -1,6 +1,8 @@
 
 module dotstarMatrixTixClockPlate()
 {
+    // this next bit of comment code was to see if the .png woulc be used as a
+    // guide to make the holes.  but I was not able to use it the way I wanted :(
 /*
     svgScale = 0.0927;
     color("blue")
@@ -84,7 +86,6 @@ module dotstarMatrixTixClockPlate_cutouts_minuteOnes()
 
 function dotstarMatrixTixClockPlate_cutouts_minuteTens_xTranslate() = dotstarMatrixTixClockPlate_cutouts_hourTens_xTranslate()
                                                            + dotstarMatrixTixClockPlate_cutouts_xLength() * 2;
-
 
 function dotstarMatrixTixClockPlate_cutouts_hourOnes_xTranslate() = 0;
 
