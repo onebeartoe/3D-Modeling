@@ -5,6 +5,6 @@ difference()
              r = 20);
 
     translate([0,0,-0.1])
-    cube (center=true, 
+    cube (center=true,
           size = [7, 7, 7]);
 }
