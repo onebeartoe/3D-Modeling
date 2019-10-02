@@ -1,5 +1,4 @@
-/*
- */
+
 package org.onebeartoe.modeling.openscad.test.suite;
 
 import static org.testng.AssertJUnit.assertTrue;
