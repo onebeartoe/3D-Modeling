@@ -8,3 +8,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad imagemagick xvfb
 
 which openscad
 whereis openscad
+
+ls -la /usr/bin/openscad
+
+ls -la /usr/share/openscad
