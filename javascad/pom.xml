@@ -10,18 +10,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     
-    
-    
     <artifactId>javascad</artifactId>
     
     <packaging>jar</packaging>
     
     <name>onebeartoe-modeling-javascad</name>
     
-    
-      <properties>
+    <properties>
         <skipTests>true</skipTests>
-      </properties>
+    </properties>
     
     <dependencies>
 	<dependency>
@@ -37,7 +34,16 @@
             <type>test-jar</type>
             <scope>test</scope>            
         </dependency>
-                        
+<!--
+        <dependency>
+            <groupId>org.onebeartoe.modeling</groupId>
+            <artifactId>opensacd-library</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>test-jar</type>
+            <scope>test</scope>            
+        </dependency>
+-->
+                                                        
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -46,18 +52,16 @@
         </dependency>        
     </dependencies>
 
- <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.12.4</version>
-        <configuration>
-          <skipTests>${skipTests}</skipTests>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
-
+    <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.12.4</version>
+            <configuration>
+              <skipTests>${skipTests}</skipTests>
+            </configuration>
+          </plugin>
+        </plugins>
+    </build>
 </project>
