@@ -11,6 +11,8 @@ sudo apt-get install -y openscad-mcad
 which openscad
 whereis openscad
 
+whereis openscad-mcad
+
 ls -la /usr/bin/openscad
 
 ls -la /usr/share/openscad
