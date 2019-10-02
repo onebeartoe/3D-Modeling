@@ -22,7 +22,7 @@ public abstract class OpenScadTestSuiteTest
     // this was added to make sure the test get picked up
     public abstract void willItWork();
     
-    private Logger logger;
+    protected Logger logger;
     
     private RunProfile runProfile;
     
