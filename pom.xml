@@ -20,7 +20,9 @@
 
     <modules>
         <module>openscad</module>
+<!--        
         <module>javascad</module>
+-->
     </modules>
 
     <repositories>

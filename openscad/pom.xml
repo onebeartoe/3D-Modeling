@@ -21,7 +21,9 @@
     
     <modules>
         <module>models</module>
+<!--
         <module>inline-tool</module>
+-->
         <module>test-suite</module>
         <module>opensacd-services</module>
     </modules>
