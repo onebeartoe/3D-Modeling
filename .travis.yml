@@ -1,6 +1,8 @@
 
 sudo: true
 
+dist: trusty
+
 language: java
 
 install:
@@ -18,6 +20,9 @@ install:
 - ls -ltrh /usr/share/fonts/
 - echo $path1
 - fc-list | grep -i auhaus
+
+jdk:
+  - oraclejdk8
 
 script:
 - Xvfb :5 -screen 0 800x600x24 &
