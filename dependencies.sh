@@ -16,3 +16,5 @@ whereis openscad-mcad
 ls -la /usr/bin/openscad
 
 ls -la /usr/share/openscad
+
+ls -la /usr/share/openscad/libraries
