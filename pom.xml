@@ -19,11 +19,10 @@
     <name>onebeartoe-modeling</name>
 
     <modules>
-        <module>javascad</module>
-        <module>openscad</module>
 <!--        
         <module>javascad</module>
 -->
+        <module>openscad</module>
     </modules>
 
     <repositories>
