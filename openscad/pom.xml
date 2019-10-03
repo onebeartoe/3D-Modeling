@@ -20,10 +20,11 @@
     </properties>
     
     <modules>
-        <module>models</module>
+        <module>inline-tool</module>
 <!--
         <module>inline-tool</module>
--->
+-->        
+        <module>models</module>
         <module>test-suite</module>
         <module>opensacd-services</module>
     </modules>
