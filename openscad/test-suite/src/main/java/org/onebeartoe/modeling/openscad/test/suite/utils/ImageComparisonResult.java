@@ -13,9 +13,9 @@ public class ImageComparisonResult
 {
     public boolean exceptionThrown;
     
-    public List<String> errorFiles;
+    public List<OneImageComparisonResult> errorFiles;
     
-    public List<String> successFiles;
+    public List<OneImageComparisonResult> successFiles;
     
     public ImageComparisonResult()
     {

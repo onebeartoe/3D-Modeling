@@ -97,7 +97,10 @@ public abstract class OpenScadTestSuiteTest
         ImageComparisonResult compareResults = testService.compareImages(runProfile);
 
         testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+        
         testService.saveErrorPngFilenames(compareResults.errorFiles);
+
+        testService.printLongestComparisons(compareResults);
         
         int parameterCount = 2;
         

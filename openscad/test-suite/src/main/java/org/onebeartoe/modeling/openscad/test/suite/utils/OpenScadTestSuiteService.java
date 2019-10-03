@@ -7,6 +7,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -224,17 +226,27 @@ public class OpenScadTestSuiteService
                 
                 try
                 {
+                    LocalDateTime start = LocalDateTime.now();
+                    
                     SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
                     CommandResults results = diffCommand.execute();
+                    
+                    LocalDateTime end = LocalDateTime.now();
+                    
+                    Duration duration = Duration.between(start, end);
+                    
+                    OneImageComparisonResult result = new OneImageComparisonResult();
+                    result.duration = duration;
+                    result.file = baseline;
                     
                     // check if the exit code is 0 for success
                     if(results.exitCode == 0)
                     {
-                        comparisonResults.successFiles.add(baseline);
+                        comparisonResults.successFiles.add(result);
                     }
                     else
                     {
-                        comparisonResults.errorFiles.add(baseline);
+                        comparisonResults.errorFiles.add(result);
                         
                         System.out.println( results.processedStdErr.trim() );
                         System.out.print( results.processedStdOut.trim() );
@@ -302,7 +314,7 @@ public class OpenScadTestSuiteService
         return proposedBaselines;
     }
 
-    public void printHighLevelErrorReport(RunProfile runProfile, List<String> failedOpenScadFiles)
+    public void printHighLevelErrorReport(RunProfile runProfile, List<OneImageComparisonResult> failedOpenScadFiles)
     {
         if(failedOpenScadFiles.size() > 0)
         {
@@ -313,7 +325,7 @@ public class OpenScadTestSuiteService
         
         failedOpenScadFiles.forEach(f ->
         {
-            String topLevelKey = extractTopLevel(runProfile, f);
+            String topLevelKey = extractTopLevel(runProfile, f.file);
             
             Integer count = topLevelHits.get(topLevelKey);
             if(count == null)
@@ -446,7 +458,7 @@ public class OpenScadTestSuiteService
         return compareResults;
     }
     
-    public void saveErrorPngFilenames(List<String> errorFiles) throws IOException
+    public void saveErrorPngFilenames(List<OneImageComparisonResult> errorFiles) throws IOException
     {
         File pwd = new File(".");
 
@@ -454,9 +466,9 @@ public class OpenScadTestSuiteService
         
         errorFiles.forEach(ef ->
         {            
-            filepaths.add(ef);
+            filepaths.add(ef.file);
             
-            String proposed = ef.replace("-baseline.", "-proposed-baseline.");
+            String proposed = ef.file.replace("-baseline.", "-proposed-baseline.");
             filepaths.add(proposed);
         });
         
@@ -481,4 +493,9 @@ public class OpenScadTestSuiteService
         }
         
     }    
+
+    public void printLongestComparisons(ImageComparisonResult compareResults) 
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

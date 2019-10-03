@@ -88,7 +88,10 @@ public class OpenScadTestSuite
             ImageComparisonResult compareResults = testService.serviceRequest(runProfile);
             
             testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+            
             testService.saveErrorPngFilenames(compareResults.errorFiles);
+            
+            testService.printLongestComparisons(compareResults);
 
             Instant end = Instant.now();
         
