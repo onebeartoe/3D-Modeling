@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
+import org.onebeartoe.modeling.openscad.test.suite.model.GlobalVariables;
 
 /**
  * This class is used to find .scad files under a given directory.

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
-import org.onebeartoe.modeling.openscad.test.suite.GlobalVariables;
+import org.onebeartoe.modeling.openscad.test.suite.model.GlobalVariables;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 
 /**

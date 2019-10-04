@@ -1,14 +1,16 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
-import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.DataProvider;
@@ -27,6 +29,8 @@ public abstract class OpenScadTestSuiteTest
     private RunProfile runProfile;
     
     private OpenScadTestSuiteService testService;
+    
+    private GeneratePngBaselineResults pngGenerationResults;
     
     public OpenScadTestSuiteTest() throws Exception
     {
@@ -74,7 +78,9 @@ public abstract class OpenScadTestSuiteTest
             throw new Exception(message);
         }
 
-        int count = testService.generateProposedBaselines(runProfile);
+        pngGenerationResults = testService.generateProposedBaselines(runProfile);
+        
+        int count = pngGenerationResults.getPathDurations().size();
 
         // check if the count is less than 0
         if(count < 0)
@@ -101,6 +107,8 @@ public abstract class OpenScadTestSuiteTest
         testService.saveErrorPngFilenames(compareResults.errorFiles);
 
         testService.printLongestComparisons(compareResults);
+        
+        testService.printProposedPngGenerationDurations(pngGenerationResults);
         
         int parameterCount = 2;
         

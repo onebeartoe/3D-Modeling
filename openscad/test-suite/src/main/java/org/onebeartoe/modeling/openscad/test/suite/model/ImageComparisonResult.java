@@ -1,7 +1,8 @@
 /*
  */
-package org.onebeartoe.modeling.openscad.test.suite.utils;
+package org.onebeartoe.modeling.openscad.test.suite.model;
 
+import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import java.util.ArrayList;
 import java.util.List;
 

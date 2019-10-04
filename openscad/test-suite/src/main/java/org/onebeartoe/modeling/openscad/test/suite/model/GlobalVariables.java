@@ -1,4 +1,4 @@
-package org.onebeartoe.modeling.openscad.test.suite;
+package org.onebeartoe.modeling.openscad.test.suite.model;
 
 /**
  * @author Roberto Marquez

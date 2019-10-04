@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.application.duration.DurationService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import java.time.Instant;
@@ -17,7 +18,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
-import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 
 public class OpenScadTestSuite
 {        
@@ -75,6 +77,7 @@ public class OpenScadTestSuite
         return options;
     }
 
+//TODO: refactor this to use a onebeartoe CliApplet API    
     public static void main(String[] args) throws Throwable
     {
         Options options = buildOptions();
@@ -85,13 +88,16 @@ public class OpenScadTestSuite
             Instant start = Instant.now();
 
             OpenScadTestSuiteService testService = new OpenScadTestSuiteService();
-            ImageComparisonResult compareResults = testService.serviceRequest(runProfile);
             
-            testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+            OpenScadTestSuiteResults compareResults = testService.serviceRequest(runProfile);
             
-            testService.saveErrorPngFilenames(compareResults.errorFiles);
+            testService.printHighLevelErrorReport(runProfile, compareResults.getCompareResults().errorFiles);
             
-            testService.printLongestComparisons(compareResults);
+            testService.saveErrorPngFilenames(compareResults.getCompareResults().errorFiles);
+            
+            testService.printLongestComparisons(compareResults.getCompareResults());
+            
+            testService.printProposedPngGenerationDurations(compareResults.getPngGenerationResults());
 
             Instant end = Instant.now();
         

@@ -1,6 +1,8 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
+import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +21,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
-import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 
 public class PngGenerator
 {
@@ -166,10 +170,12 @@ public class PngGenerator
         return exitCode == 0;
     }
 
-    public boolean generatePngs(boolean forcePngGeneration,
+    public GeneratePngBaselineResults generatePngs(boolean forcePngGeneration,
                                 RunProfile runProfile) throws IOException,
                                                               InterruptedException
     {
+        GeneratePngBaselineResults results = new GeneratePngBaselineResults();
+        
         List<Boolean> exitCodes = new ArrayList();
 
         runProfile.openscadPaths.stream().parallel().forEach((path) -> 
@@ -177,6 +183,7 @@ public class PngGenerator
             DirectoryProfile directoryProfile = new DirectoryProfile();
             Path parent = path.getParent();
             directoryProfile.setPath(parent);
+            
             try
             {
                 loadDirectoryProperties(directoryProfile);
@@ -186,10 +193,18 @@ public class PngGenerator
                 logger.warning("could not load directory properties for " + parent.toFile().getAbsolutePath() );                             
             }
             
+            LocalDateTime start = LocalDateTime.now();
+            
             List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
                                                                          forcePngGeneration,
                                                                          runProfile,
                                                                          directoryProfile);
+            
+            LocalDateTime end = LocalDateTime.now();
+
+            Duration duration = Duration.between(start, end);
+            
+            results.addPathDuration(path, duration);
             
             exitCodes.addAll(directionalExitCodes);
             
@@ -212,8 +227,10 @@ public class PngGenerator
                 break;
             }
         }
+        
+        results.setSuccess(masterExitCode);
 
-        return masterExitCode;
+        return results;
     }
 
     /**

@@ -1,6 +1,9 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
+import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
@@ -11,7 +14,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -20,7 +26,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
-import org.onebeartoe.modeling.openscad.test.suite.RunProfile;
+import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.system.CommandResults;
 import org.onebeartoe.system.command.SystemCommand;
 import org.onebeartoe.system.command.imagemagick.Compare;
@@ -48,9 +55,9 @@ public class OpenScadTestSuiteService
      * It seems like this method should be refactored.
      * 
      */
-    public ImageComparisonResult serviceRequest(RunProfile runProfile) throws Exception
+    public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws Exception
     {
-        ImageComparisonResult results = null;
+        OpenScadTestSuiteResults results = null;
         
         OpenScadTestSuite.RunMode mode;
 
@@ -81,7 +88,7 @@ public class OpenScadTestSuiteService
 
             if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
             {
-                results = new ImageComparisonResult();
+                results = new OpenScadTestSuiteResults();
                 
                 generateBaselines(runProfile);
             }
@@ -94,7 +101,7 @@ public class OpenScadTestSuiteService
                 // the mode is 'run test suite'
                 results = runTestSuite(runProfile);
 
-                if(results.exceptionThrown)
+                if(results.getCompareResults().exceptionThrown)
                 {
                     throw new Exception("Did not pass");
                 }
@@ -130,29 +137,33 @@ public class OpenScadTestSuiteService
      * @throws IOException
      * @throws InterruptedException 
      */
-    public int generateProposedBaselines(RunProfile runProfile) throws IOException, InterruptedException
+    public GeneratePngBaselineResults generateProposedBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
         
-        boolean success = pngGenerator.generatePngs(forcePngGeneration,
-                                                    runProfile);
+        GeneratePngBaselineResults results = pngGenerator.generatePngs(forcePngGeneration,
+                runProfile);
+        
+        boolean success = results.isSuccess();
+                
         int count;
         
         if(success)
         {
-            count = runProfile.openscadPaths.size();
+            count = results.getPathDurations().size();
+//            count = runProfile.openscadPaths.size();
         }
         else
         {
-//TODO: this should use a successCount returned by pngGenerator.generatePngs()
+//TODO: fix this bad logic; this should use a count returned by pngGenerator.generatePngs()
             count = -1;
             
             System.err.println();
             System.err.println("ERROR detected: Some PNGs were not generated.");
         }
         
-        return count;
+        return results;
     }
     
     /**
@@ -234,10 +245,12 @@ public class OpenScadTestSuiteService
                     LocalDateTime end = LocalDateTime.now();
                     
                     Duration duration = Duration.between(start, end);
+
+//System.out.println("DURATION >>>> " + duration.getSeconds() + "." + duration.getNano() );
                     
                     OneImageComparisonResult result = new OneImageComparisonResult();
-                    result.duration = duration;
-                    result.file = baseline;
+                    result.setDuration(duration);
+                    result.setFile(baseline);
                     
                     // check if the exit code is 0 for success
                     if(results.exitCode == 0)
@@ -325,7 +338,7 @@ public class OpenScadTestSuiteService
         
         failedOpenScadFiles.forEach(f ->
         {
-            String topLevelKey = extractTopLevel(runProfile, f.file);
+            String topLevelKey = extractTopLevel(runProfile, f.getFile() );
             
             Integer count = topLevelHits.get(topLevelKey);
             if(count == null)
@@ -388,10 +401,12 @@ public class OpenScadTestSuiteService
         }
     }
     
-    private ImageComparisonResult runTestSuite(RunProfile runProfile) throws Exception
+    private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws Exception
     {
-        ImageComparisonResult compareResults = new ImageComparisonResult();
-        
+        GeneratePngBaselineResults pngGenerationResults = null;
+                
+        ImageComparisonResult compareResults;
+                
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
         DataSetValidator inputValidator = new DataSetValidator();
@@ -400,6 +415,8 @@ public class OpenScadTestSuiteService
 
         if (!missingPngs.isEmpty())
         {
+            compareResults = new ImageComparisonResult();
+            
             compareResults.exceptionThrown = true;
             
             System.err.println();
@@ -423,7 +440,9 @@ public class OpenScadTestSuiteService
                 
                 printOpernScadVersion(runProfile);
                 
-                int count = generateProposedBaselines(runProfile);
+                pngGenerationResults = generateProposedBaselines(runProfile);
+                
+                int count = pngGenerationResults.getPathDurations().size();
                 
                 // check if the count is less than 0
                 if(count < 0)
@@ -441,6 +460,8 @@ public class OpenScadTestSuiteService
 
             if(proposedBaselineError)
             {
+                compareResults = new ImageComparisonResult();
+                
                 compareResults.exceptionThrown = true;
                 
                 // halt the test execution and let the user know about errors
@@ -455,7 +476,12 @@ public class OpenScadTestSuiteService
             }
         }
         
-        return compareResults;
+        OpenScadTestSuiteResults testSuiteResults = new OpenScadTestSuiteResults();
+        
+        testSuiteResults.setCompareResults(compareResults);
+        testSuiteResults.setPngGenerationResults(pngGenerationResults);
+        
+        return testSuiteResults;
     }
     
     public void saveErrorPngFilenames(List<OneImageComparisonResult> errorFiles) throws IOException
@@ -466,9 +492,9 @@ public class OpenScadTestSuiteService
         
         errorFiles.forEach(ef ->
         {            
-            filepaths.add(ef.file);
+            filepaths.add(ef.getFile() );
             
-            String proposed = ef.file.replace("-baseline.", "-proposed-baseline.");
+            String proposed = ef.getFile().replace("-baseline.", "-proposed-baseline.");
             filepaths.add(proposed);
         });
         
@@ -496,6 +522,53 @@ public class OpenScadTestSuiteService
 
     public void printLongestComparisons(ImageComparisonResult compareResults) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int limit = 15;
+        
+        List<OneImageComparisonResult> allResults = new ArrayList();
+        
+        allResults.addAll(compareResults.errorFiles);
+        allResults.addAll(compareResults.successFiles);
+        
+        int total = allResults.size();
+        
+        int skip = total - limit;
+        
+        skip = skip < 0 ? 0 : skip;
+        
+        List<OneImageComparisonResult> sortedResults = allResults.stream()
+                .sorted( Comparator.comparingLong(oicr ->  oicr.getDuration().toMillis() ) )
+                .skip(skip)
+                .collect(Collectors.toList());
+        
+        System.out.println();
+        System.out.println("PNG comparison durations:");
+        
+        sortedResults.forEach(System.out::println);
+    }
+
+    public void printProposedPngGenerationDurations(GeneratePngBaselineResults results) 
+    {
+        int limit = 15;
+        
+        int total = results.getPathDurations().size();
+        
+        int skip = total - limit;
+        
+        skip = skip < 0 ? 0 : skip;
+        
+        Map<Path, Duration> sortedMap = results.getPathDurations()
+                .entrySet()
+                .stream()
+                .sorted((Map.Entry.<Path, Duration>comparingByValue()))
+                .skip(skip)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        
+        System.out.println();
+        System.out.println("proposed PNG generation durations:");
+        
+        sortedMap.forEach( (k, v) -> 
+        {
+            System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
+        });
     }
 }

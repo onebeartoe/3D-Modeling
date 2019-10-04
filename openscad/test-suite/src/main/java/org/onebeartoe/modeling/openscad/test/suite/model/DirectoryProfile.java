@@ -1,6 +1,6 @@
 /*
  */
-package org.onebeartoe.modeling.openscad.test.suite.utils;
+package org.onebeartoe.modeling.openscad.test.suite.model;
 
 import java.nio.file.Path;
 
@@ -8,7 +8,7 @@ import java.nio.file.Path;
  *
  * @author Roberto Marquez
  */
-class DirectoryProfile
+public class DirectoryProfile
 {
     private Path path;
     
@@ -34,7 +34,7 @@ class DirectoryProfile
         this.viewall = viewall;
     }
 
-    void setPath(Path path)
+    public void setPath(Path path)
     {
         this.path = path;
     }

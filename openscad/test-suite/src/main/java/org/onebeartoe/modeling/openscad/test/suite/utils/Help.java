@@ -10,7 +10,8 @@ import org.onebeartoe.io.TextFileReader;
  */
 public class Help 
 {
-    @Deprecated
+//TODO: why was this deprecated?    
+//    @Deprecated
     public void printHelp() throws Exception
     {        
         String resourcePath = "/help.text";

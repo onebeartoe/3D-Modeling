@@ -1,8 +1,9 @@
 
-package org.onebeartoe.modeling.openscad.test.suite;
+package org.onebeartoe.modeling.openscad.test.suite.model;
 
 import java.nio.file.Path;
 import java.util.List;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
 
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
