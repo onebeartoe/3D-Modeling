@@ -14,7 +14,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -146,19 +145,13 @@ public class OpenScadTestSuiteService
                 runProfile);
         
         boolean success = results.isSuccess();
-                
-        int count;
         
         if(success)
         {
-            count = results.getPathDurations().size();
-//            count = runProfile.openscadPaths.size();
+            System.out.println("PNG generation succeeded.");
         }
         else
-        {
-//TODO: fix this bad logic; this should use a count returned by pngGenerator.generatePngs()
-            count = -1;
-            
+        {            
             System.err.println();
             System.err.println("ERROR detected: Some PNGs were not generated.");
         }
@@ -516,8 +509,7 @@ public class OpenScadTestSuiteService
             System.out.print("The target file does not exist: " + parent.getAbsolutePath() );
             System.out.println(", so the errorred file names are not being written.");
             System.out.println("The pwd is: " + pwd.getAbsolutePath() );
-        }
-        
+        }        
     }    
 
     public void printLongestComparisons(ImageComparisonResult compareResults) 

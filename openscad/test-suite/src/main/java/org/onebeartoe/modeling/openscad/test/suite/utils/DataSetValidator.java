@@ -26,7 +26,7 @@ public class DataSetValidator
         String baseName = DataSetValidator.baseNameFor(scadFile);
 
         // concatinate '.png' to the base name
-        String outfileName = baseName + "-" + direction + GlobalVariables.baselineSuffix;
+        String outfileName = baseName + "-" + direction + GlobalVariables.BASELINE_SUFFIX;
 
         outfileName = outfileName.replace("\\", "/");
 
@@ -91,9 +91,9 @@ public class DataSetValidator
     {
 	String name = baselineNameFor(scadFile, direction);
 	
-	String replace = "-proposed" + GlobalVariables.baselineSuffix;
+	String replace = "-proposed" + GlobalVariables.BASELINE_SUFFIX;
 	
-	name = name.replace(GlobalVariables.baselineSuffix, replace);
+	name = name.replace(GlobalVariables.BASELINE_SUFFIX, replace);
 	
 	return name;
     }

@@ -10,9 +10,7 @@ public class GlobalVariables
         System.out.println("Global variables are initialized.");
     }
 
-    public static final String baselineSuffix = "-baseline.png";
-
-//    public static final String proposedBaselineSuffix = "-proposed" + baselineSuffix;
+    public static final String BASELINE_SUFFIX = "-baseline.png";
 
     public static final String OPENSCAD_FILE_PATTERN = "*.scad";
 }

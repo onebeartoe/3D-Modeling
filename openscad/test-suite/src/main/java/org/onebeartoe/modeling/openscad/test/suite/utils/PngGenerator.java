@@ -152,7 +152,7 @@ public class PngGenerator
 
             // The OpenSCAD executable --camera option takes these parameters: translatex,y,z,rotx,y,z,dist
             int distance = 250;
-            String rotateParams = direction.getRotateParams().replaceAll(" ", "");
+            String rotateParams = direction.getRotateParams().replace(" ", "");
             
             boolean viewall = directoryProfile.viewall();
             
