@@ -132,6 +132,9 @@ public class OpenScadTestSuiteService
 
     /**
      * 
+     * 
+     * 
+     * @param runProfile
      * @return The count of proposed baseline images generated.
      * @throws IOException
      * @throws InterruptedException 
