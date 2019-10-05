@@ -18,7 +18,6 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
-import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 
 public class OpenScadTestSuite

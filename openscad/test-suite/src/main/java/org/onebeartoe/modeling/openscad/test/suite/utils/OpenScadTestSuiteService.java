@@ -238,8 +238,6 @@ public class OpenScadTestSuiteService
                     LocalDateTime end = LocalDateTime.now();
                     
                     Duration duration = Duration.between(start, end);
-
-//System.out.println("DURATION >>>> " + duration.getSeconds() + "." + duration.getNano() );
                     
                     OneImageComparisonResult result = new OneImageComparisonResult();
                     result.setDuration(duration);
