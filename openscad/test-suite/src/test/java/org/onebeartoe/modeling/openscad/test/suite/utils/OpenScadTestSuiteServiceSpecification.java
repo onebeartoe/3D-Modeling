@@ -2,10 +2,13 @@
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
+import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
-import org.testng.Assert;
+import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -21,6 +24,18 @@ public class OpenScadTestSuiteServiceSpecification
     {
         implementation = new OpenScadTestSuiteService();
     }
+    
+    @Test
+    public void compareImages()
+    {
+        RunProfile runProfile = new RunProfile();
+        
+        runProfile.openscadPaths = new ArrayList();        
+        
+        ImageComparisonResult result = implementation.compareImages(runProfile);
+        
+        assertNotNull(result);
+    }
 
     @Test
     public void generateProposedBaselines() throws IOException, InterruptedException
@@ -31,6 +46,6 @@ public class OpenScadTestSuiteServiceSpecification
         
         GeneratePngBaselineResults results = implementation.generateProposedBaselines(runProfile);
         
-        Assert.assertNotNull(results);
+        assertNotNull(results);
     }
 }
