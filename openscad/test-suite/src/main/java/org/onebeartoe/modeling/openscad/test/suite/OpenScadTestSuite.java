@@ -1,12 +1,15 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.nio.file.Path;
+import java.time.Duration;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.application.duration.DurationService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import org.apache.commons.cli.CommandLine;
@@ -96,8 +99,13 @@ public class OpenScadTestSuite
             
             testService.printLongestComparisons(compareResults.getCompareResults());
             
-            testService.printProposedPngGenerationDurations(compareResults.getPngGenerationResults());
+            Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(compareResults.getPngGenerationResults());
 
+            sortedResults.forEach( (k, v) -> 
+            {
+                System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
+            });
+            
             Instant end = Instant.now();
         
             DurationService durationService = new DurationService();

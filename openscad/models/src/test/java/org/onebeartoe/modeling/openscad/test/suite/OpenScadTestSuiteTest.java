@@ -5,7 +5,9 @@ import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import java.io.File;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
@@ -108,7 +110,12 @@ public abstract class OpenScadTestSuiteTest
 
         testService.printLongestComparisons(compareResults);
         
-        testService.printProposedPngGenerationDurations(pngGenerationResults);
+        Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(pngGenerationResults);
+        
+        sortedResults.forEach( (k, v) -> 
+        {
+            System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
+        });
         
         int parameterCount = 2;
         

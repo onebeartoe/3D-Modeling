@@ -284,7 +284,8 @@ public class OpenScadTestSuiteService
             pb.delete();
         });
     }
-    
+
+//TODO: move this to a TestSuiteReultsService class
     private String extractTopLevel(RunProfile runProfile, String fullPath)
     {   
         // remove the project path
@@ -321,6 +322,7 @@ public class OpenScadTestSuiteService
         return proposedBaselines;
     }
 
+//TODO: move this to a TestSuiteReultsService class
     public void printHighLevelErrorReport(RunProfile runProfile, List<OneImageComparisonResult> failedOpenScadFiles)
     {
         if(failedOpenScadFiles.size() > 0)
@@ -375,6 +377,7 @@ public class OpenScadTestSuiteService
 // TODO: print the version of OpenSCAD
     }
     
+//TODO: move this to a TestSuiteReultsService class
     public void printValidationResults(List<String> missingBaselineFiles)
     {
 	System.out.println();
@@ -478,6 +481,7 @@ public class OpenScadTestSuiteService
         return testSuiteResults;
     }
     
+//TODO: move this to a TestSuiteReultsService class    
     public void saveErrorPngFilenames(List<OneImageComparisonResult> errorFiles) throws IOException
     {
         File pwd = new File(".");
@@ -513,6 +517,8 @@ public class OpenScadTestSuiteService
         }        
     }    
 
+//TODO: move this to a TestSuiteReultsService class
+//TODO: rename to remove 'print' prefix    
     public void printLongestComparisons(ImageComparisonResult compareResults) 
     {
         int limit = 15;
@@ -539,7 +545,8 @@ public class OpenScadTestSuiteService
         sortedResults.forEach(System.out::println);
     }
 
-    public void printProposedPngGenerationDurations(GeneratePngBaselineResults results) 
+//TODO: move this to a TestSuiteReultsService class
+    public Map<Path, Duration> proposedPngGenerationDurations(GeneratePngBaselineResults results) 
     {
         int limit = 15;
         
@@ -559,9 +566,6 @@ public class OpenScadTestSuiteService
         System.out.println();
         System.out.println("proposed PNG generation durations:");
         
-        sortedMap.forEach( (k, v) -> 
-        {
-            System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
-        });
+        return sortedMap;
     }
 }
