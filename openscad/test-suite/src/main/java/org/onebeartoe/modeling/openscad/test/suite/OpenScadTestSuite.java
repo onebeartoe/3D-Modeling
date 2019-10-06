@@ -20,6 +20,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
+import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 
@@ -97,8 +98,13 @@ public class OpenScadTestSuite
             
             testService.saveErrorPngFilenames(compareResults.getCompareResults().errorFiles);
             
-            testService.printLongestComparisons(compareResults.getCompareResults());
-            
+            List<OneImageComparisonResult> sortedComparisonResults = testService.longestComparisons(compareResults.getCompareResults());
+            System.out.println();
+            System.out.println("PNG comparison durations:");        
+            sortedComparisonResults.forEach(System.out::println);
+        
+            System.out.println();
+            System.out.println("proposed PNG generation durations:");            
             Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(compareResults.getPngGenerationResults());
 
             sortedResults.forEach( (k, v) -> 

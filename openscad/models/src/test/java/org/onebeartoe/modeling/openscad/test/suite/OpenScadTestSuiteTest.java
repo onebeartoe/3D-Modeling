@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
 import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.DataProvider;
@@ -108,8 +109,13 @@ public abstract class OpenScadTestSuiteTest
         
         testService.saveErrorPngFilenames(compareResults.errorFiles);
 
-        testService.printLongestComparisons(compareResults);
+        List<OneImageComparisonResult> sortedComparisonResults = testService.longestComparisons(compareResults);
+        System.out.println();
+        System.out.println("PNG comparison durations:");        
+        sortedComparisonResults.forEach(System.out::println);
         
+        System.out.println();
+        System.out.println("proposed PNG generation durations:");        
         Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(pngGenerationResults);
         
         sortedResults.forEach( (k, v) -> 

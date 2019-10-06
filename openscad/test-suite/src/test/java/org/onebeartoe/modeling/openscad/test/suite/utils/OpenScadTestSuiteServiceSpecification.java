@@ -7,10 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import static org.testng.Assert.assertNotNull;
@@ -55,6 +57,44 @@ public class OpenScadTestSuiteServiceSpecification
         assertNotNull(results);
     }
 
+    @Test
+    public void longestComparisons()
+    {
+        String shortedDuration = "shortest.duration";
+        String middleDuration = "middleduration";
+        String longestDuration = "longest.duration";
+        
+        List<OneImageComparisonResult> errorFiles = new ArrayList();
+        List<OneImageComparisonResult> successFiles = new ArrayList();
+        
+        OneImageComparisonResult shortestResult = new OneImageComparisonResult();
+        shortestResult.setDuration(Duration.ZERO);
+        shortestResult.setFile(shortedDuration);
+        
+        OneImageComparisonResult middleResult = new OneImageComparisonResult();
+        middleResult.setDuration( Duration.ofHours(2) );
+        middleResult.setFile(middleDuration);
+        
+        OneImageComparisonResult longestResult = new OneImageComparisonResult();
+        longestResult.setDuration( Duration.ofDays(9) );
+        longestResult.setFile(longestDuration);        
+        
+        errorFiles.add(longestResult);
+        errorFiles.add(shortestResult);
+        
+        successFiles.add(middleResult);
+        
+        ImageComparisonResult compareResults = new ImageComparisonResult();
+        compareResults.errorFiles = errorFiles;
+        compareResults.successFiles = successFiles;       
+                
+        List<OneImageComparisonResult> sortedResults = implementation.longestComparisons(compareResults);
+        
+        assertTrue( sortedResults.get(0).getFile().equals(shortedDuration) );
+        assertTrue( sortedResults.get(1).getFile().equals(middleDuration) );
+        assertTrue( sortedResults.get(2).getFile().equals(longestDuration) );
+    }
+    
     @Test
     public void proposedPngGenerationDurations()
     {

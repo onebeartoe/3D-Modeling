@@ -518,8 +518,7 @@ public class OpenScadTestSuiteService
     }    
 
 //TODO: move this to a TestSuiteReultsService class
-//TODO: rename to remove 'print' prefix    
-    public void printLongestComparisons(ImageComparisonResult compareResults) 
+    public List<OneImageComparisonResult> longestComparisons(ImageComparisonResult compareResults) 
     {
         int limit = 15;
         
@@ -539,10 +538,7 @@ public class OpenScadTestSuiteService
                 .skip(skip)
                 .collect(Collectors.toList());
         
-        System.out.println();
-        System.out.println("PNG comparison durations:");
-        
-        sortedResults.forEach(System.out::println);
+        return sortedResults;
     }
 
 //TODO: move this to a TestSuiteReultsService class
@@ -562,9 +558,6 @@ public class OpenScadTestSuiteService
                 .sorted((Map.Entry.<Path, Duration>comparingByValue()))
                 .skip(skip)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        
-        System.out.println();
-        System.out.println("proposed PNG generation durations:");
         
         return sortedMap;
     }
