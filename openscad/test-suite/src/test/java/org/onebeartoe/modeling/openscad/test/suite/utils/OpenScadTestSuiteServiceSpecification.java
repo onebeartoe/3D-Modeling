@@ -60,6 +60,8 @@ System.out.println("pwd: " + path.toString());
         
         runProfile.path = "../models/src/main/openscad/basics/primitives/cube";
         
+        runProfile.executablePath = "openscad";
+        
         runProfile.openscadPaths = new ArrayList();
         
         OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
