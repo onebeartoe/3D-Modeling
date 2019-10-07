@@ -105,6 +105,11 @@ public class PngGenerator
 		    } 
 		    catch (Exception e)
 		    {
+                        // if an exception is thrown, then set the exit code to fail
+                        boolean exitCode = false;
+                        
+                        exitCodes.add(exitCode);
+                        
 		    	e.printStackTrace();
 		    }		    
                 });
@@ -226,6 +231,11 @@ public class PngGenerator
                 // break out early, on the first occurrence of a failure
                 break;
             }
+        }
+        
+        if( exitCodes.isEmpty() )
+        {
+            masterExitCode = false;
         }
         
         results.setSuccess(masterExitCode);
