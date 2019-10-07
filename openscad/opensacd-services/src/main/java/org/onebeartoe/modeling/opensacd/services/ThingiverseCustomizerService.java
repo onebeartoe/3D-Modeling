@@ -39,6 +39,30 @@ public class ThingiverseCustomizerService
 
         stencilFontList = properties.getProperty("font.stencilNames", defalutValue);
     }
+    
+    public File generateCustomizerFile(File openScadInfile) throws IOException
+    {
+        String interpolatedContent = interpolateOpenScad(openScadInfile);
+
+        String openScadFile = openScadInfile.getName();
+        
+        int start = openScadFile.lastIndexOf(".");
+        int end = openScadFile.length();
+        String extension = openScadFile.substring(start, end);
+        String path = openScadInfile.getParent() + File.separator + "inlined" + File.separator + openScadInfile.getName() + "-" +"inlined" + extension;
+        File outfile = new File(path);
+
+        if( !outfile.getParentFile().exists() )
+        {
+            outfile.getParentFile().mkdirs();
+        }
+
+        Path outpath = outfile.toPath();
+
+        Files.write(outpath, interpolatedContent.getBytes() );
+        
+        return outfile;
+    }
 
     private boolean isBuiltInLibrary(String line)
     {

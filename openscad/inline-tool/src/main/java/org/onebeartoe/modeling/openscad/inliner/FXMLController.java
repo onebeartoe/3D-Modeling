@@ -24,7 +24,7 @@ import org.onebeartoe.modeling.opensacd.services.OpenScadPreferences;
 import org.onebeartoe.modeling.opensacd.services.ThingiverseCustomizerService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator;
 
-public class FXMLController implements Initializable//, DesktopApplication 
+public class FXMLController implements Initializable
 {
     private Logger logger;
     
@@ -42,30 +42,16 @@ public class FXMLController implements Initializable//, DesktopApplication
     private TextField currentFileTextField;
     
     private ResourceBundle resourceBundle;
-    
+
     private void generateCutomizerFile()
     {
         try 
         {
             File infile = new File(openScadFile);
-            String interpolatedContent = customizerService.interpolateOpenScad(infile);
             
-            int start = openScadFile.lastIndexOf(".");
-            int end = openScadFile.length();
-            String extension = openScadFile.substring(start, end);
-            String path = infile.getParent() + File.separator + "inlined" + File.separator + infile.getName() + "-" +"inlined" + extension;
-            File outfile = new File(path);
-
-            if( !outfile.getParentFile().exists() )
-            {
-                outfile.getParentFile().mkdirs();
-            }
-
-            Path outpath = outfile.toPath();
+            File outfile = customizerService.generateCustomizerFile(infile);
             
-            Files.write(outpath, interpolatedContent.getBytes() );
-            
-            logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output to: " + outpath.toAbsolutePath() );
+            logger.log(Level.INFO, "The OpenScad file for Thingiverse Customizer has been output to: " + outfile.getAbsolutePath() );
         }
         catch (IOException  ex)
         {

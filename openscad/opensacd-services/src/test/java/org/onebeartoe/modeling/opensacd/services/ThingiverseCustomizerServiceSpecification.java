@@ -4,6 +4,7 @@ package org.onebeartoe.modeling.opensacd.services;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.lang3.StringUtils;
+import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.Test;
 
 /**
@@ -12,31 +13,48 @@ import org.testng.annotations.Test;
  */
 public class ThingiverseCustomizerServiceSpecification
 {
-    ThingiverseCustomizerService implementation;
+    private ThingiverseCustomizerService implementation;
+    
+    private String clientPath = "src/test/resources/client.scad";
             
     public ThingiverseCustomizerServiceSpecification() throws IOException
     {
         implementation = new ThingiverseCustomizerService();
     }
+    
+    @Test
+    public void generateCustomizerFile() throws IOException
+    {
+        File openScadInfile = new File(clientPath);
+        
+        File outfile = implementation.generateCustomizerFile(openScadInfile);
+                
+        assertTrue( outfile.exists() );
+        
+        String orignalName = openScadInfile.getName();
+        String expectedName = orignalName + "-inlined.scad";        
+        String actualName = outfile.getName();
+        
+        assertTrue( expectedName.equals(actualName) );
+    }
 
     @Test(groups = "unit-tests")
     public void whenIncludesExistThenAllArePresentInInlined() throws IOException 
     {
-        String inpath = "src/test/resources/client.scad";
-        File scadFile = new File(inpath);
+        File scadFile = new File(clientPath);
         String inlined = implementation.interpolateOpenScad(scadFile);
         
-        assert inlined.contains("client()");
+        assertTrue( inlined.contains("client()") );
         
-        assert inlined.contains("libA()");
+        assertTrue( inlined.contains("libA()") );
         
-        assert inlined.contains("libB()");
+        assertTrue( inlined.contains("libB()") );
         
         String libC = "libC()";
-        assert inlined.contains(libC);
+        assertTrue( inlined.contains(libC) );
 
         // lib A and B both include lib C, ensure lib C only appears once in the inlined version
         int matches = StringUtils.countMatches(inlined, libC);
-        assert matches == 1;
+        assertTrue( matches == 1 );
     }
 }
