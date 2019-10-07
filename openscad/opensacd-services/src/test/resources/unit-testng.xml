@@ -2,14 +2,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"> 
 <suite name="onebeartoe OpenSCAD Test Suite" parallel="none">
     <test name="openscad model verification">
-        <groups>
-            <run>
-                <include name="unit-tests" />
-
-                <exclude name="regression"/>
-            </run>
-        </groups>
-
         <packages>
             <package name="org.onebeartoe.modeling.opensacd.services"/>
         </packages>
