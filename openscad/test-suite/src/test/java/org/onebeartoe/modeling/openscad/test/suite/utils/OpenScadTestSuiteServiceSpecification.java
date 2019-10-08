@@ -15,9 +15,10 @@ import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.openscadPath;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 /**
@@ -27,19 +28,24 @@ public class OpenScadTestSuiteServiceSpecification
 {
     private OpenScadTestSuiteService implementation;
 
-    @BeforeClass
+    private RunProfile runProfile;
+    
+    @BeforeTest
+//    @BeforeClass
     public void initializeTest()
     {
         implementation = new OpenScadTestSuiteService();
+        
+        runProfile = new RunProfile();
+
+        runProfile.executablePath = openscadPath();
+        
+        runProfile.openscadPaths = new ArrayList();        
     }
     
     @Test
     public void compareImages()
-    {
-        RunProfile runProfile = new RunProfile();
-        
-        runProfile.openscadPaths = new ArrayList();        
-        
+    {        
         ImageComparisonResult result = implementation.compareImages(runProfile);
         
         assertNotNull(result);
@@ -47,11 +53,7 @@ public class OpenScadTestSuiteServiceSpecification
 
     @Test
     public void generateProposedBaselines() throws IOException, InterruptedException
-    {
-        RunProfile runProfile = new RunProfile();
-        
-        runProfile.openscadPaths = new ArrayList();
-        
+    {        
         GeneratePngBaselineResults results = implementation.generateProposedBaselines(runProfile);
         
         assertNotNull(results);
@@ -128,16 +130,10 @@ public class OpenScadTestSuiteServiceSpecification
     @Test
     public void serviceRequest() throws Exception
     {
-        RunProfile runProfile = new RunProfile();
-
 Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
 System.out.println("pwd: " + path.toString());        
         
         runProfile.path = "../models/src/main/openscad/basics/primitives/cube";
-        
-        runProfile.executablePath = "openscad";
-        
-        runProfile.openscadPaths = new ArrayList();
         
         OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
                                 

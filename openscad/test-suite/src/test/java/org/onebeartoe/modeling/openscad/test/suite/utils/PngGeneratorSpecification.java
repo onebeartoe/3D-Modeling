@@ -28,6 +28,8 @@ public class PngGeneratorSpecification
         
     private RunProfile runProfile;
     
+    public static final String macOpensacdPath = "/Applications/OpenSCAD-nightly.app/Contents/MacOS/OpenSCAD";
+    
     @BeforeClass
     public void initializeTest()
     {
@@ -35,15 +37,7 @@ public class PngGeneratorSpecification
         
         runProfile = new RunProfile();
 
-        OperatingSystem os = new OperatingSystem();
-        if( os.seemsLikeMac() )
-        {
-            runProfile.executablePath = "/Applications/OpenSCAD-nightly.app/Contents/MacOS/OpenSCAD";
-        }
-        else
-        {
-            runProfile.executablePath = "openscad";
-        }
+        runProfile.executablePath = openscadPath();
         
         List<Path> paths = new ArrayList();
         Path path = Paths.get(simpleOpenScadPath);
@@ -79,5 +73,23 @@ public class PngGeneratorSpecification
         GeneratePngBaselineResults results = implementation.generatePngs(forcePngGeneration, runProfile);
         
         assertFalse( results.isSuccess() );
+    }
+    
+    public static String openscadPath()
+    {
+        OperatingSystem os = new OperatingSystem();
+        
+        String executablePath;
+        
+        if( os.seemsLikeMac() )
+        {
+            executablePath = macOpensacdPath;
+        }
+        else
+        {
+            executablePath = "openscad";
+        }
+
+        return executablePath;
     }
 }
