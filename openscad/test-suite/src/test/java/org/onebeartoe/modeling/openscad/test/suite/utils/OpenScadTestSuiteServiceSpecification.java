@@ -16,6 +16,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResul
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.openscadPath;
+import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.simpleOpenScadPath;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeTest;
@@ -45,7 +46,11 @@ public class OpenScadTestSuiteServiceSpecification
     
     @Test
     public void compareImages()
-    {        
+    {
+        Path path = Paths.get(simpleOpenScadPath);
+        
+        runProfile.openscadPaths.add(path);
+        
         ImageComparisonResult result = implementation.compareImages(runProfile);
         
         assertNotNull(result);

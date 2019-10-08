@@ -24,7 +24,7 @@ public class PngGeneratorSpecification
 {
     private PngGenerator implementation;
     
-    private final String simpleOpenScadPath = "src/test/resources/simple.scad";
+    public static final String simpleOpenScadPath = "src/test/resources/simple.scad";
         
     private RunProfile runProfile;
     
