@@ -1,0 +1,11 @@
+
+- step:
+    name: generate STL
+    image: wtnb75/openscad
+    command:
+        - pwd
+        - ls -lah 
+        - cd openscad/models/src/main/openscad/basics/primitives/cube/
+        - openscad -o sample-cubes-valohai.stl sample-cubes.scad
+        - cp sample-cubes-valohai.stl ${VH_OUTPUTS_DIR}/
+    environment: aws-eu-west-1-t3-xlarge
