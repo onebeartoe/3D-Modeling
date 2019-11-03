@@ -8,4 +8,4 @@
         - cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/
         - openscad -o EvilVase1-cylinder.stl EvilVase1-cylinder.scad
         - cp EvilVase1-cylinder.stl ${VH_OUTPUTS_DIR}/
-    environment: aws-eu-west-1-t3-xlarge
+    environment: aws-eu-west-1-t3.2xlarge
