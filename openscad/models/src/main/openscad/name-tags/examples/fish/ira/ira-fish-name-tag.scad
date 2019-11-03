@@ -1,4 +1,6 @@
 
+//TODO: see the error file on the desktop
+
 use <../../../name-tag.scad>
 
 icons_xOffset = 30;
