@@ -1,0 +1,27 @@
+
+STL on travis-ci
+
+	235.359000000 - src/main/openscad/toys/fidget-spinner/samples/batman/batman-fidget-spinner.scad
+	/          60
+	- - - - - - -
+	      3.92265m
+
+STL
+
+	original
+		real	2m33.615s
+		user	2m4.400s
+		sys	0m0.936s	
+	
+	2019.10.24
+		real	2m33.050s
+		user	2m3.473s
+		sys	0m1.078s
+	
+
+
+3MF
+
+		real	2m47.047s
+		user	2m37.967s
+		sys	0m0.847s
