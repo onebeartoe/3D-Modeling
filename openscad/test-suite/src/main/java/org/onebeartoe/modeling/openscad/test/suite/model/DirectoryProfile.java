@@ -13,6 +13,8 @@ public class DirectoryProfile
     private Path path;
     
     private boolean viewall;
+    
+    private boolean skipPngGeneration;
 
     public DirectoryProfile()
     {
@@ -24,6 +26,10 @@ public class DirectoryProfile
         return path;
     }
 
+    public boolean getSkipPngGeneration() 
+    {
+        return skipPngGeneration;
+    }    
     public boolean viewall()
     {
         return viewall;
@@ -37,5 +43,10 @@ public class DirectoryProfile
     public void setPath(Path path)
     {
         this.path = path;
+    }
+
+    public void setSkipPngGeneration(boolean skipPngGeneration) 
+    {
+        this.skipPngGeneration = skipPngGeneration;
     }
 }

@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.jsoup.helper.StringUtil;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 
@@ -198,25 +199,35 @@ public class PngGenerator
                 logger.warning("could not load directory properties for " + parent.toFile().getAbsolutePath() );                             
             }
             
-            LocalDateTime start = LocalDateTime.now();
-            
-            List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
-                                                                         forcePngGeneration,
-                                                                         runProfile,
-                                                                         directoryProfile);
-            
-            LocalDateTime end = LocalDateTime.now();
-
-            Duration duration = Duration.between(start, end);
-            
-            results.addPathDuration(path, duration);
-            
-            exitCodes.addAll(directionalExitCodes);
-            
-            if( directionalExitCodes.contains(false) )
+            if( directoryProfile.getSkipPngGeneration() )
             {
-                System.err.println("An error occured with proposed baseline PNG:");
-                System.err.println(path.toString() );
+                System.out.println("PNG generation is skipped for: " + path.toString() );
+                System.out.println();
+                
+                exitCodes.add(true);
+            }
+            else
+            {
+                LocalDateTime start = LocalDateTime.now();
+
+                List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
+                                                                             forcePngGeneration,
+                                                                             runProfile,
+                                                                             directoryProfile);
+
+                LocalDateTime end = LocalDateTime.now();
+
+                Duration duration = Duration.between(start, end);
+
+                results.addPathDuration(path, duration);
+
+                exitCodes.addAll(directionalExitCodes);
+
+                if( directionalExitCodes.contains(false) )
+                {
+                    System.err.println("An error occured with proposed baseline PNG:");
+                    System.err.println(path.toString() );
+                }
             }
         });
 
@@ -251,7 +262,7 @@ public class PngGenerator
      * 
      * @param runProfile 
      */
-    private void loadDirectoryProperties(DirectoryProfile directoryProfile) throws FileNotFoundException, IOException
+    static void loadDirectoryProperties(DirectoryProfile directoryProfile) throws FileNotFoundException, IOException
     {
         Path path = directoryProfile.getPath();
         
@@ -259,6 +270,8 @@ public class PngGenerator
         String propertiesFileName = "openscad.properties";
         
         File infile = new File(parent, propertiesFileName);
+        
+        boolean skipPngGeneration = false;
         
         if( infile.exists() )
         {
@@ -271,6 +284,14 @@ public class PngGenerator
             boolean viewAll = Boolean.parseBoolean(viewallValue);
 
             directoryProfile.setViewall(viewAll);
+            
+            String s = properties.getProperty("skipPngGeneration");
+            if( !StringUtil.isBlank(s) )
+            {
+                skipPngGeneration = Boolean.parseBoolean(s);
+            }
         }
+        
+        directoryProfile.setSkipPngGeneration(skipPngGeneration);
     }
 }

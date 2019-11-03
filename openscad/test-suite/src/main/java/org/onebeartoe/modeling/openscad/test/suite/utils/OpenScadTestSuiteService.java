@@ -25,8 +25,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
+import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator.loadDirectoryProperties;
 import org.onebeartoe.system.CommandResults;
 import org.onebeartoe.system.command.SystemCommand;
 import org.onebeartoe.system.command.imagemagick.Compare;
@@ -122,6 +124,7 @@ public class OpenScadTestSuiteService
     private void generateBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
         System.out.println("test suite generating baselines, count: " + runProfile.openscadPaths.size());
+        System.out.println();
 
         // don't overwrite any existing baseline images
         boolean forcePngGeneration = false;
@@ -172,13 +175,12 @@ public class OpenScadTestSuiteService
     {
         System.out.println();
         System.out.println("Comparing baseline images to the proposed baseline images...");
+        System.out.println();
 
-        boolean passed = true;
-        
         ImageComparisonResult results = compareImages(runProfile.openscadPaths);
 
         // verify Check if the diffs were successful
-        if(results.errorFiles.size() == 0 && !results.exceptionThrown)
+        if(results.errorFiles.isEmpty() && !results.exceptionThrown)
         {
             System.out.println();
             System.out.println("No test suite errors were detected.");
@@ -187,9 +189,6 @@ public class OpenScadTestSuiteService
         }
         else
         {
-            // whoa, whoa
-            passed = false;
-
             System.out.println( System.lineSeparator() );
             
             if(results.exceptionThrown)
@@ -225,50 +224,76 @@ public class OpenScadTestSuiteService
         {
             openscadPaths.parallelStream().forEach((Path p) ->
             {
-                boolean forceGeneration = false;
-                String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
-                
-                forceGeneration = true;
-                String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
-                
-                try
+                DirectoryProfile directoryProfile = new DirectoryProfile();
+                Path parent = p.getParent();
+                directoryProfile.setPath(parent);
+
+                try 
                 {
-                    LocalDateTime start = LocalDateTime.now();
-                    
-                    SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
-                    CommandResults results = diffCommand.execute();
-                    
-                    LocalDateTime end = LocalDateTime.now();
-                    
-                    Duration duration = Duration.between(start, end);
-                    
-                    OneImageComparisonResult result = new OneImageComparisonResult();
-                    result.setDuration(duration);
-                    result.setFile(baseline);
-                    
-                    // check if the exit code is 0 for success
-                    if(results.exitCode == 0)
-                    {
-                        comparisonResults.successFiles.add(result);
-                    }
-                    else
-                    {
-                        comparisonResults.errorFiles.add(result);
-                        
-                        System.out.println( results.processedStdErr.trim() );
-                        System.out.print( results.processedStdOut.trim() );
-                    }
+                    loadDirectoryProperties(directoryProfile);
+                } 
+                catch (IOException ex) 
+                {
+                    logger.severe("could not load directory properties for: " + p.toString() + " - " + ex.getMessage() );
                 }
-                catch (Exception e)
+
+                if( directoryProfile.getSkipPngGeneration() )
                 {
-                    comparisonResults.exceptionThrown = true;
-                    String message = "An error occured while executing a diff command.";
-                    logger.log(Level.SEVERE, message, e);
+                    System.out.println("Image comparison is skipped for: " + p.toString() + " - " + direction);
+                }
+                else
+                {
+                    compareOneImage(p, direction, comparisonResults);
                 }
             });
         });
 	
 	return comparisonResults;
+    }
+    
+    private void compareOneImage(Path p, OpenScadCameraDirections direction, ImageComparisonResult comparisonResults)
+    {
+        boolean forceGeneration = false;
+        String baseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
+
+        forceGeneration = true;
+        String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
+
+        try
+        {
+            LocalDateTime start = LocalDateTime.now();
+
+            SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
+            CommandResults results = diffCommand.execute();
+
+            LocalDateTime end = LocalDateTime.now();
+
+            Duration duration = Duration.between(start, end);
+
+            OneImageComparisonResult result = new OneImageComparisonResult();
+            result.setDuration(duration);
+            result.setFile(baseline);
+
+            // check if the exit code is 0 for success
+            if(results.exitCode == 0)
+            {
+                comparisonResults.successFiles.add(result);
+            }
+            else
+            {
+                comparisonResults.errorFiles.add(result);
+
+                System.out.println( results.processedStdErr.trim() );
+                System.out.print( results.processedStdOut.trim() );
+            }
+        }
+        catch (Exception e)
+        {
+            comparisonResults.exceptionThrown = true;
+
+            String message = "An error occured while executing a diff command.";
+            logger.log(Level.SEVERE, message, e);
+        }        
     }
     
     private void deleteProposedBaselines(Path inpath) throws IOException
