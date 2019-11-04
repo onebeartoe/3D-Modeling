@@ -64,7 +64,7 @@ difference() // Take away the two parts at the bottom
     cube([1000,1000,100]);
 
     // this adds an internal hollow, 5mm up from the base
-    internalCutout_TopRadius = internalCutout_bottomRadius + 15;
+    internalCutout_TopRadius = internalCutout_bottomRadius + 22;
     translate([0,0,5])
     cylinder(r1 = internalCutout_bottomRadius, r2 = internalCutout_TopRadius, h = maxlayers * 2, $fn = 360/step);
 }
