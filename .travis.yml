@@ -27,8 +27,9 @@ jdk:
 script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
-#- echo "in presteps DISPLAY is: $DISPLAY"
+#- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
+- cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/
+- openscad -o EvilVase1-cylinder.stl EvilVase1-cylinder.scad
 
 addons:
   sonarcloud:
@@ -41,6 +42,7 @@ addons:
     paths:
     - openscad/models/target/errorred-pngs.text
     - $(cat openscad/models/target/errorred-pngs.text | tr "\n" ":")
+    - openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/EvilVase1-cylinder.stl
     target_paths: $TRAVIS_BUILD_NUMBER
 #    working_dir: $WORKING_DIR
     bucket: openscad-2
