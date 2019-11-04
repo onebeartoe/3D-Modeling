@@ -6,12 +6,16 @@
 // customizer modifications by Roberto Marquez
 //                              https://www.thingiverse.com/onebeartoe/designs
 
-cubeOrCylinder = "cube"; // [cube, cylinder]
+cubeOrCylinder = "cylinder"; // [cube, cylinder]
+
+internalCutout_bottomRadius = 43; // [30 : 1 : 45]
 
 /* [Hidden] */
 
 step=4; // number of degrees to step for each cuboid element
+
 maxlayers=100; // max number of layers. More layers slows down compilation on [F6], but makes the vase taller
+
 basewidth=50; // basic length of a cuboid
 
 difference() // Take away the two parts at the bottom
@@ -30,14 +34,15 @@ difference() // Take away the two parts at the bottom
 
                 if(cubeOrCylinder == "cylinder")
                 {
-	                cylinder(r=2, h=basewidth + (layers/maxlayers*30) + 10*cos(layers*15)
-								                *sin(angle*8), $fn=20);
+                    cylinderHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
+
+	                cylinder(r=2, h=cylinderHeight, $fn=20);
                 }
                 else
                 {
-    				cube([basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8),
-                          4,
-                          4]);
+                    cube_xLength = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
+
+    				cube([cube_xLength, 4, 4]);
 
                         // lets explain this!
                         // make a 4x4 square
@@ -59,6 +64,7 @@ difference() // Take away the two parts at the bottom
     cube([1000,1000,100]);
 
     // this adds an internal hollow, 5mm up from the base
+    internalCutout_TopRadius = internalCutout_bottomRadius + 15;
     translate([0,0,5])
-    cylinder(r1=30,r2=45,h=maxlayers*2, $fn=360/step);
+    cylinder(r1 = internalCutout_bottomRadius, r2 = internalCutout_TopRadius, h = maxlayers * 2, $fn = 360/step);
 }
