@@ -36,7 +36,7 @@ difference() // Take away the two parts at the bottom
                 {
                     cylinderHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
 
-	                cylinder(r=2, h=cylinderHeight, $fn=20);
+                    cylinder(r=2, h=cylinderHeight, $fn=20);
                 }
                 else
                 {
