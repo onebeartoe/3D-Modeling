@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
  */
 public abstract class OpenScadTestSuiteTest
 {
-    // this was added to make sure the test get picked up
+//TODO remove this
     public abstract void willItWork();
     
     protected Logger logger;
@@ -120,7 +120,7 @@ public abstract class OpenScadTestSuiteTest
         
         sortedResults.forEach( (k, v) -> 
         {
-            System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
+            System.out.println(v.getSeconds() + "." + v.getNano() + "s - " + k); 
         });
         
         int parameterCount = 2;
