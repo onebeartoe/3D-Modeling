@@ -17,14 +17,11 @@ import org.testng.annotations.Test;
  * 
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public class BruteForceOpenScadTestSuiteTest 
+public class SubdirectoryOpenScadTestSuiteTest 
 {
-//TODO: is this class even needed anymore?    
-    
-    
     private Logger logger;
     
-    public BruteForceOpenScadTestSuiteTest()
+    public SubdirectoryOpenScadTestSuiteTest()
     {
         logger = Logger.getLogger( getClass().getName() );
     }
