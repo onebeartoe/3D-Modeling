@@ -40,7 +40,7 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         matcher = FileSystems.getDefault().getPathMatcher("glob:" + pattern);                
     }
 
-    private List<Path> find(Path inpath) throws Exception
+    private List<Path> find(Path inpath) throws IOException
     {
         System.out.println("Locating files under: " + inpath);
         System.out.println();
@@ -85,11 +85,9 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         return find;
     }
 
-    public List<Path> getFiles(Path inpath) throws Exception
+    public List<Path> getFiles(Path inpath) throws IOException
     {
-        List<Path> openscadPaths = 
-
-            find(inpath);
+        List<Path> openscadPaths = find(inpath);
 
         return openscadPaths;
     }

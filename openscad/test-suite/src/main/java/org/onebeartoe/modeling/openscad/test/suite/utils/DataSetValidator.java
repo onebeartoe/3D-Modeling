@@ -113,7 +113,7 @@ public class DataSetValidator
      * @param oscadFiles
      * @return a list of any missing .pngs
      */
-    public List<String> validate(List<Path> oscadFiles) throws Exception
+    public List<String> validate(List<Path> oscadFiles) //throws Exception
     {
         final List<String> expectedBaselineFiles = new ArrayList();
 

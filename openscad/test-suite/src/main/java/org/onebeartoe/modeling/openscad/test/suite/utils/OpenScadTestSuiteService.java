@@ -56,7 +56,7 @@ public class OpenScadTestSuiteService
      * It seems like this method should be refactored.
      * 
      */
-    public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws Exception
+    public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws IOException, ImageComparisonException, InterruptedException
     {
         OpenScadTestSuiteResults results = null;
         
@@ -83,7 +83,7 @@ public class OpenScadTestSuiteService
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
 
-        try
+//        try
         {
             runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
@@ -102,21 +102,27 @@ public class OpenScadTestSuiteService
                 // the mode is 'run test suite'
                 results = runTestSuite(runProfile);
 
-                if(results.getCompareResults().exceptionThrown)
+                ImageComparisonResult compareResults = results.getCompareResults();
+                
+                if(compareResults.exceptionThrown)
                 {
-                    throw new Exception("Did not pass");
+                    int count = compareResults.errorFiles.size();
+                    
+                    String message = "the test suite failed with " + count + " errors";
+                    
+                    throw new ImageComparisonException(message);
                 }
             }                
         }
-        catch(Exception nsfe)
-        {
-            File pwd = new File(".");
-            System.err.println("pwd: " + pwd.getAbsolutePath() );
-
-            nsfe.printStackTrace();
-
-            throw new Exception(nsfe);
-        }
+//        catch(Exception nsfe)
+//        {
+//            File pwd = new File(".");
+//            System.err.println("pwd: " + pwd.getAbsolutePath() );
+//
+//            nsfe.printStackTrace();
+//
+//            throw new Exception(nsfe);
+//        }
 
         return results;
     }    
@@ -423,7 +429,7 @@ public class OpenScadTestSuiteService
         }
     }
     
-    private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws Exception
+    private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws IOException, InterruptedException //throws Exception
     {
         GeneratePngBaselineResults pngGenerationResults = null;
                 
