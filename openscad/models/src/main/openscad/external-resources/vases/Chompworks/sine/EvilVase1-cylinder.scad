@@ -32,11 +32,21 @@ difference() // Take away the two parts at the bottom
                 rotate([45,-45,0]) // rotate the cuboid for the best effect
                 translate([0,-1,0]) // move the cuboid. This minus 1 offset just worked well!
 
+//echo("sure");
                 if(cubeOrCylinder == "cylinder")
                 {
                     cylinderHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
 
-                    cylinder(r=2, h=cylinderHeight, $fn=20);
+//union()
+//{
+//                    cylinder(r=2, h=cylinderHeight, $fn=20);
+
+
+//echo("sure");
+color("blue")
+translate([cylinderHeight, 0, 0])
+sphere(r = 5);
+//}
                 }
                 else
                 {
