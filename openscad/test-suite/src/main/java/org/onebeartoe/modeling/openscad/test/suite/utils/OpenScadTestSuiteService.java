@@ -93,6 +93,13 @@ public class OpenScadTestSuiteService
             {
                 results = new OpenScadTestSuiteResults();
 
+                results.setCompareResults( new ImageComparisonResult() );
+                
+                GeneratePngBaselineResults gpnr = new GeneratePngBaselineResults();
+//                gpnr.
+                
+                results.setPngGenerationResults( gpnr );
+                
                 generateBaselines(runProfile);
             }
             else if( mode == OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
@@ -181,7 +188,6 @@ public class OpenScadTestSuiteService
      */
     public ImageComparisonResult compareImages(RunProfile runProfile)
     {
-        System.out.println();
         System.out.println("Comparing baseline images to the proposed baseline images...");
         System.out.println();
 
@@ -190,7 +196,6 @@ public class OpenScadTestSuiteService
         // verify Check if the diffs were successful
         if(results.errorFiles.isEmpty() && !results.exceptionThrown)
         {
-            System.out.println();
             System.out.println("No test suite errors were detected.");
             System.out.println();
             System.out.println("Thanks for using the onebeartoe test suite for OpenSCAD libraries.");
@@ -293,6 +298,8 @@ public class OpenScadTestSuiteService
             {
 //TODO: check the travis-ci logs for this string                
                 System.out.println("does this ever execute?");
+                System.out.println();
+                
 //                comparisonResults.errorFiles.add(result);
 //
 //                System.out.println( results.processedStdErr.trim() );
@@ -422,11 +429,10 @@ public class OpenScadTestSuiteService
 //TODO: move this to a TestSuiteReultsService class
     public void printValidationResults(List<String> missingBaselineFiles)
     {
-	System.out.println();
-
         if (missingBaselineFiles.isEmpty())
         {
             String pwd = (new File(".")).getAbsolutePath();
+
             System.out.println("The current working directory is: " + pwd);
             System.out.println();
 
@@ -553,7 +559,9 @@ public class OpenScadTestSuiteService
         {
             System.out.println();
             System.out.print("The target file does not exist: " + parent.getAbsolutePath() );
-            System.out.println(", so the errorred file names are not being written.");
+            System.out.println(", so the errorred file names are not saved.");
+            System.out.println();
+            
             System.out.println("The pwd is: " + pwd.getAbsolutePath() );
         }
     }
