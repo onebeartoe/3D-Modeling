@@ -1,12 +1,13 @@
 // originially from:
-// Sine Cube Vase 1 by @Chompworks
-// Original at: https://www.thingiverse.com/thing:2666281
-// Released under the Creative Commons CC - BY 3.0 licence
-// Details here: https://creativecommons.org/licenses/by/3.0/
-// customizer modifications by Roberto Marquez
-//                              https://www.thingiverse.com/onebeartoe/designs
+//    Sine Cube Vase 1 by @Chompworks
+//    Original at: https://www.thingiverse.com/thing:2666281
+//    Released under the Creative Commons CC - BY 3.0 licence
+//    Details here: https://creativecommons.org/licenses/by/3.0/
+//
+// customizer modifications by Roberto Marquez inclue cylinder and sphere options
+//    https://www.thingiverse.com/onebeartoe/designs
 
-cubeOrCylinder = "cylinder"; // [cube, cylinder]
+cubeOrCylinder = "cylinder"; // [cube, cylinder, sphere]
 
 internalCutout_bottomRadius = 43; // [30 : 1 : 45]
 
@@ -32,21 +33,20 @@ difference() // Take away the two parts at the bottom
                 rotate([45,-45,0]) // rotate the cuboid for the best effect
                 translate([0,-1,0]) // move the cuboid. This minus 1 offset just worked well!
 
-//echo("sure");
+
                 if(cubeOrCylinder == "cylinder")
                 {
                     cylinderHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
 
-//union()
-//{
-//                    cylinder(r=2, h=cylinderHeight, $fn=20);
+                    cylinder(r=2, h=cylinderHeight, $fn=20);
+                }
+                else if( cubeOrCylinder == "sphere")
+                {
+                    sphereHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
 
-
-//echo("sure");
-color("blue")
-translate([cylinderHeight, 0, 0])
-sphere(r = 5);
-//}
+                    color("blue")
+                    translate([sphereHeight, 0, 0])
+                    sphere(r = 5);
                 }
                 else
                 {
