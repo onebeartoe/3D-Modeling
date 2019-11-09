@@ -41,7 +41,10 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
     }
 
     private List<Path> find(Path inpath) throws IOException
-    {
+    {        
+        System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
+        System.out.println();
+        
         System.out.println("Locating files under: " + inpath);
         System.out.println();
 	

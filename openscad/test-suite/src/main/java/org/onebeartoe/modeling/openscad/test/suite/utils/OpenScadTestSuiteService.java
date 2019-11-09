@@ -1,4 +1,6 @@
 
+//TODO dos2unix this file and see how to remove ^M from Netbeans formatting
+
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
 import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
@@ -35,31 +37,31 @@ import org.onebeartoe.system.command.imagemagick.Compare;
 
 /**
  * This class provides methods used in the OpenSCAD test suite.
- * 
+ *
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public class OpenScadTestSuiteService 
+public class OpenScadTestSuiteService
 {
     private Logger logger;
-    
-    private PngGenerator pngGenerator;    
+
+    private PngGenerator pngGenerator;
 
     public OpenScadTestSuiteService()
     {
-        String name = getClass().getName(); 
+        String name = getClass().getName();
         logger = Logger.getLogger(name);
-        
-        pngGenerator = new PngGenerator();        
+
+        pngGenerator = new PngGenerator();
     }
-    
+
     /**
      * It seems like this method should be refactored.
-     * 
+     *
      */
     public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws IOException, ImageComparisonException, InterruptedException
     {
         OpenScadTestSuiteResults results = null;
-        
+
         OpenScadTestSuite.RunMode mode;
 
 // the first hachifufoo
@@ -72,7 +74,7 @@ public class OpenScadTestSuiteService
             mode = OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES;
         }
         else if(runProfile.diffOnly)
-        {                
+        {
             mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
         }
         else
@@ -90,7 +92,7 @@ public class OpenScadTestSuiteService
             if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
             {
                 results = new OpenScadTestSuiteResults();
-                
+
                 generateBaselines(runProfile);
             }
             else if( mode == OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
@@ -103,16 +105,16 @@ public class OpenScadTestSuiteService
                 results = runTestSuite(runProfile);
 
                 ImageComparisonResult compareResults = results.getCompareResults();
-                
+
                 if(compareResults.exceptionThrown)
                 {
                     int count = compareResults.errorFiles.size();
-                    
+
                     String message = "the test suite failed with " + count + " errors";
-                    
+
                     throw new ImageComparisonException(message);
                 }
-            }                
+            }
         }
 //        catch(Exception nsfe)
 //        {
@@ -125,7 +127,7 @@ public class OpenScadTestSuiteService
 //        }
 
         return results;
-    }    
+    }
 
     private void generateBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
@@ -140,41 +142,41 @@ public class OpenScadTestSuiteService
     }
 
     /**
-     * 
-     * 
-     * 
+     *
+     *
+     *
      * @param runProfile
      * @return The count of proposed baseline images generated.
      * @throws IOException
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
     public GeneratePngBaselineResults generateProposedBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
         // create the proposed baseline images every time the test suite is run
         boolean forcePngGeneration = true;
-        
+
         GeneratePngBaselineResults results = pngGenerator.generatePngs(forcePngGeneration,
                 runProfile);
-        
+
         boolean success = results.isSuccess();
-        
+
         if(success)
         {
             System.out.println("PNG generation succeeded.");
         }
         else
-        {            
+        {
             System.err.println();
             System.err.println("ERROR detected: Some PNGs were not generated.");
         }
-        
+
         return results;
     }
-    
+
     /**
-     * 
+     *
      * @param runProfile
-     * @return This method retuns a list of files that had an error with 
+     * @return This method retuns a list of files that had an error with
      *         baseline and proposed baseline comparison.
      */
     public ImageComparisonResult compareImages(RunProfile runProfile)
@@ -196,7 +198,7 @@ public class OpenScadTestSuiteService
         else
         {
             System.out.println( System.lineSeparator() );
-            
+
             if(results.exceptionThrown)
             {
                 System.out.println("Image comparison exceptions occured.");
@@ -205,28 +207,28 @@ public class OpenScadTestSuiteService
             {
                 System.out.println("The test suite detected " + results.errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
             }
-            
+
             System.out.println();
 
-            System.out.println("See the compare commands above.");        	
+            System.out.println("See the compare commands above.");
         }
 
         return results;
     }
-    
+
     /**
-     * 
+     *
      * @return a list of any files that did not pass the diff test
      */
     private ImageComparisonResult compareImages(List<Path> openscadPaths)
-    {	
+    {
         Class c = Collection.class;
-        
+
         ImageComparisonResult comparisonResults = new ImageComparisonResult();
-        
+
 	Stream.of( OpenScadCameraDirections.values() )
                 .parallel()
-              .forEach((OpenScadCameraDirections direction) -> 
+              .forEach((OpenScadCameraDirections direction) ->
         {
             openscadPaths.parallelStream().forEach((Path p) ->
             {
@@ -234,11 +236,11 @@ public class OpenScadTestSuiteService
                 Path parent = p.getParent();
                 directoryProfile.setPath(parent);
 
-                try 
+                try
                 {
                     loadDirectoryProperties(directoryProfile);
-                } 
-                catch (IOException ex) 
+                }
+                catch (IOException ex)
                 {
                     logger.severe("could not load directory properties for: " + p.toString() + " - " + ex.getMessage() );
                 }
@@ -253,10 +255,10 @@ public class OpenScadTestSuiteService
                 }
             });
         });
-	
+
 	return comparisonResults;
     }
-    
+
     private void compareOneImage(Path p, OpenScadCameraDirections direction, ImageComparisonResult comparisonResults)
     {
         boolean forceGeneration = false;
@@ -265,6 +267,10 @@ public class OpenScadTestSuiteService
         forceGeneration = true;
         String proposedBaseline = DataSetValidator.baselineNameFor(p, forceGeneration, direction);
 
+        OneImageComparisonResult result = new OneImageComparisonResult();
+        
+        result.setFile(baseline);        
+        
         try
         {
             LocalDateTime start = LocalDateTime.now();
@@ -276,9 +282,7 @@ public class OpenScadTestSuiteService
 
             Duration duration = Duration.between(start, end);
 
-            OneImageComparisonResult result = new OneImageComparisonResult();
             result.setDuration(duration);
-            result.setFile(baseline);
 
             // check if the exit code is 0 for success
             if(results.exitCode == 0)
@@ -287,49 +291,56 @@ public class OpenScadTestSuiteService
             }
             else
             {
-                comparisonResults.errorFiles.add(result);
-
-                System.out.println( results.processedStdErr.trim() );
-                System.out.print( results.processedStdOut.trim() );
+//TODO: check the travis-ci logs for this string                
+                System.out.println("does this ever execute?");
+//                comparisonResults.errorFiles.add(result);
+//
+//                System.out.println( results.processedStdErr.trim() );
+//                System.out.print( results.processedStdOut.trim() );
             }
         }
         catch (Exception e)
         {
             comparisonResults.exceptionThrown = true;
 
+            comparisonResults.errorFiles.add(result);
+
+//                System.out.println( results.processedStdErr.trim() );
+//                System.out.print( results.processedStdOut.trim() );            
+            
             String message = "An error occured while executing a diff command.";
             logger.log(Level.SEVERE, message, e);
-        }        
+        }
     }
-    
+
     private void deleteProposedBaselines(Path inpath) throws IOException
     {
         // find all the proposed baseline images
         List<File> proposedBaselines = findProposedBaselines(inpath);
-        
+
         // and delete them
-        proposedBaselines.forEach( pb -> 
+        proposedBaselines.forEach( pb ->
         {
             System.out.println("deleteing: " + pb.getPath() );
-            
+
             pb.delete();
         });
     }
 
 //TODO: move this to a TestSuiteReultsService class
     private String extractTopLevel(RunProfile runProfile, String fullPath)
-    {   
+    {
         // remove the project path
         fullPath = fullPath.replace(runProfile.path, "");
-        
+
         // account for running on MS Windows
         fullPath = fullPath.replace("\\", "/");
-        
+
         int begin = 0;
         int end = fullPath.indexOf("/");
 
         String topLevel = null;
-                
+
         if(end < 0)
         {
             // the file in the current directory
@@ -340,16 +351,16 @@ public class OpenScadTestSuiteService
             // the OpenSCAD file is in the current directory
             topLevel = fullPath.substring(begin, end);
         }
-        
+
         return topLevel;
     }
-    
+
     private List<File> findProposedBaselines(Path inpath) throws IOException
     {
         ProposedBaselineFinder finder = new ProposedBaselineFinder();
-        
+
         List<File> proposedBaselines = finder.find(inpath);
-        
+
         return proposedBaselines;
     }
 
@@ -360,13 +371,13 @@ public class OpenScadTestSuiteService
         {
             System.err.println("These top level directories have errors:");
         }
-        
+
         Map<String, Integer> topLevelHits = new HashMap();
-        
+
         failedOpenScadFiles.forEach(f ->
         {
             String topLevelKey = extractTopLevel(runProfile, f.getFile() );
-            
+
             Integer count = topLevelHits.get(topLevelKey);
             if(count == null)
             {
@@ -376,48 +387,49 @@ public class OpenScadTestSuiteService
             {
                 count += 1;
             }
-            
+
             topLevelHits.put(topLevelKey, count);
-        }); 
-        
+        });
+
         int total = topLevelHits.values()
                                 .stream()
                                 .mapToInt(Integer::intValue)
                                 .sum();
-        
+
         if(total > 0)
         {
-            System.out.println();        
+            System.out.println();
             System.out.println("top level count: " + total);
             System.out.println();
 
             topLevelHits.keySet()
                         .stream()
                         .sorted()
-                        .forEach(key -> 
+                        .forEach(key ->
                         {
                             System.out.println(key + ": " + topLevelHits.get(key) );
                         });
 
-            System.out.println();            
+            System.out.println();
         }
-    }    
-    
+    }
+
     public void printOpernScadVersion(RunProfile runProfile)
     {
 // TODO: print the version of OpenSCAD
     }
-    
+
 //TODO: move this to a TestSuiteReultsService class
     public void printValidationResults(List<String> missingBaselineFiles)
     {
 	System.out.println();
-	
+
         if (missingBaselineFiles.isEmpty())
         {
             String pwd = (new File(".")).getAbsolutePath();
             System.out.println("The current working directory is: " + pwd);
-            
+            System.out.println();
+
             System.out.println("All input files are present.");
         }
         else
@@ -428,14 +440,12 @@ public class OpenScadTestSuiteService
             System.err.println("Try running '--" + OpenScadTestSuite.GENERATE_BASELILNES +"' to generate the missing input files.");
         }
     }
-    
+
     private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws IOException, InterruptedException //throws Exception
     {
         GeneratePngBaselineResults pngGenerationResults = null;
-                
+
         ImageComparisonResult compareResults;
-                
-        System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
 
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
@@ -444,18 +454,18 @@ public class OpenScadTestSuiteService
         if (!missingPngs.isEmpty())
         {
             compareResults = new ImageComparisonResult();
-            
+
             compareResults.exceptionThrown = true;
-            
+
             System.err.println();
             System.err.println("The test suite will not continue with missing baseline PNG images.");
         }
         else
         {
             boolean proposedBaselineError = false;
-            
+
             boolean skipProposedBaselineGeneration = runProfile.diffOnly;
-            
+
             if(skipProposedBaselineGeneration)
             {
                 System.out.println("Generation of the proposed baselines PNGs is being skipped.");
@@ -465,13 +475,13 @@ public class OpenScadTestSuiteService
                 System.out.println();
                 System.out.println("The test suite is now generating proposed baseline images for each .oscad file.");
                 System.out.println();
-                
+
                 printOpernScadVersion(runProfile);
-                
+
                 pngGenerationResults = generateProposedBaselines(runProfile);
-                
+
                 int count = pngGenerationResults.getPathDurations().size();
-                
+
                 // check if the count is less than 0
                 if(count < 0)
                 {
@@ -489,13 +499,13 @@ public class OpenScadTestSuiteService
             if(proposedBaselineError)
             {
                 compareResults = new ImageComparisonResult();
-                
+
                 compareResults.exceptionThrown = true;
-                
+
                 // halt the test execution and let the user know about errors
                 String message = "Not all proposed baseline PNGs were generated.  ";
                 message += "Please correct the errors to allow the test suite to continue";
-                
+
                 System.err.println(message);
             }
             else
@@ -503,30 +513,30 @@ public class OpenScadTestSuiteService
                 compareResults = compareImages(runProfile);
             }
         }
-        
+
         OpenScadTestSuiteResults testSuiteResults = new OpenScadTestSuiteResults();
-        
+
         testSuiteResults.setCompareResults(compareResults);
         testSuiteResults.setPngGenerationResults(pngGenerationResults);
-        
+
         return testSuiteResults;
     }
-    
-//TODO: move this to a TestSuiteReultsService class    
+
+//TODO: move this to a TestSuiteReultsService class
     public void saveErrorPngFilenames(List<OneImageComparisonResult> errorFiles) throws IOException
     {
         File pwd = new File(".");
 
         final List<String> filepaths = new ArrayList();
-        
+
         errorFiles.forEach(ef ->
-        {            
+        {
             filepaths.add(ef.getFile() );
-            
+
             String proposed = ef.getFile().replace("-baseline.", "-proposed-baseline.");
             filepaths.add(proposed);
         });
-        
+
         // correct the paths for the pwd on the build server (Travis-CI)
         String pathPrefix = "openscad/models/";
         List<String> lines = filepaths.stream()
@@ -545,51 +555,51 @@ public class OpenScadTestSuiteService
             System.out.print("The target file does not exist: " + parent.getAbsolutePath() );
             System.out.println(", so the errorred file names are not being written.");
             System.out.println("The pwd is: " + pwd.getAbsolutePath() );
-        }        
-    }    
+        }
+    }
 
 //TODO: move this to a TestSuiteReultsService class
-    public List<OneImageComparisonResult> longestComparisons(ImageComparisonResult compareResults) 
+    public List<OneImageComparisonResult> longestComparisons(ImageComparisonResult compareResults)
     {
         int limit = 15;
-        
+
         List<OneImageComparisonResult> allResults = new ArrayList();
-        
+
         allResults.addAll(compareResults.errorFiles);
         allResults.addAll(compareResults.successFiles);
-        
+
         int total = allResults.size();
-        
+
         int skip = total - limit;
-        
+
         skip = skip < 0 ? 0 : skip;
-        
+
         List<OneImageComparisonResult> sortedResults = allResults.stream()
                 .sorted( Comparator.comparingLong(oicr ->  oicr.getDuration().toMillis() ) )
                 .skip(skip)
                 .collect(Collectors.toList());
-        
+
         return sortedResults;
     }
 
 //TODO: move this to a TestSuiteReultsService class
-    public Map<Path, Duration> proposedPngGenerationDurations(GeneratePngBaselineResults results) 
+    public Map<Path, Duration> proposedPngGenerationDurations(GeneratePngBaselineResults results)
     {
         int limit = 15;
-        
+
         int total = results.getPathDurations().size();
-        
+
         int skip = total - limit;
-        
+
         skip = skip < 0 ? 0 : skip;
-        
+
         Map<Path, Duration> sortedMap = results.getPathDurations()
                 .entrySet()
                 .stream()
                 .sorted((Map.Entry.<Path, Duration>comparingByValue()))
                 .skip(skip)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        
+
         return sortedMap;
     }
 }

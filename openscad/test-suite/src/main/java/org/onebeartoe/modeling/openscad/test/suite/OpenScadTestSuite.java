@@ -171,8 +171,9 @@ public class OpenScadTestSuite
         List<String> remainingArgs = cmd.getArgList();
         
         System.out.println("Remaining args:");
-        remainingArgs.forEach(a -> System.out.println(a));
-
+        remainingArgs.forEach(a -> System.out.println("\t" + a));
+        System.out.println();
+        
         if( remainingArgs.isEmpty() )
         {
             // by default, use the current directory as the path if no 
@@ -194,7 +195,7 @@ public class OpenScadTestSuite
     {
         System.out.println("Commandline args:");
         Stream<String> stream = Arrays.stream(args);
-        stream.forEach( System.out::println );
+        stream.forEach(a ->  System.out.println("\t" + a) );
         System.out.println();
     }
     
