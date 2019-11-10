@@ -3,7 +3,7 @@ package org.onebeartoe.modeling.openscad.test.suite.model;
 
 import java.nio.file.Path;
 import java.util.List;
-import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
 
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
@@ -24,5 +24,5 @@ public class RunProfile
     
     public List<Path> openscadPaths;
     
-    public OpenScadTestSuite.RunMode mode;
+    public OpenScadCliTestSuite.RunMode mode;
 }

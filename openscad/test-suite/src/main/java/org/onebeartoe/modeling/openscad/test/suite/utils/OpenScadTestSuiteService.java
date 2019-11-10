@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
-import org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
 import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
@@ -62,24 +62,24 @@ public class OpenScadTestSuiteService
     {
         OpenScadTestSuiteResults results = null;
 
-        OpenScadTestSuite.RunMode mode;
+        OpenScadCliTestSuite.RunMode mode;
 
-// the first hachifufoo
+//TODO: the first hachifufoo
         if(runProfile.generateBaselines)
         {
-            mode = OpenScadTestSuite.RunMode.GENERATE_BASELINES;
+            mode = OpenScadCliTestSuite.RunMode.GENERATE_BASELINES;
         }
         else if(runProfile.deleteProposedBaseLines)
         {
-            mode = OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES;
+            mode = OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES;
         }
         else if(runProfile.diffOnly)
         {
-            mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
+            mode = OpenScadCliTestSuite.RunMode.RUN_TEST_SUITE;
         }
         else
         {
-            mode = OpenScadTestSuite.RunMode.RUN_TEST_SUITE;
+            mode = OpenScadCliTestSuite.RunMode.RUN_TEST_SUITE;
         }
 
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
@@ -89,7 +89,7 @@ public class OpenScadTestSuiteService
         {
             runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
-            if(mode == OpenScadTestSuite.RunMode.GENERATE_BASELINES)
+            if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
             {
                 results = new OpenScadTestSuiteResults();
 
@@ -101,7 +101,7 @@ public class OpenScadTestSuiteService
                 
                 generateBaselines(runProfile);
             }
-            else if( mode == OpenScadTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
+            else if( mode == OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
             {
                 deleteProposedBaselines(inpath);
             }
@@ -442,7 +442,7 @@ public class OpenScadTestSuiteService
             int count = missingBaselineFiles.size();
             System.err.println("Some " + count + " test suite input files are not present.");
             System.err.println();
-            System.err.println("Try running '--" + OpenScadTestSuite.GENERATE_BASELILNES +"' to generate the missing input files.");
+            System.err.println("Try running '--" + OpenScadCliTestSuite.GENERATE_BASELILNES +"' to generate the missing input files.");
         }
     }
 

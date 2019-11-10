@@ -24,7 +24,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResul
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 
-public class OpenScadTestSuite
+public class OpenScadCliTestSuite
 {        
     private Logger logger;
     
@@ -34,7 +34,7 @@ public class OpenScadTestSuite
     private static final String OPENSCAD_PATH = "openscadPath";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
 
-    public OpenScadTestSuite()
+    public OpenScadCliTestSuite()
     {
         String name = getClass().getName(); 
         logger = Logger.getLogger(name);

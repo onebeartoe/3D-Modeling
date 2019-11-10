@@ -58,7 +58,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.onebeartoe.modeling.openscad.test.suite.OpenScadTestSuite</mainClass>
+                            <mainClass>org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
