@@ -14,6 +14,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResu
 import org.onebeartoe.modeling.openscad.test.suite.utils.DataSetValidator;
 import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
+import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonException;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.DataProvider;
@@ -53,8 +54,6 @@ public class OpenScadTestSuiteSpecification
         runProfile = new RunProfile();
 
         runProfile.executablePath = "openscad";
-//TODO: use the nightly version, since it is the latest version?
-//        runProfile.executablePath = "openscad-nightly";
 
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
@@ -177,13 +176,11 @@ public class OpenScadTestSuiteSpecification
         return "src/main/openscad/";
     }
 
-    
-//    @Test(dataProvider="errorFiles", groups = {"openscad-test-suite"})
     /**
      * 
      */
     @Test(dataProvider="errorFiles")
-    public void reportErrors(boolean passed, String comparisonFile) throws Exception
+    public void reportErrors(boolean passed, String comparisonFile) throws ImageComparisonException
     {
         if(passed)
         {
@@ -193,7 +190,7 @@ public class OpenScadTestSuiteSpecification
         {
             String message = "The comparison failed for: " + comparisonFile;
 
-            throw new Exception(message);
+            throw new ImageComparisonException(message);
         }
     }
 }
