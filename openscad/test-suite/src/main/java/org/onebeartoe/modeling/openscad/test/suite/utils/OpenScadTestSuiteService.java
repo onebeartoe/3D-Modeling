@@ -96,7 +96,6 @@ public class OpenScadTestSuiteService
                 results.setCompareResults( new ImageComparisonResult() );
                 
                 GeneratePngBaselineResults gpnr = new GeneratePngBaselineResults();
-//                gpnr.
                 
                 results.setPngGenerationResults( gpnr );
                 
@@ -202,8 +201,6 @@ public class OpenScadTestSuiteService
         }
         else
         {
-            System.out.println( System.lineSeparator() );
-
             if(results.exceptionThrown)
             {
                 System.out.println("Image comparison exceptions occured.");
@@ -296,20 +293,20 @@ public class OpenScadTestSuiteService
             }
             else
             {
-//TODO: check the travis-ci logs for this string                
-                System.out.println("does this ever execute?");
-                System.out.println();
-                
-//                comparisonResults.errorFiles.add(result);
-//
-//                System.out.println( results.processedStdErr.trim() );
-//                System.out.print( results.processedStdOut.trim() );
+                comparisonResults.exceptionThrown = true;
+            
+                comparisonResults.errorFiles.add(result);
+
+                System.out.println( results.processedStdErr.trim() );
+                System.out.print( results.processedStdOut.trim() );
             }
         }
         catch (Exception e)
         {
             comparisonResults.exceptionThrown = true;
 
+            result.setDuration(Duration.ofMillis( Long.MAX_VALUE ));
+                        
             comparisonResults.errorFiles.add(result);
 
 //                System.out.println( results.processedStdErr.trim() );
