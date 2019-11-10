@@ -5,7 +5,7 @@
 //    Released under the Creative Commons CC - BY 3.0 licence
 //    Details here: https://creativecommons.org/licenses/by/3.0/
 //
-// customizer modifications by Roberto Marquez inclue cylinder and sphere options
+// customizer modifications by Roberto Marquez include cylinder and sphere options
 //    https://www.thingiverse.com/onebeartoe/designs
 
 module sineVase(internalCutout_bottomRadius, vaseType)
@@ -43,7 +43,7 @@ module sineVase(internalCutout_bottomRadius, vaseType)
 
                         color("blue")
                         translate([sphereHeight, 0, 0])
-                        sphere(r = 5);
+                        sphere(r = 5, $fn = 50);
                     }
                     else
                     {
@@ -63,6 +63,16 @@ module sineVase(internalCutout_bottomRadius, vaseType)
                                 // the cosine function (layers*15) makes the bumps also occur in the Z axis as they go up. If you removed this, the vase becomes very straight
                     }
                 }
+            }
+
+            if( vaseType == "sphere")
+            {
+                // add a bottom disk
+
+                baseRadius = basewidth - 6;
+
+                color("green")
+                cylinder(r = baseRadius, h = 5, $fn = 20);
             }
         }
 
