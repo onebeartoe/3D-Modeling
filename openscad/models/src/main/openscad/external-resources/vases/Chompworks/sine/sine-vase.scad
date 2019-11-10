@@ -8,13 +8,18 @@
 // customizer modifications by Roberto Marquez include cylinder and sphere options
 //    https://www.thingiverse.com/onebeartoe/designs
 
-module sineVase(internalCutout_bottomRadius, vaseType)
+module sineVase(internalCutout_bottomRadius,
+                vaseMode = false,
+                vaseMode_topChopOff_zOffset,
+                vaseType)
 {
     step=4; // number of degrees to step for each cuboid element
 
     maxlayers=100; // max number of layers. More layers slows down compilation on [F6], but makes the vase taller
 
     basewidth=50; // basic length of a cuboid
+
+    internalCutout_TopRadius = internalCutout_bottomRadius + 22;
 
     difference() // Take away the two parts at the bottom
     {
@@ -65,7 +70,7 @@ module sineVase(internalCutout_bottomRadius, vaseType)
                 }
             }
 
-            if( vaseType == "sphere")
+            if(vaseType == "sphere")
             {
                 // add a bottom disk
 
@@ -74,15 +79,35 @@ module sineVase(internalCutout_bottomRadius, vaseType)
                 color("green")
                 cylinder(r = baseRadius, h = 5, $fn = 20);
             }
+
+            if(vaseMode)
+            {
+
+            }
         }
 
         //this removes the cone base and leaves a flat base for the vase
         translate([-500,-500,-100])
         cube([1000,1000,100]);
 
-        // this adds an internal hollow, 5mm up from the base
-        internalCutout_TopRadius = internalCutout_bottomRadius + 22;
-        translate([0,0,5])
-        cylinder(r1 = internalCutout_bottomRadius, r2 = internalCutout_TopRadius, h = maxlayers * 2, $fn = 360/step);
+        if(vaseMode)
+        {
+            // chop off the top of the vaseMode
+
+            topChopOffRadis = internalCutout_TopRadius + 20;
+
+            topChopOff_zTranslate = maxlayers + vaseMode_topChopOff_zOffset;
+
+            color("pink")
+            translate([0, 0, topChopOff_zTranslate])
+            cylinder(r = topChopOffRadis, h = 70);
+        }
+        else
+        {
+            // this adds an internal hollow, 5mm up from the base
+
+            translate([0,0,5])
+            cylinder(r1 = internalCutout_bottomRadius, r2 = internalCutout_TopRadius, h = maxlayers * 2, $fn = 360/step);
+        }
     }
 }
