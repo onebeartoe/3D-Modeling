@@ -98,19 +98,22 @@ public class OpenScadTestSuite
             
             testService.saveErrorPngFilenames(compareResults.getCompareResults().errorFiles);
             
-            List<OneImageComparisonResult> sortedComparisonResults = testService.longestComparisons(compareResults.getCompareResults());
-            System.out.println();
-            System.out.println("PNG comparison durations:");        
-            sortedComparisonResults.forEach(System.out::println);
-        
-            System.out.println();
-            System.out.println("proposed PNG generation durations:");            
-            Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(compareResults.getPngGenerationResults());
-
-            sortedResults.forEach( (k, v) -> 
+            if(runProfile.mode == RunMode.RUN_TEST_SUITE)
             {
-                System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
-            });
+                List<OneImageComparisonResult> sortedComparisonResults = testService.longestComparisons(compareResults.getCompareResults());
+                System.out.println();
+                System.out.println("PNG comparison durations:");        
+                sortedComparisonResults.forEach(System.out::println);
+
+                System.out.println();
+                System.out.println("proposed PNG generation durations:");            
+                Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(compareResults.getPngGenerationResults());
+
+                sortedResults.forEach( (k, v) -> 
+                {
+                    System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
+                });
+            }
             
             Instant end = Instant.now();
         
