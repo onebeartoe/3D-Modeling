@@ -11,6 +11,8 @@ import java.nio.file.Path;
 public class DirectoryProfile
 {
     private Path path;
+
+    private boolean autoCenter;
     
     private boolean viewall;
     
@@ -19,6 +21,11 @@ public class DirectoryProfile
     public DirectoryProfile()
     {
         viewall = true;
+    }
+
+    public boolean autoCenter()
+    {
+        return autoCenter;
     }
     
     public Path getPath()
@@ -35,6 +42,10 @@ public class DirectoryProfile
         return viewall;
     }
     
+    public void setAutoCenter(boolean autoCenter)
+    {
+        this.autoCenter = autoCenter;
+    }
     public void setViewall(boolean viewall)
     {
         this.viewall = viewall;

@@ -159,14 +159,17 @@ public class PngGenerator
             // The OpenSCAD executable --camera option takes these parameters: translatex,y,z,rotx,y,z,dist
             int distance = 250;
             String rotateParams = direction.getRotateParams().replace(" ", "");
-            
+
+            // The --viewall parameter is used to make sure the entire model is in view.            
             boolean viewall = directoryProfile.viewall();
+
+            boolean autoCenter = directoryProfile.autoCenter();
             
-            // The --viewall parameter is used to make sure the entire model is in view.
             String command = runProfile.executablePath
                     + " -o " + outfileName + " " 
                     + "--camera=0,0,0," + rotateParams + "," + distance + " "
                     + (viewall ? "--viewall" + " " : "")
+                    + (autoCenter ? "--autocenter" + " " : "")
                     + infilePath;
             
             exitCode = generate(command, runProfile);
@@ -284,6 +287,10 @@ public class PngGenerator
             boolean viewAll = Boolean.parseBoolean(viewallValue);
 
             directoryProfile.setViewall(viewAll);
+            
+            String p = properties.getProperty("autoCenter");
+            boolean autoCenter = Boolean.parseBoolean(p);
+            directoryProfile.setAutoCenter(autoCenter);
             
             String s = properties.getProperty("skipPngGeneration");
             if( !StringUtil.isBlank(s) )
