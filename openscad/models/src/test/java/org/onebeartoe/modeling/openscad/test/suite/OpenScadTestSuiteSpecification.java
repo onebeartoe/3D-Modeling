@@ -22,11 +22,8 @@ import org.testng.annotations.Test;
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public abstract class OpenScadTestSuiteSpecification
-{
-//TODO remove this
-    public abstract void willItWork();
-    
+public class OpenScadTestSuiteSpecification
+{    
     protected Logger logger;
     
     private RunProfile runProfile;
