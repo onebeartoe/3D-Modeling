@@ -19,11 +19,10 @@ import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteServic
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-//TODO: rename this to ***Specification :)
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public abstract class OpenScadTestSuiteTest
+public abstract class OpenScadTestSuiteSpecification
 {
 //TODO remove this
     public abstract void willItWork();
@@ -36,7 +35,7 @@ public abstract class OpenScadTestSuiteTest
     
     private GeneratePngBaselineResults pngGenerationResults;
     
-    public OpenScadTestSuiteTest() throws Exception
+    public OpenScadTestSuiteSpecification() throws Exception
     {
         File pwd = new File(".");
       
