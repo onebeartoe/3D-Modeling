@@ -557,7 +557,7 @@ public class OpenScadTestSuiteService
         else
         {
             System.out.println();
-            System.out.print("The target file does not exist: " + parent.getAbsolutePath() );
+            System.out.print("The target/ directory does not exist: " + parent.getAbsolutePath() );
             System.out.println(", so the errorred file names are not saved.");
             System.out.println();
             
