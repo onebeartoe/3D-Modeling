@@ -122,15 +122,6 @@ public class OpenScadTestSuiteService
                 }
             }
         }
-//        catch(Exception nsfe)
-//        {
-//            File pwd = new File(".");
-//            System.err.println("pwd: " + pwd.getAbsolutePath() );
-//
-//            nsfe.printStackTrace();
-//
-//            throw new Exception(nsfe);
-//        }
 
         return results;
     }
