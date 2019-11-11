@@ -7,7 +7,7 @@ module heart(height=1)
 }
 
 module heartThumbnail(height=1)
-{	
+{
     xyScale = 0.725;
     translate([0, -1.5, 0])
     scale([xyScale, xyScale, 1])
@@ -18,9 +18,15 @@ module flatHeart()
 {
     square(20, center = true);
 
-    translate([10,0,0])	
-    circle(10, center = true, color="red" );
+    translate([10,0,0])
+    circle(10
+//        , center = true
+);
+//    circle(10, center = true);
 
-    translate([0,10,0]) 
-    circle(10, center = true);
+    translate([0,10,0])
+    circle(10
+//        , center = true
+    );
+//    circle(10, center = true);
 }
