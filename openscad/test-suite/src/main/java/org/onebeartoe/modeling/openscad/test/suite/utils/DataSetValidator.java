@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
+import org.onebeartoe.application.logging.SysoutLoggerFactory;
 import org.onebeartoe.modeling.openscad.test.suite.model.GlobalVariables;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 
@@ -18,7 +19,7 @@ import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
  */
 public class DataSetValidator
 {
-    private Logger logger = Logger.getLogger("DataSetValidator");
+    private Logger logger = SysoutLoggerFactory.getLogger("DataSetValidator");
     
     private static String baselineNameFor(Path scadFile, OpenScadCameraDirections direction)
     {
@@ -79,9 +80,9 @@ public class DataSetValidator
         
         if(missingFiles.size() > 0)
         {
-            System.err.println();
-            System.err.println("missing input files:");
-            missingFiles.forEach(mf -> {System.err.println(mf);});            
+            logger.severe("Input files are missing:\n");
+            
+            missingFiles.forEach(mf -> { logger.severe(mf + "\n"); });            
         }
         
         return missingFiles;
