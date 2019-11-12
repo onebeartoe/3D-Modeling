@@ -8,18 +8,31 @@
 // customizer modifications by Roberto Marquez include cylinder and sphere options
 //    https://www.thingiverse.com/onebeartoe/designs
 
+use <../../../../shapes/heart/heart.scad>
+
 module sineVase(internalCutout_bottomRadius,
+                internalCutout_TopRadiusOffset = 22,
                 vaseMode = false,
                 vaseMode_topChopOff_zOffset,
-                vaseType)
-{
-    step=4; // number of degrees to step for each cuboid element
+                vaseType
 
+
+
+,
+heart_xRotate,
+heart_yRotate,
+heart_zRotate
+
+            )
+{
+    step = 4; // number of degrees to step for each cuboid element
+
+//    maxlayers = 1;
     maxlayers=100; // max number of layers. More layers slows down compilation on [F6], but makes the vase taller
 
     basewidth=50; // basic length of a cuboid
 
-    internalCutout_TopRadius = internalCutout_bottomRadius + 22;
+    internalCutout_TopRadius = internalCutout_bottomRadius + internalCutout_TopRadiusOffset;
 
     difference() // Take away the two parts at the bottom
     {
@@ -42,6 +55,16 @@ module sineVase(internalCutout_bottomRadius,
 
                         cylinder(r=2, h=cylinderHeight, $fn=20);
                     }
+                    else if( vaseType == "heart")
+                    {
+                        heartHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
+
+                        color("red")
+                        translate([heartHeight, 0, 0])
+                        rotate([heart_xRotate, heart_yRotate, heart_zRotate])
+                        scale([0.25, 0.25, 0.25])
+                        heartThumbnail(height =10);
+                    }
                     else if( vaseType == "sphere")
                     {
                         sphereHeight = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
@@ -52,6 +75,8 @@ module sineVase(internalCutout_bottomRadius,
                     }
                     else
                     {
+                        // cube is the default
+
                         cube_xLength = basewidth + (layers/maxlayers*30) + 10*cos(layers*15) * sin(angle*8);
 
         				cube([cube_xLength, 4, 4]);
@@ -70,7 +95,8 @@ module sineVase(internalCutout_bottomRadius,
                 }
             }
 
-            if(vaseType == "sphere")
+            if(vaseType == "sphere"
+                || vaseType == "heart")
             {
                 // add a bottom disk
 
@@ -78,11 +104,6 @@ module sineVase(internalCutout_bottomRadius,
 
                 color("green")
                 cylinder(r = baseRadius, h = 5, $fn = 20);
-            }
-
-            if(vaseMode)
-            {
-
             }
         }
 
