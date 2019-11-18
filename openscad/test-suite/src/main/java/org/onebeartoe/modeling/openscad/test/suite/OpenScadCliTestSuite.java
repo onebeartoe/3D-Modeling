@@ -20,13 +20,14 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
+import org.onebeartoe.application.logging.SysoutLoggerFactory;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 
 public class OpenScadCliTestSuite
 {        
-    private Logger logger;
+    private static Logger logger;
     
     private static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
     private static final String DIFF_ONLY = "diffOnly";
@@ -37,7 +38,8 @@ public class OpenScadCliTestSuite
     public OpenScadCliTestSuite()
     {
         String name = getClass().getName(); 
-        logger = Logger.getLogger(name);
+        
+        logger = SysoutLoggerFactory.getLogger(name);
     }
     
     private static Options buildOptions()
@@ -113,14 +115,15 @@ public class OpenScadCliTestSuite
                 {
                     System.out.println(v.getSeconds() + "." + v.getNano() + " - " + k); 
                 });
+
+                logger.info("\n");
             }
             
             Instant end = Instant.now();
         
             DurationService durationService = new DurationService();
-            String message = durationService.durationMessage(start, end);
-            System.out.println();
-            System.out.println(message);
+            String message = "The test suite ran " + durationService.durationMessage(start, end);
+            logger.info(message);
         }
         catch(UnrecognizedOptionException uoe)
         {
