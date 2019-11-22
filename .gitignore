@@ -9,6 +9,7 @@
 **/nb-configuration.xml
 **/nbactions-release-profile.xml
 **/.vscode/
+**/openscad-vs-code-workspace
 
 /openscad/inline-tool/target/
 /openscad/models/target
