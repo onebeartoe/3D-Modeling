@@ -1,20 +1,18 @@
 
 use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 
-module halfCirclePhoneStand()
+module halfCirclePhoneStand(minkowskiSphereRadius = 0.5)
 {
     
 
-    halfCirclePhoneStand_stand_base();
+    halfCirclePhoneStand_stand_base(minkowskiSphereRadius = minkowskiSphereRadius);
 }
 
 
 // sub-modules and functions follow
 
-module halfCirclePhoneStand_stand_base()
+module halfCirclePhoneStand_stand_base(minkowskiSphereRadius)
 {
-    minkowskiSphereRadius = 0.5;
-
     color("green")
     translate([0, 0, minkowskiSphereRadius])
     roundDoughnut(height = 19.125,
