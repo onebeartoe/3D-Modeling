@@ -34,13 +34,6 @@ public class OpenScadCliTestSuite
     public static final String GENERATE_BASELILNES = "generateBaselines";
     private static final String OPENSCAD_PATH = "openscadPath";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
-
-    public OpenScadCliTestSuite()
-    {
-        String name = getClass().getName(); 
-        
-        logger = SysoutLoggerFactory.getLogger(name);
-    }
     
     private static Options buildOptions()
     {
@@ -85,7 +78,12 @@ public class OpenScadCliTestSuite
 //TODO: refactor this to use a onebeartoe CliApplet API    
     public static void main(String[] args) throws Throwable
     {
+        String name = OpenScadCliTestSuite.class.getName(); 
+        
+        logger = SysoutLoggerFactory.getLogger(name);
+
         Options options = buildOptions();
+
         try
         {
             RunProfile runProfile = parseRunProfile(args, options);
