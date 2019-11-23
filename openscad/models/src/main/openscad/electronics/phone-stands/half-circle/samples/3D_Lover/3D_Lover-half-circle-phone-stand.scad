@@ -1,4 +1,10 @@
 
+/**
+  * This version is a replica of the one from 3D_Lover found on Thingiverse.
+  *
+  *     https://www.thingiverse.com/thing:1746053
+  */
+
 use <../../half-circle-phone-stand.scad>
 
 //difference()
