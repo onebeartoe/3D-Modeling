@@ -24,15 +24,18 @@ module halfCirclePhoneStand_cradle(height,
                                    radius,
                                    radiusExtension)
 {
-    halfCirclePhoneStand_cradle_bed(height = height,
-                                       minkowskiSphereRadius = minkowskiSphereRadius,
-                                       radius = radius,
-                                       radiusExtension = radiusExtension);
+    difference()
+    {
+        halfCirclePhoneStand_cradle_bed(height = height,
+                                           minkowskiSphereRadius = minkowskiSphereRadius,
+                                           radius = radius,
+                                           radiusExtension = radiusExtension);
 
-    halfCirclePhoneStand_cradle_cutout(height = height,
-                                       minkowskiSphereRadius = minkowskiSphereRadius,
-                                       radius = radius,
-                                       radiusExtension = radiusExtension);
+        halfCirclePhoneStand_cradle_cutout(bedHeight = height,
+                                        minkowskiSphereRadius = minkowskiSphereRadius,
+                                        radius = radius,
+                                        radiusExtension = radiusExtension);
+    }
 }
 
 module halfCirclePhoneStand_cradle_bed(height,
@@ -40,12 +43,12 @@ module halfCirclePhoneStand_cradle_bed(height,
                                        radius,
                                        radiusExtension)
 {
-    xTranslate = 30;      // 29.9
-    yTranslate = 32.7;      // 32.6
-    zTranslate = minkowskiSphereRadius + 0;     // 0.13;
+    xTranslate = 30;
+    yTranslate = 32.7;
+    zTranslate = minkowskiSphereRadius;
     color("magenta")
     translate([xTranslate, yTranslate, zTranslate])
-    rotate([0, 0, 213])     // 212
+    rotate([0, 0, 213])     
     roundedRectangularArc(angle = 150,
                           height = height,
                           minkowskiRadius = minkowskiSphereRadius,
@@ -53,16 +56,24 @@ module halfCirclePhoneStand_cradle_bed(height,
                           radiusExtension = radiusExtension);
 }
 
-module halfCirclePhoneStand_cradle_cutout(height,
-                                   minkowskiSphereRadius,
-                                   radius,
-                                   radiusExtension)
+module halfCirclePhoneStand_cradle_cutout(bedHeight,
+                                          minkowskiSphereRadius,
+                                          radius,
+                                          radiusExtension)
 {
-    zLength = 5;
+    zLength = 4.2;    
 
-    zTranslate = minkowskiSphereRadius + (height / 2.0) - (zLength / 2.0);
-
-
+    xTranslate = 30;
+    yTranslate = 32.7;
+    zTranslate = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
+    color("magenta")
+    translate([xTranslate, yTranslate, zTranslate])
+    rotate([0, 0, 227])     
+    roundedRectangularArc(angle = 37,
+                          height = zLength,
+                          minkowskiRadius = minkowskiSphereRadius,
+                          radius = radius,
+                          radiusExtension = radiusExtension);
 }
 
 module halfCirclePhoneStand_stand(height,
