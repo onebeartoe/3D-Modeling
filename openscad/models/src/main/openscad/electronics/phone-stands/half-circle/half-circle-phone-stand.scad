@@ -4,10 +4,14 @@ use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
 
 module halfCirclePhoneStand(height = 19.125,
-                            minkowskiSphereRadius = 0.5)
+                            minkowskiSphereRadius = 0.5,
+                            arcRadius = 36,
+                            arcRadiusExtension = 1.5)
 {
     halfCirclePhoneStand_cradle(height = height,
-                                minkowskiSphereRadius = minkowskiSphereRadius);
+                                minkowskiSphereRadius = minkowskiSphereRadius,
+                                radius = arcRadius,
+                                radiusExtension = arcRadiusExtension);
 
     halfCirclePhoneStand_stand(height = height,
                                minkowskiSphereRadius = minkowskiSphereRadius);
@@ -16,7 +20,25 @@ module halfCirclePhoneStand(height = 19.125,
 // sub-modules and functions follow
 
 module halfCirclePhoneStand_cradle(height,
-                                   minkowskiSphereRadius)
+                                   minkowskiSphereRadius,
+                                   radius,
+                                   radiusExtension)
+{
+    halfCirclePhoneStand_cradle_bed(height = height,
+                                       minkowskiSphereRadius = minkowskiSphereRadius,
+                                       radius = radius,
+                                       radiusExtension = radiusExtension);
+
+    halfCirclePhoneStand_cradle_cutout(height = height,
+                                       minkowskiSphereRadius = minkowskiSphereRadius,
+                                       radius = radius,
+                                       radiusExtension = radiusExtension);
+}
+
+module halfCirclePhoneStand_cradle_bed(height,
+                                       minkowskiSphereRadius,
+                                       radius,
+                                       radiusExtension)
 {
     xTranslate = 30;      // 29.9
     yTranslate = 32.7;      // 32.6
@@ -25,12 +47,22 @@ module halfCirclePhoneStand_cradle(height,
     translate([xTranslate, yTranslate, zTranslate])
     rotate([0, 0, 213])     // 212
     roundedRectangularArc(angle = 150,
-
-//TODO: fix/remove the height adjustment
-height = height,
+                          height = height,
                           minkowskiRadius = minkowskiSphereRadius,
-                          radius = 36,   // 36
-                          radiusExtension = 1.5);   // 1.3
+                          radius = radius,
+                          radiusExtension = radiusExtension);
+}
+
+module halfCirclePhoneStand_cradle_cutout(height,
+                                   minkowskiSphereRadius,
+                                   radius,
+                                   radiusExtension)
+{
+    zLength = 5;
+
+    zTranslate = minkowskiSphereRadius + (height / 2.0) - (zLength / 2.0);
+
+
 }
 
 module halfCirclePhoneStand_stand(height,
