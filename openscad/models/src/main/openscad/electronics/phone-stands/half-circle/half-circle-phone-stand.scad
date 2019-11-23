@@ -18,17 +18,19 @@ module halfCirclePhoneStand(height = 19.125,
 module halfCirclePhoneStand_cradle(height,
                                    minkowskiSphereRadius)
 {
+    xTranslate = 30;      // 29.9
+    yTranslate = 32.7;      // 32.6
     zTranslate = minkowskiSphereRadius + 0;     // 0.13;
-    color("pink")
-    translate([28.2, 31.2, zTranslate])
-    rotate([0, 0, 211])
-    roundedRectangularArc(angle = 156,
+    color("magenta")
+    translate([xTranslate, yTranslate, zTranslate])
+    rotate([0, 0, 213])     // 212
+    roundedRectangularArc(angle = 150,
 
 //TODO: fix/remove the height adjustment
 height = height,
                           minkowskiRadius = minkowskiSphereRadius,
-                          radius = 34.89,
-                          radiusExtension = 0.8);
+                          radius = 36,   // 36
+                          radiusExtension = 1.5);   // 1.3
 }
 
 module halfCirclePhoneStand_stand(height,
@@ -65,3 +67,6 @@ module halfCirclePhoneStand_stand_top(height,
                 outerRadius = 2.6,  // 2.6
                 minkowskiSphereRadius = minkowskiSphereRadius);
 }
+
+
+
