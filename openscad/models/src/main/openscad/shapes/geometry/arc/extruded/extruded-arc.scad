@@ -9,12 +9,12 @@ module rectangularArc(radius, radiusExtension, angle, height)
         angle = angle);
 }
 
-module roundedRectangularArc(angle,
-                             height,
-                             radius, 
-                             radiusExtension,
-                             minkowskiFn,
-                             minkowskiRadius)
+module roundedRectangularArc(angle = 111,
+                             height = 10,
+                             radius = 20, 
+                             radiusExtension = 2,
+                             minkowskiFn = 10,
+                             minkowskiRadius = 1)
 {
     minkowski()
     {    

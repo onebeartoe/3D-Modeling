@@ -7,6 +7,3 @@ roundedRectangularArc(angle = 111,
                       radiusExtension = 2,
                       minkowskiFn = 10,
                       minkowskiRadius = 1);
-
-
-
