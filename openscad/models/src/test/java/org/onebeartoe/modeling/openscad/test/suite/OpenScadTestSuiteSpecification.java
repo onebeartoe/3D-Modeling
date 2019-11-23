@@ -23,7 +23,8 @@ import org.testng.annotations.Test;
 /**
  * @author Roberto Marquez <https://www.youtube.com/user/onebeartoe>
  */
-public class OpenScadTestSuiteSpecification
+//TODO rename this OpenScadModelSpecifications
+ public class OpenScadTestSuiteSpecification
 {    
     protected Logger logger;
     
@@ -173,7 +174,20 @@ public class OpenScadTestSuiteSpecification
     
     protected String getRootTargetPath()
     {
-        return "src/main/openscad/";
+        boolean useSubpath = true;
+
+        String path;
+
+        if(useSubpath)
+        {
+            path = "src/main/openscad/electronics/phone-stands/half-circle/";
+        }
+        else
+        {
+            path = "src/main/openscad/";
+        }
+
+        return path;
     }
 
     /**
