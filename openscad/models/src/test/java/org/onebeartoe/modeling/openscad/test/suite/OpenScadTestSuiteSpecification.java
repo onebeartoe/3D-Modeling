@@ -174,6 +174,7 @@ import org.testng.annotations.Test;
     
     protected String getRootTargetPath()
     {
+//TODO: set this back to false!!!!!        
         boolean useSubpath = true;
 
         String path;
@@ -194,7 +195,7 @@ import org.testng.annotations.Test;
      * 
      */
     @Test(dataProvider="errorFiles")
-    public void reportErrors(boolean passed, String comparisonFile) throws ImageComparisonException
+    public void reportErrors(boolean passed, OneImageComparisonResult comparisonResult) throws ImageComparisonException
     {
         if(passed)
         {
@@ -202,7 +203,7 @@ import org.testng.annotations.Test;
         }
         else
         {
-            String message = "The comparison failed for: " + comparisonFile;
+            String message = "The comparison failed for: " + comparisonResult.getFile();
 
             throw new ImageComparisonException(message);
         }

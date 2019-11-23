@@ -6,7 +6,7 @@ import java.time.Duration;
 /**
  * This class represents one image comparison result. 
  */
-public class OneImageComparisonResult
+public class OneImageComparisonResult implements Comparable
 {    
     private String file;
     
@@ -36,5 +36,13 @@ public class OneImageComparisonResult
     public String toString()
     {
         return String.format("%s.%s - %s", duration.getSeconds(), duration.getNano(), file);
+    }
+
+    @Override
+    public int compareTo(Object o)
+    {
+        OneImageComparisonResult other = (OneImageComparisonResult) o;
+        
+        return this.duration.compareTo(other.duration);
     }
 }
