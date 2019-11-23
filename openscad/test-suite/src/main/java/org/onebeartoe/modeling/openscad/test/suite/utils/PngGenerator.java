@@ -238,7 +238,7 @@ public class PngGenerator
 
         for (Boolean ec : exitCodes)
         {
-            if (!ec)
+            if (ec == null || !ec)
             {
                 masterExitCode = false;
                 
