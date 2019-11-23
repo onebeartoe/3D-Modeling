@@ -24,27 +24,34 @@ module halfCirclePhoneStand_cradle(height,
                                    radius,
                                    radiusExtension)
 {
+    xTranslate = 30;
+    yTranslate = 32.7;
+
     difference()
     {
         halfCirclePhoneStand_cradle_bed(height = height,
                                            minkowskiSphereRadius = minkowskiSphereRadius,
                                            radius = radius,
-                                           radiusExtension = radiusExtension);
+                                           radiusExtension = radiusExtension,
+                                           xTranslate = xTranslate,
+                                           yTranslate = yTranslate);
 
         halfCirclePhoneStand_cradle_cutout(bedHeight = height,
                                         minkowskiSphereRadius = minkowskiSphereRadius,
                                         radius = radius,
-                                        radiusExtension = radiusExtension);
+                                        radiusExtension = radiusExtension,
+                                        bed_xTranslate = xTranslate,
+                                        bed_yTranslate = yTranslate);
     }
 }
 
 module halfCirclePhoneStand_cradle_bed(height,
                                        minkowskiSphereRadius,
                                        radius,
-                                       radiusExtension)
+                                       radiusExtension,
+                                       xTranslate,
+                                       yTranslate)
 {
-    xTranslate = 30;
-    yTranslate = 32.7;
     zTranslate = minkowskiSphereRadius;
     color("magenta")
     translate([xTranslate, yTranslate, zTranslate])
@@ -59,13 +66,16 @@ module halfCirclePhoneStand_cradle_bed(height,
 module halfCirclePhoneStand_cradle_cutout(bedHeight,
                                           minkowskiSphereRadius,
                                           radius,
-                                          radiusExtension)
+                                          radiusExtension,
+                                          bed_xTranslate,
+                                          bed_yTranslate)
 {
     zLength = 4.2;    
 
-    xTranslate = 30;
-    yTranslate = 32.7;
+    xTranslate = bed_xTranslate;
+    yTranslate = bed_yTranslate;
     zTranslate = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
+
     color("magenta")
     translate([xTranslate, yTranslate, zTranslate])
     rotate([0, 0, 227])     
