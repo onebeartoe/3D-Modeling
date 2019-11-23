@@ -8,3 +8,21 @@ module rectangularArc(radius, radiusExtension, angle, height)
         thick = radiusExtension,
         angle = angle);
 }
+
+module roundedRectangularArc(angle,
+                             height,
+                             radius, 
+                             radiusExtension,
+                             minkowskiFn,
+                             minkowskiRadius)
+{
+    minkowski()
+    {    
+        rectangularArc(angle = angle,
+                    height = height,
+                    radius = radius,
+                    radiusExtension = radiusExtension);
+
+        sphere(r = minkowskiRadius, $fn = minkowskiFn);
+    }
+}
