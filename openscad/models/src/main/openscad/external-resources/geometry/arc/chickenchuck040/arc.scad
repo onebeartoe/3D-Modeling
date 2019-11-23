@@ -28,8 +28,8 @@ module arc(radius, thick, angle)
 			}
 		}
 		difference(){
-			circle(radius+thick);
-			circle(radius);
+			circle(radius+thick, $fn = 40);
+			circle(radius, $fn = 40);
 		}
 	}
 }
