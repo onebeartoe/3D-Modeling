@@ -72,8 +72,10 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
 {
     zLength = 4.2;    
 
-    xTranslate = bed_xTranslate;
-    yTranslate = bed_yTranslate;
+    cutoutRadiusExtension = radiusExtension + 3;
+
+    xTranslate = bed_xTranslate + 0.2;
+    yTranslate = bed_yTranslate + 0.2;
     zTranslate = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
 
     color("magenta")
@@ -83,7 +85,7 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
                           height = zLength,
                           minkowskiRadius = minkowskiSphereRadius,
                           radius = radius,
-                          radiusExtension = radiusExtension);
+                          radiusExtension = cutoutRadiusExtension);
 }
 
 module halfCirclePhoneStand_stand(height,
