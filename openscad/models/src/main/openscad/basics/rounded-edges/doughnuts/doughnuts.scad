@@ -9,7 +9,7 @@ module rectangularDoughnut(cornerRadius = 4,
 {
     $fn=sides;
 
-    minkowski()//size, cornerRadius)
+    minkowski()
     {
         chainLoop(xLength = 10,
                   yLength = yLength,
@@ -34,6 +34,5 @@ module roundDoughnut(fn = 20,
 						fn = fn);
 
 		sphere(r = minkowskiSphereRadius, $fn = 10);
-//        sphere(r = minkowskiSphereRadius);//, $fn = 10);
 	}
 }
