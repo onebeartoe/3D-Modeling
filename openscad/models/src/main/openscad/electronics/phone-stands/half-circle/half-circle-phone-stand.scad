@@ -4,14 +4,21 @@ use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 module halfCirclePhoneStand(height = 19.125,
                             minkowskiSphereRadius = 0.5)
 {
+    halfCirclePhoneStand_stand(height = height,
+                         minkowskiSphereRadius = minkowskiSphereRadius);
+}
+
+// sub-modules and functions follow
+
+module halfCirclePhoneStand_stand(height,
+                                  minkowskiSphereRadius)
+{
     halfCirclePhoneStand_stand_top(height = height,
                                    minkowskiSphereRadius = minkowskiSphereRadius);
 
     halfCirclePhoneStand_stand_base(height = height,
                                     minkowskiSphereRadius = minkowskiSphereRadius);
 }
-
-// sub-modules and functions follow
 
 module halfCirclePhoneStand_stand_base(height,
                                        minkowskiSphereRadius)
