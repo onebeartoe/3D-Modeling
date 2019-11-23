@@ -130,7 +130,7 @@ public class OpenScadTestSuiteService
 
     private void generateBaselines(RunProfile runProfile) throws IOException, InterruptedException
     {
-        int count = runProfile.openscadPaths.size() * 4;
+        int count = runProfile.openscadPaths.size();
         
         System.out.println("The test suite is generating baselines. count: " + count);
         System.out.println();
