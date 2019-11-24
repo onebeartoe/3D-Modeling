@@ -94,6 +94,8 @@ module halfCirclePhoneStand_stand(height,
     halfCirclePhoneStand_stand_top(height = height,
                                    minkowskiSphereRadius = minkowskiSphereRadius);
 
+    halfCirclePhoneStand_stand_connectorBar();
+
     halfCirclePhoneStand_stand_base(height = height,
                                     minkowskiSphereRadius = minkowskiSphereRadius);
 }
@@ -107,6 +109,11 @@ module halfCirclePhoneStand_stand_base(height,
                 innerRadius = 4.9,      // 4.9
                 outerRadius = 5.59,     // 5.59
                 minkowskiSphereRadius = minkowskiSphereRadius);
+}
+
+module halfCirclePhoneStand_stand_connectorBar()
+{
+    
 }
 
 module halfCirclePhoneStand_stand_top(height,
