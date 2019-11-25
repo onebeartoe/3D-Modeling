@@ -2,14 +2,21 @@
 /**
  * 
  */
-module roundedPyramid(h, r1, r2, cornerRadius, sides=30, sidesOnly=false)
-//module roundedPyramid(size, cornerRadius, sides=30, sidesOnly=false)
+module roundedPyramid(h, 
+					  r1, 
+					  r2, 
+					  cornerRadius,
+//TODO: clarify this parameter
+					  cylinderFn = 4,					  
+					  sides=30, 
+					  sidesOnly=false)
 {
+//TODO: clarify this parameter
 	$fn=sides;
 	
-	minkowski()//size, cornerRadius)
+	minkowski()
 	{
-		cylinder(h=h, r1=r1, r2=r2, $fn=4);
+		cylinder(h=h, r1=r1, r2=r2, $fn=cylinderFn);
 	    
 	    if(sidesOnly)
 	    {
