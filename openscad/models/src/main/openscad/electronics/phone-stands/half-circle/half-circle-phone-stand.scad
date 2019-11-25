@@ -99,12 +99,11 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
 module halfCirclePhoneStand_stand(height,
                                   minkowskiSphereRadius)
 {
-//PICK UP HERE
-
     halfCirclePhoneStand_stand_top(height = height,
                                    minkowskiSphereRadius = minkowskiSphereRadius);
 
-//    halfCirclePhoneStand_stand_connectorBar();
+    halfCirclePhoneStand_stand_connectorBar(bedHeight = height,
+                                            minkowskiSphereRadius = minkowskiSphereRadius);
 
     halfCirclePhoneStand_stand_base(height = height,
                                     minkowskiSphereRadius = minkowskiSphereRadius);
@@ -121,9 +120,24 @@ module halfCirclePhoneStand_stand_base(height,
                 minkowskiSphereRadius = minkowskiSphereRadius);
 }
 
-module halfCirclePhoneStand_stand_connectorBar()
+module halfCirclePhoneStand_stand_connectorBar(minkowskiSphereRadius, bedHeight)
 {
-    cube([40, 5, 5]);
+    xLength = 40;
+    yLength = 3;
+    zLength = halfCirclePhoneStand_cradle_cutout_zLength() + minkowskiSphereRadius;
+
+    xTranslate = 0;
+    yTranslate = 0;
+    zTranslate = halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius = minkowskiSphereRadius, 
+                                                                bedHeight = bedHeight,
+                                                                zLength = zLength)
+                    + (zLength / 2.0);
+
+    translate([xTranslate, yTranslate, zTranslate])
+//    rotate([0, 0, 45])
+    cube([xLength, yLength, zLength]
+    , center = true
+    );
 }
 
 module halfCirclePhoneStand_stand_top(height,
