@@ -122,22 +122,21 @@ module halfCirclePhoneStand_stand_base(height,
 
 module halfCirclePhoneStand_stand_connectorBar(minkowskiSphereRadius, bedHeight)
 {
-    xLength = 40;
+    xLength = 5;
     yLength = 3;
     zLength = halfCirclePhoneStand_cradle_cutout_zLength() + minkowskiSphereRadius;
 
-    xTranslate = 0;
-    yTranslate = 0;
+    xTranslate = 5;
+    yTranslate = 5;
     zTranslate = halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius = minkowskiSphereRadius, 
                                                                 bedHeight = bedHeight,
                                                                 zLength = zLength)
                     + (zLength / 2.0);
 
+    color("blue")
     translate([xTranslate, yTranslate, zTranslate])
-//    rotate([0, 0, 45])
-    cube([xLength, yLength, zLength]
-    , center = true
-    );
+    rotate([0, 0, 45])
+    cube([xLength, yLength, zLength], center = true);
 }
 
 module halfCirclePhoneStand_stand_top(height,
