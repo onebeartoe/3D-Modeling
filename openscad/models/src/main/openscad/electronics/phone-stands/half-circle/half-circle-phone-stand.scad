@@ -1,6 +1,8 @@
 
 use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 
+use <../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>;
+
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
 
 module halfCirclePhoneStand(height = 19.125,
@@ -49,6 +51,9 @@ module halfCirclePhoneStand_cradle(height,
                                         bed_xTranslate = xTranslate,
                                         bed_yTranslate = yTranslate);
     }
+
+    halfCirclePhoneStand_cradle_ends(height = height,
+                                     minkowskiSphereRadius = minkowskiSphereRadius);
 }
 
 module halfCirclePhoneStand_cradle_bed(height,
@@ -94,6 +99,24 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
                           minkowskiRadius = minkowskiSphereRadius,
                           radius = radius,
                           radiusExtension = cutoutRadiusExtension);
+}
+
+module halfCirclePhoneStand_cradle_ends(height,
+                                        minkowskiSphereRadius)
+{
+    xTranslate = 40.3;     // 40.57
+    yTranslate = -2.5;      // -2.0
+    zTranslate = minkowskiSphereRadius;
+
+    // bottom end
+    color("PaleTurquoise")
+    translate([xTranslate, yTranslate, zTranslate])
+    roundedPyramid(h = height,
+                   cornerRadius = minkowskiSphereRadius,
+                   cylinderFn = 20,
+                   r1 = 2.57,      // 3
+                   r2 = 2.57,      // 3
+                   sides = 30);
 }
 
 module halfCirclePhoneStand_stand(height,

@@ -14,6 +14,7 @@ use <../../half-circle-phone-stand.scad>
 
     xTranslate = 7.65;
     yTranslate = 6;
+
     translate([xTranslate, yTranslate, 0])
     halfCirclePhoneStand();
 }
