@@ -104,8 +104,8 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
 module halfCirclePhoneStand_cradle_ends(height,
                                         minkowskiSphereRadius)
 {
-    xTranslate = 40.3;     // 40.57
-    yTranslate = -2.5;      // -2.0
+    xTranslate = 40.3;
+    yTranslate = -2.5;
     zTranslate = minkowskiSphereRadius;
 
     // bottom end
@@ -114,8 +114,8 @@ module halfCirclePhoneStand_cradle_ends(height,
     roundedPyramid(h = height,
                    cornerRadius = minkowskiSphereRadius,
                    cylinderFn = 20,
-                   r1 = 2.57,      // 3
-                   r2 = 2.57,      // 3
+                   r1 = 2.57,
+                   r2 = 2.57,
                    sides = 30);
 }
 
