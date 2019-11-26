@@ -104,6 +104,30 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
 module halfCirclePhoneStand_cradle_ends(height,
                                         minkowskiSphereRadius)
 {
+    halfCirclePhoneStand_cradle_ends_top(height = height,
+                                            minkowskiSphereRadius = minkowskiSphereRadius);
+
+    halfCirclePhoneStand_cradle_ends_bottom(height = height,
+                                            minkowskiSphereRadius = minkowskiSphereRadius);
+}
+
+module halfCirclePhoneStand_cradle_ends_bottom(height,
+                                        minkowskiSphereRadius)
+{
+    xTranslate = 2.8;
+    yTranslate = 56.35;
+    zTranslate = minkowskiSphereRadius;
+
+    // bottom end
+    color("PaleTurquoise")
+    translate([xTranslate, yTranslate, zTranslate])
+    halfCirclePhoneStand_cradle_ends_cylinder(height = height,
+                                              minkowskiSphereRadius = minkowskiSphereRadius);
+}
+
+module halfCirclePhoneStand_cradle_ends_top(height,
+                                        minkowskiSphereRadius)
+{
     xTranslate = 40.3;
     yTranslate = -2.5;
     zTranslate = minkowskiSphereRadius;
@@ -111,6 +135,13 @@ module halfCirclePhoneStand_cradle_ends(height,
     // bottom end
     color("PaleTurquoise")
     translate([xTranslate, yTranslate, zTranslate])
+    halfCirclePhoneStand_cradle_ends_cylinder(height = height,
+                                              minkowskiSphereRadius = minkowskiSphereRadius);
+}
+
+module halfCirclePhoneStand_cradle_ends_cylinder(height,
+                                        minkowskiSphereRadius)
+{
     roundedPyramid(h = height,
                    cornerRadius = minkowskiSphereRadius,
                    cylinderFn = 20,
