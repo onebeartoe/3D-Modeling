@@ -4,9 +4,10 @@ use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 use <../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>;
 
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
-
-module halfCirclePhoneStand(height = 19.125,
-
+   
+module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
+                            height = 19.125,
+   
                             iconColor = "red", 
                             iconType = "None", 
                             iconXyScale = 1.0, 
@@ -20,6 +21,8 @@ module halfCirclePhoneStand(height = 19.125,
 {
     halfCirclePhoneStand_cradle(height = height,
 
+                                bed_cutout_zLength = bed_cutout_zLength,
+
                                 iconColor = iconColor, 
                                 iconType = iconType, 
                                 iconXyScale = iconXyScale, 
@@ -31,19 +34,23 @@ module halfCirclePhoneStand(height = 19.125,
                                 radius = arcRadius,
                                 radiusExtension = arcRadiusExtension);
 
-    halfCirclePhoneStand_stand(height = height,
+    halfCirclePhoneStand_stand(bed_cutout_zLength = bed_cutout_zLength,
+                               height = height,
                                minkowskiSphereRadius = minkowskiSphereRadius);
 }
 
 // sub-modules and functions follow
 
-function halfCirclePhoneStand_cradle_cutout_zLength() = 4.2;
+//ererfafadsss
+//function halfCirclePhoneStand_cradle_cutout_zLength() = 10; // 4.2;
 
 function halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius, 
                                                         bedHeight,
                                                         zLength) = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
 
 module halfCirclePhoneStand_cradle(height,
+
+                                   bed_cutout_zLength,
 
                                    iconColor, iconType, iconXyScale, iconHeight, icon_xOffset, icon_yOffset,
 
@@ -68,7 +75,8 @@ module halfCirclePhoneStand_cradle(height,
                                         radius = radius,
                                         radiusExtension = radiusExtension,
                                         bed_xTranslate = xTranslate,
-                                        bed_yTranslate = yTranslate);
+                                        bed_yTranslate = yTranslate,
+                                        bed_cutout_zLength = bed_cutout_zLength);
     }
 
     halfCirclePhoneStand_cradle_icon(iconColor = iconColor, 
@@ -105,9 +113,10 @@ module halfCirclePhoneStand_cradle_cutout(bedHeight,
                                           radius,
                                           radiusExtension,
                                           bed_xTranslate,
-                                          bed_yTranslate)
+                                          bed_yTranslate,
+                                          bed_cutout_zLength)
 {
-    zLength = halfCirclePhoneStand_cradle_cutout_zLength();
+    zLength = bed_cutout_zLength;
 
     cutoutRadiusExtension = radiusExtension + 3;
 
@@ -253,13 +262,15 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     }
 }
 
-module halfCirclePhoneStand_stand(height,
+module halfCirclePhoneStand_stand(bed_cutout_zLength,
+                                  height,
                                   minkowskiSphereRadius)
 {
     halfCirclePhoneStand_stand_top(height = height,
                                    minkowskiSphereRadius = minkowskiSphereRadius);
 
-    halfCirclePhoneStand_stand_connectorBar(bedHeight = height,
+    halfCirclePhoneStand_stand_connectorBar(bed_cutout_zLength = bed_cutout_zLength,
+                                            bedHeight = height,
                                             minkowskiSphereRadius = minkowskiSphereRadius);
 
     halfCirclePhoneStand_stand_base(height = height,
@@ -277,12 +288,12 @@ module halfCirclePhoneStand_stand_base(height,
                 minkowskiSphereRadius = minkowskiSphereRadius);
 }
 
-module halfCirclePhoneStand_stand_connectorBar(minkowskiSphereRadius, bedHeight)
+module halfCirclePhoneStand_stand_connectorBar(bed_cutout_zLength, minkowskiSphereRadius, bedHeight)
 {
     xLength = 5;
     yLength = 3;
-    zLength = halfCirclePhoneStand_cradle_cutout_zLength() + minkowskiSphereRadius;
-
+    zLength = bed_cutout_zLength + minkowskiSphereRadius;
+   
     xTranslate = 5;
     yTranslate = 5;
     zTranslate = halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius = minkowskiSphereRadius, 
