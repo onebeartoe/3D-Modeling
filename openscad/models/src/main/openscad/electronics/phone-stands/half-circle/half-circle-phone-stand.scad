@@ -4,7 +4,21 @@ use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>;
 use <../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>;
 
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
-   
+
+use <../../../external-resources/aquaman/aquaman-logo.scad>
+use <../../../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
+use <../../../external-resources/plumber-brother/l/luigi-outline.scad>
+use <../../../external-resources/plumber-brother/m/mario.scad>
+use <../../../external-resources/rebel-alliance/rebel-alliance.scad>
+use <../../../external-resources/thundercats/thundercats-logo.scad>
+use <../../../shapes/crescent-moon/crescent-moon.scad>
+use <../../../shapes/fan/iso-7000-fan.scad>
+use <../../../shapes/fish/fish.scad>
+use <../../../shapes/light-bulb/light-bulb.scad>
+use <../../../shapes/minecraft/creeper/creeper-face.scad>
+use <../../../shapes/spurs/spurs-a.scad>
+use <../../../shapes/weather/sun/sun.scad>
+
 module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
                             height = 19.125,
    
@@ -14,6 +28,7 @@ module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
                             iconHeight = 3.0, 
                             icon_xOffset = 5, 
                             icon_yOffset = 5,
+                            icon_zOffset = 5,
 
                             minkowskiSphereRadius = 0.5,
                             arcRadius = 36,
@@ -29,6 +44,7 @@ module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
                                 iconHeight = iconHeight, 
                                 icon_xOffset = icon_xOffset, 
                                 icon_yOffset = icon_yOffset,
+                                icon_zOffset = icon_zOffset,
 
                                 minkowskiSphereRadius = minkowskiSphereRadius,
                                 radius = arcRadius,
@@ -41,9 +57,6 @@ module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
 
 // sub-modules and functions follow
 
-//ererfafadsss
-//function halfCirclePhoneStand_cradle_cutout_zLength() = 10; // 4.2;
-
 function halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius, 
                                                         bedHeight,
                                                         zLength) = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
@@ -52,8 +65,9 @@ module halfCirclePhoneStand_cradle(height,
 
                                    bed_cutout_zLength,
 
-                                   iconColor, iconType, iconXyScale, iconHeight, icon_xOffset, icon_yOffset,
-
+                                   iconColor, iconType, iconXyScale, iconHeight, 
+                                   icon_xOffset, icon_yOffset, icon_zOffset,
+  
                                    minkowskiSphereRadius,
                                    radius,
                                    radiusExtension)
@@ -84,7 +98,8 @@ module halfCirclePhoneStand_cradle(height,
                                      iconXyScale = iconXyScale, 
                                      iconHeight = iconHeight, 
                                      xOffset = icon_xOffset, 
-                                     yOffset = icon_yOffset);  
+                                     yOffset = icon_yOffset,
+                                     zOffset = icon_zOffset);  
 
     halfCirclePhoneStand_cradle_ends(height = height,
                                      minkowskiSphereRadius = minkowskiSphereRadius);
@@ -185,10 +200,14 @@ module halfCirclePhoneStand_cradle_ends_cylinder(height,
                    sides = 30);
 }
 
-module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
+module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset, zOffset)
 {
+//echo("xOffset", xOffset);
+
     color(iconColor)
-    translate([xOffset, yOffset, 0])
+    
+    translate([xOffset, yOffset, zOffset])
+    rotate([0, 90, 0])
     scale([iconXyScale, iconXyScale, iconHeight])
     if(iconType == "Aqua Dude")
     {
@@ -215,6 +234,11 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     {
         scale([1, 1, 1.6])
         fishThumbnail();
+    }
+    else if(iconType == "Heart")
+    {
+        scale([1, 1, 1.6])
+        heartThumbnail();
     }
     else if(iconType == "Light Bulb")
     {
