@@ -6,14 +6,18 @@ use <../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>;
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
 
 use <../../../external-resources/aquaman/aquaman-logo.scad>
+use <../../../external-resources/cat/cat.scad>
+use <../../../external-resources/music/notes/bass-clef/bass-clef.scad>
 use <../../../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
 use <../../../external-resources/plumber-brother/l/luigi-outline.scad>
 use <../../../external-resources/plumber-brother/m/mario.scad>
 use <../../../external-resources/rebel-alliance/rebel-alliance.scad>
 use <../../../external-resources/thundercats/thundercats-logo.scad>
+use <../../../external-resources/trooper/scrum-trooper.scad>
 use <../../../shapes/crescent-moon/crescent-moon.scad>
 use <../../../shapes/fan/iso-7000-fan.scad>
 use <../../../shapes/fish/fish.scad>
+use <../../../shapes/heart/heart.scad>
 use <../../../shapes/light-bulb/light-bulb.scad>
 use <../../../shapes/minecraft/creeper/creeper-face.scad>
 use <../../../shapes/spurs/spurs-a.scad>
@@ -211,15 +215,15 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     scale([iconXyScale, iconXyScale, iconHeight])
     if(iconType == "Aqua Dude")
     {
-        aquamanThumbnail(height=1.6);
+        aquamanThumbnail(height=2.19);
     }
     else if(iconType == "Bass Clef")
     {
-    	baseclef15scale(1.8);
+    	bassClefThumbnail(height = 2.7);
     }
     else if(iconType == "Cat")
     {
-        cat(1.8);
+        catThumbnail(height = 2, xyScale = 0.37);
     }
     else if(iconType == "Creeper")
     {
@@ -227,7 +231,7 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     }
     else if(iconType == "Fan")
     {
-        scale([1, 1, 1.6])
+        scale([1, 1, 2.1])
         fanThumbnail();
     }
     else if(iconType == "Fish")
@@ -237,7 +241,7 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     }
     else if(iconType == "Heart")
     {
-        scale([1, 1, 1.6])
+        scale([1, 1, 1.9])
         heartThumbnail();
     }
     else if(iconType == "Light Bulb")
@@ -270,7 +274,7 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     }
     else if(iconType == "Trooper")
     {
-        scrumtrooper(2);
+        scrumTrooperThumbnail(height = 2);
     }
     else if(iconType == "Thundercat")
     {

@@ -1,5 +1,5 @@
 
-iconType = "Mario";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Heart, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
+iconType = "Mario";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Fish, Heart, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 
 iconColor = "blue"; // [pink, red, black, white, yellow, blue, green]
 
