@@ -213,12 +213,10 @@ module oneIcon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
     if(iconType == "Aqua Dude")
     {
         aquamanThumbnail(height=1.6);
-//        aquaman(4);
     }
     else if(iconType == "Bass Clef")
     {
     	baseclef15scale(1.8);
-//    	baseclef15scale(4);
     }
     else if(iconType == "Cat")
     {
@@ -429,7 +427,6 @@ module nametagBase(baseColor,
 	        yBottomDelta = (-baseHeight / 2.0) - (y + 4);
 	        yTopDelta = (baseHeight / 2.0) + (y / 2.0);
 
-	//        yTranslate = (chainLoopPosition == "top") ? yTopDelta : - yTopDelta;
 	        yTranslate = (chainLoopPosition == "bottom") ? yBottomDelta : yTopDelta;
 
 	        translate([xTranslate, yTranslate, 0])
