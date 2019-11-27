@@ -36,9 +36,9 @@ module scrumTrooper(h=1)
   }
 }
 
-module scrumTrooperThumbnail()
+module scrumTrooperThumbnail(height)
 {
 	xyScale = .74;
 	scale([xyScale, xyScale, 1])	
-	scrumTrooper();	
+	scrumTrooper(h = height);	
 }
