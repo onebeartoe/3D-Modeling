@@ -6,11 +6,27 @@ use <../../../basics/rounded-edges/rounded-pyramid/rounded-pyramid.scad>;
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
 
 module halfCirclePhoneStand(height = 19.125,
+
+                            iconColor = "red", 
+                            iconType = "None", 
+                            iconXyScale = 1.0, 
+                            iconHeight = 3.0, 
+                            icon_xOffset = 5, 
+                            icon_yOffset = 5,
+
                             minkowskiSphereRadius = 0.5,
                             arcRadius = 36,
                             arcRadiusExtension = 1.5)
 {
     halfCirclePhoneStand_cradle(height = height,
+
+                                iconColor = iconColor, 
+                                iconType = iconType, 
+                                iconXyScale = iconXyScale, 
+                                iconHeight = iconHeight, 
+                                icon_xOffset = icon_xOffset, 
+                                icon_yOffset = icon_yOffset,
+
                                 minkowskiSphereRadius = minkowskiSphereRadius,
                                 radius = arcRadius,
                                 radiusExtension = arcRadiusExtension);
@@ -28,6 +44,9 @@ function halfCirclePhoneStand_cradle_cutout_zTranslate(minkowskiSphereRadius,
                                                         zLength) = minkowskiSphereRadius + (bedHeight / 2.0) - (zLength / 2.0);
 
 module halfCirclePhoneStand_cradle(height,
+
+                                   iconColor, iconType, iconXyScale, iconHeight, icon_xOffset, icon_yOffset,
+
                                    minkowskiSphereRadius,
                                    radius,
                                    radiusExtension)
@@ -51,6 +70,13 @@ module halfCirclePhoneStand_cradle(height,
                                         bed_xTranslate = xTranslate,
                                         bed_yTranslate = yTranslate);
     }
+
+    halfCirclePhoneStand_cradle_icon(iconColor = iconColor, 
+                                     iconType = iconType, 
+                                     iconXyScale = iconXyScale, 
+                                     iconHeight = iconHeight, 
+                                     xOffset = icon_xOffset, 
+                                     yOffset = icon_yOffset);  
 
     halfCirclePhoneStand_cradle_ends(height = height,
                                      minkowskiSphereRadius = minkowskiSphereRadius);
@@ -112,7 +138,7 @@ module halfCirclePhoneStand_cradle_ends(height,
 }
 
 module halfCirclePhoneStand_cradle_ends_bottom(height,
-                                        minkowskiSphereRadius)
+                                               minkowskiSphereRadius)
 {
     xTranslate = 2.8;
     yTranslate = 56.35;
@@ -148,6 +174,83 @@ module halfCirclePhoneStand_cradle_ends_cylinder(height,
                    r1 = 2.57,
                    r2 = 2.57,
                    sides = 30);
+}
+
+module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHeight, xOffset, yOffset)
+{
+    color(iconColor)
+    translate([xOffset, yOffset, 0])
+    scale([iconXyScale, iconXyScale, iconHeight])
+    if(iconType == "Aqua Dude")
+    {
+        aquamanThumbnail(height=1.6);
+    }
+    else if(iconType == "Bass Clef")
+    {
+    	baseclef15scale(1.8);
+    }
+    else if(iconType == "Cat")
+    {
+        cat(1.8);
+    }
+    else if(iconType == "Creeper")
+    {
+        creeperFaceThumbnail(height = 1.7);
+    }
+    else if(iconType == "Fan")
+    {
+        scale([1, 1, 1.6])
+        fanThumbnail();
+    }
+    else if(iconType == "Fish")
+    {
+        scale([1, 1, 1.6])
+        fishThumbnail();
+    }
+    else if(iconType == "Light Bulb")
+    {
+        lightBulbThumbnail();
+    }
+    else if(iconType == "Mario")
+    {
+        marioThumbnail();
+    }
+    else if(iconType == "Luigi")
+    {
+        luigiThumbnail();
+    }
+    else if(iconType == "Moon")
+    {
+        crescentMoonThumbnail();
+    }
+    else if(iconType == "Rebel")
+    {
+        rebelAllianceThumbnail(height = 1.7);
+    }
+    else if(iconType == "Spur")
+    {
+        spurThumbnail();
+    }
+    else if(iconType == "Sun")
+    {
+        sunThumbnail(height = 1.6);
+    }
+    else if(iconType == "Trooper")
+    {
+        scrumtrooper(2);
+    }
+    else if(iconType == "Thundercat")
+    {
+        thundercatsLogoThumbnail(height = 1.7);
+    }
+    else if(iconType == "Treble Clef")
+    {
+        trebleClefScaledDownThumbnail(h=2);
+    }
+    else
+    {
+        echo("drawing no icon");
+    }
 }
 
 module halfCirclePhoneStand_stand(height,
