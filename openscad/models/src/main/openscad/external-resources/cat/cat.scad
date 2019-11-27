@@ -18,9 +18,9 @@ module cat(h=1)
   }
 }
 
-module catThumbnail()
+module catThumbnail(height = 1, xyScale = 0.37)
 {
-	xyScale = .37;
+//	xyScale = .37;
 	scale([xyScale, xyScale, 1])	
-	cat();
+	cat(h = height);
 }
