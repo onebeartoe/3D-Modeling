@@ -25,9 +25,9 @@ module bassClef(h=1)
   }
 }
 
-module bassClefThumbnail()
+module bassClefThumbnail(height = 1)
 {
 	xyScale = 0.489;
 	scale([xyScale, xyScale, 1])
-	bassClef(h=1);	
+	bassClef(h = height);	
 }
