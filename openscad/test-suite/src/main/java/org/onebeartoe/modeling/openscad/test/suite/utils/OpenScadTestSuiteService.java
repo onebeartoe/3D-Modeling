@@ -571,7 +571,12 @@ public class OpenScadTestSuiteService
         skip = skip < 0 ? 0 : skip;
 
         List<OneImageComparisonResult> sortedResults = allResults.stream()
-                .sorted( Comparator.comparingLong(oicr ->  oicr.getDuration().toMillis() ) )
+                .sorted( Comparator.comparingLong(oicr ->  
+                {
+                    Duration duration = oicr.getDuration();
+                                            
+                    return duration.toMillis();
+                }) )
                 .skip(skip)
                 .collect(Collectors.toList());
 
