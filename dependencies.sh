@@ -21,4 +21,5 @@ ls -la /usr/bin/openscad-nightly
 
 ls -la /usr/share/openscad-nightly
 
-ls -la /usr/share/openscad-nightly/libraries
+#TODO: renable this once night is working
+#ls -la /usr/share/openscad-nightly/libraries
