@@ -22,7 +22,7 @@ install:
 - fc-list | grep -i auhaus
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 script:
 - Xvfb :5 -screen 0 800x600x24 &
