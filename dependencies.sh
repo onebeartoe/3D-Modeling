@@ -2,7 +2,7 @@
 
 set -ev
 
-ll /etc/apt/sources.list.d/openscad.list
+ls -la /etc/apt/sources.list.d/openscad.list
 
 sudo add-apt-repository --yes ppa:openscad/releases
 sudo apt-get update -qq
