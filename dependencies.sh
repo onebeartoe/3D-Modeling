@@ -12,8 +12,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemag
 
 sudo apt-get install -y openscad-mcad
 
-which openscad
-whereis openscad
+which openscad-nightly
+whereis openscad-nightly
 
 whereis openscad-mcad
 
