@@ -17,8 +17,8 @@ whereis openscad-nightly
 
 whereis openscad-mcad
 
-ls -la /usr/bin/openscad
+ls -la /usr/bin/openscad-nightly
 
-ls -la /usr/share/openscad
+ls -la /usr/share/openscad-nightly
 
-ls -la /usr/share/openscad/libraries
+ls -la /usr/share/openscad-nightly/libraries
