@@ -32,9 +32,9 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick xvfb
 #TODO: renable this once night is working
 #whereis openscad-mcad
 
-ls -la /usr/bin/openscad-nightly
+#ls -la /usr/bin/openscad-nightly
 
-ls -la /usr/share/openscad-nightly
+#ls -la /usr/share/openscad-nightly
 
 #TODO: renable this once night is working
 #ls -la /usr/share/openscad-nightly/libraries
