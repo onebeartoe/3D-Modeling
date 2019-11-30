@@ -174,7 +174,7 @@ import org.testng.annotations.Test;
     
     protected String getRootTargetPath()
     {
-        boolean useSubpath = false;
+        boolean useSubpath = true;
 
         String path;
 
