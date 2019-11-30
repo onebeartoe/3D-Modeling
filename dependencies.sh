@@ -8,7 +8,11 @@ wget -qO - https://files.openscad.org/OBS-Repository-Key.pub | sudo apt-key add 
 
 #sudo add-apt-repository --yes ppa:openscad/releases
 sudo apt-get update -qq
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemagick xvfb
+
+sudo snap install openscad-nightly
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick xvfb
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemagick xvfb
 
 sudo apt-get install -y openscad-mcad
 
