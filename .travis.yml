@@ -1,7 +1,7 @@
 
 sudo: true
 
-#dist: bionic
+dist: xenial
 
 language: java
 
