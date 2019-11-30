@@ -3,7 +3,6 @@ package org.onebeartoe.modeling.opensacd.services;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,7 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.onebeartoe.application.logging.SysoutLoggerFactory;
 import static org.testng.AssertJUnit.assertTrue;
 import org.testng.annotations.Test;
-//import org.testng.log4testng.Logger;
 
 /**
  *

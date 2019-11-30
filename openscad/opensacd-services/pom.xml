@@ -45,7 +45,9 @@
                 <version>2.22.2</version>
                 
                 <configuration>
-                    <forkCount>0</forkCount>                
+                    <!--
+                    <forkCount>0</forkCount>
+                    -->                
                     <properties>
 
                     </properties>               
