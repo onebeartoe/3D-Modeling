@@ -1,7 +1,7 @@
 
 sudo: true
 
-dist: bionic
+dist: trusty
 
 language: java
 
@@ -22,7 +22,7 @@ install:
 - fc-list | grep -i auhaus
 
 jdk:
-  - openjdk9
+  - openjdk8
 
 script:
 - Xvfb :5 -screen 0 800x600x24 &
