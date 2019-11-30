@@ -28,14 +28,15 @@ sudo apt-get install -y openscad-mcad
 #TODO: renable this once night is working
 #which openscad-nightly
 #TODO: renable this once night is working
-#whereis openscad-nightly
+whereis openscad-nightly
 
 #TODO: renable this once night is working
-#whereis openscad-mcad
+whereis openscad-mcad
 
 #ls -la /usr/bin/openscad-nightly
 
 #ls -la /usr/share/openscad-nightly
 
 #TODO: renable this once night is working
+ls -la /usr/share/openscad-nightly/
 ls -la /usr/share/openscad-nightly/libraries
