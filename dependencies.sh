@@ -23,7 +23,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemag
 #locate openscad-nightly
 
 #TODO: renable this once night is working
-#sudo apt-get install -y openscad-mcad
+sudo apt-get install -y openscad-mcad
 
 #TODO: renable this once night is working
 #which openscad-nightly
@@ -38,4 +38,4 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemag
 #ls -la /usr/share/openscad-nightly
 
 #TODO: renable this once night is working
-#ls -la /usr/share/openscad-nightly/libraries
+ls -la /usr/share/openscad-nightly/libraries
