@@ -13,7 +13,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 sudo add-apt-repository --yes ppa:openscad/releases
 sudo apt-get update -qq
 
-#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y snapd
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 #sudo snap install openscad-nightly
 
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick xvfb
