@@ -180,7 +180,7 @@ import org.testng.annotations.Test;
 
         if(useSubpath)
         {
-            path = "src/main/openscad/electronics/phone-stands/half-circle/";
+            path = "src/main/openscad/basics/difference/with-stl/";
         }
         else
         {
