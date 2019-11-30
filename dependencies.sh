@@ -2,7 +2,7 @@
 
 set -ev
 
-#sudo cp openscad.list /etc/apt/sources.list.d/
+sudo cp openscad.list /etc/apt/sources.list.d/
 #ls -la /etc/apt/sources.list.d/openscad.list
 
 wget -qO - https://files.openscad.org/OBS-Repository-Key.pub | sudo apt-key add -
