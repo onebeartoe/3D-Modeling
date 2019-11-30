@@ -5,7 +5,10 @@ set -ev
 #sudo cp openscad.list /etc/apt/sources.list.d/
 #ls -la /etc/apt/sources.list.d/openscad.list
 
-wget -qO - https://files.openscad.org/OBS-Repository-Key.pub | sudo apt-key add -
+#wget -qO - https://files.openscad.org/OBS-Repository-Key.pub | sudo apt-key add -
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 
 #sudo add-apt-repository --yes ppa:openscad/releases
 sudo apt-get update -qq
