@@ -3,6 +3,11 @@ package org.onebeartoe.modeling.opensacd.services;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringUtils;
 import org.onebeartoe.application.logging.SysoutLoggerFactory;
@@ -27,22 +32,41 @@ public class ThingiverseCustomizerServiceSpecification
         implementation = new ThingiverseCustomizerService();
         
         logger = SysoutLoggerFactory.getLogger( getClass().getName() );
-        
-//        logger = Logger.getLogger( getClass().getName() );
-//        logger.setUseParentHandlers(false);
     }
     
     @Test
     public void generateCustomizerFile() throws IOException
     {
-logger.info(">some mesage<");
-System.out.println(">plooop<");
-        File openScadInfile = new File(clientPath);
+        File resourceFile = new File(clientPath);
+        Path resourcePath = resourceFile.toPath();
+        
+        Path clientOutPath = Paths.get("target/" + resourceFile.getName() );
+
+        Files.copy(resourcePath, clientOutPath, StandardCopyOption.REPLACE_EXISTING);
+
+        File resourceDir = resourceFile.getParentFile();
+        
+        File libAFile = new File(resourceDir, "lib-a.scad");
+        Path libAPath = libAFile.toPath();
+        Path libAOutPath = Paths.get("target/" + libAFile.getName() );
+        Files.copy(libAPath, libAOutPath, StandardCopyOption.REPLACE_EXISTING);
+        
+        File libBFile = new File(resourceDir, "lib-b.scad");
+        Path libBPath = libBFile.toPath();
+        Path libBOutPath = Paths.get("target/" + libBFile.getName() );
+        Files.copy(libBPath, libBOutPath, StandardCopyOption.REPLACE_EXISTING);
+
+        File libCFile = new File(resourceDir, "lib-c.scad");
+        Path libCPath = libCFile.toPath();
+        Path libCOutPath = Paths.get("target/" + libCFile.getName() );
+        Files.copy(libCPath, libCOutPath, StandardCopyOption.REPLACE_EXISTING);
+        
+        File openScadInfile = clientOutPath.toFile();
         
         File outfile = implementation.generateCustomizerFile(openScadInfile);
                 
         assertTrue( outfile.exists() );
-logger.severe("it's fatal!");
+
         String orignalName = openScadInfile.getName();
         String expectedName = orignalName + "-inlined.scad";        
         String actualName = outfile.getName();
