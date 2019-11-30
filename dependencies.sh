@@ -20,6 +20,9 @@ sudo snap install openscad-nightly
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick xvfb
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemagick xvfb
 
+ls -la /usr/bin
+
+locate openscad-nightly
 
 #TODO: renable this once night is working
 #sudo apt-get install -y openscad-mcad
