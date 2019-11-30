@@ -17,6 +17,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemagick xvfb
 
+sudo mkdir /usr/share/openscad-nightly/libraries
+
 sudo apt-get install -y openscad-mcad
 
 which openscad-nightly
