@@ -28,7 +28,7 @@ script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
 - openscad --version
-- mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent verify sonar:sonar
+- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
 - cat /home/travis/build/onebeartoe/3D-Modeling/openscad/opensacd-services/target/surefire-reports/*.dumpstream
 #- cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/
 #- openscad -o EvilVase1-cylinder.stl EvilVase1-cylinder.scad
