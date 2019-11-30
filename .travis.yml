@@ -27,7 +27,7 @@ jdk:
 script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
-- openscad --version
+- openscad-nightly --version
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
 - cat /home/travis/build/onebeartoe/3D-Modeling/openscad/opensacd-services/target/surefire-reports/*.dumpstream
 #- cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/

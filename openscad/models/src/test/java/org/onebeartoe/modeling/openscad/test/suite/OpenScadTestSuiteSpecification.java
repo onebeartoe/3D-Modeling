@@ -54,7 +54,7 @@ import org.testng.annotations.Test;
 
         runProfile = new RunProfile();
 
-        runProfile.executablePath = "openscad";
+        runProfile.executablePath = "openscad-nightly";
 
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
