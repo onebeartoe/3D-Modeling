@@ -10,15 +10,6 @@ module waterPumpFilter(baseHeight = 30,
 {
 	union()
 	{
-//		if(snorkel == true)
-	//	{
-		//	waterPump_snorkel(filter_baseHeight = baseHeight,
-			//	 			  filter_xLength = xLength,
-				//			  filter_yLength = yLength,
-					//		  height = snorkelHeight,
-						//	  snorkelOuterRadius = snorkelOuterRadius);
-//		}
-
 		zTranslate = baseHeight / 2.0;
 		translate([0,0, zTranslate-0.1])
 		waterPumpFilter_connector(innerRadius = innerRadius);
@@ -100,14 +91,8 @@ module waterPump_snorkel(filter_baseHeight,
 	color("green")
 	translate([xTranslate, yTranslate, zTranslate])
 	cylinder(h = height, r = snorkelOuterRadius, fn = 50);
-//	openCylinder(height = height,
-	//			 innerRadius = snorkelOuterRadius - 2,
-		//		 outerRadius = snorkelOuterRadius);
 
 	translate([-xTranslate, -yTranslate, zTranslate])
-// 	openCylinder(height = height,
- 	//			 innerRadius = snorkelOuterRadius - 2,
- 		//		 outerRadius = snorkelOuterRadius);
 			 cylinder(h = height, r = snorkelOuterRadius, $fn = 100);
 }
 
