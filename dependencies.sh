@@ -26,7 +26,7 @@ sudo apt-get install -y openscad-mcad
 #locate mcad
 #locate triangles.scad
 
-cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad-nightly/libraries/
+sudo cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad-nightly/libraries/
 
 ls -la /usr/share/openscad
 
