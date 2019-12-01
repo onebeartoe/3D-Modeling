@@ -21,6 +21,10 @@ sudo mkdir /usr/share/openscad-nightly/libraries
 
 sudo apt-get install -y openscad-mcad
 
+sudo updatedb
+
+locate mcad
+
 ls -la /usr/share/openscad
 
 which openscad-nightly
