@@ -27,6 +27,8 @@ script:
 - export DISPLAY=:5
 - openscad-nightly --version
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
+- echo 'model error count: '
+- wc -l openscad/models/target/errorred-pngs.text
 #- cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/
 #- openscad -o EvilVase1-cylinder.stl EvilVase1-cylinder.scad
 
