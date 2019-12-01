@@ -24,6 +24,7 @@ sudo apt-get install -y openscad-mcad
 sudo updatedb
 
 locate mcad
+locate triangles.scad
 
 ls -la /usr/share/openscad
 
