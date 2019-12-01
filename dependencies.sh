@@ -31,4 +31,3 @@ whereis openscad-mcad
 
 ls -la /usr/share/openscad-nightly/
 ls -la /usr/share/openscad-nightly/libraries
-
