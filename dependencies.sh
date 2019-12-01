@@ -26,6 +26,8 @@ sudo updatedb
 locate mcad
 locate triangles.scad
 
+cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad-nightly/libraries/
+
 ls -la /usr/share/openscad
 
 which openscad-nightly
