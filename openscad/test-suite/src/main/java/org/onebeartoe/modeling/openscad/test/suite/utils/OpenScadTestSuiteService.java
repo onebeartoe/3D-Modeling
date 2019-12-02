@@ -87,42 +87,41 @@ public class OpenScadTestSuiteService
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
         
-            runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+        runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
-            if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
+        if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
+        {
+            results = new OpenScadTestSuiteResults();
+
+            results.setCompareResults( new ImageComparisonResult() );
+
+            GeneratePngBaselineResults gpnr = new GeneratePngBaselineResults();
+
+            results.setPngGenerationResults( gpnr );
+
+            generateBaselines(runProfile);
+        }
+        else if( mode == OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
+        {
+            deleteProposedBaselines(inpath);
+        }
+        else
+        {
+            // the mode is 'run test suite'
+            results = runTestSuite(runProfile);
+
+            ImageComparisonResult compareResults = results.getCompareResults();
+
+            if(compareResults.exceptionThrown)
             {
-                results = new OpenScadTestSuiteResults();
+                int count = compareResults.errorFiles.size();
 
-                results.setCompareResults( new ImageComparisonResult() );
-                
-                GeneratePngBaselineResults gpnr = new GeneratePngBaselineResults();
-                
-                results.setPngGenerationResults( gpnr );
-                
-                generateBaselines(runProfile);
+                String message = "the test suite failed with " + count + " errors";
+
+                throw new ImageComparisonException(message);
             }
-            else if( mode == OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
-            {
-                deleteProposedBaselines(inpath);
-            }
-            else
-            {
-                // the mode is 'run test suite'
-                results = runTestSuite(runProfile);
-
-                ImageComparisonResult compareResults = results.getCompareResults();
-
-                if(compareResults.exceptionThrown)
-                {
-                    int count = compareResults.errorFiles.size();
-
-                    String message = "the test suite failed with " + count + " errors";
-
-                    throw new ImageComparisonException(message);
-                }
-            }
+        }
         
-
         return results;
     }
 
