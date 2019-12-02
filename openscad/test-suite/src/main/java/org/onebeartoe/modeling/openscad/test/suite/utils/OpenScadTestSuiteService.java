@@ -216,8 +216,6 @@ public class OpenScadTestSuiteService
      */
     private ImageComparisonResult compareImages(List<Path> openscadPaths)
     {
-        Class c = Collection.class;
-
         ImageComparisonResult comparisonResults = new ImageComparisonResult();
 
 	Stream.of( OpenScadCameraDirections.values() )
@@ -270,6 +268,7 @@ public class OpenScadTestSuiteService
             LocalDateTime start = LocalDateTime.now();
 
             SystemCommand diffCommand = new Compare(baseline, proposedBaseline);
+
             CommandResults results = diffCommand.execute();
 
             LocalDateTime end = LocalDateTime.now();
