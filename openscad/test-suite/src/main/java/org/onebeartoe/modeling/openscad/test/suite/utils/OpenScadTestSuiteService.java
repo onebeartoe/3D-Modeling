@@ -302,9 +302,6 @@ public class OpenScadTestSuiteService
                         
             comparisonResults.errorFiles.add(result);
 
-//                System.out.println( results.processedStdErr.trim() );
-//                System.out.print( results.processedStdOut.trim() );            
-            
             String message = "An error occured while executing a diff command.";
             logger.log(Level.SEVERE, message, e);
         }
