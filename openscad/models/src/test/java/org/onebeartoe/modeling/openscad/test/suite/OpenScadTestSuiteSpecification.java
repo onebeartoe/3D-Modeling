@@ -30,7 +30,7 @@ import org.testng.annotations.Test;
     
     private RunProfile runProfile;
     
-    private OpenScadTestSuiteService testService;
+    private OpenScadTestSuiteService implementation;
     
     private GeneratePngBaselineResults pngGenerationResults;
     
@@ -50,7 +50,7 @@ import org.testng.annotations.Test;
         openScadSubpath = openScadSubpath == null ? "" : openScadSubpath;
         System.out.println("the env " + key + " is: " + openScadSubpath);
         
-        testService = new OpenScadTestSuiteService();
+        implementation = new OpenScadTestSuiteService();
 
         runProfile = new RunProfile();
 
@@ -66,7 +66,7 @@ import org.testng.annotations.Test;
         
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
-        testService.printValidationResults(missingPngs);
+        implementation.printValidationResults(missingPngs);
 
         if (!missingPngs.isEmpty())
         {   
@@ -78,7 +78,7 @@ import org.testng.annotations.Test;
             throw new Exception(message);
         }
 
-        pngGenerationResults = testService.generateProposedBaselines(runProfile);
+        pngGenerationResults = implementation.generateProposedBaselines(runProfile);
         
         int count = pngGenerationResults.getPathDurations().size();
 
@@ -100,20 +100,20 @@ import org.testng.annotations.Test;
     @DataProvider(name="errorFiles")
     public Object[][] getOpenScadFiles() throws Exception
     {
-        ImageComparisonResult compareResults = testService.compareImages(runProfile);
+        ImageComparisonResult compareResults = implementation.compareImages(runProfile);
 
-        testService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+        implementation.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
         
-        testService.saveErrorPngFilenames(compareResults.errorFiles);
+        implementation.saveErrorPngFilenames(compareResults.errorFiles);
 
-        List<OneImageComparisonResult> sortedComparisonResults = testService.longestComparisons(compareResults);
+        List<OneImageComparisonResult> sortedComparisonResults = implementation.longestComparisons(compareResults);
         System.out.println();
         System.out.println("PNG comparison durations:");        
         sortedComparisonResults.forEach(System.out::println);
         
         System.out.println();
         System.out.println("proposed PNG generation durations:");        
-        Map<Path, Duration> sortedResults = testService.proposedPngGenerationDurations(pngGenerationResults);
+        Map<Path, Duration> sortedResults = implementation.proposedPngGenerationDurations(pngGenerationResults);
         
         sortedResults.forEach( (k, v) -> 
         {
