@@ -17,6 +17,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResult
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.openscadPath;
 import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.simpleOpenScadPath;
+import org.onebeartoe.system.Filesystem;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 import org.testng.annotations.BeforeTest;
@@ -32,7 +33,6 @@ public class OpenScadTestSuiteServiceSpecification
     private RunProfile runProfile;
     
     @BeforeTest
-//    @BeforeClass
     public void initializeTest()
     {
         implementation = new OpenScadTestSuiteService();
@@ -135,9 +135,10 @@ public class OpenScadTestSuiteServiceSpecification
     @Test
     public void serviceRequest() throws Exception
     {
-Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
-System.out.println("pwd: " + path.toString());        
+        String pwd = Filesystem.pwd();
         
+        System.out.println("pwd: " + pwd);
+
         runProfile.path = "../models/src/main/openscad/basics/primitives/cube";
         
         OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
