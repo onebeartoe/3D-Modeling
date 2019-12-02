@@ -86,9 +86,7 @@ public class OpenScadTestSuiteService
 
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
-
-//        try
-        {
+        
             runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
             if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
@@ -123,7 +121,7 @@ public class OpenScadTestSuiteService
                     throw new ImageComparisonException(message);
                 }
             }
-        }
+        
 
         return results;
     }
