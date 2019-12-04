@@ -1,4 +1,12 @@
 
+base_xTranslate = 0;  // [-10: 0.1 :10]
+
+base_yTranslate = 0;  // [-10: 0.1 :10]
+
+stand_top_xTranslate = 8.105;  // [-10: 0.1 :10]
+
+stand_top_yTranslate = 8.85;  // [-10: 0.1 :10]
+
 iconType = "Mario";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Fish, Heart, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 
 iconColor = "blue"; // [pink, red, black, white, yellow, blue, green]
@@ -17,11 +25,15 @@ height = 40; // [19.125 : 60]
 
 use <../../half-circle-phone-stand.scad>
     
-halfCirclePhoneStand(bed_cutout_zLength = bed_cutout_zLength,
+halfCirclePhoneStand(base_xTranslate = base_xTranslate,
+                     base_yTranslate = base_yTranslate,
+                     bed_cutout_zLength = bed_cutout_zLength,
                      height = height,
                      iconColor = iconColor,
                      icon_xOffset = icon_xOffset,
                      icon_yOffset = icon_yOffset,
                      icon_zOffset = icon_zOffset,
-                     iconType = iconType);
+                     iconType = iconType,
+                     stand_top_xTranslate = stand_top_xTranslate,
+                     stand_top_yTranslate = stand_top_yTranslate);
 

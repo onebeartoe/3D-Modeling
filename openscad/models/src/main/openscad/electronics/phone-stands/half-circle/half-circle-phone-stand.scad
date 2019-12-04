@@ -25,6 +25,7 @@ use <../../../shapes/weather/sun/sun.scad>
 
 module halfCirclePhoneStand(base_xTranslate = 0,
                             base_yTranslate = 0,
+
                             bed_cutout_zLength = 4.2,
                             height = 19.125,
    
@@ -337,8 +338,8 @@ module halfCirclePhoneStand_stand_base(height,
 
 module halfCirclePhoneStand_stand_connectorBar(bed_cutout_zLength, minkowskiSphereRadius, bedHeight)
 {
-    xLength = 5;
-    yLength = 3;
+    xLength = 5;   // 5   try 8
+    yLength = 3;   // 3
     zLength = bed_cutout_zLength + minkowskiSphereRadius;
    
     xTranslate = 5;
