@@ -23,7 +23,9 @@ use <../../../shapes/minecraft/creeper/creeper-face.scad>
 use <../../../shapes/spurs/spurs-a.scad>
 use <../../../shapes/weather/sun/sun.scad>
 
-module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
+module halfCirclePhoneStand(base_xTranslate = 0,
+                            base_yTranslate = 0,
+                            bed_cutout_zLength = 4.2,
                             height = 19.125,
    
                             iconColor = "red", 
@@ -54,7 +56,9 @@ module halfCirclePhoneStand(bed_cutout_zLength = 4.2,
                                 radius = arcRadius,
                                 radiusExtension = arcRadiusExtension);
 
-    halfCirclePhoneStand_stand(bed_cutout_zLength = bed_cutout_zLength,
+    halfCirclePhoneStand_stand(base_xTranslate = base_xTranslate,
+                               base_yTranslate = base_yTranslate,
+                               bed_cutout_zLength = bed_cutout_zLength,
                                height = height,
                                minkowskiSphereRadius = minkowskiSphereRadius);
 }
@@ -290,7 +294,9 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     }
 }
 
-module halfCirclePhoneStand_stand(bed_cutout_zLength,
+module halfCirclePhoneStand_stand(base_xTranslate,
+                                  base_yTranslate,
+                                  bed_cutout_zLength,
                                   height,
                                   minkowskiSphereRadius)
 {
@@ -302,14 +308,18 @@ module halfCirclePhoneStand_stand(bed_cutout_zLength,
                                             minkowskiSphereRadius = minkowskiSphereRadius);
 
     halfCirclePhoneStand_stand_base(height = height,
-                                    minkowskiSphereRadius = minkowskiSphereRadius);
+                                    minkowskiSphereRadius = minkowskiSphereRadius,
+                                    xTranslate = base_xTranslate,
+                                    yTranslate = base_yTranslate);
 }
-
+   
 module halfCirclePhoneStand_stand_base(height,
-                                       minkowskiSphereRadius)
+                                       minkowskiSphereRadius,
+                                       xTranslate,
+                                       yTranslate)
 {
     color("green")
-    translate([0, 0, minkowskiSphereRadius])
+    translate([xTranslate, yTranslate, minkowskiSphereRadius])
     roundDoughnut(height = height,
                 innerRadius = 4.9,      // 4.9
                 outerRadius = 5.59,     // 5.59
