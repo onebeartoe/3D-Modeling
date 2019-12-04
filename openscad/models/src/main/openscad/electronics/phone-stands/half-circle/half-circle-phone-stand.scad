@@ -348,13 +348,13 @@ module halfCirclePhoneStand_stand_connectorBar(bed_cutout_zLength, minkowskiSphe
 module halfCirclePhoneStand_stand_top(height,
                                       minkowskiSphereRadius)
 {
-    xTranslate = 8.105;  // 8.05     // 8.1
-    yTranslate = 8.85;  // 8.85     // 8.9
+    xTranslate = 8.105;
+    yTranslate = 8.85;
 
     color("green")
     translate([xTranslate, yTranslate, minkowskiSphereRadius])
     roundDoughnut(height = height,
-                innerRadius = 1.9,  // 2.0
-                outerRadius = 2.6,  // 2.6
+                innerRadius = 1.9,
+                outerRadius = 2.6,
                 minkowskiSphereRadius = minkowskiSphereRadius);
 }
