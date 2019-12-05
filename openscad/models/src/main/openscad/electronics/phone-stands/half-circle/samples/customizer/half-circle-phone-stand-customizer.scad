@@ -19,6 +19,8 @@ icon_yOffset = 34;  // [-10:200]
 
 icon_zOffset = 19;  // [-30:30]
 
+iconXyScale = 1.0;  // [-1: 0.1 :10]
+
 bed_cutout_zLength = 10; // [4.2 : 15]
 
 height = 40; // [19.125 : 60]
@@ -35,6 +37,7 @@ halfCirclePhoneStand(base_xTranslate = base_xTranslate,
                      icon_xOffset = icon_xOffset,
                      icon_yOffset = icon_yOffset,
                      icon_zOffset = icon_zOffset,
+                     iconXyScale = iconXyScale,
                      iconType = iconType,
                      stand_connectorBar_xLength = stand_connectorBar_xLength,
                      stand_top_xTranslate = stand_top_xTranslate,
