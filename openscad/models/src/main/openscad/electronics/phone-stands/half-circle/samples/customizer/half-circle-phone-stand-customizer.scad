@@ -3,6 +3,8 @@ base_xTranslate = 0;  // [-10: 0.1 :10]
 
 base_yTranslate = 0;  // [-10: 0.1 :10]
 
+stand_connectorBar_xLength = 8; // [-10: 0.1 :10]
+
 stand_top_xTranslate = 8.105;  // [-10: 0.1 :10]
 
 stand_top_yTranslate = 8.85;  // [-10: 0.1 :10]
@@ -34,6 +36,7 @@ halfCirclePhoneStand(base_xTranslate = base_xTranslate,
                      icon_yOffset = icon_yOffset,
                      icon_zOffset = icon_zOffset,
                      iconType = iconType,
+                     stand_connectorBar_xLength = stand_connectorBar_xLength,
                      stand_top_xTranslate = stand_top_xTranslate,
                      stand_top_yTranslate = stand_top_yTranslate);
 
