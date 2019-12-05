@@ -1,13 +1,13 @@
 
-base_xTranslate = 0;  // [-10: 0.1 :10]
+base_xTranslate = -1;  // [-10: 0.1 :10]
 
-base_yTranslate = 0;  // [-10: 0.1 :10]
+base_yTranslate = -1;  // [-10: 0.1 :10]
 
 stand_connectorBar_xLength = 8; // [-10: 0.1 :10]
 
-stand_top_xTranslate = 8.105;  // [-10: 0.1 :10]
+stand_top_xTranslate = 9.105;  // [-10: 0.1 :10]
 
-stand_top_yTranslate = 8.85;  // [-10: 0.1 :10]
+stand_top_yTranslate = 9.85;  // [-10: 0.1 :10]
 
 iconType = "Mario";   // [Aqua Dude, Bass Clef, Cat, Creeper, Fan, Fish, Heart, Light Bulb, Luigi, Mario, Moon, Rebel, Spur, Sun, Thundercat, Treble Clef, Trooper]
 
