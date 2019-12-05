@@ -23,8 +23,8 @@ use <../../../shapes/minecraft/creeper/creeper-face.scad>
 use <../../../shapes/spurs/spurs-a.scad>
 use <../../../shapes/weather/sun/sun.scad>
 
-module halfCirclePhoneStand(base_xTranslate = 0,
-                            base_yTranslate = 0,
+module halfCirclePhoneStand(base_xTranslate = -1.0,
+                            base_yTranslate = -1.0,
 
                             bed_cutout_zLength = 4.2,
                             height = 19.125,
@@ -41,8 +41,8 @@ module halfCirclePhoneStand(base_xTranslate = 0,
                             arcRadius = 36,
                             arcRadiusExtension = 1.5,
                             
-                            stand_top_xTranslate = 8.105,
-                            stand_top_yTranslate = 8.85,
+                            stand_top_xTranslate = 9.105,
+                            stand_top_yTranslate = 9.85,
                             stand_connectorBar_xLength = 5)
 {
     halfCirclePhoneStand_cradle(height = height,
