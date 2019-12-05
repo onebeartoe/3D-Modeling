@@ -16,5 +16,8 @@ use <../../half-circle-phone-stand.scad>
     yTranslate = 6;
 
     translate([xTranslate, yTranslate, 0])
-    halfCirclePhoneStand();
+    halfCirclePhoneStand(base_xTranslate = 0,
+                         base_yTranslate = 0,
+                         stand_top_xTranslate = 8.105,
+                         stand_top_yTranslate = 8.85);
 }
