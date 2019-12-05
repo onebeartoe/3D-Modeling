@@ -84,11 +84,11 @@ public class OpenScadCliTestSuite
 
         Options options = buildOptions();
 
+        Instant start = Instant.now();
+
         try
         {
             RunProfile runProfile = parseRunProfile(args, options);
-
-            Instant start = Instant.now();
 
             OpenScadTestSuiteService testService = new OpenScadTestSuiteService();
             
@@ -116,12 +116,6 @@ public class OpenScadCliTestSuite
 
                 logger.info("\n");
             }
-            
-            Instant end = Instant.now();
-        
-            DurationService durationService = new DurationService();
-            String message = "The test suite ran " + durationService.durationMessage(start, end);
-            logger.info(message);
         }
         catch(UnrecognizedOptionException uoe)
         {
@@ -129,7 +123,13 @@ public class OpenScadCliTestSuite
             formatter.printHelp("java -jar openscad-test-suite.jar [path]", options);
             Help h = new Help();
             h.printHelp();
-        }
+        }            
+
+        Instant end = Instant.now();
+    
+        DurationService durationService = new DurationService();
+        String message = "The test suite ran " + durationService.durationMessage(start, end);
+        logger.info(message);
     }
     
     /**
