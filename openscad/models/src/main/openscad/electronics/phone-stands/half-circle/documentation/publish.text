@@ -3,135 +3,66 @@
 -   Defined                 -               In Progress                         -    completed              -
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                   -                           -
+-                           -                                                   -   Installation
+-                           -                                                   -       Gather documentation photos -
+-                           -                                                   -                           -
+-------------------------------------------------------------------------------------------------------------
+-                           -                                                   -                           -
+- oneweb.org - Guide        -                                                   - oneweb.org - Guide        -
+-
+-
+-   * Assembly
+-      * Instructions
+-      * Project Photos
+-   * Software Prerequisites
+- -  * Creation Process
+-   * Software Walkthrough
+-      * Github
+-      * Thingiverse Customiazer
+-   * Running the application
+-   * Usage
+-   * Resources
+-      * STL link to Thingiverse
+-      * Source code link
+-      * Project Progress Link
+-   * Going Further                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
+-------------------------------------------------------------------------------------------------------------
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
+-------------------------------------------------------------------------------------------------------------
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
+-------------------------------------------------------------------------------------------------------------
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -                           -                                                   -                           -
--                           -                                                   -                           -
--                           -                                                   -                           -
--                           -                                                   -                           -
-
-
-------------------------------------------------------------------------------------------------------------
-
-------------------------------------------------------------------------------------------------------------
-
-
-
-
-...
-
-    credit the arc author
-
-...
-
-
+-------------------------------------------------------------------------------------------------------------
 
 	
 
-	Installation
-* * Gather documentation photos
-* 	
-
-	
-
-	
-
-	
-
-	
-
-	Youtube
-* Video
-   * Script
-   * Shooting
-   * Editing
-* Description
-* oneweb link
-* Music credits
-* End screen
-* publish
-	
-
-	
-
-	
-
-	
-
-	
-
-	Oneweb.com - Product
-   * Product images
-   * Intra-oneweb links
-   * Buy Now button
-   * Embed video
-	
-
-	
-
-	
-
-	
-
-	
-
-	Oneweb.net - Blog
-   * Embed video
-   * Reference images
-   * Copy material
-	
-
-	
-
-	
-
-	
-
-	
-
-	Oneweb.org - Guide
-   * Embed video
-   * Hardware
-   * Assembly
-      * Instructions
-      * Project Photos
-   * Software Prerequisites
-   * Creation Process
-   * Software Walkthrough
-      * Github
-      * Thingiverse Customiazer
-   * Running the application
-   * Usage
-   * Resources
-      * STL link to Thingiverse
-      * Source code link
-      * Project Progress Link
-   * Going Further
-	
-
-	
-
-	
-
-	
 
 	
 
 	github.com
-* Root readme video embed        
-* Sub-project readme video embed
+
+
 * onweb link
+		
+
+	
+
+	
+
+Adafruit
+
+    * Email
 	
 
 	
@@ -142,97 +73,43 @@
 
 	
 
-	HC ‘97 Groupme
+Twitter
+    * Adafruit
+    * Openscad
+    * Selenium 
+    * Java
+    * Testng
+    * Deep Learning
+	
+
+		
+
+Facebook
+    * 3D Realization Groups
+
+	
+
+Thingiverse
+    * Final Inlined Customizer
+    * Description
+    * STL files
+    * print photos
+    * Oneweb link
+    * Video link
+    * Sources section
+        * credit the arc author
+        * 3D_Lover
+    * “More from the Author” section
+    * Tags
+    * publish
 	
 
 	
 
 	
 
-	
 
-	
+Contact Resources
+    * listed in ~/Versioning/world/
 
-	Adafruit
-* Forums
-* Show and Tell
-* Email
-	
-
-	
-
-	
-
-	
-
-	
-
-	Twitter
-* Adafruit
-* Openscad
-* Selenium 
-* Java
-* Testng
-* Deep Learning
-	
-
-	
-
-	
-
-	
-
-	
-
-	Facebook
-* 3D Realization Groups
-* Selenium Groups
-* Public
-
-
-	
-
-	
-
-	
-
-	
-
-	
-
-	Oracle
-	
-
-	
-
-	
-
-	
-
-	
-
-	Thingiverse
-* Final Inlined Customizer
-* Description
-* STL files
-* print photos
-* Oneweb link
-* Video link
-* Sources section
-* “More from the Author” section
-* Tags
-* publish
-	
-
-	
-
-	
-
-	
-
-	
-
-	Contact Resources
-* listed in ~/Versioning/world/
-
-* Listed in onewebs
+    * Listed in onewebs
