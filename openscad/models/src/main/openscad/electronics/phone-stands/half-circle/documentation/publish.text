@@ -11,46 +11,33 @@
 - oneweb.org - Guide        -                                                   - oneweb.org - Guide        -
 -                           -                                                   -
 -                           -                                                   -   Overview
--   * Assembly
--      * Instructions
--      * Project Photos
--   * Software Prerequisites
-- -  * Creation Process
--   * Software Walkthrough
--      * Github
--      * Thingiverse Customiazer
--   * Running the application
--   * Usage
--   * Resources
+-   * Samples 
+-        Photos
+-                           -                                                   -                           -
+-                           -                                                   -   Software Prerequisites  -
+-                           -                                                   -
+-                           -                                                   -                           -
+-                           -                                                   -   Software Walkthrough    -
+-                           -                                                   -                           -
+-                           -                                                   -                           -
+-                           -                                                   -                           -
+-                           -                                                   -   Usage                   -
+-                           -                                                   -       Github              -
+-                           -                                                   -       Thingiverse Customiazer -
+-                           -                                                   -                           -
+-                           -                                                   -                           -
+-                           -                                                   -   Going Further
+-                           -                                                   -       Add Baby Yoda as an icon option. - 
+-                           -                                                   -                           -
+-                           -                                                   -                           -
+- Resources                 -                                                   -   Resources               -
 -      * STL link to Thingiverse
 -      * Source code link
 -      * Project Progress Link
--   * Going Further                           -                                                   -                           -
-
-oneweb-content:
-Here are some inspiring phone stands:
-
-    WMConcepts
-    https://www.thingiverse.com/thing:3446537
-
-    Half Circle
-    https://www.thingiverse.com/thing:1746053
-    This is 3D_Lover's version that is used to model this version.
-
-    Pocket Stand
-    https://www.youtube.com/watch?v=JKYwZ91NYDg    
-
-
-
-
-
-
-
+-      * oneweb.net - links
+-           elecronics - phone stand
 -                           -                                                   -                           -
--                           -                                                   -                           -
--                           -                                                   -                           -
--                           -                                                   -                           -
--                           -                                                   -                           -
+
 -------------------------------------------------------------------------------------------------------------
 -                           -                                                   -                           -
 -                           -                                                   -                           -
@@ -64,11 +51,6 @@ Here are some inspiring phone stands:
 -                           -                                                   -                           -
 -                           -                                                   -                           -
 -------------------------------------------------------------------------------------------------------------
-
-	
-
-
-	
 
 	github.com
 
@@ -78,6 +60,7 @@ Here are some inspiring phone stands:
 
 	
 
+-------------------------------------------------------------------------------------------------------------
 	
 
 Adafruit
@@ -88,27 +71,19 @@ Adafruit
 	
 
 	
-
-	
-
-	
+-------------------------------------------------------------------------------------------------------------
 
 Twitter
     * Adafruit
     * Openscad
-    * Selenium 
-    * Java
-    * Testng
-    * Deep Learning
 	
-
+-------------------------------------------------------------------------------------------------------------
 		
-
 Facebook
     * 3D Realization Groups
 
+-------------------------------------------------------------------------------------------------------------
 	
-
 Thingiverse
     * Final Inlined Customizer
     * Description
@@ -123,18 +98,9 @@ Thingiverse
     * Tags
     * publish
 	
-
-	
-
-	
-
+-------------------------------------------------------------------------------------------------------------
 
 Contact Resources
     * listed in ~/Versioning/world/
 
     * Listed in onewebs
-
-
-
-
-
