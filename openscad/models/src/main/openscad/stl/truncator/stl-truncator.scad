@@ -15,11 +15,12 @@ yTranslate = 0;
 
 zTranslate = -48;     // [-100 : 0.1 : 500]
 
-truncateStl();
+module truncateStl()
+{
+    translate([xTranslate, yTranslate, zTranslate])
+    scale([xyzScale, xyzScale, xyzScale])
+    rotate([xRotate, yRotate, zRotate])
+    import(stlPath, center=true);
 
-translate([xTranslate, yTranslate, zTranslate])
-scale([xyzScale, xyzScale, xyzScale])
-rotate([xRotate, yRotate, zRotate])
-import(stlPath, center=true);
-
-cube([5,5, 48]);
+    cube([5,5, 48]);
+}
