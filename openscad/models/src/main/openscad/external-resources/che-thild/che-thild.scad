@@ -349,6 +349,10 @@ module theChild(height = 2)
   }
 }
 
-
+module theChildThumbnail(height = 2, xyScale = 0.5)
+{
+    scale([xyScale, xyScale, 1])
+    theChild(height = height);
+}
 
 theChild(2);
