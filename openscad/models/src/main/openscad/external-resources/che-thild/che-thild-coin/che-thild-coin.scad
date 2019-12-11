@@ -5,7 +5,7 @@ xyScale = 0.22;
 
 childHeight = 2;
 
-zTranslate = ( (childHeight / 2.0)  - 0.01 );
+zTranslate = (childHeight / 2.0)  - 0.01;
 
 union()
 {
