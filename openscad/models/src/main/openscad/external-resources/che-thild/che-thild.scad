@@ -8,7 +8,6 @@
 // in the z dimension than the polygon being subtracted from.  This helps
 // keep the resulting .stl file manifold.
 
-
 module theChild(height = 2)
 {
   fudge = 0.1;
