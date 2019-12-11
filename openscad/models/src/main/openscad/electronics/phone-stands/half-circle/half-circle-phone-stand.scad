@@ -7,6 +7,7 @@ use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>;
 
 use <../../../external-resources/aquaman/aquaman-logo.scad>
 use <../../../external-resources/cat/cat.scad>
+use <../../../external-resources/che-thild/che-thild.scad>
 use <../../../external-resources/music/notes/bass-clef/bass-clef.scad>
 use <../../../external-resources/music/notes/treble-clef/treble-clef-scaled-down.scad>
 use <../../../external-resources/plumber-brother/l/luigi-outline.scad>
@@ -283,6 +284,10 @@ module halfCirclePhoneStand_cradle_icon(iconColor, iconType, iconXyScale, iconHe
     else if(iconType == "Sun")
     {
         sunThumbnail(height = 1.6);
+    }
+    else if(iconType == "The Kid")
+    {
+        theChildThumbnail(height = 1.6);
     }
     else if(iconType == "Trooper")
     {
