@@ -1,26 +1,36 @@
 
-stlPath = "/home/roberto/Versioning/world/betoland/star-wars/the-mandalorian/baby-yoda/smiling/DMag24/files/Baby_Yoda_Smile.stl";
 
-xRotate = 90;    // [0 : 180]
 
-yRotate = 0;
-
-zRotate = 0;
-
-xyzScale = 2.3622; // in Cura, this value was 236.22;
-
-xTranslate = 0;
-
-yTranslate = 0; 
-
-zTranslate = -48;     // [-100 : 0.1 : 500]
-
-module truncateStl()
+module truncateStl(stlPath,
+                   xRotate,
+                   yRotate,
+                   zRotate,
+                   xyzScale,
+                   xTranslate,
+                   yTranslate,
+                   zTranslate)
 {
-    translate([xTranslate, yTranslate, zTranslate])
-    scale([xyzScale, xyzScale, xyzScale])
-    rotate([xRotate, yRotate, zRotate])
-    import(stlPath, center=true);
+    difference()
+    {
+        translate([xTranslate, yTranslate, zTranslate])
+        scale([xyzScale, xyzScale, xyzScale])
+        rotate([xRotate, yRotate, zRotate])
+        import(stlPath);
+//        import(stlPath, center=false, convexity = 20);
+//        import(stlPath, center=true, convexity = 10);
 
-    cube([5,5, 48]);
+        truncateStl_bottomCutout();
+    }
+}
+
+module truncateStl_bottomCutout()
+{
+    xyLength = 500;
+
+    zLength = 300;
+
+    zTranslate = - (zLength / 2.0) ;
+
+    translate([0, 0, zTranslate]) 
+    cube([xyLength, xyLength, zLength], center = true);
 }
