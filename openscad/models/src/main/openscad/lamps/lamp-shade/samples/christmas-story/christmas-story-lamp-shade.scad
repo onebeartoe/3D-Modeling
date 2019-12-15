@@ -3,25 +3,23 @@ use <../../../../shapes/open-cylinder/open-cylinder.scad>
 
 use <../../lamp-shade.scad>
 
-outerRadius = 10;
-
-translate([-120, 0, 0])
-import("/home/roberto/Versioning/world/betoland/household/lamps/christmas-story-leg-lamp/jetpuf/files/LegLamp_Shade130.stl");
-
-union()
+module legLampShade(outerRadius)
 {
-    legLamp_shade_top();
+    union(outerRadius)
+    {
+        legLamp_shade_top();
 
-    legLamp_shade_bottom();
+        legLamp_shade_bottom(outerRadius);
+    }
 }
 
-module legLamp_shade_bottom()
+module legLamp_shade_bottom(outerRadius)
 {
     openCylinder(height = 100,
                  outerRadius = outerRadius);
 }
 
-module legLamp_shade_top()
+module legLamp_shade_top(outerRadius)
 {
     translate([0, 0, 25])
     rotate([180, 0, 0])
