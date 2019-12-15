@@ -34,11 +34,11 @@ module legLamp_shade_bottom(height, outerRadius)
 
 module legLamp_shade_top(squareLength, outerRadius, xScale, yScale)
 {
-    zTranslate = outerRadius * 0.7;   // 2.0 ;// + ( 10 / 2.0 );
+    zTranslate = outerRadius * yScale;
 
     translate([0, 0, zTranslate])
     lampShade(outerRadius = outerRadius,
             squareLength = squareLength,
-            xScale = 0.3,
-            yScale = 0.7);
+            xScale = xScale,
+            yScale = yScale);
 }
