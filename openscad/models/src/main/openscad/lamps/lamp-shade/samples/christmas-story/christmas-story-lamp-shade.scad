@@ -3,7 +3,8 @@ use <../../../../shapes/open-cylinder/open-cylinder.scad>
 
 use <../../lamp-shade.scad>
 
-module legLampShade(squareLength, 
+module legLampShade(bottomOuterRadius,
+                    squareLength, 
                     outerRadius,
                     xScale,
                     yScale)
@@ -19,12 +20,16 @@ module legLampShade(squareLength,
                           yScale = yScale);
 
         color("purple")
-        legLamp_shade_bottom(height = bottomHeight, outerRadius = outerRadius * 2);
+        legLamp_shade_bottom(height = bottomHeight, 
+                             outerRadius = bottomOuterRadius);
+//                             outerRadius = outerRadius * 2);
     }
 }
 
 module legLamp_shade_bottom(height, outerRadius)
 {
+
+
     innerRadius = outerRadius - 1;
 
     openCylinder(height = height,
