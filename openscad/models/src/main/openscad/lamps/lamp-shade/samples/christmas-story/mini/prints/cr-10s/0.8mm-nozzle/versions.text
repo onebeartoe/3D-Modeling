@@ -1,0 +1,17 @@
+
+03
+
+The model was made a little wider by decreasing the inner radius a little (0.6mm).
+
+
+01
+The z raise location is randomized.
+
+Spirialize (vase mode) was turned on in Cura.
+
+Nope, it only printed the bottom brim.  The part that did print had missing areas.
+
+00
+The base is okay but the top is real thin.
+
+Also, it has a very obvious z-seam.
