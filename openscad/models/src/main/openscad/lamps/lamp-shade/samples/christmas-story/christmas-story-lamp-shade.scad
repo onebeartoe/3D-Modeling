@@ -22,7 +22,6 @@ module legLampShade(bottomOuterRadius,
         color("purple")
         legLamp_shade_bottom(height = bottomHeight, 
                              outerRadius = bottomOuterRadius);
-//                             outerRadius = outerRadius * 2);
     }
 }
 
