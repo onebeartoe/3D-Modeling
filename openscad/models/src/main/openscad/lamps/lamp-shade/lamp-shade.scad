@@ -2,7 +2,8 @@
 module lampShade(fn = 160,
                  outerRadius = 10,
                  squareLength = 10,
-                 xScale = 1.0)
+                 xScale = 1.0,
+                 yScale = 1.0)
 {
     $fn = fn;
 
@@ -14,10 +15,10 @@ module lampShade(fn = 160,
     {
         difference()
         {
-            scale([xScale,1,1])
+            scale([xScale, yScale, 1])
             circle(r = outerRadius, $fn = fn);
 
-            scale([xScale,1,1])
+            scale([xScale, yScale, 1])
             circle(r = innerRadius,  $fn = fn);
         }
 
