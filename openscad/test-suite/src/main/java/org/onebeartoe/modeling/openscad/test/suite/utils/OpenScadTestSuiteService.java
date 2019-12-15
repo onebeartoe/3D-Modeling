@@ -195,11 +195,13 @@ public class OpenScadTestSuiteService
         {
             if(results.exceptionThrown)
             {
-                System.out.println("Image comparison exceptions occured.");
+                logger.severe(results.errorFiles.size() + " image comparison exceptions occured.");
             }
             else
             {
-                System.out.println("The test suite detected " + results.errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
+                logger.info("?*&^?does this ever get printed?*&^?");
+
+                logger.severe("The test suite detected " + results.errorFiles.size() + " errors with the baseline and proposed baseline PNG images.");
             }
 
             System.out.println();
@@ -289,7 +291,8 @@ public class OpenScadTestSuiteService
                 comparisonResults.errorFiles.add(result);
 
                 System.out.println( results.processedStdErr.trim() );
-                System.out.print( results.processedStdOut.trim() );
+                System.out.println( results.processedStdOut.trim() );
+                System.out.println();
             }
         }
         catch (Exception e)
