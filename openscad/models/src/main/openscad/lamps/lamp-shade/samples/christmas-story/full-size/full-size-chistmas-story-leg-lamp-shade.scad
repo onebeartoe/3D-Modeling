@@ -1,18 +1,17 @@
 
 bottomOuterRadius = 52;
 
-intersection_xTranslate = -51;
+intersection_xTranslate = -58;
 
 outerRadius = 90;
-//outerRadius = 36;
 
-squareLength = 59;  //28;
+squareLength = 59;
 
-top_zTranslate = 5;
+top_zTranslate = 1;
 
-xScale = 0.2;       // 0.3;
+xScale = 0.2;     
 
-yScale = 0.7;       // 0.7;
+yScale = 0.7;     
 
 use <../christmas-story-lamp-shade.scad>
 
