@@ -7,7 +7,7 @@ module lampShade(fn = 160,
 {
     $fn = fn;
 
-    innerRadius = outerRadius - 1;
+    innerRadius = outerRadius - 2.0;
 
     rotate_extrude(angle = 360)
     translate([-20, 0, 0])

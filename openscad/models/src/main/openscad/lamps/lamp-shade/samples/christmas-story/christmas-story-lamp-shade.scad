@@ -27,9 +27,7 @@ module legLampShade(bottomOuterRadius,
 
 module legLamp_shade_bottom(height, outerRadius)
 {
-
-
-    innerRadius = outerRadius - 1;
+    innerRadius = outerRadius - 2.0;
 
     openCylinder(height = height,
                  innerRadius = innerRadius,
