@@ -1,18 +1,22 @@
 
-outerRadius = 36;
+bottomOuterRadius = 52;
 
-squareLength = 28;
+outerRadius = 90;
+//outerRadius = 36;
 
-xScale = 0.3;
+squareLength = 50;  //28;
 
-yScale = 0.7;
+xScale = 0.1;       // 0.3;
+
+yScale = 0.3;       // 0.7;
 
 use <../christmas-story-lamp-shade.scad>
 
 //translate([-120, 0, 0])
-//import("/home/roberto/Versioning/world/betoland/household/lamps/christmas-story-leg-lamp/jetpuf/files/LegLamp_Shade130.stl");
+// translate([9, 18, 0])
+// import("/home/roberto/Versioning/world/betoland/household/lamps/christmas-story-leg-lamp/jetpuf/files/LegLamp_Shade130.stl");
 
-legLampShade(bottomOuterRadius = outerRadius * 2,
+legLampShade(bottomOuterRadius = bottomOuterRadius,
              outerRadius = outerRadius,
              squareLength = squareLength,
              xScale = xScale,
