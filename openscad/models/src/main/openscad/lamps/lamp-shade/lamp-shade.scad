@@ -1,5 +1,6 @@
 
 module lampShade(fn = 160,
+                 intersection_xTranslate = -20,
                  outerRadius = 10,
                  squareLength = 10,
                  xScale = 1.0,
@@ -10,7 +11,7 @@ module lampShade(fn = 160,
     innerRadius = outerRadius - 2.0;
 
     rotate_extrude(angle = 360)
-    translate([-20, 0, 0])
+    translate([intersection_xTranslate, 0, 0])
     intersection()
     {
         difference()
