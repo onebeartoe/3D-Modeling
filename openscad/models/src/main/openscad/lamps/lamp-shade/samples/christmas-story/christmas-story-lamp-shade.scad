@@ -7,6 +7,7 @@ module legLampShade(bottomOuterRadius,
                     intersection_xTranslate,
                     squareLength, 
                     outerRadius,
+                    top_zTranslate,
                     xScale,
                     yScale)
 {
@@ -14,7 +15,7 @@ module legLampShade(bottomOuterRadius,
 
     union(outerRadius)
     {
-        translate([0, 0, bottomHeight])
+        translate([0, 0, top_zTranslate])
         legLamp_shade_top(intersection_xTranslate = intersection_xTranslate,
                           squareLength = squareLength, 
                           outerRadius = outerRadius,
@@ -84,7 +85,11 @@ module legLamp_shade_bottom_mountingAssembly_stick(outerHeight,
     cube([cube_xLength, cube_yLength, outerHeight]);    
 }
 
-module legLamp_shade_top(intersection_xTranslate, squareLength, outerRadius, xScale, yScale)
+module legLamp_shade_top(intersection_xTranslate, 
+                         squareLength, 
+                         outerRadius, 
+                         xScale, 
+                         yScale)
 {
     zTranslate = outerRadius * yScale;
 

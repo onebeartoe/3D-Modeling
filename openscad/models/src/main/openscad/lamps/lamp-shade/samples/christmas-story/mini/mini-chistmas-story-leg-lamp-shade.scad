@@ -5,6 +5,8 @@ outerRadius = 12;
 
 squareLength = 28;
 
+top_zTranslate = 5;
+
 xScale = 0.4;
 
 yScale = 1.9;
@@ -21,5 +23,6 @@ legLampShade(bottomOuterRadius = bottomOuterRadius,
              intersection_xTranslate = intersection_xTranslate,
              outerRadius = outerRadius,
              squareLength = squareLength,
+             top_zTranslate = top_zTranslate,
              xScale = xScale,
              yScale = yScale);
