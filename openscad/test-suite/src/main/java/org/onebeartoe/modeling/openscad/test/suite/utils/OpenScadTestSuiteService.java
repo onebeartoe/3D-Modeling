@@ -179,8 +179,7 @@ public class OpenScadTestSuiteService
      */
     public ImageComparisonResult compareImages(RunProfile runProfile)
     {
-        System.out.println("Comparing baseline images to the proposed baseline images...");
-        System.out.println();
+        logger.info("\nComparing baseline images to the proposed baseline images...\n");
 
         ImageComparisonResult results = compareImages(runProfile.openscadPaths);
 
