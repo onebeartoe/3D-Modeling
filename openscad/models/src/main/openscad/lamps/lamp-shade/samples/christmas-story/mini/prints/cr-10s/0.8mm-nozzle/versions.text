@@ -1,15 +1,36 @@
 
-03
+04
+This version uses the same settings a as version 03 but vase mode turned back on in the configuration.
 
-The model was made a little wider by decreasing the inner radius a little (0.6mm).
+Chale tamale with a the actual 0.8mm settings; the layers only go up about half way.  But with 0.4mm nozzle it give all layers.  hmmm.
+
+The nozzle size was set to 0.6.
+
+The print is less porous with the nozzle set at 0.6.  There is some layers that did not adhere will on the bottom but it is over all okay.
+
+03
+This version has the same settings as 02, but with the spirialize setting turned off in the configuration.
+
+The print is pretty good, but may be too think for light to shine through once painted.  We'll see.
+
+
+02
+The model was made a little wider by decreasing the inner radius a little, by 0.6mm.
+
+The random z seam configuation was removed.
+
+Moving from 1.0mm thickness to 1.6mm thickness made a better difference.  The print is uniform in the top part of 
+of the shade but also porous. It looks cool but may be too flimsy and break.  These settings may work, if the model is 
+made just a little more thinker or maybe with spirialize turned off in the configuation.
 
 
 01
-The z raise location is randomized.
+The z seam location is randomized.
 
 Spirialize (vase mode) was turned on in Cura.
 
 Nope, it only printed the bottom brim.  The part that did print had missing areas.
+
 
 00
 The base is okay but the top is real thin.
