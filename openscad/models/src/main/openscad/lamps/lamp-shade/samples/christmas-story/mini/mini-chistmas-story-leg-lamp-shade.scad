@@ -1,4 +1,5 @@
 
+intersection_xTranslate = -20;
 
 outerRadius = 12;
 
@@ -17,6 +18,7 @@ use <../christmas-story-lamp-shade.scad>
 // import("/home/roberto/Versioning/world/betoland/household/lamps/christmas-story-leg-lamp/jetpuf/files/LegLamp_Shade130.stl");
 
 legLampShade(bottomOuterRadius = bottomOuterRadius,
+             intersection_xTranslate = intersection_xTranslate,
              outerRadius = outerRadius,
              squareLength = squareLength,
              xScale = xScale,

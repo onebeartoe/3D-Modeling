@@ -4,6 +4,7 @@ use <../../../../shapes/open-cylinder/open-cylinder.scad>
 use <../../lamp-shade.scad>
 
 module legLampShade(bottomOuterRadius,
+                    intersection_xTranslate,
                     squareLength, 
                     outerRadius,
                     xScale,
@@ -14,7 +15,8 @@ module legLampShade(bottomOuterRadius,
     union(outerRadius)
     {
         translate([0, 0, bottomHeight])
-        legLamp_shade_top(squareLength = squareLength, 
+        legLamp_shade_top(intersection_xTranslate = intersection_xTranslate,
+                          squareLength = squareLength, 
                           outerRadius = outerRadius,
                           xScale = xScale,
                           yScale = yScale);
@@ -82,13 +84,14 @@ module legLamp_shade_bottom_mountingAssembly_stick(outerHeight,
     cube([cube_xLength, cube_yLength, outerHeight]);    
 }
 
-module legLamp_shade_top(squareLength, outerRadius, xScale, yScale)
+module legLamp_shade_top(intersection_xTranslate, squareLength, outerRadius, xScale, yScale)
 {
     zTranslate = outerRadius * yScale;
 
     translate([0, 0, zTranslate])
-    lampShade(outerRadius = outerRadius,
-            squareLength = squareLength,
-            xScale = xScale,
-            yScale = yScale);
+    lampShade(intersection_xTranslate = intersection_xTranslate,
+              outerRadius = outerRadius,
+              squareLength = squareLength,
+              xScale = xScale,
+              yScale = yScale);
 }
