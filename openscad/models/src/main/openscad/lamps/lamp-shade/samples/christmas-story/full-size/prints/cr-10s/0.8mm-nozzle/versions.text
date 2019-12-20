@@ -1,5 +1,10 @@
+01-base-only
+The nozzle settting was set to 0.5mm and the sprialize was turned off in the configuration.
 
-01
+This vesion uses the same settings as version 00-base-only.
+
+
+00-base-only
 This version uses the same settings as version 00.
 
 But print just the shade; and not the base.
