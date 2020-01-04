@@ -13,7 +13,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 sudo add-apt-repository --yes ppa:openscad/releases
 sudo apt-get update -qq
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libopencsg1
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libopencsg1v5:i386 libopencsg1v5
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 
