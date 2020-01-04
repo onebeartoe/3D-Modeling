@@ -5,44 +5,55 @@
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- Installation
--    Gather documentation photos                                -                                              -
+- Installation                      - Installation
+-                                   -   Gather documentation photos                                              -
 -    Edit documentation photos                               -                                -                                              -
 -                                   -                                -                                              -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- Oneweb.net - Blog
+- Oneweb.net - Blog                 - Oneweb.net - Blog
 -   Reference images
 -   Copy material
 -                                   -                                -                                              -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- oneweb.org - Guide                -                                -                                              -
+- oneweb.org - Guide                - oneweb.org - Guide             - oneweb.org - Guide                                              -
 -   Overview                                   -                                -                                              -
 -   Hardware                                   -                                -                                              -
 -       Bill of Materials
 -           100-ohm resistor
--           ******VERIFY THIS with th ones upstairs******
+                https://www.amazon.com/dp/B00BVCCA90/
+-               ******VERIFY THIS with th ones upstairs******
+
+-           super bright 5mm white LED
+                https://www.adafruit.com/product/754
 -   Assembly
 -       Instructions
 -       Project Photos                                              -
 -   Software Prerequisites                                          -                                -                                              -
 -   Software Walkthrough                                   -                                -                                              -
--       mention the Facebook guy's code                                   -                                -                                              -
+-       mention the Facebook guy's code
+-           https://www.facebook.com/marc.brevoort
+            example code
+                https://www.facebook.com/groups/1640223656098382/permalink/2637977739656297/?comment_id=2638009246319813                                   -                                -                                              -
 -   Resources                                   -                                -                                              -
 -       STL link to Thingiverse                                   -                                -                                              -
 -       Source code link                                   -                                -                                              -
+-           https://github.com/onebeartoe/3D-Modeling/tree/master/openscad/models/src/main/openscad/lamps/christmas-story
 -       oneweb.net - resouce links
 -       Project Progress Link                            -                                -                                              -
+-           https://github.com/onebeartoe/3D-Modeling/blob/master/openscad/models/src/main/openscad/lamps/christmas-story/documentation/publish.text
 -       Facebook guy's post
 -   Going Further                                   -                                -                                              -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
 - github.com                                   -                                -                                              -
+-   readme.md       
 -   onweb link                                          -                                -                                              -
+        http://onebeartoe.org/3d-realization/modeling/openscad/lamps/christmas-story/
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
@@ -77,7 +88,6 @@
 -   STL files
 -   print photos
 -   Oneweb link                     -                                              -
--   Video link                                   -                                -                                              -
 -   Sources section                                -                                -                                              -
 -   "More from the Author" section                                   -                                -                                              -
 -   Tags                                   -                                -                                              -
