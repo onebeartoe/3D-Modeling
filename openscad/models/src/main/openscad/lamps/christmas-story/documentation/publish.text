@@ -19,41 +19,36 @@
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- oneweb.org - Guide                - oneweb.org - Guide             - oneweb.org - Guide                                              -
--   Overview                                   -                                -                                              -
--   Hardware                                   -                                -                                              -
--       Bill of Materials
--           100-ohm resistor
-                https://www.amazon.com/dp/B00BVCCA90/
--               ******VERIFY THIS with th ones upstairs******
-
--           super bright 5mm white LED
-                https://www.adafruit.com/product/754
--   Assembly
--       Instructions
--       Project Photos                                              -
--   Software Prerequisites                                          -                                -                                              -
--   Software Walkthrough                                   -                                -                                              -
--       mention the Facebook guy's code
--           https://www.facebook.com/marc.brevoort
-            example code
-                https://www.facebook.com/groups/1640223656098382/permalink/2637977739656297/?comment_id=2638009246319813                                   -                                -                                              -
--   Resources                                   -                                -                                              -
--       STL link to Thingiverse                                   -                                -                                              -
--       Source code link                                   -                                -                                              -
--           https://github.com/onebeartoe/3D-Modeling/tree/master/openscad/models/src/main/openscad/lamps/christmas-story
--       oneweb.net - resouce links
--       Project Progress Link                            -                                -                                              -
--           https://github.com/onebeartoe/3D-Modeling/blob/master/openscad/models/src/main/openscad/lamps/christmas-story/documentation/publish.text
--       Facebook guy's post
+- oneweb.org - Guide                - oneweb.org - Guide             - oneweb.org - Guide                           -
+-                                   -                                -                                              -
+-                                   -   Overview                     -                                              -
+-                                   -                                - Hardware                                     -
+-                                   -                                -  Bill of Materials                           -
+-                                   -                                -                                              -
+-  Assembly                         -                                - Assembly                                     -
+-                                   -                                -  Instructions                                -
+-       Project Photos                                               -                                              -
+-                                   -                                -                                              -
+-                                   -                                - Software Prerequisites                       -
+-                                   -                                -                                              -
+-                                   -                                - Software Walkthrough                         -
+-                                   -                                -                                              -
+-                                   -                                -                                              -
+-                                   - Resources                      - Resources                                    -
+-                                   -   3D Printing Files (STLs)     -                                              -
+-                                   -   Thingiverse Customizer       -                                              -
+-                                   -                                -  Source code link                            -
+-                                   -   oneweb.net - resouce links   -                                              -
+-                                   -                                -  Project Progress Link                       -
+-                                   -                                -  Facebook guy's post                         -
+-                                   -                                -                                              -
 -   Going Further                                   -                                -                                              -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- github.com                                   -                                -                                              -
--   readme.md       
--   onweb link                                          -                                -                                              -
-        http://onebeartoe.org/3d-realization/modeling/openscad/lamps/christmas-story/
+-                                   - github.com                     - github.com                                   -
+-                                   -   readme.md                    -                                              -
+-                                   -                                -  onweb link                                  -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
@@ -82,28 +77,23 @@
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
-- Thingiverse                       -                                -                                              -
--   Final Inlined Customizer
--   Description
--   STL files
--   print photos
--   Oneweb link                     -                                              -
+- Thingiverse                       - Thingiverse                    - Thingiverse                                  -
+-   Final Inlined Customizer        -                                -                                              -
+-                                   -   Description                  -                                              -
+-   STL files                       -
+-   print photos                    -
+-                                   -                                -  Oneweb link
 -   Sources section                                -                                -                                              -
 -   "More from the Author" section                                   -                                -                                              -
 -   Tags                                   -                                -                                              -
 -   publish                                -                                -                                              -
--                                   -                                -                                              -
--                                   -                                -                                              -
--                                   -                                -                                              -
--                                   -                                -                                              -
--                                   -                                -                                              -
--                                   -                                -                                              -
 -                                   -                                -                                              -
 ---------------------------------------------------------------------------------------------------------------------
 -                                   -                                -                                              -
 - Contact Resources                                  -                                -                                              -
 -   listed in ~/Versioning/world/                                   -                                -                                              -
 -   Listed in oneweb resource sections                                   -                                -                                              -
+-       Marc
 -                                   -                                -                                              -
 -                                   -                                -                                              -
 -                                   -                                -                                              -
