@@ -29,7 +29,7 @@
         <repository>
             <id>onebeartoe-repo</id>
             <name>onebeartoe Maven Repository</name>
-			<url>http://onebeartoe.org/maven/2/repository/</url>
+			<url>https://onebeartoe.org/maven/2/repository/</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
