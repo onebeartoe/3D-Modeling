@@ -9,15 +9,14 @@ heart_zRotate = 75; // [-180 : 1 : 180]
 
 internalCutout_TopRadiusOffset = 22; // [0 : 1 : 30]
 
+vase_mode = true;
+
 sineVase(internalCutout_bottomRadius = 36,
          internalCutout_TopRadiusOffset = internalCutout_TopRadiusOffset,
-         vaseType = "heart"
+         
+         vaseType = "heart",
+         vaseMode = vase_mode,
 
-
-,
-heart_xRotate = heart_xRotate,
-heart_yRotate = heart_yRotate,
-heart_zRotate = heart_zRotate
-
-
-     );
+         heart_xRotate = heart_xRotate,
+         heart_yRotate = heart_yRotate,
+         heart_zRotate = heart_zRotate);

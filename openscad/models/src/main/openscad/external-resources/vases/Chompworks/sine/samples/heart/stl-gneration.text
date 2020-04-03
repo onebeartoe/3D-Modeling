@@ -1,0 +1,9 @@
+
+started around 1PM on the 1st of April 2020
+
+~/versioning/github/3D-Modeling/openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/samples/heart
+$ /cygdrive/c/opt/openscad/OpenSCAD-2019.05/openscad -o heart-sine-vase.stl heart-sine-vase.scad
+WARNING: variable vase_mode not specified as parameter, in file heart-sine-vase.scad, line 14
+
+
+ended 4/3 at 4:22AM
