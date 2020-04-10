@@ -122,11 +122,12 @@ heart_zRotate
             color("pink")
             translate([0, 0, topChopOff_zTranslate])
             cylinder(r = topChopOffRadis, h = 70);
+echo("we got vase");            
         }
         else
         {
             // this adds an internal hollow, 5mm up from the base
-
+echo("add hollow");
             translate([0,0,5])
             cylinder(r1 = internalCutout_bottomRadius, r2 = internalCutout_TopRadius, h = maxlayers * 2, $fn = 360/step);
         }
