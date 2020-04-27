@@ -25,7 +25,7 @@ jdk:
 script:
 - Xvfb :5 -screen 0 800x600x24 &
 - export DISPLAY=:5
-- openscad-nightly --version
+- openscad --version
 
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
 

@@ -87,7 +87,8 @@ public class PngGeneratorSpecification
         }
         else
         {
-            executablePath = "openscad-nightly-change-me-CAFEBABE";
+//TODO: Look up if this value exists as an environment variable            
+            executablePath = "openscad";
         }
 
         return executablePath;
