@@ -23,7 +23,7 @@ sudo mkdir /usr/share/openscad/libraries
 
 sudo apt-get install -y openscad-mcad
 
-sudo cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad/libraries/
+#sudo cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad/libraries/
 
 ls -la /usr/share/openscad
 
