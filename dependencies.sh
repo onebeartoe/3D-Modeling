@@ -10,8 +10,8 @@ wget -qO - https://files.openscad.org/OBS-Repository-Key.pub | sudo apt-key add 
 #sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
 #sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 40976EAF437D05B5
 
-#sudo add-apt-repository --yes ppa:openscad/releases
-#sudo apt-get update -qq
+sudo add-apt-repository --yes ppa:openscad/releases
+sudo apt-get update -qq
 
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libopencsg1v5:i386 libopencsg1v5
 
