@@ -54,7 +54,8 @@ import org.testng.annotations.Test;
 
         runProfile = new RunProfile();
 
-        runProfile.executablePath = "openscad-nightly-DEADBEEF";
+//TODO: Look up if this value exists as an environment variable        
+        runProfile.executablePath = "openscad";
 
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
