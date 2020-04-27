@@ -32,9 +32,6 @@ script:
 - echo("model  errors  count " )
 - wc -l openscad/models/target/errorred-pngs.text
 
-#- cd openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/
-#- openscad -o EvilVase1-cylinder.stl EvilVase1-cylinder.scad
-
 addons:
   sonarcloud:
     organization: $SONAR_ORGNIZATION
@@ -46,7 +43,6 @@ addons:
     paths:
     - openscad/models/target/errorred-pngs.text
     - $(cat openscad/models/target/errorred-pngs.text | tr "\n" ":")
-#    - openscad/models/src/main/openscad/external-resources/vases/Chompworks/sine/EvilVase1-cylinder.stl
     target_paths: $TRAVIS_BUILD_NUMBER
     bucket: openscad-2
     permissions: public-read
