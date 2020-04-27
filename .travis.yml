@@ -27,7 +27,6 @@ script:
 - export DISPLAY=:5
 - openscad-nightly --version
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
-
 - echo "model  errors  count: "
 - wc -l openscad/models/target/errorred-pngs.text
 
