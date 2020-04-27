@@ -15,23 +15,23 @@ set -ev
 
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libopencsg1v5:i386 libopencsg1v5
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
+#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad-nightly imagemagick xvfb
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad imagemagick xvfb
 
-sudo mkdir /usr/share/openscad-nightly/libraries
+sudo mkdir /usr/share/openscad/libraries
 
 sudo apt-get install -y openscad-mcad
 
-sudo cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad-nightly/libraries/
+sudo cp -r /usr/share/openscad/libraries/MCAD/ /usr/share/openscad/libraries/
 
 ls -la /usr/share/openscad
 
-which openscad-nightly
+which openscad
 
-whereis openscad-nightly
+whereis openscad
 
 whereis openscad-mcad
 
-ls -la /usr/share/openscad-nightly/
-ls -la /usr/share/openscad-nightly/libraries
+ls -la /usr/share/openscad/
+ls -la /usr/share/openscad/libraries
