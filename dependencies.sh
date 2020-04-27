@@ -15,7 +15,7 @@ sudo apt-get update -qq
 
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libopencsg1v5:i386 libopencsg1v5
 
-#sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad imagemagick xvfb
 
