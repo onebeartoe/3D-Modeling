@@ -87,7 +87,7 @@ public class PngGeneratorSpecification
         }
         else
         {
-            executablePath = "openscad-nightly";
+            executablePath = "openscad-nightly-change-me-CAFEBABE";
         }
 
         return executablePath;
