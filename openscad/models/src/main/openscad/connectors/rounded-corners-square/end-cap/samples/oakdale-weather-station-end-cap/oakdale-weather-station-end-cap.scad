@@ -25,8 +25,11 @@ difference()
                         outerCornerRadius = cornerRadius);
 
     xyTranslate = cornerRadius;
-    cutoutSideLength = cornerRadius + 17 // needs to be 22
-                        + xyTranslate;
+    cutoutSideLength = (cornerRadius + 17 // needs to be 22
+                        + xyTranslate) 
+                        
+                        * 0.55;
+//                        * 01.0;
 
     cutoutSize = [cutoutSideLength, cutoutSideLength, zLength+5];
     translate([-xyTranslate, -xyTranslate, -0.01])
