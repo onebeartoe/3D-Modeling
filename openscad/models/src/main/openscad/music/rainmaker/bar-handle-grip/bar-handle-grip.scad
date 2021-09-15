@@ -2,15 +2,16 @@
 use <../rainmaker.scad>
 
 
-innerRadius = 12;
+innerRadius = 11.5;
 
+outerRadius = innerRadius + 4;
 
 difference()
 {
 
 rainmaker(height = 80,
 			innerRadius = innerRadius,
-			outerRadius = 16,
+			outerRadius = outerRadius,
 		  	rungsPerLevel = 5,
 			shellDecoration = "bumps"
 
@@ -23,6 +24,5 @@ rainmaker(height = 80,
     
     color("blue")
     translate([0,0,4])
-    cylinder(r = innerRadius, h = 182);
-    
+    cylinder(r = innerRadius, h = 182);   
 }
