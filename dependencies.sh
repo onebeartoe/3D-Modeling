@@ -19,7 +19,9 @@ sudo apt-get update -qq
 
 #sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openjfx
 
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad imagemagick xvfb
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y imagemagick
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y openscad xvfb
 
 sudo mkdir /usr/share/openscad/libraries
 
