@@ -22,6 +22,7 @@
     <modules>
         <module>inline-tool</module>
 <!--
+TODO: add this back!!!!!!!!!
         <module>inline-tool</module>
 -->        
         <module>models</module>
