@@ -15,7 +15,7 @@ pipeline
       steps {
         echo 'Verifying...'
         sh '''
-                mvn install
+                mvn verify
            '''
       }
     }
