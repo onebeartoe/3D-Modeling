@@ -49,6 +49,11 @@ module buttonText()
                 text="\"We Are",
                 font = "Liberation Sans:style=Bold");
 
+    // this is the under score
+    color("red")
+    translate([4,0,0])
+    cube(size=[25,3,textHeight]);
+
     color("red")
     translate([0, -10, 0])
     textExtrude(height = textHeight,
