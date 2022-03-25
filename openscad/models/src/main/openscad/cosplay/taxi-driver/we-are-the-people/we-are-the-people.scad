@@ -1,8 +1,33 @@
 
+
+use <../../../basics/text/text-extrude/text-extrude.scad>
+
 module weAreThePeople(sidesOnly = false,
                       cornerRadius=5,
                       height = 1)
 {
+    union()
+    {
+        button(sidesOnly,
+            cornerRadius,
+            height);
+
+        buttonText();
+    }
+}
+
+module bottomCutoff(height)
+{
+    color("green")
+    translate([0,0, height / -2])
+    cube(size=[150, 150, height], center=true);
+}
+
+module button(sidesOnly,
+            cornerRadius,
+            height)
+{
+    color("white")
     difference()
     {
         fullDisk(sidesOnly, cornerRadius, height);
@@ -11,11 +36,25 @@ module weAreThePeople(sidesOnly = false,
     };
 }
 
-module bottomCutoff(height)
+module buttonText()
 {
-    color("green")
-    translate([0,0, height / -2])
-    cube(size=[150, 150, height], center=true);
+    textSize = 11;
+
+    textHeight = 9;
+
+    color("red")
+    translate([0, 10, 0])
+    textExtrude(height = textHeight,
+                textSize = textSize,
+                text="\"We Are",
+                font = "Liberation Sans:style=Bold");
+
+    color("red")
+    translate([0, -10, 0])
+    textExtrude(height = textHeight,
+                textSize = textSize,
+                text="The People\"",
+                font = "Liberation Sans:style=Bold");
 }
 
 module fullDisk(sidesOnly,
