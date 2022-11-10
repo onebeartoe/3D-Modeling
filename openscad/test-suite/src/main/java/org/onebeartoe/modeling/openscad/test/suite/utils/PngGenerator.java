@@ -20,6 +20,7 @@ import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.apache.commons.codec.binary.StringUtils;
 import org.jsoup.helper.StringUtil;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
@@ -293,7 +294,9 @@ public class PngGenerator
             directoryProfile.setAutoCenter(autoCenter);
             
             String s = properties.getProperty("skipPngGeneration");
-            if( !StringUtil.isBlank(s) )
+            
+            if( s != null && ! s.isEmpty() )
+//            if( !StringUtil.isBlank(s) )
             {
                 skipPngGeneration = Boolean.parseBoolean(s);
             }
