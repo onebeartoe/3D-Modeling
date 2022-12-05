@@ -88,8 +88,10 @@ public class PngGeneratorSpecification
         }
         else
         {
-//TODO: Look up if this value exists as an environment variable
-            executablePath = "openscad";
+//TODO: Look up if this value exists as an environment variable.
+//            executablePath = "openscad";
+//TODO: Dont use a hard coded full path.            
+              executablePath = "/snap/bin/openscad";            
         }
 
         return executablePath;
