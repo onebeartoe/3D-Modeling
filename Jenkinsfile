@@ -15,6 +15,7 @@ pipeline
       steps {
         echo 'Verifying...'
         sh '''
+                whoami
                 openscad --help
                 mvn verify
            '''
