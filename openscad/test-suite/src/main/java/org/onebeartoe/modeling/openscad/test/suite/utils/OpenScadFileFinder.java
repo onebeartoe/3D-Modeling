@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
@@ -45,9 +46,15 @@ public class OpenScadFileFinder extends SimpleFileVisitor<Path>
         System.out.println("Welcome to the onebeartoe OpenSCAD test suite!");
         System.out.println();
         
+        System.out.println("Current directory:");
+        File pwd = new File(".");
+        String absolutePath = pwd.getAbsolutePath();
+        System.out.println(">" + absolutePath + "<");        
+        
         System.out.println("Locating files under: " + inpath);
         System.out.println();
 	
+        
         int maxDepth = Integer.MAX_VALUE;
         
         BiPredicate<Path, BasicFileAttributes> matcherLambda = (p, bfa) ->

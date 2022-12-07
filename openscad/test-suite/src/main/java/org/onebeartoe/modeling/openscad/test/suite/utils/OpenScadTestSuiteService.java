@@ -86,6 +86,8 @@ public class OpenScadTestSuiteService
 
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
+
+        
         
         runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
