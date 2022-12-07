@@ -2,6 +2,11 @@
 pipeline 
 {
   agent any
+
+  environment{
+    OPENSCAD_PATH = "/snap/bin/openscad"
+  }
+
   stages {
     stage('clean') {
       steps {

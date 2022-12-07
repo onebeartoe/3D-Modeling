@@ -90,7 +90,7 @@ public class PngGeneratorSpecification
         else
         {
             // Look up if this value exists as an environment variable.
-            String envVar = System.getenv(OPENSCAD_PATH);
+            String envVar = System.getenv("OPENSCAD_PATH");
             
             if(envVar != null && !envVar.isEmpty() )
             {
