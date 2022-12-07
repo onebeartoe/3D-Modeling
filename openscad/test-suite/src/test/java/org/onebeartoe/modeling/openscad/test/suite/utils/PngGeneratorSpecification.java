@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.OPENSCAD_PATH;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.system.OperatingSystem;
@@ -80,7 +81,7 @@ public class PngGeneratorSpecification
     {
         OperatingSystem os = new OperatingSystem();
         
-        String executablePath;
+        String executablePath = "openscad";
         
         if( os.seemsLikeMac() )
         {
@@ -88,12 +89,13 @@ public class PngGeneratorSpecification
         }
         else
         {
-//TODO: Look up if this value exists as an environment variable.
-            System.getenv(OPENSCAD_PATH);
+            // Look up if this value exists as an environment variable.
+            String envVar = System.getenv(OPENSCAD_PATH);
             
-//            executablePath = "openscad";
-//TODO: Dont use a hard coded full path.            
-              executablePath = "/snap/bin/openscad";            
+            if(envVar != null && !envVar.isEmpty() )
+            {
+                executablePath = envVar;
+            }
         }
 
         return executablePath;

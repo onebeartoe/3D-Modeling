@@ -32,7 +32,7 @@ public class OpenScadCliTestSuite
     private static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
     private static final String DIFF_ONLY = "diffOnly";
     public static final String GENERATE_BASELILNES = "generateBaselines";
-    private static final String OPENSCAD_PATH = "openscadPath";
+    public static final String OPENSCAD_PATH = "openscadPath";
     private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
     
     private static Options buildOptions()

@@ -139,9 +139,10 @@ public class OpenScadTestSuiteServiceSpecification
         
         System.out.println("pwd: " + pwd);
 
+        // debug happy path is the following comment path
+//        runProfile.path = "../models/src/main/openscad/basics/primitives/cube";        
         runProfile.path = "../models/src/main/openscad/basics/primitives/cube";
-        
-        OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
+                OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
                                 
         assertNotNull(results);
     }
