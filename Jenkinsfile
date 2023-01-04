@@ -25,7 +25,6 @@ pipeline
                 whoami
                 java -version
                 $OPENSCAD_PATH --help
-//                /snap/bin/openscad --help
                 mvn verify
            '''
       }
