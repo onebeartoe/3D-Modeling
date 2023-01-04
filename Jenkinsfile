@@ -21,6 +21,7 @@ pipeline
         echo 'Verifying...'
         sh '''
                 whoami
+                java -version
                 /snap/bin/openscad --help
                 mvn verify
            '''
