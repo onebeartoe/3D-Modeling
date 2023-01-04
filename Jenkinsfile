@@ -17,13 +17,15 @@ pipeline
            '''
       }
     }
+
     stage('install') {
       steps {
         echo 'Verifying...'
         sh '''
                 whoami
                 java -version
-                /snap/bin/openscad --help
+                $OPENSCAD_PATH --help
+//                /snap/bin/openscad --help
                 mvn verify
            '''
       }
