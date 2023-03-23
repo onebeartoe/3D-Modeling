@@ -36,3 +36,20 @@ module roundDoughnut(fn = 20,
 		sphere(r = minkowskiSphereRadius, $fn = 10);
 	}
 }
+
+module roundedDisk(fn = 30,
+					 height = 3,
+					 minkowskiSphereRadius = 2,
+					 radius = 25)
+{
+	translate([0,0,minkowskiSphereRadius])
+	minkowski()
+	{
+		$fn = fn;
+
+		cylinder(h = height,
+						r = radius);
+
+		sphere(r = minkowskiSphereRadius, $fn = 10);
+	}
+}
