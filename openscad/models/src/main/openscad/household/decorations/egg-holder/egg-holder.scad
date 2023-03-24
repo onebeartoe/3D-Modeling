@@ -1,5 +1,6 @@
 
 use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>
+use <../../../external-resources/egg/KySyth/Egg.scad>
 
 module eggHolder(legHeight = 12,
                  toeHeight = 3.0,
@@ -104,5 +105,11 @@ module chickenFoot_toe(height,
 
 module holder()
 {
+    zTranslate = -23;
 
+    rotate([180, 0, 0])    
+    translate([0, 0, zTranslate])
+    kysythEgg(Printable  = 1,
+                moveBottom = false,
+            excludeTop = true);
 }
