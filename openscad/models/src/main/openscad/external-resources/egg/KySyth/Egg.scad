@@ -56,7 +56,7 @@ module Half_Sphere(X,
 
     difference()
     {
-        sphere(Egg_radius,true);   
+        sphere(r=Egg_radius);   
  
         translate([0,0,Egg_Radius])
         cube(size=Egg_Radius*2 ,center=true);
