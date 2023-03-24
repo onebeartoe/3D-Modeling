@@ -17,16 +17,17 @@ module kysythEgg(Egg_Top    = 28,
 
     if (Printable  == 0)  
         rotate([0,180,0])  
-        {
-            Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
-        }
+    {
+        Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+    }
 
     if (Printable  == 1)  
         translate([0,40,0])
-        {
-            Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
-        } 
-        Egg_Top(Egg_Radius=Egg_Radius,  Egg_Top=Egg_Top,  Egg_Wall=Egg_Wall);
+    {
+        Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+    } 
+        
+    Egg_Top(Egg_Radius=Egg_Radius,  Egg_Top=Egg_Top,  Egg_Wall=Egg_Wall);
 }
 //
      
