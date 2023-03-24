@@ -13,11 +13,12 @@ egg holder to print well.
 
 Egg Shape in OpenSCAD
 
-    KySyth has the egg part already
+    KySyth has the egg part already, see 'egg' under the 'external-resources'
+    at the root of this repository.
 
-            https://www.thingiverse.com/thing:2240986
+        It is pretty much the same, but reworked to be parameterized.
 
-            /home/roberto/Downloads/group/Egg.scad
+                https://www.thingiverse.com/thing:2240986
 
 
     MCAD has an egg module, but it does not work.
