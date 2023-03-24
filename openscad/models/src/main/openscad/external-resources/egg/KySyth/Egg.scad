@@ -8,12 +8,24 @@ $fn        = 60   ;
 
 Printable  = 0   ;// 0 = Display or 1 = Printable
 
-// Main
+kysythEgg();
 
+// Main
+module kysythEgg()
 {
- if (Printable  == 0)  rotate([0,180,0])  {Egg_Bottom();} 
- if (Printable  == 1)  translate([0,40,0]){Egg_Bottom();} 
-     Egg_Top();}
+    if (Printable  == 0)  
+        rotate([0,180,0])  
+        {
+            Egg_Bottom();
+        }
+
+    if (Printable  == 1)  
+        translate([0,40,0])
+        {
+            Egg_Bottom();
+        } 
+        Egg_Top();
+}
 //
      
 // End

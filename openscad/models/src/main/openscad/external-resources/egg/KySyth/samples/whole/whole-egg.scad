@@ -1,0 +1,5 @@
+
+use <../../Egg.scad>
+
+
+kysythEgg();
