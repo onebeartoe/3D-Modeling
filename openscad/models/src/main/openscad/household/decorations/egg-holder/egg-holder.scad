@@ -19,15 +19,22 @@ module chickenFeet(legHeight,
                     toeHeight,
                     zTranslate_toe)
 {
+    zRotate = -20;
+    yTranslate = -6;
+
+    rotate([0, 0, zRotate])
+    translate([0, yTranslate, 0])    
     chickenFoot(legHeight = legHeight,
                 toeHeight = toeHeight,
                 zTranslate_toe = zTranslate_toe);
 
-//    rotate([0,0,30])
-    // translate([5, 0, 0])
-    // {
-    //     chickenFoot();
-    // }
+    rotate([0, 0, -zRotate])
+    translate([0, -yTranslate, 0])
+    {
+        chickenFoot(legHeight = legHeight,
+                    toeHeight = toeHeight,
+                    zTranslate_toe = zTranslate_toe);
+    }
 }
 
 module chickenFoot(legHeight,
