@@ -2,13 +2,14 @@
 use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 use <../../../external-resources/egg/KySyth/Egg.scad>
 
-module eggHolder(legHeight = 12,
+module eggHolder(Egg_Radius = 19,
+                 legHeight = 12,
                  toeHeight = 3.0,
                  zTranslate_toe = -16)
 {
     union()
     {
-        holder();
+        holder(Egg_Radius = Egg_Radius);
 
         chickenFeet(legHeight = legHeight,
                     toeHeight = toeHeight,
@@ -45,6 +46,7 @@ module chickenFoot(legHeight,
     union()
     {
         // leg
+        translate([2, 0, 0])
         cylinder(center=false,
                  $fn=19,
                  r=2, 
@@ -58,11 +60,12 @@ module chickenFoot(legHeight,
                         zTranslate_toe = zTranslate_toe);
 
         // left toe
+        xTranslate = 9;
         zRotate = 35;
         scale = 0.6;
         scale([scale,scale,scale])
         rotate([0, 0, zRotate])
-        translate([9, 0, 0])
+        translate([xTranslate, 0, 0])
         chickenFoot_toe(height = toeHeight,
                         minkowskiSphereRadius = 0.5,
                         radius = 20,
@@ -71,7 +74,7 @@ module chickenFoot(legHeight,
         // right toe
         scale([scale,scale,scale])
         rotate([0, 0, -zRotate])
-        translate([9, 0, 0])
+        translate([xTranslate, 0, 0])
         chickenFoot_toe(height = toeHeight,
                         minkowskiSphereRadius = 0.5,
                         radius = 20,
@@ -103,13 +106,22 @@ module chickenFoot_toe(height,
     }
 }
 
-module holder()
+module holder(Egg_Radius)
 {
-    zTranslate = -23;
+    zTranslate = -28;
+    difference()
+    {
+        // holder
+        rotate([180, 0, 0])    
+        translate([0, 0, zTranslate])
+        kysythEgg(Printable  = 1,
+                    Egg_Radius = Egg_Radius,
+                    moveBottom = false,
+                    excludeTop = true);
 
-    rotate([180, 0, 0])    
-    translate([0, 0, zTranslate])
-    kysythEgg(Printable  = 1,
-                moveBottom = false,
-            excludeTop = true);
+        // cutout
+        translate([-20, -80, 17])
+        cube(size=[50, 100, 20]);
+        //, center=true);
+    }
 }
