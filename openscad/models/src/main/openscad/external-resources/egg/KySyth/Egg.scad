@@ -11,7 +11,7 @@ module kysythEgg(Egg_Top    = 28,
                 Egg_Wall   =  1.45, 
 
                 fn        = 60   ,
-
+                moveBottom = true,
                 Printable  = 0,
                 excludeTop = false)
 {
@@ -27,7 +27,9 @@ module kysythEgg(Egg_Top    = 28,
 
     if (Printable  == 1)  
     {
-        translate([0,40,0])
+        yTranslate = moveBottom ? 40 : 0;
+
+        translate([0, yTranslate,0])
         {
             Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
         }
