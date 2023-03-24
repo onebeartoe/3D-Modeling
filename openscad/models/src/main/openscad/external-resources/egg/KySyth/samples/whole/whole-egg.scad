@@ -1,5 +1,4 @@
 
 use <../../Egg.scad>
 
-
 kysythEgg();
