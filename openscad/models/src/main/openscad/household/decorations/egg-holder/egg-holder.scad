@@ -37,11 +37,9 @@ module chickenFoot(legHeight,
     union()
     {
         // leg
-        // zTranslate = legHeight / 2.0;
-        // translate([0, 0, zTranslate]) 
         cylinder(center=false,
                  $fn=19,
-                 r=4, 
+                 r=2, 
                  h=legHeight);
 
         // center toe
