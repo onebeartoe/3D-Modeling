@@ -1,5 +1,6 @@
-// OpenScad Eggs By Kevin Symss
 
+// OpenScad Eggs By Kevin Symss
+//               updated by Roberto Marquez
 
 
 kysythEgg();
@@ -16,16 +17,20 @@ module kysythEgg(Egg_Top    = 28,
 {
     $fn = fn; 
 
-    if (Printable  == 0)  
+    if (Printable  == 0)
+    {  
         rotate([0,180,0])  
-    {
-        Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+        {
+            Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+        }
     }
 
     if (Printable  == 1)  
-        translate([0,40,0])
     {
-        Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+        translate([0,40,0])
+        {
+            Egg_Bottom(Egg_Radius=Egg_Radius,  Egg_Wall=Egg_Wall);
+        }
     } 
         
     if(excludeTop)
@@ -37,9 +42,7 @@ module kysythEgg(Egg_Top    = 28,
         Egg_Top(Egg_Radius=Egg_Radius,  Egg_Top=Egg_Top,  Egg_Wall=Egg_Wall);
     }
 }
-//
-     
-// End
+
 
 module Egg_Top(Egg_Radius, Egg_Top, Egg_Wall) {
  difference()
