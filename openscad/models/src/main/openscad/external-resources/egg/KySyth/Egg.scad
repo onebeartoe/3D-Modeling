@@ -7,7 +7,7 @@ kysythEgg();
 
 // Main
 module kysythEgg(Egg_Top    = 28,
-                Egg_Radius = 15    , 
+                Egg_Radius = 15,
                 Egg_Wall   =  1.45, 
 
                 fn        = 60   ,
