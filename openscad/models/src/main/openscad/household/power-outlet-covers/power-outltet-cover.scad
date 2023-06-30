@@ -6,14 +6,20 @@
 
 //TODO: Comment to TheNewHobbyist about the 'go away Customizer' comment
 
+//TODO: Comment to TheNewHobbyist about the 'Number One ENGAGE' comment
+
+
 1st_plate = "keystone1";
 
 1st_plate_bottom_hole = "outlet";
 
 
-l_offset = [34.925,39.6875,44.45];
-r_offset = [34.925,39.6875,44.45];
 
+
+
+
+//How big are we talkin' here?
+plate_width = 1; //	[1:5]
 
 
 // Bigger hole in your wall? Try this
@@ -24,7 +30,124 @@ height_sizes = [114.3,123.825,133.35];
 height = 114.3; //plate height (static)
 
 
-plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
+l_offset = [34.925,39.6875,44.45];
+r_offset = [34.925,39.6875,44.45];
+spacer = [0,0,46.0375,92.075,138.1125,184.15];
+solid_plate_width = l_offset[plate_size] + spacer[plate_width] + r_offset[plate_size];
+
+
+edgewidth = solid_plate_width + 10; // Bevel setting for top and bottom
+rightbevel = solid_plate_width - 4; // Bevel for right side (scales)
+
+
+
+thinner_offset=[0,0.92,0.95,0.96,0.97,0.973]; // Manual fix for right side wackiness
+
+
+
+powerOutletCover();
+
+//plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
+module powerOutletCover()
+{
+      ////////////////////////
+ // Number One ENGAGE: //
+////////////////////////
+
+// Rotate so it sits correctly on plate (whoops) and make upside down
+rotate([0,180,90]){
+// put plate at 0,0,0 for easier printing
+translate([-height_sizes[plate_size]/2,-solid_plate_width/2,-6]){
+
+if (plate_width == 1) {
+	difference() {
+		plate();
+		translate([0,0,-3]) plate_inner();
+		plate1();
+			}
+		union() {
+		plate1_solid();
+		}
+			}
+
+else if (plate_width == 2) {
+difference()
+{
+plate();
+translate([0,0,-3]) plate_inner();
+plate1();
+plate2();
+}
+union() {
+		plate1_solid();
+		plate2_solid();
+		}
+}
+
+else if (plate_width == 3) {
+difference()
+{
+plate();
+translate([0,0,-3]) plate_inner();
+plate1();
+plate2();
+plate3();
+}
+union() {
+		plate1_solid();
+		plate2_solid();
+		plate3_solid();
+		}
+}
+
+else if (plate_width == 4) {
+difference()
+{
+plate();
+translate([0,0,-3]) plate_inner();
+plate1();
+plate2();
+plate3();
+plate4();
+}
+union() {
+		plate1_solid();
+		plate2_solid();
+		plate3_solid();
+		plate4_solid();
+		}
+}
+
+else if (plate_width == 5) {
+difference()
+{
+plate();
+translate([0,0,-3]) plate_inner();
+plate1();
+plate2();
+plate3();
+plate4();
+plate5();
+}
+union() {
+		plate1_solid();
+		plate2_solid();
+		plate3_solid();
+		plate4_solid();
+		plate5_solid();
+		}
+}
+
+//End Rotate
+}
+//End Translate
+}
+
+
+
+}
+
+
 
 // plate1_solid(1st_plate = 1st_plate,
 //              1st_plate_bottom_hole = 1st_plate_bottom_hole);
@@ -291,3 +414,38 @@ module hole(hole_type)
 
 //End of module "hole"
 }
+
+
+
+
+  ///////////////////
+ // PlateStation: //
+///////////////////
+
+//Plate size and bevel
+module plate() {
+	difference() {
+		cube([height_sizes[plate_size],solid_plate_width,6]);
+		translate([-4.3,-5,6.2]) rotate([0,45,0]) cube([6,edgewidth,6]); //Top Bevel
+		translate([height_sizes[plate_size]-4.2,-5,6.25]) rotate([0,45,0]) cube([6,edgewidth,6]); //Bottom Bevel
+		translate([height_sizes[plate_size]+10,-4.4,6.1]) rotate([0,45,90]) cube([6,height_sizes[plate_size]+20,6]); //Left Bevel (doesn't change)
+		translate([height_sizes[plate_size]+10,rightbevel,6]) rotate([0,45,90]) cube([6,height_sizes[plate_size]+10,6]); //Right Bevel (scales right)
+				}
+			}
+
+
+// Thinning Plate
+module plate_inner() {
+	scale([0.95,thinner_offset[plate_width],1]){
+	translate([3,3,0]){
+	difference() {
+		cube([height_sizes[plate_size],solid_plate_width,6]);
+		translate([-4.3,-5,6.2]) rotate([0,45,0]) cube([6,edgewidth,6]); //Top Bevel
+		translate([height_sizes[plate_size]-4.2,-5,6.25]) rotate([0,45,0]) cube([6,edgewidth,6]); //Bottom Bevel
+		translate([height_sizes[plate_size]+10,-4.4,6.1]) rotate([0,45,90]) cube([6,height_sizes[plate_size]+20,6]); //Left Bevel (doesn't change)
+		translate([height_sizes[plate_size]+10,rightbevel,6]) rotate([0,45,90]) cube([6,height_sizes[plate_size]+10,6]); //Right Bevel (scales right)
+				}
+			}
+		}
+	}
+
