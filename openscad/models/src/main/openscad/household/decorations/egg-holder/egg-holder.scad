@@ -3,13 +3,14 @@ use <../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 use <../../../external-resources/egg/KySyth/Egg.scad>
 
 module eggHolder(Egg_Radius = 19,
-                 legHeight = 12,
+                 legHeight = 11,
                  toeHeight = 3.0,
                  zTranslate_toe = -16)
 {
     union()
     {
         holder(Egg_Radius = Egg_Radius);
+
 
         chickenFeet(legHeight = legHeight,
                     toeHeight = toeHeight,
@@ -106,9 +107,25 @@ module chickenFoot_toe(height,
     }
 }
 
+module connectors()
+{
+    $fn = 30;
+
+    zTranslate = 10;
+
+//    rotate([-30,0,0])
+    translate([-0,-6, zTranslate])
+    rotate([-90, 0, 0])    
+    cylinder(r=1, h = 12);
+}
+
 module holder(Egg_Radius)
 {
     zTranslate = -28;
+union()
+{
+    connectors();
+
     difference()
     {
         // holder
@@ -124,4 +141,5 @@ module holder(Egg_Radius)
         cube(size=[50, 100, 20]);
         //, center=true);
     }
+}    
 }

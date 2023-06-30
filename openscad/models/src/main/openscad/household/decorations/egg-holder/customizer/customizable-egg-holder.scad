@@ -1,7 +1,7 @@
 
 use <../egg-holder.scad>
 
-legHeight = 12; // [4:20]
+legHeight = 11; // [4:20]
 
 toeHeight = 3.0; // [0.5 : 0.5 : 25]
 
