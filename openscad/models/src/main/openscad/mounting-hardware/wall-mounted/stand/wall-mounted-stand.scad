@@ -1,7 +1,7 @@
 
-use <MCAD/shapes.scad>
-
 use <../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
+
+use <MCAD/shapes.scad>
 
 module wallMountedStand(mount_cube_xLength,
 						mount_cube_yLength,

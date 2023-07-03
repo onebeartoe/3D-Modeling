@@ -174,13 +174,33 @@ module devicePlatform()
 
 	size = [cube_xLength, cube_yLength, cube_zLength];
 
+	// the actual platofrm
 	translate([-1, 0, 0])
 	roundedCube(cornerRadius = cornerRadius,
 				sides=20,
 				sidesOnly=true,
 				size=size);
+
+
+	// platform lip
+	xTranslate = 71;
+	yTranslate = -5;
+	zTranslate = 66;
+	lipSize = [cube_xLength, 8, cube_yLength + 2];
+	color("blue")
+	translate([yTranslate, xTranslate, zTranslate])
+	rotate([90, 90, 0])
+	roundedCube(cornerRadius = cornerRadius,
+				sides=20,
+				sidesOnly=true,
+				size=lipSize);
+
 }
 
+module devicePlatformLip()
+{
+
+}
 
 module devicePlatformSupport()
 {
@@ -193,6 +213,12 @@ module devicePlatformSupport()
 
 	color("green")
 	translate([4, 7, 0])
+	rotate([180, 90, 90])
+	rightTriangle(adjacent, opposite, depth);
+
+
+	color("pink")
+	translate([4, 63, 0])
 	rotate([180, 90, 90])
 	rightTriangle(adjacent, opposite, depth);
 }
