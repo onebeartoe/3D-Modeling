@@ -174,13 +174,24 @@ module devicePlatform()
 
 	size = [cube_xLength, cube_yLength, cube_zLength];
 
-	// the actual platofrm
-	translate([-1, 0, 0])
-	roundedCube(cornerRadius = cornerRadius,
-				sides=20,
-				sidesOnly=true,
-				size=size);
+	// the actual platofrm and cutout for the power cord
+	difference()
+	{
+		translate([-1, 0, 0])
+		roundedCube(cornerRadius = cornerRadius,
+					sides=20,
+					sidesOnly=true,
+					size=size);
 
+		cutoutSize = [cube_xLength, cube_yLength/2.0, cube_zLength];
+		color("yellow")
+		translate([-30, 33, 20])
+		rotate([90, 0, 90])
+		roundedCube(cornerRadius = cornerRadius,
+					sides=20,
+					sidesOnly=true,
+					size=cutoutSize);
+	}
 
 	// platform lip
 	xTranslate = 71;
@@ -194,11 +205,6 @@ module devicePlatform()
 				sides=20,
 				sidesOnly=true,
 				size=lipSize);
-
-}
-
-module devicePlatformLip()
-{
 
 }
 
@@ -527,4 +533,3 @@ module plate_inner() {
 			}
 		}
 	}
-
