@@ -1,4 +1,6 @@
 
+use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
+
 
 // The dimentions are from the model made at TheNewHobbyist at
 //      https://www.printables.com/model/72079-wally-wall-plate-customizer
@@ -82,20 +84,24 @@ module powerOutletCover()
 				union()
 				{
 					plate1_solid();
+				
+					devicePlatform();
 				}
 			}
-			else if (plate_width == 2) {
-			difference()
+			else if (plate_width == 2) 
 			{
-			plate();
-			translate([0,0,-3]) plate_inner();
-			plate1();
-			plate2();
-			}
-			union() {
+				difference()
+				{
+					plate();
+					translate([0,0,-3]) plate_inner();
+					plate1();
+					plate2();
+				}
+				union() 
+				{
 					plate1_solid();
 					plate2_solid();
-					}
+				}
 			}
 
 			else if (plate_width == 3) {
@@ -156,6 +162,27 @@ module powerOutletCover()
 		}
 	}
 }
+
+module devicePlatform()
+{
+	cornerRadius = 2;
+
+	cube_xLength = 4;  // [ 2 :  20]
+	cube_yLength = 70; // [20 : 150]
+	cube_zLength = 65; // [20 : 150]
+
+	size = [cube_xLength, cube_yLength, cube_zLength];
+
+	translate([-1, 0, 0])
+	roundedCube(cornerRadius = cornerRadius,
+				sides=20,
+				sidesOnly=true,
+				size=size);
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
 
 
 
