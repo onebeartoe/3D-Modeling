@@ -58,7 +58,9 @@ module powerOutletCover()
 	rotate([0,0,90])
 	{
 		// put plate at 0,0,0 for easier printing
-		translate([-height_sizes[plate_size]/2,-solid_plate_width/2,-6])
+		translate([-height_sizes[plate_size]/2,
+				  -solid_plate_width/2,
+				  0])
 		{
 			if (plate_width == 1) {
 				difference() {
