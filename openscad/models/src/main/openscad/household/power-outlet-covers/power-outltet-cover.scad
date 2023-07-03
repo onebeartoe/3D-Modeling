@@ -50,101 +50,98 @@ powerOutletCover();
 //plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
 module powerOutletCover()
 {
-      ////////////////////////
- // Number One ENGAGE: //
-////////////////////////
+    ////////////////////////
+	// Number One ENGAGE: //
+	////////////////////////
 
-// Rotate so it sits correctly on plate (whoops) and make upside down
-rotate([0,180,90]){
-// put plate at 0,0,0 for easier printing
-translate([-height_sizes[plate_size]/2,-solid_plate_width/2,-6]){
+	// Rotate so it sits correctly on plate (whoops) and make upside down
+	rotate([0,0,90])
+	{
+		// put plate at 0,0,0 for easier printing
+		translate([-height_sizes[plate_size]/2,-solid_plate_width/2,-6])
+		{
+			if (plate_width == 1) {
+				difference() {
+					plate();
+					translate([0,0,-3]) plate_inner();
+					plate1();
+						}
+					union() {
+					plate1_solid();
+					}
+						}
 
-if (plate_width == 1) {
-	difference() {
-		plate();
-		translate([0,0,-3]) plate_inner();
-		plate1();
+			else if (plate_width == 2) {
+			difference()
+			{
+			plate();
+			translate([0,0,-3]) plate_inner();
+			plate1();
+			plate2();
 			}
-		union() {
-		plate1_solid();
-		}
+			union() {
+					plate1_solid();
+					plate2_solid();
+					}
 			}
 
-else if (plate_width == 2) {
-difference()
-{
-plate();
-translate([0,0,-3]) plate_inner();
-plate1();
-plate2();
-}
-union() {
-		plate1_solid();
-		plate2_solid();
+			else if (plate_width == 3) {
+			difference()
+			{
+			plate();
+			translate([0,0,-3]) plate_inner();
+			plate1();
+			plate2();
+			plate3();
+			}
+			union() {
+					plate1_solid();
+					plate2_solid();
+					plate3_solid();
+					}
+			}
+
+			else if (plate_width == 4) {
+			difference()
+			{
+			plate();
+			translate([0,0,-3]) plate_inner();
+			plate1();
+			plate2();
+			plate3();
+			plate4();
+			}
+			union() {
+					plate1_solid();
+					plate2_solid();
+					plate3_solid();
+					plate4_solid();
+					}
+			}
+
+			else if (plate_width == 5) {
+			difference()
+			{
+			plate();
+			translate([0,0,-3]) plate_inner();
+			plate1();
+			plate2();
+			plate3();
+			plate4();
+			plate5();
+			}
+			union() {
+					plate1_solid();
+					plate2_solid();
+					plate3_solid();
+					plate4_solid();
+					plate5_solid();
+					}
+			}
+
+			
 		}
-}
-
-else if (plate_width == 3) {
-difference()
-{
-plate();
-translate([0,0,-3]) plate_inner();
-plate1();
-plate2();
-plate3();
-}
-union() {
-		plate1_solid();
-		plate2_solid();
-		plate3_solid();
-		}
-}
-
-else if (plate_width == 4) {
-difference()
-{
-plate();
-translate([0,0,-3]) plate_inner();
-plate1();
-plate2();
-plate3();
-plate4();
-}
-union() {
-		plate1_solid();
-		plate2_solid();
-		plate3_solid();
-		plate4_solid();
-		}
-}
-
-else if (plate_width == 5) {
-difference()
-{
-plate();
-translate([0,0,-3]) plate_inner();
-plate1();
-plate2();
-plate3();
-plate4();
-plate5();
-}
-union() {
-		plate1_solid();
-		plate2_solid();
-		plate3_solid();
-		plate4_solid();
-		plate5_solid();
-		}
-}
-
-//End Rotate
-}
-//End Translate
-}
-
-
-
+	}
 }
 
 
