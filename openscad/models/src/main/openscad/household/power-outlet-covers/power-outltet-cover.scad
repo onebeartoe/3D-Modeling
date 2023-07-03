@@ -62,17 +62,28 @@ module powerOutletCover()
 				  -solid_plate_width/2,
 				  0])
 		{
-			if (plate_width == 1) {
-				difference() {
-					plate();
-					translate([0,0,-3]) plate_inner();
-					plate1();
-						}
-					union() {
-					plate1_solid();
-					}
-						}
+			if (plate_width == 1) 
+			{
+				echo("width 1");
+// the next commented line is the shape of bottom part of the plate
+//cube([height_sizes[plate_size],solid_plate_width,2]);
 
+				difference() 
+				{
+					plate();
+
+// the next two commented lines are the under cutout/hollowing of the back of the plate
+//					translate([0,0,-3]) 
+//					plate_inner();
+					
+					plate1();
+				}
+				
+				union()
+				{
+					plate1_solid();
+				}
+			}
 			else if (plate_width == 2) {
 			difference()
 			{
