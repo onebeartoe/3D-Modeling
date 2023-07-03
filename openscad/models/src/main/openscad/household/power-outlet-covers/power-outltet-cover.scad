@@ -1,4 +1,7 @@
 
+
+use <MCAD/shapes.scad>
+
 use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
 
@@ -14,10 +17,6 @@ use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 1st_plate = "keystone1";
 
 1st_plate_bottom_hole = "outlet";
-
-
-
-
 
 
 //How big are we talkin' here?
@@ -86,6 +85,8 @@ module powerOutletCover()
 					plate1_solid();
 				
 					devicePlatform();
+
+					devicePlatformSupport();
 				}
 			}
 			else if (plate_width == 2) 
@@ -180,6 +181,21 @@ module devicePlatform()
 				size=size);
 }
 
+
+module devicePlatformSupport()
+{
+	support_xLength = 60; // [50 : 100]
+	support_zLength = 59; // [20 : 250]
+
+	adjacent = support_zLength - 15;
+	opposite = support_xLength; 
+	depth = 6;
+
+	color("green")
+	translate([4, 7, 0])
+	rotate([180, 90, 90])
+	rightTriangle(adjacent, opposite, depth);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////
