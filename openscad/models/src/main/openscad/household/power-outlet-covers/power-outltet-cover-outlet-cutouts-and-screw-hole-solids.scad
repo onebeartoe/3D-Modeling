@@ -122,7 +122,7 @@ module plate1(){
 // Hole Cutout definitions
 module hole(hole_type) 
 {
-    echo("hole-1");
+//    echo("hole-1");
 
 // Toggle switch hole
 	if (hole_type == "toggle") {
