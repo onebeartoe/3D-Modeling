@@ -1,4 +1,9 @@
 
 use <../../power-outltet-cover.scad>
 
-powerOutletCover(chargerStand = true);
+
+module blankPowerOutletCover()
+{
+    powerOutletCover(chargerStand = false,
+                   hasCutouts = false);
+}

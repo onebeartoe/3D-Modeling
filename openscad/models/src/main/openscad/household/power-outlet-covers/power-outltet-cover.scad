@@ -49,7 +49,8 @@ thinner_offset=[0,0.92,0.95,0.96,0.97,0.973]; // Manual fix for right side wacki
 //powerOutletCover();
 
 //plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
-module powerOutletCover(chargerStand = false)
+module powerOutletCover(chargerStand = false,
+						hasCutouts = true)
 {
     ////////////////////////
 	// Number One ENGAGE: //
@@ -76,8 +77,12 @@ module powerOutletCover(chargerStand = false)
 // the next two commented lines are the under cutout/hollowing of the back of the plate
 //					translate([0,0,-3]) 
 //					plate_inner();
-					
-					plate1();
+
+
+					if(hasCutouts)
+					{
+						plate1();
+					}
 				}
 				
 				union()
