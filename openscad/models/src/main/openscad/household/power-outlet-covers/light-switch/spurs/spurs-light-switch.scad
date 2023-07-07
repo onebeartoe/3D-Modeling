@@ -1,10 +1,10 @@
 
-use <../../power-outltet-cover.scad>
+include <../../power-outltet-cover.scad>
 
 use <../../../../shapes/spurs/spurs-a.scad>
 
 
-//difference()
+difference()
 {
     union()
     {
@@ -15,7 +15,9 @@ use <../../../../shapes/spurs/spurs-a.scad>
         spurLogo();
     }
 
+    yTranslate =  -57.2;
     color("purple")
+    translate([0, yTranslate, 0])
     rotate([0,0, 90])
     toggle_screws();
 }
