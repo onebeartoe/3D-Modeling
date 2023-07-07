@@ -3,7 +3,7 @@ use <MCAD/shapes.scad>
 
 use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
-use <locations-and-measurements/lam.scad>
+include <locations-and-measurements/lam.scad>
 
 
 // The dimentions are from the model made at TheNewHobbyist at
@@ -26,10 +26,7 @@ use <locations-and-measurements/lam.scad>
 plate_width = 1; //	[1:5]
 
 
-// Bigger hole in your wall? Try this
-plate_size = 0; // [0:Standard, 1:Junior-Jumbo, 2:Jumbo]
 
-height_sizes = [114.3,123.825,133.35];
 
 height = 114.3; //plate height (static)
 
