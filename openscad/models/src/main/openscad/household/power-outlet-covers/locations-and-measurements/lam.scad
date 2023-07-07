@@ -8,13 +8,23 @@ height_sizes = [114.3,123.825,133.35];
 module toggle_screws(height_sizes = [114.3], 
                      plate_size = 0)
 {
-	 translate([height_sizes[plate_size]/2 + 30.1625,0,-1]) 
-     cylinder(r=2, h=10, $fn=12);
+//    rotate([0,0, 90])
+    union()
+    {
+echo("toggle me baby");
 
-	 translate([height_sizes[plate_size]/2 + 30.1625,0,3.5]) 
-     cylinder(r1=2, r2=3.3, h=3);
-	 
-     // other part
-	 translate([height_sizes[plate_size]/2 - 30.1625,0,-1]) cylinder(r=2, h=10, $fn=12);
-	 translate([height_sizes[plate_size]/2 - 30.1625,0,3.5]) cylinder(r1=2, r2=3.3, h=3);
+    bore_zLength = 15;
+
+    translate([height_sizes[plate_size]/2 + 30.1625,0,-1]) 
+    cylinder(r=2, h=bore_zLength, $fn=12);
+
+    translate([height_sizes[plate_size]/2 + 30.1625,0,3.5]) 
+    cylinder(r1=2, r2=3.3, h=3);
+    
+    // second screw hole
+    translate([height_sizes[plate_size]/2 - 30.1625,0,-1]) 
+    cylinder(r=2, h=bore_zLength, $fn=12);
+    
+    translate([height_sizes[plate_size]/2 - 30.1625,0,3.5]) cylinder(r1=2, r2=3.3, h=3);
+    }
 }
