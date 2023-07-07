@@ -46,7 +46,7 @@ thinner_offset=[0,0.92,0.95,0.96,0.97,0.973]; // Manual fix for right side wacki
 
 
 
-powerOutletCover();
+//powerOutletCover();
 
 //plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
 module powerOutletCover()
