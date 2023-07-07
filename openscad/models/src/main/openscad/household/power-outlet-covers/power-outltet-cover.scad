@@ -68,7 +68,7 @@ module powerOutletCover(chargerStand = false,
 		{
 			if (plate_width == 1) 
 			{
-				echo("width 1");
+//				echo("width 1");
 // the next commented line is the shape of bottom part of the plate
 //cube([height_sizes[plate_size],solid_plate_width,2]);
 
@@ -340,7 +340,7 @@ module plate1(){
 // Hole Cutout definitions
 module hole(hole_type) 
 {
-    echo("hole-1");
+//    echo("hole-1");
 
 // Toggle switch hole
 	if (hole_type == "toggle") {
