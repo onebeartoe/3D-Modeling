@@ -1,5 +1,4 @@
 
-
 use <MCAD/shapes.scad>
 
 use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
@@ -14,9 +13,9 @@ use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 //TODO: Comment to TheNewHobbyist about the 'Number One ENGAGE' comment
 
 
-
-//1st_plate = "toggle"; //	["none":None, "blank":Blank Port, "toggle":Full Plate - Toggle Switch, "long_toggle":Full Plate - Long Toggle Switch, "outlet":Full Plate - Duplex Outlet, "rocker":Full Plate - Rocker/Designer Plate, "keystone1":Keystone Jack, "vga":VGA Port, "hdmi":HDMI Port, "dvi":DVI-I Port, "displayport":Displayport, "cat5e":Cat5e/Cat6 Port, "usb-a":USB-A Port, "usb-b":USB-B Port, "firewire":Firewire IEEE 1394 Port, "db09":DB-09 Port, "ps2":PS2 Port, "f-type": F-Type/Coaxial Port,"svideo":S-Video Port, "stereo":Stereo Headphone Jack]
-1st_plate = "keystone1"; //	["none":None, "blank":Blank Port, "toggle":Full Plate - Toggle Switch, "long_toggle":Full Plate - Long Toggle Switch, "outlet":Full Plate - Duplex Outlet, "rocker":Full Plate - Rocker/Designer Plate, "keystone1":Keystone Jack, "vga":VGA Port, "hdmi":HDMI Port, "dvi":DVI-I Port, "displayport":Displayport, "cat5e":Cat5e/Cat6 Port, "usb-a":USB-A Port, "usb-b":USB-B Port, "firewire":Firewire IEEE 1394 Port, "db09":DB-09 Port, "ps2":PS2 Port, "f-type": F-Type/Coaxial Port,"svideo":S-Video Port, "stereo":Stereo Headphone Jack]
+//1st_plate = "vgaaaa";
+//1st_plate = "toggle";
+//1st_plate = "keystone1"; //	["none":None, "blank":Blank Port, "toggle":Full Plate - Toggle Switch, "long_toggle":Full Plate - Long Toggle Switch, "outlet":Full Plate - Duplex Outlet, "rocker":Full Plate - Rocker/Designer Plate, "keystone1":Keystone Jack, "vga":VGA Port, "hdmi":HDMI Port, "dvi":DVI-I Port, "displayport":Displayport, "cat5e":Cat5e/Cat6 Port, "usb-a":USB-A Port, "usb-b":USB-B Port, "firewire":Firewire IEEE 1394 Port, "db09":DB-09 Port, "ps2":PS2 Port, "f-type": F-Type/Coaxial Port,"svideo":S-Video Port, "stereo":Stereo Headphone Jack]
 
 1st_plate_bottom_hole = "outlet";  //	["none":None, "blank":Blank Port, "keystone1":Keystone Jack, "vga":VGA Port, "hdmi":HDMI Port, "dvi":DVI-I Port, "displayport":Displayport, "cat5e":Cat5e/Cat6 Port, "usb-a":USB-A Port, "usb-b":USB-B Port, "firewire":Firewire IEEE 1394 Port, "db09":DB-09 Port, "ps2":PS2 Port, "f-type": F-Type/Coaxial Port,"svideo":S-Video Port, "stereo":Stereo Headphone Jack]
 
@@ -48,10 +47,11 @@ thinner_offset=[0,0.92,0.95,0.96,0.97,0.973]; // Manual fix for right side wacki
 
 
 
-//powerOutletCover();
-
-//plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
-module powerOutletCover(chargerStand = false,
+//module powerOutletCover(
+module powerOutletCover(1st_plate = "keystone1",
+//module powerOutletCover(1st_plate = "toggle",
+//module powerOutletCover(1st_plate = "keystone1",
+						chargerStand = false,
 						hasCutouts = true)
 {
     ////////////////////////
@@ -83,13 +83,13 @@ module powerOutletCover(chargerStand = false,
 
 					if(hasCutouts)
 					{
-						plate1();
+						plate1(1st_plate);
 					}
 				}
 				
 				union()
 				{
-					plate1_solid();
+					plate1_solid(1st_plate);
 				
 					if(chargerStand)
 					{
@@ -105,12 +105,12 @@ module powerOutletCover(chargerStand = false,
 				{
 					plate();
 					translate([0,0,-3]) plate_inner();
-					plate1();
+					plate1(1st_plate);
 					plate2();
 				}
 				union() 
 				{
-					plate1_solid();
+					plate1_solid(1st_plate);
 					plate2_solid();
 				}
 			}
@@ -120,12 +120,12 @@ module powerOutletCover(chargerStand = false,
 			{
 			plate();
 			translate([0,0,-3]) plate_inner();
-			plate1();
+			plate1(1st_plate);
 			plate2();
 			plate3();
 			}
 			union() {
-					plate1_solid();
+					plate1_solid(1st_plate);
 					plate2_solid();
 					plate3_solid();
 					}
@@ -136,13 +136,13 @@ module powerOutletCover(chargerStand = false,
 			{
 			plate();
 			translate([0,0,-3]) plate_inner();
-			plate1();
+			plate1(1st_plate);
 			plate2();
 			plate3();
 			plate4();
 			}
 			union() {
-					plate1_solid();
+					plate1_solid(1st_plate);
 					plate2_solid();
 					plate3_solid();
 					plate4_solid();
@@ -154,14 +154,14 @@ module powerOutletCover(chargerStand = false,
 			{
 			plate();
 			translate([0,0,-3]) plate_inner();
-			plate1();
+			plate1(1st_plate);
 			plate2();
 			plate3();
 			plate4();
 			plate5();
 			}
 			union() {
-					plate1_solid();
+					plate1_solid(1st_plate);
 					plate2_solid();
 					plate3_solid();
 					plate4_solid();
@@ -244,10 +244,8 @@ module devicePlatformSupport()
 
 
 
-// plate1_solid(1st_plate = 1st_plate,
-//              1st_plate_bottom_hole = 1st_plate_bottom_hole);
 
-module plate1_solid()
+module plate1_solid(1st_plate)
 {
     if (1st_plate == "keystone1" && 1st_plate_bottom_hole == "none") {
         translate([height_sizes[plate_size]/2 + 14.3,l_offset[plate_size] - 11.5,-3.9]) hole("keystone_solid");
@@ -301,7 +299,7 @@ module outletCutout()
 
 
 
-module plate1(){
+module plate1(1st_plate){
 	if (1st_plate == "toggle" || 1st_plate_bottom_hole == "toggle"){
 		translate([0,l_offset[plate_size],0]) toggle_screws();
 		translate([0,l_offset[plate_size],0]) hole("toggle");
