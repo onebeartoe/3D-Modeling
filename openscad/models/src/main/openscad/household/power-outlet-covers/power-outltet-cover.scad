@@ -3,6 +3,8 @@ use <MCAD/shapes.scad>
 
 use <../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
+use <locations-and-measurements/lam.scad>
+
 
 // The dimentions are from the model made at TheNewHobbyist at
 //      https://www.printables.com/model/72079-wally-wall-plate-customizer
@@ -298,14 +300,13 @@ module outletCutout()
 
 
 
-
 module plate1(1st_plate){
 	if (1st_plate == "toggle" || 1st_plate_bottom_hole == "toggle"){
-		translate([0,l_offset[plate_size],0]) toggle_screws();
+		translate([0,l_offset[plate_size],0]) toggle_screws(height_sizes, plate_size);
 		translate([0,l_offset[plate_size],0]) hole("toggle");
 		}
 	else if (1st_plate == "long_toggle" || 1st_plate_bottom_hole == "long_toggle"){
-		translate([0,l_offset[plate_size],0]) toggle_screws();
+		translate([0,l_offset[plate_size],0]) toggle_screws(height_sizes, plate_size);
 		translate([0,l_offset[plate_size],0]) hole("long_toggle");
 		}
 	else if (1st_plate == "rocker" || 1st_plate_bottom_hole == "rocker"){
@@ -543,10 +544,3 @@ module plate_inner() {
 	}
 
 
-// Toggle screw holes
-module toggle_screws(){
-	 translate([height_sizes[plate_size]/2 + 30.1625,0,-1]) cylinder(r=2, h=10, $fn=12);
-	 translate([height_sizes[plate_size]/2 + 30.1625,0,3.5]) cylinder(r1=2, r2=3.3, h=3);
-	 translate([height_sizes[plate_size]/2 - 30.1625,0,-1]) cylinder(r=2, h=10, $fn=12);
-	 translate([height_sizes[plate_size]/2 - 30.1625,0,3.5]) cylinder(r1=2, r2=3.3, h=3);
-}
