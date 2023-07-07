@@ -49,7 +49,7 @@ thinner_offset=[0,0.92,0.95,0.96,0.97,0.973]; // Manual fix for right side wacki
 //powerOutletCover();
 
 //plate1();//1st_plate = 1st_plate,            1st_plate_bottom_hole = 1st_plate_bottom_hole);
-module powerOutletCover()
+module powerOutletCover(chargerStand = false)
 {
     ////////////////////////
 	// Number One ENGAGE: //
@@ -84,9 +84,12 @@ module powerOutletCover()
 				{
 					plate1_solid();
 				
-					devicePlatform();
+					if(chargerStand)
+					{
+						devicePlatform();
 
-					devicePlatformSupport();
+						devicePlatformSupport();
+					}
 				}
 			}
 			else if (plate_width == 2) 

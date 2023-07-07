@@ -1,4 +1,6 @@
 
-use <../../power-outltet-cover.scad>
+use <../../../power-outltet-cover.scad>
 
-powerOutletCover();
+powerOutletCover(chargerStand = true);
+
+
