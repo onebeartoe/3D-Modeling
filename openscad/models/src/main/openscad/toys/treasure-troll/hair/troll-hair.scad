@@ -1,13 +1,13 @@
 
 module trollHair(hairLength = 50,
                  hairRadius = 0.28,
-                 squareSide = 30)
+                 squareSide = 30,
+                 step = 0.8)
 {
     union()
     {
         wall(squareSide);
 
-        step = 0.8;
         for(y = [0.4 : step : squareSide])
         {
             for(z = [0.4 : step : squareSide])
