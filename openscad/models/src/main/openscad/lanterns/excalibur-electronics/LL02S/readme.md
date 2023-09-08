@@ -7,8 +7,11 @@
 [![Trellis Soundwave Board](https://img.youtube.com/vi/SGkKPLnFIKE/0.jpg)](https://www.youtube.com/watch?v=SGkKPLnFIKE)
 
 
+Project Details
 
-Here is a link to Liz' project:
+The lantern re-used is an Excalibur Electronics LL02S Lantern.
+
+Here is a link to Liz' project that has more product details:
 
 https://learn.adafruit.com/wireless-led-maracas
 
