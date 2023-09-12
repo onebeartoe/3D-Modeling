@@ -6,7 +6,8 @@ module stringyNameplate(font = "Arial",
                         hairLength = 50,
                         squareSide = 20,
                         step = 2.4,
-                        text = "Pamfilo")
+                        text = "Pamfilo",
+                        textSize = 8)
 {
     union()
     {
@@ -20,7 +21,7 @@ module stringyNameplate(font = "Arial",
         zTranslate  = (squareSide / 2.0) - (height / 2.0);
         translate([xTranslate, yTranslate, zTranslate])
         name(text = text,
-             textSize = 8,
+             textSize = textSize,
              font = font,
              height = height);
     }
