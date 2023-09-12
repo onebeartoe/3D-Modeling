@@ -1,4 +1,4 @@
 
 use <../../stringy-nameplate.scad>
 
-stringyNameplate();
+stringyNameplate(text = "Sarah");
