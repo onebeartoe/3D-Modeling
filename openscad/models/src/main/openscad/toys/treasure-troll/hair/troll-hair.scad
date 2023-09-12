@@ -12,13 +12,14 @@ module trollHair(hairLength = 50,
         {
             for(z = [0.4 : step : squareSide])
             {
+                color("orange")
                 translate([0, y, z])
                 rotate([0, 90, 0])
                 cylinder(r=hairRadius, h=hairLength);
             }
         }
 
-        translate([hairLength-0.1, 0, 0])
+        translate([hairLength-0.5, 0, 0])
         wall(squareSide);
     }
 }
