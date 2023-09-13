@@ -1,0 +1,10 @@
+
+01
+This had the same slicer (Cura 5.2.1 settings with the following changes
+
+	rotate 90 degrees on the Z axis
+	change Print Spreed to 50mm/s to 40mm/s 
+
+
+00
+It failed. 
