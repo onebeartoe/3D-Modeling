@@ -1,8 +1,16 @@
 
-01
-This had the same slicer (Cura 5.2.1 settings with the following changes
+02
+This is better, but there is some stringing still, but good enough.
 
-	rotate 90 degrees on the Z axis
+This version uses the same settings as 01, but rotated to print on the X axis.
+
+
+01
+It came out okay, but with loose strands.
+
+This had the same slicer (Cura 5.2.1) settings with the following changes
+
+	rotate 90 degrees on the Z axis to print on the Y axis
 	change Print Spreed to 50mm/s to 40mm/s 
 
 
