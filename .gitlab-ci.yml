@@ -1,0 +1,5 @@
+
+image: adoptopenjdk/maven-openjdk11
+job1:
+ script:
+ - "mvn install -B"
