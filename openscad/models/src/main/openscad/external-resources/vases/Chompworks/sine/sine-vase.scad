@@ -14,15 +14,10 @@ module sineVase(internalCutout_bottomRadius,
                 internalCutout_TopRadiusOffset = 22,
                 vaseMode = false,
                 vaseMode_topChopOff_zOffset,
-                vaseType
-
-
-
-,
-heart_xRotate,
-heart_yRotate,
-heart_zRotate
-
+                vaseType,
+                heart_xRotate,
+                heart_yRotate,
+                heart_zRotate
             )
 {
     step = 4; // number of degrees to step for each cuboid element
