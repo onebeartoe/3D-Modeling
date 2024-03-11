@@ -1,15 +1,10 @@
 
 use <../../external-resources/bezier/JustinSDK/BezierCurve.scad>
 
-module bezierVase()
+module bezierVase(t_step = 0.05)
 {
-
-
     echo("lib echo");
 
-
-
-    t_step = 0.05;
     width = 2;
 
     p0 = [0, 0];

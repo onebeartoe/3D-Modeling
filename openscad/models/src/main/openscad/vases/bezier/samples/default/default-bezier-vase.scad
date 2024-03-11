@@ -3,4 +3,4 @@ use <../../bezier-vase.scad>
 
 echo("is ready");
 
-bezierVase();
+bezierVase(t_step = 0.031);
