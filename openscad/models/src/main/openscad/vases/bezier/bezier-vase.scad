@@ -4,8 +4,7 @@ use <../../external-resources/bezier/JustinSDK/BezierCurve.scad>
 module bezierVase(t_step = 0.05)
 {
     echo("lib echo");
-
-    width = 2;
+    radius = 6;
 
     p0 = [0, 0];
     p1 = [40, 60];
@@ -16,13 +15,22 @@ module bezierVase(t_step = 0.05)
         p0, p1, p2, p3
     );
 
-    color("blue")
-    rotate([90,0,0])
-    bezierVaseRib(points);
-//    polyline(points, width);    
+    count = 29;
+//    count = 360 / radius / 2 + 1;
+//    count = 360 / radius * 2;
+
+    for(a = [0 : count])
+    {
+        zRotate = a * 360 / (count+1);
+
+        color("blue")
+        rotate([90, 0, zRotate])
+        translate([40,0,0])
+        bezierVaseRib(points, radius);
+    }
 }
 
-module bezierVaseRib(points)
+module bezierVaseRib(points, radius = 6)
 {
     length = len(points);
 
@@ -33,6 +41,6 @@ module bezierVaseRib(points)
             points[i][1],
             0
             ])
-        sphere(r=6, $fn=20);
+        sphere(r=radius, $fn=20);
     }
 }
