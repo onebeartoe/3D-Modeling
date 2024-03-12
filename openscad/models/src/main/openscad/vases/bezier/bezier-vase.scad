@@ -16,8 +16,6 @@ module bezierVase(t_step = 0.05)
     );
 
     count = 29;
-//    count = 360 / radius / 2 + 1;
-//    count = 360 / radius * 2;
 
     for(a = [0 : count])
     {
