@@ -2,4 +2,3 @@
 use <../lampshade.scad>
 
 bezierLampshade();
-

@@ -1,9 +1,9 @@
 
-module bezierLampshade(beadCount = 34,
+module bezierLampshade(beadCount = 90,
                         beadRadius = 7,
                         beadResolution = 20, 
-                        ringCount = 10,
-                        ringRadius = 60)
+                        ringCount = 20,
+                        ringRadius = 160)
 {
     echo("bezierLapshade() begin");
 
@@ -80,24 +80,29 @@ module shadeCutouts(ringRadius)
 
 module spider(ringRadius)
 {
+    innerRadius = 40; // the E27 fitting has a 40mm inner radius    
+
     legCount = 3;
+
+    xLength = 15;
+
+    zLength = 10;
 
     difference()
     {
-        spiderSolids(legCount, ringRadius);
+        spiderSolids(innerRadius, legCount, ringRadius, xLength, zLength);
 
-        spiderCutouts();
+        spiderCutouts(innerRadius, zLength);
     }
 }
 
-module spiderSolids(legCount,
-                    ringRadius)
+module spiderSolids(innerRadius,
+                    legCount,
+                    ringRadius,
+                    xLength,
+                    zLength)
 {
-    xLength = 15;
-
     yLength = ringRadius;
-
-    zLength = 10;
 
     for(s = [0 : legCount])
     {
@@ -114,7 +119,7 @@ module spiderSolids(legCount,
         cube(size = demensions);
     }    
 
-    innerRadius = 40; // the E27 fitting has a 40mm inner radius
+
 
     mountingRingRadius = innerRadius + xLength;
 
@@ -127,9 +132,16 @@ module spiderSolids(legCount,
     }
 }
 
-module spiderCutouts()
+module spiderCutouts(innerRadius, zLength)
 {
+    height = zLength + 0.02;
 
+    zTranslate = -0.001;
+
+    $fn = 50;
+
+    translate([0, 0, zTranslate])
+    cylinder(h = height, r = innerRadius);
 }
 
 
