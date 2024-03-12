@@ -1,0 +1,4 @@
+
+use <../lampshade.scad>
+
+bezierLampshade();
