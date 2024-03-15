@@ -14,7 +14,6 @@ points = bezier_curve(t_step,
 
 echo(points);
 
+//color("orange")
 color("blue")
 polyline(points, width);
-
-
