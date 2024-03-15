@@ -80,7 +80,8 @@ module shadeCutouts(ringRadius)
 
 module spider(ringRadius)
 {
-    innerRadius = 40; // the E27 fitting has a 40mm inner radius    
+//TODO: make this a function and reuse in bezier-vase.scad    
+    innerRadius = 40; // the E27 fitting has a 40mm inner radius
 
     legCount = 3;
 
