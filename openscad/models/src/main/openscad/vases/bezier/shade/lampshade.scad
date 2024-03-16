@@ -1,9 +1,15 @@
 
+
+/**
+                                         x,   y,   z
+    The print bed for the Solvol 01 is 280, 240, 300.
+*/
 module bezierLampshade(beadCount = 90,
                         beadRadius = 7,
                         beadResolution = 20, 
                         ringCount = 20,
-                        ringRadius = 160)
+                        ringRadius = 100,
+                        showPrintbed = false)
 {
     echo("bezierLapshade() begin");
 
@@ -18,6 +24,21 @@ module bezierLampshade(beadCount = 90,
                 ringRadius);
 
         spider(ringRadius);
+
+        if(showPrintbed)
+        {
+            max = 240; // Solvo 01 Y max
+
+            sideLength = max - 20;
+
+            zLentth = 10;
+
+            zTranslate = -zLength - (zLength / 2.0);
+
+            translate([0, 0, -zLength])
+            cube(center = true,
+                 size = [sideLength, sideLength, zLength]);
+        }
     }
 
     echo("bezierLapshade() end");

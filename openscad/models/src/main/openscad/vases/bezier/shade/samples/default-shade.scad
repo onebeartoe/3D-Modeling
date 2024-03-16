@@ -1,4 +1,4 @@
 
 use <../lampshade.scad>
 
-bezierLampshade();
+bezierLampshade(showPrintbed = false);
