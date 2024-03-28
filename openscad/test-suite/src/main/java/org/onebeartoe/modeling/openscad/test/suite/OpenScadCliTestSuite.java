@@ -24,6 +24,7 @@ import org.onebeartoe.application.logging.SysoutLoggerFactory;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
+import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteFormatService;
 
 public class OpenScadCliTestSuite
 {        
@@ -94,7 +95,7 @@ public class OpenScadCliTestSuite
             
             OpenScadTestSuiteResults compareResults = testService.serviceRequest(runProfile);
             
-            testService.printHighLevelErrorReport(runProfile, compareResults.getCompareResults().errorFiles);
+            OpenScadTestSuiteFormatService.printHighLevelErrorReport(runProfile, compareResults.getCompareResults().errorFiles);
             
             testService.saveErrorPngFilenames(compareResults.getCompareResults().errorFiles);
             

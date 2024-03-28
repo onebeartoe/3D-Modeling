@@ -312,7 +312,7 @@ public class OpenScadTestSuiteService
     private void deleteProposedBaselines(Path inpath) throws IOException
     {
         // find all the proposed baseline images
-        List<File> proposedBaselines = findProposedBaselines(inpath);
+        List<File> proposedBaselines = OpenScadTestSuiteFormatService.findProposedBaselines(inpath);
 
         // and delete them
         proposedBaselines.forEach( pb ->
@@ -323,120 +323,6 @@ public class OpenScadTestSuiteService
         });
     }
 
-//TODO: move this to a TestSuiteReultsService class
-    private String extractTopLevel(RunProfile runProfile, String fullPath)
-    {
-        // remove the project path
-        fullPath = fullPath.replace(runProfile.path, "");
-
-        // account for running on MS Windows
-        fullPath = fullPath.replace("\\", "/");
-
-        int begin = 0;
-        int end = fullPath.indexOf("/");
-
-        String topLevel = null;
-
-        if(end < 0)
-        {
-            // the file in the current directory
-            topLevel = "";
-        }
-        else
-        {
-            // the OpenSCAD file is in the current directory
-            topLevel = fullPath.substring(begin, end);
-        }
-
-        return topLevel;
-    }
-
-    private List<File> findProposedBaselines(Path inpath) throws IOException
-    {
-        ProposedBaselineFinder finder = new ProposedBaselineFinder();
-
-        List<File> proposedBaselines = finder.find(inpath);
-
-        return proposedBaselines;
-    }
-
-//TODO: move this to a TestSuiteReultsService class
-    public void printHighLevelErrorReport(RunProfile runProfile, List<OneImageComparisonResult> failedOpenScadFiles)
-    {
-        if(failedOpenScadFiles.size() > 0)
-        {
-            System.err.println("These top level directories have errors:");
-        }
-
-        Map<String, Integer> topLevelHits = new HashMap();
-
-        failedOpenScadFiles.forEach(f ->
-        {
-            String topLevelKey = extractTopLevel(runProfile, f.getFile() );
-
-            Integer count = topLevelHits.get(topLevelKey);
-            if(count == null)
-            {
-                count = 1;
-            }
-            else
-            {
-                count += 1;
-            }
-
-            topLevelHits.put(topLevelKey, count);
-        });
-
-        int total = topLevelHits.values()
-                                .stream()
-                                .mapToInt(Integer::intValue)
-                                .sum();
-
-        if(total > 0)
-        {
-            System.out.println();
-            System.out.println("top level count: " + total);
-            System.out.println();
-
-            topLevelHits.keySet()
-                        .stream()
-                        .sorted()
-                        .forEach(key ->
-                        {
-                            System.out.println(key + ": " + topLevelHits.get(key) );
-                        });
-
-            System.out.println();
-        }
-    }
-
-    public void printOpernScadVersion(RunProfile runProfile)
-    {
-// TODO: print the version of OpenSCAD
-    }
-
-//TODO: move this to a TestSuiteReultsService class
-    public void printValidationResults(List<String> missingBaselineFiles)
-    {
-        if (missingBaselineFiles.isEmpty())
-        {
-            String pwd = (new File(".")).getAbsolutePath();
-
-            System.out.println("The current working directory is: " + pwd);
-            System.out.println();
-
-            System.out.println("All input files are present.");
-        }
-        else
-        {
-            int count = missingBaselineFiles.size();
-            
-            logger.severe("Some " + count + " test suite input files are not present.\n");
-            
-            logger.severe("Try running '--" + OpenScadCliTestSuite.GENERATE_BASELILNES +"' to generate the missing input files.\n");
-        }
-    }
-
     private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws IOException, InterruptedException //throws Exception
     {
         GeneratePngBaselineResults pngGenerationResults = null;
@@ -445,7 +331,7 @@ public class OpenScadTestSuiteService
 
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
-        printValidationResults(missingPngs);
+        OpenScadTestSuiteFormatService.printValidationResults(missingPngs);
 
         if (!missingPngs.isEmpty())
         {
@@ -470,8 +356,6 @@ public class OpenScadTestSuiteService
                 System.out.println();
                 System.out.println("The test suite is now generating proposed baseline images for each .scad file.");
                 System.out.println();
-
-                printOpernScadVersion(runProfile);
 
                 pngGenerationResults = generateProposedBaselines(runProfile);
 

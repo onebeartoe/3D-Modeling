@@ -40,6 +40,8 @@ public class PngGeneratorSpecification
 
         runProfile.executablePath = openscadPath();
         
+//        runProfile.sk
+        
         List<Path> paths = new ArrayList();
         Path path = Paths.get(simpleOpenScadPath);
         paths.add(path);
@@ -55,9 +57,12 @@ public class PngGeneratorSpecification
         GeneratePngBaselineResults results = implementation.generatePngs(forcePngGeneration, runProfile);
         
         Map<Path, Duration> pathDurations = results.getPathDurations();
+
         int expected = 1;
+
         int actual  = pathDurations.size();
-        assertEquals(actual, expected);
+
+        assertEquals(expected, actual);
         
         assertTrue( results.isSuccess() );
     }
