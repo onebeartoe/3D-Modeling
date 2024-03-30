@@ -25,7 +25,9 @@ public class PngGeneratorSpecification
 {
     private PngGenerator implementation;
     
-    public static final String simpleOpenScadPath = "src/test/resources/simple.scad";
+    public static final String simpleOpenScadPath = "src/test/resources/simple/simple.scad";
+    
+    public static final String missingBaseliesPath = "src/test/resources/missing-baseline/missing.scad";
         
     private RunProfile runProfile;
     
@@ -67,8 +69,7 @@ public class PngGeneratorSpecification
         assertTrue( results.isSuccess() );
     }
 
-//TODO: REEnable this!!!!!!!!!!!!!!
-//    @Test
+    @Test
     public void generatePngs_fail_badPath() throws IOException, InterruptedException
     {
         boolean forcePngGeneration = false;
