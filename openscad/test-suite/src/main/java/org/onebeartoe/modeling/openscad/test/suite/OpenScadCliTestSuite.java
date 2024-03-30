@@ -30,11 +30,11 @@ public class OpenScadCliTestSuite
 {        
     private static Logger logger;
     
-    private static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
-    private static final String DIFF_ONLY = "diffOnly";
+    public static final String DELETE_PROPOSED_BASELINES = "deleteProposedBaselines";
+    public static final String DIFF_ONLY = "diffOnly";
     public static final String GENERATE_BASELILNES = "generateBaselines";
     public static final String OPENSCAD_PATH = "openscadPath";
-    private static final String OPENSCAD_REDIRECTION = "openscadRedirection";
+    public static final String OPENSCAD_REDIRECTION = "openscadRedirection";
     
     private static Options buildOptions()
     {
@@ -86,10 +86,12 @@ public class OpenScadCliTestSuite
         Options options = buildOptions();
 
         Instant start = Instant.now();
+        
+        RunProfileService profileService = new RunProfileService();
 
         try
         {
-            RunProfile runProfile = parseRunProfile(args, options);
+            RunProfile runProfile =profileService.parseRunProfile(args, options);
 
             OpenScadTestSuiteService testService = new OpenScadTestSuiteService();
             
@@ -133,74 +135,17 @@ public class OpenScadCliTestSuite
         logger.info(message);
     }
     
-    /**
-     * This method parses the command line arguments agains the Options object 
-     * parameter.
-     * 
-     * This version produces baseline imags that match the ones created on the openscad 
-     * build server, which uses version 2015.03-1 of OpenSCAD.
-     * 
-     * @param args
-     * 
-     * The openscad executable path is configurable on the command line.  Here 
-     * are some sample '--openscadPath' values:
-     * 
-     *       "openscad"
-     *       "C:\\opt\\openscad\\openscad-2017.04.05\\openscad"
-     *       "/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD"
-     * 
-     * @param options
-     * @return
-     * @throws ParseException 
-     */
-    private static RunProfile parseRunProfile(final String[] args, Options options) throws ParseException
-    {
-        CommandLineParser parser = new DefaultParser();
-        CommandLine cmd = parser.parse(options, args);
-        
-        RunProfile runProfile = new RunProfile();
-        
-        if(cmd.hasOption(OPENSCAD_PATH))
-        {
-            runProfile.executablePath = cmd.getOptionValue(OPENSCAD_PATH);
-        }
-        else
-        {
-            runProfile.executablePath = "openscad";
-        }
-        runProfile.diffOnly = cmd.hasOption(DIFF_ONLY);
-        runProfile.generateBaselines = cmd.hasOption(GENERATE_BASELILNES);
-        runProfile.redirectOpenscad = cmd.hasOption(OPENSCAD_REDIRECTION);
-        runProfile.deleteProposedBaseLines = cmd.hasOption(DELETE_PROPOSED_BASELINES);
-        
-        List<String> remainingArgs = cmd.getArgList();
-        
-        System.out.println("Remaining args:");
-        remainingArgs.forEach(a -> System.out.println("\t" + a));
-        System.out.println();
-        
-        if( remainingArgs.isEmpty() )
-        {
-            // by default, use the current directory as the path if no 
-            // argument is given
-            runProfile.path = ".";
-        }
-        else
-        {
-            // use the first argument as the path to the .scad files
-            runProfile.path = remainingArgs.get(0);
-        }
-        
-        printCommandLineArguments(args);
-        
-        return runProfile;
-    }
-    
-    private static void printCommandLineArguments(String [] args)
+    public static void printCommandLineArguments(String [] args)
     {
         System.out.println("Commandline args:");
         Stream<String> stream = Arrays.stream(args);
         stream.forEach(a ->  System.out.println("\t" + a) );
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println();
     }
     
