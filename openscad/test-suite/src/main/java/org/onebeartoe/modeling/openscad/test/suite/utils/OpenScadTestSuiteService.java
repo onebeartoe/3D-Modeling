@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.onebeartoe.application.logging.SysoutLoggerFactory;
+import org.onebeartoe.modeling.openscad.test.suite.MissingBaselinesException;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCameraDirections;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
 import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
@@ -60,7 +61,7 @@ public class OpenScadTestSuiteService
      * It seems like this method should be refactored.
      *
      */
-    public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws IOException, ImageComparisonException, InterruptedException
+    public OpenScadTestSuiteResults serviceRequest(RunProfile runProfile) throws IOException, ImageComparisonException, InterruptedException, MissingBaselinesException
     {
         OpenScadTestSuiteResults results = null;
 
@@ -323,7 +324,7 @@ public class OpenScadTestSuiteService
         });
     }
 
-    private OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws IOException, InterruptedException //throws Exception
+    public OpenScadTestSuiteResults runTestSuite(RunProfile runProfile) throws IOException, InterruptedException, MissingBaselinesException
     {
         GeneratePngBaselineResults pngGenerationResults = null;
 
@@ -339,7 +340,11 @@ public class OpenScadTestSuiteService
 
             compareResults.exceptionThrown = true;
 
-            logger.severe("The test suite will not continue with missing baseline PNG images.\n");
+            var message ="The test suite will not continue with missing baseline PNG images.\n";
+            
+            logger.severe(message);
+            
+            throw new MissingBaselinesException(message);
         }
         else
         {

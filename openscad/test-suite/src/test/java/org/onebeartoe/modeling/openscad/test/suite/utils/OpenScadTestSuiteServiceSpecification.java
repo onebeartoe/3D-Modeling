@@ -15,6 +15,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.missingBaseliesPath;
 import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.openscadPath;
 import static org.onebeartoe.modeling.openscad.test.suite.utils.PngGeneratorSpecification.simpleOpenScadPath;
 import org.onebeartoe.system.Filesystem;
@@ -62,13 +63,13 @@ public class OpenScadTestSuiteServiceSpecification
     }
 
     @Test(expectedExceptions = MissingBaselinesException.class)
-    public void compareImages_missingBaselinesException()
+    public void runTestSuite_missingBaselinesException() throws IOException, InterruptedException, MissingBaselinesException
     {
-        Path path = Paths.get(simpleOpenScadPath);
+        Path path = Paths.get(missingBaseliesPath);
         
         runProfile.openscadPaths.add(path);
         
-        ImageComparisonResult result = implementation.compareImages(runProfile);
+        implementation.runTestSuite(runProfile);
     }    
     
     @Test
