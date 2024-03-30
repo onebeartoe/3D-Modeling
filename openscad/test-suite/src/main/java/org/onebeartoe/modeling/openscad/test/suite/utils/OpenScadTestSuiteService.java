@@ -85,10 +85,10 @@ public class OpenScadTestSuiteService
         }
 
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
 
-        
-        
+// ploop        
         runProfile.openscadPaths = openScadFinder.getFiles(inpath);
 
         if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
