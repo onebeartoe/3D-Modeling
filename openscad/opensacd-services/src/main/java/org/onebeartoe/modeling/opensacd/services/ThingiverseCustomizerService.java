@@ -115,8 +115,10 @@ public class ThingiverseCustomizerService
         }
 
         List<String> finalOutput = new ArrayList();
+
         finalOutput.addAll(initialOpenScadParse.otherStatements);
-	finalOutput.addAll(useStatementsContent);
+
+        finalOutput.addAll(useStatementsContent);
 
         String content = String.join(System.lineSeparator(), finalOutput);
 
