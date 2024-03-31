@@ -8,7 +8,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.OPENSCAD_PATH;
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.system.OperatingSystem;
@@ -28,6 +27,8 @@ public class PngGeneratorSpecification
     public static final String simpleOpenScadPath = "src/test/resources/simple/simple.scad";
     
     public static final String missingBaseliesPath = "src/test/resources/missing-baseline/missing.scad";
+    
+    public static final String singleScadWithDependenciesPath = "src/test/resources/single/scad/with/dependencies/meal.scad";
         
     private RunProfile runProfile;
     

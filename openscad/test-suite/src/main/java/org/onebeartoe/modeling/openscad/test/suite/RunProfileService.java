@@ -1,6 +1,9 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -12,8 +15,8 @@ import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.G
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.OPENSCAD_PATH;
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.OPENSCAD_REDIRECTION;
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.printCommandLineArguments;
-//import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
 
 /**
  *
@@ -40,9 +43,10 @@ public class RunProfileService
      * @return
      * @throws ParseException 
      */
-    public static RunProfile parseRunProfile(final String[] args, Options options) throws ParseException
+    public static RunProfile parseRunProfile(final String[] args, Options options) throws ParseException, IOException
     {
         CommandLineParser parser = new DefaultParser();
+
         CommandLine cmd = parser.parse(options, args);
         
         RunProfile runProfile = new RunProfile();
@@ -76,6 +80,30 @@ public class RunProfileService
         {
             // use the first argument as the path to the .scad files
             runProfile.path = remainingArgs.get(0);
+        }
+        
+        OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+
+        Path inpath = FileSystems.getDefault().getPath(runProfile.path);        
+            
+        if(inpath.toFile().isDirectory())
+        {
+            runProfile.openscadPaths = openScadFinder.getFiles(inpath);        
+        }
+        else
+        {
+            var file = inpath.toFile();
+            
+            if( file.exists() && file.getName().endsWith(".scad") )
+            {
+System.out.println("farto");                
+            }
+            else
+            {
+                var message = "File is not a file, nor a directory?!?: " + inpath.toString();
+                
+                throw new IllegalArgumentException(message);
+            }
         }
         
         printCommandLineArguments(args);

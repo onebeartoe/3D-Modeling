@@ -1,0 +1,27 @@
+
+Meal
+|
+|----Burger
+|       |
+|       |------- Bun
+|       |
+|       |------- Pattie
+|       |
+|       |------- Tomato
+|
+|
+|---- Baked Potato
+|       |
+|       |------- Potato
+|       |
+|       |------- Butter
+|
+|
+|---- Sauteed Broccoli
+|       |
+|       |------- Broccoli
+|       |
+|       |------- Butter
+|
+|
+|---- Drink

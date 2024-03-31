@@ -85,13 +85,6 @@ public class OpenScadTestSuiteService
             mode = OpenScadCliTestSuite.RunMode.RUN_TEST_SUITE;
         }
 
-        OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
-
-        Path inpath = FileSystems.getDefault().getPath(runProfile.path);
-
-// ploop        
-        runProfile.openscadPaths = openScadFinder.getFiles(inpath);
-
         if(mode == OpenScadCliTestSuite.RunMode.GENERATE_BASELINES)
         {
             results = new OpenScadTestSuiteResults();
@@ -106,6 +99,8 @@ public class OpenScadTestSuiteService
         }
         else if( mode == OpenScadCliTestSuite.RunMode.DELETE_PROPOSED_BASELINES)
         {
+            Path inpath = FileSystems.getDefault().getPath(runProfile.path);
+            
             deleteProposedBaselines(inpath);
         }
         else

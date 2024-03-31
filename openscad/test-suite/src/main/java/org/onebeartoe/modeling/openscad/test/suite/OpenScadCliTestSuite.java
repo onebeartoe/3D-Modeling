@@ -36,7 +36,8 @@ public class OpenScadCliTestSuite
     public static final String OPENSCAD_PATH = "openscadPath";
     public static final String OPENSCAD_REDIRECTION = "openscadRedirection";
     
-    private static Options buildOptions()
+    //TODO: move this 
+    public static Options buildOptions()
     {
         Option outfile = Option.builder()
                         .required(false)
@@ -91,7 +92,7 @@ public class OpenScadCliTestSuite
 
         try
         {
-            RunProfile runProfile =profileService.parseRunProfile(args, options);
+            RunProfile runProfile = profileService.parseRunProfile(args, options);
 
             OpenScadTestSuiteService testService = new OpenScadTestSuiteService();
             
@@ -131,7 +132,9 @@ public class OpenScadCliTestSuite
         Instant end = Instant.now();
     
         DurationService durationService = new DurationService();
+
         String message = "The test suite ran " + durationService.durationMessage(start, end);
+
         logger.info(message);
     }
     

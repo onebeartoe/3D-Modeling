@@ -5,6 +5,7 @@
 <suite name="onebeartoe OpenSCAD Test Suite" parallel="none">
     <test name="openscad model verification">
         <packages>
+            <package name="org.onebeartoe.modeling.openscad.test.suite"/>
             <package name="org.onebeartoe.modeling.openscad.test.suite.utils"/>
         </packages>
     </test>

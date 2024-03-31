@@ -20,9 +20,11 @@ public class RunProfile
     
     public String path;
     
-    public String executablePath;
+    public boolean singleScadWithDependenciesMode;
     
     public List<Path> openscadPaths;
+    
+    public String executablePath;
     
     public OpenScadCliTestSuite.RunMode mode;
 }
