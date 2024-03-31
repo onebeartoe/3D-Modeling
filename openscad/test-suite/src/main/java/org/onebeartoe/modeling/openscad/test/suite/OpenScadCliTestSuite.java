@@ -137,14 +137,11 @@ public class OpenScadCliTestSuite
     public static void printCommandLineArguments(String [] args)
     {
         System.out.println("Commandline args:");
+
         Stream<String> stream = Arrays.stream(args);
+
         stream.forEach(a ->  System.out.println("\t" + a) );
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+
         System.out.println();
     }
     

@@ -330,7 +330,10 @@ public class OpenScadTestSuiteService
         
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
 
-        runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+        if( !runProfile.singleScadWithDependenciesMode )
+        {
+            runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+        }
 
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
 

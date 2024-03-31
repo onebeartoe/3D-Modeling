@@ -128,12 +128,11 @@ public class DataSetValidator
                 .forEach( direction ->
             {
                 List<String> validated = validateBody(path, direction);
+
                 expectedBaselineFiles.addAll( validated );
             });
         });
         
-        
-
         List<String> missingBaselineFiles = missingBaselineFiles(expectedBaselineFiles);       
        
         return missingBaselineFiles;

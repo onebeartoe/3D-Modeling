@@ -1,6 +1,7 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -107,12 +108,16 @@ public class RunProfileService
 
                 runProfile.openscadPaths = new ArrayList();
                 
-                interpolateOpenScad.uniqueUseStatements.forEach(use -> 
+                runProfile.openscadPaths.add(inpath);
+                
+                for(String use : interpolateOpenScad.uniqueUseStatements)
                 {
-                    var path = Path.of(use);
+                    File useFile = new File(use);
+                    
+                    var path = useFile.getCanonicalFile().toPath();
                     
                     runProfile.openscadPaths.add(path);
-                });
+                }
             }
             else
             {
