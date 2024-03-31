@@ -67,7 +67,6 @@ public class OpenScadTestSuiteService
 
         OpenScadCliTestSuite.RunMode mode;
 
-//TODO: the first hachifufoo
         if(runProfile.generateBaselines)
         {
             mode = OpenScadCliTestSuite.RunMode.GENERATE_BASELINES;
@@ -326,7 +325,15 @@ public class OpenScadTestSuiteService
         ImageComparisonResult compareResults;
 
         DataSetValidator inputValidator = new DataSetValidator();
+        
+        OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+        
+        Path inpath = FileSystems.getDefault().getPath(runProfile.path);
+
+        runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
+
         OpenScadTestSuiteFormatService.printValidationResults(missingPngs);
 
         if (!missingPngs.isEmpty())

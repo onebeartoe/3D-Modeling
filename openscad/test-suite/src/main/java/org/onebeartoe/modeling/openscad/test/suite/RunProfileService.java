@@ -4,12 +4,15 @@ package org.onebeartoe.modeling.openscad.test.suite;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.onebeartoe.modeling.opensacd.services.InterpolatedOpenScad;
+import org.onebeartoe.modeling.opensacd.services.ThingiverseCustomizerService;
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.DELETE_PROPOSED_BASELINES;
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.GENERATE_BASELILNES;
 import static org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite.OPENSCAD_PATH;
@@ -96,11 +99,24 @@ public class RunProfileService
             
             if( file.exists() && file.getName().endsWith(".scad") )
             {
-System.out.println("farto");                
+                runProfile.singleScadWithDependenciesMode = true;
+
+                var customizerService = new ThingiverseCustomizerService();
+
+                InterpolatedOpenScad interpolateOpenScad = customizerService.interpolateOpenScad(file);
+
+                runProfile.openscadPaths = new ArrayList();
+                
+                interpolateOpenScad.uniqueUseStatements.forEach(use -> 
+                {
+                    var path = Path.of(use);
+                    
+                    runProfile.openscadPaths.add(path);
+                });
             }
             else
             {
-                var message = "File is not a file, nor a directory?!?: " + inpath.toString();
+                var message = "Input OpenSCAD file does not exist: " + inpath.toString();
                 
                 throw new IllegalArgumentException(message);
             }

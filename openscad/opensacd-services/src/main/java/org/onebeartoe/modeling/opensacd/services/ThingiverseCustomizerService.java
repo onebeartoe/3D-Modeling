@@ -42,14 +42,18 @@ public class ThingiverseCustomizerService
     
     public File generateCustomizerFile(File openScadInfile) throws IOException
     {
-        String interpolatedContent = interpolateOpenScad(openScadInfile);
+        var interpolatedContent = interpolateOpenScad(openScadInfile);
 
         String openScadFile = openScadInfile.getName();
         
         int start = openScadFile.lastIndexOf(".");
+
         int end = openScadFile.length();
+
         String extension = openScadFile.substring(start, end);
+
         String path = openScadInfile.getParent() + File.separator + "inlined" + File.separator + openScadInfile.getName() + "-" +"inlined" + extension;
+
         File outfile = new File(path);
 
         if( !outfile.getParentFile().exists() )
@@ -59,7 +63,7 @@ public class ThingiverseCustomizerService
 
         Path outpath = outfile.toPath();
 
-        Files.write(outpath, interpolatedContent.getBytes() );
+        Files.write(outpath, interpolatedContent.content.getBytes() );
         
         return outfile;
     }
@@ -86,13 +90,14 @@ public class ThingiverseCustomizerService
         return isUseStatement;
     }
 
-    public String interpolateOpenScad(File targetScadFile) throws IOException
+    public InterpolatedOpenScad interpolateOpenScad(File targetScadFile) throws IOException
     {
         OpenScadParse initialOpenScadParse = readOpenScadFile(targetScadFile);
 
         List<String> uniqueUseStatements = new ArrayList();
 
         List<String> unprocessedUseStatements = new ArrayList();
+
         unprocessedUseStatements.addAll(initialOpenScadParse.useStatements);
 
         List<String> useStatementsContent = new ArrayList();
@@ -106,6 +111,7 @@ public class ThingiverseCustomizerService
                 uniqueUseStatements.add(useStatement);
 
                 File infile = new File(useStatement);
+
                 OpenScadParse currentParse = readOpenScadFile(infile);
 
                 unprocessedUseStatements.addAll(currentParse.useStatements);
@@ -121,8 +127,14 @@ public class ThingiverseCustomizerService
         finalOutput.addAll(useStatementsContent);
 
         String content = String.join(System.lineSeparator(), finalOutput);
+        
+        var interpolated = new InterpolatedOpenScad();
+        
+        interpolated.content = content;
+        
+        interpolated.uniqueUseStatements = uniqueUseStatements;
 
-        return content;
+        return interpolated;
     }
 
     private String interpolateOpenScadFontLine(String line)

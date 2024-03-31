@@ -76,7 +76,10 @@ public class ThingiverseCustomizerServiceSpecification
     public void whenIncludesExistThenAllArePresentInInlined() throws IOException 
     {
         File scadFile = new File(clientPath);
-        String inlined = implementation.interpolateOpenScad(scadFile);
+
+        var interpolated = implementation.interpolateOpenScad(scadFile);
+
+        String inlined = interpolated.content;
         
         assertTrue( inlined.contains("client()") );
         

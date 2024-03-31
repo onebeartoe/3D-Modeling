@@ -1,6 +1,6 @@
 
-<use ../../bun.scad>
+use <../bun.scad>
 
-<use ../../pattie.scad>
+use <../pattie.scad>
 
-<use ../../tomato.scad>
+use <../tomato.scad>

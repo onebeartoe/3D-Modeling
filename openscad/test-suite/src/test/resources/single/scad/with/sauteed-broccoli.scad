@@ -1,4 +1,4 @@
 
-<use ../../broccoli.scad>
+use <../broccoli.scad>
 
-<use ../../butter.scad>
+use <../butter.scad>

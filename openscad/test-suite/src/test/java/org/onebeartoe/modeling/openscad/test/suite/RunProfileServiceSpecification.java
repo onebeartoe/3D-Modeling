@@ -49,7 +49,9 @@ public class RunProfileServiceSpecification
 
         RunProfile result = RunProfileService.parseRunProfile(args, options);
         
-        assertEquals(result.openscadPaths.size(), 11);
+        assertEquals(singleScadWithDependenciesPath, result.path);
+        
+        assertEquals(result.openscadPaths.size(), 10);
 
         assertTrue(result.singleScadWithDependenciesMode);
     }    

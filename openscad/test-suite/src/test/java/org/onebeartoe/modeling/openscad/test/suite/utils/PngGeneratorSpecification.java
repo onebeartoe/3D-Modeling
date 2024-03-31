@@ -26,7 +26,7 @@ public class PngGeneratorSpecification
     
     public static final String simpleOpenScadPath = "src/test/resources/simple/simple.scad";
     
-    public static final String missingBaseliesPath = "src/test/resources/missing-baseline/missing.scad";
+    public static final String missingBaseliesPath = "src/test/resources/missing/baselines.scad";
     
     public static final String singleScadWithDependenciesPath = "src/test/resources/single/scad/with/dependencies/meal.scad";
         

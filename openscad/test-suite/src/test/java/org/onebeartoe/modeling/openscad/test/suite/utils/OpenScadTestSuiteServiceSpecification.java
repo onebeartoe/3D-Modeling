@@ -65,9 +65,10 @@ public class OpenScadTestSuiteServiceSpecification
     @Test(expectedExceptions = MissingBaselinesException.class)
     public void runTestSuite_missingBaselinesException() throws IOException, InterruptedException, MissingBaselinesException
     {
-        Path path = Paths.get(missingBaseliesPath);
+        runProfile.path = missingBaseliesPath;
+//        Path path = Paths.get(missingBaseliesPath);
         
-        runProfile.openscadPaths.add(path);
+//        runProfile.openscadPaths.add(path);
         
         implementation.runTestSuite(runProfile);
     }    
@@ -158,7 +159,8 @@ public class OpenScadTestSuiteServiceSpecification
         // debug happy path is the following commented path
         runProfile.path = "../models/src/main/openscad/basics/primitives/cube";        
 //        runProfile.path = "../models/src/main/openscad";
-                OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
+
+        OpenScadTestSuiteResults results = implementation.serviceRequest(runProfile);
                                 
         assertNotNull(results);
     }

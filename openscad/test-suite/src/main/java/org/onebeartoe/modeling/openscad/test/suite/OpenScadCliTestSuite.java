@@ -3,28 +3,24 @@ package org.onebeartoe.modeling.openscad.test.suite;
 
 import java.nio.file.Path;
 import java.time.Duration;
-import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
-import org.onebeartoe.application.duration.DurationService;
-import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.UnrecognizedOptionException;
+import org.onebeartoe.application.duration.DurationService;
 import org.onebeartoe.application.logging.SysoutLoggerFactory;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
-import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.model.OpenScadTestSuiteResults;
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import org.onebeartoe.modeling.openscad.test.suite.utils.Help;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteFormatService;
+import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 
 public class OpenScadCliTestSuite
 {        

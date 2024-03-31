@@ -60,9 +60,11 @@ import org.testng.annotations.Test;
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
+
         Path inpath = FileSystems.getDefault().getPath(runProfile.path);
 
         runProfile.openscadPaths = openScadFinder.getFiles(inpath);
+
         runProfile.redirectOpenscad = false;
         
         DataSetValidator inputValidator = new DataSetValidator();
