@@ -51,7 +51,7 @@ public class RunProfileServiceSpecification
         
         assertEquals(singleScadWithDependenciesPath, result.path);
         
-        assertEquals(result.openscadPaths.size(), 10);
+        assertEquals(result.openscadPaths.size(), 11);
 
         assertTrue(result.singleScadWithDependenciesMode);
     }    
