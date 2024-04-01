@@ -7,8 +7,15 @@
 
 
 function bezier_coordinate(t1 = 0, n0 = 0, n1 = 0, n2 = 0, n3 = 0) = 
-    n0 * pow((1 - t1), 3) + 3 * n1 * t1 * pow((1 - t1), 2) + 
-        3 * n2 * pow(t1, 2) * (1 - t1) + n3 * pow(t1, 3);
+    let (pow1 = pow((1 - t1), 3),
+         pow2 = pow((1 - t1), 2),
+         pow3 = pow(t1, 2),
+         pow4 = pow(t1, 3))
+
+    n0 * pow1 + 3 * 
+    n1 * t1 * pow2 +  3 * 
+    n2 * pow3 * (1 - t1) + 
+    n3 * pow4;
 
 
 function bezier_point(t, p0, p1, p2, p3) = 
@@ -31,14 +38,25 @@ module line(point1, point2, width = 1, cap_round = true) {
     offset1 = [-offset_x, offset_y];
     offset2 = [offset_x, -offset_y];
 
-    if(cap_round) {
-        translate(point1) circle(d = width, $fn = 24);
-        translate(point2) circle(d = width, $fn = 24);
+    if(cap_round) 
+    {
+//echo("ploop-ploop", point1, "jf");
+
+        translate([point1[0], point1[1], 0])
+//        translate(point1)
+        circle(d = width, $fn = 24);
+
+//echo("ploop-ploop", point2, "ll");
+        translate([point2[0],point2[1], 0])
+//        translate(point2) 
+        circle(d = width, $fn = 24);
     }
 
     polygon(points=[
-        point1 + offset1, point2 + offset1,  
-        point2 + offset2, point1 + offset2
+        point1 + offset1, 
+        point2 + offset1,  
+        point2 + offset2, 
+        point1 + offset2
     ]);
 }
 
