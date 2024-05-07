@@ -3,19 +3,26 @@
 
 //#   https://openhome.cc/eGossip/OpenSCAD/BezierCurve.html
 
-
-
-
-function bezier_coordinate(t1 = 0, n0 = 0, n1 = 0, n2 = 0, n3 = 0) = 
-    let (pow1 = pow((1 - t1), 3),
+function bezier_coordinate(t1 = 0, n0 = 0, n1 = 0, n2 = 0, n3) = 
+    let (
+        n0 = n0,
+        n3 = n3,
+        pow1 = pow((1 - t1), 3),
          pow2 = pow((1 - t1), 2),
          pow3 = pow(t1, 2),
          pow4 = pow(t1, 3))
-
-    n0 * pow1 + 3 * 
-    n1 * t1 * pow2 +  3 * 
-    n2 * pow3 * (1 - t1) + 
-    n3 * pow4;
+    
+    n0 * 
+    pow1 + 
+    3 * 
+    n1 * t1 * 
+    pow2 +  
+    3 * 
+    n2 * 
+    pow3 * 
+    (1 - t1) + 
+    n3 * 
+    pow4;
 
 
 function bezier_point(t, p0, p1, p2, p3) = 
@@ -70,4 +77,3 @@ module polyline(points, width = 1) {
 
     polyline_inner(points, 1);
 }
-
