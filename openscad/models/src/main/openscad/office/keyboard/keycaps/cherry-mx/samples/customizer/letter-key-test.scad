@@ -1,5 +1,5 @@
 
-use <letter-key.scad>
+use <../../letter-key.scad>
 
 // TODO: Use the onebeartoe OpenSCAD Inliner tool to 'include' these font names.
 // font list from:
@@ -13,13 +13,13 @@ xUppercaseOffset = xLowercaseOffset - 0.5;
 
 singleLetter = "D";
 	
-//showHellowWorld = true;
-//showLowercase = true;
-//showUppercase = true;
-//showWindings = true;
-//showNumbers = true;
+showHellowWorld = true;
+showLowercase = true;
+showUppercase = true;
+showWindings = true;
+showNumbers = true;
 showIconKeys = true;
-//showSingleKeycap = true;
+showSingleKeycap = true;
 if(showHellowWorld)
 {
 	keyCapString(["H", "e","l","l","o"," ", "w","o","r","l","d"], xOffset=xUppercaseOffset);

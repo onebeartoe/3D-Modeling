@@ -11,7 +11,7 @@ use <../../../../shapes/star/star.scad>
 use <../../../../external-resources/thundercats/thundercats-logo.scad>
 use <../../../../external-resources/trooper/scrum-trooper.scad>
 
-use <blank-keycap.scad>
+use <blank/blank-keycap.scad>
 
 module aphabetKeycaps(xOffset, font)
 {
@@ -63,7 +63,7 @@ module oneAlphanumericKey(letter, xOffset, font)
 		blankKey();
 	}	
 }
-
+   
 module oneIcon(iconType, iconXyScale, iconHeight, xOffset, yOffset, iconColor)
 {
     color(iconColor)
