@@ -6,6 +6,7 @@ module bezierVase(count = 29,
                   p1 = [40, 60],
                   p2 = [-50, 90],
                   p3 = [0, 200],
+                  pointLegends = false,
                   radius = 6,
                   t_step = 0.05,
                   zMountingAdustment = 30)
@@ -17,6 +18,7 @@ module bezierVase(count = 29,
               p1,
               p2,
               p3,
+              pointLegends,
               radius,
               t_step);
 
@@ -57,6 +59,7 @@ module shell(count,
              p1,
              p2,
              p3,
+             pointLegends,
              radius,
              t_step)
 {
@@ -70,8 +73,35 @@ module shell(count,
 
         color("blue")
         rotate([90, 0, zRotate])
-        translate([40,0,0])
+        translate([44,0,0])
         bezierVaseRib(points, radius);
+    }
+
+    if(pointLegends)
+    {
+        pointLegend(0,p0);
+        pointLegend(1,p1);
+        pointLegend(2,p2);
+        pointLegend(3,p3);
+    }
+}
+
+module pointLegend(index, point)
+{
+    echo("points: ", point[0], ", " , point[1], ", ", point[2] );
+
+    legend = str("P", index);
+
+    xTranslate = point[0] + 40;
+
+    color("orange")
+    rotate([90, 0, 0])
+    translate( [xTranslate, point[1], 0] )
+    union()
+    {
+        text(text = legend, size = 45);
+    
+        sphere(r=14);
     }
 }
 

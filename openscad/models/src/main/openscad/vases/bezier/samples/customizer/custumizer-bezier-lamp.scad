@@ -21,6 +21,8 @@ p1 = [p1x, p1y];
 p2 = [p2x, p2y];
 p3 = [p3x, p3y];
 
+pointLegends = true;
+
 //color("red")
 //bezierVase(t_step = 0.05);
 //bezierVase(t_step = 0.031);
@@ -29,6 +31,7 @@ bezierVase(
             p1 = p1,
             p2 = p2,
             p3 = p3,
+            pointLegends = pointLegends,
             t_step = 0.02);
 
 
