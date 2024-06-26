@@ -21,7 +21,7 @@ p1 = [p1x, p1y];
 p2 = [p2x, p2y];
 p3 = [p3x, p3y];
 
-pointLegends = true;
+pointLegends = false;
 
 //color("red")
 //bezierVase(t_step = 0.05);

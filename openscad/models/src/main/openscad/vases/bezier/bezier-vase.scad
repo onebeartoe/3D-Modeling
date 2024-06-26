@@ -73,6 +73,7 @@ module shell(count,
 
         color("blue")
         rotate([90, 0, zRotate])
+// the vase is widened here:
         translate([44,0,0])
         bezierVaseRib(points, radius);
     }
