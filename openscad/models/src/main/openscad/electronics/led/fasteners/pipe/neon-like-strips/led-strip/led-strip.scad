@@ -7,10 +7,17 @@ module neonLikeLedStrip(length = 10)
 {
     union()
     {
+        radius = neonLikeLedStrip_width() / 2.0;
+
+        cubeX = neonLikeLedStrip_height() - radius;
+
+        cubeY = neonLikeLedStrip_width();
+
         color("white")
-        cube([10,5,length]);
+        cube([cubeX, cubeY, length]);
     
         color("green")
-        cylinder(r = 4, h= length, $fn = 70);
+        translate([cubeX, radius, 0])
+        cylinder(r = radius, h= length, $fn = 70);
     }
 }
