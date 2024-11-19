@@ -1,25 +1,29 @@
 
 use <../led-strip/led-strip.scad>;
 
-claspThickness = 4;
-
-claspWidth = neonLikeLedStrip_width() + claspThickness;
-
-claspLength = 15;
-
-claspHeight = neonLikeLedStrip_height() + claspThickness;
-
-module stripClasp()
+module stripClasp(claspThickness = 4,
+                  claspLength = 15)
 {
+    claspWidth = neonLikeLedStrip_width() + claspThickness;
+
+    claspHeight = neonLikeLedStrip_height() + claspThickness;    
+ 
     union()
     {
-        stripClasp_main();
+        stripClasp_main(claspHeight = claspHeight,
+                        claspLength = claspLength,
+                        claspThickness = claspThickness,
+                        claspWidth = claspWidth
+                        );
 
         stripClasp_screwHolder();
     }
-}
+} 
 
-module stripClasp_main()
+module stripClasp_main(claspHeight,
+                        claspLength,
+                        claspThickness,
+                        claspWidth)
 {
     difference()
     {
