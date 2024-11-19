@@ -34,5 +34,5 @@ module stripClasp_main()
  
 module stripClasp_screwHolder()
 {
-
+    echo("fartooooo");
 }
