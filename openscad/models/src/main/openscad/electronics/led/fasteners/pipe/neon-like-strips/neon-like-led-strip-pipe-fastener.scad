@@ -13,8 +13,10 @@ module neonLikeLedStripPipeFastener(fastenerThickness = 8,
     {
         if(showLedStrip)
         {
+            xTranslate = innerRadius + fastenerThickness;
+            yTranslate = 0;
             zTranslate = -ledStripLength / 2.0;
-            translate([0,0,zTranslate])
+            translate([xTranslate, yTranslate, zTranslate])
             neonLikeLedStrip(length = ledStripLength);
         }
 
@@ -39,13 +41,17 @@ module pipeFastener(fastenerThickness = 5,
 }
 
 module stipFastener(fastenerThickness = 2,
-                                    innerRadius = 1) 
+                    innerRadius = 1) 
 {
     // attacherator
-//    cube([]);
+    cube([]);
 
+
+
+    claspThickness = 4;
     xTranslate = innerRadius + fastenerThickness;
-    yTranslate = 0;
-    translate([xTranslate, 0, 0])
-    stripClasp();
+    yTranslate = -(neonLikeLedStrip_width() + claspThickness) / 2.0;
+    translate([xTranslate, yTranslate, 0])
+    stripClasp(claspThickness = claspThickness,
+                  claspLength = 15);
 }
