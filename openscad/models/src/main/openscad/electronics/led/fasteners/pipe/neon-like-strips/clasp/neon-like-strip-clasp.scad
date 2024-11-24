@@ -10,6 +10,7 @@ module stripClasp(claspThickness = 4,
  
     union()
     {
+        color("lime")
         stripClasp_main(claspHeight = claspHeight,
                         claspLength = claspLength,
                         claspThickness = claspThickness,
@@ -29,10 +30,10 @@ module stripClasp_main(claspHeight,
     {
         cube([claspHeight, claspWidth, claspLength ]);
  
-        zTranslate = (claspHeight / 2.0) - (neonLikeLedStrip_height() / 2.0);
-        yTranslate = (claspLength / 2.0) - (neonLikeLedStrip_width() / 2.0);
-        translate([-1, yTranslate, zTranslate])
-        cube([20, neonLikeLedStrip_width(), neonLikeLedStrip_height()]);
+        yTranslate = neonLikeLedStrip_width() / 2.0 - 1;
+        xTranslate = 2;
+        translate([xTranslate, yTranslate, -0.01])
+        neonLikeLedStrip(length = 20);
     }
 }
  

@@ -44,9 +44,13 @@ module stipFastener(fastenerThickness = 2,
                     innerRadius = 1) 
 {
     // attacherator
-    cube([]);
-
-
+    attacheratorLength_x = 2;//neonLikeLedStrip_width();
+    attacheratorLength_y = neonLikeLedStrip_width() + fastenerThickness + 1;
+    attacheratorTranslate_x = fastenerThickness + innerRadius;
+    attacheratorTranslate_y = -attacheratorLength_y / 2.0;
+    color("purple")
+    translate([attacheratorTranslate_x, attacheratorTranslate_y, 0])
+    cube([attacheratorLength_x, attacheratorLength_y, 22]);
 
     claspThickness = 4;
     xTranslate = innerRadius + fastenerThickness;
