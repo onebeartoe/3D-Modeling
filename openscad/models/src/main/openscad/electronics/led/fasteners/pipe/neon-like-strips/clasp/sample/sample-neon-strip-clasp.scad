@@ -1,4 +1,4 @@
 
 use <../neon-like-strip-clasp.scad>;
 
-stripClasp();
+stripClasp(xLength = 17);

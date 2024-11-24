@@ -2,16 +2,15 @@
 use <../led-strip/led-strip.scad>;
 
 module stripClasp(claspThickness = 4,
+                  xLength = 88,
                   claspLength = 15)
 {
-    claspWidth = neonLikeLedStrip_width() + claspThickness;
-
-    claspHeight = neonLikeLedStrip_height() + claspThickness;    
+    claspWidth = neonLikeLedStrip_width() + claspThickness; 
  
     union()
     {
         color("lime")
-        stripClasp_main(claspHeight = claspHeight,
+        stripClasp_main(xLength = xLength,
                         claspLength = claspLength,
                         claspThickness = claspThickness,
                         claspWidth = claspWidth
@@ -21,14 +20,14 @@ module stripClasp(claspThickness = 4,
     }
 } 
 
-module stripClasp_main(claspHeight,
+module stripClasp_main(xLength,
                         claspLength,
                         claspThickness,
                         claspWidth)
 {
     difference()
     {
-        cube([claspHeight, claspWidth, claspLength ]);
+        cube([xLength, claspWidth, claspLength ]);
  
         yTranslate = neonLikeLedStrip_width() / 2.0 - 1;
         xTranslate = 2;

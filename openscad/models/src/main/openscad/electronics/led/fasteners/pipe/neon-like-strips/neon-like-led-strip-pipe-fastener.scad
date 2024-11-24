@@ -4,7 +4,8 @@ use <../../../../../shapes/open-cylinder/open-cylinder.scad>
 use <led-strip/led-strip.scad>;
 use <clasp/neon-like-strip-clasp.scad>;
 
-module neonLikeLedStripPipeFastener(fastenerThickness = 8,
+module neonLikeLedStripPipeFastener(fastenerHeight = 9,
+                                    fastenerThickness = 8,
                                     innerRadius = 33,
                                     ledStripLength = 300,
                                     showLedStrip = false)
@@ -21,11 +22,13 @@ module neonLikeLedStripPipeFastener(fastenerThickness = 8,
         }
 
         pipeFastener(fastenerThickness = fastenerThickness,
-                                    innerRadius = innerRadius
-                                    );
+                     height = fastenerHeight,
+                     innerRadius = innerRadius
+                     );
    
-        stipFastener(fastenerThickness = fastenerThickness,
-                                    innerRadius = innerRadius);
+        stipFastener(height = fastenerHeight,
+                     fastenerThickness = fastenerThickness,
+                     innerRadius = innerRadius);
     }
 }
 
@@ -41,21 +44,23 @@ module pipeFastener(fastenerThickness = 5,
 }
 
 module stipFastener(fastenerThickness = 2,
+                    height = 10,
                     innerRadius = 1) 
 {
     // attacherator
     attacheratorLength_x = 2;//neonLikeLedStrip_width();
     attacheratorLength_y = neonLikeLedStrip_width() + fastenerThickness + 1;
-    attacheratorTranslate_x = fastenerThickness + innerRadius;
+    attacheratorTranslate_x = fastenerThickness + innerRadius -1;
     attacheratorTranslate_y = -attacheratorLength_y / 2.0;
     color("purple")
     translate([attacheratorTranslate_x, attacheratorTranslate_y, 0])
-    cube([attacheratorLength_x, attacheratorLength_y, 22]);
+    cube([attacheratorLength_x, attacheratorLength_y, height]);
 
     claspThickness = 4;
     xTranslate = innerRadius + fastenerThickness;
     yTranslate = -(neonLikeLedStrip_width() + claspThickness) / 2.0;
     translate([xTranslate, yTranslate, 0])
     stripClasp(claspThickness = claspThickness,
-                  claspLength = 15);
+                xLength = height + 8,
+                  claspLength = height);
 }
