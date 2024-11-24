@@ -14,8 +14,6 @@ module stripClasp(claspThickness = 4,
                         claspThickness = claspThickness,
                         claspWidth = claspWidth
                         );
-
-//        stripClasp_screwHolder();
     }
 } 
 
@@ -63,7 +61,4 @@ module stripClasp_screwHolder(claspLength, xLength)
     translate([xTranslate, yTranslate, zTranslate_second])
     color("green")
     cylinder(r=1, h=15, $fn = 20);
-
-
-    echo("fartooooo");
 }

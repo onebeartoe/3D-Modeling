@@ -61,6 +61,6 @@ module stipFastener(fastenerThickness = 2,
     yTranslate = -(neonLikeLedStrip_width() + claspThickness) / 2.0;
     translate([xTranslate, yTranslate, 0])
     stripClasp(claspThickness = claspThickness,
-                xLength = height + 8 + 8,
-                  claspLength = height);
+               xLength = height + 8 + 8,
+               claspLength = height);
 }
