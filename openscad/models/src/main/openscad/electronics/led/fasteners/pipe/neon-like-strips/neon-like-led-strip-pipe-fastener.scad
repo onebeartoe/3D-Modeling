@@ -10,6 +10,27 @@ module neonLikeLedStripPipeFastener(fastenerHeight = 9,
                                     ledStripLength = 300,
                                     showLedStrip = false)
 {
+    difference()
+    {
+        neonLikeLedStripPipeFastenerSolid(fastenerHeight = fastenerHeight,
+                                         fastenerThickness = fastenerThickness,
+                                         innerRadius = innerRadius,
+                                         ledStripLength = ledStripLength,
+                                         showLedStrip = showLedStrip);
+
+        width = 2;
+        yTranslate = -width / 2.0;
+        translate([0, yTranslate, -0.01])
+        cube([100, width, 25]);
+    }
+}
+
+module neonLikeLedStripPipeFastenerSolid(fastenerHeight,
+                                    fastenerThickness,
+                                    innerRadius,
+                                    ledStripLength,
+                                    showLedStrip)
+{
     union()
     {
         if(showLedStrip)
@@ -29,7 +50,7 @@ module neonLikeLedStripPipeFastener(fastenerHeight = 9,
         stipFastener(height = fastenerHeight,
                      fastenerThickness = fastenerThickness,
                      innerRadius = innerRadius);
-    }
+    }    
 }
 
 module pipeFastener(fastenerThickness = 5,
@@ -48,7 +69,7 @@ module stipFastener(fastenerThickness = 2,
                     innerRadius = 1) 
 {
     // attacherator
-    attacheratorLength_x = 2;//neonLikeLedStrip_width();
+    attacheratorLength_x = 2;
     attacheratorLength_y = neonLikeLedStrip_width() + fastenerThickness + 1;
     attacheratorTranslate_x = fastenerThickness + innerRadius -1;
     attacheratorTranslate_y = -attacheratorLength_y / 2.0;
