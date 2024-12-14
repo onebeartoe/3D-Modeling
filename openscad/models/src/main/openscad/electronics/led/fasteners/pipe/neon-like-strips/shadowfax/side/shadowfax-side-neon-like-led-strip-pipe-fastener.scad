@@ -1,5 +1,5 @@
 
-use <../neon-like-led-strip-pipe-fastener.scad>
+use <../../neon-like-led-strip-pipe-fastener.scad>
 
 /*
 
@@ -11,4 +11,7 @@ Shadowfax
 
 */
 
-neonLikeLedStripPipeFastener();
+neonLikeLedStripPipeFastener(fastenerHeight = 9,
+                             fastenerThickness = 3,
+                             innerRadius = 8.5,
+                             ledStripLength = 50);
