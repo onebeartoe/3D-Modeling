@@ -16,7 +16,8 @@ difference()
                 r = ballShellRadius);
 
     // golfball cutout
-    cutoutRadius = ballRadius + 1;
+//    cutoutRadius = ballRadius + 1;
+    cutoutRadius = ballRadius + 0.5;
     sphere(center = true,
         r = cutoutRadius
         );
@@ -29,7 +30,7 @@ difference()
             center = true);
 
 
-    text = "M";
+    text = "C";
     zTranslate = ballShellRadius - 6;
     font = "Bauhaus 93:style=Regular";
     color("purple")
