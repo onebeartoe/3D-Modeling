@@ -2,12 +2,12 @@
 use <../../../basics/text/text-extrude/text-extrude.scad>
 use <../../../shapes/geometry/arc/extruded/extruded-arc.scad>
 
-diameter = 42.67;
-radius = diameter / 2.0;
+ballDiameter = 42.67;
+ballRadius = ballDiameter / 2.0;
 
 shellThinness = 3;
 
-ballShellRadius = radius + shellThinness;
+ballShellRadius = ballRadius + shellThinness;
 
 difference()
 {
@@ -15,9 +15,10 @@ difference()
     sphere(center = true,
                 r = ballShellRadius);
 
-    // golfball
+    // golfball cutout
+    cutoutRadius = ballRadius + 1;
     sphere(center = true,
-        r = radius
+        r = cutoutRadius
         );
 
     // bottom cuttoff
