@@ -30,11 +30,13 @@ difference()
 
     text = "M";
     zTranslate = ballShellRadius - 6;
+    font = "Bauhaus 93:style=Regular";
     color("purple")
     translate([0, 0, zTranslate])
-    textExtrude(height = 10,
+    textExtrude(font = font,
+                height = 10,
                 text = text,
-                textSize = 12);                
+                textSize = 16);                
 //}
 
 
