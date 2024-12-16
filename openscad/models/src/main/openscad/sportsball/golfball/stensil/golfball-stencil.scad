@@ -47,7 +47,7 @@ for ( i = [0 : arcCount] )
     rotate( i * 360 / (arcCount+1), [0, 0, 1])
     translate([0, 0, 8])
     rectangularArc(radius = 12, 
-                    radiusExtension = 2, 
+                    radiusExtension = 3, 
                     angle = 360.0 / arcCount - 45, 
                     height = 15);
 }
