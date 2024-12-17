@@ -1,8 +1,8 @@
 
 // use <../../../../basics/text/text-extrude/text-extrude.scad>
 
-use <../../../../basics/text/tex-around-the-corner/around-the-corner-text.scad>
-
+use <../../../../basics/text/text-around-the-corner/around-the-corner-text.scad>
+                 
 module textCrocCharm(font = "",
                      height=4,
                      text = "default text")
@@ -19,6 +19,7 @@ module textCrocCharm(font = "",
         // textExtrude(
                     fontName = font,
                     height = height,
+                    leftRightMargin=2,
                     text = text);
     }
 }
