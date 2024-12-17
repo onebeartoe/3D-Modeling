@@ -7,9 +7,10 @@ use <../text-extrude/text-extrude.scad>
 
 module textWall(text = "this is a text", 
                 length = 20, width = 10, 
-                leftRightMargin=2, 
+                leftRightMargin=2,
                 fontSize = 6,
-                fontName = "Bauhaus 93:style=Regular")
+                fontName = "Bauhaus 93:style=Regular",
+                wallThinkness = 1)
 {
     font = fontName;
     
@@ -19,7 +20,7 @@ module textWall(text = "this is a text",
         cubeLength = length + (textXOffset * 2);
         cubeWidth = width;
         color("blue")
-        cube([cubeLength, cubeWidth, 1]);
+        cube([cubeLength, cubeWidth, wallThinkness]);
 
         color("white")
         translate([textXOffset, width / 2.0, 0.6])
