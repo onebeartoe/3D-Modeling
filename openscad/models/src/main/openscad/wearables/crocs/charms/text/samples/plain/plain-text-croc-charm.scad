@@ -2,7 +2,7 @@
 use <../../text-croc-charm.scad>
 
 font = "Bauhaus 93:style=Regular";
-height = 4;
+height = 2;
 text = "Bruh!";
 wallThinkness = 1;
 length = 20;

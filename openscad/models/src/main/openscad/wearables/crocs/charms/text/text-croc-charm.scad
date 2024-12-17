@@ -25,7 +25,7 @@ module textCrocCharm(font = "",
 
         jibletTranlsate_x = -(length + (leftRightMargin * 2)    ) / 2.0 ;
         jibletTranlsate_y = (width) / 2.0;
-        jibletTranlsate_z = -(zTranslate) + height + 0.4999;    
+        jibletTranlsate_z = (zTranslate + height + 0.51) * -11.9 + .5;    
         translate([jibletTranlsate_x, jibletTranlsate_y, jibletTranlsate_z])
         textCrocCharm_jiblet();
     }
