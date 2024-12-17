@@ -1,10 +1,6 @@
 
 cd ../../external-resources/bezier/
 
-ll
-
-echo "farto"
-
 java -jar /opt/onebeartoe/test-suite-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
 
 if [ $? -eq 0 ] 
