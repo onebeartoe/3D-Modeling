@@ -6,6 +6,7 @@
 use <../text-extrude/text-extrude.scad>
 
 module textWall(text = "this is a text", 
+                textHeight = 1,
                 length = 20, width = 10, 
                 leftRightMargin=2,
                 fontSize = 6,
@@ -24,7 +25,7 @@ module textWall(text = "this is a text",
 
         color("white")
         translate([textXOffset, width / 2.0, 0.6])
-        linear_extrude(1, convexity = 4)
+        linear_extrude(textHeight, convexity = 4)
         resize([length, cubeWidth * 0.9, 0], auto = true)
         text(text=text, valign = "center", font = font, size=fontSize);
     }
