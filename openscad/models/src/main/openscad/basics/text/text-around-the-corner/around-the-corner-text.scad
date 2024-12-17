@@ -7,7 +7,8 @@ use <../text-extrude/text-extrude.scad>
 
 module textWall(text = "this is a text", 
                 textHeight = 1,
-                length = 20, width = 10, 
+                length = 20, 
+                width = 10, 
                 leftRightMargin=2,
                 fontSize = 6,
                 fontName = "Bauhaus 93:style=Regular",
