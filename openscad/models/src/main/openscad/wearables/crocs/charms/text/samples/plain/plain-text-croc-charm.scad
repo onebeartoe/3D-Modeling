@@ -5,8 +5,12 @@ font = "Bauhaus 93:style=Regular";
 height = 4;
 text = "Bruh!";
 wallThinkness = 1;
+length = 20;
+width = 10;
 
 textCrocCharm(font = font,
               height = height,
-              text = text,
+              length = length,
+              text = text, 
+              width = width, 
               wallThinkness = wallThinkness);
