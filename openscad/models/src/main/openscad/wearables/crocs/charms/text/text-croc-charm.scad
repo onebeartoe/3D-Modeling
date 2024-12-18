@@ -25,7 +25,18 @@ module textCrocCharm(font = "",
 
         jibletTranlsate_x = -(length + (leftRightMargin * 2)    ) / 2.0 ;
         jibletTranlsate_y = (width) / 2.0;
-        jibletTranlsate_z = (zTranslate + height + 0.51) * -11.9 + .5;    
+
+        connectorHeight = 2;
+        connectorTranslate_z = (zTranslate + height + 0.51) * -11.9 + .5;
+        
+        jibletTranlsate_z = connectorTranslate_z + connectorHeight - 0.1;        
+        color("purple")
+        translate([jibletTranlsate_x, jibletTranlsate_y, 3 - 0.1])
+        cylinder(
+           r=5, 
+            // r=9, 
+                h=connectorHeight);
+    
         translate([jibletTranlsate_x, jibletTranlsate_y, jibletTranlsate_z])
         textCrocCharm_jiblet();
     }
@@ -34,7 +45,6 @@ module textCrocCharm(font = "",
 
 module textCrocCharm_jiblet()
 {
-    translate([0, 0, 0])
     rotate([0,180,0])
     blank();
 }
