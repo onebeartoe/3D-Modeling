@@ -3,9 +3,9 @@ use <../../../../wearables/crocs/charms/led/croc-led-jiblet.scad>
 
 use <../../../../basics/text/text-around-the-corner/around-the-corner-text.scad>
                  
-module textCrocCharm(font = "",
-                     height=4,
-                     leftRightMargin=2,
+module textCrocCharm(font = "Bauhaus 93:style=Regular",
+                     height = 2,
+                     leftRightMargin = 2,
                      length = 9,
                      text = "default text",
                      wallThinkness = 1,
