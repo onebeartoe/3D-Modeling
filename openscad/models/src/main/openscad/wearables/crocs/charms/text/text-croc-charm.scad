@@ -23,8 +23,8 @@ module textCrocCharm(font = "Bauhaus 93:style=Regular",
                  leftRightMargin = leftRightMargin,
                  text = text);
 
-        jibletTranlsate_x = -(length + (leftRightMargin * 2)    ) / 2.0 ;
-        jibletTranlsate_y = (width) / 2.0;
+        jibletTranlsate_x = -(length + (leftRightMargin * 2)    ) / 3.0 ;
+        jibletTranlsate_y = (width) / 4.0;
 
         connectorHeight = 2;
         connectorTranslate_z = (zTranslate + height + 0.51) * -11.9 + .5;
@@ -37,7 +37,7 @@ module textCrocCharm(font = "Bauhaus 93:style=Regular",
             // r=9, 
                 h=connectorHeight);
     
-        translate([jibletTranlsate_x, jibletTranlsate_y, jibletTranlsate_z])
+        translate([jibletTranlsate_x, jibletTranlsate_y, jibletTranlsate_z - 0.2])
         textCrocCharm_jiblet();
     }
 }
