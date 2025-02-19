@@ -56,14 +56,22 @@ module basketAttachment(yLength)
 module flashlight(radius, roundiness, translate)
 {
     diameter = 21; // this was measured
-
     length = 91;   // this was measured
-
     extendedLength = 102;  // this was measured
 
+    // handle
     translate(translate)
     rotate([0,90,0])
     %cylinder(r = radius, h = length, $fn = roundiness);
+
+    // light
+    lightTranslate = [translate[0] + length,
+                        translate[1],
+                        translate[2]];
+    color("yellow")
+    translate(lightTranslate)
+    rotate([0,90,0])
+    %cylinder(r = radius, h = 5, $fn = roundiness);
 }
 
 module flashlightCutoutHolder(extendoLengthX, 
@@ -72,16 +80,18 @@ module flashlightCutoutHolder(extendoLengthX,
                                 holderLength_z, 
                                 length_z_SUS, 
                                 roundiness,
-                                yLength
-)
+                                yLength)
 {
-    color("pink")
-    translate([extendoLengthX,0,0])
-    cube([5, yLength, holderLength_z]);
+    difference()
+    {
+        color("pink")
+        translate([extendoLengthX,0,0])
+        cube([5, yLength, holderLength_z]);
 
-    // flashlight cutout
-    color("green")
-    translate(flashlightTranslate)    
-    rotate([0,90,0])
-    cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
+        // flashlight cutout
+        color("green")
+        translate(flashlightTranslate)    
+        rotate([0,90,0])
+        cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
+    }
 }
