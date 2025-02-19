@@ -11,22 +11,18 @@ module flashlightHolder(extendoLengthX = 35,
     color("blue")
     cube([extendoLengthX, yLength, 5]);
 
-// flashlight holder and cutout
+    // flashlight holder and cutout
     holderLength_z = 50;
-    flashlightCutoutHolder(extendoLengthX = extendoLengthX,
-                           holderLength_z = holderLength_z,
-                           length_z_SUS = holderLength_z, 
-                           yLength = yLength);
-
-    // flashlight cutout
     cutoutTranslate_y = yLength / 2.0;
     cutoutTranslate_z = holderLength_z - flashlightRadius - 10;
-    flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];
-    color("green")
-    translate(flashlightTranslate)    
-    rotate([0,90,0])
-    cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
-
+    flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];    
+    flashlightCutoutHolder(extendoLengthX = extendoLengthX,
+                            flashlightTranslate = flashlightTranslate,
+                           flashlightRadius = flashlightRadius,
+                           holderLength_z = holderLength_z,
+                           length_z_SUS = holderLength_z, 
+                           roundiness = roundiness,
+                           yLength = yLength);
 
     // flashlight
     if(showFlashlight)
@@ -70,10 +66,22 @@ module flashlight(radius, roundiness, translate)
     %cylinder(r = radius, h = length, $fn = roundiness);
 }
 
-module flashlightCutoutHolder(extendoLengthX, holderLength_z, length_z_SUS, yLength)
+module flashlightCutoutHolder(extendoLengthX, 
+                                flashlightRadius,
+                                flashlightTranslate,
+                                holderLength_z, 
+                                length_z_SUS, 
+                                roundiness,
+                                yLength
+)
 {
     color("pink")
     translate([extendoLengthX,0,0])
     cube([5, yLength, holderLength_z]);
-}
 
+    // flashlight cutout
+    color("green")
+    translate(flashlightTranslate)    
+    rotate([0,90,0])
+    cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
+}
