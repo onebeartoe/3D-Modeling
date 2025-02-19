@@ -11,11 +11,12 @@ module flashlightHolder(extendoLengthX = 35,
     color("blue")
     cube([extendoLengthX, yLength, 5]);
 
-    // flashlight holder and cutout
+// flashlight holder and cutout
     holderLength_z = 50;
-    color("pink")
-    translate([extendoLengthX,0,0])
-    cube([5, yLength, holderLength_z]);
+    flashlightCutoutHolder(extendoLengthX = extendoLengthX,
+                           holderLength_z = holderLength_z,
+                           length_z_SUS = holderLength_z, 
+                           yLength = yLength);
 
     // flashlight cutout
     cutoutTranslate_y = yLength / 2.0;
@@ -38,7 +39,7 @@ module flashlightHolder(extendoLengthX = 35,
 
 module basketAttachment(yLength)
 {
-//    difference()
+    difference()
     {
         xLength = 15;
         zLength = 22;
@@ -68,3 +69,11 @@ module flashlight(radius, roundiness, translate)
     rotate([0,90,0])
     %cylinder(r = radius, h = length, $fn = roundiness);
 }
+
+module flashlightCutoutHolder(extendoLengthX, holderLength_z, length_z_SUS, yLength)
+{
+    color("pink")
+    translate([extendoLengthX,0,0])
+    cube([5, yLength, holderLength_z]);
+}
+
