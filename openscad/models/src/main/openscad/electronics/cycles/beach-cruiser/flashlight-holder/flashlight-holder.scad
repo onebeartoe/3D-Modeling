@@ -11,6 +11,38 @@ module flashlightHolder(basketAttachment_zLength = 22,
     cutoutTranslate_z = holderLength_z - flashlightRadius - 10;
     flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];
 
+    flashlightHolder_core(basketAttachment_zLength = basketAttachment_zLength,
+                        cutoutTranslate_y = cutoutTranslate_y,
+                        cutoutTranslate_z = cutoutTranslate_z,
+                        extendoLengthX = extendoLengthX,
+                        flashlightRadius = flashlightRadius,
+                        flashlightTranslate = flashlightTranslate,
+                        holderLength_z = holderLength_z,
+                        roundiness = roundiness,
+                        showFlashlight = showFlashlight,
+                        yLength = yLength);
+
+    // flashlight
+    if(showFlashlight)
+    {
+        flashlight(radius = flashlightRadius, 
+                   roundiness = roundiness,
+                   translate = flashlightTranslate);
+    }
+
+}
+
+module flashlightHolder_core(basketAttachment_zLength,
+                        cutoutTranslate_y,
+                        cutoutTranslate_z,
+                        extendoLengthX,
+                        flashlightRadius,
+                        flashlightTranslate,
+                        holderLength_z,
+                        roundiness,
+                        showFlashlight,
+                        yLength)
+{
     union()
     {    
         basketAttachment(yLength = yLength,
@@ -21,7 +53,7 @@ module flashlightHolder(basketAttachment_zLength = 22,
         cube([extendoLengthX, yLength, 5]);
 
         // flashlight holder and cutout    
-        flashlightCutoutHolder(extendoLengthX = extendoLengthX,
+        flashlightHolder_coreFront(extendoLengthX = extendoLengthX,
                                 flashlightTranslate = flashlightTranslate,
                             flashlightRadius = flashlightRadius,
                             holderLength_z = holderLength_z,
@@ -29,15 +61,6 @@ module flashlightHolder(basketAttachment_zLength = 22,
                             roundiness = roundiness,
                             yLength = yLength);
     }
-
-    // flashlight
-    if(showFlashlight)
-    {
-        flashlight(radius = flashlightRadius, 
-                   roundiness = roundiness,
-                   translate = flashlightTranslate);
-    }
-
 }
 
 module basketAttachment(yLength, zLength)
@@ -82,7 +105,7 @@ module flashlight(radius, roundiness, translate)
               $fn = roundiness);
 }
 
-module flashlightCutoutHolder(extendoLengthX, 
+module flashlightHolder_coreFront(extendoLengthX, 
                                 flashlightRadius,
                                 flashlightTranslate,
                                 holderLength_z, 
