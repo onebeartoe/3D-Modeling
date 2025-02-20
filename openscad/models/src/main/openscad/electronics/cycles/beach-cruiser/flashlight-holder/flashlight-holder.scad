@@ -11,7 +11,9 @@ module flashlightHolder(basketAttachment_zLength = 22,
     cutoutTranslate_z = holderLength_z - flashlightRadius - 10;
     flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];
 
-    flashlightHolder_core(basketAttachment_zLength = basketAttachment_zLength,
+    difference()
+    {
+        flashlightHolder_core(basketAttachment_zLength = basketAttachment_zLength,
                         cutoutTranslate_y = cutoutTranslate_y,
                         cutoutTranslate_z = cutoutTranslate_z,
                         extendoLengthX = extendoLengthX,
@@ -21,6 +23,13 @@ module flashlightHolder(basketAttachment_zLength = 22,
                         roundiness = roundiness,
                         showFlashlight = showFlashlight,
                         yLength = yLength);
+
+        // flashlight cutout
+        color("green")
+        translate(flashlightTranslate)    
+        rotate([0,90,0])
+        cylinder(r = flashlightRadius, h = 69, $fn = roundiness);                        
+    }
 
     // flashlight
     if(showFlashlight)
@@ -113,17 +122,17 @@ module flashlightHolder_coreFront(extendoLengthX,
                                 roundiness,
                                 yLength)
 {
-    difference()
+//    difference()
     {
         color("pink")
         translate([extendoLengthX,0,0])
         cube([5, yLength, holderLength_z]);
 
-        // flashlight cutout
-        color("green")
-        translate(flashlightTranslate)    
-        rotate([0,90,0])
-        cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
+        // // flashlight cutout
+        // color("green")
+        // translate(flashlightTranslate)    
+        // rotate([0,90,0])
+        // cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
     }
 }
 
