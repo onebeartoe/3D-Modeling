@@ -1,4 +1,4 @@
 
-use <../flashlight-holder.scad>
+use <../../flashlight-holder.scad>
 
 flashlightHolder(showFlashlight = true);
