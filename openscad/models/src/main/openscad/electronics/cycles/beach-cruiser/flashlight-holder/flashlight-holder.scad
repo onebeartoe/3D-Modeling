@@ -4,7 +4,8 @@ module flashlightHolder(basketAttachment_zLength = 22,
                         flashlightRadius = 9,
                         roundiness = 90,
                         showFlashlight = false,
-                        yLength = 30)
+                        yLength = 30,
+                        zLengthTranslate = 0.5)
 {
     holderLength_z = 50;
     cutoutTranslate_y = yLength / 2.0;
@@ -22,7 +23,8 @@ module flashlightHolder(basketAttachment_zLength = 22,
                         holderLength_z = holderLength_z,
                         roundiness = roundiness,
                         showFlashlight = showFlashlight,
-                        yLength = yLength);
+                        yLength = yLength,
+                        zLengthTranslate = zLengthTranslate);
 
         // flashlight cutout
         color("green")
@@ -50,12 +52,14 @@ module flashlightHolder_core(basketAttachment_zLength,
                         holderLength_z,
                         roundiness,
                         showFlashlight,
-                        yLength)
+                        yLength,
+                        zLengthTranslate)
 {
     union()
     {    
-        basketAttachment(yLength = yLength,
-                        zLength = basketAttachment_zLength);
+        flashlightHolder_basketAttachment(yLength = yLength,
+                        zLength = basketAttachment_zLength,
+                        zLengthTranslate = zLengthTranslate);
 
         // extendo
         color("blue")
@@ -72,7 +76,9 @@ module flashlightHolder_core(basketAttachment_zLength,
     }
 }
 
-module basketAttachment(yLength, zLength)
+module flashlightHolder_basketAttachment(yLength, 
+                                         zLength,
+                                         zLengthTranslate)
 {
     difference()
     {
@@ -83,13 +89,14 @@ module basketAttachment(yLength, zLength)
         cutoutLength = yLength + 5 * 2;
         xTranslate = xLength * 0.5;
         yTranslate = cutoutLength - 5;
-        zTranslate = zLength * 0.5;
+        zTranslate = zLength * zLengthTranslate;
         color("green")
         translate([xTranslate, yTranslate, zTranslate])
         rotate([90, 0,0])
         cylinder(r = 4, h = cutoutLength, $fn = 60);       
     }
 }
+
 
 module flashlight(radius, roundiness, translate)
 {
