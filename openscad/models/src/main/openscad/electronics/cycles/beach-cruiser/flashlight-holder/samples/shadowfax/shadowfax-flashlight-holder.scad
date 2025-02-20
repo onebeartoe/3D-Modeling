@@ -1,4 +1,8 @@
 
 use <../../flashlight-holder.scad>
 
-flashlightHolder(showFlashlight = true);
+
+flashlightDiameter = 21; // this was measured
+
+flashlightHolder(flashlightRadius = flashlightDiameter / 2.0,
+                 showFlashlight = true);

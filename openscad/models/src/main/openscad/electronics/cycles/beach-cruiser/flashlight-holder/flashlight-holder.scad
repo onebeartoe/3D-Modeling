@@ -55,7 +55,6 @@ module basketAttachment(yLength)
 
 module flashlight(radius, roundiness, translate)
 {
-    diameter = 21; // this was measured
     length = 91;   // this was measured
     extendedLength = 102;  // this was measured
 
