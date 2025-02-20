@@ -5,6 +5,8 @@ module flashlightHolder(extendoLengthX = 35,
                         showFlashlight = false,
                         yLength = 30)
 {
+union()
+{    
     basketAttachment(yLength = yLength);
 
     // extendo
@@ -24,6 +26,7 @@ module flashlightHolder(extendoLengthX = 35,
                            roundiness = roundiness,
                            yLength = yLength);
 
+
     // flashlight
     if(showFlashlight)
     {
@@ -31,6 +34,7 @@ module flashlightHolder(extendoLengthX = 35,
                    roundiness = roundiness,
                    translate = flashlightTranslate);
     }
+}    
 }
 
 module basketAttachment(yLength)
@@ -56,7 +60,7 @@ module basketAttachment(yLength)
 module flashlight(radius, roundiness, translate)
 {
     length = 91;   // this was measured
-    extendedLength = 102;  // this was measured
+    extendedLength = 102;  // this was measured (not used, so far)
 
     // handle
     translate(translate)
@@ -64,13 +68,16 @@ module flashlight(radius, roundiness, translate)
     %cylinder(r = radius, h = length, $fn = roundiness);
 
     // light
-    lightTranslate = [translate[0] + length,
+    lightHeight = 5;
+    lightTranslate = [translate[0] + length - lightHeight,
                         translate[1],
                         translate[2]];
     color("yellow")
     translate(lightTranslate)
     rotate([0,90,0])
-    %cylinder(r = radius, h = 5, $fn = roundiness);
+    %cylinder(r = radius, 
+              h = lightHeight, 
+              $fn = roundiness);
 }
 
 module flashlightCutoutHolder(extendoLengthX, 
