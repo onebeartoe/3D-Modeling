@@ -6,28 +6,29 @@ module flashlightHolder(basketAttachment_zLength = 22,
                         showFlashlight = false,
                         yLength = 30)
 {
-union()
-{    
-    basketAttachment(yLength = yLength,
-                     zLength = basketAttachment_zLength);
-
-    // extendo
-    color("blue")
-    cube([extendoLengthX, yLength, 5]);
-
-    // flashlight holder and cutout
     holderLength_z = 50;
     cutoutTranslate_y = yLength / 2.0;
     cutoutTranslate_z = holderLength_z - flashlightRadius - 10;
-    flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];    
-    flashlightCutoutHolder(extendoLengthX = extendoLengthX,
-                            flashlightTranslate = flashlightTranslate,
-                           flashlightRadius = flashlightRadius,
-                           holderLength_z = holderLength_z,
-                           length_z_SUS = holderLength_z, 
-                           roundiness = roundiness,
-                           yLength = yLength);
+    flashlightTranslate = [0, cutoutTranslate_y, cutoutTranslate_z];
 
+    union()
+    {    
+        basketAttachment(yLength = yLength,
+                        zLength = basketAttachment_zLength);
+
+        // extendo
+        color("blue")
+        cube([extendoLengthX, yLength, 5]);
+
+        // flashlight holder and cutout    
+        flashlightCutoutHolder(extendoLengthX = extendoLengthX,
+                                flashlightTranslate = flashlightTranslate,
+                            flashlightRadius = flashlightRadius,
+                            holderLength_z = holderLength_z,
+                            length_z_SUS = holderLength_z, 
+                            roundiness = roundiness,
+                            yLength = yLength);
+    }
 
     // flashlight
     if(showFlashlight)
@@ -36,7 +37,7 @@ union()
                    roundiness = roundiness,
                    translate = flashlightTranslate);
     }
-}    
+
 }
 
 module basketAttachment(yLength, zLength)
