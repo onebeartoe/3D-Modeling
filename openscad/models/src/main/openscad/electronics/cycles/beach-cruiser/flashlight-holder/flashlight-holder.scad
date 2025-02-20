@@ -30,7 +30,7 @@ module flashlightHolder(basketAttachment_zLength = 22,
         color("green")
         translate(flashlightTranslate)    
         rotate([0,90,0])
-        cylinder(r = flashlightRadius, h = 69, $fn = roundiness);                        
+        cylinder(r = flashlightRadius, h = extendoLengthX + 9, $fn = roundiness);                        
     }
 
     // flashlight
