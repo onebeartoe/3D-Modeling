@@ -1,5 +1,6 @@
 
-module flashlightHolder(extendoLengthX = 35,
+module flashlightHolder(basketAttachment_zLength = 22,
+                        extendoLengthX = 35,
                         flashlightRadius = 9,
                         roundiness = 90,
                         showFlashlight = false,
@@ -7,7 +8,8 @@ module flashlightHolder(extendoLengthX = 35,
 {
 union()
 {    
-    basketAttachment(yLength = yLength);
+    basketAttachment(yLength = yLength,
+                     zLength = basketAttachment_zLength);
 
     // extendo
     color("blue")
@@ -37,12 +39,11 @@ union()
 }    
 }
 
-module basketAttachment(yLength)
+module basketAttachment(yLength, zLength)
 {
     difference()
     {
         xLength = 15;
-        zLength = 22;
         color("black")
         cube([xLength, yLength, zLength]);    
 
@@ -101,3 +102,5 @@ module flashlightCutoutHolder(extendoLengthX,
         cylinder(r = flashlightRadius, h = 69, $fn = roundiness);
     }
 }
+
+

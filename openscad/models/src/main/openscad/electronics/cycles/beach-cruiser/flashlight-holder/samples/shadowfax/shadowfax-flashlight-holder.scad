@@ -4,5 +4,6 @@ use <../../flashlight-holder.scad>
 
 flashlightDiameter = 21; // this was measured
 
-flashlightHolder(flashlightRadius = flashlightDiameter / 2.0,
+flashlightHolder(basketAttachment_zLength = 50,
+                 flashlightRadius = flashlightDiameter / 2.0,
                  showFlashlight = true);
