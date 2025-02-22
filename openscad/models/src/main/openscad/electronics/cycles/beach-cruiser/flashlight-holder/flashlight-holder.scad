@@ -1,7 +1,7 @@
 
 module flashlightHolder(basketAttachment_zLength = 22,
                         extendoLengthX = 35,
-                        flashlightRadius = 9,
+                        flashlightRadius = 9.5,
                         roundiness = 90,
                         showFlashlight = false,
                         yLength = 30,
