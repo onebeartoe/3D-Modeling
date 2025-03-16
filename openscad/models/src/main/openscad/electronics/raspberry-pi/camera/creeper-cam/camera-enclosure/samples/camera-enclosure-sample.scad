@@ -1,4 +1,5 @@
 
-use <../creeper-cam-case.scad>
+use <../creeper-cam-enclosure.scad>
 
 raspberryPiCreeperCamCase();
+   
