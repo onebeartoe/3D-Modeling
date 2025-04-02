@@ -1,19 +1,11 @@
 
-
 use <../../../shapes/minecraft/copper-golem/copper-golem.scad>
 
+scale = $t * 1;
 
+scale([scale, scale, scale])
 rotate ([0, 0, $t*360])
-
-translate ([9, 0])
-
-rotate ([0, 0, -$t*360])
-
-// square(5, center=true);
 copperGolem();
-
-
-
 
 
 // animation settings:
