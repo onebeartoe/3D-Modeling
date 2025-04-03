@@ -5,15 +5,11 @@ module copperGolem(headRotation_z = 0,
     // Head
     translate([2, 2, 14])
     {
-rotate ([0, 0, $t*360])
-
-translate ([1, 0])
-
-rotate ([0, 0, -$t*360])        
-//        rotate([0, 0, headRotation_z])
         color("orange")
+        rotate ([0, 0, headRotation_z])
+        translate ([1, 0])
+        rotate([0, 0, -headRotation_z])
         cube([4, 4, 4], center=false);
-//        cube([4, 4, 4], center=true);
     }
 
     // Body
@@ -44,7 +40,7 @@ rotate ([0, 0, -$t*360])
         cube([2, 2, 8]);
     }
 
-    translate([8, 0, 10])
+    translate([8, 3, 11])
     {
         // right arm
         color("red")
