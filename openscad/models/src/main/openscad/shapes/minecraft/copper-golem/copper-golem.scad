@@ -1,14 +1,19 @@
 
-
-
-
-module copperGolem()
+module copperGolem(headRotation_z = 0,
+                    rightArmRotation_x = 0)
 {
     // Head
     translate([2, 2, 14])
     {
+rotate ([0, 0, $t*360])
+
+translate ([1, 0])
+
+rotate ([0, 0, -$t*360])        
+//        rotate([0, 0, headRotation_z])
         color("orange")
-        cube([4, 4, 4]);
+        cube([4, 4, 4], center=false);
+//        cube([4, 4, 4], center=true);
     }
 
     // Body
@@ -34,13 +39,16 @@ module copperGolem()
     // Arms
     translate([-2, 0, 10])
     {
+        // left arm
         color("red")
         cube([2, 2, 8]);
     }
 
     translate([8, 0, 10])
     {
+        // right arm
         color("red")
+        rotate([rightArmRotation_x, 0, 0])
         cube([2, 2, 8]);
     }
 
