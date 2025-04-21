@@ -14,4 +14,4 @@ copperGolem(headRotation_z = $t*360,
 
 // animation settings:
 //    FPS: 20
-//    Steps: 100
+//    Steps: 35
