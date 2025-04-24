@@ -1,7 +1,7 @@
 
 Intro
 
-    Hi, I am Roberto Marquez.  In this video I demonstrate animation featured build into the OpenSCAD programing language.
+    Hi, I am Roberto Marquez.  In this video I demonstrate animation features built into the OpenSCAD programing language.
 
 
 Prerequisites
@@ -10,12 +10,15 @@ Prerequisites
 
     Source Code    
 
-    Wierd Science models (optional)
+
+Optional
+
+    Wierd Science models 
 
 
 Overview
 
-    Cheatsheet mention of $the
+    Cheatsheet mention of $t
 
     User Interface for OpenSCAD
 
@@ -36,7 +39,7 @@ Animation Examples & Code Walkthrough
 
 Going Further
 
-    use the 'Dump images' (checkbox) featured
+    use the 'Dump images' (checkbox) feature
 
     make a play/scene like the ones that animated automatons with ropes
 
