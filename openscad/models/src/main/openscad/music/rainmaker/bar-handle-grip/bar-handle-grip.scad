@@ -2,7 +2,9 @@
 use <../rainmaker.scad>
 
 
-innerRadius = 11.5;
+// innerRadius = 11.0;
+innerRadius = 11.25;
+// innerRadius = 11.5;
 
 outerRadius = innerRadius + 4;
 
