@@ -1,8 +1,20 @@
 
 
-module singleCrystal(height = 80)
+module singleCrystal(bottomRadius = 30, 
+                     height = 80,
+                     sides = 6,
+                     topRadius = 20)
 {
-    color("blue")
-    // translate([100, 0, 0])
-    cylinder(h=80, r1=30, r2=20, $fn=6);
+    // color("orange")
+    // cylinder(h=height, 
+    //          r1=bottomRadius, 
+    //          r2=topRadius, 
+    //          $fn=sides);
+
+    color("green")
+ //   translate([100, 0, 0])
+    cylinder(h=height * 0.4, 
+             r1 = topRadius, 
+             r2 = 1, 
+             $fn=sides);             
 }
