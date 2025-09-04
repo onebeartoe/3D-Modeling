@@ -66,10 +66,10 @@ module batmanLogo(height=1)
 }
 
 //TODO: make this a proper thumbnail using thumbnail-background.scad
-module batmanLogoThumbnail()
+module batmanLogoThumbnail(height = 1)
 {
     xyScale = 0.27;
     translate([0.4, -0.3, 0])
     scale([xyScale, xyScale, 2.78])	
-    batmanLogo();
+    batmanLogo(height = height);
 }
