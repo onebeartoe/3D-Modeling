@@ -1,11 +1,33 @@
 
-Circumference = 2πr
+module vaseSuspender(height = 3,
+              holeCount = 3,
+              holeRadius = 1,
+              innerRadius = 40,
+              outerRadiusThickness = 5)
+{
+   difference()
+    {
+        // outer ring
+        cylinder(h = height,
+                 r = innerRadius + outerRadiusThickness);
 
-140 * 2 = 2 * π * r
+        // ring cutout
+        translate([0, 0, -0.01])
+        cylinder(h = height + 0.02,
+                 r = innerRadius);
 
+        // cord holes                 
+        for(s = [0 : holeCount])
+        {
+            angle = s * (360 / holeCount);
 
-140 = π * r
-
-140 / π = r
-
-
+            xTranslate = innerRadius + (outerRadiusThickness / 2.0);
+            color("blue")
+            rotate([0, 0, angle])
+            translate([xTranslate, 0, -0.01])
+            cylinder(h = 8,
+                     r = holeRadius
+                     );
+        }
+    }
+}
