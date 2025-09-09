@@ -42,8 +42,8 @@ module lettersSymbolsFaceplate(horizontalPadding = 10,
                                verticalPadding = 15,
                                zLength = 2)
 {
-//    difference()
-    union()
+    difference()
+//    union()
     {
         cubeLengthX = horizontalPadding + 
                       slotWidth1 +
@@ -83,7 +83,7 @@ echo("x length: ", cubeLengthX);
                      slotWidth=slotWidth2,
                      verticalPadding = verticalPadding);
 
-        letter3TranslateX = letter2TranslateX +  slotWidth2 / 2.0 + horizontalPadding + slotWidth3;
+        letter3TranslateX = letter2TranslateX + horizontalPadding + slotWidth3 * 5;
         letterSymbol(letterTranslateX=letter3TranslateX, 
                      slot=slot3, 
                      slotWidth=slotWidth3,
@@ -91,7 +91,7 @@ echo("x length: ", cubeLengthX);
 
         letter4TranslateX = letter3TranslateX 
                                     + horizontalPadding * 2
-                                    + slotWidth3;
+                                    + slotWidth3 ;
         letterSymbol(letterTranslateX=letter4TranslateX, 
                      slot=slot4, 
                      slotWidth=slotWidth4,
