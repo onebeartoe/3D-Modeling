@@ -33,6 +33,12 @@ module lettersSymbolsFaceplate(horizontalPadding = 10,
                                slot5 = LETTER_G,
                                slotWidth5 = 24.1,
 
+                               slot6 = LETTER_O,
+                               slotWidth6 = 25,
+
+                               slot7 = SYMBOL_LIGHTNING_BOLT,
+                               slotWidth7 = 20.6,                               
+
                                verticalPadding = 15,
                                zLength = 2)
 {
@@ -49,8 +55,12 @@ module lettersSymbolsFaceplate(horizontalPadding = 10,
                       slotWidth4 +
                       horizontalPadding +
                       slotWidth5 +
+                      horizontalPadding +
+                      slotWidth6 +
                       horizontalPadding
-                      + 50;
+                      + 40;
+
+echo("x length: ", cubeLengthX);
 
         cubeLengthY = verticalPadding + 
                       STANDARD_LETTER_HEIGHT +
@@ -93,18 +103,32 @@ module lettersSymbolsFaceplate(horizontalPadding = 10,
         letterSymbol(letterTranslateX=letter5TranslateX, 
                      slot=slot5,
                      slotWidth=slotWidth5,
+                     verticalPadding = verticalPadding);
+
+        letter6TranslateX = letter5TranslateX
+                                + horizontalPadding 
+                                + slotWidth5;
+        letterSymbol(letterTranslateX=letter6TranslateX, 
+                     slot=slot6,
+                     slotWidth=slotWidth5,
+                     verticalPadding = verticalPadding);
+
+        letter7TranslateX = letter6TranslateX
+                                + horizontalPadding 
+                                + slotWidth6;
+        letterSymbol(letterTranslateX=letter7TranslateX, 
+                     slot=slot7,
+                     slotWidth=slotWidth7,
                      verticalPadding = verticalPadding);                     
     }
 }
-
-
 
 module letterSymbol(slot, slotWidth, letterTranslateX,
                     verticalPadding)
 {
     letterLengthZ = 10;
 
-echo("letterTranslateX: ", letterTranslateX);
+//echo("letterTranslateX: ", letterTranslateX);
 
     letterTranslateY = verticalPadding  + STANDARD_LETTER_HEIGHT / 2.0;
 
@@ -128,6 +152,10 @@ echo("letterTranslateX: ", letterTranslateX);
     else if(slot == LETTER_I)
     {
         I(height = letterLengthZ);
+    }
+    else if(slot == LETTER_O)
+    {
+        O(height = letterLengthZ);
     }
     else
     {
