@@ -18,7 +18,8 @@ module poly_Selection(h)
   }
 }
 
-module G(height = 1)
+module G(height = 1,
+         showBackground = false)
 {
     scaleFactor = 0.698;
     scale([scaleFactor, scaleFactor + 0.042, 1])
