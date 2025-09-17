@@ -12,9 +12,10 @@ module sidePlate()
 {
     difference()
     {
-//        linear_extrude(0.1)
+        
         rotate([0, -90, 0])
-        parabola(d1 = 127,
+        linear_extrude(2.0)
+        parabolaProjection(d1 = 127,
                 h = 120);
 
         cubeLengthX = 5;
@@ -41,13 +42,14 @@ module sidePlateCutout()
     {
         d1 = 120;
         h = 115;
-        linear_extrude(1)
-        parabola(d1 = d1,
+        linear_extrude(2.5)
+        parabolaProjection(d1 = d1,
                 h = h);
 
-        linear_extrude(4)
+        
         translate([-1,0,0])
-        parabola(d1 = d1,
+        linear_extrude(4)
+        parabolaProjection(d1 = d1,
                 h = h);
 
         cutoutLengthX = 5;
@@ -56,8 +58,7 @@ module sidePlateCutout()
         cutoutTranslateY = -cutoutLengthY;
         color("black")
         rotate([0, 90, 0])
-        translate([cutoutTranslateX, cutoutTranslateY, 0])
+        translate([cutoutTranslateX, cutoutTranslateY, -2])
         cube(size = [cutoutLengthX, cutoutLengthY, 145]);
-//        parabola();    
     }    
 }
