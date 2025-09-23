@@ -31,17 +31,17 @@ module trinketCutout()
 //    color("green")
     color("purple")
     translate([-4, 8, 26.9])
-    cube([10, 1.6, 14.5]);
+    cube([10, 2.6, 15.5]);
 
 //    color("pink")
     color("purple")
-    translate([-4, 9.5, 30.4])
-    cube([10, 2.42, 7.2]);
+    translate([-4, 10.5, 30.4])
+    cube([10, 3.42, 8.2]);
 }
 
 module potentiometerCutout()
 {
-    xyLenght = 9.5;
+    xyLenght = 10.0;
 
     color("blue")
     translate([-4, 25.0, 25.0])
@@ -52,5 +52,5 @@ module switchCutout()
 {
     color("black")
     translate([-4, 7.0, 7.0])
-    cube([10, 13.0, 9.0]);
+    cube([10, 14.5, 10.0]);
 }
