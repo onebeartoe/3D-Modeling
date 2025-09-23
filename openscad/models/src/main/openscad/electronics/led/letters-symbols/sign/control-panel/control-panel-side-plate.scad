@@ -44,11 +44,15 @@ module potentiometerCutout()
     xyLenght = 9.5;
 
     color("blue")
-    translate([-4, 10.0, 10.0])
+    translate([-4, 25.0, 25.0])
     cube([10, xyLenght, xyLenght]);
 }
 
 module switchCutout()
 {
+    xyLenght = 9.5;
 
+    color("black")
+    translate([-4, 7.0, 9.0])
+    cube([10, xyLenght, xyLenght]);
 }
