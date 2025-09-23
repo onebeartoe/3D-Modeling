@@ -5,7 +5,7 @@ controlPanelSidePlate();
 
 module controlPanelSidePlate()
 {
-//    difference()
+    difference()
     {
         sidePlate();
 
@@ -50,9 +50,7 @@ module potentiometerCutout()
 
 module switchCutout()
 {
-    xyLenght = 9.5;
-
     color("black")
-    translate([-4, 7.0, 9.0])
-    cube([10, xyLenght, xyLenght]);
+    translate([-4, 7.0, 7.0])
+    cube([10, 13.0, 9.0]);
 }
