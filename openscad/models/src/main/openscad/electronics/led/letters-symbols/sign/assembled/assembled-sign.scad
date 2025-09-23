@@ -27,12 +27,12 @@ module sidePlate()
         cube(size = [cubeLengthX, cubeLengthY, 150]);                
 //    }
 
-    color("red")
-    translate([0, 1, 1])
-    rotate([0, -90, 0])
-    scale([1,1,1])
-    sidePlateCutout();
-}    
+        color("red")
+        translate([0, 1, 1])
+        rotate([0, -90, 0])
+        scale([1,1,1])
+        sidePlateCutout();
+    }    
 }
 
 
