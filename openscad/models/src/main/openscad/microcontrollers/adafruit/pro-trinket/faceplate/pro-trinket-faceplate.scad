@@ -4,23 +4,42 @@ module proTrinketFacePlate(xLength = 23,
                             zLength = 3)
 {
     difference()
-    {
-        cube(center = true,
-             size = [xLength, yLength, zLength]);
+    {        
+        // faceplate
+        minkowski()
+        {
+            minkowskiRadius = 1;
+            cube(center = true,
+                 size = [xLength-minkowskiRadius, yLength-minkowskiRadius, zLength]);
 
-        trinketCutout();
+            cylinder(r=1,
+                     h=zLength,
+                     $fn=20);
+        }      
+
+        usb_xLength = 8.2;
+        usb_yLength = 3.8;
+
+        pcb_xLength = 15.5;
+        pcb_yLength = 3;
+
+        cutoutTranslate_y = -1 * 
+                            (usb_yLength / 2.0 + pcb_yLength / 2.0) / 2.0;
+
+        translate([0, cutoutTranslate_y, 0])
+        trinketCutout(usb_xLength = usb_xLength,
+                        usb_yLength = usb_yLength,
+                        pcb_xLength = pcb_xLength,
+                        pcb_yLength = pcb_yLength);
     }
 }
 
 
-module trinketCutout()
+module trinketCutout(usb_xLength,
+                     usb_yLength,
+                     pcb_xLength,
+                     pcb_yLength)
 {
-    usb_xLength = 8.2;
-    usb_yLength = 3.8;
-
-    pcb_xLength = 15.5;
-    pcb_yLength = 3;     //2.6;
-
     zLength = 10;
 
     union()
@@ -54,5 +73,3 @@ module trinketUsbCutout(xLength, yLength, zLength)
     cube(center = true,
          size = [xLength, yLength, zLength]);
 }
-
-
