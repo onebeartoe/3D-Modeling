@@ -9,6 +9,9 @@ module controlPanelSidePlate()
     {
         sidePlate();
 
+
+//TODO: use trinket cutout from here: 
+//          microcontrollers/adafruit/pro-trinket/faceplate/pro-trinket-faceplate.scad
         trinketCutout();
 
         potentiometerCutout();
@@ -17,6 +20,8 @@ module controlPanelSidePlate()
     }
 }
 
+//TODO: use trinket cutout from here: 
+//          microcontrollers/adafruit/pro-trinket/faceplate/pro-trinket-faceplate.scad
 module trinketCutout()
 {
     // this needs to be 8mm off of the wooden platform
