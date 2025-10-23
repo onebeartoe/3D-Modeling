@@ -15,31 +15,43 @@ module proTrinketFacePlate(xLength = 23,
 
 module trinketCutout()
 {
+    usb_xLength = 8.2;
+    usb_yLength = 3.42;
+
+    pcb_xLength = 15.5;
+    pcb_yLength = 2.6;
+
     zLength = 10;
 
     union()
     {
-        trinketUsbCutout(zLength = zLength);
+        translate([-4, 10.5, -0.01])
+        trinketUsbCutout(xLength = usb_xLength,
+                         yLength = usb_yLength,
+                         zLength = zLength);
 
-        trinketPcbCutout(zLength = zLength);
+
+        translate([-4, 8, -0.01])
+        trinketPcbCutout(xLength = pcb_xLength,
+                         yLength = pcb_yLength,
+                         zLength = zLength);
     }
 }
 
 
-module trinketPcbCutout(zLength)
+module trinketPcbCutout(xLength,
+                        yLength,
+                        zLength)
 {
     color("purple")
-    translate([-4, 8, 26.9])
-    cube(size = [15.5, 2.6, zLength]);
+    cube(size = [xLength, yLength, zLength]);
 }
 
 
-module trinketUsbCutout(zLength)
+module trinketUsbCutout(xLength, yLength, zLength)
 {
     color("pink")
-    // color("purple")
-    translate([-4, 10.5, 30.4])
-    cube(size = [8.2, 3.42, zLength]);
+    cube(size = [xLength, yLength, zLength]);
 }
 
 
