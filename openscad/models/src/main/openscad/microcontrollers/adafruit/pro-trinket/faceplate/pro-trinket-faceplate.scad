@@ -1,7 +1,7 @@
 
-module proTrinketFacePlate(xLength = 23,
-                            yLength = 23,
-                            zLength = 3)
+module proTrinketFacePlate(xLength = 22,
+                            yLength = 22,
+                            zLength = 2)
 {
     difference()
     {        
@@ -17,10 +17,10 @@ module proTrinketFacePlate(xLength = 23,
                      $fn=20);
         }      
 
-        usb_xLength = 8.2;
+        usb_xLength = 9.0;
         usb_yLength = 3.8;
 
-        pcb_xLength = 15.5;
+        pcb_xLength = 17.5;
         pcb_yLength = 3;
 
         cutoutTranslate_y = -1 * 
