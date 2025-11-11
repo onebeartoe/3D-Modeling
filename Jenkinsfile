@@ -5,7 +5,8 @@ pipeline
 
   environment{
 //    OPENSCAD_PATH = "/snap/bin/openscad"
-    OPENSCAD_PATH = "/opt/openscad/OpenSCAD-2021.01-x86_64.AppImage"
+//    OPENSCAD_PATH = "/opt/openscad/OpenSCAD-2021.01-x86_64.AppImage"
+    OPENSCAD_PATH = "/opt/openscad/OpenSCAD-2025.11.10.ai28923-x86_64.AppImage"
   }
 
   stages {
