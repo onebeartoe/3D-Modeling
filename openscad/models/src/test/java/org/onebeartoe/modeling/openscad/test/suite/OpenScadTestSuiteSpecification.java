@@ -55,8 +55,20 @@ import org.testng.annotations.Test;
 
         runProfile = new RunProfile();
 
-//TODO: Look up if this value exists as an environment variable        
-        runProfile.executablePath = "openscad";
+        var executableKey = "OPENSCAD_PATH";
+        var executablePath = System.getenv(executableKey);
+        if( executablePath.isEmpty(executablePath) )
+        {
+            executablePath = "openscad";
+            
+            System.out.println("The is no " + executableKey + " value set as an environment variable.");
+            System.out.println("The default value for the OpenSCAD binar is being used: " + executablePath);
+        }
+        else
+        {
+            System.out.println("The environment variable " + executableKey + "value of " + executablePath + "is being used for openscad");
+        }
+        runProfile.executablePath = executablePath;
 
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
