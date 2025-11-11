@@ -16,6 +16,7 @@ import org.onebeartoe.modeling.openscad.test.suite.model.ImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.model.OneImageComparisonResult;
 import org.onebeartoe.modeling.openscad.test.suite.utils.ImageComparisonException;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadFileFinder;
+import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteFormatService;
 import org.onebeartoe.modeling.openscad.test.suite.utils.OpenScadTestSuiteService;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -69,7 +70,7 @@ import org.testng.annotations.Test;
         
         DataSetValidator inputValidator = new DataSetValidator();
         List<String> missingPngs = inputValidator.validate(runProfile.openscadPaths);
-        implementation.printValidationResults(missingPngs);
+        OpenScadTestSuiteFormatService.printValidationResults(missingPngs);
 
         if (!missingPngs.isEmpty())
         {   
@@ -105,7 +106,7 @@ import org.testng.annotations.Test;
     {
         ImageComparisonResult compareResults = implementation.compareImages(runProfile);
 
-        implementation.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
+        OpenScadTestSuiteFormatService.printHighLevelErrorReport(runProfile, compareResults.errorFiles);
         
         implementation.saveErrorPngFilenames(compareResults.errorFiles);
 
