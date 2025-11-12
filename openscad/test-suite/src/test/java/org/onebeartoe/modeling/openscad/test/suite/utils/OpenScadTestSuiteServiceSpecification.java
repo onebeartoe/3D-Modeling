@@ -59,6 +59,8 @@ public class OpenScadTestSuiteServiceSpecification
         
         assertTrue( result.successFiles.size() > 0 );
         
+        result.
+        
         assertFalse( result.exceptionThrown );
     }
 
