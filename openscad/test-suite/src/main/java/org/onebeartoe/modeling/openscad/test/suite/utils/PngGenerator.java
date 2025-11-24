@@ -89,7 +89,9 @@ public class PngGenerator
     	List<Boolean> exitCodes = new ArrayList();
 
         Stream.of( OpenScadCameraDirections.values() )
-                .parallel()
+                
+//                .parallel()
+                
                 .forEach((v) -> 
                 {
                     System.out.println("PNG generation starting for: " + oscadInputFile.toString() );
