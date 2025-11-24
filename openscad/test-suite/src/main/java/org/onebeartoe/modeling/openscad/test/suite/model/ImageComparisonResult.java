@@ -17,6 +17,8 @@ public class ImageComparisonResult
     
     public List<OneImageComparisonResult> successFiles;
     
+    public List<OneImageComparisonResult> skipedFiles;
+    
     public ImageComparisonResult()
     {
         exceptionThrown = false;
@@ -24,5 +26,7 @@ public class ImageComparisonResult
         errorFiles = new ArrayList();
         
         successFiles = new ArrayList();
+        
+        skipedFiles = new ArrayList();
     }
 }

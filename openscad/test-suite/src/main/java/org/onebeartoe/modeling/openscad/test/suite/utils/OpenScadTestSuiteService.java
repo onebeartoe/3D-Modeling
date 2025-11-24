@@ -237,6 +237,14 @@ public class OpenScadTestSuiteService
 
                 if( directoryProfile.getSkipPngGeneration() )
                 {
+                    var filePath = p.toFile().getPath();
+                    
+                    var skipResult = new OneImageComparisonResult();                                       
+                    
+                    skipResult.setFile(filePath);
+                    
+                    comparisonResults.skipedFiles.add(skipResult);
+                            
                     logger.info("Image comparison is skipped for: " + p.toString() + " - " + direction + "\n");
                 }
                 else
