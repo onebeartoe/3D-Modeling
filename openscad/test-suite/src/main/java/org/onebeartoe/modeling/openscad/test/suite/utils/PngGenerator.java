@@ -292,8 +292,6 @@ public class PngGenerator
             directoryProfile.setAutoCenter(autoCenter);
             
             String s = properties.getProperty("skipPngGeneration");
-            
-            s = String.valueOf(false);  // by 'default'j don't skip PNG generation
 
             if( s != null && ! s.isEmpty() )
             {

@@ -7,9 +7,25 @@ The test suite creates baseline snapshots of each .scad rendering.  The test sui
 
 The test suite then reports any files that differ, allowing you to check that only the expected baseline image were updated.
 
+
+<<<<NOPE
+    if you are seing the folloiwng Jenkins errors on Ubunut
+
+"
+    XKEYBOARD keymap compiler (xkbcomp) reports Warning Could not resolve keysym XF86CameraAccessEnable
+    XKEYBOARD keymap compiler (xkbcomp) reports Warning Could not resolve keysym XF86****
+"
+    then install/update this package
+
+    xkeyboard-config
+NOPE>>>>
+
+
 It is written in Java and run from the command line, so it runs in headless mode.
 
 The code for the test suite is under OpenSCAD/test-suite/
+
+See the Jenkins file
 
 If you are interested, check it out and please let me know what you think.
 
