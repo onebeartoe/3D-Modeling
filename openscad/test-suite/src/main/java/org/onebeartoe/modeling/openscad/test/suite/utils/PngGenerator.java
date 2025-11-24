@@ -212,11 +212,14 @@ public class PngGenerator
             {
                 LocalDateTime start = LocalDateTime.now();
 
+                System.out.println("PNG generation starting skipped for: " + path.toString() );
+                
                 List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
                                                                              forcePngGeneration,
                                                                              runProfile,
                                                                              directoryProfile);
-
+                System.out.println("PNG generation completed for: " + path.toString() );
+                
                 LocalDateTime end = LocalDateTime.now();
 
                 Duration duration = Duration.between(start, end);
