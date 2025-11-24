@@ -92,7 +92,7 @@ public class PngGenerator
                 .parallel()
                 .forEach((v) -> 
                 {
-                    System.out.println("PNG generation starting skipped for: " + oscadInputFile.toString() );
+                    System.out.println("PNG generation starting for: " + oscadInputFile.toString() );
                 
 		    try 
 		    {
