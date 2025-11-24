@@ -57,7 +57,7 @@ import org.testng.annotations.Test;
 
         var executableKey = "OPENSCAD_PATH";
         var executablePath = System.getenv(executableKey);
-        if( executablePath.isEmpty(executablePath) )
+        if( executablePath.isEmpty() )
         {
             executablePath = "openscad";
             

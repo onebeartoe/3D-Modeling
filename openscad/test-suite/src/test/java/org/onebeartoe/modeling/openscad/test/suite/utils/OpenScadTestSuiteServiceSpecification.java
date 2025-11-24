@@ -47,11 +47,16 @@ public class OpenScadTestSuiteServiceSpecification
     }
     
     @Test
-    public void compareImages()
+    public void compareImages() throws IOException, InterruptedException
     {
         Path path = Paths.get(simpleOpenScadPath);
         
         runProfile.openscadPaths.add(path);
+        
+// TODO: is a call to 
+// TODO:    implementation.generateProposedBaselines(runProfile)
+// TODO:    needed here?
+        implementation.generateProposedBaselines(runProfile);
         
         ImageComparisonResult result = implementation.compareImages(runProfile);
         
