@@ -90,7 +90,8 @@ public class PngGenerator
 
         Stream.of( OpenScadCameraDirections.values() )
                 
-//                .parallel()
+// TODO: was this next call to parallel() the reason end of run would not reach?                 
+                .parallel()
                 
                 .forEach((v) -> 
                 {

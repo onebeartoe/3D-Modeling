@@ -41,15 +41,7 @@ import org.testng.annotations.Test;
       
         logger = Logger.getLogger( getClass().getName() );
      
-        System.out.println("pwd: " + pwd.getAbsolutePath() );
-        
-        String key = "OPENSCAD_SUBPATH";
-        String openScadSubpath = System.getProperty(key, "");
-        System.out.println("the " + key + " is: " + openScadSubpath);
-        
-        openScadSubpath = System.getenv(key);
-        openScadSubpath = openScadSubpath == null ? "" : openScadSubpath;
-        System.out.println("the env " + key + " is: " + openScadSubpath);
+        System.out.println("pwd: " + pwd.getAbsolutePath() );                
         
         implementation = new OpenScadTestSuiteService();
 
@@ -70,6 +62,12 @@ import org.testng.annotations.Test;
         }
         runProfile.executablePath = executablePath;
 
+        String key = "OPENSCAD_SUBPATH";
+ 
+        String openScadSubpath = System.getenv(key);
+ 
+        System.out.println("the env " + key + " is: " + openScadSubpath);        
+        
         runProfile.path = getRootTargetPath() + openScadSubpath;
         
         OpenScadFileFinder openScadFinder = new OpenScadFileFinder();
