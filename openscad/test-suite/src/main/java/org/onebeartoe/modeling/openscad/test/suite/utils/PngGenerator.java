@@ -195,48 +195,60 @@ public class PngGenerator
 
         runProfile.openscadPaths.stream().parallel().forEach((path) -> 
         {
-            DirectoryProfile directoryProfile = new DirectoryProfile();
-            Path parent = path.getParent();
-            directoryProfile.setPath(parent);
-            
             try
             {
-                loadDirectoryProperties(directoryProfile);
+                var currentPath = path.toString();
+                ProgressionLogger.startOf(currentPath);
+                
+                DirectoryProfile directoryProfile = new DirectoryProfile();
+                Path parent = path.getParent();
+                directoryProfile.setPath(parent);
+                
+                try
+                {
+                    loadDirectoryProperties(directoryProfile);
+                }
+                catch (IOException ex)
+                {
+                    logger.warning("could not load directory properties for " + parent.toFile().getAbsolutePath() );
+                }
+                
+                if( directoryProfile.getSkipPngGeneration() )
+                {
+                    System.out.println("PNG generation is skipped for: " + path.toString() );
+                    System.out.println();
+                    
+                    exitCodes.add(true);
+                }
+                else
+                {
+                    LocalDateTime start = LocalDateTime.now();
+                    
+                    List<Boolean> directionalExitCodes = generateDirectionalPngs(path,
+                            forcePngGeneration,
+                            runProfile,
+                            directoryProfile);
+                    
+                    LocalDateTime end = LocalDateTime.now();
+                    
+                    Duration duration = Duration.between(start, end);
+                    
+                    results.addPathDuration(path, duration);
+                    
+                    exitCodes.addAll(directionalExitCodes);
+                    
+                    if( directionalExitCodes.contains(false) )
+                    {
+                        System.err.println("An error occured with proposed baseline PNG:");
+                        System.err.println(path.toString() );
+                    }
+                }
+                
+                ProgressionLogger.finishOf(currentPath);
             } 
             catch (IOException ex)
             {   
-                logger.warning("could not load directory properties for " + parent.toFile().getAbsolutePath() );                             
-            }
-            
-            if( directoryProfile.getSkipPngGeneration() )
-            {
-                System.out.println("PNG generation is skipped for: " + path.toString() );
-                System.out.println();
-                
-                exitCodes.add(true);
-            }
-            else
-            {
-                LocalDateTime start = LocalDateTime.now();
-
-                List<Boolean> directionalExitCodes = generateDirectionalPngs(path, 
-                                                                             forcePngGeneration,
-                                                                             runProfile,
-                                                                             directoryProfile);
-                                
-                LocalDateTime end = LocalDateTime.now();
-
-                Duration duration = Duration.between(start, end);
-
-                results.addPathDuration(path, duration);
-
-                exitCodes.addAll(directionalExitCodes);
-
-                if( directionalExitCodes.contains(false) )
-                {
-                    System.err.println("An error occured with proposed baseline PNG:");
-                    System.err.println(path.toString() );
-                }
+                System.getLogger(PngGenerator.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);                             
             }
         });
 
