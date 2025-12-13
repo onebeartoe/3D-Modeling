@@ -20,9 +20,21 @@
     </properties>
     
     <modules>
-        <module>inline-tool</module>
+        
         <module>models</module>
         <module>test-suite</module>
+        
+        <!--
+        
+TODO: uncomment this module once module-info.java if resolved        
+        
+        <module>inline-tool</module>
+        
+TODO: uncomment this module once module-info.java if resolved                        
+                
+        -->
+        
+        
         <module>opensacd-services</module>
     </modules>
     
