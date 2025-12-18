@@ -87,7 +87,7 @@ public class TakeTooLongInvestigation
 
     private List<String> missingFrom(List<String> starts, List<String> finishes) 
     {
-        List<String> missing = new ArrayList(starts);
+        var missing = new ArrayList<String>(starts);
         
         System.out.println("missingFrom() - starts count: " + starts.size() + 
                 " finishes count: " + finishes.size() );
