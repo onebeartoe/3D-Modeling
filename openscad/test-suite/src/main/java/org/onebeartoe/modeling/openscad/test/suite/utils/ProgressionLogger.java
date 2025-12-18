@@ -20,7 +20,12 @@ class ProgressionLogger
     
     public static synchronized void startOf(String openscadPath) throws IOException 
     {       
-        var output = "-starting-: " + openscadPath;
+        var output = //"-starting-: " + 
+                openscadPath
+                
+                + "\n"
+                
+                ;
         
         Files.writeString(startsOutfile, 
                             output, 
@@ -29,7 +34,12 @@ class ProgressionLogger
 
     public static synchronized  void finishOf(String openscadPath) throws IOException 
     {
-        var output = "-finished-: " + openscadPath;
+        var output = 
+                //"-finished-: " + 
+                openscadPath
+                + "\n"
+                
+                ;
         
         Files.writeString(finishesOutfile, 
                             output, 

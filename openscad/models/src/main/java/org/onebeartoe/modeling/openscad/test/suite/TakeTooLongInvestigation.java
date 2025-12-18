@@ -1,6 +1,10 @@
 
 package org.onebeartoe.modeling.openscad.test.suite;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,18 +12,18 @@ import java.util.List;
  */
 public class TakeTooLongInvestigation 
 {
-    public static void main(String[] args) 
+    public static void main(String[] args) throws IOException 
     {
         var app = new TakeTooLongInvestigation();
         
         app.investigate();
     }
 
-    private void investigate() 
+    private void investigate() throws IOException 
     {
         List<String> starts = loadStarts();
         
-        List<String> ends = loadEnds();
+        List<String> ends = loadFinishes();
         
         var startsCount = starts.size();
         
@@ -55,15 +59,32 @@ public class TakeTooLongInvestigation
         }
     }
 
-    private List<String> loadStarts() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private List<String> loadStarts() throws IOException 
+    {
+        var inpath = "target/png.starts";
+        
+        var path = Path.of(inpath);
+        
+        List<String> allLines = Files.readAllLines(path);
+        
+        return allLines;
     }
 
-    private List<String> loadEnds() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private List<String> loadFinishes() throws IOException 
+    {
+        var inpath = "target/png.finishes";
+                
+        var path = Path.of(inpath);
+        
+        return Files.readAllLines(path);
     }
 
-    private List<String> missingFrom(List<String> starts, List<String> ends) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    private List<String> missingFrom(List<String> starts, List<String> finishes) 
+    {
+        List<String> missing = new ArrayList(starts);
+        
+        missing.removeAll(finishes);
+        
+        return missing;
     }
 }
