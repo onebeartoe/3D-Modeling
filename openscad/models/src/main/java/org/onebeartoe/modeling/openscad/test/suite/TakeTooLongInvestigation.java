@@ -48,7 +48,7 @@ public class TakeTooLongInvestigation
         
         var missingSize = missing.size();
         
-        if(missingSize > 0)
+        if(missingSize == 0)
         {
             System.out.println("All are present.");
         }
