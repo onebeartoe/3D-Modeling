@@ -64,7 +64,9 @@ import org.testng.annotations.Test;
 
         String key = "OPENSCAD_SUBPATH";
  
-        String openScadSubpath = System.getenv(key);
+        var keyValue = System.getenv(key);
+        
+        String openScadSubpath = keyValue == null ? "" : keyValue;
  
         System.out.println("the env " + key + " is: " + openScadSubpath);        
         
