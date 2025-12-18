@@ -37,6 +37,12 @@ public class TakeTooLongInvestigation
             
             throw new UnsupportedOperationException(message);
         }
+        else if( startsCount != endsCounts)
+        {
+            var count = startsCount - endsCounts;
+            
+            System.out.println("difference count = " + count);
+        }
         
         List<String> missing = missingFrom(starts, ends);
         
@@ -83,7 +89,12 @@ public class TakeTooLongInvestigation
     {
         List<String> missing = new ArrayList(starts);
         
+        System.out.println("missingFrom() - starts count: " + starts.size() + 
+                " finishes count: " + finishes.size() );
+        
         missing.removeAll(finishes);
+        
+        System.out.println("missingFrom() - missing count: " + missing.size() );
         
         return missing;
     }
