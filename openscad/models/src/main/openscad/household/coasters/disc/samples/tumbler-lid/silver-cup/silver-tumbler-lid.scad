@@ -1,9 +1,8 @@
 
 use <../../../disc-coaster.scad>
 
-
-radius = 87 / 2.0;
-//radius = 88 / 2.0;  // slightly big
+radius = 88 / 2.0;  // slightly big???or goood???
+//radius = 87 / 2.0;    // too tight
 
 difference()
 {
