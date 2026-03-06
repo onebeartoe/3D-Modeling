@@ -1,0 +1,12 @@
+
+Take a look at this OpenSCAD article at the following URL on how make a coaster with a repeating pattern.
+
+https://www.mikekasberg.com/blog/2023/03/22/3d-printing-with-openscad.html
+
+Use OpenSCAD to create a script with a module that creates a coaster with a similar pattern.
+
+But instead of a hexagon use a hart pattern.  The harts in the new pattern do not have to touch each other.
+
+Also, change the outer bounding shape from a hexagon to circle.
+
+Provide parameters for the radius fo the bounding circle.
