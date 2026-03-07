@@ -9,4 +9,4 @@ But instead of a hexagon use a hart pattern.  The harts in the new pattern do no
 
 Also, change the outer bounding shape from a hexagon to circle.
 
-Provide parameters for the radius fo the bounding circle.
+Provide parameters for the radius of the bounding circle.
