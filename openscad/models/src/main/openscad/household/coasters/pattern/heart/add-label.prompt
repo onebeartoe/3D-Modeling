@@ -1,0 +1,6 @@
+
+Update heart-coaster.scad so that there is a text label in the center of the coaster.
+
+The text of the label is a module parameter with a default value of "Robert".
+
+The text label has the same height as the coaster.
