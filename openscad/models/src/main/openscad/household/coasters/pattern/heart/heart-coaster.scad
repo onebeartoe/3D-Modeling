@@ -65,7 +65,7 @@ module heart_coaster(radius, height, base, h_size, spacing, label = "Robert") {
 //}
             // remove the label outline 
             translate([0, 0, base * 2.0 ])
-            cube(size=[70, 21, height],
+            cube(size=[72, 21, height],
                  center=true);            
 // ADD BACK
         }
