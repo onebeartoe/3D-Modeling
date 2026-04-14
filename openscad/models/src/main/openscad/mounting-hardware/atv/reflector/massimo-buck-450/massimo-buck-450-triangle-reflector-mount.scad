@@ -1,12 +1,14 @@
 
 use <../../../../shapes/oval/oval.scad>
 
+use <../../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
 module triantleReflectorMount()
 {
    difference()
     {
-        height = 1;
+        height = 5;
+
         color("blue")
         // oval(height = height,
 		// 	radius = 80,
@@ -15,37 +17,50 @@ module triantleReflectorMount()
 
         union()
         {   
-            cube(size = [110, 20, height], center = true);
+//            cube(size = [110, 20, height], center = true);
+            roundedCube(cornerRadius = 5,
+                                    cubeCentered = true,
+                                    sides=20,
+                                    sidesOnly=true,
+                                    size=[105,20,height]);
 
             translate([0, 0, 0])
-            cube(size = [20, 190, height], center = true);
+//            cube(size = [20, 190, height], center = true);
+            roundedCube(cornerRadius = 5,
+                        cubeCentered = true,
+                        sides=20,
+                        sidesOnly=true,
+                        size=[20,185,height]);
         }
+  
+        cutoutRadius = 6;
 
-        horizontalCutouts();
+        horizontalCutouts(cutoutRadius = cutoutRadius);
     
-        verticleCutouts();
+        verticleCutouts(cutoutRadius = cutoutRadius);
     }
 
-    module horizontalCutouts()
+    module horizontalCutouts(cutoutRadius)
     {
         translate = 42;
 
         translate([translate, 0, 0])
-        cylinder(h = 6, r = 5, center = true);
+        cylinder(h = 8, r = cutoutRadius, center = true);
 
         translate([-translate, 0,0])
-        cylinder(h = 6, r = 5, center = true);
+        cylinder(h = 8, r = cutoutRadius, center = true);
     }   
 
-    module verticleCutouts()
+    module verticleCutouts(cutoutRadius)
     {
-        translate = 76;
+        translate = 77;
+
 
         translate([0, translate, 0])
-        cylinder(h = 6, r = 5, center = true);
+        cylinder(h = 8, r = cutoutRadius, center = true);
 
         translate([0, -translate, 0])
-        cylinder(h = 6, r = 5, center = true);
+        cylinder(h = 8, r = cutoutRadius, center = true);
     }   
 }
 
