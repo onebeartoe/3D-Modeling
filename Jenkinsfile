@@ -29,9 +29,8 @@ pipeline
                 Xvfb :5 -screen 0 800x600x24 &
                 export DISPLAY=:5
                 whoami
-		openscad --version
+		$OPENSCAD_PATH --version
                 java -version
-                $OPENSCAD_PATH --help
                 mvn verify
            '''
       }
