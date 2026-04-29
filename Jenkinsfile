@@ -11,7 +11,8 @@ pipeline
 
     OPENSCAD_SUBPATH = "coins-pendants-ornaments/ornaments/star"
 
-    LIBGL_ALWAYS_SOFTWARE=1
+//TODO: where was this from again?
+//    LIBGL_ALWAYS_SOFTWARE=1
   }
 
   stages {
