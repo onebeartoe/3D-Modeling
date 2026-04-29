@@ -52,7 +52,7 @@ module ornament(height = 3,
                 zTranslate = -height / 2.0;
                 translate([0, -22, zTranslate])
                 scale([xyScale, xyScale, 1])
-                openCylinder(center=true);
+                openCylinder();
             }
 
             difference()
@@ -69,7 +69,7 @@ module ornament(height = 3,
                      height=height
                 );
 
-                clipOversizedImages(center=true);
+                clipOversizedImages();
             }
         }
     }
@@ -103,7 +103,7 @@ module ring2(height)
 	translate([-16.95,0,0]) rotate([0,270,0]) cylinder(r1=1.7, r2=0, h=2.1, center=true);
 	difference()
 	{
-	    color("grey")
+	    color("green")
 		cylinder(r=15.95, h=height, center=true);
 
 		cylinder(r=13.95, h=56, center=true);
