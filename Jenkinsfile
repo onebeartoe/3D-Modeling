@@ -5,11 +5,15 @@ pipeline
 
   environment
   {
+// TODO: clean up on aisle Environment Variables
 //    OPENSCAD_PATH = "/snap/bin/openscad"
 //    OPENSCAD_PATH = "/opt/openscad/OpenSCAD-2021.01-x86_64.AppImage"
     OPENSCAD_PATH = "/opt/openscad/OpenSCAD-2025.11.10.ai28923-x86_64.AppImage"
 
-    OPENSCAD_SUBPATH = "coins-pendants-ornaments"
+    // subpath for narrowing the test scope
+
+    OPENSCAD_SUBPATH = "shapes/spurs"
+//    OPENSCAD_SUBPATH = "coins-pendants-ornaments"
 //    OPENSCAD_SUBPATH = "coins-pendants-ornaments/ornaments/star"
 
 //TODO: where was this from again?
