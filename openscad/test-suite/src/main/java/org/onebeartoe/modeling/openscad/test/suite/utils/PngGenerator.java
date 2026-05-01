@@ -245,6 +245,7 @@ public class PngGenerator
                 }
                 
                 ProgressionLogger.finishOf(currentPath);
+                
             } 
             catch (IOException ex)
             {   

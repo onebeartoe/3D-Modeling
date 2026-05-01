@@ -20,29 +20,50 @@ class ProgressionLogger
     
     public static synchronized void startOf(String openscadPath) throws IOException 
     {       
-        var output = //"-starting-: " + 
-                openscadPath
-                
-                + "\n"
-                
-                ;
-        
-        Files.writeString(startsOutfile, 
-                            output, 
-                            StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+//        var output = //"-starting-: " + 
+//                openscadPath
+//                
+//                + "\n"
+//                
+//                ;
+//        
+//        Files.writeString(startsOutfile, 
+//                            output, 
+//                            StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        output(startsOutfile, openscadPath);
+    }
+    
+    private static synchronized void output(Path outpath, String openscadEntry) throws IOException
+    {
+        if( !outpath.toFile().exists() )
+        {
+            System.out.println("spam sysout until logging is configurable: " + openscadEntry);
+        }
+        else
+        {
+            var output = //"-starting-: " + 
+                    openscadEntry                
+                    + "\n"
+                    ;        
+
+            Files.writeString(outpath, 
+                                output, 
+                                StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        }
     }
 
     public static synchronized  void finishOf(String openscadPath) throws IOException 
     {
-        var output = 
-                //"-finished-: " + 
-                openscadPath
-                + "\n"
-                
-                ;
-        
-        Files.writeString(finishesOutfile, 
-                            output, 
-                            StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+//        var output = 
+//                //"-finished-: " + 
+//                openscadPath
+//                + "\n"
+//                
+//                ;
+//        
+//        Files.writeString(finishesOutfile, 
+//                            output, 
+//                            StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        output(finishesOutfile, openscadPath);
     }
 }
