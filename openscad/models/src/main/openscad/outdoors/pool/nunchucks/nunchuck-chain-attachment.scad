@@ -38,5 +38,3 @@ module nunChuckChainAttachment(
     }
 }
 
-// Instantiation for preview
-nunChuckChainAttachment();
