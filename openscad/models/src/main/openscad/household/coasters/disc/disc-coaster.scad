@@ -9,10 +9,11 @@ module discCoaster(cutoutAdjustment = 4,
     difference()
     {
 //        %
+        roundedDiskRadius = innerRadius + (5 / 2.0);
         roundedDisk(fn = 25,
                     height = height,
                     minkowskiSphereRadius = 2,
-                    radius = 95 / 2.0);
+                    radius = roundedDiskRadius);
 
         color("green")
         translate([0,0,cutoutAdjustment])
