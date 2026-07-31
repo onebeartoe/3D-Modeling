@@ -49,8 +49,8 @@ module pegAttachments(arcHeight, arcRadius)
 {
     outerRadius = arcHeight / 2.0;
 
-    xTranslate = arcRadius + (outerRadius / 2.0);
-    yTranslate = 0;
+    xTranslate = arcRadius + (outerRadius / 2.0) + 1;
+    yTranslate = 1;
     zTranslate = outerRadius;
 
     translate([xTranslate, yTranslate, zTranslate])
@@ -68,7 +68,7 @@ module onePegAttachment(outerRadius)
 //TODO:????      if the arc part is too thing for this radius  
     color("orange")
     rotate([90, 0, 0])
-    roundDoughnut(height = 19,
+    roundDoughnut(height = 9,
                 innerRadius = 2.6,
                 outerRadius = outerRadius,
                 minkowskiSphereRadius = minkowskiSphereRadius);
