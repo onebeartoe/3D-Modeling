@@ -6,15 +6,15 @@ use <../../../../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 module endCap(showBristlesAttachment = false)
 {
     arcHeight = 8;
-    arcRadius = 16.5;
+    arcRadius = 14.0;
 
     union()
     {
         endCapArc(arcHeight = arcHeight,
                   arcRadius = arcRadius);
 
-        pegAttachments(arcRadius = arcRadius,
-                       arcHeight = arcHeight);
+       pegAttachments(arcRadius = arcRadius,
+                      arcHeight = arcHeight);
     }
 
     if(showBristlesAttachment)
@@ -22,9 +22,9 @@ module endCap(showBristlesAttachment = false)
         xLength = 41;
         yLength = 70;
         
+        #
         color("green")
         translate([-xLength/2.0, -yLength, 0])
-        #
         cube([xLength, yLength, arcHeight], center = false);
     }
 }
@@ -40,7 +40,7 @@ module endCapArc(arcHeight, arcRadius)
     roundedRectangularArc(angle = 175,
                         height = height,
                         radius = arcRadius, 
-                        radiusExtension = arcHeight / 2.0,
+                        radiusExtension = (arcHeight + 4) / 2.0,
                         minkowskiFn = 10,
                         minkowskiRadius = minkowskiRadius);
 }
@@ -64,8 +64,8 @@ module onePegAttachment(outerRadius)
 {
     minkowskiSphereRadius = 0.0;
 
-// Might have to use a RoundedCube or an openCylinder 
-//      if the arc part is too thing for this raduis  
+//TODO:???? Might have to use a RoundedCube or an openCylinder 
+//TODO:????      if the arc part is too thing for this radius  
     color("orange")
     rotate([90, 0, 0])
     roundDoughnut(height = 19,
