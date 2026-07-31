@@ -47,31 +47,29 @@ module endCapArc(arcHeight, arcRadius)
 
 module pegAttachments(arcHeight, arcRadius)
 {
-    xTranslate = arcRadius;
-
     outerRadius = arcHeight / 2.0;
 
-    translate([xTranslate, 0, 0])
+    xTranslate = arcRadius + (outerRadius / 2.0);
+    yTranslate = 0;
+    zTranslate = outerRadius;
+
+    translate([xTranslate, yTranslate, zTranslate])
     onePegAttachment(outerRadius = outerRadius);
 
-    translate([-arcRadius, 0, 0])
+    translate([-xTranslate, yTranslate, zTranslate])
     onePegAttachment(outerRadius = outerRadius);
 }
 
 module onePegAttachment(outerRadius)
 {
     minkowskiSphereRadius = 0.0;
-//    minkowskiSphereRadius = 0.5;
-//    outerRadius = 3.5;
 
 // Might have to use a RoundedCube or an openCylinder 
 //      if the arc part is too thing for this raduis  
     color("orange")
-    translate([0, 0, outerRadius])
     rotate([90, 0, 0])
     roundDoughnut(height = 19,
                 innerRadius = 2.6,
                 outerRadius = outerRadius,
                 minkowskiSphereRadius = minkowskiSphereRadius);
 }
-
