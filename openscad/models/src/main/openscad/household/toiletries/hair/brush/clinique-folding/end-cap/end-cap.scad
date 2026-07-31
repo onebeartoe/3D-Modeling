@@ -3,26 +3,43 @@ use <../../../../../../shapes/geometry/arc/extruded/extruded-arc.scad>
 
 use <../../../../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 
-module endCap()
+module endCap(showBristlesAttachment = false)
 {
+    arcHeight = 8;
     arcRadius = 20;
 
     union()
     {
-        translate([0, 0, -1])
+        translate([0, 0, 0])
         rotate([0, 0, 90])
         roundedRectangularArc(angle = 170,
-                            height = 10,
+                            height = arcHeight,
                             radius = arcRadius, 
                             radiusExtension = 2,
                             minkowskiFn = 10,
                             minkowskiRadius = 1);
 
-        pegAttachements(arcRadius = arcRadius);
+        pegAttachments(arcRadius = arcRadius,
+                        arcHeight = arcHeight);
+    }
+
+    if(showBristlesAttachment)
+    {
+        xLength = 41;
+        yLength = 70;
+
+        color("green")
+        translate([-xLength/2.0, -yLength, 0])
+        cube([xLength, yLength, arcHeight], center = false);
     }
 }
 
-module pegAttachements(arcRadius)
+module endCapArc(arcHeight, arcRadius)
+{
+    
+}
+
+module pegAttachments(arcHeight, arcRadius)
 {
     xTranslate = 30;
 

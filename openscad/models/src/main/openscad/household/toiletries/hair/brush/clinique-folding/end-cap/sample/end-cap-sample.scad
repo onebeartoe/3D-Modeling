@@ -1,4 +1,4 @@
 
 use <../end-cap.scad>
 
-endCap();
+endCap(showBristlesAttachment = true);
