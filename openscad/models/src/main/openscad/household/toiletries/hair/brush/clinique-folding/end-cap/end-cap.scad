@@ -10,17 +10,11 @@ module endCap(showBristlesAttachment = false)
 
     union()
     {
-        translate([0, 0, 0])
-        rotate([0, 0, 90])
-        roundedRectangularArc(angle = 170,
-                            height = arcHeight,
-                            radius = arcRadius, 
-                            radiusExtension = 2,
-                            minkowskiFn = 10,
-                            minkowskiRadius = 1);
+        endCapArc(arcHeight = arcHeight,
+                  arcRadius = arcRadius);
 
         pegAttachments(arcRadius = arcRadius,
-                        arcHeight = arcHeight);
+                       arcHeight = arcHeight);
     }
 
     if(showBristlesAttachment)
@@ -36,7 +30,18 @@ module endCap(showBristlesAttachment = false)
 
 module endCapArc(arcHeight, arcRadius)
 {
-    
+    minkowskiRadius = 1;
+
+    height = arcHeight - (minkowskiRadius * 2);
+
+    translate([0, 0, minkowskiRadius])
+    rotate([0, 0, 90])
+    roundedRectangularArc(angle = 170,
+                        height = height,
+                        radius = arcRadius, 
+                        radiusExtension = 2,
+                        minkowskiFn = 10,
+                        minkowskiRadius = minkowskiRadius);
 }
 
 module pegAttachments(arcHeight, arcRadius)
@@ -44,13 +49,13 @@ module pegAttachments(arcHeight, arcRadius)
     xTranslate = 30;
 
     translate([arcRadius, 0, 0])
-    onePegAttachement();
+    onePegAttachment();
 
     translate([-arcRadius, 0, 0])
-    onePegAttachement();
+    onePegAttachment();
 }
 
-module onePegAttachement()
+module onePegAttachment()
 {
     minkowskiSphereRadius = 0.5;
     outerRadius = 3.5;
