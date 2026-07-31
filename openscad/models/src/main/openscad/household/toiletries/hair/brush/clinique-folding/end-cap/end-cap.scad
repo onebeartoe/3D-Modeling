@@ -6,7 +6,7 @@ use <../../../../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 module endCap(showBristlesAttachment = false)
 {
     arcHeight = 8;
-    arcRadius = 20;
+    arcRadius = 16.5;
 
     union()
     {
@@ -21,9 +21,10 @@ module endCap(showBristlesAttachment = false)
     {
         xLength = 41;
         yLength = 70;
-
+        
         color("green")
         translate([-xLength/2.0, -yLength, 0])
+        #
         cube([xLength, yLength, arcHeight], center = false);
     }
 }
@@ -36,29 +37,32 @@ module endCapArc(arcHeight, arcRadius)
 
     translate([0, 0, minkowskiRadius])
     rotate([0, 0, 90])
-    roundedRectangularArc(angle = 170,
+    roundedRectangularArc(angle = 175,
                         height = height,
                         radius = arcRadius, 
-                        radiusExtension = 2,
+                        radiusExtension = arcHeight / 2.0,
                         minkowskiFn = 10,
                         minkowskiRadius = minkowskiRadius);
 }
 
 module pegAttachments(arcHeight, arcRadius)
 {
-    xTranslate = 30;
+    xTranslate = arcRadius;
 
-    translate([arcRadius, 0, 0])
-    onePegAttachment();
+    outerRadius = arcHeight / 2.0;
+
+    translate([xTranslate, 0, 0])
+    onePegAttachment(outerRadius = outerRadius);
 
     translate([-arcRadius, 0, 0])
-    onePegAttachment();
+    onePegAttachment(outerRadius = outerRadius);
 }
 
-module onePegAttachment()
+module onePegAttachment(outerRadius)
 {
-    minkowskiSphereRadius = 0.5;
-    outerRadius = 3.5;
+    minkowskiSphereRadius = 0.0;
+//    minkowskiSphereRadius = 0.5;
+//    outerRadius = 3.5;
 
 // Might have to use a RoundedCube or an openCylinder 
 //      if the arc part is too thing for this raduis  
