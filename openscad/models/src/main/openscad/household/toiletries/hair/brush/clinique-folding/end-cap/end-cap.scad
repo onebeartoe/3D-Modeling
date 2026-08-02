@@ -1,6 +1,9 @@
 
 use <../../../../../../shapes/geometry/arc/extruded/extruded-arc.scad>
 
+use <../../../../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
+
+//TODO: remove this
 use <../../../../../../basics/rounded-edges/doughnuts/doughnuts.scad>
 
 module endCap(showBristlesAttachment = false)
@@ -13,7 +16,7 @@ module endCap(showBristlesAttachment = false)
         endCapArc(arcHeight = arcHeight,
                   arcRadius = arcRadius);
 
-       pegAttachments(arcRadius = arcRadius,
+        pegAttachments(arcRadius = arcRadius,
                       arcHeight = arcHeight);
     }
 
@@ -35,6 +38,7 @@ module endCapArc(arcHeight, arcRadius)
 
     height = arcHeight - (minkowskiRadius * 2);
 
+    color("red")
     translate([0, 0, minkowskiRadius])
     rotate([0, 0, 90])
     roundedRectangularArc(angle = 175,
@@ -49,8 +53,8 @@ module pegAttachments(arcHeight, arcRadius)
 {
     outerRadius = arcHeight / 2.0;
 
-    xTranslate = arcRadius + (outerRadius / 2.0) + 1;
-    yTranslate = 1;
+    xTranslate = arcRadius + (outerRadius / 2.0) + 0.75;
+    yTranslate = 4;
     zTranslate = outerRadius;
 
     translate([xTranslate, yTranslate, zTranslate])
@@ -66,10 +70,31 @@ module onePegAttachment(outerRadius)
 
 //TODO:???? Might have to use a RoundedCube or an openCylinder 
 //TODO:????      if the arc part is too thing for this radius  
-    color("orange")
-    rotate([90, 0, 0])
-    roundDoughnut(height = 9,
-                innerRadius = 2.6,
-                outerRadius = outerRadius,
-                minkowskiSphereRadius = minkowskiSphereRadius);
+//    color("orange")
+//    rotate([90, 0, 0])
+//    roundDoughnut(height = 9,
+//                innerRadius = 2.6,
+//                outerRadius = outerRadius,
+//                minkowskiSphereRadius = minkowskiSphereRadius);
+
+    cornerRadius = 1;
+    xLength = (outerRadius - cornerRadius) * 2.0;
+    yLength = 7;
+    size = [xLength, yLength, xLength];
+    xTranslate = -xLength / 2.0;
+    zTranslate = -xLength / 2.0;
+
+    difference()
+    {
+        color("blue")
+        translate([xTranslate, -yLength, zTranslate])
+        roundedCube(cornerRadius = cornerRadius,
+                    sides=20,
+                    size=size);
+
+        rotate([90, 0, 0])
+        cylinder(h = 9,
+                r = 2.6,
+                $fn = 30);
+    }
 }
