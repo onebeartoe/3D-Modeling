@@ -12,7 +12,7 @@ pipeline
 
     // subpath for narrowing the test scope
 
-    OPENSCAD_SUBPATH = "shapes/spurs"
+    OPENSCAD_SUBPATH = "shapes"
 //    OPENSCAD_SUBPATH = "coins-pendants-ornaments"
 //    OPENSCAD_SUBPATH = "coins-pendants-ornaments/ornaments/star"
 
