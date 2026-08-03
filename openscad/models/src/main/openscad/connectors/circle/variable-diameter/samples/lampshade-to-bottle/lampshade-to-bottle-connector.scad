@@ -1,22 +1,23 @@
 
 use <../../variable-diameter-round-connector.scad>
 
-wallThickness = 3;
+wallThickness = 2;
 
-tir = 31 / 2.0;
-tor = tir + wallThickness;
+tor = (31 / 2.0) - 0.5;
+tir = tor - wallThickness;
 
-bir = 25 / 2.0;
-bor = bir + wallThickness;
+bor = (25 / 2.0) - 0.5;
+bir = bor - wallThickness;
 
-mir = bir + 0;
+mor = tor;
+mir = bir;
 
 roundConnector(topHeight = 20,
 			   topInnerRadius = tir,
 		  	   topOuterRadius = tor,
 			   middleHeight = 5,
 			   middleInnerRadius = mir,
-		  	   middleOuterRadius = tor,
+		  	   middleOuterRadius = mor,
                bottomHeight = 20,
 			   bottomInnerRadius = bir,
 			   bottomOuterRadius = bor);
