@@ -3,10 +3,10 @@ use <../../variable-diameter-round-connector.scad>
 
 wallThickness = 2;
 
-tor = (31 / 2.0) - 0.5;
+tor = (31.5 / 2.0) - 0;
 tir = tor - wallThickness;
 
-bor = (25 / 2.0) - 0.5;
+bor = (25.5 / 2.0) - 0;
 bir = bor - wallThickness;
 
 mor = tor;
