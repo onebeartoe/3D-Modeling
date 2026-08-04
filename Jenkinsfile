@@ -31,7 +31,8 @@ pipeline
     }
 
     stage('install') {
-      steps {
+      steps 
+      {
         echo 'Verifying...'
         sh '''
                 Xvfb :5 -screen 0 800x600x24 &
@@ -40,8 +41,14 @@ pipeline
 		$OPENSCAD_PATH --version
                 java -version
                 mvn verify
-cat openscad/models/target/errorred-pngs.text
            '''
+      }
+      post
+      {
+        failure
+        {
+          cat openscad/models/target/errorred-pngs.text
+        }
       }
     }
   }
