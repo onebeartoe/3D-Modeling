@@ -40,6 +40,7 @@ pipeline
 		$OPENSCAD_PATH --version
                 java -version
                 mvn verify
+cat openscad/models/target/errorred-pngs.text
            '''
       }
     }
