@@ -3,6 +3,7 @@ use <../../../shapes/open-oval/open-oval.scad>
 
 use <../../../basics/rounded-edges/rounded-cube/rounded-cube.scad>
 
+/*
 textures:
 
     https://www.thingiverse.com/thing:6069270
@@ -12,6 +13,8 @@ textures:
 3D Curve
 
     https://www.thingiverse.com/thing:241777/files
+*/
+
 
 module pictureFrameWithStand(borderWidth = 10, 
                              cutoutDepth = 10, 
