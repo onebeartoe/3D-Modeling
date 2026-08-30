@@ -9,7 +9,16 @@
 package dev.tamboui.demo;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import dev.tamboui.layout.Constraint;
 import dev.tamboui.layout.Layout;
@@ -35,11 +44,12 @@ import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.tree.TreeWidget;
 
 /**
- * Demo TUI application showcasing the TreeWidget.
+ * Demo TUI application showcasing the TreeWidget with dynamic local filesystem navigation.
  * <p>
  * Demonstrates TreeWidget features using only the widget API (no toolkit):
  * <ul>
- *   <li>Tree navigation with expand/collapse</li>
+ *   <li>Dynamic filesystem navigation with expand/collapse and Enter to change directory</li>
+ *   <li>Parent directory ("..") node at the top of the tree</li>
  *   <li>Custom node rendering with SizedWidget</li>
  *   <li>Guide styles (Unicode, ASCII, None)</li>
  *   <li>Highlight styles and symbols</li>
@@ -54,30 +64,185 @@ public class TreeWidgetDemo {
 
     /**
      * Represents a file or directory with metadata.
+     *
+     * @param name      the display name
+     * @param type      the file type
+     * @param sizeBytes the size in bytes
+     * @param status    the file status
+     * @param path      the filesystem path
      */
-    record FileInfo(
+    public record FileInfo(
             String name,
             FileType type,
             long sizeBytes,
-            FileStatus status
+            FileStatus status,
+            Path path
     ) {
-        enum FileType {DIRECTORY, JAVA, KOTLIN, XML, YAML, JSON, MARKDOWN, GRADLE, TEXT, BINARY}
-
-        enum FileStatus {NORMAL, MODIFIED, NEW, IGNORED}
-
-        static FileInfo dir(String name) {
-            return new FileInfo(name, FileType.DIRECTORY, 0, FileStatus.NORMAL);
+        /**
+         * Supported file types for display icons and categorization.
+         */
+        public enum FileType {
+            /** Directory */
+            DIRECTORY,
+            /** Java source file */
+            JAVA,
+            /** Kotlin source file */
+            KOTLIN,
+            /** XML file */
+            XML,
+            /** YAML file */
+            YAML,
+            /** JSON file */
+            JSON,
+            /** Markdown file */
+            MARKDOWN,
+            /** Gradle build file */
+            GRADLE,
+            /** Plain text file */
+            TEXT,
+            /** Binary or other file */
+            BINARY
         }
 
-        static FileInfo file(String name, FileType type, long size) {
-            return new FileInfo(name, type, size, FileStatus.NORMAL);
+        /**
+         * Status indicator for files.
+         */
+        public enum FileStatus {
+            /** Normal unmodified file */
+            NORMAL,
+            /** Modified file */
+            MODIFIED,
+            /** Newly created file */
+            NEW,
+            /** Ignored or hidden file */
+            IGNORED
         }
 
-        static FileInfo file(String name, FileType type, long size, FileStatus status) {
-            return new FileInfo(name, type, size, status);
+        /**
+         * Creates a directory FileInfo.
+         *
+         * @param name the directory name
+         * @param path the path
+         * @return the FileInfo
+         */
+        public static FileInfo dir(String name, Path path) {
+            return new FileInfo(name, FileType.DIRECTORY, 0, FileStatus.NORMAL, path);
         }
 
-        String icon() {
+        /**
+         * Creates a file FileInfo.
+         *
+         * @param name the file name
+         * @param type the file type
+         * @param size the size in bytes
+         * @param path the path
+         * @return the FileInfo
+         */
+        public static FileInfo file(String name, FileType type, long size, Path path) {
+            return new FileInfo(name, type, size, FileStatus.NORMAL, path);
+        }
+
+        /**
+         * Creates a file FileInfo with status.
+         *
+         * @param name   the file name
+         * @param type   the file type
+         * @param size   the size in bytes
+         * @param status the status
+         * @param path   the path
+         * @return the FileInfo
+         */
+        public static FileInfo file(String name, FileType type, long size, FileStatus status, Path path) {
+            return new FileInfo(name, type, size, status, path);
+        }
+
+        /**
+         * Creates a FileInfo instance by inspecting a filesystem path.
+         *
+         * @param path the path to inspect
+         * @return the FileInfo
+         */
+        public static FileInfo fromPath(Path path) {
+            boolean isDir = Files.isDirectory(path);
+            String name = path.getFileName() != null ? path.getFileName().toString() : path.toString();
+            FileStatus status = FileStatus.NORMAL;
+            try {
+                if (Files.isHidden(path)) {
+                    status = FileStatus.IGNORED;
+                }
+            } catch (IOException ignored) {
+            }
+
+            if (isDir) {
+                return new FileInfo(name, FileType.DIRECTORY, 0, status, path);
+            }
+
+            FileType type = determineFileType(name);
+            long size = 0;
+            try {
+                size = Files.size(path);
+            } catch (IOException ignored) {
+            }
+
+            return new FileInfo(name, type, size, status, path);
+        }
+
+        /**
+         * Determines the file type from the filename.
+         *
+         * @param fileName the filename
+         * @return the FileType
+         */
+        public static FileType determineFileType(String fileName) {
+            String lower = fileName.toLowerCase(Locale.ROOT);
+            if (lower.endsWith(".java")) {
+                return FileType.JAVA;
+            }
+            if (lower.endsWith(".kt")) {
+                return FileType.KOTLIN;
+            }
+            if (lower.endsWith(".gradle") || lower.endsWith(".gradle.kts")
+                    || lower.equals("gradlew") || lower.equals("gradlew.bat")) {
+                return FileType.GRADLE;
+            }
+            if (lower.endsWith(".xml") || lower.endsWith(".pom") || lower.endsWith(".iml")) {
+                return FileType.XML;
+            }
+            if (lower.endsWith(".yml") || lower.endsWith(".yaml")) {
+                return FileType.YAML;
+            }
+            if (lower.endsWith(".json")) {
+                return FileType.JSON;
+            }
+            if (lower.endsWith(".md") || lower.endsWith(".markdown")
+                    || lower.endsWith(".adoc") || lower.endsWith(".asciidoc")) {
+                return FileType.MARKDOWN;
+            }
+            if (lower.endsWith(".txt") || lower.endsWith(".log") || lower.endsWith(".properties")
+                    || lower.endsWith(".sh") || lower.endsWith(".bash") || lower.endsWith(".zsh")
+                    || lower.endsWith(".toml") || lower.endsWith(".conf") || lower.endsWith(".ini")
+                    || lower.endsWith(".env") || lower.startsWith(".git") || lower.equals("license")
+                    || lower.equals("readme") || lower.endsWith(".csv") || lower.endsWith(".sql")) {
+                return FileType.TEXT;
+            }
+            if (lower.endsWith(".class") || lower.endsWith(".jar") || lower.endsWith(".war")
+                    || lower.endsWith(".zip") || lower.endsWith(".tar") || lower.endsWith(".gz")
+                    || lower.endsWith(".7z") || lower.endsWith(".png") || lower.endsWith(".jpg")
+                    || lower.endsWith(".jpeg") || lower.endsWith(".gif") || lower.endsWith(".ico")
+                    || lower.endsWith(".svg") || lower.endsWith(".pdf") || lower.endsWith(".exe")
+                    || lower.endsWith(".so") || lower.endsWith(".dll") || lower.endsWith(".dylib")
+                    || lower.endsWith(".bin")) {
+                return FileType.BINARY;
+            }
+            return FileType.TEXT;
+        }
+
+        /**
+         * Gets the icon string for this file.
+         *
+         * @return icon string
+         */
+        public String icon() {
             return switch (type) {
                 case DIRECTORY -> "\uD83D\uDCC1"; // 📁
                 case JAVA -> "\u2615"; // ☕
@@ -91,7 +256,12 @@ public class TreeWidgetDemo {
             };
         }
 
-        String formattedSize() {
+        /**
+         * Formats the file size for display.
+         *
+         * @return formatted size string
+         */
+        public String formattedSize() {
             if (type == FileType.DIRECTORY) {
                 return "";
             }
@@ -99,12 +269,17 @@ public class TreeWidgetDemo {
                 return sizeBytes + " B";
             }
             if (sizeBytes < 1024 * 1024) {
-                return String.format("%.1f KB", sizeBytes / 1024.0);
+                return String.format(Locale.ROOT, "%.1f KB", sizeBytes / 1024.0);
             }
-            return String.format("%.1f MB", sizeBytes / (1024.0 * 1024));
+            return String.format(Locale.ROOT, "%.1f MB", sizeBytes / (1024.0 * 1024));
         }
 
-        Color statusColor() {
+        /**
+         * Gets the status color.
+         *
+         * @return the color or null
+         */
+        public Color statusColor() {
             return switch (status) {
                 case MODIFIED -> Color.YELLOW;
                 case NEW -> Color.GREEN;
@@ -120,12 +295,26 @@ public class TreeWidgetDemo {
 
     private boolean running = true;
     private final TreeState treeState = new TreeState();
-    private final List<TreeNode<FileInfo>> roots;
+    private Path currentPath;
+    private List<TreeNode<FileInfo>> roots;
     private List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries;
     private GuideStyle currentGuideStyle = GuideStyle.UNICODE;
 
-    private TreeWidgetDemo() {
-        this.roots = buildTreeData();
+    /**
+     * Constructs a TreeWidgetDemo starting at the current working directory.
+     */
+    public TreeWidgetDemo() {
+        this(Paths.get(".").toAbsolutePath().normalize());
+    }
+
+    /**
+     * Constructs a TreeWidgetDemo starting at the specified path.
+     *
+     * @param startPath the initial directory path
+     */
+    public TreeWidgetDemo(Path startPath) {
+        this.currentPath = startPath.toAbsolutePath().normalize();
+        this.roots = buildTreeData(this.currentPath);
     }
 
     /**
@@ -135,7 +324,10 @@ public class TreeWidgetDemo {
      * @throws Exception on unexpected error
      */
     public static void main(String[] args) throws Exception {
-        new TreeWidgetDemo().run();
+        Path startPath = args.length > 0
+                ? Paths.get(args[0]).toAbsolutePath().normalize()
+                : Paths.get(".").toAbsolutePath().normalize();
+        new TreeWidgetDemo(startPath).run();
     }
 
     /**
@@ -183,7 +375,8 @@ public class TreeWidgetDemo {
             case 'k', 'K' -> treeState.selectPrevious();
             case 'l', 'L' -> expandSelected();
             case 'h', 'H' -> collapseSelected();
-            case ' ', '\r', '\n' -> toggleSelected();
+            case ' ' -> toggleSelected();
+            case '\r', '\n' -> enterSelected();
             case 'g' -> treeState.selectFirst();
             case 'G' -> selectLast();
             case '1' -> currentGuideStyle = GuideStyle.UNICODE;
@@ -263,47 +456,95 @@ public class TreeWidgetDemo {
         }
     }
 
+    /**
+     * Handles Enter key press: navigates to the selected directory if a directory node is selected.
+     */
+    private void enterSelected() {
+        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
+            return;
+        }
+        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
+        TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
+        FileInfo info = node.data();
+        if (info != null && info.type() == FileInfo.FileType.DIRECTORY && info.path() != null) {
+            navigateTo(info.path());
+        }
+    }
+
+    /**
+     * Changes path to the specified directory and reloads tree child nodes.
+     *
+     * @param dir the target directory
+     */
+    public void navigateTo(Path dir) {
+        try {
+            Path target = dir.toAbsolutePath().normalize();
+            if (Files.isDirectory(target)) {
+                this.currentPath = target;
+                this.roots = buildTreeData(this.currentPath);
+                this.treeState.select(0);
+                this.treeState.offset(0);
+            }
+        } catch (SecurityException ignored) {
+        }
+    }
+
     // ════════════════════════════════════════════════════════════════
     // Tree Data Construction
     // ════════════════════════════════════════════════════════════════
 
-    private List<TreeNode<FileInfo>> buildTreeData() {
-        TreeNode<FileInfo> src = node("src", FileInfo.dir("src"))
-                .add(node("main", FileInfo.dir("main"))
-                        .add(node("java", FileInfo.dir("java"))
-                                .add(leaf("App.java", FileInfo.file("App.java", FileInfo.FileType.JAVA, 2048, FileInfo.FileStatus.MODIFIED)))
-                                .add(leaf("Config.java", FileInfo.file("Config.java", FileInfo.FileType.JAVA, 1536)))
-                                .add(leaf("Router.java", FileInfo.file("Router.java", FileInfo.FileType.JAVA, 3072, FileInfo.FileStatus.NEW)))
-                                .expanded())
-                        .add(node("kotlin", FileInfo.dir("kotlin"))
-                                .add(leaf("Extensions.kt", FileInfo.file("Extensions.kt", FileInfo.FileType.KOTLIN, 892))))
-                        .add(node("resources", FileInfo.dir("resources"))
-                                .add(leaf("application.yml", FileInfo.file("application.yml", FileInfo.FileType.YAML, 512))))
-                        .expanded())
-                .add(node("test", FileInfo.dir("test"))
-                        .add(node("java", FileInfo.dir("java"))
-                                .add(leaf("AppTest.java", FileInfo.file("AppTest.java", FileInfo.FileType.JAVA, 1792)))))
-                .expanded();
+    /**
+     * Builds the tree root nodes for the specified directory.
+     * Includes a ".." parent node at the top.
+     *
+     * @param dir the directory path
+     * @return the list of root tree nodes
+     */
+    public List<TreeNode<FileInfo>> buildTreeData(Path dir) {
+        List<TreeNode<FileInfo>> rootNodes = new ArrayList<>();
 
-        TreeNode<FileInfo> docs = node("docs", FileInfo.dir("docs"))
-                .add(leaf("README.md", FileInfo.file("README.md", FileInfo.FileType.MARKDOWN, 4096)))
-                .add(leaf("CONTRIBUTING.md", FileInfo.file("CONTRIBUTING.md", FileInfo.FileType.MARKDOWN, 2048)));
+        // Add ".." parent node to the top of the tree
+        Path parent = dir.getParent();
+        Path parentTarget = (parent != null) ? parent : dir;
+        FileInfo parentInfo = FileInfo.dir("..", parentTarget);
+        rootNodes.add(TreeNode.of("..", parentInfo).leaf());
 
-        TreeNode<FileInfo> rootFiles = node(".root-files", FileInfo.dir(".root-files"))
-                .add(leaf("build.gradle.kts", FileInfo.file("build.gradle.kts", FileInfo.FileType.GRADLE, 2048, FileInfo.FileStatus.MODIFIED)))
-                .add(leaf("settings.gradle.kts", FileInfo.file("settings.gradle.kts", FileInfo.FileType.GRADLE, 512)))
-                .add(leaf(".gitignore", FileInfo.file(".gitignore", FileInfo.FileType.TEXT, 256)))
-                .expanded();
+        // Add directory child nodes
+        rootNodes.addAll(loadDirectoryChildren(dir));
 
-        return List.of(src, docs, rootFiles);
+        return rootNodes;
     }
 
-    private static TreeNode<FileInfo> node(String label, FileInfo data) {
-        return TreeNode.of(label, data);
-    }
+    /**
+     * Loads the children of a directory path dynamically.
+     *
+     * @param dir the directory to inspect
+     * @return list of tree nodes for the directory contents
+     */
+    public List<TreeNode<FileInfo>> loadDirectoryChildren(Path dir) {
+        List<TreeNode<FileInfo>> children = new ArrayList<>();
+        try (Stream<Path> stream = Files.list(dir)) {
+            List<Path> paths = stream.collect(Collectors.toList());
+            paths.sort(Comparator
+                    .comparing((Path p) -> !Files.isDirectory(p))
+                    .thenComparing(p -> {
+                        Path fn = p.getFileName();
+                        return fn != null ? fn.toString().toLowerCase(Locale.ROOT) : "";
+                    }));
 
-    private static TreeNode<FileInfo> leaf(String label, FileInfo data) {
-        return TreeNode.of(label, data).leaf();
+            for (Path p : paths) {
+                FileInfo info = FileInfo.fromPath(p);
+                if (info.type() == FileInfo.FileType.DIRECTORY) {
+                    TreeNode<FileInfo> dirNode = TreeNode.of(info.name(), info)
+                            .childrenLoader(() -> loadDirectoryChildren(p));
+                    children.add(dirNode);
+                } else {
+                    children.add(TreeNode.of(info.name(), info).leaf());
+                }
+            }
+        } catch (IOException | SecurityException ignored) {
+        }
+        return children;
     }
 
     // ════════════════════════════════════════════════════════════════
@@ -356,6 +597,7 @@ public class TreeWidgetDemo {
     }
 
     private void renderTree(Frame frame, Rect area) {
+        String titleText = " " + currentPath.toString() + " ";
         TreeWidget<TreeNode<FileInfo>> treeWidget = TreeWidget.<TreeNode<FileInfo>>builder()
                 .roots(roots)
                 .children(TreeNode::children)
@@ -371,7 +613,7 @@ public class TreeWidgetDemo {
                         .borders(Borders.ALL)
                         .borderType(BorderType.ROUNDED)
                         .borderStyle(Style.EMPTY.fg(Color.WHITE))
-                        .title(Title.from(" Project Files "))
+                        .title(Title.from(titleText))
                         .build())
                 .build();
 
@@ -460,6 +702,7 @@ public class TreeWidgetDemo {
         if (info != null) {
             content = Text.from(
                     Line.from(Span.raw("Name:   ").bold(), Span.raw(info.name())),
+                    Line.from(Span.raw("Path:   ").bold(), Span.raw(info.path() != null ? info.path().toString() : "").dim()),
                     Line.from(Span.raw("Type:   ").bold(), Span.raw(info.type().name()).dim()),
                     Line.from(Span.raw("Size:   ").bold(), Span.raw(info.formattedSize()).dim()),
                     Line.from(Span.raw("Status: ").bold(), formatStatus(info.status())),
@@ -520,6 +763,8 @@ public class TreeWidgetDemo {
                 Span.raw(" Collapse/Expand  ").dim(),
                 Span.raw("Space").bold().yellow(),
                 Span.raw(" Toggle  ").dim(),
+                Span.raw("Enter").bold().yellow(),
+                Span.raw(" Change Dir  ").dim(),
                 Span.raw("q").bold().yellow(),
                 Span.raw(" Quit").dim()
         );
@@ -534,5 +779,32 @@ public class TreeWidgetDemo {
                 .build();
 
         frame.renderWidget(footer, area);
+    }
+
+    /**
+     * Gets the current path.
+     *
+     * @return the current path
+     */
+    public Path getCurrentPath() {
+        return currentPath;
+    }
+
+    /**
+     * Gets the current root nodes.
+     *
+     * @return the root nodes
+     */
+    public List<TreeNode<FileInfo>> getRoots() {
+        return Collections.unmodifiableList(roots);
+    }
+
+    /**
+     * Gets the tree state.
+     *
+     * @return the tree state
+     */
+    public TreeState getTreeState() {
+        return treeState;
     }
 }
