@@ -830,7 +830,17 @@ public class TreeWidgetDemo
                         .build())
                 .build();
 
-        frame.renderWidget(details, area);
+        List<Rect> rows = Layout.vertical()
+                .constraints(
+                        Constraint.percentage(50),
+                        Constraint.percentage(50)
+                )
+                .split(area);
+
+        frame.renderWidget(details, rows.get(0));
+
+        Paragraph modelFiles = Paragraph.from("Model Files");
+        frame.renderWidget(modelFiles, rows.get(1));
     }
 
     private FileInfo getSelectedInfo() {

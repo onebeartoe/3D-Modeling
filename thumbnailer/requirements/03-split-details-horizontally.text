@@ -1,0 +1,7 @@
+
+Update renderDetails() to that is uses a Layout.vertical()
+    with two .constraints() - both having Constraint.percentage(50);
+
+The first row, in the new vertical layout, is the existing Paragraph details.
+
+The second row, in the new vertical layout, is a simple paragraph with the text "Model Files".
