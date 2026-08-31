@@ -45,11 +45,12 @@ public class DetailsPanel {
             Rect area,
             FileInfo info,
             List<File> modelFiles,
-            WaveTextState modelFilesTextState
-    ) {
+            WaveTextState modelFilesTextState) 
+    {
         Text content;
 
-        if (info != null) {
+        if (info != null) 
+        {
             List<Line> lines = new ArrayList<>();
             lines.add(Line.from(Span.raw("Name:   ").bold(), Span.raw(info.name())));
             lines.add(Line.from(Span.raw("Path:   ").bold(), Span.raw(info.path() != null ? info.path().toString() : "").dim()));
@@ -59,14 +60,10 @@ public class DetailsPanel {
             lines.add(Line.empty());
             lines.add(Line.from(Span.raw("Icon:   ").bold(), Span.raw(info.icon())));
 
-            if (modelFiles != null && !modelFiles.isEmpty()) {
-                for (File modelFile : modelFiles) {
-                    lines.add(Line.from(Span.raw(modelFile.getName())));
-                }
-            }
-
             content = Text.from(lines);
-        } else {
+        } 
+        else 
+        {
             content = Text.from(Line.from(Span.raw("(no selection)").dim()));
         }
 
@@ -95,8 +92,19 @@ public class DetailsPanel {
                 .peakCount(3)
                 .build();
 
+        
+        // Model Files
+        List<Line> modelFilesLines = new ArrayList<>();        
+        if (modelFiles != null && !modelFiles.isEmpty()) 
+        {
+            for (File modelFile : modelFiles) 
+            {
+                modelFilesLines.add(Line.from(Span.raw(modelFile.getName())));
+            }
+        }
+        Text modelFilesText = Text.from(modelFilesLines);
         Paragraph modelFilesWidget = Paragraph.builder()
-                .text("Model Files")
+                .text(modelFilesText)
                 .block(Block.builder()
                         .borders(Borders.ALL)
                         .borderType(BorderType.ROUNDED)
