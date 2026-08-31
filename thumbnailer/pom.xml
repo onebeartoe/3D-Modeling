@@ -9,7 +9,8 @@
     <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>tree-widget-demo</name>
+    <name>onebeartoe-modeling-thumbnailer</name>
+
     <description>Two-panel file manager demo showcasing Tree and Node details</description>
 
     <properties>

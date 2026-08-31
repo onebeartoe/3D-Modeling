@@ -3,7 +3,7 @@ Initial Application
 
 	Tamboui Widgets - Tree Widget Demo
 
-		Originially this project used the code from the Tamboui Tree Widget Demo
+		Originially this project used the code from Tamboui the Tree Widget Demo
 
 		github/tamboui/tamboui/tamboui-widgets/demos/tree-widget-demo/src/main/java/dev/tamboui/demo/
 
