@@ -60,8 +60,11 @@ public class PngGenerator
 
         if(runProfile.redirectOpenscad)
         {
-//            System.out.println("redirection");
-            //TODO: actually redirect the openscad output to a file
+            System.out.println("redirection");
+            
+            var todo = "TODO: actually redirect the openscad output to a file";
+            
+            System.out.println("todo = " + todo);
         }
         else
         {
