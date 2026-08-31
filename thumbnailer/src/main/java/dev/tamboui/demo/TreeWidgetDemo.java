@@ -579,8 +579,49 @@ public class TreeWidgetDemo {
                         )
                 ).centered())
                 .build();
+        
+        
+        Line helpLine = Line.from(
+                Span.raw(" Guide: ").dim(),
+                Span.raw("Some Guide").bold().cyan(),
+                Span.raw("   "),
+                Span.raw("1/2/3").bold().yellow(),
+                Span.raw(" Style  ").dim(),
+                Span.raw("\u2191\u2193/jk").bold().yellow(),
+                Span.raw(" Navigate  ").dim(),
+                Span.raw("\u2190\u2192/hl").bold().yellow(),
+                Span.raw(" Collapse/Expand  ").dim(),
+                Span.raw("Space").bold().yellow(),
+                Span.raw(" Toggle  ").dim(),
+                Span.raw("Enter").bold().yellow(),
+                Span.raw(" Change Dir  ").dim(),
+                Span.raw("q").bold().yellow(),
+                Span.raw(" Quit").dim()
+        );
 
-        frame.renderWidget(headerBlock, area);
+        Paragraph footer = Paragraph.builder()
+                .text(Text.from(helpLine))
+                .block(Block.builder()
+                        .borders(Borders.ALL)
+                        .borderType(BorderType.ROUNDED)
+                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
+                        
+.title(Title.from(
+                        Line.from(
+                                Span.raw(" TamboUI ").bold().cyan(),
+                                Span.raw("TreeWidget Demo ").yellow()
+                        )
+                ))                        
+                        
+                        .build())
+                .centered()
+                .build();        
+        
+        
+        
+
+        frame.renderWidget(footer, area);
+//        frame.renderWidget(headerBlock, area);
     }
 
     private void renderMainContent(Frame frame, Rect area) {
