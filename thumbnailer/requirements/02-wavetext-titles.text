@@ -1,0 +1,18 @@
+
+The agent replaced the main menu with the only Title.
+
+I ended up using a diff to correctly add the border title.
+
+------------------------------------------
+
+Prompt:
+
+Update the renderHeader() method to use a WaveText and its WaveTextBuilder to replace the Line with a Span having text "TreeWidget Demo".
+
+Use the following WaveTextBuilder methods on the new WaveText:
+
+    .text("Multiple waves moving through text...")
+    .color(CYAN)
+    .peakCount(3)
+
+Make sure the WaveTextState#advance is called in the run() method.

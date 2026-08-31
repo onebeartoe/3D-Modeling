@@ -25,6 +25,7 @@ import dev.tamboui.layout.Constraint;
 import dev.tamboui.layout.Layout;
 import dev.tamboui.layout.Rect;
 import dev.tamboui.style.Color;
+import static dev.tamboui.style.Color.CYAN;
 import dev.tamboui.style.Style;
 import dev.tamboui.terminal.Backend;
 import dev.tamboui.terminal.BackendFactory;
@@ -43,6 +44,8 @@ import dev.tamboui.widgets.tree.GuideStyle;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.tree.TreeWidget;
+import dev.tamboui.widgets.wavetext.WaveText;
+import dev.tamboui.widgets.wavetext.WaveTextState;
 
 /**
  * Demo TUI application showcasing the TreeWidget with dynamic local filesystem navigation.
@@ -59,6 +62,8 @@ import dev.tamboui.widgets.tree.TreeWidget;
  */
 public class TreeWidgetDemo 
 {
+    private final WaveTextState waveTextState = new WaveTextState();
+
 
     private void currentDirectory() 
     {
@@ -361,9 +366,12 @@ public class TreeWidgetDemo
 
             backend.onResize(() -> terminal.draw(this::ui));
 
-            while (running) {
+            while (running) 
+            {
                 terminal.draw(this::ui);
 
+                waveTextState.advance();
+                
                 int c = backend.read(100);
                 if (c == -2 || c == -1) {
                     continue;
@@ -631,6 +639,12 @@ public class TreeWidgetDemo
                 Span.raw(" Quit").dim()
         );
 
+  WaveText waveText = WaveText.builder()
+                .text("Modeling Thumbnailer")
+                .color(Color.LIGHT_YELLOW)
+                .peakCount(3)
+                .build();        
+        
         Paragraph footer = Paragraph.builder()
                 .text(Text.from(helpLine))
                 .block(Block.builder()
@@ -638,12 +652,14 @@ public class TreeWidgetDemo
                         .borderType(BorderType.ROUNDED)
                         .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
                         
-.title(Title.from(
-                        Line.from(
-                                Span.raw(" TamboUI ").bold().cyan(),
-                                Span.raw(" TreeWidget Demo ").yellow()
-                        )
-                ))                        
+//.title(
+//        Title.from(
+//                        Line.from(
+//                                Span.raw(" TamboUI ").bold().cyan(),
+//                                Span.raw(" TreeWidget Demo ").yellow()
+//                  )
+//        )
+//      )
                         
                         .build())
                 .centered()
@@ -653,6 +669,8 @@ public class TreeWidgetDemo
         
 
         frame.renderWidget(footer, area);
+        
+        frame.renderStatefulWidget(waveText, area, waveTextState);
 //        frame.renderWidget(headerBlock, area);
     }
 
@@ -894,4 +912,13 @@ public class TreeWidgetDemo
     public List<File> getModelFiles() {
         return Collections.unmodifiableList(modelFiles);
     }
+    
+    /**
+     * Gets the wave text state.
+     *
+     * @return the wave text state
+     */
+    public WaveTextState getWaveTextState() {
+        return waveTextState;
+    }    
 }

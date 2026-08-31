@@ -162,4 +162,17 @@ class TreeWidgetDemoTest {
         assertEquals("partB1.3mf", demo.getModelFiles().get(0).getName());
         assertEquals("partB2.STL", demo.getModelFiles().get(1).getName());
     }
+
+    @Test
+    void testWaveTextStateInitializationAndAdvance(@TempDir Path tempDir) {
+        TreeWidgetDemo demo = new TreeWidgetDemo(tempDir);
+        assertNotNull(demo.getWaveTextState(), "WaveTextState should be initialized");
+        assertEquals(0, demo.getWaveTextState().tick(), "Initial tick should be 0");
+
+        demo.getWaveTextState().advance();
+        assertEquals(1, demo.getWaveTextState().tick(), "Tick should be 1 after advance()");
+
+        demo.getWaveTextState().advance(5);
+        assertEquals(6, demo.getWaveTextState().tick(), "Tick should be 6 after advance(5)");
+    }
 }
