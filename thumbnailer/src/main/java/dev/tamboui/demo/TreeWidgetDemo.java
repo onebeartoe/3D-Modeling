@@ -8,6 +8,7 @@
  */
 package dev.tamboui.demo;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -312,6 +313,7 @@ public class TreeWidgetDemo
     private List<TreeNode<FileInfo>> roots;
     private List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries;
     private GuideStyle currentGuideStyle = GuideStyle.UNICODE;
+    private List<File> modelFiles = new ArrayList<>();
 
     /**
      * Constructs a TreeWidgetDemo starting at the current working directory.
@@ -328,6 +330,7 @@ public class TreeWidgetDemo
     public TreeWidgetDemo(Path startPath) {
         this.currentPath = startPath.toAbsolutePath().normalize();
         this.roots = buildTreeData(this.currentPath);
+        updateModelFiles();
     }
 
     /**
@@ -499,9 +502,33 @@ public class TreeWidgetDemo
                 this.roots = buildTreeData(this.currentPath);
                 this.treeState.select(0);
                 this.treeState.offset(0);
+                updateModelFiles();
             }
         } catch (SecurityException ignored) {
         }
+    }
+
+    private void updateModelFiles() {
+        List<File> files = new ArrayList<>();
+        try (Stream<Path> stream = Files.list(currentPath)) {
+            List<Path> paths = stream.collect(Collectors.toList());
+            paths.sort(Comparator.comparing(p -> {
+                Path fn = p.getFileName();
+                return fn != null ? fn.toString().toLowerCase(Locale.ROOT) : "";
+            }));
+
+            for (Path p : paths) {
+                if (!Files.isDirectory(p)) {
+                    String name = p.getFileName() != null ? p.getFileName().toString() : p.toString();
+                    String lower = name.toLowerCase(Locale.ROOT);
+                    if (lower.endsWith(".stl") || lower.endsWith(".3mf")) {
+                        files.add(p.toFile());
+                    }
+                }
+            }
+        } catch (IOException | SecurityException ignored) {
+        }
+        this.modelFiles = files;
     }
 
     // ════════════════════════════════════════════════════════════════
@@ -758,15 +785,20 @@ public class TreeWidgetDemo
 
         Text content;
         if (info != null) {
-            content = Text.from(
-                    Line.from(Span.raw("Name:   ").bold(), Span.raw(info.name())),
-                    Line.from(Span.raw("Path:   ").bold(), Span.raw(info.path() != null ? info.path().toString() : "").dim()),
-                    Line.from(Span.raw("Type:   ").bold(), Span.raw(info.type().name()).dim()),
-                    Line.from(Span.raw("Size:   ").bold(), Span.raw(info.formattedSize()).dim()),
-                    Line.from(Span.raw("Status: ").bold(), formatStatus(info.status())),
-                    Line.empty(),
-                    Line.from(Span.raw("Icon:   ").bold(), Span.raw(info.icon()))
-            );
+            List<Line> lines = new ArrayList<>();
+            lines.add(Line.from(Span.raw("Name:   ").bold(), Span.raw(info.name())));
+            lines.add(Line.from(Span.raw("Path:   ").bold(), Span.raw(info.path() != null ? info.path().toString() : "").dim()));
+            lines.add(Line.from(Span.raw("Type:   ").bold(), Span.raw(info.type().name()).dim()));
+            lines.add(Line.from(Span.raw("Size:   ").bold(), Span.raw(info.formattedSize()).dim()));
+            lines.add(Line.from(Span.raw("Status: ").bold(), formatStatus(info.status())));
+            lines.add(Line.empty());
+            lines.add(Line.from(Span.raw("Icon:   ").bold(), Span.raw(info.icon())));
+
+            for (File modelFile : modelFiles) {
+                lines.add(Line.from(Span.raw(modelFile.getName())));
+            }
+
+            content = Text.from(lines);
         } else {
             content = Text.from(Line.from(Span.raw("(no selection)").dim()));
         }
@@ -864,5 +896,14 @@ public class TreeWidgetDemo
      */
     public TreeState getTreeState() {
         return treeState;
+    }
+
+    /**
+     * Gets the model files found in the current path.
+     *
+     * @return the model files
+     */
+    public List<File> getModelFiles() {
+        return Collections.unmodifiableList(modelFiles);
     }
 }

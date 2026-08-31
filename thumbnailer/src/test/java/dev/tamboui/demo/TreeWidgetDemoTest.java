@@ -1,6 +1,7 @@
 
 package dev.tamboui.demo;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -124,5 +125,41 @@ class TreeWidgetDemoTest {
 
         TreeWidgetDemo.FileInfo mbFile = TreeWidgetDemo.FileInfo.file("mb.bin", TreeWidgetDemo.FileInfo.FileType.BINARY, 2 * 1024 * 1024, Path.of("/test/mb.bin"));
         assertEquals("2.0 MB", mbFile.formattedSize());
+    }
+
+    @Test
+    void testModelFilesTrackingOnInitialization(@TempDir Path tempDir) throws IOException {
+        Files.createFile(tempDir.resolve("model1.stl"));
+        Files.createFile(tempDir.resolve("model2.3mf"));
+        Files.createFile(tempDir.resolve("notes.txt"));
+        Path subDir = tempDir.resolve("ignored_dir.stl");
+        Files.createDirectory(subDir);
+
+        TreeWidgetDemo demo = new TreeWidgetDemo(tempDir);
+        List<File> modelFiles = demo.getModelFiles();
+
+        assertEquals(2, modelFiles.size());
+        assertEquals("model1.stl", modelFiles.get(0).getName());
+        assertEquals("model2.3mf", modelFiles.get(1).getName());
+    }
+
+    @Test
+    void testModelFilesTrackingOnNavigateTo(@TempDir Path tempDir) throws IOException {
+        Path folderA = tempDir.resolve("folderA");
+        Path folderB = tempDir.resolve("folderB");
+        Files.createDirectory(folderA);
+        Files.createDirectory(folderB);
+        Files.createFile(folderA.resolve("partA.stl"));
+        Files.createFile(folderB.resolve("partB1.3mf"));
+        Files.createFile(folderB.resolve("partB2.STL"));
+
+        TreeWidgetDemo demo = new TreeWidgetDemo(folderA);
+        assertEquals(1, demo.getModelFiles().size());
+        assertEquals("partA.stl", demo.getModelFiles().get(0).getName());
+
+        demo.navigateTo(folderB);
+        assertEquals(2, demo.getModelFiles().size());
+        assertEquals("partB1.3mf", demo.getModelFiles().get(0).getName());
+        assertEquals("partB2.STL", demo.getModelFiles().get(1).getName());
     }
 }

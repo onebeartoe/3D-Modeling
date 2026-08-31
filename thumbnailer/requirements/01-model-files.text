@@ -1,0 +1,6 @@
+
+Update the application to keep track of any 'model files' when the value of currentPath changes.  By 'model files' I mean files with a ".stl" or ".3mf" extension.
+
+Update the application so that the 'Details' Text content shows the 'model files' found, each on their own line.
+
+Update the renderDetails() method to list the 'model files' after the Line with the "Icon:    " Span.
