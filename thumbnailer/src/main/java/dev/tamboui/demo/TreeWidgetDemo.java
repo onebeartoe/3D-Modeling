@@ -9,41 +9,22 @@
 package dev.tamboui.demo;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import dev.tamboui.layout.Constraint;
-import dev.tamboui.layout.Layout;
-import dev.tamboui.layout.Rect;
-import dev.tamboui.style.Color;
-import dev.tamboui.style.Style;
+import dev.tamboui.demo.controller.TreeInputHandler;
+import dev.tamboui.demo.controller.TreeNavigationController;
+import dev.tamboui.demo.service.FileSystemTreeService;
+import dev.tamboui.demo.service.ModelFileScanner;
+import dev.tamboui.demo.ui.DetailsPanel;
+import dev.tamboui.demo.ui.FileNodeRenderer;
+import dev.tamboui.demo.ui.TreeDemoView;
 import dev.tamboui.terminal.Backend;
 import dev.tamboui.terminal.BackendFactory;
-import dev.tamboui.terminal.Frame;
 import dev.tamboui.terminal.Terminal;
-import dev.tamboui.text.Line;
-import dev.tamboui.text.Span;
-import dev.tamboui.text.Text;
-import dev.tamboui.widgets.block.Block;
-import dev.tamboui.widgets.block.BorderType;
-import dev.tamboui.widgets.block.Borders;
-import dev.tamboui.widgets.block.Title;
-import dev.tamboui.widgets.common.SizedWidget;
-import dev.tamboui.widgets.paragraph.Paragraph;
-import dev.tamboui.widgets.tree.GuideStyle;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
-import dev.tamboui.widgets.tree.TreeWidget;
-import dev.tamboui.widgets.wavetext.WaveText;
 import dev.tamboui.widgets.wavetext.WaveTextState;
 
 /**
@@ -59,266 +40,20 @@ import dev.tamboui.widgets.wavetext.WaveTextState;
  *   <li>Scrollbar support</li>
  * </ul>
  */
-public class TreeWidgetDemo 
-{
-    private final WaveTextState waveTextState = new WaveTextState();
-
-    private final WaveTextState modelFilesTextState = new WaveTextState();
-
-    private void currentDirectory() 
-    {
-        var path = currentPath.toFile();
-       
-        System.out.println("Current Directory Not supported yet.");
-    }
-
-    private void recursiveDirectory() 
-    {
-        System.out.println("Recursive Directory Not supported yet.");
-    }
-
-    // ════════════════════════════════════════════════════════════════
-    // Data Model
-    // ════════════════════════════════════════════════════════════════
-
-    /**
-     * Represents a file or directory with metadata.
-     *
-     * @param name      the display name
-     * @param type      the file type
-     * @param sizeBytes the size in bytes
-     * @param status    the file status
-     * @param path      the filesystem path
-     */
-    public record FileInfo(
-            String name,
-            FileType type,
-            long sizeBytes,
-            FileStatus status,
-            Path path
-    ) {
-        /**
-         * Supported file types for display icons and categorization.
-         */
-        public enum FileType {
-            /** Directory */
-            DIRECTORY,
-            /** Java source file */
-            JAVA,
-            /** Kotlin source file */
-            KOTLIN,
-            /** XML file */
-            XML,
-            /** YAML file */
-            YAML,
-            /** JSON file */
-            JSON,
-            /** Markdown file */
-            MARKDOWN,
-            /** Gradle build file */
-            GRADLE,
-            /** Plain text file */
-            TEXT,
-            /** Binary or other file */
-            BINARY
-        }
-
-        /**
-         * Status indicator for files.
-         */
-        public enum FileStatus {
-            /** Normal unmodified file */
-            NORMAL,
-            /** Modified file */
-            MODIFIED,
-            /** Newly created file */
-            NEW,
-            /** Ignored or hidden file */
-            IGNORED
-        }
-
-        /**
-         * Creates a directory FileInfo.
-         *
-         * @param name the directory name
-         * @param path the path
-         * @return the FileInfo
-         */
-        public static FileInfo dir(String name, Path path) {
-            return new FileInfo(name, FileType.DIRECTORY, 0, FileStatus.NORMAL, path);
-        }
-
-        /**
-         * Creates a file FileInfo.
-         *
-         * @param name the file name
-         * @param type the file type
-         * @param size the size in bytes
-         * @param path the path
-         * @return the FileInfo
-         */
-        public static FileInfo file(String name, FileType type, long size, Path path) {
-            return new FileInfo(name, type, size, FileStatus.NORMAL, path);
-        }
-
-        /**
-         * Creates a file FileInfo with status.
-         *
-         * @param name   the file name
-         * @param type   the file type
-         * @param size   the size in bytes
-         * @param status the status
-         * @param path   the path
-         * @return the FileInfo
-         */
-        public static FileInfo file(String name, FileType type, long size, FileStatus status, Path path) {
-            return new FileInfo(name, type, size, status, path);
-        }
-
-        /**
-         * Creates a FileInfo instance by inspecting a filesystem path.
-         *
-         * @param path the path to inspect
-         * @return the FileInfo
-         */
-        public static FileInfo fromPath(Path path) {
-            boolean isDir = Files.isDirectory(path);
-            String name = path.getFileName() != null ? path.getFileName().toString() : path.toString();
-            FileStatus status = FileStatus.NORMAL;
-            try {
-                if (Files.isHidden(path)) {
-                    status = FileStatus.IGNORED;
-                }
-            } catch (IOException ignored) {
-            }
-
-            if (isDir) {
-                return new FileInfo(name, FileType.DIRECTORY, 0, status, path);
-            }
-
-            FileType type = determineFileType(name);
-            long size = 0;
-            try {
-                size = Files.size(path);
-            } catch (IOException ignored) {
-            }
-
-            return new FileInfo(name, type, size, status, path);
-        }
-
-        /**
-         * Determines the file type from the filename.
-         *
-         * @param fileName the filename
-         * @return the FileType
-         */
-        public static FileType determineFileType(String fileName) {
-            String lower = fileName.toLowerCase(Locale.ROOT);
-            if (lower.endsWith(".java")) {
-                return FileType.JAVA;
-            }
-            if (lower.endsWith(".kt")) {
-                return FileType.KOTLIN;
-            }
-            if (lower.endsWith(".gradle") || lower.endsWith(".gradle.kts")
-                    || lower.equals("gradlew") || lower.equals("gradlew.bat")) {
-                return FileType.GRADLE;
-            }
-            if (lower.endsWith(".xml") || lower.endsWith(".pom") || lower.endsWith(".iml")) {
-                return FileType.XML;
-            }
-            if (lower.endsWith(".yml") || lower.endsWith(".yaml")) {
-                return FileType.YAML;
-            }
-            if (lower.endsWith(".json")) {
-                return FileType.JSON;
-            }
-            if (lower.endsWith(".md") || lower.endsWith(".markdown")
-                    || lower.endsWith(".adoc") || lower.endsWith(".asciidoc")) {
-                return FileType.MARKDOWN;
-            }
-            if (lower.endsWith(".txt") || lower.endsWith(".log") || lower.endsWith(".properties")
-                    || lower.endsWith(".sh") || lower.endsWith(".bash") || lower.endsWith(".zsh")
-                    || lower.endsWith(".toml") || lower.endsWith(".conf") || lower.endsWith(".ini")
-                    || lower.endsWith(".env") || lower.startsWith(".git") || lower.equals("license")
-                    || lower.equals("readme") || lower.endsWith(".csv") || lower.endsWith(".sql")) {
-                return FileType.TEXT;
-            }
-            if (lower.endsWith(".class") || lower.endsWith(".jar") || lower.endsWith(".war")
-                    || lower.endsWith(".zip") || lower.endsWith(".tar") || lower.endsWith(".gz")
-                    || lower.endsWith(".7z") || lower.endsWith(".png") || lower.endsWith(".jpg")
-                    || lower.endsWith(".jpeg") || lower.endsWith(".gif") || lower.endsWith(".ico")
-                    || lower.endsWith(".svg") || lower.endsWith(".pdf") || lower.endsWith(".exe")
-                    || lower.endsWith(".so") || lower.endsWith(".dll") || lower.endsWith(".dylib")
-                    || lower.endsWith(".bin")) {
-                return FileType.BINARY;
-            }
-            return FileType.TEXT;
-        }
-
-        /**
-         * Gets the icon string for this file.
-         *
-         * @return icon string
-         */
-        public String icon() {
-            return switch (type) {
-                case DIRECTORY -> "\uD83D\uDCC1"; // 📁
-                case JAVA -> "\u2615"; // ☕
-                case KOTLIN -> "K";
-                case XML -> "\uD83D\uDCCB"; // 📋
-                case YAML, JSON -> "\u2699"; // ⚙
-                case MARKDOWN -> "\uD83D\uDCDD"; // 📝
-                case GRADLE -> "\uD83D\uDC18"; // 🐘
-                case TEXT -> "\uD83D\uDCC4"; // 📄
-                case BINARY -> "\uD83D\uDCE6"; // 📦
-            };
-        }
-
-        /**
-         * Formats the file size for display.
-         *
-         * @return formatted size string
-         */
-        public String formattedSize() {
-            if (type == FileType.DIRECTORY) {
-                return "";
-            }
-            if (sizeBytes < 1024) {
-                return sizeBytes + " B";
-            }
-            if (sizeBytes < 1024 * 1024) {
-                return String.format(Locale.ROOT, "%.1f KB", sizeBytes / 1024.0);
-            }
-            return String.format(Locale.ROOT, "%.1f MB", sizeBytes / (1024.0 * 1024));
-        }
-
-        /**
-         * Gets the status color.
-         *
-         * @return the color or null
-         */
-        public Color statusColor() {
-            return switch (status) {
-                case MODIFIED -> Color.YELLOW;
-                case NEW -> Color.GREEN;
-                case IGNORED -> Color.DARK_GRAY;
-                case NORMAL -> null;
-            };
-        }
-    }
-
-    // ════════════════════════════════════════════════════════════════
-    // Application State
-    // ════════════════════════════════════════════════════════════════
+public class TreeWidgetDemo {
 
     private boolean running = true;
-    private final TreeState treeState = new TreeState();
-    private Path currentPath;
-    private List<TreeNode<FileInfo>> roots;
-    private List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries;
-    private GuideStyle currentGuideStyle = GuideStyle.UNICODE;
-    private List<File> modelFiles = new ArrayList<>();
+
+    private final WaveTextState waveTextState = new WaveTextState();
+    private final WaveTextState modelFilesTextState = new WaveTextState();
+
+    private final FileSystemTreeService fileSystemService;
+    private final ModelFileScanner modelFileScanner;
+    private final TreeNavigationController navigationController;
+    private final TreeInputHandler inputHandler;
+    private final FileNodeRenderer nodeRenderer;
+    private final DetailsPanel detailsPanel;
+    private final TreeDemoView view;
 
     /**
      * Constructs a TreeWidgetDemo starting at the current working directory.
@@ -333,9 +68,20 @@ public class TreeWidgetDemo
      * @param startPath the initial directory path
      */
     public TreeWidgetDemo(Path startPath) {
-        this.currentPath = startPath.toAbsolutePath().normalize();
-        this.roots = buildTreeData(this.currentPath);
-        updateModelFiles();
+        this.fileSystemService = new FileSystemTreeService();
+        this.modelFileScanner = new ModelFileScanner();
+        this.navigationController = new TreeNavigationController(startPath, fileSystemService, modelFileScanner);
+        this.inputHandler = new TreeInputHandler(navigationController, () -> this.running = false);
+        this.nodeRenderer = new FileNodeRenderer();
+        this.detailsPanel = new DetailsPanel();
+        this.view = new TreeDemoView(
+                navigationController,
+                inputHandler,
+                nodeRenderer,
+                detailsPanel,
+                waveTextState,
+                modelFilesTextState
+        );
     }
 
     /**
@@ -356,566 +102,39 @@ public class TreeWidgetDemo
      *
      * @throws Exception if an error occurs during execution
      */
-    public void run() throws Exception 
-    {
-        try (Backend backend = BackendFactory.create()) 
-        {
+    public void run() throws Exception {
+        try (Backend backend = BackendFactory.create()) {
             backend.enableRawMode();
             backend.enterAlternateScreen();
             backend.hideCursor();
 
             Terminal<Backend> terminal = new Terminal<>(backend);
 
-            backend.onResize(() -> terminal.draw(this::ui));
+            backend.onResize(() -> terminal.draw(view::render));
 
-            while (running) 
-            {
-                terminal.draw(this::ui);
+            while (running) {
+                terminal.draw(view::render);
 
-                waveTextState.advance();                
+                waveTextState.advance();
                 modelFilesTextState.advance();
-                
+
                 int c = backend.read(100);
                 if (c == -2 || c == -1) {
                     continue;
                 }
 
-                handleInput(c, backend);
+                inputHandler.handleInput(c, backend);
             }
-        }
-    }
-
-    private void handleInput(int c, Backend backend) throws IOException {
-        if (c == 27) {
-            int next = backend.peek(50);
-            if (next == '[') {
-                backend.read(50);
-                int code = backend.read(50);
-                handleEscapeSequence(code);
-            }
-            return;
-        }
-
-        switch (c) {
-            case 'q', 'Q', 3 -> running = false;
-            case 'c', 'C' -> currentDirectory();
-            case 'j', 'J' -> selectNext();
-            case 'k', 'K' -> treeState.selectPrevious();
-            case 'l', 'L' -> expandSelected();
-            case 'h', 'H' -> collapseSelected();
-            case 'r', 'R' -> recursiveDirectory();
-            case ' ' -> toggleSelected();
-            case '\r', '\n' -> enterSelected();
-            case 'g' -> treeState.selectFirst();
-            case 'G' -> selectLast();
-            case '1' -> currentGuideStyle = GuideStyle.UNICODE;
-            case '2' -> currentGuideStyle = GuideStyle.ASCII;
-            case '3' -> currentGuideStyle = GuideStyle.NONE;
-        }
-    }
-
-    private void handleEscapeSequence(int code) {
-        switch (code) {
-            case 'A' -> treeState.selectPrevious(); // Up
-            case 'B' -> selectNext(); // Down
-            case 'C' -> expandSelected(); // Right
-            case 'D' -> collapseSelected(); // Left
-        }
-    }
-
-    private void selectNext() {
-        if (lastFlatEntries != null && !lastFlatEntries.isEmpty()) {
-            treeState.selectNext(lastFlatEntries.size() - 1);
-        }
-    }
-
-    private void selectLast() {
-        if (lastFlatEntries != null && !lastFlatEntries.isEmpty()) {
-            treeState.selectLast(lastFlatEntries.size() - 1);
-        }
-    }
-
-    private void expandSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
-            return;
-        }
-        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
-        TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
-        if (!node.isLeaf()) {
-            if (node.isExpanded()) {
-                if (!node.children().isEmpty() && idx + 1 < lastFlatEntries.size()) {
-                    treeState.select(idx + 1);
-                }
-            } else {
-                node.expanded(true);
-            }
-        }
-    }
-
-    private void collapseSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
-            return;
-        }
-        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
-        TreeWidget.FlatEntry<TreeNode<FileInfo>> entry = lastFlatEntries.get(idx);
-        TreeNode<FileInfo> node = entry.node();
-        if (node.isExpanded() && !node.isLeaf()) {
-            node.expanded(false);
-        } else {
-            TreeNode<FileInfo> parent = entry.parent();
-            if (parent != null) {
-                for (int i = 0; i < lastFlatEntries.size(); i++) {
-                    if (lastFlatEntries.get(i).node() == parent) {
-                        treeState.select(i);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    private void toggleSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
-            return;
-        }
-        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
-        TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
-        if (!node.isLeaf()) {
-            node.toggleExpanded();
         }
     }
 
     /**
-     * Handles Enter key press: navigates to the selected directory if a directory node is selected.
-     */
-    private void enterSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
-            return;
-        }
-        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
-        TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
-        FileInfo info = node.data();
-        if (info != null && info.type() == FileInfo.FileType.DIRECTORY && info.path() != null) {
-            navigateTo(info.path());
-        }
-    }
-
-    /**
-     * Changes path to the specified directory and reloads tree child nodes.
-     *
-     * @param dir the target directory
-     */
-    public void navigateTo(Path dir) {
-        try {
-            Path target = dir.toAbsolutePath().normalize();
-            if (Files.isDirectory(target)) {
-                this.currentPath = target;
-                this.roots = buildTreeData(this.currentPath);
-                this.treeState.select(0);
-                this.treeState.offset(0);
-                updateModelFiles();
-            }
-        } catch (SecurityException ignored) {
-        }
-    }
-
-    private void updateModelFiles() {
-        List<File> files = new ArrayList<>();
-        try (Stream<Path> stream = Files.list(currentPath)) {
-            List<Path> paths = stream.collect(Collectors.toList());
-            paths.sort(Comparator.comparing(p -> {
-                Path fn = p.getFileName();
-                return fn != null ? fn.toString().toLowerCase(Locale.ROOT) : "";
-            }));
-
-            for (Path p : paths) {
-                if (!Files.isDirectory(p)) {
-                    String name = p.getFileName() != null ? p.getFileName().toString() : p.toString();
-                    String lower = name.toLowerCase(Locale.ROOT);
-                    if (lower.endsWith(".stl") || lower.endsWith(".3mf")) {
-                        files.add(p.toFile());
-                    }
-                }
-            }
-        } 
-        catch (IOException | SecurityException ignored) 
-        {
-            ignored.printStackTrace();
-        }
-        this.modelFiles = files;
-    }
-
-    // ════════════════════════════════════════════════════════════════
-    // Tree Data Construction
-    // ════════════════════════════════════════════════════════════════
-
-    /**
-     * Builds the tree root nodes for the specified directory.
-     * Includes a ".." parent node at the top.
+     * Navigates to the specified directory.
      *
      * @param dir the directory path
-     * @return the list of root tree nodes
      */
-    public List<TreeNode<FileInfo>> buildTreeData(Path dir) {
-        List<TreeNode<FileInfo>> rootNodes = new ArrayList<>();
-
-        // Add ".." parent node to the top of the tree
-        Path parent = dir.getParent();
-        Path parentTarget = (parent != null) ? parent : dir;
-        FileInfo parentInfo = FileInfo.dir("..", parentTarget);
-        rootNodes.add(TreeNode.of("..", parentInfo).leaf());
-
-        // Add directory child nodes
-        rootNodes.addAll(loadDirectoryChildren(dir));
-
-        return rootNodes;
-    }
-
-    /**
-     * Loads the children of a directory path dynamically.
-     *
-     * @param dir the directory to inspect
-     * @return list of tree nodes for the directory contents
-     */
-    public List<TreeNode<FileInfo>> loadDirectoryChildren(Path dir) {
-        List<TreeNode<FileInfo>> children = new ArrayList<>();
-        try (Stream<Path> stream = Files.list(dir)) {
-            List<Path> paths = stream.collect(Collectors.toList());
-            paths.sort(Comparator
-                    .comparing((Path p) -> !Files.isDirectory(p))
-                    .thenComparing(p -> {
-                        Path fn = p.getFileName();
-                        return fn != null ? fn.toString().toLowerCase(Locale.ROOT) : "";
-                    }));
-
-            for (Path p : paths) {
-                FileInfo info = FileInfo.fromPath(p);
-                if (info.type() == FileInfo.FileType.DIRECTORY) {
-                    TreeNode<FileInfo> dirNode = TreeNode.of(info.name(), info)
-                            .childrenLoader(() -> loadDirectoryChildren(p));
-                    children.add(dirNode);
-                } else {
-                    children.add(TreeNode.of(info.name(), info).leaf());
-                }
-            }
-        } catch (IOException | SecurityException ignored) 
-        {
-            ignored.printStackTrace();
-        }
-        return children;
-    }
-
-    // ════════════════════════════════════════════════════════════════
-    // UI Rendering
-    // ════════════════════════════════════════════════════════════════
-
-    private void ui(Frame frame) {
-        Rect area = frame.area();
-
-        List<Rect> layout = Layout.vertical()
-                .constraints(
-                        Constraint.length(3),  // Header
-                        Constraint.fill(),     // Main content
-                        Constraint.length(3)   // Footer
-                )
-                .split(area);
-
-        renderHeader(frame, layout.get(0));
-        renderMainContent(frame, layout.get(1));
-        renderFooter(frame, layout.get(2));
-    }
-
-    private void renderHeader(Frame frame, Rect area) 
-    {
-        Line helpLine = Line.from(
-                                Span.raw(" [C]Current Directory ").dim(),
-                Span.raw(" [R] Recursive Directory ").dim(),
-                Span.raw(" Guide: ").dim(),
-                Span.raw("Some Guide").bold().cyan(),
-                Span.raw("   "),
-                Span.raw("1/2/3").bold().yellow(),
-                Span.raw(" Style  ").dim(),
-                Span.raw("\u2191\u2193/jk").bold().yellow(),
-                Span.raw(" Navigate  ").dim(),
-                Span.raw("\u2190\u2192/hl").bold().yellow(),
-                Span.raw(" Collapse/Expand  ").dim(),
-                Span.raw("Space").bold().yellow(),
-                Span.raw(" Toggle  ").dim(),
-                Span.raw("Enter").bold().yellow(),
-                Span.raw(" Change Dir  ").dim(),
-                Span.raw("q").bold().yellow(),
-                Span.raw(" Quit").dim()
-        );
-
-  WaveText waveText = WaveText.builder()
-                .text("Modeling Thumbnailer")
-                .color(Color.LIGHT_YELLOW)
-                .peakCount(3)
-                .build();
-        
-        Paragraph footer = Paragraph.builder()
-                .text(Text.from(helpLine))
-                .block(Block.builder()
-                        .borders(Borders.ALL)
-                        .borderType(BorderType.ROUNDED)
-                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
-//.title(
-//        Title.from(
-//                        Line.from(
-//                                Span.raw(" TamboUI ").bold().cyan(),
-//                                Span.raw(" TreeWidget Demo ").yellow()
-//                  )
-//        )
-//      )
-                        .build())
-                .centered()
-                .build();        
-
-        frame.renderWidget(footer, area);
-        
-        frame.renderStatefulWidget(waveText, area, waveTextState);
-    }
-
-    private void renderMainContent(Frame frame, Rect area) 
-    {
-        List<Rect> cols = Layout.horizontal()
-                .constraints(
-                        Constraint.percentage(65),
-                        Constraint.percentage(35)
-                )
-                .spacing(1)
-                .split(area);
-
-        renderTree(frame, cols.get(0));
-        renderDetails(frame, cols.get(1));
-    }
-
-    private void renderTree(Frame frame, Rect area) {
-        String titleText = " " + currentPath.toString() + " ";
-        TreeWidget<TreeNode<FileInfo>> treeWidget = TreeWidget.<TreeNode<FileInfo>>builder()
-                .roots(roots)
-                .children(TreeNode::children)
-                .isLeaf(TreeNode::isLeaf)
-                .expansionState(TreeNode::isExpanded, TreeNode::expanded)
-                .nodeRenderer(this::renderNode)
-                .guideStyle(currentGuideStyle)
-                .highlightStyle(Style.EMPTY.reversed())
-                .highlightSymbol("\u25B6 ") // ▶
-                .scrollbar()
-                .scrollbarThumbStyle(Style.EMPTY.fg(Color.CYAN))
-                .block(Block.builder()
-                        .borders(Borders.ALL)
-                        .borderType(BorderType.ROUNDED)
-                        .borderStyle(Style.EMPTY.fg(Color.WHITE))
-                        .title(Title.from(titleText))
-                        .build())
-                .build();
-
-        frame.renderStatefulWidget(treeWidget, area, treeState);
-        this.lastFlatEntries = treeWidget.lastFlatEntries();
-    }
-
-    /**
-     * Renders a tree node using SizedWidget with right-aligned metadata.
-     */
-    private SizedWidget renderNode(TreeNode<FileInfo> node) {
-        FileInfo info = node.data();
-        if (info == null) {
-            return SizedWidget.of(Paragraph.from(node.label()));
-        }
-
-        // Create a custom widget that renders left content and right-aligned metadata
-        return SizedWidget.of((rect, buffer) -> {
-            if (rect.isEmpty()) {
-                return;
-            }
-
-            // Build left content: icon + name
-            Line leftLine = buildLeftContent(info);
-
-            // Build right content: size + badge
-            Line rightLine = buildRightContent(info);
-
-            int leftWidth = leftLine.width();
-            int rightWidth = rightLine.width();
-            int availableWidth = rect.width();
-
-            // Render left content
-            buffer.setLine(rect.left(), rect.top(), leftLine);
-
-            // Render right content at right edge (if there's room)
-            if (rightWidth > 0 && leftWidth + rightWidth + 1 < availableWidth) {
-                int rightX = rect.right() - rightWidth;
-                buffer.setLine(rightX, rect.top(), rightLine);
-            }
-        });
-    }
-
-    private Line buildLeftContent(FileInfo info) {
-        Span icon = Span.raw(info.icon() + " ");
-        Span name = Span.raw(info.name());
-        Color statusColor = info.statusColor();
-        if (statusColor != null) {
-            name = name.fg(statusColor);
-        }
-
-        if (info.type() == FileInfo.FileType.DIRECTORY) {
-            return Line.from(icon, name.bold());
-        }
-
-        return Line.from(icon, name);
-    }
-
-    private Line buildRightContent(FileInfo info) {
-        if (info.type() == FileInfo.FileType.DIRECTORY) {
-            return Line.empty();
-        }
-
-        String size = info.formattedSize();
-        if (size.isEmpty()) {
-            return Line.empty();
-        }
-
-        Span sizeSpan = Span.raw(size).dim();
-
-        if (info.status() == FileInfo.FileStatus.MODIFIED) {
-            Span badge = Span.raw(" M").bg(Color.YELLOW).fg(Color.BLACK);
-            return Line.from(sizeSpan, badge);
-        } else if (info.status() == FileInfo.FileStatus.NEW) {
-            Span badge = Span.raw(" +").bg(Color.GREEN).fg(Color.BLACK);
-            return Line.from(sizeSpan, badge);
-        }
-
-        return Line.from(sizeSpan);
-    }
-
-    private void renderDetails(Frame frame, Rect area) 
-    {
-        FileInfo info = getSelectedInfo();
-
-        Text content;
-        if (info != null) {
-            List<Line> lines = new ArrayList<>();
-            lines.add(Line.from(Span.raw("Name:   ").bold(), Span.raw(info.name())));
-            lines.add(Line.from(Span.raw("Path:   ").bold(), Span.raw(info.path() != null ? info.path().toString() : "").dim()));
-            lines.add(Line.from(Span.raw("Type:   ").bold(), Span.raw(info.type().name()).dim()));
-            lines.add(Line.from(Span.raw("Size:   ").bold(), Span.raw(info.formattedSize()).dim()));
-            lines.add(Line.from(Span.raw("Status: ").bold(), formatStatus(info.status())));
-            lines.add(Line.empty());
-            lines.add(Line.from(Span.raw("Icon:   ").bold(), Span.raw(info.icon())));
-
-            // model files
-            
-            if(modelFiles.size() > 0)
-            {
-                // ploopt
-                
-                for (File modelFile : modelFiles) 
-                {
-                    lines.add(Line.from(Span.raw(modelFile.getName())));
-                }
-            }
-
-            content = Text.from(lines);
-        } 
-        else 
-        {
-            content = Text.from(Line.from(Span.raw("(no selection)").dim()));
-        }
-
-        Paragraph details = Paragraph.builder()
-                .text(content)
-                .block(Block.builder()
-                        .borders(Borders.ALL)
-                        .borderType(BorderType.ROUNDED)
-                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
-                        .title(Title.from(" Details "))
-                        .build())
-                .build();
-
-        List<Rect> rows = Layout.vertical()
-                .constraints(
-                        Constraint.percentage(50),
-                        Constraint.percentage(50)
-                )
-                .split(area);
-
-        frame.renderWidget(details, rows.get(0));
-
-        WaveText waveText = WaveText.builder()
-                .text("Modeling Thumbnailer")
-                .color(Color.LIGHT_YELLOW)
-                .peakCount(3)
-                .build();
-        
-        Paragraph modelFiles = Paragraph.builder()
-                .text("Model Files")
-//        Paragraph modelFiles = Paragraph.from("Model Files")
-                .block(Block.builder()
-                        .borders(Borders.ALL)
-                        .borderType(BorderType.ROUNDED)
-                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
-//                        .title(Title.from(" Details "))
-                        .build())
-                .build()
-                ;
-        frame.renderWidget(modelFiles, rows.get(1));
-        frame.renderStatefulWidget(waveText, rows.get(1), modelFilesTextState);
-    }
-
-    private FileInfo getSelectedInfo() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
-            return null;
-        }
-        int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
-        TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
-        return node.data();
-    }
-
-    private Span formatStatus(FileInfo.FileStatus status) {
-        return switch (status) {
-            case MODIFIED -> Span.raw("Modified").yellow();
-            case NEW -> Span.raw("New").green();
-            case IGNORED -> Span.raw("Ignored").dim();
-            case NORMAL -> Span.raw("Normal").dim();
-        };
-    }
-
-    private void renderFooter(Frame frame, Rect area) {
-        String guideStyleName = switch (currentGuideStyle) {
-            case UNICODE -> "Unicode";
-            case ASCII -> "ASCII";
-            case NONE -> "None";
-        };
-
-        Line helpLine = Line.from(
-                Span.raw(" Guide: ").dim(),
-                Span.raw(guideStyleName).bold().cyan(),
-                Span.raw("   "),
-                Span.raw("1/2/3").bold().yellow(),
-                Span.raw(" Style  ").dim(),
-                Span.raw("\u2191\u2193/jk").bold().yellow(),
-                Span.raw(" Navigate  ").dim(),
-                Span.raw("\u2190\u2192/hl").bold().yellow(),
-                Span.raw(" Collapse/Expand  ").dim(),
-                Span.raw("Space").bold().yellow(),
-                Span.raw(" Toggle  ").dim(),
-                Span.raw("Enter").bold().yellow(),
-                Span.raw(" Change Dir  ").dim(),
-                Span.raw("q").bold().yellow(),
-                Span.raw(" Quit").dim()
-        );
-
-        Paragraph footer = Paragraph.builder()
-                .text(Text.from(helpLine))
-                .block(Block.builder()
-                        .borders(Borders.ALL)
-                        .borderType(BorderType.ROUNDED)
-                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
-                        .build())
-                .build();
-
-        frame.renderWidget(footer, area);
+    public void navigateTo(Path dir) {
+        navigationController.navigateTo(dir);
     }
 
     /**
@@ -924,7 +143,7 @@ public class TreeWidgetDemo
      * @return the current path
      */
     public Path getCurrentPath() {
-        return currentPath;
+        return navigationController.getCurrentPath();
     }
 
     /**
@@ -933,7 +152,7 @@ public class TreeWidgetDemo
      * @return the root nodes
      */
     public List<TreeNode<FileInfo>> getRoots() {
-        return Collections.unmodifiableList(roots);
+        return navigationController.getRoots();
     }
 
     /**
@@ -942,7 +161,7 @@ public class TreeWidgetDemo
      * @return the tree state
      */
     public TreeState getTreeState() {
-        return treeState;
+        return navigationController.getTreeState();
     }
 
     /**
@@ -951,9 +170,9 @@ public class TreeWidgetDemo
      * @return the model files
      */
     public List<File> getModelFiles() {
-        return Collections.unmodifiableList(modelFiles);
+        return navigationController.getModelFiles();
     }
-    
+
     /**
      * Gets the wave text state.
      *
@@ -961,5 +180,5 @@ public class TreeWidgetDemo
      */
     public WaveTextState getWaveTextState() {
         return waveTextState;
-    }    
+    }
 }

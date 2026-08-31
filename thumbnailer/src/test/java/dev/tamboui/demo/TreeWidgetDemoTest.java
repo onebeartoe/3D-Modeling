@@ -1,4 +1,7 @@
-
+/*
+ * Copyright TamboUI Contributors
+ * SPDX-License-Identifier: MIT
+ */
 package dev.tamboui.demo;
 
 import java.io.File;
@@ -7,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import dev.tamboui.demo.service.FileSystemTreeService;
+import dev.tamboui.demo.service.ModelFileScanner;
 import dev.tamboui.widgets.tree.TreeNode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -20,16 +25,16 @@ class TreeWidgetDemoTest {
 
     @Test
     void testDetermineFileType() {
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.JAVA, TreeWidgetDemo.FileInfo.determineFileType("Main.java"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.KOTLIN, TreeWidgetDemo.FileInfo.determineFileType("Helper.kt"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.GRADLE, TreeWidgetDemo.FileInfo.determineFileType("build.gradle.kts"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.GRADLE, TreeWidgetDemo.FileInfo.determineFileType("gradlew"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.XML, TreeWidgetDemo.FileInfo.determineFileType("pom.xml"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.YAML, TreeWidgetDemo.FileInfo.determineFileType("config.yml"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.JSON, TreeWidgetDemo.FileInfo.determineFileType("package.json"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.MARKDOWN, TreeWidgetDemo.FileInfo.determineFileType("README.md"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.TEXT, TreeWidgetDemo.FileInfo.determineFileType("notes.txt"));
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.BINARY, TreeWidgetDemo.FileInfo.determineFileType("app.jar"));
+        assertEquals(FileInfo.FileType.JAVA, FileInfo.determineFileType("Main.java"));
+        assertEquals(FileInfo.FileType.KOTLIN, FileInfo.determineFileType("Helper.kt"));
+        assertEquals(FileInfo.FileType.GRADLE, FileInfo.determineFileType("build.gradle.kts"));
+        assertEquals(FileInfo.FileType.GRADLE, FileInfo.determineFileType("gradlew"));
+        assertEquals(FileInfo.FileType.XML, FileInfo.determineFileType("pom.xml"));
+        assertEquals(FileInfo.FileType.YAML, FileInfo.determineFileType("config.yml"));
+        assertEquals(FileInfo.FileType.JSON, FileInfo.determineFileType("package.json"));
+        assertEquals(FileInfo.FileType.MARKDOWN, FileInfo.determineFileType("README.md"));
+        assertEquals(FileInfo.FileType.TEXT, FileInfo.determineFileType("notes.txt"));
+        assertEquals(FileInfo.FileType.BINARY, FileInfo.determineFileType("app.jar"));
     }
 
     @Test
@@ -39,14 +44,14 @@ class TreeWidgetDemoTest {
         Files.createFile(subDir.resolve("test.txt"));
 
         TreeWidgetDemo demo = new TreeWidgetDemo(subDir);
-        List<TreeNode<TreeWidgetDemo.FileInfo>> roots = demo.getRoots();
+        List<TreeNode<FileInfo>> roots = demo.getRoots();
 
         assertFalse(roots.isEmpty(), "Roots should not be empty");
-        TreeNode<TreeWidgetDemo.FileInfo> parentNode = roots.get(0);
+        TreeNode<FileInfo> parentNode = roots.get(0);
         assertEquals("..", parentNode.label(), "First node should be '..' parent node");
         assertNotNull(parentNode.data(), "Parent node should have FileInfo");
         assertEquals("..", parentNode.data().name());
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.DIRECTORY, parentNode.data().type());
+        assertEquals(FileInfo.FileType.DIRECTORY, parentNode.data().type());
         assertEquals(tempDir, parentNode.data().path());
     }
 
@@ -59,22 +64,22 @@ class TreeWidgetDemoTest {
         Files.createFile(subDir.resolve("nested.java"));
 
         TreeWidgetDemo demo = new TreeWidgetDemo(tempDir);
-        List<TreeNode<TreeWidgetDemo.FileInfo>> roots = demo.getRoots();
+        List<TreeNode<FileInfo>> roots = demo.getRoots();
 
         // Roots should contain: ".." + "sub" (directory first) + "a_file.txt" + "b_file.txt"
         assertEquals(4, roots.size());
         assertEquals("..", roots.get(0).label());
         assertEquals("sub", roots.get(1).label());
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.DIRECTORY, roots.get(1).data().type());
+        assertEquals(FileInfo.FileType.DIRECTORY, roots.get(1).data().type());
         assertEquals("a_file.txt", roots.get(2).label());
         assertEquals("b_file.txt", roots.get(3).label());
 
         // Test lazy loading of directory children
-        TreeNode<TreeWidgetDemo.FileInfo> subNode = roots.get(1);
-        List<TreeNode<TreeWidgetDemo.FileInfo>> subChildren = subNode.children();
+        TreeNode<FileInfo> subNode = roots.get(1);
+        List<TreeNode<FileInfo>> subChildren = subNode.children();
         assertEquals(1, subChildren.size());
         assertEquals("nested.java", subChildren.get(0).label());
-        assertEquals(TreeWidgetDemo.FileInfo.FileType.JAVA, subChildren.get(0).data().type());
+        assertEquals(FileInfo.FileType.JAVA, subChildren.get(0).data().type());
     }
 
     @Test
@@ -113,17 +118,17 @@ class TreeWidgetDemoTest {
 
     @Test
     void testFileInfoFormattedSizeAndIcons() {
-        TreeWidgetDemo.FileInfo dirInfo = TreeWidgetDemo.FileInfo.dir("mydir", Path.of("/test/mydir"));
+        FileInfo dirInfo = FileInfo.dir("mydir", Path.of("/test/mydir"));
         assertEquals("", dirInfo.formattedSize());
         assertEquals("\uD83D\uDCC1", dirInfo.icon());
 
-        TreeWidgetDemo.FileInfo smallFile = TreeWidgetDemo.FileInfo.file("small.txt", TreeWidgetDemo.FileInfo.FileType.TEXT, 500, Path.of("/test/small.txt"));
+        FileInfo smallFile = FileInfo.file("small.txt", FileInfo.FileType.TEXT, 500, Path.of("/test/small.txt"));
         assertEquals("500 B", smallFile.formattedSize());
 
-        TreeWidgetDemo.FileInfo kbFile = TreeWidgetDemo.FileInfo.file("kb.txt", TreeWidgetDemo.FileInfo.FileType.TEXT, 2048, Path.of("/test/kb.txt"));
+        FileInfo kbFile = FileInfo.file("kb.txt", FileInfo.FileType.TEXT, 2048, Path.of("/test/kb.txt"));
         assertEquals("2.0 KB", kbFile.formattedSize());
 
-        TreeWidgetDemo.FileInfo mbFile = TreeWidgetDemo.FileInfo.file("mb.bin", TreeWidgetDemo.FileInfo.FileType.BINARY, 2 * 1024 * 1024, Path.of("/test/mb.bin"));
+        FileInfo mbFile = FileInfo.file("mb.bin", FileInfo.FileType.BINARY, 2 * 1024 * 1024, Path.of("/test/mb.bin"));
         assertEquals("2.0 MB", mbFile.formattedSize());
     }
 
@@ -174,5 +179,31 @@ class TreeWidgetDemoTest {
 
         demo.getWaveTextState().advance(5);
         assertEquals(6, demo.getWaveTextState().tick(), "Tick should be 6 after advance(5)");
+    }
+
+    @Test
+    void testFileSystemTreeServiceDirectly(@TempDir Path tempDir) throws IOException {
+        FileSystemTreeService service = new FileSystemTreeService();
+        Files.createDirectory(tempDir.resolve("dirA"));
+        Files.createFile(tempDir.resolve("fileA.txt"));
+
+        List<TreeNode<FileInfo>> roots = service.buildTreeData(tempDir);
+        assertEquals(3, roots.size());
+        assertEquals("..", roots.get(0).label());
+        assertEquals("dirA", roots.get(1).label());
+        assertEquals("fileA.txt", roots.get(2).label());
+    }
+
+    @Test
+    void testModelFileScannerDirectly(@TempDir Path tempDir) throws IOException {
+        ModelFileScanner scanner = new ModelFileScanner();
+        Files.createFile(tempDir.resolve("alpha.3mf"));
+        Files.createFile(tempDir.resolve("beta.stl"));
+        Files.createFile(tempDir.resolve("gamma.txt"));
+
+        List<File> files = scanner.scanModelFiles(tempDir);
+        assertEquals(2, files.size());
+        assertEquals("alpha.3mf", files.get(0).getName());
+        assertEquals("beta.stl", files.get(1).getName());
     }
 }
