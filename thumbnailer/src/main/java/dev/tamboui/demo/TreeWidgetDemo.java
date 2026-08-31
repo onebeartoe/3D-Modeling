@@ -56,7 +56,20 @@ import dev.tamboui.widgets.tree.TreeWidget;
  *   <li>Scrollbar support</li>
  * </ul>
  */
-public class TreeWidgetDemo {
+public class TreeWidgetDemo 
+{
+
+    private void currentDirectory() 
+    {
+        var path = currentPath.toFile();
+       
+        System.out.println("Current Directory Not supported yet.");
+    }
+
+    private void recursiveDirectory() 
+    {
+        System.out.println("Recursive Directory Not supported yet.");
+    }
 
     // ════════════════════════════════════════════════════════════════
     // Data Model
@@ -371,10 +384,12 @@ public class TreeWidgetDemo {
 
         switch (c) {
             case 'q', 'Q', 3 -> running = false;
+            case 'c', 'C' -> currentDirectory();
             case 'j', 'J' -> selectNext();
             case 'k', 'K' -> treeState.selectPrevious();
             case 'l', 'L' -> expandSelected();
             case 'h', 'H' -> collapseSelected();
+            case 'r', 'R' -> recursiveDirectory();
             case ' ' -> toggleSelected();
             case '\r', '\n' -> enterSelected();
             case 'g' -> treeState.selectFirst();
@@ -582,6 +597,8 @@ public class TreeWidgetDemo {
         
         
         Line helpLine = Line.from(
+                                Span.raw(" [C]Current Current Directory ").dim(),
+                Span.raw(" [R] Recursive Directory ").dim(),
                 Span.raw(" Guide: ").dim(),
                 Span.raw("Some Guide").bold().cyan(),
                 Span.raw("   "),
