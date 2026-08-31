@@ -609,22 +609,10 @@ public class TreeWidgetDemo
         renderFooter(frame, layout.get(2));
     }
 
-    private void renderHeader(Frame frame, Rect area) {
-        Block headerBlock = Block.builder()
-                .borders(Borders.ALL)
-                .borderType(BorderType.ROUNDED)
-                .borderStyle(Style.EMPTY.fg(Color.CYAN))
-                .title(Title.from(
-                        Line.from(
-                                Span.raw(" TamboUI ").bold().cyan(),
-                                Span.raw("TreeWidget Demo ").yellow()
-                        )
-                ).centered())
-                .build();
-        
-        
+    private void renderHeader(Frame frame, Rect area) 
+    {
         Line helpLine = Line.from(
-                                Span.raw(" [C]Current Current Directory ").dim(),
+                                Span.raw(" [C]Current Directory ").dim(),
                 Span.raw(" [R] Recursive Directory ").dim(),
                 Span.raw(" Guide: ").dim(),
                 Span.raw("Some Guide").bold().cyan(),
@@ -653,7 +641,7 @@ public class TreeWidgetDemo
 .title(Title.from(
                         Line.from(
                                 Span.raw(" TamboUI ").bold().cyan(),
-                                Span.raw("TreeWidget Demo ").yellow()
+                                Span.raw(" TreeWidget Demo ").yellow()
                         )
                 ))                        
                         
