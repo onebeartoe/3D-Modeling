@@ -25,7 +25,6 @@ import dev.tamboui.layout.Constraint;
 import dev.tamboui.layout.Layout;
 import dev.tamboui.layout.Rect;
 import dev.tamboui.style.Color;
-import static dev.tamboui.style.Color.CYAN;
 import dev.tamboui.style.Style;
 import dev.tamboui.terminal.Backend;
 import dev.tamboui.terminal.BackendFactory;
@@ -674,7 +673,8 @@ public class TreeWidgetDemo
 //        frame.renderWidget(headerBlock, area);
     }
 
-    private void renderMainContent(Frame frame, Rect area) {
+    private void renderMainContent(Frame frame, Rect area) 
+    {
         List<Rect> cols = Layout.horizontal()
                 .constraints(
                         Constraint.percentage(65),
@@ -786,7 +786,8 @@ public class TreeWidgetDemo
         return Line.from(sizeSpan);
     }
 
-    private void renderDetails(Frame frame, Rect area) {
+    private void renderDetails(Frame frame, Rect area) 
+    {
         FileInfo info = getSelectedInfo();
 
         Text content;
@@ -800,12 +801,22 @@ public class TreeWidgetDemo
             lines.add(Line.empty());
             lines.add(Line.from(Span.raw("Icon:   ").bold(), Span.raw(info.icon())));
 
-            for (File modelFile : modelFiles) {
-                lines.add(Line.from(Span.raw(modelFile.getName())));
+            // model files
+            
+            if(modelFiles.size() > 0)
+            {
+                
+                
+                for (File modelFile : modelFiles) 
+                {
+                    lines.add(Line.from(Span.raw(modelFile.getName())));
+                }
             }
 
             content = Text.from(lines);
-        } else {
+        } 
+        else 
+        {
             content = Text.from(Line.from(Span.raw("(no selection)").dim()));
         }
 
