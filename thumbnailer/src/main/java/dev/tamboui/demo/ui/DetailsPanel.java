@@ -29,8 +29,8 @@ import dev.tamboui.widgets.wavetext.WaveTextState;
 /**
  * UI panel for rendering details of the selected item and discovered 3D model files.
  */
-public class DetailsPanel {
-
+public class DetailsPanel 
+{
     /**
      * Renders the details panel containing selection details and model file status.
      *
@@ -122,8 +122,10 @@ public class DetailsPanel {
      * @param status the status
      * @return the styled Span
      */
-    public Span formatStatus(FileInfo.FileStatus status) {
-        return switch (status) {
+    public Span formatStatus(FileInfo.FileStatus status) 
+    {
+        return switch (status) 
+        {
             case MODIFIED -> Span.raw("Modified").yellow();
             case NEW -> Span.raw("New").green();
             case IGNORED -> Span.raw("Ignored").dim();

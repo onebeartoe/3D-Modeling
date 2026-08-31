@@ -31,8 +31,8 @@ import dev.tamboui.widgets.wavetext.WaveTextState;
 /**
  * Main UI view for layout structuring and rendering the terminal application.
  */
-public class TreeDemoView {
-
+public class TreeDemoView 
+{
     private final TreeNavigationController navigationController;
     private final TreeInputHandler inputHandler;
     private final FileNodeRenderer nodeRenderer;
@@ -46,8 +46,8 @@ public class TreeDemoView {
             FileNodeRenderer nodeRenderer,
             DetailsPanel detailsPanel,
             WaveTextState waveTextState,
-            WaveTextState modelFilesTextState
-    ) {
+            WaveTextState modelFilesTextState) 
+    {
         this.navigationController = navigationController;
         this.inputHandler = inputHandler;
         this.nodeRenderer = nodeRenderer;
@@ -61,7 +61,8 @@ public class TreeDemoView {
      *
      * @param frame the frame
      */
-    public void render(Frame frame) {
+    public void render(Frame frame) 
+    {
         Rect area = frame.area();
 
         List<Rect> layout = Layout.vertical()
@@ -77,7 +78,8 @@ public class TreeDemoView {
         renderFooter(frame, layout.get(2));
     }
 
-    private void renderHeader(Frame frame, Rect area) {
+    private void renderHeader(Frame frame, Rect area) 
+    {
         Line helpLine = Line.from(
                 Span.raw(" [C]Current Directory ").dim(),
                 Span.raw(" [R] Recursive Directory ").dim(),
@@ -118,7 +120,8 @@ public class TreeDemoView {
         frame.renderStatefulWidget(waveText, area, waveTextState);
     }
 
-    private void renderMainContent(Frame frame, Rect area) {
+    private void renderMainContent(Frame frame, Rect area) 
+    {
         List<Rect> cols = Layout.horizontal()
                 .constraints(
                         Constraint.percentage(65),
@@ -128,6 +131,7 @@ public class TreeDemoView {
                 .split(area);
 
         renderTree(frame, cols.get(0));
+        
         detailsPanel.render(
                 frame,
                 cols.get(1),
@@ -137,8 +141,10 @@ public class TreeDemoView {
         );
     }
 
-    private void renderTree(Frame frame, Rect area) {
+    private void renderTree(Frame frame, Rect area) 
+    {
         String titleText = " " + navigationController.getCurrentPath().toString() + " ";
+        
         TreeWidget<TreeNode<FileInfo>> treeWidget = TreeWidget.<TreeNode<FileInfo>>builder()
                 .roots(navigationController.getRoots())
                 .children(TreeNode::children)
@@ -159,11 +165,14 @@ public class TreeDemoView {
                 .build();
 
         frame.renderStatefulWidget(treeWidget, area, navigationController.getTreeState());
+        
         navigationController.setLastFlatEntries(treeWidget.lastFlatEntries());
     }
 
-    private void renderFooter(Frame frame, Rect area) {
-        String guideStyleName = switch (inputHandler.getGuideStyle()) {
+    private void renderFooter(Frame frame, Rect area) 
+    {
+        String guideStyleName = switch (inputHandler.getGuideStyle()) 
+        {
             case UNICODE -> "Unicode";
             case ASCII -> "ASCII";
             case NONE -> "None";
