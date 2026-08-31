@@ -63,6 +63,7 @@ public class TreeWidgetDemo
 {
     private final WaveTextState waveTextState = new WaveTextState();
 
+    private final WaveTextState modelFilesTextState = new WaveTextState();
 
     private void currentDirectory() 
     {
@@ -355,8 +356,10 @@ public class TreeWidgetDemo
      *
      * @throws Exception if an error occurs during execution
      */
-    public void run() throws Exception {
-        try (Backend backend = BackendFactory.create()) {
+    public void run() throws Exception 
+    {
+        try (Backend backend = BackendFactory.create()) 
+        {
             backend.enableRawMode();
             backend.enterAlternateScreen();
             backend.hideCursor();
@@ -369,7 +372,8 @@ public class TreeWidgetDemo
             {
                 terminal.draw(this::ui);
 
-                waveTextState.advance();
+                waveTextState.advance();                
+                modelFilesTextState.advance();
                 
                 int c = backend.read(100);
                 if (c == -2 || c == -1) {
@@ -533,7 +537,10 @@ public class TreeWidgetDemo
                     }
                 }
             }
-        } catch (IOException | SecurityException ignored) {
+        } 
+        catch (IOException | SecurityException ignored) 
+        {
+            ignored.printStackTrace();
         }
         this.modelFiles = files;
     }
@@ -591,7 +598,9 @@ public class TreeWidgetDemo
                     children.add(TreeNode.of(info.name(), info).leaf());
                 }
             }
-        } catch (IOException | SecurityException ignored) {
+        } catch (IOException | SecurityException ignored) 
+        {
+            ignored.printStackTrace();
         }
         return children;
     }
@@ -642,7 +651,7 @@ public class TreeWidgetDemo
                 .text("Modeling Thumbnailer")
                 .color(Color.LIGHT_YELLOW)
                 .peakCount(3)
-                .build();        
+                .build();
         
         Paragraph footer = Paragraph.builder()
                 .text(Text.from(helpLine))
@@ -650,7 +659,6 @@ public class TreeWidgetDemo
                         .borders(Borders.ALL)
                         .borderType(BorderType.ROUNDED)
                         .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
-                        
 //.title(
 //        Title.from(
 //                        Line.from(
@@ -659,18 +667,13 @@ public class TreeWidgetDemo
 //                  )
 //        )
 //      )
-                        
                         .build())
                 .centered()
                 .build();        
-        
-        
-        
 
         frame.renderWidget(footer, area);
         
         frame.renderStatefulWidget(waveText, area, waveTextState);
-//        frame.renderWidget(headerBlock, area);
     }
 
     private void renderMainContent(Frame frame, Rect area) 
@@ -805,7 +808,7 @@ public class TreeWidgetDemo
             
             if(modelFiles.size() > 0)
             {
-                
+                // ploopt
                 
                 for (File modelFile : modelFiles) 
                 {
@@ -839,8 +842,25 @@ public class TreeWidgetDemo
 
         frame.renderWidget(details, rows.get(0));
 
-        Paragraph modelFiles = Paragraph.from("Model Files");
+        WaveText waveText = WaveText.builder()
+                .text("Modeling Thumbnailer")
+                .color(Color.LIGHT_YELLOW)
+                .peakCount(3)
+                .build();
+        
+        Paragraph modelFiles = Paragraph.builder()
+                .text("Model Files")
+//        Paragraph modelFiles = Paragraph.from("Model Files")
+                .block(Block.builder()
+                        .borders(Borders.ALL)
+                        .borderType(BorderType.ROUNDED)
+                        .borderStyle(Style.EMPTY.fg(Color.DARK_GRAY))
+//                        .title(Title.from(" Details "))
+                        .build())
+                .build()
+                ;
         frame.renderWidget(modelFiles, rows.get(1));
+        frame.renderStatefulWidget(waveText, rows.get(1), modelFilesTextState);
     }
 
     private FileInfo getSelectedInfo() {
