@@ -240,7 +240,9 @@ public class TreeNavigationController
 
                     System.out.println("currentPath = " + currentPath);    
 
-                    var generationFlags = pngGenerator.generateDirectionalPngs(modelFile.toPath(), 
+                    Path openscadPath = createOpenscad(modelFile);
+                    
+                    var generationFlags = pngGenerator.generateDirectionalPngs(openscadPath, 
                             true, runProfile, directoryProfile);
 
 
@@ -285,5 +287,23 @@ public class TreeNavigationController
 
     public void setLastFlatEntries(List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries) {
         this.lastFlatEntries = lastFlatEntries;
+    }
+
+    private Path createOpenscad(File modelFile) 
+    {
+        var filename = modelFile.getName();
+        
+        var start = 0;
+        var end = filename.length();
+        
+        var name = modelFile.getName().substring(start, end);
+        
+        var parentDirectory = modelFile.getParentFile();
+        
+        var openscadFilename = name + ".scad";
+        
+        File openscadFile = new File(parentDirectory, openscadFilename);
+        
+        modelFile.toPath();
     }
 }
