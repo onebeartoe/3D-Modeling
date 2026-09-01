@@ -1,0 +1,6 @@
+
+Spawn a virtual thread to create PNG thumbnails of the 'model files' found (.stl and .3mf).
+
+Import the org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator class.
+
+Add a status bar to show the results of the asynchronous work.

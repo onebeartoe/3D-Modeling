@@ -36,7 +36,7 @@ public class TreeDemoView
     private final DetailsPanel detailsPanel;
     private final WaveTextState waveTextState;
     private final WaveTextState modelFilesTextState;
-
+    
     public TreeDemoView(
             TreeNavigationController navigationController,
             TreeInputHandler inputHandler,
@@ -66,13 +66,15 @@ public class TreeDemoView
                 .constraints(
                         Constraint.length(3),  // Header
                         Constraint.fill(),     // Main content
+                        Constraint.length(3),   // Status
                         Constraint.length(3)   // Footer
                 )
                 .split(area);
 
         renderHeader(frame, layout.get(0));
         renderMainContent(frame, layout.get(1));
-        renderFooter(frame, layout.get(2));
+        renderStatus(frame, layout.get(2) );
+        renderFooter(frame, layout.get(3));
     }
 
     private void renderHeader(Frame frame, Rect area) 
@@ -203,5 +205,28 @@ public class TreeDemoView
                 .build();
 
         frame.renderWidget(footer, area);
+    }
+    
+    private void renderStatus(Frame frame, Rect area) 
+    {
+        var statusText = navigationController.status;
+
+        var paragraph = Paragraph.builder()
+            .text(Text.from(
+                Line.from(
+                    Span.raw(statusText).fg(Color.WHITE)
+                )
+            ))
+            .block(Block.builder()
+                .borders(Borders.ALL)
+                .borderType(BorderType.ROUNDED)
+                .borderStyle(Style.EMPTY.fg(Color.BLUE))
+                .title(Title.from(
+                    Line.from(Span.raw(" Status ").bold().blue())
+                ))
+                .build())
+            .build();
+         
+        frame.renderWidget(paragraph, area);
     }
 }

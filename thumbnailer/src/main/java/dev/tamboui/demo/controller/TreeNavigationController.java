@@ -1,7 +1,4 @@
-/*
- * Copyright TamboUI Contributors
- * SPDX-License-Identifier: MIT
- */
+
 package dev.tamboui.demo.controller;
 
 import java.io.File;
@@ -17,17 +14,24 @@ import dev.tamboui.demo.service.ModelFileScanner;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.tree.TreeWidget;
+import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
+import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
+import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
+import org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator;
 
 /**
  * Controller responsible for managing navigation state, selection, and tree data updates.
  */
-public class TreeNavigationController {
-
+public class TreeNavigationController 
+{
     private final FileSystemTreeService fileSystemService;
     private final ModelFileScanner modelFileScanner;
     private final TreeState treeState = new TreeState();
 
     private Path currentPath;
+
+    public String status = "Empty Status";    
+    
     private List<TreeNode<FileInfo>> roots;
     private List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries;
     private List<File> modelFiles = new ArrayList<>();
@@ -42,8 +46,8 @@ public class TreeNavigationController {
     public TreeNavigationController(
             Path startPath,
             FileSystemTreeService fileSystemService,
-            ModelFileScanner modelFileScanner
-    ) {
+            ModelFileScanner modelFileScanner)
+    {
         this.fileSystemService = fileSystemService;
         this.modelFileScanner = modelFileScanner;
         this.currentPath = startPath.toAbsolutePath().normalize();
@@ -56,8 +60,10 @@ public class TreeNavigationController {
      *
      * @param dir the target directory
      */
-    public void navigateTo(Path dir) {
-        try {
+    public void navigateTo(Path dir) 
+    {
+        try 
+        {
             Path target = dir.toAbsolutePath().normalize();
             if (Files.isDirectory(target)) {
                 this.currentPath = target;
@@ -66,7 +72,10 @@ public class TreeNavigationController {
                 this.treeState.offset(0);
                 this.modelFiles = modelFileScanner.scanModelFiles(this.currentPath);
             }
-        } catch (SecurityException ignored) {
+        } 
+        catch (SecurityException ignored) 
+        {
+            ignored.printStackTrace();
         }
     }
 
@@ -97,7 +106,8 @@ public class TreeNavigationController {
      * Moves selection to the last node.
      */
     public void selectLast() {
-        if (lastFlatEntries != null && !lastFlatEntries.isEmpty()) {
+        if (lastFlatEntries != null && !lastFlatEntries.isEmpty()) 
+        {
             treeState.selectLast(lastFlatEntries.size() - 1);
         }
     }
@@ -105,18 +115,28 @@ public class TreeNavigationController {
     /**
      * Expands the currently selected node, or selects its first child if already expanded.
      */
-    public void expandSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
+    public void expandSelected() 
+    {
+        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) 
+        {
             return;
         }
+        
         int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
+        
         TreeNode<FileInfo> node = lastFlatEntries.get(idx).node();
-        if (!node.isLeaf()) {
-            if (node.isExpanded()) {
-                if (!node.children().isEmpty() && idx + 1 < lastFlatEntries.size()) {
+        
+        if (!node.isLeaf()) 
+        {
+            if (node.isExpanded()) 
+            {
+                if (!node.children().isEmpty() && idx + 1 < lastFlatEntries.size()) 
+                {
                     treeState.select(idx + 1);
                 }
-            } else {
+            } 
+            else 
+            {
                 node.expanded(true);
             }
         }
@@ -125,16 +145,23 @@ public class TreeNavigationController {
     /**
      * Collapses the currently selected node, or jumps to the parent node if already collapsed.
      */
-    public void collapseSelected() {
-        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
+    public void collapseSelected() 
+    {
+        if (lastFlatEntries == null || lastFlatEntries.isEmpty()) 
+        {
             return;
         }
+        
         int idx = Math.min(treeState.selected(), lastFlatEntries.size() - 1);
         TreeWidget.FlatEntry<TreeNode<FileInfo>> entry = lastFlatEntries.get(idx);
         TreeNode<FileInfo> node = entry.node();
-        if (node.isExpanded() && !node.isLeaf()) {
+        
+        if (node.isExpanded() && !node.isLeaf()) 
+        {
             node.expanded(false);
-        } else {
+        } 
+        else 
+        {
             TreeNode<FileInfo> parent = entry.parent();
             if (parent != null) {
                 for (int i = 0; i < lastFlatEntries.size(); i++) {
@@ -150,7 +177,8 @@ public class TreeNavigationController {
     /**
      * Toggles expansion of the currently selected directory node.
      */
-    public void toggleSelected() {
+    public void toggleSelected() 
+    {
         if (lastFlatEntries == null || lastFlatEntries.isEmpty()) {
             return;
         }
@@ -190,7 +218,44 @@ public class TreeNavigationController {
         return node.data();
     }
 
-    public void currentDirectory() {
+    public void currentDirectory() 
+    {
+        for(var modelFile : modelFiles)
+        {
+            Thread.ofVirtual().start(() -> 
+            {
+                try 
+                {
+                    // Same business logic - but now truly scalable
+                    PngGenerator pngGenerator = new PngGenerator();
+
+                    var runProfile = new RunProfile();
+                    runProfile.executablePath = "/opt/openscad/OpenSCAD-2025.11.10.ai28923-x86_64.AppImage";
+    
+                    runProfile.mode = OpenScadCliTestSuite.RunMode.GENERATE_BASELINES;
+   
+                    var directoryProfile = new DirectoryProfile();
+                    directoryProfile.setAutoCenter(true);
+                    directoryProfile.setViewall(true);
+
+                    System.out.println("currentPath = " + currentPath);    
+
+                    var generationFlags = pngGenerator.generateDirectionalPngs(modelFile.toPath(), 
+                            true, runProfile, directoryProfile);
+
+
+                    var message = "processed and done: " + modelFile.toPath();
+
+                    status = message;
+
+                    System.out.println(message);                    
+                } 
+                catch (Exception e) 
+                {
+                    e.printStackTrace();
+                }
+            });
+        }        
         System.out.println("Current Directory Not supported yet.");
     }
 
