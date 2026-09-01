@@ -1,7 +1,4 @@
-/*
- * Copyright TamboUI Contributors
- * SPDX-License-Identifier: MIT
- */
+
 package dev.tamboui.demo;
 
 import java.io.IOException;

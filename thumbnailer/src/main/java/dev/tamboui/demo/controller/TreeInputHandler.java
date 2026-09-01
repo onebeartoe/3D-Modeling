@@ -1,7 +1,4 @@
-/*
- * Copyright TamboUI Contributors
- * SPDX-License-Identifier: MIT
- */
+
 package dev.tamboui.demo.controller;
 
 import java.io.IOException;
@@ -12,8 +9,8 @@ import dev.tamboui.widgets.tree.GuideStyle;
 /**
  * Handles terminal key events and dispatches actions to the navigation controller.
  */
-public class TreeInputHandler {
-
+public class TreeInputHandler 
+{
     private final TreeNavigationController navigationController;
     private final Runnable quitAction;
     private GuideStyle guideStyle = GuideStyle.UNICODE;

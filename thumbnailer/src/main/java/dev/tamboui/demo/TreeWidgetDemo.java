@@ -2,10 +2,6 @@
 //DEPS dev.tamboui:tamboui-widgets:LATEST
 //DEPS dev.tamboui:tamboui-jline3-backend:LATEST
 
-/*
- * Copyright TamboUI Contributors
- * SPDX-License-Identifier: MIT
- */
 package dev.tamboui.demo;
 
 import java.io.File;
@@ -58,7 +54,8 @@ public class TreeWidgetDemo {
     /**
      * Constructs a TreeWidgetDemo starting at the current working directory.
      */
-    public TreeWidgetDemo() {
+    public TreeWidgetDemo() 
+    {
         this(Paths.get(".").toAbsolutePath().normalize());
     }
 
@@ -67,7 +64,8 @@ public class TreeWidgetDemo {
      *
      * @param startPath the initial directory path
      */
-    public TreeWidgetDemo(Path startPath) {
+    public TreeWidgetDemo(Path startPath) 
+    {
         this.fileSystemService = new FileSystemTreeService();
         this.modelFileScanner = new ModelFileScanner();
         this.navigationController = new TreeNavigationController(startPath, fileSystemService, modelFileScanner);

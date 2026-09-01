@@ -1,7 +1,4 @@
-/*
- * Copyright TamboUI Contributors
- * SPDX-License-Identifier: MIT
- */
+
 package dev.tamboui.demo.service;
 
 import java.io.File;
@@ -48,7 +45,9 @@ public class ModelFileScanner {
                     }
                 }
             }
-        } catch (IOException | SecurityException ignored) {
+        } 
+        catch (IOException | SecurityException ignored) 
+        {
             ignored.printStackTrace();
         }
         return files;
