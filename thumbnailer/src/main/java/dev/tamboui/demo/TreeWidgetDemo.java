@@ -22,6 +22,7 @@ import dev.tamboui.terminal.Terminal;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.wavetext.WaveTextState;
+import java.io.PrintStream;
 
 /**
  * Demo TUI application showcasing the TreeWidget with dynamic local filesystem navigation.
@@ -88,11 +89,20 @@ public class TreeWidgetDemo {
      * @param args the CLI arguments
      * @throws Exception on unexpected error
      */
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception 
+    {
+        File logFile = new File("target/app.log");
+        PrintStream logStream = new PrintStream(logFile);
+        System.setOut(logStream);
+        System.setErr(logStream);
+        
         Path startPath = args.length > 0
                 ? Paths.get(args[0]).toAbsolutePath().normalize()
                 : Paths.get(".").toAbsolutePath().normalize();
-        new TreeWidgetDemo(startPath).run();
+        
+        var app = new TreeWidgetDemo(startPath);
+
+        app.run();
     }
 
     /**
@@ -100,11 +110,14 @@ public class TreeWidgetDemo {
      *
      * @throws Exception if an error occurs during execution
      */
-    public void run() throws Exception {
-        try (Backend backend = BackendFactory.create()) {
+    public void run() throws Exception 
+    {
+        try (Backend backend = BackendFactory.create()) 
+        {
             backend.enableRawMode();
             backend.enterAlternateScreen();
             backend.hideCursor();
+//backend.            
 
             Terminal<Backend> terminal = new Terminal<>(backend);
 
