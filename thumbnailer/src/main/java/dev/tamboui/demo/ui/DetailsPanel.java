@@ -84,11 +84,10 @@ public class DetailsPanel
         frame.renderWidget(details, rows.get(0));
 
         WaveText waveText = WaveText.builder()
-                .text("Modeling Thumbnailer")
+                .text("Model Files")
                 .color(Color.LIGHT_YELLOW)
                 .peakCount(3)
                 .build();
-
         
         // Model Files
         List<Line> modelFilesLines = new ArrayList<>();        

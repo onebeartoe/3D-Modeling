@@ -14,7 +14,7 @@ public class TreeInputHandler
     private final TreeNavigationController navigationController;
     private final Runnable quitAction;
     private GuideStyle guideStyle = GuideStyle.UNICODE;
-
+    
     public TreeInputHandler(TreeNavigationController navigationController, Runnable quitAction) {
         this.navigationController = navigationController;
         this.quitAction = quitAction;
