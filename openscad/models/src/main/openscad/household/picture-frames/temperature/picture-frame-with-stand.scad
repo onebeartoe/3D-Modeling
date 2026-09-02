@@ -71,7 +71,7 @@ module frameSolids(borderWidth,
 //                    sidesOnly=true,
                     size=size);
                     
-use a roundedDisk!!                    
+//TODO: !!use a roundedDisk!!                    
         ovalXLength = cutoutWidth + borderWidth;
         ovalYLength = cutoutHeight + borderWidth;
         ovalZLength = cutoutDepth;                    
@@ -79,6 +79,8 @@ use a roundedDisk!!
                  borderThickness = cutoutHeight,
                  xLength = ovalXLength,
                  yLength = ovalYLength,        
-                 zLength = ovalZLength,);                            
+                 zLength = ovalZLength);                            
     }
 }
+
+
