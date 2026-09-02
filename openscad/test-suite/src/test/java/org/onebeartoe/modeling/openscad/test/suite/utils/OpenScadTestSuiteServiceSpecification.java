@@ -49,6 +49,7 @@ public class OpenScadTestSuiteServiceSpecification
     @Test
     public void compareImages() throws IOException, InterruptedException
     {
+        System.out.println("what?");
         Path path = Paths.get(simpleOpenScadPath);
         
         runProfile.openscadPaths.add(path);

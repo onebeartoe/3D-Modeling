@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.onebeartoe.modeling.openscad.test.suite.model.GeneratePngBaselineResults;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
 import org.onebeartoe.system.OperatingSystem;
@@ -23,7 +24,8 @@ import org.testng.annotations.Test;
 public class PngGeneratorSpecification
 {
     private PngGenerator implementation;
-    
+   
+//TODO: what is going on here????
     public static final String simpleOpenScadPath = "src/test/resources/simple/simple.scad";
     
     public static final String missingBaseliesPath = "src/test/resources/missing/baselines.scad";
