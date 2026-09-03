@@ -14,6 +14,8 @@ import dev.tamboui.demo.service.ModelFileScanner;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.tree.TreeWidget;
+import java.io.IOException;
+import java.nio.file.StandardOpenOption;
 import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
 import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
 import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
@@ -245,7 +247,6 @@ public class TreeNavigationController
                     var generationFlags = pngGenerator.generateDirectionalPngs(openscadPath, 
                             true, runProfile, directoryProfile);
 
-
                     var message = "processed and done: " + modelFile.toPath();
 
                     status = message;
@@ -289,7 +290,7 @@ public class TreeNavigationController
         this.lastFlatEntries = lastFlatEntries;
     }
 
-    private Path createOpenscad(File modelFile) 
+    private Path createOpenscad(File modelFile) throws IOException 
     {
         var filename = modelFile.getName();
         
@@ -303,7 +304,17 @@ public class TreeNavigationController
         var openscadFilename = name + ".scad";
         
         File openscadFile = new File(parentDirectory, openscadFilename);
+
+        var openscadScript = """
+
+            import("%s");
+                             
+                             """.formatted(name);
         
-        modelFile.toPath();
+        var openscadPath = openscadFile.toPath();
+        
+        Files.write(openscadPath, openscadScript.getBytes(), StandardOpenOption.CREATE);
+        
+        return openscadPath;
     }
 }
