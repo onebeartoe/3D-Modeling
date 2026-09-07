@@ -14,4 +14,4 @@ import("nefertiti-la-forge-using-blender-plugin-touchup.stl");
 
 // animation settings:
 //    FPS: 20
-//    Steps: 100
+//    Steps: 80
