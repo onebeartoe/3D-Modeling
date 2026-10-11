@@ -1,7 +1,7 @@
 
 use <../../../disc-coaster.scad>
 
-radius = 101 / 2.0;
+radius = 99 / 2.0;
 
 difference()
 {
