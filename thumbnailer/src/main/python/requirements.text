@@ -1,0 +1,14 @@
+
+[x] Top-Down Image of STL Files
+
+For each .stl model in the current directory, create an image preview in PNG format.  The image preview should be from a top-down camera angle.  The image preview contains the whole model.
+
+Save your work as a script that I can run on another directory.
+
+
+[] Create a GUI for the application
+
+Create a modern JavaFX application with a directory chooser.
+
+Once a directory is chosen, the application shows an icon view of every .stl and .3mf file in that directory.  The icon has the filename underneath. 
+
