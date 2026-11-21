@@ -1,4 +1,7 @@
 
+
+
+
 [x] Top-Down Image of STL Files
 
 For each .stl model in the current directory, create an image preview in PNG format.  The image preview should be from a top-down camera angle.  The image preview contains the whole model.
