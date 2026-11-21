@@ -25,6 +25,7 @@
 
         <module>openscad</module>
         <module>cli</module>
+        <module>thumbnailer</module>
     </modules>
 
     <repositories>
