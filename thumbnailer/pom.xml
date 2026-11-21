@@ -10,5 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>domain</module>
+        <module>cli</module>
     </modules>
 </project>
