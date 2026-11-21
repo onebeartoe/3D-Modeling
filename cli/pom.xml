@@ -13,7 +13,7 @@
     <artifactId>filemanager-demo</artifactId>
     <packaging>jar</packaging>
 
-    <name>onebeartoe-modeling-thumbnailer</name>
+    <name>onebeartoe-modeling-thumbnailer-cli</name>
 
     <description>Two-panel file manager demo showcasing Tree and Node details</description>
 

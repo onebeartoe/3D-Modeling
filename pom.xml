@@ -22,8 +22,9 @@
 <!--        
         <module>javascad</module>
 -->
-<module>thumbnailer</module>
+
         <module>openscad</module>
+        <module>cli</module>
     </modules>
 
     <repositories>
