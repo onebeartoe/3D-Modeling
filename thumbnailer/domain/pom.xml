@@ -8,6 +8,9 @@
     </parent>
     <artifactId>domain</artifactId>
     <packaging>jar</packaging>
+
+    <name>onebeartoe-modeling-thumbnailer-domain</name>
+
     <properties>
         <exec.mainClass>org.onebeartoe.modeling.domain.Domain</exec.mainClass>
     </properties>

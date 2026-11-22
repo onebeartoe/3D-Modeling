@@ -26,3 +26,5 @@
 
 /thumbnailer/target/
 /cli/target/
+/thumbnailer/domain/target/
+/thumbnailer/cli/target/

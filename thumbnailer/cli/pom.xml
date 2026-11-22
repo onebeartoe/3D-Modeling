@@ -6,11 +6,12 @@
 
     <parent>
         <groupId>org.onebeartoe.modeling</groupId>
-        <artifactId>onebeartoe-modeling-parent</artifactId>
+        <artifactId>thumbnailer</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>filemanager-demo</artifactId>
+    <artifactId>thumbnailer-cli</artifactId>
+    
     <packaging>jar</packaging>
 
     <name>onebeartoe-modeling-thumbnailer-cli</name>
