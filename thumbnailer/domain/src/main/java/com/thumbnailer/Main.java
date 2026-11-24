@@ -1,8 +1,8 @@
 package com.thumbnailer;
 
-import com.thumbnailer.model.StlModel;
-import com.thumbnailer.reader.StlReader;
-import com.thumbnailer.renderer.StlModelRenderer;
+import com.thumbnailer.model.MeshModel;
+import com.thumbnailer.reader.ModelReader;
+import com.thumbnailer.renderer.TopDownModelRenderer;
 
 import java.awt.Color;
 import java.io.File;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Command-line application to smurf top-down PNG previews of all STL files in the directory.
+ * Command-line application to smurf top-down PNG previews of all STL and 3MF files in the directory.
  */
 public class Main {
 
@@ -74,9 +74,9 @@ public class Main {
             }
         }
 
-        List<File> stlFiles = new ArrayList<>();
+        List<File> modelFiles = new ArrayList<>();
         if (singleFile != null) {
-            stlFiles.add(singleFile.toFile());
+            modelFiles.add(singleFile.toFile());
         } else {
             if (!Files.exists(targetDir) || !Files.isDirectory(targetDir)) {
                 System.err.println("Target directory does not exist or is not a directory: " + targetDir.toAbsolutePath());
@@ -84,51 +84,51 @@ public class Main {
             }
             try (Stream<Path> stream = Files.list(targetDir)) {
                 stream.filter(Files::isRegularFile)
-                      .filter(p -> p.getFileName().toString().toLowerCase().endsWith(".stl"))
+                      .filter(ModelReader::isSupportedFile)
                       .map(Path::toFile)
                       .sorted(Comparator.comparing(File::getName))
-                      .forEach(stlFiles::add);
+                      .forEach(modelFiles::add);
             } catch (IOException e) {
                 System.err.println("Failed to smurf files from directory: " + e.getMessage());
                 System.exit(1);
             }
         }
 
-        if (stlFiles.isEmpty()) {
-            System.out.println("No .stl files found to smurf in " + targetDir.toAbsolutePath());
+        if (modelFiles.isEmpty()) {
+            System.out.println("No .stl or .3mf files found to smurf in " + targetDir.toAbsolutePath());
             return;
         }
 
-        System.out.println("Found " + stlFiles.size() + " STL file(s) to smurf in " + targetDir.toAbsolutePath());
-        StlModelRenderer renderer = new StlModelRenderer(size, size, 0.08, modelColor, bgColor, antiAliasing);
+        System.out.println("Found " + modelFiles.size() + " 3D model file(s) to smurf in " + targetDir.toAbsolutePath());
+        TopDownModelRenderer renderer = new TopDownModelRenderer(size, size, 0.08, modelColor, bgColor, antiAliasing);
 
         int successful = 0;
         int failed = 0;
         long startTime = System.currentTimeMillis();
 
-        for (File stlFile : stlFiles) {
-            String baseName = stlFile.getName();
+        for (File modelFile : modelFiles) {
+            String baseName = modelFile.getName();
             int dotIdx = baseName.lastIndexOf('.');
             String outName = (dotIdx > 0 ? baseName.substring(0, dotIdx) : baseName) + ".png";
-            File outFile = new File(stlFile.getParentFile(), outName);
+            File outFile = new File(modelFile.getParentFile(), outName);
 
             try {
                 long fileStart = System.currentTimeMillis();
-                StlModel model = StlReader.read(stlFile);
+                MeshModel model = ModelReader.read(modelFile);
                 renderer.renderToFile(model, outFile);
                 long elapsed = System.currentTimeMillis() - fileStart;
                 System.out.printf("[SMURF] Rendered %s (%d triangles) -> %s in %d ms%n",
-                        stlFile.getName(), model.getTriangleCount(), outFile.getName(), elapsed);
+                        modelFile.getName(), model.getTriangleCount(), outFile.getName(), elapsed);
                 successful++;
             } catch (Exception e) {
-                System.err.printf("[ERROR] Failed to smurf %s: %s%n", stlFile.getName(), e.getMessage());
+                System.err.printf("[ERROR] Failed to smurf %s: %s%n", modelFile.getName(), e.getMessage());
                 failed++;
             }
         }
 
         long totalTime = System.currentTimeMillis() - startTime;
         System.out.printf("%nSmurfed %d/%d files successfully in %d ms (%d failed).%n",
-                successful, stlFiles.size(), totalTime, failed);
+                successful, modelFiles.size(), totalTime, failed);
 
         if (failed > 0) {
             System.exit(1);
@@ -136,13 +136,13 @@ public class Main {
     }
 
     private static void printHelp() {
-        System.out.println("STL Top-Down Thumbnailer");
+        System.out.println("3D Model Top-Down Thumbnailer (.stl, .3mf)");
         System.out.println("Usage:");
         System.out.println("  java -jar thumbnailer.jar [options] [directory]");
         System.out.println();
         System.out.println("Options:");
-        System.out.println("  -d, --dir <path>     Directory containing .stl files (default: current directory)");
-        System.out.println("  -f, --file <path>    Process a single .stl file");
+        System.out.println("  -d, --dir <path>     Directory containing .stl or .3mf files (default: current directory)");
+        System.out.println("  -f, --file <path>    Process a single .stl or .3mf file");
         System.out.println("  -s, --size <pixels>  Width/height of generated PNG preview (default: 800)");
         System.out.println("      --no-aa          Disable Super-Sample Anti-Aliasing");
         System.out.println("  -h, --help           Show this help message");
