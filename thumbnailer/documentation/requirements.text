@@ -1,0 +1,11 @@
+
+[] Replace PngGenerator.java
+
+The org.onebeartoe.modeling:test-suite:0.0.1-SNAPSHOT GAV coordinates were removed from @cli/pom.xml
+
+Use classes in the domain/ module as a replacement for PngGenerator.java
+
+Update the cli/ module, use TopDownRenderer#renderToFile() from the domain/ module as a replacement for PngGenerator#generateDirectionalPngs().
+
+Clean up any unused code.
+

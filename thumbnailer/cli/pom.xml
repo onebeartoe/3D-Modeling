@@ -45,11 +45,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
+<!--        <dependency>
             <groupId>org.onebeartoe.modeling</groupId>
             <artifactId>test-suite</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>    
+        </dependency>-->
                         
         <dependency>
             <groupId>org.junit.jupiter</groupId>
