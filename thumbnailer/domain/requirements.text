@@ -1,0 +1,10 @@
+
+[x] Top-Down Image of STL Files
+
+Do not use Python to implement the requirements of this feature.  Only use Java programming language feature and dependencies from Maven Central.
+
+Use Java to create a command line application that does the following:
+
+For each .stl model in the current directory, create an image preview in PNG format.  The image preview should be from a top-down camera angle.  The image preview contains the whole model.
+
+Save the Java code in project using Maven for the build.
