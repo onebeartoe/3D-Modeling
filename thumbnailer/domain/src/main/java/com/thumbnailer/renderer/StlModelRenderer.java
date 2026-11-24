@@ -16,7 +16,7 @@ import java.util.Arrays;
  * High-quality software renderer for top-down orthographic previews of STL meshes.
  * Includes Z-buffering, directional Blinn-Phong lighting, and 2x Super-Sample Anti-Aliasing (SSAA).
  */
-public class TopDownRenderer {
+public class StlModelRenderer {
 
     private final int outputWidth;
     private final int outputHeight;
@@ -26,11 +26,11 @@ public class TopDownRenderer {
     private final boolean antiAliasing;
 
     // Default configuration: 800x800, sleek slate-blue model, crisp neutral background, SSAA enabled
-    public TopDownRenderer() {
+    public StlModelRenderer() {
         this(800, 800, 0.08, new Color(37, 99, 235), new Color(248, 250, 252), true);
     }
 
-    public TopDownRenderer(int width, int height, double marginRatio, Color modelColor, Color backgroundColor, boolean antiAliasing) {
+    public StlModelRenderer(int width, int height, double marginRatio, Color modelColor, Color backgroundColor, boolean antiAliasing) {
         this.outputWidth = Math.max(64, width);
         this.outputHeight = Math.max(64, height);
         this.marginRatio = Math.max(0.01, Math.min(0.40, marginRatio));

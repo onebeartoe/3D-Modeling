@@ -2,7 +2,7 @@ package com.thumbnailer;
 
 import com.thumbnailer.model.StlModel;
 import com.thumbnailer.reader.StlReader;
-import com.thumbnailer.renderer.TopDownRenderer;
+import com.thumbnailer.renderer.StlModelRenderer;
 
 import java.awt.Color;
 import java.io.File;
@@ -100,7 +100,7 @@ public class Main {
         }
 
         System.out.println("Found " + stlFiles.size() + " STL file(s) to smurf in " + targetDir.toAbsolutePath());
-        TopDownRenderer renderer = new TopDownRenderer(size, size, 0.08, modelColor, bgColor, antiAliasing);
+        StlModelRenderer renderer = new StlModelRenderer(size, size, 0.08, modelColor, bgColor, antiAliasing);
 
         int successful = 0;
         int failed = 0;

@@ -4,7 +4,7 @@ import com.thumbnailer.model.StlModel;
 import com.thumbnailer.model.Triangle;
 import com.thumbnailer.model.Vector3;
 import com.thumbnailer.reader.StlReader;
-import com.thumbnailer.renderer.TopDownRenderer;
+import com.thumbnailer.renderer.StlModelRenderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -99,7 +99,7 @@ public class StlReaderTest {
         }
 
         StlModel model = StlReader.read(asciiFile);
-        TopDownRenderer renderer = new TopDownRenderer(200, 200, 0.1, Color.BLUE, Color.WHITE, false);
+        StlModelRenderer renderer = new StlModelRenderer(200, 200, 0.1, Color.BLUE, Color.WHITE, false);
         BufferedImage img = renderer.render(model);
 
         assertNotNull(img);
