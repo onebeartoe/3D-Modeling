@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.thumbnailer.model.StlModel;
 import com.thumbnailer.reader.StlReader;
-import com.thumbnailer.renderer.TopDownRenderer;
+import com.thumbnailer.renderer.StlModelRenderer;
 import dev.tamboui.demo.FileInfo;
 import dev.tamboui.demo.service.FileSystemTreeService;
 import dev.tamboui.demo.service.ModelFileScanner;
@@ -225,7 +225,7 @@ public class TreeNavigationController
             return;
         }
 
-        TopDownRenderer renderer = new TopDownRenderer();
+        StlModelRenderer renderer = new StlModelRenderer();
         for (var modelFile : modelFiles)
         {
             Thread.ofVirtual().start(() -> 
