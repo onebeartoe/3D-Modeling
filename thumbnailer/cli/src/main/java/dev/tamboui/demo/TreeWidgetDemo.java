@@ -91,7 +91,7 @@ public class TreeWidgetDemo {
      */
     public static void main(String[] args) throws Exception 
     {
-        File logFile = new File("target/app.log");
+        File logFile = new File("app.log");
         PrintStream logStream = new PrintStream(logFile);
         System.setOut(logStream);
         System.setErr(logStream);
