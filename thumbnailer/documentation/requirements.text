@@ -1,5 +1,5 @@
 
-[] Replace PngGenerator.java
+[x] Replace PngGenerator.java
 
 The org.onebeartoe.modeling:test-suite:0.0.1-SNAPSHOT GAV coordinates were removed from @cli/pom.xml
 

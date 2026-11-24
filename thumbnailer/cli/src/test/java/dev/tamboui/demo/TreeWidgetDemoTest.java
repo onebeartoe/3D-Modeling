@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import dev.tamboui.demo.controller.TreeNavigationController;
 import dev.tamboui.demo.service.FileSystemTreeService;
 import dev.tamboui.demo.service.ModelFileScanner;
 import dev.tamboui.widgets.tree.TreeNode;
@@ -205,5 +206,43 @@ class TreeWidgetDemoTest {
         assertEquals(2, files.size());
         assertEquals("alpha.3mf", files.get(0).getName());
         assertEquals("beta.stl", files.get(1).getName());
+    }
+
+    @Test
+    void testCurrentDirectoryGeneratesPngFromStl(@TempDir Path tempDir) throws Exception {
+        Path stlPath = tempDir.resolve("triangle.stl");
+        Files.writeString(stlPath, """
+                solid test
+                  facet normal 0.0 0.0 1.0
+                    outer loop
+                      vertex -10.0 -10.0 0.0
+                      vertex 10.0 -10.0 0.0
+                      vertex 0.0 10.0 0.0
+                    endloop
+                  endfacet
+                endsolid test
+                """);
+
+        TreeNavigationController controller = new TreeNavigationController(
+                tempDir,
+                new FileSystemTreeService(),
+                new ModelFileScanner()
+        );
+        controller.currentDirectory();
+
+        Path expectedPng = tempDir.resolve("triangle.png");
+        long deadline = System.currentTimeMillis() + 5000;
+        while (System.currentTimeMillis() < deadline) {
+            if (Files.exists(expectedPng) && Files.size(expectedPng) > 0
+                    && controller.status.startsWith("processed and done:")) {
+                break;
+            }
+            Thread.sleep(20);
+        }
+
+        assertTrue(Files.exists(expectedPng), "Expected PNG thumbnail to be created");
+        assertTrue(Files.size(expectedPng) > 0, "Expected PNG thumbnail to be non-empty");
+        assertTrue(controller.status.contains(expectedPng.toString()),
+                "Expected status to report generated PNG path, was: " + controller.status);
     }
 }

@@ -8,18 +8,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.thumbnailer.model.StlModel;
+import com.thumbnailer.reader.StlReader;
+import com.thumbnailer.renderer.TopDownRenderer;
 import dev.tamboui.demo.FileInfo;
 import dev.tamboui.demo.service.FileSystemTreeService;
 import dev.tamboui.demo.service.ModelFileScanner;
 import dev.tamboui.widgets.tree.TreeNode;
 import dev.tamboui.widgets.tree.TreeState;
 import dev.tamboui.widgets.tree.TreeWidget;
-import java.io.IOException;
-import java.nio.file.StandardOpenOption;
-import org.onebeartoe.modeling.openscad.test.suite.OpenScadCliTestSuite;
-import org.onebeartoe.modeling.openscad.test.suite.model.DirectoryProfile;
-import org.onebeartoe.modeling.openscad.test.suite.model.RunProfile;
-import org.onebeartoe.modeling.openscad.test.suite.utils.PngGenerator;
 
 /**
  * Controller responsible for managing navigation state, selection, and tree data updates.
@@ -32,7 +29,7 @@ public class TreeNavigationController
 
     private Path currentPath;
 
-    public String status = "Empty Status";    
+    public volatile String status = "Empty Status";    
     
     private List<TreeNode<FileInfo>> roots;
     private List<TreeWidget.FlatEntry<TreeNode<FileInfo>>> lastFlatEntries;
@@ -222,44 +219,34 @@ public class TreeNavigationController
 
     public void currentDirectory() 
     {
-        for(var modelFile : modelFiles)
+        if (modelFiles.isEmpty()) 
+        {
+            status = "No model files found in " + currentPath;
+            return;
+        }
+
+        TopDownRenderer renderer = new TopDownRenderer();
+        for (var modelFile : modelFiles)
         {
             Thread.ofVirtual().start(() -> 
             {
                 try 
                 {
-                    // Same business logic - but now truly scalable
-                    PngGenerator pngGenerator = new PngGenerator();
+                    StlModel model = StlReader.read(modelFile);
+                    File outFile = buildPngOutputFile(modelFile);
+                    renderer.renderToFile(model, outFile);
 
-                    var runProfile = new RunProfile();
-                    runProfile.executablePath = "/opt/openscad/OpenSCAD-2025.11.10.ai28923-x86_64.AppImage";
-    
-                    runProfile.mode = OpenScadCliTestSuite.RunMode.GENERATE_BASELINES;
-   
-                    var directoryProfile = new DirectoryProfile();
-                    directoryProfile.setAutoCenter(true);
-                    directoryProfile.setViewall(true);
-
-                    System.out.println("currentPath = " + currentPath);    
-
-                    Path openscadPath = createOpenscad(modelFile);
-                    
-                    var generationFlags = pngGenerator.generateDirectionalPngs(openscadPath, 
-                            true, runProfile, directoryProfile);
-
-                    var message = "processed and done: " + modelFile.toPath();
-
+                    var message = "processed and done: " + outFile.toPath();
                     status = message;
-
-                    System.out.println(message);                    
+                    System.out.println(message);
                 } 
                 catch (Exception e) 
                 {
+                    status = "error processing " + modelFile.getName() + ": " + e.getMessage();
                     e.printStackTrace();
                 }
             });
-        }        
-        System.out.println("Current Directory Not supported yet.");
+        }
     }
 
     public void recursiveDirectory() {
@@ -290,31 +277,11 @@ public class TreeNavigationController
         this.lastFlatEntries = lastFlatEntries;
     }
 
-    private Path createOpenscad(File modelFile) throws IOException 
+    private File buildPngOutputFile(File modelFile) 
     {
-        var filename = modelFile.getName();
-        
-        var start = 0;
-        var end = filename.length();
-        
-        var name = modelFile.getName().substring(start, end);
-        
-        var parentDirectory = modelFile.getParentFile();
-        
-        var openscadFilename = name + ".scad";
-        
-        File openscadFile = new File(parentDirectory, openscadFilename);
-
-        var openscadScript = """
-
-            import("%s");
-                             
-                             """.formatted(name);
-        
-        var openscadPath = openscadFile.toPath();
-        
-        Files.write(openscadPath, openscadScript.getBytes(), StandardOpenOption.CREATE);
-        
-        return openscadPath;
+        String baseName = modelFile.getName();
+        int dotIdx = baseName.lastIndexOf('.');
+        String outName = (dotIdx > 0 ? baseName.substring(0, dotIdx) : baseName) + ".png";
+        return new File(modelFile.getParentFile(), outName);
     }
 }
